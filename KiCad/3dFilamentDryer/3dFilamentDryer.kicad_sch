@@ -5466,6 +5466,194 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Simulation_SPICE:VSIN"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.0254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "V"
+				(at 2.54 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "VSIN"
+				(at 2.54 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Voltage source, sinusoidal"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=+ 2=-"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Params" "dc=0 ampl=1 f=1k ac=1"
+				(at 2.54 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Sim.Type" "SIN"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "V"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "simulation ac vac"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VSIN_0_0"
+				(arc
+					(start -1.27 0)
+					(mid -0.635 0.6323)
+					(end 0 0)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 1.27 0)
+					(mid 0.635 -0.6323)
+					(end 0 0)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(text "+"
+					(at 0 1.905 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(symbol "VSIN_0_1"
+				(circle
+					(center 0 0)
+					(radius 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "VSIN_1_1"
+				(pin passive line
+					(at 0 5.08 270)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 90)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Transistor_BJT:BC817"
 			(pin_names
 				(offset 0)
@@ -7026,6 +7214,12 @@
 		(uuid "31ee6b19-5057-4828-855b-c9092c73a26f")
 	)
 	(junction
+		(at 377.19 167.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "33c4f819-32e9-4cf9-b330-210a69423eb6")
+	)
+	(junction
 		(at 130.81 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7128,6 +7322,12 @@
 		(uuid "9319a727-ca60-440e-838c-41d74c937e0e")
 	)
 	(junction
+		(at 377.19 177.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9db94a38-6cf6-4d3c-9e33-f59886a00ac1")
+	)
+	(junction
 		(at 337.82 80.01)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7187,7 +7387,7 @@
 	)
 	(wire
 		(pts
-			(xy 377.19 173.99) (xy 377.19 179.07)
+			(xy 377.19 173.99) (xy 377.19 177.8)
 		)
 		(stroke
 			(width 0)
@@ -7944,6 +8144,16 @@
 			(type default)
 		)
 		(uuid "62e07cf2-6f5f-431e-88d6-c27478ff94a9")
+	)
+	(wire
+		(pts
+			(xy 377.19 177.8) (xy 386.08 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "653cea82-5191-467d-be14-c2417b52c238")
 	)
 	(wire
 		(pts
@@ -8747,6 +8957,16 @@
 	)
 	(wire
 		(pts
+			(xy 377.19 167.64) (xy 386.08 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d01f30cd-af61-4b54-ba55-7c5fda3d5135")
+	)
+	(wire
+		(pts
 			(xy 59.69 220.98) (xy 139.7 220.98)
 		)
 		(stroke
@@ -8924,6 +9144,16 @@
 			(type default)
 		)
 		(uuid "e4fbd452-511b-4c3f-9002-92bac7a5c291")
+	)
+	(wire
+		(pts
+			(xy 377.19 177.8) (xy 377.19 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e984e298-76a0-4829-a7a6-b0e2de5279ac")
 	)
 	(wire
 		(pts
@@ -14595,6 +14825,113 @@
 			(project "3dFilamentDryer"
 				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Simulation_SPICE:VSIN")
+		(at 386.08 172.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dd2fcb4f-e63a-4fc2-a83e-14b24f032935")
+		(property "Reference" "V1"
+			(at 389.89 170.0501 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "VSIN"
+			(at 389.89 172.5901 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for"
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Voltage source, sinusoidal"
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=+ 2=-"
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Params" "dc=0 ampl=311 f=50 ac=1"
+			(at 389.89 175.1301 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Sim.Type" "SIN"
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "V"
+			(at 386.08 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "35cb4119-b7da-4c2a-8926-33063aea041b")
+		)
+		(pin "2"
+			(uuid "26d360a0-2fa9-43b2-a962-9f7a691190a8")
+		)
+		(instances
+			(project ""
+				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
+					(reference "V1")
 					(unit 1)
 				)
 			)
