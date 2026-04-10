@@ -504,17 +504,22 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Default",
+        "pattern": "/FAN"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "GERBERS/",
-      "pos_files": "Pick and Place/",
+      "plot": "../../Outputs/Gerbers/",
+      "pos_files": "../../Outputs/Pick and Place/Gerber X3/",
       "specctra_dsn": "",
-      "step": "3D Model/3D_Model.step",
+      "step": "../../Outputs/3D Model/3D_Model.step",
       "svg": "",
       "vrml": ""
     },
@@ -669,6 +674,14 @@
       "version": 1
     },
     "net_format_name": "",
+    "ngspice": {
+      "fix_include_paths": true,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 4,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "",
     "space_save_all_events": true,

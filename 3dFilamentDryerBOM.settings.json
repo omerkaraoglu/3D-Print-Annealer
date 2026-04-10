@@ -1,0 +1,48 @@
+{
+    "type": "InteractiveHtmlBom settings",
+    "version": 1,
+    "pcbmetadata": {
+        "title": "3dFilamentDryer",
+        "revision": "",
+        "company": "",
+        "date": "2026-03-17 17:53:09",
+        "variant": ""
+    },
+    "settings": {
+        "canvaslayout": "FB",
+        "bomlayout": "left-right",
+        "bommode": "grouped",
+        "checkboxes": [
+            "Sourced",
+            "Placed"
+        ],
+        "checkboxStoredRefs": {
+            "Sourced": "19,36,43,37,16,48,33,1,20,0,12,24,21,27,13,34,28,4,10,47,29,17,30,14,5,42,45,15,11,39,22,25,6,46,49,8,31,40,44,38",
+            "Placed": "19,36,43,37,16,48,33,1,20,0,12,24,21,27,13,34,28,4,10,47,29,17,30,14,5,42,45,15,11,39,22,25,6,46,49,8,31,40,44,38"
+        },
+        "darkMode": false,
+        "highlightpin1": "none",
+        "redrawOnDrag": true,
+        "boardRotation": 0,
+        "offsetBackRotation": false,
+        "renderPads": true,
+        "renderReferences": true,
+        "renderValues": true,
+        "renderSilkscreen": true,
+        "renderFabrication": false,
+        "renderDnpOutline": false,
+        "renderTracks": false,
+        "renderZones": false,
+        "columnOrder": [
+            "checkboxes",
+            "References",
+            "Value",
+            "Footprint",
+            "Quantity"
+        ],
+        "hiddenColumns": [],
+        "netColors": {},
+        "markWhenChecked": "",
+        "highlightRowOnClick": false
+    }
+}
