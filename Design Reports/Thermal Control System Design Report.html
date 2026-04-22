@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MPC-Augmented PI Thermal Controller — Design Report</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  @media print {
+    .page-break { page-break-before: always; }
+    body { font-size: 11pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fc;
+    line-height: 1.65;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 40px 48px;
+  }
+  .cover {
+    text-align: center;
+    padding: 64px 0 48px;
+    border-bottom: 3px solid #2d3a8c;
+    margin-bottom: 48px;
+  }
+  .cover .doc-id {
+    font-size: 0.78rem;
+    color: #999;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-size: 2.1rem;
+    color: #2d3a8c;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .cover .subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 32px;
+  }
+  .cover .meta {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  .author-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin: 28px auto 20px;
+    padding: 16px 28px;
+    background: #f0f1fa;
+    border: 1px solid #dde1ed;
+    border-radius: 10px;
+  }
+  .author-card img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c8cde0;
+  }
+  .author-info {
+    text-align: left;
+  }
+  .author-info .name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+  }
+  .author-info .role {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .author-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .author-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #2d3a8c;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .author-links a:hover { opacity: 0.7; }
+  .author-links svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+  .cover .date-line {
+    font-size: 0.88rem;
+    color: #777;
+    margin-top: 18px;
+  }
+  h2 {
+    font-size: 1.55rem;
+    color: #2d3a8c;
+    border-bottom: 2px solid #e0e4f0;
+    padding-bottom: 8px;
+    margin: 48px 0 20px;
+  }
+  h3 {
+    font-size: 1.15rem;
+    color: #3a3a5c;
+    margin: 28px 0 12px;
+  }
+  p { margin-bottom: 14px; }
+  .diagram-box {
+    background: #fff;
+    border: 1px solid #dde1ed;
+    border-radius: 10px;
+    padding: 28px 20px;
+    margin: 20px 0 28px;
+    overflow-x: auto;
+  }
+  .diagram-box .mermaid {
+    display: flex;
+    justify-content: center;
+  }
+  .caption {
+    font-size: 0.88rem;
+    color: #666;
+    text-align: center;
+    margin-top: -16px;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .param-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.92rem;
+  }
+  .param-table th {
+    background: #2d3a8c;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .param-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #e8eaf2;
+  }
+  .param-table tr:nth-child(even) td { background: #f4f5fb; }
+  .eq {
+    background: #f0f1fa;
+    border-left: 4px solid #2d3a8c;
+    padding: 14px 20px;
+    margin: 14px 0 20px;
+    font-family: 'Cambria Math', 'Georgia', serif;
+    font-size: 1.05rem;
+    border-radius: 0 6px 6px 0;
+  }
+  .note {
+    background: #fff8e6;
+    border-left: 4px solid #e6a817;
+    padding: 12px 18px;
+    margin: 14px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.93rem;
+  }
+  .toc { margin: 24px 0 40px; }
+  .toc ol { padding-left: 24px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: #2d3a8c; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  code {
+    background: #eef0f8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'Consolas', 'Fira Code', monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="doc-id">Design Report &mdash; Rev 1.0</div>
+  <h1>MPC-Augmented PI Controller with<br>Conditional Integration and Self-Learning<br>Disturbance Rejection</h1>
+  <div class="subtitle">Embedded Thermal Control System for an Insulated Oven<br>ESP32 &middot; MAX6675 Thermocouple &middot; Phase-Angle Triac Drive &middot; SIMC Auto-Tuning</div>
+
+  <div class="author-card">
+    <img src="https://github.com/omerkaraoglu.png" alt="&Ouml;mer Karao&gbreve;lu">
+    <div class="author-info">
+      <div class="name">&Ouml;mer Karao&#287;lu</div>
+      <div class="role">System Designer &amp; Author</div>
+      <div class="author-links">
+        <a href="https://github.com/omerkaraoglu" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          omerkaraoglu
+        </a>
+        <a href="https://www.linkedin.com/in/omer-karaoglu/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          omer-karaoglu
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="date-line">April 15, 2026</div>
+</div>
+
+<table class="param-table" style="max-width:480px; margin-bottom: 36px;">
+  <tr><th colspan="3" style="text-align:center;">Revision History</th></tr>
+  <tr><th>Rev</th><th>Date</th><th>Description</th></tr>
+  <tr><td>1.0</td><td>2026-04-15</td><td>Initial release</td></tr>
+</table>
+
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#s1">System Overview</a></li>
+    <li><a href="#s2">Main Loop Timing Architecture</a></li>
+    <li><a href="#s3">Temperature Filtering Pipeline</a></li>
+    <li><a href="#s4">Triac Phase-Angle Power Delivery</a></li>
+    <li><a href="#s5">Auto-Tuner State Machine</a></li>
+    <li><a href="#s6">SIMC Tuning Rules</a></li>
+    <li><a href="#s7">MPC Prediction Engine</a></li>
+    <li><a href="#s8">Self-Learning Cooling Rate</a></li>
+    <li><a href="#s9">Disturbance Rejection Logic</a></li>
+    <li><a href="#s10">Conditional Integral Switching</a></li>
+    <li><a href="#s11">Full PID Computation &amp; Anti-Windup</a></li>
+    <li><a href="#s12">Parameter Reference</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s1">1. System Overview</h2>
+
+<p>The system is a single-loop thermal controller for an insulated oven, running on an ESP32 microcontroller. A MAX6675 thermocouple provides temperature feedback. A triac with phase-angle control modulates AC power to the heater. The controller combines model-predictive features with classical PI control, tuned via a built-in auto-tuner that identifies plant dynamics and applies SIMC rules.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart LR
+  subgraph HW["Hardware Layer"]
+    TC["MAX6675\nThermocouple"]
+    ZCD["Zero-Cross\nDetector"]
+    TRIAC["Triac Gate\nDriver"]
+    HEATER["Heating\nElement"]
+  end
+
+  subgraph SW["Software Layer (ESP32)"]
+    FILT["Median + EMA\nFilter"]
+    MPC["MPC Predictor\n& Cooling Model"]
+    PID["PI Controller\nw/ Conditional\nIntegral"]
+    LUT["True-RMS\nPower LUT"]
+    AT["Auto-Tuner\n(SIMC)"]
+  end
+
+  TC -- raw °C --> FILT
+  FILT -- filtered °C --> MPC
+  MPC -- predicted °C --> PID
+  PID -- power 0–1 --> LUT
+  LUT -- delay µs --> ZCD
+  ZCD -- trigger --> TRIAC
+  TRIAC -- AC power --> HEATER
+  HEATER -. thermal .-> TC
+
+  AT -. "Kc, Ti" .-> PID
+
+  style HW fill:#e8f4fd,stroke:#4a90d9
+  style SW fill:#f0f1fa,stroke:#6c63ff
+</pre>
+</div>
+<div class="caption">Figure 1 — High-level signal flow from sensor to heater</div>
+
+
+<!-- ============================================================ -->
+<h2 id="s2">2. Main Loop Timing Architecture</h2>
+
+<p>The <code>loop()</code> function uses non-blocking timing to run three concurrent tasks at different rates, plus an event-driven serial command handler. No RTOS is used — all scheduling is cooperative via <code>millis()</code> comparisons.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  LOOP["loop() entry"] --> T1{"250 ms\nelapsed?"}
+  T1 -- Yes --> READ["Read thermocouple\nApply median + EMA filter"]
+  READ --> BRANCH{"tune_state > 0 ?"}
+  BRANCH -- Yes --> TUNE["runAutoTuner()"]
+  BRANCH -- No --> CPID["computePID()"]
+  TUNE --> T2
+  CPID --> T2
+  T1 -- No --> T2{"1000 ms\nelapsed?"}
+
+  T2 -- Yes --> SLOPE["Compute slope\nover 10 s window"]
+  SLOPE --> COOL["Update self-learning\ncooling rate"]
+  COOL --> HIST["Record power_history\nand temp_history"]
+  HIST --> T3
+  T2 -- No --> T3{"500 ms\nelapsed?"}
+
+  T3 -- Yes --> TEL["printTelemetry()"]
+  T3 -- No --> T4
+  TEL --> T4{"Serial\navailable?"}
+
+  T4 -- Yes --> CMD["handleCommand()"]
+  T4 -- No --> LOOP
+
+  CMD --> LOOP
+
+  style READ fill:#d4edda,stroke:#28a745
+  style TUNE fill:#fff3cd,stroke:#ffc107
+  style CPID fill:#d1ecf1,stroke:#17a2b8
+  style SLOPE fill:#e2d5f1,stroke:#7c4dff
+</pre>
+</div>
+<div class="caption">Figure 2 — Main loop timing structure (all times are non-blocking)</div>
+
+<table class="param-table">
+  <tr><th>Task</th><th>Period</th><th>Purpose</th></tr>
+  <tr><td>Control Loop</td><td>250 ms</td><td>Read sensor, run filter, execute PID or auto-tuner</td></tr>
+  <tr><td>MPC Ledger</td><td>1000 ms</td><td>Compute temperature slope, update cooling model, record power history</td></tr>
+  <tr><td>Telemetry</td><td>500 ms</td><td>Print system state to serial</td></tr>
+  <tr><td>Serial Parser</td><td>Event-driven</td><td>Handle SET, TUNE, LAMBDA, PLANT commands</td></tr>
+</table>
+
+
+<!-- ============================================================ -->
+<h2 id="s3">3. Temperature Filtering Pipeline</h2>
+
+<p>Raw thermocouple readings are noisy. The system applies a two-stage filter: first a 7-sample median filter to reject spike outliers, then an exponential moving average (EMA) to smooth the result. This produces a clean <code>current_temp</code> value used by all downstream logic.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart LR
+  RAW["Raw reading\nfrom MAX6675"] --> NAN{"isnan()?"}
+  NAN -- Yes --> HALT["pid_output = 0\nSENSOR ERROR"]
+  NAN -- No --> BUF["Insert into\n7-sample\nring buffer"]
+  BUF --> FULL{"Buffer\nfilled?"}
+  FULL -- No --> PASS["current_temp\n= raw_temp\n(passthrough)"]
+  FULL -- Yes --> MED["Median of\n7 samples"]
+  MED --> EMA["EMA\nα = 0.1"]
+  EMA --> OUT["current_temp"]
+
+  style HALT fill:#f8d7da,stroke:#dc3545
+  style OUT fill:#d4edda,stroke:#28a745
+  style MED fill:#e2d5f1,stroke:#7c4dff
+  style EMA fill:#d1ecf1,stroke:#17a2b8
+</pre>
+</div>
+<div class="caption">Figure 3 — Two-stage temperature filtering (median → EMA)</div>
+
+<div class="eq">
+  <strong>EMA:</strong>&nbsp; T<sub>filtered</sub> = α · T<sub>median</sub> + (1 − α) · T<sub>prev</sub> &nbsp;&nbsp;where α = 0.1
+</div>
+
+<p>The median filter uses a simple bubble sort on a copy of the 7-element window, returning the middle value. This is effective at rejecting single-sample spikes common with thermocouple interfaces.</p>
+
+
+<!-- ============================================================ -->
+<h2 id="s4">4. Triac Phase-Angle Power Delivery</h2>
+
+<p>Power is modulated via phase-angle control: the triac fires at a variable delay after each AC zero-crossing. A pre-computed lookup table maps desired power (0–100%) to a firing delay in microseconds. The mapping is based on the true-RMS relationship between firing angle and delivered power, not a simple linear approximation.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart LR
+  PID_OUT["pid_output\n(0.0 – 1.0)"] --> IDX["Map to\nindex 0–100"]
+  IDX --> LUT["power_to_delay_lut\n(pre-computed\nat boot)"]
+  LUT --> DELAY["delay_µs =\n230 + LUT value"]
+
+  ZC["AC Zero-Cross\nInterrupt\n(FALLING)"] --> CHECK{"pid_output\n> 0.02?"}
+  CHECK -- No --> SKIP["No fire\nthis half-cycle"]
+  CHECK -- Yes --> TIMER["Start hw_timer\nfor delay_µs"]
+  TIMER --> FIRE["Triac ISR:\nGPIO HIGH 150µs\nthen LOW"]
+
+  style ZC fill:#fff3cd,stroke:#ffc107
+  style FIRE fill:#f8d7da,stroke:#dc3545
+  style LUT fill:#e2d5f1,stroke:#7c4dff
+</pre>
+</div>
+<div class="caption">Figure 4 — Zero-cross detection → phase-angle triac firing</div>
+
+<div class="eq">
+  <strong>LUT Build (bisection):</strong>&nbsp; P(α) = 1 − α/π + sin(2α) / 2π<br>
+  For each target power 0–100%, solve for α via 15 iterations of bisection, then: delay = (α / π) × 9500 µs
+</div>
+
+<p>The 230 µs offset accounts for zero-cross detector latency. The 150 µs gate pulse is sufficient to latch the triac for the remainder of the half-cycle.</p>
+
+
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2 id="s5">5. Auto-Tuner State Machine</h2>
+
+<p>The auto-tuner identifies the plant as an <em>integrating process</em> (no self-regulation — the heater has no natural equilibrium). It applies a step test and measures the dead time and maximum heating slope to build a first-order-plus-dead-time (FOPDT) integrating model. The procedure runs in three states.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+stateDiagram-v2
+  [*] --> Idle: System boots\nor tune completes
+
+  Idle --> State1_Wait: User sends\n"TUNE" command
+
+  State1_Wait: State 1 — Wait for Steady State
+  State1_Wait --> State1_Wait: |ΔT| > 0.15°C → reset timer
+  State1_Wait --> State2_DeadTime: 60 s stable\n(ΔT ≤ 0.15°C)
+
+  State2_DeadTime: State 2 — Find Dead Time (θ)
+  State2_DeadTime --> State3_Slope: T rises ≥ 0.5°C\nabove start
+
+  State3_Slope: State 3 — Measure Max Slope
+  State3_Slope --> Idle: After 60 s observation\n→ Compute K', θ → SIMC
+
+  note right of State1_Wait
+    pid_output = 0
+    Heater OFF
+    Recording baseline
+  end note
+
+  note right of State2_DeadTime
+    pid_output = tune_step_power (30%)
+    Step applied, waiting for
+    first measurable response
+  end note
+
+  note right of State3_Slope
+    Step power continues
+    ΔT over 60 s → S_max
+    K' = S_max / step_power
+  end note
+</pre>
+</div>
+<div class="caption">Figure 5 — Auto-tuner state machine (3 states)</div>
+
+<h3>State Transitions in Detail</h3>
+
+<table class="param-table">
+  <tr><th>State</th><th>Entry Condition</th><th>Action</th><th>Exit Condition</th></tr>
+  <tr>
+    <td><strong>1</strong> — Stabilize</td>
+    <td>"TUNE" command received</td>
+    <td>Heater OFF. Monitor temperature drift. Reset 60 s timer any time |ΔT| > 0.15°C</td>
+    <td>60 s pass with temp within ±0.15°C</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong> — Dead Time</td>
+    <td>Steady state confirmed</td>
+    <td>Apply step power (30%). Record start temp and time. Watch for first response.</td>
+    <td>Temperature rises 0.5°C above start</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong> — Slope</td>
+    <td>Dead time measured</td>
+    <td>Continue step power. Measure total ΔT over next 60 s. Compute S<sub>max</sub> = ΔT / 60</td>
+    <td>60 s elapsed → compute plant model → SIMC → return to Idle</td>
+  </tr>
+</table>
+
+<div class="eq">
+  <strong>Plant identification:</strong><br>
+  θ = time from step application to first 0.5°C rise<br>
+  S<sub>max</sub> = ΔT / 60 &nbsp; (°C/s, slope over 60 s after dead time)<br>
+  K' = S<sub>max</sub> / u<sub>step</sub> &nbsp; (integrating gain, °C/s per unit power)<br>
+  τ = 0 &nbsp; (integrating process — no self-regulation)
+</div>
+
+
+<!-- ============================================================ -->
+<h2 id="s6">6. SIMC Tuning Rules</h2>
+
+<p>Once the plant model is identified, the Skogestad IMC (SIMC) rules compute PI controller gains. The system supports both integrating-process and FOPDT models, though the auto-tuner always identifies an integrating process (τ = 0). A user-adjustable λ (lambda) parameter sets the desired closed-loop speed.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  PLANT["Plant Parameters\nK', θ, τ"] --> LAMBDA["Compute actual λ\nλ_actual = θ × (λ_setting × 0.33)"]
+  LAMBDA --> CHECK{"τ == 0 ?"}
+
+  CHECK -- "Yes (Integrating)" --> INT_KC["Kc = 1 / (K' × (λ_actual + θ))"]
+  INT_KC --> INT_TI["Ti = 4 × (λ_actual + θ)"]
+
+  CHECK -- "No (FOPDT)" --> FOPDT_KC["Kc = (1/K) × (τ / (λ_actual + θ))"]
+  FOPDT_KC --> FOPDT_TI["Ti = min(τ, 4×(λ_actual + θ))"]
+
+  INT_TI --> SAVE["Save Kc, Ti, K', θ, τ\nto NVS (Preferences)"]
+  FOPDT_TI --> SAVE
+
+  style INT_KC fill:#d4edda,stroke:#28a745
+  style INT_TI fill:#d4edda,stroke:#28a745
+  style FOPDT_KC fill:#d1ecf1,stroke:#17a2b8
+  style FOPDT_TI fill:#d1ecf1,stroke:#17a2b8
+  style SAVE fill:#fff3cd,stroke:#ffc107
+</pre>
+</div>
+<div class="caption">Figure 6 — SIMC tuning rule selection based on plant model type</div>
+
+<div class="note">
+  <strong>Lambda scaling:</strong> The code applies a 0.33× multiplier to λ before using it. So the user-facing λ range of 1–5 actually maps to an effective closed-loop time constant of 0.33θ to 1.65θ. Lower λ → faster but more aggressive response.
+</div>
+
+<div class="eq">
+  <strong>Integrating SIMC (τ = 0):</strong><br>
+  Kc = 1 / [ K' × (λ<sub>actual</sub> + θ) ]<br>
+  Ti = 4 × (λ<sub>actual</sub> + θ)<br><br>
+  <strong>FOPDT SIMC (τ > 0):</strong><br>
+  Kc = (1/K) × τ / (λ<sub>actual</sub> + θ)<br>
+  Ti = min( τ, 4×(λ<sub>actual</sub> + θ) )
+</div>
+
+
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2 id="s7">7. MPC Prediction Engine</h2>
+
+<p>The controller uses a model-predictive approach to estimate where the temperature <em>will be</em> after the dead time θ, accounting for power already injected but not yet visible in the sensor reading. This predicted temperature drives the proportional term and (conditionally) the integral term.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  subgraph Inputs
+    CT["current_temp"]
+    CS["current_slope\n(°C/s over 10 s)"]
+    PH["power_history[]\n(300 s buffer)"]
+    PP["plant_K, plant_theta"]
+    NCR["natural_cooling_rate\n(self-learned)"]
+  end
+
+  subgraph Disturbance["Disturbance Filter"]
+    CS --> NEGCHECK{"slope < 0 ?"}
+    NEGCHECK -- No --> PASS_S["momentum_slope\n= current_slope"]
+    NEGCHECK -- Yes --> NATCHECK{"|slope| ≤ 1.1 ×\ncooling_rate?"}
+    NATCHECK -- "Yes (natural)" --> ZERO["momentum_slope = 0\n(ignore — it's expected)"]
+    NATCHECK -- "No (crash!)" --> EXCESS["momentum_slope =\nslope + cooling_rate\n(keep only the excess)"]
+  end
+
+  subgraph Prediction["Forward Projection"]
+    PH --> UOLD["u_old = power\nθ seconds ago"]
+    UOLD --> PSUM["power_sum = Σ of\n(power[i] − u_old)\nover θ-second window"]
+  end
+
+  CT --> PRED
+  PASS_S --> PRED
+  ZERO --> PRED
+  EXCESS --> PRED
+  PSUM --> PRED
+
+  PRED["predicted_temp =\ncurrent_temp\n+ momentum_slope × θ\n+ K' × power_sum"]
+
+  PRED --> PID_USE["→ Used by\nProportional Term\n& Conditional Integral"]
+
+  style PRED fill:#d4edda,stroke:#28a745
+  style ZERO fill:#d1ecf1,stroke:#17a2b8
+  style EXCESS fill:#f8d7da,stroke:#dc3545
+  style PID_USE fill:#fff3cd,stroke:#ffc107
+</pre>
+</div>
+<div class="caption">Figure 7 — MPC prediction: combine momentum, injected energy, and disturbance filtering</div>
+
+<div class="eq">
+  <strong>Prediction equation:</strong><br>
+  T̂ = T<sub>current</sub> + slope<sub>adjusted</sub> × θ + K' × Σ(u[i] − u<sub>old</sub>)
+</div>
+
+<p>The power_sum term captures energy that has been injected into the system during the dead time window but has not yet reached the sensor. This forward-looking estimate prevents the controller from over-driving during ramp-up, which is the primary cause of overshoot in pure-PI systems controlling thermal processes with significant transport delay.</p>
+
+
+<!-- ============================================================ -->
+<h2 id="s8">8. Self-Learning Cooling Rate</h2>
+
+<p>The system continuously learns the natural cooling rate of the thermal mass. This is critical for the disturbance rejection logic: the controller needs to distinguish between normal heat loss and genuine disturbances like a door opening or cold fluid injection. When the drop is natural, the momentum projection is zeroed — the proportional term does not react. Instead, the steady correction for normal heat loss is handled entirely by the conditional integral operating in REAL mode. When the drop is anomalous, the excess beyond the learned rate is projected forward, and the proportional term engages.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  CHECK1{"pid_output\n== 0 ?"}
+  CHECK1 -- No --> SKIP["Don't update\n(heater is on)"]
+  CHECK1 -- Yes --> CHECK2{"current_slope\n< 0 ?"}
+  CHECK2 -- No --> SKIP2["Don't update\n(temp not dropping)"]
+  CHECK2 -- Yes --> CHECK3{"|slope| < K' × 0.5 ?"}
+  CHECK3 -- No --> SKIP3["Don't update\n(impossibly fast —\nsensor glitch?)"]
+  CHECK3 -- Yes --> LEARN["Update cooling rate:\nrate = 0.1 × |slope|\n+ 0.9 × rate_prev"]
+
+  LEARN --> USE["Used by MPC\nto classify\ndropping temp as\nnatural vs anomalous"]
+
+  style LEARN fill:#d4edda,stroke:#28a745
+  style USE fill:#d1ecf1,stroke:#17a2b8
+  style SKIP fill:#f0f0f0,stroke:#999
+  style SKIP2 fill:#f0f0f0,stroke:#999
+  style SKIP3 fill:#f8d7da,stroke:#dc3545
+</pre>
+</div>
+<div class="caption">Figure 8 — Self-learning natural cooling rate (updated every 1 s)</div>
+
+<div class="eq">
+  <strong>Learning rule (EMA):</strong>&nbsp;
+  r<sub>cool</sub> = 0.1 × |slope| + 0.9 × r<sub>cool,prev</sub><br>
+  <strong>Guard:</strong>&nbsp; Only when heater OFF, temp falling, and |slope| &lt; K' × 0.5
+</div>
+
+<p>The 0.5 × K' guard rejects sensor errors or sudden physical disturbances from corrupting the learned rate. The slow EMA (α = 0.1) means the rate adapts over minutes, not seconds, giving a stable baseline.</p>
+
+
+<!-- ============================================================ -->
+<h2 id="s9">9. Disturbance Rejection Logic</h2>
+
+<p>Before feeding the temperature slope into the predictor, the system classifies any negative slope as either <em>natural cooling</em> or a <em>genuine disturbance</em>. When classified as natural, the momentum slope is zeroed so the proportional term does not project a crash into the future — the gradual heat loss correction is left to the conditional integral in REAL mode, which is the appropriate mechanism for slow, expected drift. When classified as anomalous, only the excess beyond the learned natural rate is projected forward, engaging the proportional term proportionally to the severity of the disturbance.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  S["current_slope"] --> NEG{"slope < 0 ?"}
+  NEG -- No --> POS["momentum_slope\n= current_slope\n(positive or zero —\nno filtering needed)"]
+
+  NEG -- Yes --> MAG{"|slope| ≤ 1.1 ×\nnatural_cooling_rate ?"}
+  MAG -- Yes --> NAT["momentum_slope = 0\n\nVerdict: NATURAL COOLING\nP-term does not react.\nCorrection left to the\nconditional integral (REAL mode)."]
+
+  MAG -- No --> CRASH["momentum_slope =\nslope + cooling_rate\n\nVerdict: ANOMALOUS DROP\nOnly the excess beyond\nnatural cooling is projected\ninto the future."]
+
+  POS --> PRED["→ predicted_temp"]
+  NAT --> PRED
+  CRASH --> PRED
+
+  style NAT fill:#d4edda,stroke:#28a745
+  style CRASH fill:#f8d7da,stroke:#dc3545
+  style POS fill:#d1ecf1,stroke:#17a2b8
+</pre>
+</div>
+<div class="caption">Figure 9 — Disturbance classification with 10% noise margin</div>
+
+<div class="note">
+  The 1.1× margin (10% above learned cooling rate) prevents sensor noise from falsely triggering disturbance rejection. Only drops that meaningfully exceed the learned natural rate trigger corrective prediction.
+</div>
+
+
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2 id="s10">10. Conditional Integral Switching</h2>
+
+<p>This is the most nuanced part of the controller. The integral term's error source switches between the <em>real temperature</em> and the <em>predicted temperature</em> depending on the system's operating mode. This prevents integral windup during ramp-up while still eliminating steady-state error once near setpoint.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  START["Evaluate conditions"] --> C1{"|slope| ≤ flat_threshold\nAND error ≤ 10% SP\nAND error > 1.5% SP ?"}
+
+  C1 -- Yes --> MODE_A1["MODE A: Near Steady-State\ni_error = SP − T_real\nflatFlag = REAL\n\nSlope is flat, close to target.\nUse real temp to kill\nsteady-state offset."]
+
+  C1 -- No --> C2{"error ≤ 1.5% SP\nAND T < SP ?"}
+  C2 -- Yes --> MODE_A2["MODE A: Very Close\ni_error = SP − T_real\nflatFlag = REAL\n\nWithin 1.5% of target.\nAlways use real temp\nfor fine correction."]
+
+  C2 -- No --> C3{"T ≥ SP AND\nT_predicted ≥ 90% SP ?"}
+  C3 -- Yes --> MODE_A3["MODE A: Above Setpoint\ni_error = SP − T_real\nflatFlag = REAL\n\nTemp at or above target\nand predictor agrees.\nUse real temp."]
+
+  C3 -- No --> C4{"T ≥ SP AND\nT_predicted < 90% SP ?"}
+  C4 -- Yes --> MODE_B1["MODE B: Overshoot Warning\ni_error = SP − T_predicted\nflatFlag = PRED\n\nTemp is above SP but\npredictor sees a crash\ncoming. Use predicted\nto prepare."]
+
+  C4 -- No --> MODE_B2["MODE B: Active Ramp\ni_error = SP − T_predicted\nflatFlag = PRED\n\nActively heating up.\nUse predicted temp to\nprevent integral preloading."]
+
+  MODE_A1 --> INT["error_integral +=\ni_error × dt"]
+  MODE_A2 --> INT
+  MODE_A3 --> INT
+  MODE_B1 --> INT
+  MODE_B2 --> INT
+
+  INT --> CLAMP["Clamp integral:\nmax = Ti / Kc\nmin = 0"]
+
+  style MODE_A1 fill:#d4edda,stroke:#28a745
+  style MODE_A2 fill:#d4edda,stroke:#28a745
+  style MODE_A3 fill:#d4edda,stroke:#28a745
+  style MODE_B1 fill:#fff3cd,stroke:#ffc107
+  style MODE_B2 fill:#d1ecf1,stroke:#17a2b8
+</pre>
+</div>
+<div class="caption">Figure 10 — Conditional integral mode selection (5 branches)</div>
+
+<div class="eq">
+  <strong>Flat threshold:</strong>&nbsp; flat_threshold = K' × 0.1 × 0.3 = K' × 0.03<br>
+  <strong>Integral clamp:</strong>&nbsp; 0 ≤ integral ≤ Ti / Kc
+</div>
+
+<h3>Why Two Modes?</h3>
+<p>During active ramp-up (Mode B), the real temperature lags far behind the setpoint, which would cause massive integral accumulation if used directly. By feeding the <em>predicted</em> temperature error into the integral, the system accounts for energy already in the pipeline. Once near steady-state (Mode A), the real temperature is used so the integral can eliminate the last fraction of a degree of offset — something the predictor alone cannot resolve due to model inaccuracies.</p>
+
+<div class="note">
+  The <code>flatThresholdFlag</code> shown in telemetry as <code>[REAL]</code> or <code>[PRED]</code> indicates which mode is active, giving the operator real-time visibility into the integral's behavior.
+</div>
+
+
+<!-- ============================================================ -->
+<h2 id="s11">11. Full PID Computation &amp; Anti-Windup</h2>
+
+<p>The complete control computation combines the MPC prediction, proportional action, conditional integral, output clamping, and anti-windup. There is no derivative term — the predictive model serves that role.</p>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TD
+  GUARD{"plant_K == 0 ?"}
+  GUARD -- Yes --> OFF["pid_output = 0\n(no plant model yet)"]
+  GUARD -- No --> PREDICT["Compute predicted_temp\n(see §7 MPC Predictor)"]
+
+  PREDICT --> PTERM["P-term = Kc × (SP − T_predicted)"]
+  PREDICT --> ISELECT["Select i_error source\n(see §10 Conditional Integral)"]
+  ISELECT --> ITERM["I-term = Kc × (1/Ti) × ∫ i_error · dt"]
+
+  PTERM --> SUM["u = P-term + I-term"]
+  ITERM --> SUM
+
+  SUM --> UCHECK{"u ≥ 1.0 ?"}
+  UCHECK -- Yes --> SAT_HI["u = 1.0\nAnti-windup:\nundo last integral\nstep if i_error > 0"]
+  UCHECK -- No --> LCHECK{"u ≤ 0.0 ?"}
+  LCHECK -- Yes --> SAT_LO["u = 0.0"]
+  LCHECK -- No --> OK["u = u (no clamping)"]
+
+  SAT_HI --> FLOOR
+  SAT_LO --> FLOOR
+  OK --> FLOOR
+
+  FLOOR["Floor: integral ≥ 0\n(no negative windup)"]
+  FLOOR --> OUTPUT["pid_output = u"]
+
+  style PREDICT fill:#e2d5f1,stroke:#7c4dff
+  style PTERM fill:#d1ecf1,stroke:#17a2b8
+  style ITERM fill:#d4edda,stroke:#28a745
+  style SAT_HI fill:#f8d7da,stroke:#dc3545
+  style OUTPUT fill:#fff3cd,stroke:#ffc107
+</pre>
+</div>
+<div class="caption">Figure 11 — Full PI computation with MPC prediction and anti-windup</div>
+
+<div class="eq">
+  <strong>Control law:</strong>&nbsp; u = Kc × (SP − T̂) + Kc × (1/Ti) × ∫ e<sub>i</sub> · dt<br><br>
+  <strong>Anti-windup (high):</strong>&nbsp; If u ≥ 1 and e<sub>i</sub> > 0, undo: integral −= e<sub>i</sub> × dt<br>
+  <strong>Anti-windup (low):</strong>&nbsp; integral is floored at 0 (heater cannot cool)
+</div>
+
+<div class="note">
+  <strong>Key design choice:</strong> The proportional term <em>always</em> uses the predicted temperature, not the real temperature. This gives early anticipation of overshoot. The integral switches between real and predicted based on operating regime (§10). There is no derivative term — the MPC momentum projection serves the same anticipatory function with better noise immunity.
+</div>
+
+
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<h2 id="s12">12. Parameter Reference</h2>
+
+<h3>Timing Constants</h3>
+<table class="param-table">
+  <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+  <tr><td>Control loop period</td><td>250 ms</td><td>PID/filter execution rate (dt = 0.25 s)</td></tr>
+  <tr><td>MPC ledger period</td><td>1000 ms</td><td>Slope and power history update rate</td></tr>
+  <tr><td>Telemetry period</td><td>500 ms</td><td>Serial output rate</td></tr>
+  <tr><td>Median window</td><td>7 samples</td><td>Covers 1.75 s of readings</td></tr>
+  <tr><td>Slope window</td><td>10 samples</td><td>10 s rolling window for °C/s computation</td></tr>
+  <tr><td>Power history buffer</td><td>300 samples</td><td>5 minutes of power at 1 s resolution</td></tr>
+</table>
+
+<h3>Filter Parameters</h3>
+<table class="param-table">
+  <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+  <tr><td>EMA α (temperature)</td><td>0.1</td><td>Post-median smoothing factor (slow, heavy filtering)</td></tr>
+  <tr><td>EMA α (cooling rate)</td><td>0.1</td><td>Learning rate for natural cooling model</td></tr>
+  <tr><td>Cooling rate guard</td><td>K' × 0.5</td><td>Max credible cooling slope</td></tr>
+  <tr><td>Disturbance margin</td><td>1.1×</td><td>10% tolerance above learned cooling rate</td></tr>
+</table>
+
+<h3>Auto-Tuner Parameters</h3>
+<table class="param-table">
+  <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+  <tr><td>Stabilization time</td><td>60 s</td><td>Minimum quiet period before step</td></tr>
+  <tr><td>Stability threshold</td><td>±0.15°C</td><td>Max drift during stabilization</td></tr>
+  <tr><td>Step power</td><td>30%</td><td>Open-loop excitation level</td></tr>
+  <tr><td>Dead time trigger</td><td>+0.5°C</td><td>Temperature rise that marks end of dead time</td></tr>
+  <tr><td>Slope observation</td><td>60 s</td><td>Duration of slope measurement after θ</td></tr>
+</table>
+
+<h3>SIMC / Controller Parameters (User-Adjustable)</h3>
+<table class="param-table">
+  <tr><th>Parameter</th><th>Range</th><th>Default</th><th>Description</th></tr>
+  <tr><td>Setpoint</td><td>20–200°C</td><td>50°C</td><td>Target temperature</td></tr>
+  <tr><td>Lambda (λ)</td><td>1.0–5.0</td><td>3.0</td><td>Closed-loop aggressiveness (lower = faster)</td></tr>
+  <tr><td>Kc</td><td>Auto-tuned</td><td>1.0</td><td>Proportional gain</td></tr>
+  <tr><td>Ti</td><td>Auto-tuned</td><td>100.0</td><td>Integral time (seconds)</td></tr>
+</table>
+
+<h3>Hardware</h3>
+<table class="param-table">
+  <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+  <tr><td>Triac gate pulse</td><td>150 µs</td><td>Duration of gate drive pulse</td></tr>
+  <tr><td>ZCD offset</td><td>230 µs</td><td>Compensation for zero-cross detector latency</td></tr>
+  <tr><td>Half-cycle period</td><td>~9500 µs</td><td>Assumed 50 Hz mains (10 ms half-cycle minus margins)</td></tr>
+  <tr><td>Minimum output</td><td>2%</td><td>Below this, triac is not fired (noise floor)</td></tr>
+</table>
+
+<h3>NVS Persistent Storage</h3>
+<table class="param-table">
+  <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+  <tr><td><code>setpoint</code></td><td>Float</td><td>Target temperature</td></tr>
+  <tr><td><code>lambda</code></td><td>Float</td><td>Closed-loop tuning aggressiveness</td></tr>
+  <tr><td><code>K</code></td><td>Float</td><td>Plant integrating gain</td></tr>
+  <tr><td><code>tau</code></td><td>Float</td><td>Plant time constant (0 for integrating)</td></tr>
+  <tr><td><code>theta</code></td><td>Float</td><td>Plant dead time</td></tr>
+  <tr><td><code>Kc</code></td><td>Float</td><td>Controller proportional gain</td></tr>
+  <tr><td><code>Ti</code></td><td>Float</td><td>Controller integral time</td></tr>
+</table>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#e8eaf6',
+      primaryTextColor: '#1a1a2e',
+      primaryBorderColor: '#5c6bc0',
+      lineColor: '#5c6bc0',
+      secondaryColor: '#f3e5f5',
+      tertiaryColor: '#e0f2f1',
+      fontFamily: 'Segoe UI, system-ui, sans-serif',
+      fontSize: '14px'
+    },
+    flowchart: { curve: 'basis', padding: 16 },
+    stateDiagram: { padding: 16 }
+  });
+</script>
+
+</body>
+</html>
