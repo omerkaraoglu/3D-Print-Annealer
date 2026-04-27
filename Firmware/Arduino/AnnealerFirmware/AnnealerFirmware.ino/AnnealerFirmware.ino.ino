@@ -27,17 +27,18 @@
 #include <lvgl.h>
 #include <XPT2046_Touchscreen.h>
 #include <WiFi.h>
+#include <WiFiClientSecure.h>
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
 
 // ---- OTA / WiFi configuration -------------------------------------------
 // Bump this every time you build a new firmware. The check compares this
 // against the "version" field of the server's JSON manifest.
-#define FIRMWARE_VERSION   "1.0.0"
+#define FIRMWARE_VERSION   "2.2.0"
 // HTTP URL of the version manifest JSON. Plain HTTP is easiest; HTTPS works
 // too if you switch to WiFiClientSecure and supply the server's root CA.
 // Manifest format: { "version": "1.2.3", "url": "http://host/firmware.bin" }
-#define OTA_MANIFEST_URL   "http://example.invalid/annealer/version.json"
+#define OTA_MANIFEST_URL   "https://omerkaraoglu.github.io/3D-Print-Annealer/Firmware/OTA/version.json"
 
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 1 — PIN DEFINITIONS
@@ -155,7 +156,7 @@ uint16_t power_to_delay_lut[101];
 enum BtnRole { ROLE_PRIMARY, ROLE_SECONDARY, ROLE_SUCCESS, ROLE_DANGER, ROLE_NEUTRAL, ROLE_AMBER };
 
 // Professional dark palette — used throughout every screen.
-#define CLR_BG        0x353535//0x0B1118
+#define CLR_BG        0x0B1118
 #define CLR_PANEL     0x141B24
 #define CLR_PANEL2    0x1C2530
 #define CLR_BORDER    0x2C3540
@@ -687,12 +688,17 @@ void checkForUpdate() {
     Serial.println("[OTA] No WiFi — skipping update check.");
     return;
   }
+  WiFiClientSecure secureClient;
+  secureClient.setInsecure(); // Bypasses strict certificate checking for simplicity
+
   HTTPClient http;
   http.setTimeout(8000);
-  if (!http.begin(OTA_MANIFEST_URL)) {
+  
+  if (!http.begin(secureClient, OTA_MANIFEST_URL)) {
     Serial.println("[OTA] http.begin() failed.");
     return;
   }
+
   int code = http.GET();
   if (code != HTTP_CODE_OK) {
     Serial.print("[OTA] Manifest fetch failed, HTTP ");
@@ -732,9 +738,10 @@ void performUpdate() {
     return;
   }
   Serial.print("[OTA] Downloading: "); Serial.println(ota_download_url);
-  WiFiClient client;
+  WiFiClientSecure secureClient;
+  secureClient.setInsecure(); // Bypasses strict certificate checking
   httpUpdate.rebootOnUpdate(true);
-  t_httpUpdate_return ret = httpUpdate.update(client, ota_download_url);
+  t_httpUpdate_return ret = httpUpdate.update(secureClient, ota_download_url);
   switch (ret) {
     case HTTP_UPDATE_FAILED:
       Serial.printf("[OTA] FAILED: (%d) %s\n",
@@ -2297,6 +2304,18 @@ static void build_scrMain() {
   lv_obj_clear_flag(scrMain, LV_OBJ_FLAG_SCROLLABLE);
 
   // ============ TOP BAR ============
+  // Slightly lighter strip behind the gear / logo so the top bar reads as a
+  // distinct UI region rather than blending into the screen background.
+  lv_obj_t *topBar = lv_obj_create(scrMain);
+  lv_obj_set_size(topBar, SCREEN_W, 36);
+  lv_obj_set_pos(topBar, 0, 0);
+  lv_obj_set_style_bg_color    (topBar, lv_color_hex(0x353535), 0);
+  lv_obj_set_style_bg_opa      (topBar, LV_OPA_COVER, 0);
+  lv_obj_set_style_border_width(topBar, 0, 0);
+  lv_obj_set_style_radius      (topBar, 0, 0);
+  lv_obj_set_style_pad_all     (topBar, 0, 0);
+  lv_obj_clear_flag(topBar, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);
+
   // Settings gear (top-left)
   lv_obj_t *btnSettings = lv_btn_create(scrMain);
   lv_obj_set_size(btnSettings, 38, 32);
@@ -3525,6 +3544,72 @@ void refresh_profile_preview() {
 // ══════════════════════════════════════════════════════════════════
 static void settings_back_cb(lv_event_t *e) { show_scrMain(); }
 static void settings_cal_cb (lv_event_t *e) { show_scrCalibrate(); }
+
+// -------- Restore Defaults: touch cal + plant model + PID gains ----------
+static void restore_defaults_apply_cb(lv_event_t *e) {
+  // Touch calibration → fallback values, mirrored into NVS.
+  ts_min_x = 300; ts_max_x = 3800;
+  ts_min_y = 300; ts_max_y = 3800;
+  preferences.putShort("ts_minx", ts_min_x);
+  preferences.putShort("ts_maxx", ts_max_x);
+  preferences.putShort("ts_miny", ts_min_y);
+  preferences.putShort("ts_maxy", ts_max_y);
+
+  // Factory plant identification + PID gains.
+  plant_K     = 0.043061f;
+  plant_tau   = 0.0f;
+  plant_theta = 165.5f;
+  Kc          = 0.070512f;
+  Ti          = 1317.38f;
+  lambda_val  = 3.0f;
+  preferences.putFloat("K",      plant_K);
+  preferences.putFloat("tau",    plant_tau);
+  preferences.putFloat("theta",  plant_theta);
+  preferences.putFloat("Kc",     Kc);
+  preferences.putFloat("Ti",     Ti);
+  preferences.putFloat("lambda", lambda_val);
+
+  Serial.println("\n[RESET] Defaults restored (touch cal + plant + PID).");
+  ui_show_info("Restored", "Touch calibration and tuning reset to factory defaults.");
+}
+
+static void settings_restore_defaults_cb(lv_event_t *e) {
+  ui_show_messagebox(
+    "Restore Defaults?",
+    "Touchscreen calibration and PID tuning will be reset to factory values. "
+    "Saved profiles and WiFi credentials are kept.",
+    "Restore", "Cancel",
+    restore_defaults_apply_cb);
+}
+
+// -------- Factory Reset: wipe all NVS namespaces, reboot ------------------
+// Two-layer confirmation: scary first dialog, "are you sure" second dialog,
+// only the second's OK actually erases.
+static void factory_reset_apply_cb(lv_event_t *e) {
+  Serial.println("\n[RESET] *** FACTORY RESET *** wiping NVS and rebooting.");
+  // Close our active "pid_data" handle, then nuke every namespace we own.
+  preferences.end();
+  Preferences p;
+  p.begin("pid_data", false); p.clear(); p.end();
+  p.begin("custom",   false); p.clear(); p.end();
+  p.begin("wifi",     false); p.clear(); p.end();
+  delay(300);
+  ESP.restart();   // never returns
+}
+static void factory_reset_step2_cb(lv_event_t *e) {
+  ui_show_messagebox(
+    "Are you sure?",
+    "This cannot be undone. The device will erase ALL settings and reboot.",
+    "Erase All", "Cancel",
+    factory_reset_apply_cb);
+}
+static void settings_factory_reset_cb(lv_event_t *e) {
+  ui_show_messagebox(
+    "Factory Reset?",
+    "Erase ALL settings, custom profiles, calibration, tuning, and WiFi credentials?",
+    "Continue", "Cancel",
+    factory_reset_step2_cb);
+}
 // NOTE: auto-tune is deliberately no longer exposed in the UI. Factory-
 // default plant identification is loaded at boot in setup(). If the plant
 // ever needs to be retuned, the serial `TUNE` command still runs the full
@@ -3537,14 +3622,18 @@ static void build_scrSettings() {
   add_back_button(scrSettings, settings_back_cb);
   add_title(scrSettings, "Settings");
 
-  // Actions: calibration + WiFi credentials. Auto-tune lives on the serial
+  // Four stacked actions on the left. Auto-tune lives on the serial
   // interface (`TUNE`) only.
   make_themed_btn(scrSettings, "Touchscreen Calibration",
-                  5, 50, 210, 55, settings_cal_cb, NULL, ROLE_PRIMARY);
+                  5,  44, 205, 38, settings_cal_cb, NULL, ROLE_PRIMARY);
   make_themed_btn(scrSettings, "WiFi",
-                  5, 115, 210, 55,
+                  5,  86, 205, 38,
                   [](lv_event_t *e) { show_scrWifi(); },
-                  NULL, ROLE_AMBER);
+                  NULL, ROLE_PRIMARY);
+  make_themed_btn(scrSettings, "Restore Defaults",
+                  5, 128, 205, 38, settings_restore_defaults_cb, NULL, ROLE_AMBER);
+  make_themed_btn(scrSettings, "Factory Reset",
+                  5, 170, 205, 38, settings_factory_reset_cb, NULL, ROLE_DANGER);
 
   // Right: QR code panel + caption directly under it
   lv_obj_t *qrPanel = lv_obj_create(scrSettings);
