@@ -28,6 +28,7 @@
 #include <XPT2046_Touchscreen.h>
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
+#include "esp32_cert_bundle.h"
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
 
@@ -40,37 +41,14 @@
 // Manifest format: { "version": "1.2.3", "url": "http://host/firmware.bin" }
 #define OTA_MANIFEST_URL   "https://omerkaraoglu.github.io/3D-Print-Annealer/Firmware/OTA/version.json"
 
-// Root CA used to verify *.github.io. The leaf cert chain currently
-// terminates at "DigiCert Global Root G2" (valid until 2038). If GitHub
-// ever rotates to a different root, replace this PEM with whatever
-//   openssl s_client -showcerts -connect omerkaraoglu.github.io:443 < /dev/null
-// reports as the topmost issuer.
+// We verify TLS using the ESP-IDF certificate bundle that arduino-esp32 v3.x
+// links into the firmware. It contains ~150 common root CAs (DigiCert,
+// Sectigo / USERTrust, Let's Encrypt / ISRG, GlobalSign, Amazon, …) — so we
+// stay valid no matter which CA GitHub rotates to.
 //
-// The manifest's "url" field must also point to https:// on the same
-// domain so this CA covers the firmware download too.
-static const char GITHUB_ROOT_CA[] PROGMEM = R"CERT(-----BEGIN CERTIFICATE-----
-MIIDjjCCAnagAwIBAgIQAzrx5qcRqaC7KGSxHQn65TANBgkqhkiG9w0BAQsFADBh
-MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
-d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBH
-MjAeFw0xMzA4MDExMjAwMDBaFw0zODAxMTUxMjAwMDBaMGExCzAJBgNVBAYTAlVT
-MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5j
-b20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IEcyMIIBIjANBgkqhkiG
-9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuzfNNNx7a8myaJCtSnX/RrohCgiN9RlUyfuI
-2/Ou8jqJkTx65qsGGmvPrC3oXgkkRLpimn7Wo6h+4FR1IAWsULecYxpsMNzaHxmx
-1x7e/dfgy5SDN67sH0NO3Xss0r0upS/kqbitOtSZpLYl6ZtrAGCSYP9PIUkY92eQ
-q2EGnI/yuum06ZIya7XzV+hdG82MHauVBJVJ8zUtluNJbd134/tJS7SsVQepj5Wz
-tCO7TG1F8PapspUwtP1MVYwnSlcUfIKdzXOS0xZKBgyMUNGPHgm+F6HmIcr9g+UQ
-vIOlCsRnKPZzFBQ9RnbDhxSJITRNrw9FDKZJobq7nMWxM4MphQIDAQABo0IwQDAP
-BgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNVHQ4EFgQUTiJUIBiV
-5uNu5g/6+rkS7QYXjzkwDQYJKoZIhvcNAQELBQADggEBAGBnKJRvDkhj6zHd6mcY
-1Yl9PMWLSn/pvtsrF9+wX3N3KjITOYFnQoQj8kVnNeyIv/iPsGEMNKSuIEyExtv4
-NeF22d+mQrvHRAiGfzZ0JFrabA0UWTW98kndth/Jsw1HKj2ZL7tcu7XUIOGZX1NG
-Fdtom/DzMNU+MeKNhJ7jitralj41E6Vf8PlwUHBHQRFXGU7Aj64GxJUTFy8bJZ91
-8rGOmaFvE7FBcf6IKshPECBV1/MUReXgRPTqh5Uykw7+U0b6LJ3/iyK5S9kJRaTe
-pLiaWN0bfVKfjllDiIGknibVb63dDcY3fe0Dkhvld1927jyNxF1WW6LZZm6zNTfl
-MrY=
------END CERTIFICATE-----
-)CERT";
+// The bundle binary is exposed by the build with this exact symbol name.
+// If a future arduino-esp32 release renames it the linker will tell us.
+
 
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 1 — PIN DEFINITIONS
@@ -267,6 +245,7 @@ static lv_obj_t *lblWifiStatus = NULL;
 // OTA dialog is raised from the UI thread once the boot-time check finds
 // a newer version on the server.
 static volatile bool ota_prompt_pending = false;
+bool execute_ota_update_now = false;
 static char  ota_remote_version[24] = "";
 static char  ota_download_url[256]  = "";
 static lv_obj_t *scrFullGraph     = NULL;
@@ -726,7 +705,7 @@ void checkForUpdate() {
     return;
   }
   WiFiClientSecure secureClient;
-  secureClient.setCACert(GITHUB_ROOT_CA);  // verifies the github.io chain
+  secureClient.setCACertBundle(x509_crt_bundle, x509_crt_bundle_len);  // verifies any common CA
 
   HTTPClient http;
   http.setTimeout(8000);
@@ -793,11 +772,16 @@ void performUpdate() {
   // Show the OTA progress screen and pump once so it actually paints
   // before the blocking download starts.
   show_scrOTA();
-  lv_task_handler();
+  for(int i=0; i<5; i++) {
+      lv_tick_inc(10);
+      lv_task_handler();
+      delay(10);
+  }
+
 
   Serial.print("[OTA] Downloading: "); Serial.println(ota_download_url);
   WiFiClientSecure secureClient;
-  secureClient.setCACert(GITHUB_ROOT_CA);  // verifies the github.io chain
+  secureClient.setCACertBundle(x509_crt_bundle, x509_crt_bundle_len);  // verifies any common CA
 
   // Progress: called on every chunk by HTTPUpdate. We update the bar +
   // status label and call lv_task_handler() so LVGL can flush the change
@@ -811,6 +795,7 @@ void performUpdate() {
     char buf[48];
     snprintf(buf, sizeof(buf), "Downloading...  %d%%", pct);
     lv_label_set_text(lblOTAStatus, buf);
+    lv_tick_inc(50);
     lv_task_handler();
   });
   httpUpdate.onError([](int err) {
@@ -1378,18 +1363,35 @@ void loop() {
     if (up && !last_wifi_up) {
       Serial.print("[WIFI] Connected. IP=");
       Serial.println(WiFi.localIP());
+      // TLS cert validation requires a real wall-clock. ESP32 boots with
+      // time(NULL) ≈ 0, which is before every CA's NotBefore date — TLS
+      // handshakes against github.io would fail with HTTP -1. Kick off
+      // SNTP the moment we associate; UTC is fine for cert checks.
+      configTime(0, 0, "pool.ntp.org", "time.nist.gov", "time.google.com");
+      Serial.println("[NTP] Sync requested.");
     } else if (!up && last_wifi_up) {
       Serial.println("[WIFI] Link lost.");
     }
     last_wifi_up = up;
     wifi_connected_flag = up;
 
-    // Fire a single OTA check ~5 s after the first successful association.
+    // Fire a single OTA check once the wall-clock is valid (or skip after
+    // ~30 s of trying). Without a synced clock, setCACert() will refuse
+    // the github.io chain and the manifest fetch returns HTTP -1.
     static unsigned long first_up_ms = 0;
     if (up && first_up_ms == 0) first_up_ms = now;
-    if (up && !ota_check_done && first_up_ms != 0 && now - first_up_ms > 5000) {
-      ota_check_done = true;
-      checkForUpdate();
+    if (up && !ota_check_done && first_up_ms != 0 && now - first_up_ms > 3000) {
+      time_t t = time(nullptr);
+      bool clock_valid = (t > 1700000000);   // > 2023-11-15 → SNTP done
+      if (clock_valid) {
+        ota_check_done = true;
+        Serial.print("[NTP] Clock = ");
+        Serial.println((long)t);
+        checkForUpdate();
+      } else if (now - first_up_ms > 30000) {
+        ota_check_done = true;
+        Serial.println("[OTA] Skipping — no NTP sync after 30 s.");
+      }
     }
 
     // If we have creds but link dropped, retry every ~30 s.
@@ -1409,6 +1411,12 @@ void loop() {
   lv_tick_inc(5);
   lv_task_handler();
   delay(5);
+
+  // 8. Execute pending OTA safely outside the UI thread
+  if (execute_ota_update_now) {
+    execute_ota_update_now = false;
+    performUpdate();
+  }
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -2484,7 +2492,7 @@ static void build_scrMain() {
   // Small blinking warning glyph inside the gauge panel — top-right corner,
   // away from the arc's sweep. Hidden unless the heater is actively running.
   lblGaugeWarn = lv_label_create(gaugePanel);
-  lv_label_set_text(lblGaugeWarn, LV_SYMBOL_WARNING);
+  lv_label_set_text(lblGaugeWarn, LV_SYMBOL_CHARGE);
   lv_obj_set_style_text_color(lblGaugeWarn, lv_color_hex(CLR_DANGER), 0);
   lv_obj_set_style_text_font (lblGaugeWarn, &lv_font_montserrat_16, 0);
   lv_obj_align(lblGaugeWarn, LV_ALIGN_TOP_RIGHT, -6, 4);
@@ -3204,7 +3212,7 @@ static void build_scrBuilder() {
 
   // Empty-state placeholder — shown only when builder_step_count == 0.
   lblBuilderEmpty = lv_label_create(panel);
-  lv_label_set_text(lblBuilderEmpty, "(empty — press + to add a step)");
+  lv_label_set_text(lblBuilderEmpty, "(Press + to add a step)");
   lv_obj_set_style_text_color(lblBuilderEmpty, lv_color_hex(CLR_TXT_DIM), 0);
   lv_obj_set_style_text_font (lblBuilderEmpty, &lv_font_montserrat_14, 0);
   lv_obj_center(lblBuilderEmpty);
@@ -4243,7 +4251,7 @@ static void build_scrOTA() {
 void show_scrOTA() {
   if (lblOTAVersions) {
     char buf[64];
-    snprintf(buf, sizeof(buf), "%s  →  %s", FIRMWARE_VERSION, ota_remote_version);
+    snprintf(buf, sizeof(buf), "%s  >>  %s", FIRMWARE_VERSION, ota_remote_version);
     lv_label_set_text(lblOTAVersions, buf);
   }
   if (lblOTAStatus) lv_label_set_text(lblOTAStatus, "Connecting...");
@@ -4387,7 +4395,7 @@ void ui_update() {
              ota_remote_version, FIRMWARE_VERSION);
     ui_show_messagebox("Update available", body,
                        "Install", "Later",
-                       [](lv_event_t *e) { performUpdate(); });
+                       [](lv_event_t *e) { execute_ota_update_now = true; });
   }
 
   // Gauge (clamped to arc range) + integer temp readout. lroundf returns
