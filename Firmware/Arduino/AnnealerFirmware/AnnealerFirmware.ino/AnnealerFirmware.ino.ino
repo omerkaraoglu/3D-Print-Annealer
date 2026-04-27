@@ -35,7 +35,7 @@
 // ---- OTA / WiFi configuration -------------------------------------------
 // Bump this every time you build a new firmware. The check compares this
 // against the "version" field of the server's JSON manifest.
-#define FIRMWARE_VERSION   "2.1.0"
+#define FIRMWARE_VERSION   "2.1.1"
 // HTTP URL of the version manifest JSON. Plain HTTP is easiest; HTTPS works
 // too if you switch to WiFiClientSecure and supply the server's root CA.
 // Manifest format: { "version": "1.2.3", "url": "http://host/firmware.bin" }
