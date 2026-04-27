@@ -34,11 +34,43 @@
 // ---- OTA / WiFi configuration -------------------------------------------
 // Bump this every time you build a new firmware. The check compares this
 // against the "version" field of the server's JSON manifest.
-#define FIRMWARE_VERSION   "2.2.0"
+#define FIRMWARE_VERSION   "2.0.0"
 // HTTP URL of the version manifest JSON. Plain HTTP is easiest; HTTPS works
 // too if you switch to WiFiClientSecure and supply the server's root CA.
 // Manifest format: { "version": "1.2.3", "url": "http://host/firmware.bin" }
 #define OTA_MANIFEST_URL   "https://omerkaraoglu.github.io/3D-Print-Annealer/Firmware/OTA/version.json"
+
+// Root CA used to verify *.github.io. The leaf cert chain currently
+// terminates at "DigiCert Global Root G2" (valid until 2038). If GitHub
+// ever rotates to a different root, replace this PEM with whatever
+//   openssl s_client -showcerts -connect omerkaraoglu.github.io:443 < /dev/null
+// reports as the topmost issuer.
+//
+// The manifest's "url" field must also point to https:// on the same
+// domain so this CA covers the firmware download too.
+static const char GITHUB_ROOT_CA[] PROGMEM = R"CERT(-----BEGIN CERTIFICATE-----
+MIIDjjCCAnagAwIBAgIQAzrx5qcRqaC7KGSxHQn65TANBgkqhkiG9w0BAQsFADBh
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBH
+MjAeFw0xMzA4MDExMjAwMDBaFw0zODAxMTUxMjAwMDBaMGExCzAJBgNVBAYTAlVT
+MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5j
+b20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IEcyMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuzfNNNx7a8myaJCtSnX/RrohCgiN9RlUyfuI
+2/Ou8jqJkTx65qsGGmvPrC3oXgkkRLpimn7Wo6h+4FR1IAWsULecYxpsMNzaHxmx
+1x7e/dfgy5SDN67sH0NO3Xss0r0upS/kqbitOtSZpLYl6ZtrAGCSYP9PIUkY92eQ
+q2EGnI/yuum06ZIya7XzV+hdG82MHauVBJVJ8zUtluNJbd134/tJS7SsVQepj5Wz
+tCO7TG1F8PapspUwtP1MVYwnSlcUfIKdzXOS0xZKBgyMUNGPHgm+F6HmIcr9g+UQ
+vIOlCsRnKPZzFBQ9RnbDhxSJITRNrw9FDKZJobq7nMWxM4MphQIDAQABo0IwQDAP
+BgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNVHQ4EFgQUTiJUIBiV
+5uNu5g/6+rkS7QYXjzkwDQYJKoZIhvcNAQELBQADggEBAGBnKJRvDkhj6zHd6mcY
+1Yl9PMWLSn/pvtsrF9+wX3N3KjITOYFnQoQj8kVnNeyIv/iPsGEMNKSuIEyExtv4
+NeF22d+mQrvHRAiGfzZ0JFrabA0UWTW98kndth/Jsw1HKj2ZL7tcu7XUIOGZX1NG
+Fdtom/DzMNU+MeKNhJ7jitralj41E6Vf8PlwUHBHQRFXGU7Aj64GxJUTFy8bJZ91
+8rGOmaFvE7FBcf6IKshPECBV1/MUReXgRPTqh5Uykw7+U0b6LJ3/iyK5S9kJRaTe
+pLiaWN0bfVKfjllDiIGknibVb63dDcY3fe0Dkhvld1927jyNxF1WW6LZZm6zNTfl
+MrY=
+-----END CERTIFICATE-----
+)CERT";
 
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 1 — PIN DEFINITIONS
@@ -216,6 +248,10 @@ static lv_obj_t *scrSettings      = NULL;
 static lv_obj_t *scrCalibrate     = NULL;
 static lv_obj_t *scrRename        = NULL;
 static lv_obj_t *scrWifi          = NULL;
+static lv_obj_t *scrOTA           = NULL;
+static lv_obj_t *barOTA           = NULL;
+static lv_obj_t *lblOTAStatus     = NULL;
+static lv_obj_t *lblOTAVersions   = NULL;
 
 // WiFi credentials — persisted in the "wifi" NVS namespace.
 static char   wifi_ssid[33] = "";
@@ -534,6 +570,7 @@ void wifiDisconnect(void);
 void checkForUpdate(void);
 void performUpdate(void);
 void show_scrWifi(void);
+void show_scrOTA (void);
 void saveCustomProfiles(void);
 bool addSavedCustom(const ProfileStep *steps, int count);
 void deleteSavedCustom(int idx);
@@ -689,7 +726,7 @@ void checkForUpdate() {
     return;
   }
   WiFiClientSecure secureClient;
-  secureClient.setInsecure(); // Bypasses strict certificate checking for simplicity
+  secureClient.setCACert(GITHUB_ROOT_CA);  // verifies the github.io chain
 
   HTTPClient http;
   http.setTimeout(8000);
@@ -726,8 +763,10 @@ void checkForUpdate() {
   ota_prompt_pending = true;
 }
 
-// Blocking: downloads firmware.bin over HTTP and writes it to the inactive
-// OTA partition, then reboots. On failure, logs and returns.
+// Blocking: downloads firmware.bin over HTTPS and writes it to the inactive
+// OTA partition, then reboots. The OTA progress screen is shown for the
+// duration; the onProgress callback updates the bar and pumps LVGL on
+// every chunk so the screen never appears frozen.
 void performUpdate() {
   if (WiFi.status() != WL_CONNECTED) {
     ui_show_alert("Offline", "WiFi is not connected.");
@@ -737,24 +776,71 @@ void performUpdate() {
     ui_show_alert("No URL", "Update URL missing.");
     return;
   }
+  // Refuse mid-process: a profile / tune / learn must be stopped first.
+  if (profile_state > 0 || tune_state > 0 || learn_state > 0) {
+    ui_show_alert("Busy",
+                  "Stop the running profile / tune / learn before updating.");
+    return;
+  }
+
+  // Safety: the OTA download blocks the main loop. Force the heater off so
+  // the ZCD ISR's `pid_output > 0.02` gate stops firing the triac.
+  pid_output       = 0.0f;
+  setpoint         = 20.0f;
+  current_setpoint = current_temp;
+  is_ramping       = false;
+
+  // Show the OTA progress screen and pump once so it actually paints
+  // before the blocking download starts.
+  show_scrOTA();
+  lv_task_handler();
+
   Serial.print("[OTA] Downloading: "); Serial.println(ota_download_url);
   WiFiClientSecure secureClient;
-  secureClient.setInsecure(); // Bypasses strict certificate checking
-  httpUpdate.rebootOnUpdate(true);
+  secureClient.setCACert(GITHUB_ROOT_CA);  // verifies the github.io chain
+
+  // Progress: called on every chunk by HTTPUpdate. We update the bar +
+  // status label and call lv_task_handler() so LVGL can flush the change
+  // before HTTPUpdate goes back to blocking on the next chunk.
+  httpUpdate.onProgress([](int cur, int total) {
+    if (total <= 0 || !barOTA || !lblOTAStatus) return;
+    int pct = (int)((100L * (long)cur) / (long)total);
+    if (pct < 0)   pct = 0;
+    if (pct > 100) pct = 100;
+    lv_bar_set_value(barOTA, pct, LV_ANIM_OFF);
+    char buf[48];
+    snprintf(buf, sizeof(buf), "Downloading...  %d%%", pct);
+    lv_label_set_text(lblOTAStatus, buf);
+    lv_task_handler();
+  });
+  httpUpdate.onError([](int err) {
+    Serial.printf("[OTA] httpUpdate error %d\n", err);
+  });
+
+  // Reboot ourselves so the user sees the "Complete!" frame first.
+  httpUpdate.rebootOnUpdate(false);
   t_httpUpdate_return ret = httpUpdate.update(secureClient, ota_download_url);
-  switch (ret) {
-    case HTTP_UPDATE_FAILED:
-      Serial.printf("[OTA] FAILED: (%d) %s\n",
-                    httpUpdate.getLastError(),
-                    httpUpdate.getLastErrorString().c_str());
-      ui_show_alert("Update failed", httpUpdate.getLastErrorString().c_str());
-      break;
-    case HTTP_UPDATE_NO_UPDATES:
-      Serial.println("[OTA] No updates.");
-      break;
-    case HTTP_UPDATE_OK:
-      Serial.println("[OTA] Update OK — rebooting.");
-      break;  // reboot happens inside httpUpdate.update()
+
+  if (ret == HTTP_UPDATE_OK) {
+    Serial.println("[OTA] Update OK — rebooting in 1.5 s.");
+    if (barOTA)       lv_bar_set_value(barOTA, 100, LV_ANIM_OFF);
+    if (lblOTAStatus) lv_label_set_text(lblOTAStatus, "Complete!  Rebooting...");
+    lv_task_handler();
+    delay(1500);
+    ESP.restart();   // never returns
+  } else {
+    const char *err_str = httpUpdate.getLastErrorString().c_str();
+    Serial.printf("[OTA] FAILED: (%d) %s\n",
+                  httpUpdate.getLastError(), err_str);
+    if (lblOTAStatus) {
+      char buf[96];
+      snprintf(buf, sizeof(buf), "Failed: %s",
+               (err_str && *err_str) ? err_str : "unknown error");
+      lv_label_set_text(lblOTAStatus, buf);
+    }
+    lv_task_handler();
+    delay(3500);
+    show_scrMain();
   }
 }
 
@@ -4104,6 +4190,67 @@ void show_scrWifi() {
   lv_scr_load(scrWifi);
 }
 
+// ══════════════════════════════════════════════════════════════════
+//   SECTION 26H — OTA PROGRESS SCREEN
+//   Driven from inside performUpdate()'s blocking loop via the
+//   httpUpdate.onProgress callback, which pumps lv_task_handler() each
+//   tick so the bar and percentage stay live during the download.
+// ══════════════════════════════════════════════════════════════════
+static void build_scrOTA() {
+  scrOTA = lv_obj_create(NULL);
+  style_screen(scrOTA);
+  lv_obj_clear_flag(scrOTA, LV_OBJ_FLAG_SCROLLABLE);
+
+  lv_obj_t *title = lv_label_create(scrOTA);
+  lv_label_set_text(title, "Updating Firmware");
+  lv_obj_set_style_text_color(title, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font (title, &lv_font_montserrat_16, 0);
+  lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 28);
+
+  lblOTAVersions = lv_label_create(scrOTA);
+  lv_label_set_text(lblOTAVersions, "");
+  lv_obj_set_style_text_color(lblOTAVersions, lv_color_hex(CLR_TXT_DIM), 0);
+  lv_obj_set_style_text_font (lblOTAVersions, &lv_font_montserrat_14, 0);
+  lv_obj_align(lblOTAVersions, LV_ALIGN_TOP_MID, 0, 60);
+
+  barOTA = lv_bar_create(scrOTA);
+  lv_obj_set_size(barOTA, 280, 22);
+  lv_obj_align(barOTA, LV_ALIGN_CENTER, 0, 0);
+  lv_bar_set_range(barOTA, 0, 100);
+  lv_bar_set_value(barOTA, 0, LV_ANIM_OFF);
+  lv_obj_set_style_bg_color    (barOTA, lv_color_hex(CLR_PANEL2), LV_PART_MAIN);
+  lv_obj_set_style_bg_opa      (barOTA, LV_OPA_COVER,            LV_PART_MAIN);
+  lv_obj_set_style_border_color(barOTA, lv_color_hex(CLR_BORDER), LV_PART_MAIN);
+  lv_obj_set_style_border_width(barOTA, 1,                        LV_PART_MAIN);
+  lv_obj_set_style_radius      (barOTA, 4,                        LV_PART_MAIN);
+  lv_obj_set_style_bg_color    (barOTA, lv_color_hex(CLR_ACCENT), LV_PART_INDICATOR);
+  lv_obj_set_style_bg_opa      (barOTA, LV_OPA_COVER,            LV_PART_INDICATOR);
+  lv_obj_set_style_radius      (barOTA, 3,                        LV_PART_INDICATOR);
+
+  lblOTAStatus = lv_label_create(scrOTA);
+  lv_label_set_text(lblOTAStatus, "Connecting...");
+  lv_obj_set_style_text_color(lblOTAStatus, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font (lblOTAStatus, &lv_font_montserrat_14, 0);
+  lv_obj_align(lblOTAStatus, LV_ALIGN_CENTER, 0, 30);
+
+  lv_obj_t *warn = lv_label_create(scrOTA);
+  lv_label_set_text(warn, LV_SYMBOL_WARNING "  Do not power off the device.");
+  lv_obj_set_style_text_color(warn, lv_color_hex(CLR_AMBER), 0);
+  lv_obj_set_style_text_font (warn, &lv_font_montserrat_12, 0);
+  lv_obj_align(warn, LV_ALIGN_BOTTOM_MID, 0, -22);
+}
+
+void show_scrOTA() {
+  if (lblOTAVersions) {
+    char buf[64];
+    snprintf(buf, sizeof(buf), "%s  →  %s", FIRMWARE_VERSION, ota_remote_version);
+    lv_label_set_text(lblOTAVersions, buf);
+  }
+  if (lblOTAStatus) lv_label_set_text(lblOTAStatus, "Connecting...");
+  if (barOTA)       lv_bar_set_value(barOTA, 0, LV_ANIM_OFF);
+  lv_scr_load(scrOTA);
+}
+
 // Next unused "Custom Profile N" in sequence. Writes into out[].
 static void generate_next_custom_name(char *out, size_t out_size) {
   int used_max = 0;
@@ -4208,6 +4355,7 @@ void ui_init() {
   build_scrCalibrate();
   build_scrRename();
   build_scrWifi();
+  build_scrOTA();
   refresh_eng_page();
   refresh_custom_list();
   refresh_builder_page();
