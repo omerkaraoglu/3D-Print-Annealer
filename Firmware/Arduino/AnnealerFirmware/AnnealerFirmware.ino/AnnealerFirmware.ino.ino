@@ -35,7 +35,7 @@
 // ---- OTA / WiFi configuration -------------------------------------------
 // Bump this every time you build a new firmware. The check compares this
 // against the "version" field of the server's JSON manifest.
-#define FIRMWARE_VERSION   "2.1.1"
+#define FIRMWARE_VERSION   "2.1.2"
 // HTTP URL of the version manifest JSON. Plain HTTP is easiest; HTTPS works
 // too if you switch to WiFiClientSecure and supply the server's root CA.
 // Manifest format: { "version": "1.2.3", "url": "http://host/firmware.bin" }
@@ -167,6 +167,7 @@ enum BtnRole { ROLE_PRIMARY, ROLE_SECONDARY, ROLE_SUCCESS, ROLE_DANGER, ROLE_NEU
 
 // Professional dark palette — used throughout every screen.
 #define CLR_BG        0x0B1118
+#define CLR_TOP_BAR   0x101010
 #define CLR_PANEL     0x141B24
 #define CLR_PANEL2    0x1C2530
 #define CLR_BORDER    0x2C3540
@@ -236,11 +237,71 @@ static char   wifi_ssid[33] = "";
 static char   wifi_pass[65] = "";
 static bool   wifi_connected_flag = false;
 
-// WiFi entry screen widgets.
-static lv_obj_t *wifiTA_ssid  = NULL;
-static lv_obj_t *wifiTA_pass  = NULL;
-static lv_obj_t *wifiKB       = NULL;
-static lv_obj_t *lblWifiStatus = NULL;
+// Scan results — stage-1 list picker.
+#define WIFI_SCAN_MAX     24
+#define WIFI_LIST_VISIBLE 8                 // rows shown at once on screen
+struct WifiScanEntry {
+  char    ssid[33];
+  int8_t  rssi;
+  uint8_t enc;
+};
+static WifiScanEntry wifi_scan_results[WIFI_SCAN_MAX];
+static int  wifi_scan_count       = 0;
+static int  wifi_sel_idx          = 0;     // highlighted row (display-list index)
+static int  wifi_list_top         = 0;     // first visible row (display-list index)
+static bool wifi_scan_in_progress = false;
+
+// Saved networks — multiple credentials stored in the "wifi" NVS namespace.
+// On boot the first slot is also copied into wifi_ssid/wifi_pass so the
+// auto-reconnect path keeps working unchanged.
+#define SAVED_NET_MAX 8
+struct SavedNetwork {
+  char ssid[33];
+  char pass[65];
+};
+static SavedNetwork saved_nets[SAVED_NET_MAX];
+static int saved_net_count = 0;
+
+// Merged display list: saved networks first (always shown, with in_range
+// flagged), then scan-only entries deduped against saved by SSID.
+#define WIFI_DISPLAY_MAX (WIFI_SCAN_MAX + SAVED_NET_MAX)
+struct WifiDisplayEntry {
+  const char *ssid;     // points at either saved_nets[].ssid or wifi_scan_results[].ssid
+  bool        is_saved;
+  bool        in_range;
+  int8_t      rssi;
+};
+static WifiDisplayEntry wifi_display[WIFI_DISPLAY_MAX];
+static int wifi_display_count = 0;
+
+// Stage-1 (SSID list) widgets — three labels per row: saved icon / SSID / signal.
+static lv_obj_t *wifiListRow[WIFI_LIST_VISIBLE]    = { NULL };
+static lv_obj_t *wifiListLabel[WIFI_LIST_VISIBLE]  = { NULL };
+static lv_obj_t *lblWifiSaved[WIFI_LIST_VISIBLE]   = { NULL };
+static lv_obj_t *lblWifiSignal[WIFI_LIST_VISIBLE]  = { NULL };
+static lv_obj_t *lblWifiNoResults = NULL;
+static lv_obj_t *lblWifiStatus    = NULL;
+static lv_obj_t *lblWifiTitle     = NULL;   // doubles as a live status banner
+
+// Connection-attempt state machine. Drives the status banner and decides
+// when to bounce the user to the password screen for a retry.
+enum WifiConnState { WCS_IDLE, WCS_TRYING, WCS_OK, WCS_FAILED };
+static WifiConnState wifi_conn_state           = WCS_IDLE;
+static unsigned long wifi_conn_start_ms        = 0;
+static unsigned long wifi_conn_state_changed_ms = 0;
+static char          wifi_conn_ssid[33]        = "";
+#define WIFI_CONN_TIMEOUT_MS 12000UL
+#define WIFI_CONN_OK_HOLD_MS  3000UL
+
+// Pass-screen retry banner.
+static bool          wifi_retry_due_to_fail    = false;
+static lv_obj_t     *lblWifiPassRetry          = NULL;
+
+// Stage-2 (password) screen + widgets.
+static lv_obj_t *scrWifiPass         = NULL;
+static lv_obj_t *wifiTA_pass         = NULL;
+static lv_obj_t *wifiPassKB          = NULL;
+static lv_obj_t *lblWifiPassNetwork  = NULL;
 
 // OTA dialog is raised from the UI thread once the boot-time check finds
 // a newer version on the server.
@@ -320,6 +381,7 @@ int         custom_detail_idx  = -1;   // index of profile on scrCustomDetail
 // Rename screen widgets
 static lv_obj_t *renameTA         = NULL;
 static lv_obj_t *renameKB         = NULL;
+static lv_obj_t *lblRenameTitle   = NULL;
 static int       rename_target_idx   = -1;    // slot being renamed (or -1 for a new save)
 static bool      rename_save_builder = false; // true = commit current builder_steps on Save
 static char      rename_default_name[PROFILE_NAME_LEN] = "";
@@ -542,14 +604,19 @@ void my_touchpad_read(lv_indev_drv_t *, lv_indev_data_t *);
 void loadCustomProfiles(void);
 
 // WiFi + OTA
-void loadWifiCreds(void);
-void saveWifiCreds(void);
+void loadSavedNets(void);
+void saveSavedNets(void);
 void wifiConnectAsync(void);
 void wifiDisconnect(void);
 void checkForUpdate(void);
 void performUpdate(void);
 void show_scrWifi(void);
+void show_scrWifiPass(void);
 void show_scrOTA (void);
+void wifiStartScan(void);
+void wifiPollScan(void);
+void wifiAttemptConnect(const char *ssid, const char *pass);
+void refreshWifiList(void);
 void saveCustomProfiles(void);
 bool addSavedCustom(const ProfileStep *steps, int count);
 void deleteSavedCustom(int idx);
@@ -643,20 +710,106 @@ void deleteSavedCustom(int idx) {
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 8BB — WIFI CREDENTIALS + CONNECT
 // ══════════════════════════════════════════════════════════════════
-void loadWifiCreds() {
+// Saved-networks NVS layout (namespace "wifi"):
+//   "count"  (int)              — number of saved entries
+//   "n_<i>"  (string)           — SSID for slot i
+//   "p_<i>"  (string)           — password for slot i
+// Legacy single-network layout (old "ssid"/"pass" strings) is auto-imported
+// into slot 0 on first boot after the upgrade.
+
+void saveSavedNets() {
   Preferences p;
-  p.begin("wifi", true);
-  p.getString("ssid", wifi_ssid, sizeof(wifi_ssid));
-  p.getString("pass", wifi_pass, sizeof(wifi_pass));
+  p.begin("wifi", false);
+  p.clear();   // we own this namespace; rewrite the whole list
+  p.putInt("count", saved_net_count);
+  for (int i = 0; i < saved_net_count; i++) {
+    char k[8];
+    snprintf(k, sizeof(k), "n_%d", i);
+    p.putString(k, saved_nets[i].ssid);
+    snprintf(k, sizeof(k), "p_%d", i);
+    p.putString(k, saved_nets[i].pass);
+  }
   p.end();
 }
 
-void saveWifiCreds() {
+void loadSavedNets() {
+  saved_net_count = 0;
   Preferences p;
-  p.begin("wifi", false);
-  p.putString("ssid", wifi_ssid);
-  p.putString("pass", wifi_pass);
-  p.end();
+  p.begin("wifi", true);
+  bool has_count = p.isKey("count");
+  if (has_count) {
+    int n = p.getInt("count", 0);
+    if (n < 0) n = 0;
+    if (n > SAVED_NET_MAX) n = SAVED_NET_MAX;
+    saved_net_count = n;
+    for (int i = 0; i < n; i++) {
+      char k[8];
+      snprintf(k, sizeof(k), "n_%d", i);
+      p.getString(k, saved_nets[i].ssid, sizeof(saved_nets[i].ssid));
+      snprintf(k, sizeof(k), "p_%d", i);
+      p.getString(k, saved_nets[i].pass, sizeof(saved_nets[i].pass));
+    }
+    p.end();
+  } else {
+    // Migrate from the legacy single ssid/pass keys.
+    char old_ssid[33] = "";
+    char old_pass[65] = "";
+    p.getString("ssid", old_ssid, sizeof(old_ssid));
+    p.getString("pass", old_pass, sizeof(old_pass));
+    p.end();
+    if (old_ssid[0]) {
+      strncpy(saved_nets[0].ssid, old_ssid, sizeof(saved_nets[0].ssid) - 1);
+      saved_nets[0].ssid[sizeof(saved_nets[0].ssid) - 1] = 0;
+      strncpy(saved_nets[0].pass, old_pass, sizeof(saved_nets[0].pass) - 1);
+      saved_nets[0].pass[sizeof(saved_nets[0].pass) - 1] = 0;
+      saved_net_count = 1;
+      saveSavedNets();   // rewrite to the new layout
+    }
+  }
+  // Mirror the first slot into the active wifi_ssid/wifi_pass so the
+  // existing auto-reconnect path Just Works.
+  if (saved_net_count > 0) {
+    strncpy(wifi_ssid, saved_nets[0].ssid, sizeof(wifi_ssid) - 1);
+    wifi_ssid[sizeof(wifi_ssid) - 1] = 0;
+    strncpy(wifi_pass, saved_nets[0].pass, sizeof(wifi_pass) - 1);
+    wifi_pass[sizeof(wifi_pass) - 1] = 0;
+  } else {
+    wifi_ssid[0] = 0;
+    wifi_pass[0] = 0;
+  }
+}
+
+static int findSavedByName(const char *ssid) {
+  if (!ssid) return -1;
+  for (int i = 0; i < saved_net_count; i++) {
+    if (strcmp(saved_nets[i].ssid, ssid) == 0) return i;
+  }
+  return -1;
+}
+
+// Insert or update by SSID. If full, drops the oldest (slot 0) and shifts.
+// Returns the slot index of the resulting entry.
+static int addOrUpdateSavedNet(const char *ssid, const char *pass) {
+  if (!ssid || !ssid[0]) return -1;
+  int idx = findSavedByName(ssid);
+  if (idx >= 0) {
+    strncpy(saved_nets[idx].pass, pass ? pass : "", sizeof(saved_nets[idx].pass) - 1);
+    saved_nets[idx].pass[sizeof(saved_nets[idx].pass) - 1] = 0;
+    saveSavedNets();
+    return idx;
+  }
+  if (saved_net_count >= SAVED_NET_MAX) {
+    // Drop the oldest (slot 0); shift the rest down.
+    for (int i = 0; i < SAVED_NET_MAX - 1; i++) saved_nets[i] = saved_nets[i + 1];
+    saved_net_count = SAVED_NET_MAX - 1;
+  }
+  int slot = saved_net_count++;
+  strncpy(saved_nets[slot].ssid, ssid, sizeof(saved_nets[slot].ssid) - 1);
+  saved_nets[slot].ssid[sizeof(saved_nets[slot].ssid) - 1] = 0;
+  strncpy(saved_nets[slot].pass, pass ? pass : "", sizeof(saved_nets[slot].pass) - 1);
+  saved_nets[slot].pass[sizeof(saved_nets[slot].pass) - 1] = 0;
+  saveSavedNets();
+  return slot;
 }
 
 // Kick off an asynchronous connect (non-blocking). Poll WiFi.status() at
@@ -673,6 +826,222 @@ void wifiDisconnect() {
   WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF);
   wifi_connected_flag = false;
+}
+
+// Kick a connection attempt and arm the state machine. Used by both the
+// "tap a saved network" path and the "save password" path. Call from the
+// UI thread.
+void wifiAttemptConnect(const char *ssid, const char *pass) {
+  if (!ssid || !ssid[0]) return;
+  strncpy(wifi_conn_ssid, ssid, sizeof(wifi_conn_ssid) - 1);
+  wifi_conn_ssid[sizeof(wifi_conn_ssid) - 1] = 0;
+  wifi_conn_state            = WCS_TRYING;
+  wifi_conn_start_ms         = millis();
+  wifi_conn_state_changed_ms = millis();
+  WiFi.disconnect(false);     // soft drop; keeps NVS config
+  delay(50);                  // let the RTOS push the disconnect event
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass ? pass : "");
+  Serial.print("[WIFI] Attempting connect to ");
+  Serial.println(ssid);
+  refreshWifiList();
+}
+
+// Kick off a non-blocking network scan. Results are harvested in
+// wifiPollScan() which is polled from the main loop.
+void wifiStartScan() {
+  WiFi.mode(WIFI_STA);
+  WiFi.scanDelete();              // drop any previous result buffer
+  WiFi.scanNetworks(true, false); // async, no hidden APs
+  wifi_scan_in_progress = true;
+  wifi_scan_count       = 0;
+  wifi_sel_idx          = 0;
+  wifi_list_top         = 0;
+  Serial.println("[WIFI] Scan started.");
+}
+
+void wifiPollScan() {
+  if (!wifi_scan_in_progress) return;
+  int n = WiFi.scanComplete();
+  if (n == WIFI_SCAN_RUNNING) return;     // still working
+  wifi_scan_in_progress = false;
+  if (n < 0) {
+    Serial.print("[WIFI] Scan failed: "); Serial.println(n);
+    refreshWifiList();
+    return;
+  }
+  if (n > WIFI_SCAN_MAX) n = WIFI_SCAN_MAX;
+  wifi_scan_count = n;
+  for (int i = 0; i < n; i++) {
+    String s = WiFi.SSID(i);
+    strncpy(wifi_scan_results[i].ssid, s.c_str(), 32);
+    wifi_scan_results[i].ssid[32] = 0;
+    wifi_scan_results[i].rssi     = (int8_t)WiFi.RSSI(i);
+    wifi_scan_results[i].enc      = (uint8_t)WiFi.encryptionType(i);
+  }
+  WiFi.scanDelete();
+  // Pre-select the currently saved SSID if it's in the list.
+  for (int i = 0; i < n; i++) {
+    if (wifi_ssid[0] && strcmp(wifi_scan_results[i].ssid, wifi_ssid) == 0) {
+      wifi_sel_idx  = i;
+      if (wifi_sel_idx >= WIFI_LIST_VISIBLE)
+        wifi_list_top = wifi_sel_idx - WIFI_LIST_VISIBLE + 1;
+      break;
+    }
+  }
+  Serial.print("[WIFI] Scan done, "); Serial.print(n); Serial.println(" networks.");
+  refreshWifiList();
+}
+
+// Repaint the list rows from wifi_scan_results based on wifi_list_top
+// and the highlight row (wifi_sel_idx).
+// Stitch saved networks (pinned at the top) and freshly-scanned networks
+// (deduped against saved entries) into wifi_display[].
+static void rebuildWifiDisplay() {
+  wifi_display_count = 0;
+
+  // Saved entries first — always shown, in_range marked from scan results.
+  for (int i = 0; i < saved_net_count && wifi_display_count < WIFI_DISPLAY_MAX; i++) {
+    WifiDisplayEntry &d = wifi_display[wifi_display_count++];
+    d.ssid     = saved_nets[i].ssid;
+    d.is_saved = true;
+    d.in_range = false;
+    d.rssi     = -127;
+    for (int j = 0; j < wifi_scan_count; j++) {
+      if (strcmp(saved_nets[i].ssid, wifi_scan_results[j].ssid) == 0) {
+        d.in_range = true;
+        d.rssi     = wifi_scan_results[j].rssi;
+        break;
+      }
+    }
+  }
+
+  // Then scan-only entries (not already in the saved list).
+  for (int j = 0; j < wifi_scan_count && wifi_display_count < WIFI_DISPLAY_MAX; j++) {
+    bool already_listed = false;
+    for (int i = 0; i < saved_net_count; i++) {
+      if (strcmp(wifi_scan_results[j].ssid, saved_nets[i].ssid) == 0) {
+        already_listed = true; break;
+      }
+    }
+    if (already_listed) continue;
+    WifiDisplayEntry &d = wifi_display[wifi_display_count++];
+    d.ssid     = wifi_scan_results[j].ssid;
+    d.is_saved = false;
+    d.in_range = true;
+    d.rssi     = wifi_scan_results[j].rssi;
+  }
+
+  // Clamp cursor / scroll-top to valid range.
+  if (wifi_sel_idx  >= wifi_display_count) wifi_sel_idx  = wifi_display_count > 0 ? wifi_display_count - 1 : 0;
+  if (wifi_list_top >  wifi_sel_idx)        wifi_list_top = wifi_sel_idx;
+  if (wifi_list_top + WIFI_LIST_VISIBLE <= wifi_sel_idx)
+    wifi_list_top = wifi_sel_idx - WIFI_LIST_VISIBLE + 1;
+  if (wifi_list_top < 0) wifi_list_top = 0;
+}
+
+void refreshWifiList() {
+  rebuildWifiDisplay();
+
+  // ---- Title / status banner ---------------------------------------------
+  if (lblWifiTitle) {
+    char buf[64];
+    uint32_t color = CLR_TXT;
+    const char *txt = "WiFi Networks";
+    if (wifi_conn_state == WCS_TRYING) {
+      txt   = "Connecting...";
+      color = CLR_AMBER;
+    } else if (wifi_conn_state == WCS_OK) {
+      txt   = "Connected";
+      color = CLR_SUCCESS;
+    } else if (wifi_conn_state == WCS_FAILED) {
+      txt   = "Connection failed";
+      color = CLR_DANGER;
+    } else if (wifi_scan_in_progress) {
+      txt   = "Scanning...";
+      color = CLR_TXT_DIM;
+    }
+    lv_label_set_text(lblWifiTitle, txt);
+    lv_obj_set_style_text_color(lblWifiTitle, lv_color_hex(color), 0);
+  }
+
+  // SSID currently associated, used to paint that row green.
+  String connected = (WiFi.status() == WL_CONNECTED) ? WiFi.SSID() : String("");
+
+  if (wifi_display_count == 0) {
+    if (lblWifiNoResults) {
+      // Show "Scanning..." whenever we're either actively scanning OR no
+      // scan has ever finished yet — i.e. the user has just landed on the
+      // screen. Only flip to "No networks" once a scan has completed and
+      // produced nothing.
+      bool ever_scanned = !wifi_scan_in_progress && wifi_scan_count == 0
+                          && saved_net_count == 0;
+      lv_label_set_text(lblWifiNoResults,
+        wifi_scan_in_progress ? "Scanning..."
+                              : (ever_scanned ? "Scanning..." : "No networks"));
+      lv_obj_clear_flag(lblWifiNoResults, LV_OBJ_FLAG_HIDDEN);
+    }
+    for (int i = 0; i < WIFI_LIST_VISIBLE; i++)
+      if (wifiListRow[i]) lv_obj_add_flag(wifiListRow[i], LV_OBJ_FLAG_HIDDEN);
+    return;
+  }
+  if (lblWifiNoResults) lv_obj_add_flag(lblWifiNoResults, LV_OBJ_FLAG_HIDDEN);
+
+  for (int i = 0; i < WIFI_LIST_VISIBLE; i++) {
+    int idx = wifi_list_top + i;
+    if (idx >= wifi_display_count) {
+      lv_obj_add_flag(wifiListRow[i], LV_OBJ_FLAG_HIDDEN);
+      continue;
+    }
+    const WifiDisplayEntry &e = wifi_display[idx];
+    bool selected   = (idx == wifi_sel_idx);
+    bool is_active  = (connected.length() > 0) && (connected == e.ssid);
+
+    // Saved icon (left): checkmark in amber, brightened to green if connected.
+    if (lblWifiSaved[i]) {
+      if (e.is_saved) {
+        lv_label_set_text(lblWifiSaved[i], LV_SYMBOL_OK);
+        lv_obj_set_style_text_color(lblWifiSaved[i],
+          lv_color_hex(is_active ? CLR_SUCCESS : CLR_AMBER), 0);
+        lv_obj_clear_flag(lblWifiSaved[i], LV_OBJ_FLAG_HIDDEN);
+      } else {
+        lv_obj_add_flag(lblWifiSaved[i], LV_OBJ_FLAG_HIDDEN);
+      }
+    }
+
+    // SSID label
+    lv_label_set_text(wifiListLabel[i], e.ssid);
+    uint32_t ssid_color;
+    if (is_active)      ssid_color = CLR_SUCCESS;
+    else if (selected)  ssid_color = CLR_TXT;
+    else                ssid_color = CLR_TXT_DIM;
+    lv_obj_set_style_text_color(wifiListLabel[i], lv_color_hex(ssid_color), 0);
+
+    // Signal indicator (right): WiFi glyph color-tiered by RSSI, or X if
+    // a saved network isn't currently visible.
+    if (lblWifiSignal[i]) {
+      uint32_t sig_color;
+      const char *sig_glyph;
+      if (!e.in_range) {
+        sig_glyph = LV_SYMBOL_CLOSE;
+        sig_color = CLR_TXT_FAINT;
+      } else {
+        sig_glyph = LV_SYMBOL_WIFI;
+        if      (e.rssi >= -60) sig_color = CLR_SUCCESS;
+        else if (e.rssi >= -75) sig_color = CLR_AMBER;
+        else                    sig_color = CLR_DANGER;
+        if (is_active) sig_color = CLR_SUCCESS;
+      }
+      lv_label_set_text(lblWifiSignal[i], sig_glyph);
+      lv_obj_set_style_text_color(lblWifiSignal[i], lv_color_hex(sig_color), 0);
+    }
+
+    // Row background
+    lv_obj_set_style_bg_color(wifiListRow[i],
+      lv_color_hex(selected ? CLR_ACCENT_D : CLR_PANEL2), 0);
+
+    lv_obj_clear_flag(wifiListRow[i], LV_OBJ_FLAG_HIDDEN);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -1146,7 +1515,7 @@ void setup() {
   }
 
   loadCustomProfiles();
-  loadWifiCreds();
+  loadSavedNets();
   wifiConnectAsync();    // fire-and-forget; check status in loop()
 
   // First temperature read (hardware SPI)
@@ -1372,8 +1741,59 @@ void loop() {
     } else if (!up && last_wifi_up) {
       Serial.println("[WIFI] Link lost.");
     }
+    // Repaint the SSID list on every association change so the connected
+    // indicator (green SSID + green WiFi glyph) stays accurate live.
+    if (up != last_wifi_up) refreshWifiList();
     last_wifi_up = up;
     wifi_connected_flag = up;
+
+    // Harvest async scan results when they're ready (drives the SSID list
+    // on scrWifi). Cheap when no scan is running.
+    wifiPollScan();
+
+    // ---- Connection-attempt state machine -------------------------------
+    if (wifi_conn_state == WCS_TRYING) {
+      wl_status_t s = WiFi.status();
+      bool failed   = (s == WL_CONNECT_FAILED || s == WL_NO_SSID_AVAIL);
+      bool timed_out = (now - wifi_conn_start_ms > WIFI_CONN_TIMEOUT_MS);
+      if (s == WL_CONNECTED) {
+        wifi_conn_state            = WCS_OK;
+        wifi_conn_state_changed_ms = now;
+        Serial.print("[WIFI] Connected to ");
+        Serial.println(WiFi.SSID());
+        refreshWifiList();
+      } else if (failed || timed_out) {
+        wifi_conn_state            = WCS_FAILED;
+        wifi_conn_state_changed_ms = now;
+        Serial.print("[WIFI] Connect failed (status=");
+        Serial.print((int)s);
+        Serial.println(timed_out ? ", timeout)" : ")");
+        refreshWifiList();
+        // Bounce the user to the password screen for a fresh attempt.
+        // Only do this if they're still on scrWifi — if they navigated
+        // away in the meantime we shouldn't yank focus.
+        if (lv_scr_act() == scrWifi) {
+          strncpy(wifi_ssid, wifi_conn_ssid, sizeof(wifi_ssid) - 1);
+          wifi_ssid[sizeof(wifi_ssid) - 1] = 0;
+          wifi_pass[0] = 0;
+          wifi_retry_due_to_fail = true;
+          show_scrWifiPass();
+        }
+      }
+    } else if (wifi_conn_state == WCS_OK) {
+      // Hold the green "Connected to X" banner briefly, then fade to idle.
+      if (now - wifi_conn_state_changed_ms > WIFI_CONN_OK_HOLD_MS) {
+        wifi_conn_state = WCS_IDLE;
+        refreshWifiList();
+      }
+    }
+    // Bump the title even when state hasn't transitioned, so "Scanning..."
+    // appears/disappears live as wifiPollScan toggles wifi_scan_in_progress.
+    static bool last_scan_in_progress = false;
+    if (last_scan_in_progress != wifi_scan_in_progress) {
+      last_scan_in_progress = wifi_scan_in_progress;
+      refreshWifiList();
+    }
 
     // Fire a single OTA check once the wall-clock is valid (or skip after
     // ~30 s of trying). Without a synced clock, setCACert() will refuse
@@ -2337,7 +2757,17 @@ void ui_show_messagebox(const char *title, const char *body,
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 20 — MAIN SCREEN
 // ══════════════════════════════════════════════════════════════════
-static void btn_profile_clicked(lv_event_t *e)  { show_scrMaterial(); }
+static void btn_profile_clicked(lv_event_t *e)  {
+  // Profile selection is blocked while a profile is running — picking a
+  // different one mid-run would be confusing and potentially dangerous.
+  // Tell the user to stop the current run first.
+  if (profile_state > 0) {
+    ui_show_alert("Profile running",
+                  "Stop the current profile before selecting a new one.");
+    return;
+  }
+  show_scrMaterial();
+}
 static void really_stop_cb(lv_event_t *e)       { stopProfile("user STOP"); }
 
 static void btn_startstop_clicked(lv_event_t *e) {
@@ -2403,7 +2833,7 @@ static void build_scrMain() {
   lv_obj_t *topBar = lv_obj_create(scrMain);
   lv_obj_set_size(topBar, SCREEN_W, 36);
   lv_obj_set_pos(topBar, 0, 0);
-  lv_obj_set_style_bg_color    (topBar, lv_color_hex(0x353535), 0);
+  lv_obj_set_style_bg_color    (topBar, lv_color_hex(CLR_TOP_BAR), 0);
   lv_obj_set_style_bg_opa      (topBar, LV_OPA_COVER, 0);
   lv_obj_set_style_border_width(topBar, 0, 0);
   lv_obj_set_style_radius      (topBar, 0, 0);
@@ -2437,7 +2867,7 @@ static void build_scrMain() {
   {
     const int top_bar_h = 36;
     const int logo_h    = readark_logo.header.h;
-    lv_obj_align(imgLogo, LV_ALIGN_TOP_MID, 9, (top_bar_h - logo_h) / 2);
+    lv_obj_align(imgLogo, LV_ALIGN_TOP_MID, 6, (top_bar_h - logo_h) / 2);
   }
   // Tap the logo to open the About / QR overlay.
   lv_obj_add_flag(imgLogo, LV_OBJ_FLAG_CLICKABLE);
@@ -3977,7 +4407,7 @@ static void build_scrRename() {
   lv_obj_clear_flag(scrRename, LV_OBJ_FLAG_SCROLLABLE);
   add_back_button(scrRename, rename_back_cb);
 
-  // Save button at top-right (same vertical band as Back — no separate title row)
+  // Save button at top-right.
   lv_obj_t *bSave = lv_btn_create(scrRename);
   lv_obj_set_size(bSave, 56, 26);
   lv_obj_set_pos(bSave, SCREEN_W - 60, 6);
@@ -3993,11 +4423,19 @@ static void build_scrRename() {
   lv_label_set_text(lSave, "Save");
   lv_obj_center(lSave);
 
-  // Textarea sits inline between Back and Save — no dedicated second row.
-  // This buys ~30 px of vertical space that goes straight into the keyboard.
+  // Centered title — text is set per visit by show_scrRename() to either
+  // "Name profile" (new save) or "Rename profile" (renaming existing).
+  lblRenameTitle = lv_label_create(scrRename);
+  lv_label_set_text(lblRenameTitle, "Rename profile");
+  lv_obj_set_style_text_color(lblRenameTitle, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font (lblRenameTitle, &lv_font_montserrat_16, 0);
+  lv_obj_align(lblRenameTitle, LV_ALIGN_TOP_MID, 0, 10);
+
+  // Textarea sits directly above the keyboard so the layout matches the
+  // WiFi credentials screen. Keyboard at y=112..240; textarea at y=82..108.
   renameTA = lv_textarea_create(scrRename);
-  lv_obj_set_size(renameTA, 196, 26);
-  lv_obj_set_pos(renameTA, 62, 6);
+  lv_obj_set_size(renameTA, 280, 28);
+  lv_obj_set_pos(renameTA, 20, 80);
   lv_textarea_set_one_line(renameTA, true);
   lv_textarea_set_max_length(renameTA, PROFILE_NAME_LEN - 1);
   lv_obj_set_style_bg_color    (renameTA, lv_color_hex(CLR_PANEL2), 0);
@@ -4007,15 +4445,12 @@ static void build_scrRename() {
   lv_obj_set_style_text_color  (renameTA, lv_color_hex(CLR_TXT),    0);
   lv_obj_set_style_text_font   (renameTA, &lv_font_montserrat_14,   0);
 
-  // The default LVGL theme ships large hidden paddings on lv_keyboard's
-  // MAIN part that per-property overrides do NOT fully kill (the theme
-  // re-applies them on state changes and layer init). Nuke ALL inherited
-  // styles first, then build the look we want from scratch — this is what
-  // finally closes the empty strip above the top row of keys.
+  // Keyboard — same height (128) and position (y=112) as the WiFi screen
+  // for visual consistency.
   renameKB = lv_keyboard_create(scrRename);
   lv_obj_remove_style_all(renameKB);
-  lv_obj_set_size(renameKB, 320, 202);
-  lv_obj_set_pos(renameKB, 0, 36);               // bottom = 238
+  lv_obj_set_size(renameKB, 320, 128);
+  lv_obj_set_pos(renameKB, 0, 112);
   lv_keyboard_set_textarea(renameKB, renameTA);
   lv_keyboard_set_mode(renameKB, LV_KEYBOARD_MODE_TEXT_LOWER);
 
@@ -4048,53 +4483,224 @@ static void build_scrRename() {
 //   otherwise                   → empty
 void show_scrRename() {
   const char *prefill = "";
+  const char *title   = "Rename profile";
   if (rename_save_builder) {
     prefill = rename_default_name;
+    // Naming a freshly built profile vs. naming the result of an edit;
+    // both flow through here as save_builder=true. Either way it's "Name".
+    title = "Name profile";
   } else if (rename_target_idx >= 0 && rename_target_idx < saved_custom_count) {
     prefill = saved_customs[rename_target_idx].name;
+    title   = "Rename profile";
   }
+  if (lblRenameTitle) lv_label_set_text(lblRenameTitle, title);
   lv_textarea_set_text(renameTA, prefill);
   lv_scr_load(scrRename);
 }
 
 // ══════════════════════════════════════════════════════════════════
-//   SECTION 26G — WIFI CREDENTIALS SCREEN
-//   Two one-line text areas (SSID / password) share one keyboard; the
-//   keyboard follows whichever textarea was last tapped.
+//   SECTION 26G — WIFI: STAGE 1 (SSID PICKER)  +  STAGE 2 (PASSWORD)
+//
+//   Stage 1 (scrWifi):
+//     • Tightly-spaced list of scanned networks
+//     • Big up/down arrows shift the highlight cursor
+//     • "Select" advances to stage 2 with that SSID
+//     • "Rescan" re-runs the asynchronous scan
+//   Stage 2 (scrWifiPass):
+//     • One-line password textarea (masked)
+//     • Full keyboard at the bottom
+//     • Save commits to NVS and reconnects
 // ══════════════════════════════════════════════════════════════════
 static void wifi_back_cb(lv_event_t *e) { show_scrSettings(); }
 
-static void wifi_save_cb(lv_event_t *e) {
-  const char *ssid = lv_textarea_get_text(wifiTA_ssid);
-  const char *pass = lv_textarea_get_text(wifiTA_pass);
-  if (!ssid || !ssid[0]) {
-    ui_show_alert("Empty SSID", "Please enter an SSID.");
+static void wifi_up_cb(lv_event_t *e) {
+  if (wifi_scan_count == 0) return;
+  if (wifi_sel_idx > 0) {
+    wifi_sel_idx--;
+    if (wifi_sel_idx < wifi_list_top) wifi_list_top = wifi_sel_idx;
+    refreshWifiList();
+  }
+}
+static void wifi_down_cb(lv_event_t *e) {
+  if (wifi_scan_count == 0) return;
+  if (wifi_sel_idx < wifi_scan_count - 1) {
+    wifi_sel_idx++;
+    if (wifi_sel_idx >= wifi_list_top + WIFI_LIST_VISIBLE)
+      wifi_list_top = wifi_sel_idx - WIFI_LIST_VISIBLE + 1;
+    refreshWifiList();
+  }
+}
+static void wifi_rescan_cb(lv_event_t *e) {
+  wifiStartScan();
+  refreshWifiList();
+}
+// Act on the currently-highlighted display row.
+//   • saved + in range  → connect immediately with the stored password
+//   • saved + offline   → block with an alert ("not currently visible")
+//   • not saved         → advance to the password entry screen
+static void wifi_select_cb(lv_event_t *e) {
+  if (wifi_display_count == 0) {
+    ui_show_alert("No network", "Wait for the scan to finish, or Rescan.");
     return;
   }
-  strncpy(wifi_ssid, ssid, sizeof(wifi_ssid) - 1); wifi_ssid[sizeof(wifi_ssid)-1] = 0;
-  strncpy(wifi_pass, pass ? pass : "", sizeof(wifi_pass) - 1); wifi_pass[sizeof(wifi_pass)-1] = 0;
-  saveWifiCreds();
-  // Reconnect with new credentials.
-  wifiDisconnect();
-  wifiConnectAsync();
-  show_scrSettings();
+  if (wifi_sel_idx < 0 || wifi_sel_idx >= wifi_display_count) return;
+  const WifiDisplayEntry &d = wifi_display[wifi_sel_idx];
+
+  if (d.is_saved) {
+    if (!d.in_range) {
+      ui_show_alert("Out of range",
+                    "This saved network is not currently visible.");
+      return;
+    }
+    int idx = findSavedByName(d.ssid);
+    if (idx < 0) return;
+    // Move to slot 0 so subsequent auto-reconnects pick this one.
+    if (idx != 0) {
+      SavedNetwork tmp = saved_nets[idx];
+      for (int i = idx; i > 0; i--) saved_nets[i] = saved_nets[i - 1];
+      saved_nets[0] = tmp;
+      saveSavedNets();
+      idx = 0;
+    }
+    strncpy(wifi_ssid, saved_nets[idx].ssid, sizeof(wifi_ssid) - 1);
+    wifi_ssid[sizeof(wifi_ssid) - 1] = 0;
+    strncpy(wifi_pass, saved_nets[idx].pass, sizeof(wifi_pass) - 1);
+    wifi_pass[sizeof(wifi_pass) - 1] = 0;
+    // Stay on this screen — the state machine drives the title banner
+    // and routes us to the password screen if it ends up failing.
+    wifiAttemptConnect(wifi_ssid, wifi_pass);
+    return;
+  }
+
+  // Unsaved network → password entry.
+  strncpy(wifi_ssid, d.ssid, sizeof(wifi_ssid) - 1);
+  wifi_ssid[sizeof(wifi_ssid) - 1] = 0;
+  wifi_pass[0] = 0;     // start blank for a brand-new network
+  show_scrWifiPass();
 }
 
-// Keyboard follows whichever textarea the user last tapped.
-static void wifi_ta_clicked_cb(lv_event_t *e) {
-  lv_obj_t *kb = (lv_obj_t *)lv_event_get_user_data(e);
-  lv_obj_t *ta = lv_event_get_target(e);
-  lv_keyboard_set_textarea(kb, ta);
+// Tap on a list row → move the cursor onto it and run the same action as
+// the Select button. Slot index (0..WIFI_LIST_VISIBLE-1) comes via user_data.
+static void wifi_row_tapped_cb(lv_event_t *e) {
+  int slot = (int)(intptr_t)lv_event_get_user_data(e);
+  int idx  = wifi_list_top + slot;
+  if (idx < 0 || idx >= wifi_display_count) return;
+  wifi_sel_idx = idx;
+  refreshWifiList();
+  wifi_select_cb(e);
 }
 
+// --- Stage 2: password ----------------------------------------------------
+static void wifi_pass_back_cb(lv_event_t *e) { show_scrWifi(); }
+
+static void wifi_save_cb(lv_event_t *e) {
+  if (!wifi_ssid[0]) {
+    ui_show_alert("No SSID", "Please pick a network first.");
+    return;
+  }
+  const char *p = lv_textarea_get_text(wifiTA_pass);
+  strncpy(wifi_pass, p ? p : "", sizeof(wifi_pass) - 1);
+  wifi_pass[sizeof(wifi_pass) - 1] = 0;
+  // Persist into the saved-networks list (insert or update by SSID).
+  addOrUpdateSavedNet(wifi_ssid, wifi_pass);
+  // Bounce back to the network list so the user sees connection status,
+  // not into Settings. wifiAttemptConnect arms the state machine.
+  wifiAttemptConnect(wifi_ssid, wifi_pass);
+  show_scrWifi();
+}
+
+// --------------------------------------------------------------------------
 static void build_scrWifi() {
   scrWifi = lv_obj_create(NULL);
   style_screen(scrWifi);
   lv_obj_clear_flag(scrWifi, LV_OBJ_FLAG_SCROLLABLE);
   add_back_button(scrWifi, wifi_back_cb);
 
-  // Top-right Save — same style as the rename screen's save.
-  lv_obj_t *bSave = lv_btn_create(scrWifi);
+  // Title — doubles as live status banner (scanning / connecting / failed
+  // / connected). refreshWifiList() rewrites the text + color each frame.
+  lblWifiTitle = lv_label_create(scrWifi);
+  lv_label_set_text(lblWifiTitle, "WiFi Networks");
+  lv_obj_set_style_text_color(lblWifiTitle, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font (lblWifiTitle, &lv_font_montserrat_16, 0);
+  lv_obj_align(lblWifiTitle, LV_ALIGN_TOP_MID, 0, 10);
+
+  // List panel (235 × 164) holds 8 rows × 20 px each.
+  lv_obj_t *panel = lv_obj_create(scrWifi);
+  lv_obj_set_size(panel, 235, 164);
+  lv_obj_set_pos(panel, 5, 36);
+  lv_obj_set_style_bg_color    (panel, lv_color_hex(CLR_PANEL),  0);
+  lv_obj_set_style_border_color(panel, lv_color_hex(CLR_BORDER), 0);
+  lv_obj_set_style_border_width(panel, 1, 0);
+  lv_obj_set_style_radius      (panel, 4, 0);
+  lv_obj_set_style_pad_all     (panel, 1, 0);
+  lv_obj_clear_flag(panel, LV_OBJ_FLAG_SCROLLABLE);
+
+  for (int i = 0; i < WIFI_LIST_VISIBLE; i++) {
+    wifiListRow[i] = lv_obj_create(panel);
+    lv_obj_set_size(wifiListRow[i], 231, 19);
+    lv_obj_set_pos(wifiListRow[i], 0, i * 20);
+    lv_obj_set_style_bg_color    (wifiListRow[i], lv_color_hex(CLR_PANEL2), 0);
+    lv_obj_set_style_border_width(wifiListRow[i], 0, 0);
+    lv_obj_set_style_radius      (wifiListRow[i], 0, 0);
+    lv_obj_set_style_pad_all     (wifiListRow[i], 1, 0);
+    lv_obj_clear_flag(wifiListRow[i], LV_OBJ_FLAG_SCROLLABLE);
+    // Rows ARE clickable now — tap directly acts on the network.
+    lv_obj_add_flag  (wifiListRow[i], LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_add_event_cb(wifiListRow[i], wifi_row_tapped_cb,
+                        LV_EVENT_CLICKED, (void *)(intptr_t)i);
+
+    // Saved indicator (left, 14 px)
+    lblWifiSaved[i] = lv_label_create(wifiListRow[i]);
+    lv_label_set_text(lblWifiSaved[i], "");
+    lv_obj_set_style_text_font(lblWifiSaved[i], &lv_font_montserrat_12, 0);
+    lv_obj_align(lblWifiSaved[i], LV_ALIGN_LEFT_MID, 2, 0);
+    lv_obj_add_flag(lblWifiSaved[i], LV_OBJ_FLAG_HIDDEN);
+
+    // SSID label (middle)
+    wifiListLabel[i] = lv_label_create(wifiListRow[i]);
+    lv_label_set_text(wifiListLabel[i], "");
+    lv_obj_set_style_text_color(wifiListLabel[i], lv_color_hex(CLR_TXT), 0);
+    lv_obj_set_style_text_font (wifiListLabel[i], &lv_font_montserrat_12, 0);
+    lv_obj_align(wifiListLabel[i], LV_ALIGN_LEFT_MID, 18, 0);
+
+    // Signal indicator (right)
+    lblWifiSignal[i] = lv_label_create(wifiListRow[i]);
+    lv_label_set_text(lblWifiSignal[i], "");
+    lv_obj_set_style_text_font(lblWifiSignal[i], &lv_font_montserrat_14, 0);
+    lv_obj_align(lblWifiSignal[i], LV_ALIGN_RIGHT_MID, -4, 0);
+
+    lv_obj_add_flag(wifiListRow[i], LV_OBJ_FLAG_HIDDEN);
+  }
+
+  // Empty-state placeholder.
+  lblWifiNoResults = lv_label_create(panel);
+  lv_label_set_text(lblWifiNoResults, "Scanning...");
+  lv_obj_set_style_text_color(lblWifiNoResults, lv_color_hex(CLR_TXT_DIM), 0);
+  lv_obj_set_style_text_font (lblWifiNoResults, &lv_font_montserrat_14, 0);
+  lv_obj_center(lblWifiNoResults);
+
+  // Big up/down arrows on the right — same proportions as the profile
+  // selector so the touch targets feel familiar.
+  make_themed_btn(scrWifi, LV_SYMBOL_UP,   245,  36, 70, 80,
+                  wifi_up_cb,   NULL, ROLE_NEUTRAL);
+  make_themed_btn(scrWifi, LV_SYMBOL_DOWN, 245, 120, 70, 80,
+                  wifi_down_cb, NULL, ROLE_NEUTRAL);
+
+  // Bottom row: Select (wide, primary) + Rescan (narrow, neutral).
+  make_themed_btn(scrWifi, "Select",   5, 205, 215, 33,
+                  wifi_select_cb, NULL, ROLE_PRIMARY);
+  make_themed_btn(scrWifi, "Rescan", 225, 205,  90, 33,
+                  wifi_rescan_cb, NULL, ROLE_NEUTRAL);
+}
+
+static void build_scrWifiPass() {
+  scrWifiPass = lv_obj_create(NULL);
+  style_screen(scrWifiPass);
+  lv_obj_clear_flag(scrWifiPass, LV_OBJ_FLAG_SCROLLABLE);
+  add_back_button(scrWifiPass, wifi_pass_back_cb);
+
+  // Top-right Save.
+  lv_obj_t *bSave = lv_btn_create(scrWifiPass);
   lv_obj_set_size(bSave, 56, 26);
   lv_obj_set_pos(bSave, SCREEN_W - 60, 6);
   lv_obj_set_style_bg_color    (bSave, lv_color_hex(CLR_SUCCESS_D), 0);
@@ -4109,35 +4715,26 @@ static void build_scrWifi() {
   lv_label_set_text(lSave, "Save");
   lv_obj_center(lSave);
 
-  // SSID field
-  lv_obj_t *lblS = lv_label_create(scrWifi);
-  lv_label_set_text(lblS, "SSID");
-  lv_obj_set_style_text_color(lblS, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblS, &lv_font_montserrat_12, 0);
-  lv_obj_set_pos(lblS, 6, 40);
+  // Network label — populated in show_scrWifiPass().
+  lblWifiPassNetwork = lv_label_create(scrWifiPass);
+  lv_label_set_text(lblWifiPassNetwork, "");
+  lv_obj_set_style_text_color(lblWifiPassNetwork, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font (lblWifiPassNetwork, &lv_font_montserrat_14, 0);
+  lv_obj_align(lblWifiPassNetwork, LV_ALIGN_TOP_MID, 0, 44);
 
-  wifiTA_ssid = lv_textarea_create(scrWifi);
-  lv_obj_set_size(wifiTA_ssid, 270, 24);
-  lv_obj_set_pos(wifiTA_ssid, 44, 36);
-  lv_textarea_set_one_line(wifiTA_ssid, true);
-  lv_textarea_set_max_length(wifiTA_ssid, sizeof(wifi_ssid) - 1);
-  lv_obj_set_style_pad_all     (wifiTA_ssid, 2, 0);
-  lv_obj_set_style_bg_color    (wifiTA_ssid, lv_color_hex(CLR_PANEL2), 0);
-  lv_obj_set_style_border_color(wifiTA_ssid, lv_color_hex(CLR_ACCENT), 0);
-  lv_obj_set_style_border_width(wifiTA_ssid, 1, 0);
-  lv_obj_set_style_text_color  (wifiTA_ssid, lv_color_hex(CLR_TXT),    0);
-  lv_obj_set_style_text_font   (wifiTA_ssid, &lv_font_montserrat_14,   0);
+  // Red retry subtitle — only visible when the user landed here because
+  // the previous attempt failed (wifi_retry_due_to_fail).
+  lblWifiPassRetry = lv_label_create(scrWifiPass);
+  lv_label_set_text(lblWifiPassRetry, "Wrong password? Re-enter and Save.");
+  lv_obj_set_style_text_color(lblWifiPassRetry, lv_color_hex(CLR_DANGER), 0);
+  lv_obj_set_style_text_font (lblWifiPassRetry, &lv_font_montserrat_12, 0);
+  lv_obj_align(lblWifiPassRetry, LV_ALIGN_TOP_MID, 0, 62);
+  lv_obj_add_flag(lblWifiPassRetry, LV_OBJ_FLAG_HIDDEN);
 
-  // Password field (masked)
-  lv_obj_t *lblP = lv_label_create(scrWifi);
-  lv_label_set_text(lblP, "PASS");
-  lv_obj_set_style_text_color(lblP, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblP, &lv_font_montserrat_12, 0);
-  lv_obj_set_pos(lblP, 6, 70);
-
-  wifiTA_pass = lv_textarea_create(scrWifi);
-  lv_obj_set_size(wifiTA_pass, 270, 24);
-  lv_obj_set_pos(wifiTA_pass, 44, 66);
+  // Password textarea (masked) just above the keyboard.
+  wifiTA_pass = lv_textarea_create(scrWifiPass);
+  lv_obj_set_size(wifiTA_pass, 280, 28);
+  lv_obj_set_pos(wifiTA_pass, 20, 80);
   lv_textarea_set_one_line(wifiTA_pass, true);
   lv_textarea_set_password_mode(wifiTA_pass, true);
   lv_textarea_set_max_length(wifiTA_pass, sizeof(wifi_pass) - 1);
@@ -4148,54 +4745,60 @@ static void build_scrWifi() {
   lv_obj_set_style_text_color  (wifiTA_pass, lv_color_hex(CLR_TXT),    0);
   lv_obj_set_style_text_font   (wifiTA_pass, &lv_font_montserrat_14,   0);
 
-  // Status line (updated on show).
-  lblWifiStatus = lv_label_create(scrWifi);
-  lv_label_set_text(lblWifiStatus, "");
-  lv_obj_set_style_text_color(lblWifiStatus, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblWifiStatus, &lv_font_montserrat_12, 0);
-  lv_obj_set_pos(lblWifiStatus, 6, 96);
-
-  // Shared keyboard (same styling recipe we use on the rename screen).
-  wifiKB = lv_keyboard_create(scrWifi);
-  lv_obj_remove_style_all(wifiKB);
-  lv_obj_set_size(wifiKB, 320, 128);
-  lv_obj_set_pos(wifiKB, 0, 112);
-  lv_keyboard_set_textarea(wifiKB, wifiTA_ssid);
-  lv_keyboard_set_mode(wifiKB, LV_KEYBOARD_MODE_TEXT_LOWER);
-  lv_obj_set_style_pad_all     (wifiKB, 0, LV_PART_MAIN);
-  lv_obj_set_style_pad_row     (wifiKB, 2, LV_PART_MAIN);
-  lv_obj_set_style_pad_column  (wifiKB, 2, LV_PART_MAIN);
-  lv_obj_set_style_border_width(wifiKB, 0, LV_PART_MAIN);
-  lv_obj_set_style_bg_opa      (wifiKB, LV_OPA_COVER,             LV_PART_MAIN);
-  lv_obj_set_style_bg_color    (wifiKB, lv_color_hex(CLR_PANEL),  LV_PART_MAIN);
-  lv_obj_set_style_pad_all     (wifiKB, 0,                        LV_PART_ITEMS);
-  lv_obj_set_style_radius      (wifiKB, 2,                        LV_PART_ITEMS);
-  lv_obj_set_style_bg_opa      (wifiKB, LV_OPA_COVER,             LV_PART_ITEMS);
-  lv_obj_set_style_bg_color    (wifiKB, lv_color_hex(CLR_PANEL2), LV_PART_ITEMS);
-  lv_obj_set_style_text_color  (wifiKB, lv_color_hex(CLR_TXT),    LV_PART_ITEMS);
-  lv_obj_set_style_text_font   (wifiKB, &lv_font_montserrat_14,   LV_PART_ITEMS);
-
-  // Tap-to-focus: whichever field is tapped becomes the keyboard's target.
-  lv_obj_add_event_cb(wifiTA_ssid, wifi_ta_clicked_cb, LV_EVENT_CLICKED, wifiKB);
-  lv_obj_add_event_cb(wifiTA_pass, wifi_ta_clicked_cb, LV_EVENT_CLICKED, wifiKB);
+  // Keyboard — same recipe as the rename screen, 128 tall at y=112.
+  wifiPassKB = lv_keyboard_create(scrWifiPass);
+  lv_obj_remove_style_all(wifiPassKB);
+  lv_obj_set_size(wifiPassKB, 320, 128);
+  lv_obj_set_pos(wifiPassKB, 0, 112);
+  lv_keyboard_set_textarea(wifiPassKB, wifiTA_pass);
+  lv_keyboard_set_mode(wifiPassKB, LV_KEYBOARD_MODE_TEXT_LOWER);
+  lv_obj_set_style_pad_all     (wifiPassKB, 0, LV_PART_MAIN);
+  lv_obj_set_style_pad_row     (wifiPassKB, 2, LV_PART_MAIN);
+  lv_obj_set_style_pad_column  (wifiPassKB, 2, LV_PART_MAIN);
+  lv_obj_set_style_border_width(wifiPassKB, 0, LV_PART_MAIN);
+  lv_obj_set_style_bg_opa      (wifiPassKB, LV_OPA_COVER,             LV_PART_MAIN);
+  lv_obj_set_style_bg_color    (wifiPassKB, lv_color_hex(CLR_PANEL),  LV_PART_MAIN);
+  lv_obj_set_style_pad_all     (wifiPassKB, 0,                        LV_PART_ITEMS);
+  lv_obj_set_style_radius      (wifiPassKB, 2,                        LV_PART_ITEMS);
+  lv_obj_set_style_bg_opa      (wifiPassKB, LV_OPA_COVER,             LV_PART_ITEMS);
+  lv_obj_set_style_bg_color    (wifiPassKB, lv_color_hex(CLR_PANEL2), LV_PART_ITEMS);
+  lv_obj_set_style_text_color  (wifiPassKB, lv_color_hex(CLR_TXT),    LV_PART_ITEMS);
+  lv_obj_set_style_text_font   (wifiPassKB, &lv_font_montserrat_14,   LV_PART_ITEMS);
 }
 
 void show_scrWifi() {
-  // Pre-fill from stored credentials.
-  lv_textarea_set_text(wifiTA_ssid, wifi_ssid);
-  lv_textarea_set_text(wifiTA_pass, wifi_pass);
-  lv_keyboard_set_textarea(wifiKB, wifiTA_ssid);
-  // Status line
-  char buf[64];
-  if (WiFi.status() == WL_CONNECTED) {
-    snprintf(buf, sizeof(buf), "Connected  IP: %s", WiFi.localIP().toString().c_str());
-  } else if (wifi_ssid[0]) {
-    snprintf(buf, sizeof(buf), "Saved SSID: %s  (not connected)", wifi_ssid);
-  } else {
-    snprintf(buf, sizeof(buf), "No SSID saved.");
-  }
-  lv_label_set_text(lblWifiStatus, buf);
+  // Order matters: kick off the scan BEFORE the first paint so
+  // refreshWifiList() observes wifi_scan_in_progress = true and shows
+  // "Scanning...". Otherwise the user briefly sees "No networks found".
+  wifiStartScan();
+  refreshWifiList();
   lv_scr_load(scrWifi);
+}
+
+void show_scrWifiPass() {
+  if (lblWifiPassNetwork) {
+    char buf[48];
+    snprintf(buf, sizeof(buf), "Network:  %s", wifi_ssid);
+    lv_label_set_text(lblWifiPassNetwork, buf);
+  }
+  // Show the red "Wrong password?" subtitle only when we got here as a
+  // result of a failed connection. Manual entry from the picker doesn't
+  // need the warning. The flag is consumed (cleared) here so a Back-and-
+  // forth doesn't keep flashing it.
+  if (lblWifiPassRetry) {
+    if (wifi_retry_due_to_fail) {
+      lv_obj_clear_flag(lblWifiPassRetry, LV_OBJ_FLAG_HIDDEN);
+    } else {
+      lv_obj_add_flag(lblWifiPassRetry, LV_OBJ_FLAG_HIDDEN);
+    }
+  }
+  wifi_retry_due_to_fail = false;
+
+  // Pre-fill the password if the saved one belongs to this SSID; otherwise
+  // start blank.
+  lv_textarea_set_text(wifiTA_pass, wifi_pass);
+  lv_keyboard_set_textarea(wifiPassKB, wifiTA_pass);
+  lv_scr_load(scrWifiPass);
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -4346,6 +4949,21 @@ static void blink_timer_cb(lv_timer_t *t) {
     lv_obj_set_style_border_width(btnStartStop, 1, 0);
     lv_label_set_text(lblBtnStart, "START");
   }
+
+  // Visually disable the Select Profile button while a profile is running.
+  // Click is still routed through btn_profile_clicked which raises an
+  // alert — the styling here is just so the user can tell at a glance.
+  if (btnProfile) {
+    if (profile_state > 0) {
+      lv_obj_set_style_bg_color    (btnProfile, lv_color_hex(CLR_PANEL),  0);
+      lv_obj_set_style_border_color(btnProfile, lv_color_hex(CLR_BORDER), 0);
+      lv_obj_set_style_text_color  (btnProfile, lv_color_hex(CLR_TXT_DIM), 0);
+    } else {
+      lv_obj_set_style_bg_color    (btnProfile, lv_color_hex(CLR_ACCENT_D), 0);
+      lv_obj_set_style_border_color(btnProfile, lv_color_hex(CLR_ACCENT),  0);
+      lv_obj_set_style_text_color  (btnProfile, lv_color_hex(CLR_TXT),     0);
+    }
+  }
 }
 
 void ui_init() {
@@ -4363,6 +4981,7 @@ void ui_init() {
   build_scrCalibrate();
   build_scrRename();
   build_scrWifi();
+  build_scrWifiPass();
   build_scrOTA();
   refresh_eng_page();
   refresh_custom_list();
