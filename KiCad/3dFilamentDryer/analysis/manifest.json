@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "project": "3dFilamentDryer.kicad_pro",
+  "current": "2026-05-02_1614",
+  "runs": {
+    "2026-05-02_1614": {
+      "source_hashes": {
+        "3dFilamentDryer.kicad_sch": "sha256:fe538d7a105934f22878b7e307a13fbd7bceef2823c2bf39e9cc6171fcd82bcc",
+        "3dFilamentDryer.kicad_pcb": "sha256:66033da50bf1e5fff489ee03280ae4bc71dfe584797af760af9197175246770e",
+        "schematic.json": "sha256:0c1d502e38e44377ff491ec258e459fb866ae16d684df4092cd356ffe7dc283c",
+        "pcb.json": "sha256:3b970ba3b2207c96ca1ec79e3d74bc8306a1411b21998c98e243daeb99ece201"
+      },
+      "outputs": {
+        "schematic": "schematic.json",
+        "pcb": "pcb.json",
+        "emc": "emc.json"
+      },
+      "scripts": {
+        "schematic": "analyze_schematic.py 3dFilamentDryer.kicad_sch"
+      },
+      "generated": "2026-05-02T16:15:11+03:00",
+      "pinned": false
+    }
+  }
+}

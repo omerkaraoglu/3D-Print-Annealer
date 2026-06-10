@@ -19,6 +19,12 @@
  *  The original serial command interface is preserved verbatim
  *  (TUNE / LEARN / SET / RAMP / PROFILE: / LAMBDA / PLANT).
  *  The touchscreen calls the same internal code paths.
+ *
+ *  Screenshot capture for product photography:
+ *    SHOT       — dump the currently-displayed screen over serial.
+ *    SHOT ALL   — cycle every built screen, dumping each.
+ *    Decode with ../screenshot.py (pyserial + Pillow). See that
+ *    file's docstring for the full workflow.
  * ══════════════════════════════════════════════════════════════════ */
 
 #include <SPI.h>
@@ -31,6 +37,11 @@
 #include "esp32_cert_bundle.h"
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
+
+LV_FONT_DECLARE(lv_font_inter_12);
+LV_FONT_DECLARE(lv_font_inter_14);
+LV_FONT_DECLARE(lv_font_inter_16);
+LV_FONT_DECLARE(lv_font_inter_24);
 
 // ---- OTA / WiFi configuration -------------------------------------------
 // Bump this every time you build a new firmware. The check compares this
@@ -56,6 +67,7 @@
 #define TRIAC_PIN   33
 #define ZCD_PIN     34
 #define CS_PIN      13          // MAX6675 chip-select
+#define FAN_PIN     12          // Fan relay
 #define TOUCH_CS    21
 
 #define SCREEN_W    320
@@ -67,14 +79,13 @@
 TFT_eSPI              tft = TFT_eSPI();
 XPT2046_Touchscreen   ts(TOUCH_CS);
 Preferences           preferences;
-hw_timer_t           *triacTimer = NULL;
 
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 3 — CONTROL GLOBALS (unchanged from original)
 // ══════════════════════════════════════════════════════════════════
 volatile float pid_output = 0.0;
 
-#define MEDIAN_WINDOW 7
+#define MEDIAN_WINDOW 5
 float temp_buffer[MEDIAN_WINDOW];
 int   buffer_index = 0;
 bool  buffer_filled = false;
@@ -83,12 +94,12 @@ const float EMA_ALPHA = 0.1;
 unsigned long last_temp_read = 0;
 unsigned long last_telemetry_time = 0;
 
-#define SLOPE_WINDOW 10
+#define SLOPE_WINDOW 60
 float temp_history[SLOPE_WINDOW];
 int   history_index = 0;
 bool  history_filled = false;
 
-#define POWER_BUFFER_SIZE 300
+#define POWER_BUFFER_SIZE 900
 float power_history[POWER_BUFFER_SIZE];
 int   power_history_index = 0;
 
@@ -97,8 +108,31 @@ float current_slope = 0.0;
 float predicted_temp = 0.0;
 
 #define NCR_LUT_SIZE 37
-float ncr_lut[NCR_LUT_SIZE];
-float ncr_saved[NCR_LUT_SIZE];
+float ncr_lut_heat[NCR_LUT_SIZE];
+float ncr_saved_heat[NCR_LUT_SIZE];
+float ncr_lut_cool[NCR_LUT_SIZE];
+float ncr_saved_cool[NCR_LUT_SIZE];
+float ncr_lin_heat[NCR_LUT_SIZE];
+float ncr_lin_cool[NCR_LUT_SIZE];
+bool  ncr_nvs_heat[NCR_LUT_SIZE];
+bool  ncr_nvs_cool[NCR_LUT_SIZE];
+
+// Raw learned NCR from prototype_1 sweep (20..200 °C, 5 °C steps)
+// Buckets without learned data use 0 so linearizeNCR() will interpolate them
+static const float NCR_DEFAULT_HEAT[NCR_LUT_SIZE] = {
+  0.000000f, 0.000536f, 0.002452f, 0.005874f, 0.003987f, 0.005721f, 0.009235f, 0.010331f,
+  0.009895f, 0.012373f, 0.011361f, 0.015502f, 0.011804f, 0.017765f, 0.018578f, 0.022075f,
+  0.023933f, 0.019671f, 0.023189f, 0.027764f, 0.022931f, 0.026879f, 0.025739f, 0.027236f,
+  0.030697f, 0.032321f, 0.030131f, 0.028257f, 0.031236f, 0.029625f, 0.030799f, 0.032442f,
+  0.030475f, 0.032322f, 0.029798f, 0.036016f, 0.000000f,
+};
+static const float NCR_DEFAULT_COOL[NCR_LUT_SIZE] = {
+  0.000000f, 0.007521f, 0.000000f, 0.000000f, 0.000000f, 0.003718f, 0.010883f, 0.010430f,
+  0.013222f, 0.013421f, 0.000000f, 0.015848f, 0.017784f, 0.021740f, 0.019994f, 0.000000f,
+  0.024905f, 0.000000f, 0.028881f, 0.027218f, 0.000000f, 0.000000f, 0.000000f, 0.000000f,
+  0.000000f, 0.000000f, 0.000000f, 0.000000f, 0.000000f, 0.000000f, 0.000000f, 0.000000f,
+  0.000000f, 0.000000f, 0.000000f, 0.000000f, 0.000000f,
+};
 
 int   ncr_active_bucket = -1;
 float ncr_prev_ema = 0.0;
@@ -108,6 +142,7 @@ float setpoint = 20.0;
 float current_setpoint = 20.0;
 float ramp_rate_per_sec = 0.0;
 bool  is_ramping = false;
+
 float error_integral = 0.0;
 float Kc = 1.0, Ti = 100.0;
 bool  flatThresholdFlag = 1;
@@ -120,13 +155,24 @@ float temp_at_theta = 0.0;
 unsigned long time_at_theta_ms = 0;
 float tune_step_power = 0.3;
 
+float mpc_tau_c = 40.0f;         // Desired time constant in seconds. Lower = more aggressive climb.
+float mpc_error_integral = 0.0f; // Stores the disturbance correction
+float mpc_Ki = 0.005f;           // Very weak gain, strictly for fixing model mismatch at steady-state
+
 int   learn_state = 0;
 int   learn_target_bucket = 0;
+int   learn_start_bucket = 0;
 float learn_room_temp = 20.0;
 float learn_stable_temp = 20.0;
 unsigned long learn_stable_start_ms = 0;
 unsigned long learn_observe_start_ms = 0;
 float learn_ncr_snapshot = 0.0;
+
+#define LEARN_OBS_WINDOW 90
+float learn_obs_temps[LEARN_OBS_WINDOW];
+int   learn_obs_count = 0;
+float learn_prev_fitted_slope = 0.0;
+unsigned long learn_obs_last_sample_ms = 0;
 
 #define PROFILE_MAX_STEPS 16
 struct ProfileStep {
@@ -155,8 +201,6 @@ float plant_K = 0.0;
 float plant_tau = 0.0;
 float plant_theta = 0.0;
 float lambda_val = 3.0;
-
-uint16_t power_to_delay_lut[101];
 
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 4 — UI GLOBALS + COLOR PALETTE
@@ -231,6 +275,25 @@ static lv_obj_t *scrOTA           = NULL;
 static lv_obj_t *barOTA           = NULL;
 static lv_obj_t *lblOTAStatus     = NULL;
 static lv_obj_t *lblOTAVersions   = NULL;
+
+// ── Screenshot subsystem ────────────────────────────────────────────
+// USB-CDC framebuffer dump for marketing/website shots. Triggered by the
+// SHOT (current screen) or SHOT ALL (cycle every screen) serial command.
+// While active, my_disp_flush mirrors every tile out the serial port as
+// text-framed binary (RGB565 LE, matches LV_COLOR_DEPTH=16). A host
+// Python tool reassembles tiles into PNGs.
+// Wire-format example for one frame:
+//   <<SHOT_BEGIN w=320 h=240 fmt=rgb565_le name=main>>\r\n
+//   <<SHOT_TILE x=0 y=0 w=320 h=20 bytes=12800>>\r\n
+//   <12800 raw bytes>\r\n
+//   ...more tiles...
+//   <<SHOT_END>>\r\n
+static volatile bool g_shot_active = false;
+// Forward declarations — Arduino's prototype generator skips `static`
+// functions, and handleCommand() calls into the capture helper that's
+// defined further down the file.
+static const char *current_screen_name();
+static void        screenshot_capture_current();
 
 // WiFi credentials — persisted in the "wifi" NVS namespace.
 static char   wifi_ssid[33] = "";
@@ -488,20 +551,18 @@ static const int ENG_COUNT = sizeof(ENGINEERING_PROFILES)/sizeof(ENGINEERING_PRO
 #undef R
 
 // ══════════════════════════════════════════════════════════════════
-//   SECTION 6 — LUT BUILDER & HELPERS (unchanged)
+//   SECTION 6 — HELPERS
 // ══════════════════════════════════════════════════════════════════
-void buildPowerLUT() {
-  for (int i = 0; i <= 100; i++) {
-    float target_power = i / 100.0;
-    float low = 0.0, high = PI;
-    float alpha = PI / 2.0;
-    for (int iter = 0; iter < 15; iter++) {
-      alpha = (low + high) / 2.0;
-      float p = 1.0 - (alpha / PI) + (sin(2.0 * alpha) / (2.0 * PI));
-      if (p > target_power) low = alpha;
-      else high = alpha;
-    }
-    power_to_delay_lut[i] = (uint16_t)((alpha / PI) * 9500.0);
+float getActiveNCR(int bucket) {
+  if (bucket < 0) bucket = 0;
+  if (bucket >= NCR_LUT_SIZE) bucket = NCR_LUT_SIZE - 1;
+  float diff = setpoint - current_temp;
+  if (abs(diff) < 1.0f) {
+    return (ncr_lin_heat[bucket] + ncr_lin_cool[bucket]) / 2.0f;
+  } else if (diff > 0.0f) {
+    return ncr_lin_heat[bucket];
+  } else {
+    return ncr_lin_cool[bucket];
   }
 }
 
@@ -510,7 +571,83 @@ float steadyStateIntegral(float sp) {
   int bucket = (int)((sp - 20.0f) / 5.0f);
   if (bucket < 0) bucket = 0;
   if (bucket >= NCR_LUT_SIZE) bucket = NCR_LUT_SIZE - 1;
-  return (ncr_lut[bucket] / plant_K) * (Ti / Kc);
+  float ncr = getActiveNCR(bucket);
+  return (ncr / plant_K) * (Ti / Kc);
+}
+
+void linearizeNCR(float* raw_saved, float* lin_out, const float* defaults, bool use_poly) {
+  float xs[NCR_LUT_SIZE], ys[NCR_LUT_SIZE];
+  int n = 0;
+  for (int i = 0; i < NCR_LUT_SIZE; i++) {
+    if (raw_saved[i] > 0.0f) {
+      xs[n] = 20.0f + i * 5.0f;
+      ys[n] = raw_saved[i];
+      n++;
+    }
+  }
+  if (n < 2) {
+    for (int i = 0; i < NCR_LUT_SIZE; i++)
+      lin_out[i] = (raw_saved[i] > 0.0f) ? raw_saved[i] : defaults[i];
+    return;
+  }
+
+  if (use_poly && n >= 3) {
+    // 2nd-degree polynomial: y = a*x^2 + b*x + c
+    double sx = 0, sy = 0, sx2 = 0, sx3 = 0, sx4 = 0, sxy = 0, sx2y = 0;
+    for (int i = 0; i < n; i++) {
+      double x = xs[i], y = ys[i];
+      sx += x; sy += y;
+      sx2 += x*x; sx3 += x*x*x; sx4 += x*x*x*x;
+      sxy += x*y; sx2y += x*x*y;
+    }
+    // Solve 3x3 normal equations via Cramer's rule
+    double d0 = (double)n*(sx2*sx4 - sx3*sx3) - sx*(sx*sx4 - sx3*sx2) + sx2*(sx*sx3 - sx2*sx2);
+    if (abs(d0) < 1e-20) {
+      // Degenerate — fall through to linear
+      use_poly = false;
+    } else {
+      double da = sy*(sx2*sx4 - sx3*sx3) - sx*(sxy*sx4 - sx2y*sx3) + sx2*(sxy*sx3 - sx2y*sx2);
+      double db = (double)n*(sxy*sx4 - sx2y*sx3) - sy*(sx*sx4 - sx3*sx2) + sx2*(sx*sx2y - sxy*sx2);
+      double dc = (double)n*(sx2*sx2y - sx3*sxy) - sx*(sx*sx2y - sxy*sx2) + sy*(sx*sx3 - sx2*sx2);
+      double a = da / d0, b = db / d0, c = dc / d0;
+      for (int i = 0; i < NCR_LUT_SIZE; i++) {
+        double t = 20.0 + i * 5.0;
+        float val = (float)(a + b * t + c * t * t);
+        lin_out[i] = max(val, 0.001f);
+      }
+      return;
+    }
+  }
+
+  // Linear fit: y = m*x + b
+  float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+  for (int i = 0; i < n; i++) {
+    sum_x += xs[i]; sum_y += ys[i];
+    sum_xy += xs[i]*ys[i]; sum_x2 += xs[i]*xs[i];
+  }
+  float denom = n * sum_x2 - sum_x * sum_x;
+  if (abs(denom) < 1e-9f) {
+    for (int i = 0; i < NCR_LUT_SIZE; i++)
+      lin_out[i] = (raw_saved[i] > 0.0f) ? raw_saved[i] : defaults[i];
+    return;
+  }
+  float m = (n * sum_xy - sum_x * sum_y) / denom;
+  float b = (sum_y - m * sum_x) / (float)n;
+  for (int i = 0; i < NCR_LUT_SIZE; i++) {
+    float val = m * (20.0f + i * 5.0f) + b;
+    lin_out[i] = max(val, 0.001f);
+  }
+}
+
+void saveLinearizedLUTs() {
+  for (int i = 0; i < NCR_LUT_SIZE; i++) {
+    char key[10];
+    sprintf(key, "nlh_%d", i);
+    preferences.putFloat(key, ncr_lin_heat[i]);
+    sprintf(key, "nlc_%d", i);
+    preferences.putFloat(key, ncr_lin_cool[i]);
+    yield();
+  }
 }
 
 float getMedian(float array[], int size) {
@@ -529,22 +666,52 @@ float getMedian(float array[], int size) {
 }
 
 // ══════════════════════════════════════════════════════════════════
-//   SECTION 7 — ISRs (unchanged)
+//   SECTION 7 — ISR  (zero-crossing sigma-delta modulator)
+//
+//   The PID still produces pid_output ∈ [0,1] at 4 Hz. The main
+//   loop converts that into a 16-bit fixed-point increment
+//   (sd_increment, Q0.16) that the ISR uses with pure integer
+//   math — ESP32 FPU instructions are unsafe in interrupt context
+//   (per-task lazy save/restore corrupts on ISR-side FPU use).
+//
+//   Each full mains cycle we add sd_increment to sd_acc and fire
+//   when it overflows 65536. Time-averaged firing density tracks
+//   pid_output to 1/65536 ≈ 0.0015 %, far finer than the heater's
+//   thermal time constant can resolve.
+//
+//   The decision is made once per full cycle (every other ZCD edge)
+//   so each "on" decision conducts one positive + one negative half
+//   — symmetric, no DC offset into transformer-fed loads.
 // ══════════════════════════════════════════════════════════════════
-void IRAM_ATTR triac_isr() {
-  digitalWrite(TRIAC_PIN, HIGH);
-  delayMicroseconds(150);
-  digitalWrite(TRIAC_PIN, LOW);
-}
+volatile uint16_t sd_increment  = 0;
+volatile uint32_t sd_acc        = 0;
+volatile uint8_t  sd_half_idx   = 0;
+volatile bool     sd_fire_cycle = false;
 
 void IRAM_ATTR zcd_isr() {
-  if (pid_output > 0.02) {
-    int power_idx = round(pid_output * 100.0);
-    if (power_idx > 100) power_idx = 100;
-    if (power_idx < 0) power_idx = 0;
-    uint32_t delay_us = 230 + power_to_delay_lut[power_idx];
-    timerRestart(triacTimer);
-    timerAlarm(triacTimer, delay_us, false, 0);
+  if (sd_half_idx == 0) {
+    uint16_t inc = sd_increment;
+    if (inc == 0) {
+      sd_fire_cycle = false;
+      sd_acc        = 0;
+    } else {
+      sd_acc += inc;
+      sd_fire_cycle = (sd_acc >= 65536u);
+      if (sd_fire_cycle) sd_acc -= 65536u;
+    }
+  }
+  sd_half_idx ^= 1;
+
+  if (sd_fire_cycle) {
+    // Wait for line voltage to rise above the triac's latching threshold.
+    // Firing exactly at the ZCD edge fails to latch: the optoisolator drops
+    // out slightly before the true zero, and immediately after the zero
+    // V_load ≈ 0 so I_load < I_L. 230 µs matches the minimum delay the
+    // phase-angle firmware used and is well within a half-cycle.
+    delayMicroseconds(230);
+    digitalWrite(TRIAC_PIN, HIGH);
+    delayMicroseconds(150);
+    digitalWrite(TRIAC_PIN, LOW);
   }
 }
 
@@ -1131,9 +1298,11 @@ void performUpdate() {
     return;
   }
 
-  // Safety: the OTA download blocks the main loop. Force the heater off so
-  // the ZCD ISR's `pid_output > 0.02` gate stops firing the triac.
+  // Safety: the OTA download blocks the main loop, so the 250 ms tick
+  // that normally syncs sd_increment from pid_output may not run again
+  // until after the flash write. Force the modulator off directly.
   pid_output       = 0.0f;
+  sd_increment     = 0;
   setpoint         = 20.0f;
   current_setpoint = current_temp;
   is_ramping       = false;
@@ -1468,19 +1637,31 @@ void updateProfileGraphActual() {
 void setup() {
   Serial.begin(115200);
 
+  // Log reset reason for debugging random resets
+  esp_reset_reason_t reason = esp_reset_reason();
+  Serial.printf("\n[BOOT] Reset reason: %d ", (int)reason);
+  switch (reason) {
+    case ESP_RST_POWERON:  Serial.println("(Power-on)"); break;
+    case ESP_RST_SW:       Serial.println("(Software)"); break;
+    case ESP_RST_PANIC:    Serial.println("(Panic/exception)"); break;
+    case ESP_RST_INT_WDT:  Serial.println("(Interrupt watchdog)"); break;
+    case ESP_RST_TASK_WDT: Serial.println("(Task watchdog)"); break;
+    case ESP_RST_WDT:      Serial.println("(Other watchdog)"); break;
+    case ESP_RST_BROWNOUT: Serial.println("(Brownout)"); break;
+    default:               Serial.println("(Other)"); break;
+  }
+
   // GPIO
+  pinMode(FAN_PIN, OUTPUT);
+  digitalWrite(FAN_PIN, HIGH);
+  delay(1000);
   pinMode(TRIAC_PIN, OUTPUT);
   digitalWrite(TRIAC_PIN, LOW);
   pinMode(ZCD_PIN, INPUT);
   pinMode(CS_PIN, OUTPUT);
   digitalWrite(CS_PIN, HIGH);
 
-  // Power LUT
-  buildPowerLUT();
-
-  // Triac timer + ZCD ISR
-  triacTimer = timerBegin(1000000);
-  timerAttachInterrupt(triacTimer, &triac_isr);
+  // ZCD ISR — drives the zero-crossing sigma-delta modulator
   attachInterrupt(digitalPinToInterrupt(ZCD_PIN), zcd_isr, FALLING);
 
   // Preferences (control params + touch cal + saved NCR)
@@ -1490,17 +1671,17 @@ void setup() {
   // already holds values from a successful serial `TUNE` run, those are
   // used; otherwise these defaults make the unit usable out of the box.
   //   Model: Integrating Process  (plant_tau = 0)
-  //   k'    = 0.043061
-  //   theta = 165.5 s
-  //   Kc    = 0.070512
-  //   Ti    = 1317.38
+  //   k'    = 0.043215
+  //   theta = 182.92 s
+  //   Kc    = 0.063570
+  //   Ti    = 1456.0432
   //   lambda= 3.0
-  lambda_val = preferences.getFloat("lambda",   3.0f);
-  plant_K    = preferences.getFloat("K",        0.043061f);
+  lambda_val = preferences.getFloat("lambda",   1.0f);
+  plant_K    = preferences.getFloat("K",        0.156470f);
   plant_tau  = preferences.getFloat("tau",      0.0f);
-  plant_theta= preferences.getFloat("theta",  165.5f);
-  Kc         = preferences.getFloat("Kc",       0.070512f);
-  Ti         = preferences.getFloat("Ti",    1317.38f);
+  plant_theta= preferences.getFloat("theta",  82.5f);
+  Kc         = preferences.getFloat("Kc",       0.058270f);
+  Ti         = preferences.getFloat("Ti",    438.7191f);
   ts_min_x   = preferences.getShort("ts_minx", 300);
   ts_max_x   = preferences.getShort("ts_maxx", 3800);
   ts_min_y   = preferences.getShort("ts_miny", 300);
@@ -1508,11 +1689,24 @@ void setup() {
 
   for (int i = 0; i < NCR_LUT_SIZE; i++) {
     char key[10];
-    sprintf(key, "ncr_%d", i);
-    float saved = preferences.getFloat(key, 0.0f);
-    ncr_saved[i] = saved;
-    ncr_lut[i]   = (saved > 0.0f) ? saved : 0.005f;
+    sprintf(key, "ncrh_%d", i);
+    float sh = preferences.getFloat(key, 0.0f);
+    ncr_nvs_heat[i]   = (sh > 0.0f);
+    ncr_saved_heat[i] = ncr_nvs_heat[i] ? sh : NCR_DEFAULT_HEAT[i];
+    ncr_lut_heat[i]   = ncr_saved_heat[i];
+
+    sprintf(key, "ncrc_%d", i);
+    float sc = preferences.getFloat(key, 0.0f);
+    ncr_nvs_cool[i]   = (sc > 0.0f);
+    ncr_saved_cool[i] = ncr_nvs_cool[i] ? sc : NCR_DEFAULT_COOL[i];
+    ncr_lut_cool[i]   = ncr_saved_cool[i];
+
+    yield();
   }
+  // Always re-derive fitted LUTs from raw data on boot
+  linearizeNCR(ncr_saved_heat, ncr_lin_heat, NCR_DEFAULT_HEAT, true);
+  linearizeNCR(ncr_saved_cool, ncr_lin_cool, NCR_DEFAULT_COOL, false);
+  saveLinearizedLUTs();
 
   loadCustomProfiles();
   loadSavedNets();
@@ -1556,7 +1750,7 @@ void setup() {
     lv_palette_main(LV_PALETTE_CYAN),
     lv_palette_main(LV_PALETTE_RED),
     true,
-    LV_FONT_DEFAULT);
+    &lv_font_inter_14);
   lv_disp_set_theme(lv_disp_get_default(), th);
 
   ui_init();
@@ -1600,7 +1794,11 @@ void loop() {
         if (current_setpoint >= setpoint) {
           current_setpoint = setpoint;
           is_ramping = false;
-          error_integral = steadyStateIntegral(setpoint);
+          // The MPC's feedforward u_plan now provides the hold power.
+          // Reset the trim integrator clean — computePID() will detect
+          // the is_ramping transition and do the same, this is belt-and-
+          // suspenders.
+          error_integral = 0.0f;
           Serial.println("\n[RAMP] Target reached. Holding.");
         }
       } else {
@@ -1608,7 +1806,7 @@ void loop() {
         if (current_setpoint <= setpoint) {
           current_setpoint = setpoint;
           is_ramping = false;
-          error_integral = steadyStateIntegral(setpoint);
+          error_integral = 0.0f;
           Serial.println("\n[RAMP] Target reached. Holding.");
         }
       }
@@ -1619,8 +1817,24 @@ void loop() {
     } else {
       if (learn_state > 0) runLearnSequence();
       else if (profile_state > 0) runProfile();
-      if (learn_state == 0 || learn_state == 2) computePID();
-      else pid_output = 0.0;
+      if (learn_state == 0 || learn_state == 2 || learn_state == 4) {
+        computePID();
+      } else if (learn_state == 3) {
+        float bucket_lo = 20.0f + learn_target_bucket * 5.0f;
+        if (current_temp < bucket_lo) computePID();
+        else pid_output = 0.0;
+      } else {
+        pid_output = 0.0;
+      }
+    }
+
+    // Convert pid_output → Q0.16 increment for the ZCD sigma-delta ISR.
+    // All FP math stays on this side of the volatile fence.
+    {
+      float p = pid_output;
+      if (p < 0.0f) p = 0.0f;
+      else if (p > 1.0f) p = 1.0f;
+      sd_increment = (uint16_t)(p * 65535.0f + 0.5f);
     }
   }
 
@@ -1629,36 +1843,37 @@ void loop() {
     if (history_filled) {
       current_slope = (current_temp - temp_history[history_index]) / (float)SLOPE_WINDOW;
 
-      if (pid_output == 0.0 && current_slope < 0.0 && abs(current_slope) < (plant_K * 0.5)) {
+      if (pid_output == 0.0 && current_slope < 0.0 && abs(current_slope) < (plant_K * 0.5) && learn_state != 3 && learn_state != 5 && profile_state == 0) {
         int bucket = (int)((current_temp - 20.0f) / 5.0f);
         if (bucket < 0) bucket = 0;
         if (bucket >= NCR_LUT_SIZE) bucket = NCR_LUT_SIZE - 1;
-        ncr_lut[bucket] = (0.1f * abs(current_slope)) + (0.9f * ncr_lut[bucket]);
+        ncr_lut_cool[bucket] = (0.1f * abs(current_slope)) + (0.9f * ncr_lut_cool[bucket]);
 
         if (bucket != ncr_active_bucket) {
           ncr_active_bucket = bucket;
-          ncr_prev_ema = ncr_lut[bucket];
+          ncr_prev_ema = ncr_lut_cool[bucket];
           ncr_stable_start_ms = now;
         } else if (plant_theta > 0.0f) {
           float required_ms = 2.0f * plant_theta * 1000.0f;
           if ((float)(now - ncr_stable_start_ms) >= required_ms) {
-            float delta_pct = abs(ncr_lut[bucket] - ncr_prev_ema) / (ncr_prev_ema + 1e-9f);
+            float delta_pct = abs(ncr_lut_cool[bucket] - ncr_prev_ema) / (ncr_prev_ema + 1e-9f);
             if (delta_pct < 0.05f) {
-              float saved = ncr_saved[bucket];
-              float diff_pct = (saved > 0.0f) ? (abs(ncr_lut[bucket] - saved) / saved) : 1.0f;
+              float saved = ncr_saved_cool[bucket];
+              float diff_pct = (saved > 0.0f) ? (abs(ncr_lut_cool[bucket] - saved) / saved) : 1.0f;
               if (diff_pct >= 0.10f) {
                 char key[10];
-                sprintf(key, "ncr_%d", bucket);
-                preferences.putFloat(key, ncr_lut[bucket]);
-                ncr_saved[bucket] = ncr_lut[bucket];
-                Serial.print("\n[NCR] Saved bucket ");
+                sprintf(key, "ncrc_%d", bucket);
+                preferences.putFloat(key, ncr_lut_cool[bucket]);
+                ncr_saved_cool[bucket] = ncr_lut_cool[bucket];
+                ncr_nvs_cool[bucket] = true;
+                Serial.print("\n[NCR] Saved cool bucket ");
                 Serial.print(bucket); Serial.print(" (~");
                 Serial.print(20 + bucket * 5); Serial.print("C): ");
-                Serial.print(ncr_lut[bucket], 6);
+                Serial.print(ncr_lut_cool[bucket], 6);
                 Serial.println(" C/s");
               }
             }
-            ncr_prev_ema = ncr_lut[bucket];
+            ncr_prev_ema = ncr_lut_cool[bucket];
             ncr_stable_start_ms = now;
           }
         }
@@ -1712,8 +1927,12 @@ void loop() {
     profile_plot_last_ms = now;
     Serial.print(">>PLOT ");
     Serial.print((now - profile_start_ms) / 60000.0f, 3);
-    Serial.print(" ");
-    Serial.println(current_temp, 2);
+    Serial.print(" ");  Serial.print(current_temp, 2);
+    Serial.print(" ");  Serial.print(predicted_temp, 2);
+    Serial.print(" ");  Serial.print(pid_output, 4);
+    Serial.print(" ");  Serial.print(current_setpoint, 2);
+    Serial.print(" ");  Serial.print(profile_current_step + 1);
+    Serial.print(" ");  Serial.println(profile_state);
   }
 
   // 6. Serial commands
@@ -1840,8 +2059,55 @@ void loop() {
 }
 
 // ══════════════════════════════════════════════════════════════════
-//   SECTION 11 — MPC PID (unchanged)
+//   SECTION 11 — MPC CONTROLLER (dual-predictor + gain learning + PI hold)
 // ══════════════════════════════════════════════════════════════════
+// Plant model (autotuned, integrating with dead time):
+//     dT/dt = gain * u(t - theta) - NCR(T)
+//
+// ── PHASE 0 — RAMP / approach ──────────────────────────────────────
+// Feed-forward power, computed from plant gain + heat-side NCR:
+//     u_ff = (signed_ramp_rate + NCR_heat(T)) / gain
+// For a SET command (no commanded rate), u_ff = 1.0 — go full power.
+//
+// Two predictions run in parallel, both checked against `setpoint`
+// every tick. Either one reaching setpoint hard-clamps u to 0.
+//
+//   1. calculated_temp   — open-loop simulator from the start of the
+//                          ramp:
+//        ramp_start_temp + gain·∑u·dt − ∑NCR·dt
+//      Long-horizon, model-based. Knows about NCR loss explicitly.
+//
+//   2. predicted_temp    — Smith-style, slope-based:
+//        current_temp + observed_slope·θ + gain·Δu_window
+//      Short-horizon, observation-based. The momentum_slope cleanup
+//      assumes our heater will counter natural cooling within θ.
+//      This is the "predictor" exposed in telemetry (Pred: in the
+//      serial log).
+//
+// ── Gain learning ─────────────────────────────────────────────────
+// At replan, snapshot slope_at_replan = current_slope. After ~2·θ
+// seconds (the slope has had time to respond to applied power), the
+// observed Δslope = current_slope − slope_at_replan reflects how much
+// the applied power actually moved the slope. Plant equation says
+// Δslope ≈ gain · avg_power, so:
+//     gain_estimate = Δslope / avg_power
+// We blend that into learned_gain (50/50 LP) so subsequent ramps use
+// a more accurate plant inversion. This is active "gain learning and
+// compensating" — if real plant_K is e.g. 2.5× the autotuned value,
+// learned_gain converges there over a few ramps and u_ff stops
+// over-commanding.
+//
+// ── PHASE 1 — HOLD ────────────────────────────────────────────────
+// Entered only after current_temp settles within 0.8°C of setpoint
+// AND current_slope is flat. Power is:
+//     u = NCR_avg(T)/gain + Kc·err + (Kc/Ti)·error_integral
+// Average-NCR is the unbiased steady-state base; PI tunes out
+// residual error precisely.
+//
+// Compatible with SET / RAMP / PROFILE: reads is_ramping, setpoint,
+// current_setpoint, ramp_rate_per_sec as set by startProfileStep()
+// and the serial command parser.
+// --- MPC PID Computation ---
 void computePID() {
   if (plant_K == 0.0) { pid_output = 0.0; return; }
 
@@ -1858,7 +2124,7 @@ void computePID() {
   int ncr_bucket = (int)((current_temp - 20.0f) / 5.0f);
   if (ncr_bucket < 0) ncr_bucket = 0;
   if (ncr_bucket >= NCR_LUT_SIZE) ncr_bucket = NCR_LUT_SIZE - 1;
-  float active_ncr = ncr_lut[ncr_bucket];
+  float active_ncr = getActiveNCR(ncr_bucket);
 
   float momentum_slope = current_slope;
   if (momentum_slope < 0.0) {
@@ -1975,25 +2241,38 @@ void calculateSIMC() {
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 13 — NCR LEARN SWEEP (unchanged)
 // ══════════════════════════════════════════════════════════════════
+float linearFitSlope(float* temps, int n) {
+  float sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+  for (int i = 0; i < n; i++) {
+    sum_x += i;
+    sum_y += temps[i];
+    sum_xy += i * temps[i];
+    sum_x2 += i * i;
+  }
+  float denom = n * sum_x2 - sum_x * sum_x;
+  if (abs(denom) < 1e-9f) return 0.0f;
+  return (n * sum_xy - sum_x * sum_y) / denom;
+}
+
 void learnAdvanceBucket() {
   learn_target_bucket++;
   if (learn_target_bucket >= NCR_LUT_SIZE) {
-    learn_state = 0;
-    setpoint = learn_room_temp;
-    current_setpoint = learn_room_temp;
+    // Heating sweep done — transition to cooldown phase
+    Serial.println("\n[LEARN] *** Heating sweep complete! Starting cooldown phase... ***");
+    setpoint = 200.0f;
+    current_setpoint = 200.0f;
     is_ramping = false;
-    error_integral = 0.0;
-    Serial.println("\n[LEARN] *** Sweep complete! All buckets learned. ***");
-    Serial.print("[LEARN] Setpoint returned to room temp (");
-    Serial.print(learn_room_temp, 1);
-    Serial.println("C).");
-    printPlantData();
+    error_integral = 0.0f;  // MPC feedforward owns the hold power
+    learn_state = 4;
+    learn_stable_start_ms = millis();
+    learn_stable_temp = current_temp;
+    Serial.println("[LEARN] Heating to 200C and waiting for settle...");
   } else {
     float next_sp = min(20.0f + learn_target_bucket * 5.0f + 4.0f, 200.0f);
     setpoint = next_sp;
     current_setpoint = next_sp;
     is_ramping = false;
-    error_integral = 0.0;
+    error_integral = 0.0f;  // MPC feedforward owns the hold power
     learn_state = 2;
     Serial.print("\n[LEARN] --> Bucket ");
     Serial.print(learn_target_bucket);
@@ -2002,6 +2281,38 @@ void learnAdvanceBucket() {
     Serial.print("C). Heating to ");
     Serial.print(next_sp, 0);
     Serial.println("C...");
+  }
+}
+
+void learnCoolAdvanceBucket() {
+  learn_target_bucket--;
+  if (learn_target_bucket < learn_start_bucket) {
+    // Cooldown sweep done — linearize both LUTs and finish
+    linearizeNCR(ncr_saved_heat, ncr_lin_heat, NCR_DEFAULT_HEAT, true);
+    linearizeNCR(ncr_saved_cool, ncr_lin_cool, NCR_DEFAULT_COOL, false);
+    saveLinearizedLUTs();
+
+    learn_state = 0;
+    setpoint = learn_room_temp;
+    current_setpoint = learn_room_temp;
+    is_ramping = false;
+    error_integral = 0.0f;  // MPC feedforward owns the hold power
+    Serial.println("\n[LEARN] *** Full sweep complete! Both LUTs learned & linearized. ***");
+    Serial.print("[LEARN] Setpoint returned to room temp (");
+    Serial.print(learn_room_temp, 1);
+    Serial.println("C).");
+    printPlantData();
+  } else {
+    // Next bucket will be reached naturally as temp drops
+    learn_obs_count = 0;
+    learn_prev_fitted_slope = 0.0;
+    learn_obs_last_sample_ms = millis();
+    learn_observe_start_ms = millis();
+    Serial.print("\n[LEARN] --> Cool bucket ");
+    Serial.print(learn_target_bucket);
+    Serial.print(" (~");
+    Serial.print(20 + learn_target_bucket * 5);
+    Serial.println("C). Waiting for temp to drop...");
   }
 }
 
@@ -2017,48 +2328,186 @@ void runLearnSequence() {
         learn_room_temp = current_temp;
         learn_target_bucket = (int)((current_temp - 20.0f) / 5.0f);
         if (learn_target_bucket < 0) learn_target_bucket = 0;
+        learn_start_bucket = learn_target_bucket;
         float first_sp = min(20.0f + learn_target_bucket * 5.0f + 4.0f, 200.0f);
         setpoint = first_sp; current_setpoint = first_sp;
-        is_ramping = false; error_integral = 0.0;
+        is_ramping = false; error_integral = 0.0f;  // MPC feedforward owns hold power
         learn_state = 2;
         Serial.print("\n[LEARN] Stable at "); Serial.print(learn_room_temp, 1);
-        Serial.print("C. Starting sweep at bucket "); Serial.print(learn_target_bucket);
+        Serial.print("C. Starting heat-up sweep at bucket "); Serial.print(learn_target_bucket);
         Serial.print(" (SP="); Serial.print(first_sp, 0); Serial.println("C).");
       }
       break;
+
     case 2: {
       float target_sp = min(20.0f + learn_target_bucket * 5.0f + 4.0f, 200.0f);
       if (current_temp >= target_sp - 1.0f) {
-        learn_ncr_snapshot = ncr_lut[learn_target_bucket];
+        learn_obs_count = 0;
+        learn_prev_fitted_slope = 0.0;
+        learn_obs_last_sample_ms = now;
         learn_observe_start_ms = now;
-        ncr_active_bucket = -1;
-        ncr_prev_ema = ncr_lut[learn_target_bucket];
-        ncr_stable_start_ms = now;
         learn_state = 3;
-        Serial.print("\n[LEARN] Bucket "); Serial.print(learn_target_bucket);
+        Serial.print("\n[LEARN] Heat bucket "); Serial.print(learn_target_bucket);
         Serial.print(" (~"); Serial.print(20 + learn_target_bucket * 5);
-        Serial.println("C) reached. Heater OFF — observing NCR...");
+        Serial.println("C) reached. Heater OFF — observing heating NCR...");
       }
       break;
     }
+
     case 3: {
-      float required_ms = (plant_theta > 0.0f)
-                            ? max(2.0f * plant_theta * 1000.0f, 30000.0f)
-                            : 30000.0f;
-      if ((float)(now - learn_observe_start_ms) >= required_ms) {
-        float delta_pct = abs(ncr_lut[learn_target_bucket] - learn_ncr_snapshot)
-                          / (learn_ncr_snapshot + 1e-9f);
-        if (delta_pct < 0.05f) {
-          Serial.print("\n[LEARN] Bucket "); Serial.print(learn_target_bucket);
-          Serial.print(" converged: "); Serial.print(ncr_lut[learn_target_bucket], 6);
-          Serial.println(" C/s");
-          learnAdvanceBucket();
-        } else {
-          Serial.print("\n[LEARN] Bucket "); Serial.print(learn_target_bucket);
-          Serial.print(" still settling (drift "); Serial.print(delta_pct * 100.0f, 1);
-          Serial.println("%). Extending...");
-          learn_ncr_snapshot = ncr_lut[learn_target_bucket];
+      float bucket_lo = 20.0f + learn_target_bucket * 5.0f;
+      float bucket_hi = bucket_lo + 5.0f;
+
+      if (current_temp > bucket_hi) {
+        if (learn_obs_count > 0) {
+          learn_obs_count = 0;
+          Serial.println("\n[LEARN] Temp above bucket range. Waiting to drop...");
+        }
+        break;
+      }
+      if (current_temp < bucket_lo) {
+        if (learn_obs_count > 0) {
+          learn_obs_count = 0;
+          Serial.println("\n[LEARN] Temp below bucket range. Reheating...");
+        }
+        break;
+      }
+
+      if (now - learn_obs_last_sample_ms >= 1000UL) {
+        learn_obs_last_sample_ms = now;
+        if (learn_obs_count < LEARN_OBS_WINDOW) {
+          learn_obs_temps[learn_obs_count++] = current_temp;
+        }
+        if (learn_obs_count >= LEARN_OBS_WINDOW) {
+          float fitted_slope = linearFitSlope(learn_obs_temps, LEARN_OBS_WINDOW);
+          Serial.print("\n[LEARN] Fit: "); Serial.print(fitted_slope, 6);
+          Serial.print(" "); Serial.print(current_temp, 2);
+          Serial.print(" Bkt"); Serial.println(learn_target_bucket);
+          if (fitted_slope < 0.0f) {
+            if (learn_prev_fitted_slope < 0.0f) {
+              float delta_pct = abs(fitted_slope - learn_prev_fitted_slope)
+                                / (abs(learn_prev_fitted_slope) + 1e-9f);
+              if (delta_pct < 0.10f) {
+                float ncr_val = abs(fitted_slope);
+                ncr_lut_heat[learn_target_bucket] = ncr_val;
+                char key[10];
+                sprintf(key, "ncrh_%d", learn_target_bucket);
+                preferences.putFloat(key, ncr_val);
+                ncr_saved_heat[learn_target_bucket] = ncr_val;
+                ncr_nvs_heat[learn_target_bucket] = true;
+                Serial.print("\n[LEARN] Heat bucket "); Serial.print(learn_target_bucket);
+                Serial.print(" converged & saved: "); Serial.print(ncr_val, 6);
+                Serial.println(" C/s");
+                learnAdvanceBucket();
+              } else {
+                Serial.print("\n[LEARN] Heat bucket "); Serial.print(learn_target_bucket);
+                Serial.print(" slope drift "); Serial.print(delta_pct * 100.0f, 1);
+                Serial.println("%. Re-observing...");
+                learn_prev_fitted_slope = fitted_slope;
+                learn_obs_count = 0;
+                learn_observe_start_ms = now;
+              }
+            } else {
+              learn_prev_fitted_slope = fitted_slope;
+              learn_obs_count = 0;
+              learn_observe_start_ms = now;
+            }
+          } else {
+            Serial.println("\n[LEARN] Slope not negative yet. Re-observing...");
+            learn_obs_count = 0;
+            learn_observe_start_ms = now;
+          }
+        }
+      }
+      break;
+    }
+
+    case 4: {
+      // HEAT_TO_MAX: heat to 200C, wait for 60s stability
+      if (current_temp >= 199.0f) {
+        if (abs(current_temp - learn_stable_temp) > 0.5f) {
+          learn_stable_temp = current_temp;
+          learn_stable_start_ms = now;
+        }
+        if (now - learn_stable_start_ms >= 60000UL) {
+          learn_target_bucket = NCR_LUT_SIZE - 1;
+          learn_obs_count = 0;
+          learn_prev_fitted_slope = 0.0;
+          learn_obs_last_sample_ms = now;
           learn_observe_start_ms = now;
+          learn_state = 5;
+          Serial.println("\n[LEARN] Settled at 200C. Heater OFF — starting cooldown NCR sweep...");
+          Serial.print("[LEARN] --> Cool bucket "); Serial.print(learn_target_bucket);
+          Serial.print(" (~"); Serial.print(20 + learn_target_bucket * 5);
+          Serial.println("C).");
+        }
+      } else {
+        learn_stable_temp = current_temp;
+        learn_stable_start_ms = now;
+      }
+      break;
+    }
+
+    case 5: {
+      float bucket_lo = 20.0f + learn_target_bucket * 5.0f;
+      float bucket_hi = bucket_lo + 5.0f;
+
+      if (current_temp > bucket_hi) {
+        if (learn_obs_count > 0) learn_obs_count = 0;
+        break;
+      }
+      if (current_temp < bucket_lo) {
+        Serial.print("\n[LEARN] Temp dropped below cool bucket ");
+        Serial.print(learn_target_bucket);
+        Serial.println(" range. Advancing...");
+        learnCoolAdvanceBucket();
+        break;
+      }
+
+      if (now - learn_obs_last_sample_ms >= 1000UL) {
+        learn_obs_last_sample_ms = now;
+        if (learn_obs_count < LEARN_OBS_WINDOW) {
+          learn_obs_temps[learn_obs_count++] = current_temp;
+        }
+        if (learn_obs_count >= LEARN_OBS_WINDOW) {
+          float fitted_slope = linearFitSlope(learn_obs_temps, LEARN_OBS_WINDOW);
+          Serial.print("\n[LEARN] Fit: "); Serial.print(fitted_slope, 6);
+          Serial.print(" "); Serial.print(current_temp, 2);
+          Serial.print(" Bkt"); Serial.println(learn_target_bucket);
+          if (fitted_slope < 0.0f) {
+            if (learn_prev_fitted_slope < 0.0f) {
+              float delta_pct = abs(fitted_slope - learn_prev_fitted_slope)
+                                / (abs(learn_prev_fitted_slope) + 1e-9f);
+              if (delta_pct < 0.10f) {
+                float ncr_val = abs(fitted_slope);
+                ncr_lut_cool[learn_target_bucket] = ncr_val;
+                char key[10];
+                sprintf(key, "ncrc_%d", learn_target_bucket);
+                preferences.putFloat(key, ncr_val);
+                ncr_saved_cool[learn_target_bucket] = ncr_val;
+                ncr_nvs_cool[learn_target_bucket] = true;
+                Serial.print("\n[LEARN] Cool bucket "); Serial.print(learn_target_bucket);
+                Serial.print(" converged & saved: "); Serial.print(ncr_val, 6);
+                Serial.println(" C/s");
+                learnCoolAdvanceBucket();
+              } else {
+                Serial.print("\n[LEARN] Cool bucket "); Serial.print(learn_target_bucket);
+                Serial.print(" slope drift "); Serial.print(delta_pct * 100.0f, 1);
+                Serial.println("%. Re-observing...");
+                learn_prev_fitted_slope = fitted_slope;
+                learn_obs_count = 0;
+                learn_observe_start_ms = now;
+              }
+            } else {
+              learn_prev_fitted_slope = fitted_slope;
+              learn_obs_count = 0;
+              learn_observe_start_ms = now;
+            }
+          } else {
+            Serial.println("\n[LEARN] Cool slope not negative yet. Re-observing...");
+            learn_obs_count = 0;
+            learn_observe_start_ms = now;
+          }
         }
       }
       break;
@@ -2076,10 +2525,16 @@ void startProfileStep() {
   Serial.print("/"); Serial.print(profile_step_count); Serial.print(": ");
   if (s.is_ramp) {
     setpoint = s.target;
-    current_setpoint = current_temp;
+    float planned_start = current_temp;
+    if (profile_current_step > 0)
+      planned_start = profile_steps[profile_current_step - 1].target;
+    current_setpoint = planned_start;
     ramp_rate_per_sec = s.rate_per_sec;
     is_ramping = true;
-    error_integral = steadyStateIntegral(current_temp);
+    // MPC's feedforward u_plan = (rate + NCR_heat)/plant_K provides the
+    // ramp power directly. The trim integrator starts clean — computePID
+    // will re-zero it on the is_ramping transition anyway.
+    error_integral = 0.0f;
     Serial.print("RAMP to "); Serial.print(s.target, 1);
     Serial.print("C @ "); Serial.print(s.rate_per_sec * 60.0f, 2);
     Serial.print("C/min, hold "); Serial.print(s.hold_sec / 60); Serial.println("min");
@@ -2087,7 +2542,9 @@ void startProfileStep() {
     setpoint = s.target;
     current_setpoint = s.target;
     is_ramping = false;
-    error_integral = 0.0;
+    // MPC's feedforward u_plan = NCR_cool/plant_K provides the hold
+    // power. The trim integrator starts clean.
+    error_integral = 0.0f;
     Serial.print("SET "); Serial.print(s.target, 1);
     Serial.print("C, hold "); Serial.print(s.hold_sec / 60); Serial.println("min");
   }
@@ -2222,7 +2679,12 @@ bool startProfileFromSteps(const ProfileStep *steps, int count, const char *sour
     Serial.print(" "); Serial.print(profile_steps[i].rate_per_sec * 60.0f, 4);
     Serial.print(" "); Serial.println(profile_steps[i].hold_sec / 60.0f, 4);
   }
-  Serial.print(">>PLOT 0.000 "); Serial.println(current_temp, 2);
+  Serial.print(">>PLOT 0.000 ");
+  Serial.print(current_temp, 2);
+  Serial.print(" ");  Serial.print(current_temp, 2);
+  Serial.print(" ");  Serial.print(pid_output, 4);
+  Serial.print(" ");  Serial.print(current_setpoint, 2);
+  Serial.print(" 1 ");  Serial.println(profile_state);
 
   computePlannedTrajectory(profile_steps, count, current_temp);
   setupProfileGraph();
@@ -2238,6 +2700,7 @@ void stopProfile(const char *reason) {
   current_setpoint                 = 20.0f;
   error_integral                   = 0.0f;
   pid_output                       = 0.0f;
+  sd_increment                     = 0;
   profile_ambient_stable_since_ms  = 0;
   Serial.print("\n[PROFILE] Aborted");
   if (reason) { Serial.print(" ("); Serial.print(reason); Serial.print(")"); }
@@ -2269,8 +2732,9 @@ void handleCommand(String cmd) {
       learn_stable_start_ms = millis();
       learn_stable_temp = current_temp;
       pid_output = 0.0;
+      sd_increment = 0;
       error_integral = 0.0;
-      Serial.println("\n[LEARN] Starting NCR sweep to 200C.");
+      Serial.println("\n[LEARN] Starting dual NCR sweep (heat-up then cool-down).");
       Serial.println("[LEARN] Waiting 60s for room-temp stability...");
     }
   } else if (cmd.startsWith("SET ")) {
@@ -2281,6 +2745,7 @@ void handleCommand(String cmd) {
       current_setpoint = val;
       is_ramping = false;
       ramp_rate_per_sec = 0.0;
+      error_integral = 0.0f;  // MPC feedforward owns the hold power
       Serial.print("\nSetpoint updated to: "); Serial.println(setpoint, 4);
     } else {
       Serial.println("\nError: Setpoint must be 20-200.");
@@ -2302,7 +2767,8 @@ void handleCommand(String cmd) {
         current_setpoint = current_temp;
         ramp_rate_per_sec = rate_per_min / 60.0;
         is_ramping = true;
-        error_integral = steadyStateIntegral(current_temp);
+
+        error_integral = 0.0f;  // MPC feedforward owns the ramp power
         Serial.print("\n[RAMP] Target: ");    Serial.print(setpoint, 1);
         Serial.print(" C | Rate: ");          Serial.print(rate_per_min, 2);
         Serial.print(" C/min (");             Serial.print(ramp_rate_per_sec, 4);
@@ -2379,6 +2845,28 @@ void handleCommand(String cmd) {
     }
   } else if (cmd == "PLANT") {
     Serial.println(); printPlantData();
+  } else if (cmd == "SHOT") {
+    // Capture whatever screen is currently displayed. The host-side
+    // tools/screenshot.py reassembles the tile stream into a PNG.
+    screenshot_capture_current();
+  } else if (cmd == "SHOT ALL") {
+    // Cycle every built screen, capturing each in turn. Useful for
+    // generating the full website asset set in one go. Skips scrKeypad
+    // (transient overlay) and restores scrMain at the end.
+    lv_obj_t *shots[] = {
+      scrMain, scrMaterial, scrHousehold, scrEngineer,
+      scrCustom, scrCustomDetail, scrBuilder, scrAddType,
+      scrFullGraph, scrSettings, scrCalibrate, scrRename,
+      scrWifi, scrWifiPass, scrOTA
+    };
+    const size_t n = sizeof(shots) / sizeof(shots[0]);
+    for (size_t i = 0; i < n; i++) {
+      if (!shots[i]) continue;
+      lv_scr_load(shots[i]);
+      lv_refr_now(lv_disp_get_default());   // settle the load before snapshotting
+      screenshot_capture_current();
+    }
+    lv_scr_load(scrMain);
   }
 }
 
@@ -2415,11 +2903,9 @@ void printTelemetry() {
     Serial.print(" | Mode: LEARN S"); Serial.print(learn_state);
     Serial.print(" Bkt"); Serial.print(learn_target_bucket);
     Serial.print("(~"); Serial.print(20 + learn_target_bucket * 5); Serial.print("C)");
-    if (learn_state == 3) {
-      float elapsed_s = (millis() - learn_observe_start_ms) / 1000.0;
-      float required_s = (plant_theta > 0.0f) ? max(2.0f * plant_theta, 30.0f) : 30.0f;
-      Serial.print(" obs "); Serial.print(elapsed_s, 0);
-      Serial.print("/"); Serial.print(required_s, 0); Serial.print("s");
+    if (learn_state == 3 || learn_state == 5) {
+      Serial.print(" obs "); Serial.print(learn_obs_count);
+      Serial.print("/"); Serial.print(LEARN_OBS_WINDOW); Serial.print("s");
     }
   } else if (plant_K == 0.0) {
     Serial.print(" | Mode: IDLE (Needs TUNE)");
@@ -2448,14 +2934,25 @@ void printPlantData() {
   Serial.print("Kc: "); Serial.println(Kc, 6);
   Serial.print("Ti: "); Serial.println(Ti, 4);
   Serial.print("Lambda Setting: "); Serial.println(lambda_val, 4);
-  Serial.println("--- Natural Cooling Rate Table (C/s) ---");
-  Serial.println("  Temp |   Rate    | Status");
+  Serial.println("--- NCR Heat-Up Table (C/s) ---");
+  Serial.println("  Temp |  Raw Heat | Curve Fit | Status");
   for (int i = 0; i < NCR_LUT_SIZE; i++) {
     int temp_c = 20 + i * 5;
     Serial.print("  "); if (temp_c < 100) Serial.print(" ");
     Serial.print(temp_c); Serial.print("C | ");
-    Serial.print(ncr_lut[i], 6); Serial.print(" | ");
-    Serial.println(ncr_saved[i] > 0.0f ? "learned" : "default");
+    Serial.print(ncr_lut_heat[i], 6); Serial.print(" | ");
+    Serial.print(ncr_lin_heat[i], 6); Serial.print(" | ");
+    Serial.println(ncr_nvs_heat[i] ? "learned" : "default");
+  }
+  Serial.println("--- NCR Cool-Down Table (C/s) ---");
+  Serial.println("  Temp |  Raw Cool | Linearizd | Status");
+  for (int i = 0; i < NCR_LUT_SIZE; i++) {
+    int temp_c = 20 + i * 5;
+    Serial.print("  "); if (temp_c < 100) Serial.print(" ");
+    Serial.print(temp_c); Serial.print("C | ");
+    Serial.print(ncr_lut_cool[i], 6); Serial.print(" | ");
+    Serial.print(ncr_lin_cool[i], 6); Serial.print(" | ");
+    Serial.println(ncr_nvs_cool[i] ? "learned" : "default");
   }
   Serial.println("----------------------");
 }
@@ -2463,9 +2960,85 @@ void printPlantData() {
 // ══════════════════════════════════════════════════════════════════
 //   SECTION 17 — LVGL DISPLAY / TOUCH CALLBACKS
 // ══════════════════════════════════════════════════════════════════
+
+// Resolve the currently-loaded screen object to a stable identifier so
+// the host script can name captured PNG files after the screen they show.
+static const char *current_screen_name() {
+  lv_obj_t *s = lv_scr_act();
+  if (s == scrMain)         return "main";
+  if (s == scrMaterial)     return "material";
+  if (s == scrHousehold)    return "household";
+  if (s == scrEngineer)     return "engineer";
+  if (s == scrCustom)       return "custom";
+  if (s == scrCustomDetail) return "custom_detail";
+  if (s == scrBuilder)      return "builder";
+  if (s == scrAddType)      return "add_type";
+  if (s == scrKeypad)       return "keypad";
+  if (s == scrFullGraph)    return "full_graph";
+  if (s == scrSettings)     return "settings";
+  if (s == scrCalibrate)    return "calibrate";
+  if (s == scrRename)       return "rename";
+  if (s == scrWifi)         return "wifi";
+  if (s == scrWifiPass)     return "wifi_pass";
+  if (s == scrOTA)          return "ota";
+  return "unknown";
+}
+
+// Capture the currently-displayed screen. Prints a text BEGIN marker,
+// then forces a synchronous full-screen refresh — my_disp_flush emits a
+// TILE marker + raw RGB565 bytes for every flush — then prints an END
+// marker. lv_refr_now() blocks the loop so no other Serial output can
+// interleave with the binary tiles.
+static void screenshot_capture_current() {
+  Serial.print("<<SHOT_BEGIN w="); Serial.print(SCREEN_W);
+  Serial.print(" h=");             Serial.print(SCREEN_H);
+  // Memory byte order of lv_color_t depends on LV_COLOR_16_SWAP — when
+  // it's set LVGL stores colors pre-swapped (panel-native big-endian);
+  // otherwise it's host little-endian. Advertise the actual layout so
+  // the host decoder doesn't have to guess.
+  Serial.print(" fmt=");
+#if LV_COLOR_16_SWAP
+  Serial.print("rgb565_be");
+#else
+  Serial.print("rgb565_le");
+#endif
+  Serial.print(" name=");
+  Serial.print(current_screen_name());
+  Serial.println(">>");
+
+  g_shot_active = true;
+  lv_obj_invalidate(lv_scr_act());
+  lv_refr_now(lv_disp_get_default());
+  g_shot_active = false;
+
+  Serial.println("<<SHOT_END>>");
+}
+
 void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p) {
   uint32_t w = area->x2 - area->x1 + 1;
   uint32_t h = area->y2 - area->y1 + 1;
+
+  if (g_shot_active) {
+    uint32_t bytes = (uint32_t)w * h * sizeof(lv_color_t);
+    Serial.print("<<SHOT_TILE x="); Serial.print(area->x1);
+    Serial.print(" y=");            Serial.print(area->y1);
+    Serial.print(" w=");            Serial.print(w);
+    Serial.print(" h=");            Serial.print(h);
+    Serial.print(" bytes=");        Serial.print(bytes);
+    Serial.println(">>");
+    // Stream the raw framebuffer tile. Serial.write blocks until the
+    // UART TX FIFO has room, so this throttles itself to the line rate.
+    const uint8_t *p   = (const uint8_t *)color_p;
+    uint32_t       rem = bytes;
+    while (rem) {
+      size_t chunk = rem > 256 ? 256 : rem;
+      Serial.write(p, chunk);
+      p   += chunk;
+      rem -= chunk;
+    }
+    Serial.println();  // CRLF terminator so the host can resync
+  }
+
   tft.startWrite();
   tft.setAddrWindow(area->x1, area->y1, w, h);
   tft.pushColors((uint16_t *)&color_p->full, w * h, true);
@@ -2532,7 +3105,8 @@ static void set_profile_button_label(const char *text) {
 
 static bool heaterActive() {
   return profile_state > 0 || is_ramping || tune_state > 0 ||
-         learn_state > 0  || setpoint > 25.0f || pid_output > 0.02f;
+         learn_state == 2 || learn_state == 4 ||
+         setpoint > 25.0f || pid_output > 0.02f;
 }
 
 // Apply a consistent screen-level background + padding.
@@ -2557,7 +3131,7 @@ static lv_obj_t *add_back_button(lv_obj_t *parent, lv_event_cb_t cb) {
   lv_obj_add_event_cb(b, cb, LV_EVENT_CLICKED, NULL);
   lv_obj_t *l = lv_label_create(b);
   lv_label_set_text(l, LV_SYMBOL_LEFT "  Back");
-  lv_obj_set_style_text_font(l, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font(l, &lv_font_inter_14, 0);
   lv_obj_center(l);
   return b;
 }
@@ -2567,7 +3141,7 @@ static lv_obj_t *add_title(lv_obj_t *parent, const char *text) {
   lv_obj_t *t = lv_label_create(parent);
   lv_label_set_text(t, text);
   lv_obj_set_style_text_color(t, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (t, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (t, &lv_font_inter_16, 0);
   lv_obj_align(t, LV_ALIGN_TOP_MID, 0, 10);
   // Thin underline — placed below the 30-px Back button (y=4..34) so it
   // doesn't clip through the button body.
@@ -2610,6 +3184,7 @@ static lv_obj_t *make_themed_btn(lv_obj_t *parent, const char *text,
 
   lv_obj_t *l = lv_label_create(b);
   lv_label_set_text(l, text);
+  lv_obj_set_style_text_font(l, &lv_font_inter_14, 0);
   lv_obj_center(l);
   return b;
 }
@@ -2665,7 +3240,7 @@ void ui_show_alert(const char *title, const char *body) {
   lv_obj_t *t = lv_label_create(box);
   lv_label_set_text(t, title);
   lv_obj_set_style_text_color(t, lv_color_hex(CLR_DANGER), 0);
-  lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(t, &lv_font_inter_16, 0);
   lv_obj_align(t, LV_ALIGN_TOP_MID, 0, 0);
 
   lv_obj_t *b = lv_label_create(box);
@@ -2673,6 +3248,7 @@ void ui_show_alert(const char *title, const char *body) {
   lv_label_set_long_mode(b, LV_LABEL_LONG_WRAP);
   lv_obj_set_width(b, 260);
   lv_obj_set_style_text_color(b, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font(b, &lv_font_inter_14, 0);
   lv_obj_align(b, LV_ALIGN_TOP_MID, 0, 28);
 
   make_themed_btn(box, "OK", 90, 100, 100, 40,
@@ -2686,7 +3262,7 @@ void ui_show_info(const char *title, const char *body) {
   lv_obj_t *t = lv_label_create(box);
   lv_label_set_text(t, title);
   lv_obj_set_style_text_color(t, lv_color_hex(CLR_SUCCESS), 0);
-  lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(t, &lv_font_inter_16, 0);
   lv_obj_align(t, LV_ALIGN_TOP_MID, 0, 0);
 
   lv_obj_t *b = lv_label_create(box);
@@ -2694,6 +3270,7 @@ void ui_show_info(const char *title, const char *body) {
   lv_label_set_long_mode(b, LV_LABEL_LONG_WRAP);
   lv_obj_set_width(b, 260);
   lv_obj_set_style_text_color(b, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font(b, &lv_font_inter_14, 0);
   lv_obj_align(b, LV_ALIGN_TOP_MID, 0, 28);
 
   make_themed_btn(box, "OK", 90, 100, 100, 40,
@@ -2719,7 +3296,7 @@ void ui_show_about() {
   lv_obj_t *cap = lv_label_create(box);
   lv_label_set_text(cap, "About Us");
   lv_obj_set_style_text_color(cap, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (cap, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (cap, &lv_font_inter_14, 0);
   lv_obj_align(cap, LV_ALIGN_TOP_MID, 0, 146);
 
   make_themed_btn(box, "Close", 45, 168, 90, 32,
@@ -2738,7 +3315,7 @@ void ui_show_messagebox(const char *title, const char *body,
   lv_obj_t *t = lv_label_create(box);
   lv_label_set_text(t, title);
   lv_obj_set_style_text_color(t, lv_color_hex(CLR_AMBER), 0);
-  lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(t, &lv_font_inter_16, 0);
   lv_obj_align(t, LV_ALIGN_TOP_MID, 0, 0);
 
   lv_obj_t *b = lv_label_create(box);
@@ -2746,6 +3323,7 @@ void ui_show_messagebox(const char *title, const char *body,
   lv_label_set_long_mode(b, LV_LABEL_LONG_WRAP);
   lv_obj_set_width(b, 270);
   lv_obj_set_style_text_color(b, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font(b, &lv_font_inter_14, 0);
   lv_obj_align(b, LV_ALIGN_TOP_MID, 0, 28);
 
   make_themed_btn(box, btn_ok,     5, 140, 130, 40,
@@ -2854,7 +3432,7 @@ static void build_scrMain() {
   lv_obj_add_event_cb(btnSettings, btn_settings_cb, LV_EVENT_CLICKED, NULL);
   lv_obj_t *lblS = lv_label_create(btnSettings);
   lv_label_set_text(lblS, LV_SYMBOL_SETTINGS);
-  lv_obj_set_style_text_font(lblS, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(lblS, &lv_font_inter_16, 0);
   lv_obj_center(lblS);
 
   // READARK logo — drops into the top bar where a title would normally go.
@@ -2888,7 +3466,7 @@ static void build_scrMain() {
 
   arcTemp = lv_arc_create(gaugePanel);
   lv_obj_set_size(arcTemp, 125, 125);
-  lv_obj_align(arcTemp, LV_ALIGN_TOP_MID, 0, 2);
+  lv_obj_align(arcTemp, LV_ALIGN_TOP_MID, 0, 8);
   lv_arc_set_range(arcTemp, 20, 200);
   lv_arc_set_bg_angles(arcTemp, 135, 45);
   lv_arc_set_rotation(arcTemp, 0);
@@ -2904,19 +3482,19 @@ static void build_scrMain() {
   lblTempVal = lv_label_create(gaugePanel);
   lv_label_set_text(lblTempVal, "20\xC2\xB0");
   lv_obj_set_style_text_color(lblTempVal, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font(lblTempVal, &lv_font_montserrat_24, 0);
+  lv_obj_set_style_text_font(lblTempVal, &lv_font_inter_24, 0);
   lv_obj_align_to(lblTempVal, arcTemp, LV_ALIGN_CENTER, 0, -8);
 
   lblSetpoint = lv_label_create(gaugePanel);
   lv_label_set_text(lblSetpoint, "SP 20\xC2\xB0");
   lv_obj_set_style_text_color(lblSetpoint, lv_color_hex(CLR_ACCENT), 0);
-  lv_obj_set_style_text_font(lblSetpoint, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font(lblSetpoint, &lv_font_inter_14, 0);
   lv_obj_align_to(lblSetpoint, arcTemp, LV_ALIGN_CENTER, 0, 16);
 
   lblMode = lv_label_create(gaugePanel);
   lv_label_set_text(lblMode, "IDLE");
   lv_obj_set_style_text_color(lblMode, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font(lblMode, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font(lblMode, &lv_font_inter_14, 0);
   lv_obj_align(lblMode, LV_ALIGN_BOTTOM_MID, 0, -4);
 
   // Small blinking warning glyph inside the gauge panel — top-right corner,
@@ -2924,7 +3502,7 @@ static void build_scrMain() {
   lblGaugeWarn = lv_label_create(gaugePanel);
   lv_label_set_text(lblGaugeWarn, LV_SYMBOL_CHARGE);
   lv_obj_set_style_text_color(lblGaugeWarn, lv_color_hex(CLR_DANGER), 0);
-  lv_obj_set_style_text_font (lblGaugeWarn, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblGaugeWarn, &lv_font_inter_16, 0);
   lv_obj_align(lblGaugeWarn, LV_ALIGN_TOP_RIGHT, -6, 4);
   lv_obj_add_flag(lblGaugeWarn, LV_OBJ_FLAG_HIDDEN);
 
@@ -2990,7 +3568,7 @@ static void build_scrMain() {
   lv_obj_t *lblY200 = lv_label_create(graphPanel);
   lv_label_set_text(lblY200, "200");
   lv_obj_set_style_text_color(lblY200, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblY200, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lblY200, &lv_font_inter_12, 0);
   lv_obj_set_style_bg_color  (lblY200, lv_color_hex(CLR_PANEL), 0);
   lv_obj_set_style_bg_opa    (lblY200, LV_OPA_70, 0);
   lv_obj_set_style_pad_hor   (lblY200, 2, 0);
@@ -3004,7 +3582,7 @@ static void build_scrMain() {
     lblXAxis[i] = lv_label_create(graphPanel);
     lv_label_set_text(lblXAxis[i], "");
     lv_obj_set_style_text_color(lblXAxis[i], lv_color_hex(CLR_TXT_DIM), 0);
-    lv_obj_set_style_text_font (lblXAxis[i], &lv_font_montserrat_12, 0);
+    lv_obj_set_style_text_font (lblXAxis[i], &lv_font_inter_12, 0);
     lv_obj_add_flag(lblXAxis[i], LV_OBJ_FLAG_HIDDEN);
   }
 
@@ -3027,20 +3605,20 @@ static void build_scrMain() {
 
   lv_obj_t *l1 = lv_label_create(graphPanel);
   lv_label_set_text(l1, "plan");
-  lv_obj_set_style_text_font(l1, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font(l1, &lv_font_inter_12, 0);
   lv_obj_set_style_text_color(l1, lv_color_hex(CLR_TXT_DIM), 0);
   lv_obj_set_pos(l1, 15, 126);
 
   lv_obj_t *l2 = lv_label_create(graphPanel);
   lv_label_set_text(l2, "actual");
-  lv_obj_set_style_text_font(l2, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font(l2, &lv_font_inter_12, 0);
   lv_obj_set_style_text_color(l2, lv_color_hex(CLR_TXT_DIM), 0);
   lv_obj_set_pos(l2, 86, 126);
 
   // Expand-icon hint in the top-right of the graph panel
   lv_obj_t *expIcon = lv_label_create(graphPanel);
   lv_label_set_text(expIcon, LV_SYMBOL_EYE_OPEN);
-  lv_obj_set_style_text_font(expIcon, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font(expIcon, &lv_font_inter_14, 0);
   lv_obj_set_style_text_color(expIcon, lv_color_hex(CLR_TXT_DIM), 0);
   lv_obj_align(expIcon, LV_ALIGN_TOP_RIGHT, -4, 3);
   lv_obj_clear_flag(expIcon, LV_OBJ_FLAG_CLICKABLE);
@@ -3050,13 +3628,13 @@ static void build_scrMain() {
                                3, 188, 155, 48,
                                btn_profile_clicked, NULL, ROLE_PRIMARY);
   lblBtnProfile = lv_obj_get_child(btnProfile, 0);
-  lv_obj_set_style_text_font(lblBtnProfile, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(lblBtnProfile, &lv_font_inter_16, 0);
 
   btnStartStop = make_themed_btn(scrMain, "START",
                                  162, 188, 155, 48,
                                  btn_startstop_clicked, NULL, ROLE_SUCCESS);
   lblBtnStart = lv_obj_get_child(btnStartStop, 0);
-  lv_obj_set_style_text_font(lblBtnStart, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(lblBtnStart, &lv_font_inter_16, 0);
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -3152,7 +3730,7 @@ static void build_scrEngineer() {
   lblEngTitle = lv_label_create(scrEngineer);
   lv_label_set_text(lblEngTitle, "Engineering");
   lv_obj_set_style_text_color(lblEngTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblEngTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblEngTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblEngTitle, LV_ALIGN_TOP_MID, 0, 8);
 
   lv_obj_t *line = lv_obj_create(scrEngineer);
@@ -3237,7 +3815,7 @@ static void build_scrCustom() {
   lblCustomTitle = lv_label_create(scrCustom);
   lv_label_set_text(lblCustomTitle, "Custom Profiles");
   lv_obj_set_style_text_color(lblCustomTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblCustomTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblCustomTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblCustomTitle, LV_ALIGN_TOP_MID, 0, 8);
 
   lv_obj_t *line = lv_obj_create(scrCustom);
@@ -3327,7 +3905,7 @@ static void build_scrCustomDetail() {
   lblDetailTitle = lv_label_create(scrCustomDetail);
   lv_label_set_text(lblDetailTitle, "Custom");
   lv_obj_set_style_text_color(lblDetailTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblDetailTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblDetailTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblDetailTitle, LV_ALIGN_TOP_MID, 0, 8);
 
   lv_obj_t *line = lv_obj_create(scrCustomDetail);
@@ -3352,7 +3930,7 @@ static void build_scrCustomDetail() {
   lv_label_set_long_mode(lblDetailBody, LV_LABEL_LONG_WRAP);
   lv_obj_set_width(lblDetailBody, 296);
   lv_obj_set_style_text_color(lblDetailBody, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblDetailBody, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblDetailBody, &lv_font_inter_14, 0);
 
   // 4 buttons across: Select / Edit / Rename / Delete
   make_themed_btn(scrCustomDetail, "Select",   5, 170, 72, 60,
@@ -3574,7 +4152,7 @@ static void show_step_action_dialog() {
   lv_obj_t *t = lv_label_create(box);
   lv_label_set_text(t, "Step action");
   lv_obj_set_style_text_color(t, lv_color_hex(CLR_AMBER), 0);
-  lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font(t, &lv_font_inter_16, 0);
   lv_obj_align(t, LV_ALIGN_TOP_MID, 0, 0);
 
   lv_obj_t *b = lv_label_create(box);
@@ -3582,6 +4160,7 @@ static void show_step_action_dialog() {
   lv_label_set_long_mode(b, LV_LABEL_LONG_WRAP);
   lv_obj_set_width(b, 270);
   lv_obj_set_style_text_color(b, lv_color_hex(CLR_TXT), 0);
+  lv_obj_set_style_text_font(b, &lv_font_inter_14, 0);
   lv_obj_align(b, LV_ALIGN_TOP_MID, 0, 28);
 
   // Three actions — msgbox_confirm_cb kills the box and fires the callback
@@ -3614,13 +4193,13 @@ static void build_scrBuilder() {
   lblBuilderTitle = lv_label_create(scrBuilder);
   lv_label_set_text(lblBuilderTitle, "New Custom Profile");
   lv_obj_set_style_text_color(lblBuilderTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblBuilderTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblBuilderTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblBuilderTitle, LV_ALIGN_TOP_MID, 0, 8);
 
   lblBuilderPage = lv_label_create(scrBuilder);
   lv_label_set_text(lblBuilderPage, "1/1  0 steps");
   lv_obj_set_style_text_color(lblBuilderPage, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblBuilderPage, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblBuilderPage, &lv_font_inter_14, 0);
   lv_obj_align(lblBuilderPage, LV_ALIGN_TOP_RIGHT, -6, 12);
 
   lv_obj_t *line = lv_obj_create(scrBuilder);
@@ -3644,7 +4223,7 @@ static void build_scrBuilder() {
   lblBuilderEmpty = lv_label_create(panel);
   lv_label_set_text(lblBuilderEmpty, "(Press + to add a step)");
   lv_obj_set_style_text_color(lblBuilderEmpty, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblBuilderEmpty, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblBuilderEmpty, &lv_font_inter_14, 0);
   lv_obj_center(lblBuilderEmpty);
 
   // One clickable row per visible step. Panel is 240×130 with pad_all=4,
@@ -3665,7 +4244,7 @@ static void build_scrBuilder() {
                         LV_EVENT_CLICKED, (void *)(intptr_t)i);
     lblBuilderEntry[i] = lv_label_create(btnBuilderEntry[i]);
     lv_label_set_text(lblBuilderEntry[i], "");
-    lv_obj_set_style_text_font(lblBuilderEntry[i], &lv_font_montserrat_14, 0);
+    lv_obj_set_style_text_font(lblBuilderEntry[i], &lv_font_inter_14, 0);
     lv_obj_align(lblBuilderEntry[i], LV_ALIGN_LEFT_MID, 6, 0);
     lv_obj_add_flag(btnBuilderEntry[i], LV_OBJ_FLAG_HIDDEN);
   }
@@ -3860,7 +4439,7 @@ static void build_scrKeypad() {
   lblKeypadPrompt = lv_label_create(scrKeypad);
   lv_label_set_text(lblKeypadPrompt, "Enter value");
   lv_obj_set_style_text_color(lblKeypadPrompt, lv_color_hex(CLR_ACCENT), 0);
-  lv_obj_set_style_text_font (lblKeypadPrompt, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblKeypadPrompt, &lv_font_inter_16, 0);
   lv_obj_align(lblKeypadPrompt, LV_ALIGN_TOP_MID, 15, 10);
 
   lv_obj_t *entry_panel = lv_obj_create(scrKeypad);
@@ -3876,7 +4455,7 @@ static void build_scrKeypad() {
   lblKeypadEntry = lv_label_create(entry_panel);
   lv_label_set_text(lblKeypadEntry, "0");
   lv_obj_set_style_text_color(lblKeypadEntry, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblKeypadEntry, &lv_font_montserrat_24, 0);
+  lv_obj_set_style_text_font (lblKeypadEntry, &lv_font_inter_24, 0);
   lv_obj_align(lblKeypadEntry, LV_ALIGN_RIGHT_MID, -6, 0);
 
   struct { const char *t; int c; int r; lv_event_cb_t cb; int dig; BtnRole role; } pads[] = {
@@ -3925,7 +4504,7 @@ static void build_scrFullGraph() {
   lblFullTitle = lv_label_create(scrFullGraph);
   lv_label_set_text(lblFullTitle, "60-minute history");
   lv_obj_set_style_text_color(lblFullTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblFullTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblFullTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblFullTitle, LV_ALIGN_TOP_MID, 0, 8);
 
   // Chart fills the width — Y labels are painted on TOP of the plot area
@@ -3964,7 +4543,7 @@ static void build_scrFullGraph() {
     snprintf(buf, sizeof(buf), "%d", Y_VALUES[i]);
     lv_label_set_text(lblFullY[i], buf);
     lv_obj_set_style_text_color(lblFullY[i], lv_color_hex(CLR_TXT_DIM), 0);
-    lv_obj_set_style_text_font (lblFullY[i], &lv_font_montserrat_12, 0);
+    lv_obj_set_style_text_font (lblFullY[i], &lv_font_inter_12, 0);
     // Semi-transparent background tint so the digits stay readable over grid lines
     lv_obj_set_style_bg_color  (lblFullY[i], lv_color_hex(CLR_PANEL), 0);
     lv_obj_set_style_bg_opa    (lblFullY[i], LV_OPA_70, 0);
@@ -3977,7 +4556,7 @@ static void build_scrFullGraph() {
   lv_obj_t *lblUnit = lv_label_create(scrFullGraph);
   lv_label_set_text(lblUnit, "\xC2\xB0""C");
   lv_obj_set_style_text_color(lblUnit, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblUnit, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lblUnit, &lv_font_inter_12, 0);
   lv_obj_set_style_bg_color  (lblUnit, lv_color_hex(CLR_PANEL), 0);
   lv_obj_set_style_bg_opa    (lblUnit, LV_OPA_70, 0);
   lv_obj_set_style_pad_hor   (lblUnit, 2, 0);
@@ -3992,7 +4571,7 @@ static void build_scrFullGraph() {
     lblFullX[i] = lv_label_create(scrFullGraph);
     lv_label_set_text(lblFullX[i], "");
     lv_obj_set_style_text_color(lblFullX[i], lv_color_hex(CLR_TXT_DIM), 0);
-    lv_obj_set_style_text_font (lblFullX[i], &lv_font_montserrat_12, 0);
+    lv_obj_set_style_text_font (lblFullX[i], &lv_font_inter_12, 0);
     lv_obj_add_flag(lblFullX[i], LV_OBJ_FLAG_HIDDEN);
   }
 
@@ -4010,17 +4589,17 @@ static void build_scrFullGraph() {
   lv_obj_t *lpt = lv_label_create(scrFullGraph);
   lv_label_set_text(lpt, "planned");
   lv_obj_set_style_text_color(lpt, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lpt, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lpt, &lv_font_inter_12, 0);
   lv_obj_set_pos(lpt, 25, 223);
   lv_obj_t *lat = lv_label_create(scrFullGraph);
   lv_label_set_text(lat, "actual");
   lv_obj_set_style_text_color(lat, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lat, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lat, &lv_font_inter_12, 0);
   lv_obj_set_pos(lat, 165, 223);
   lv_obj_t *lmin = lv_label_create(scrFullGraph);
   lv_label_set_text(lmin, "min");
   lv_obj_set_style_text_color(lmin, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lmin, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lmin, &lv_font_inter_12, 0);
   lv_obj_align(lmin, LV_ALIGN_TOP_RIGHT, -4, 223);
 }
 
@@ -4181,7 +4760,7 @@ static void build_scrSettings() {
   lv_obj_t *qrLbl = lv_label_create(scrSettings);
   lv_label_set_text(qrLbl, "More Info");
   lv_obj_set_style_text_color(qrLbl, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (qrLbl, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (qrLbl, &lv_font_inter_14, 0);
   lv_obj_set_style_text_align(qrLbl, LV_TEXT_ALIGN_CENTER, 0);
   lv_obj_set_width(qrLbl, 100);
   lv_obj_set_pos(qrLbl, 215, 155);
@@ -4285,13 +4864,13 @@ static void build_scrCalibrate() {
   lv_obj_t *plus = lv_label_create(calCrosshair);
   lv_label_set_text(plus, "+");
   lv_obj_set_style_text_color(plus, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (plus, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (plus, &lv_font_inter_16, 0);
   lv_obj_center(plus);
 
   lblCalPrompt = lv_label_create(scrCalibrate);
   lv_label_set_text(lblCalPrompt, "Tap the target  (1/4)");
   lv_obj_set_style_text_color(lblCalPrompt, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblCalPrompt, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblCalPrompt, &lv_font_inter_16, 0);
   lv_obj_align(lblCalPrompt, LV_ALIGN_CENTER, 0, -10);
 
   lv_obj_t *hint = lv_label_create(scrCalibrate);
@@ -4299,7 +4878,7 @@ static void build_scrCalibrate() {
     "Release your finger after\n"
     "each tap to advance.");
   lv_obj_set_style_text_color(hint, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (hint, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (hint, &lv_font_inter_12, 0);
   lv_obj_set_style_text_align(hint, LV_TEXT_ALIGN_CENTER, 0);
   lv_obj_align(hint, LV_ALIGN_CENTER, 0, 25);
 
@@ -4316,6 +4895,7 @@ static void build_scrCalibrate() {
   lv_obj_add_event_cb(bCan, calibrate_cancel_cb, LV_EVENT_CLICKED, NULL);
   lv_obj_t *lCan = lv_label_create(bCan);
   lv_label_set_text(lCan, "Cancel");
+  lv_obj_set_style_text_font(lCan, &lv_font_inter_14, 0);
   lv_obj_center(lCan);
 }
 
@@ -4421,6 +5001,7 @@ static void build_scrRename() {
   lv_obj_add_event_cb(bSave, rename_save_cb, LV_EVENT_CLICKED, NULL);
   lv_obj_t *lSave = lv_label_create(bSave);
   lv_label_set_text(lSave, "Save");
+  lv_obj_set_style_text_font(lSave, &lv_font_inter_14, 0);
   lv_obj_center(lSave);
 
   // Centered title — text is set per visit by show_scrRename() to either
@@ -4428,7 +5009,7 @@ static void build_scrRename() {
   lblRenameTitle = lv_label_create(scrRename);
   lv_label_set_text(lblRenameTitle, "Rename profile");
   lv_obj_set_style_text_color(lblRenameTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblRenameTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblRenameTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblRenameTitle, LV_ALIGN_TOP_MID, 0, 10);
 
   // Textarea sits directly above the keyboard so the layout matches the
@@ -4443,7 +5024,7 @@ static void build_scrRename() {
   lv_obj_set_style_border_width(renameTA, 1, 0);
   lv_obj_set_style_pad_all     (renameTA, 2, 0);
   lv_obj_set_style_text_color  (renameTA, lv_color_hex(CLR_TXT),    0);
-  lv_obj_set_style_text_font   (renameTA, &lv_font_montserrat_14,   0);
+  lv_obj_set_style_text_font   (renameTA, &lv_font_inter_14,   0);
 
   // Keyboard — same height (128) and position (y=112) as the WiFi screen
   // for visual consistency.
@@ -4474,7 +5055,7 @@ static void build_scrRename() {
   lv_obj_set_style_bg_opa     (renameKB, LV_OPA_COVER,             LV_PART_ITEMS);
   lv_obj_set_style_bg_color   (renameKB, lv_color_hex(CLR_PANEL2), LV_PART_ITEMS);
   lv_obj_set_style_text_color (renameKB, lv_color_hex(CLR_TXT),    LV_PART_ITEMS);
-  lv_obj_set_style_text_font  (renameKB, &lv_font_montserrat_14,   LV_PART_ITEMS);
+  lv_obj_set_style_text_font  (renameKB, &lv_font_inter_14,   LV_PART_ITEMS);
 }
 
 // Pre-fill comes from:
@@ -4621,7 +5202,7 @@ static void build_scrWifi() {
   lblWifiTitle = lv_label_create(scrWifi);
   lv_label_set_text(lblWifiTitle, "WiFi Networks");
   lv_obj_set_style_text_color(lblWifiTitle, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblWifiTitle, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (lblWifiTitle, &lv_font_inter_16, 0);
   lv_obj_align(lblWifiTitle, LV_ALIGN_TOP_MID, 0, 10);
 
   // List panel (235 × 164) holds 8 rows × 20 px each.
@@ -4652,7 +5233,7 @@ static void build_scrWifi() {
     // Saved indicator (left, 14 px)
     lblWifiSaved[i] = lv_label_create(wifiListRow[i]);
     lv_label_set_text(lblWifiSaved[i], "");
-    lv_obj_set_style_text_font(lblWifiSaved[i], &lv_font_montserrat_12, 0);
+    lv_obj_set_style_text_font(lblWifiSaved[i], &lv_font_inter_12, 0);
     lv_obj_align(lblWifiSaved[i], LV_ALIGN_LEFT_MID, 2, 0);
     lv_obj_add_flag(lblWifiSaved[i], LV_OBJ_FLAG_HIDDEN);
 
@@ -4660,13 +5241,13 @@ static void build_scrWifi() {
     wifiListLabel[i] = lv_label_create(wifiListRow[i]);
     lv_label_set_text(wifiListLabel[i], "");
     lv_obj_set_style_text_color(wifiListLabel[i], lv_color_hex(CLR_TXT), 0);
-    lv_obj_set_style_text_font (wifiListLabel[i], &lv_font_montserrat_12, 0);
+    lv_obj_set_style_text_font (wifiListLabel[i], &lv_font_inter_12, 0);
     lv_obj_align(wifiListLabel[i], LV_ALIGN_LEFT_MID, 18, 0);
 
     // Signal indicator (right)
     lblWifiSignal[i] = lv_label_create(wifiListRow[i]);
     lv_label_set_text(lblWifiSignal[i], "");
-    lv_obj_set_style_text_font(lblWifiSignal[i], &lv_font_montserrat_14, 0);
+    lv_obj_set_style_text_font(lblWifiSignal[i], &lv_font_inter_14, 0);
     lv_obj_align(lblWifiSignal[i], LV_ALIGN_RIGHT_MID, -4, 0);
 
     lv_obj_add_flag(wifiListRow[i], LV_OBJ_FLAG_HIDDEN);
@@ -4676,7 +5257,7 @@ static void build_scrWifi() {
   lblWifiNoResults = lv_label_create(panel);
   lv_label_set_text(lblWifiNoResults, "Scanning...");
   lv_obj_set_style_text_color(lblWifiNoResults, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblWifiNoResults, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblWifiNoResults, &lv_font_inter_14, 0);
   lv_obj_center(lblWifiNoResults);
 
   // Big up/down arrows on the right — same proportions as the profile
@@ -4713,13 +5294,14 @@ static void build_scrWifiPass() {
   lv_obj_add_event_cb(bSave, wifi_save_cb, LV_EVENT_CLICKED, NULL);
   lv_obj_t *lSave = lv_label_create(bSave);
   lv_label_set_text(lSave, "Save");
+  lv_obj_set_style_text_font(lSave, &lv_font_inter_14, 0);
   lv_obj_center(lSave);
 
   // Network label — populated in show_scrWifiPass().
   lblWifiPassNetwork = lv_label_create(scrWifiPass);
   lv_label_set_text(lblWifiPassNetwork, "");
   lv_obj_set_style_text_color(lblWifiPassNetwork, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblWifiPassNetwork, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblWifiPassNetwork, &lv_font_inter_14, 0);
   lv_obj_align(lblWifiPassNetwork, LV_ALIGN_TOP_MID, 0, 44);
 
   // Red retry subtitle — only visible when the user landed here because
@@ -4727,7 +5309,7 @@ static void build_scrWifiPass() {
   lblWifiPassRetry = lv_label_create(scrWifiPass);
   lv_label_set_text(lblWifiPassRetry, "Wrong password? Re-enter and Save.");
   lv_obj_set_style_text_color(lblWifiPassRetry, lv_color_hex(CLR_DANGER), 0);
-  lv_obj_set_style_text_font (lblWifiPassRetry, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (lblWifiPassRetry, &lv_font_inter_12, 0);
   lv_obj_align(lblWifiPassRetry, LV_ALIGN_TOP_MID, 0, 62);
   lv_obj_add_flag(lblWifiPassRetry, LV_OBJ_FLAG_HIDDEN);
 
@@ -4743,7 +5325,7 @@ static void build_scrWifiPass() {
   lv_obj_set_style_border_color(wifiTA_pass, lv_color_hex(CLR_ACCENT), 0);
   lv_obj_set_style_border_width(wifiTA_pass, 1, 0);
   lv_obj_set_style_text_color  (wifiTA_pass, lv_color_hex(CLR_TXT),    0);
-  lv_obj_set_style_text_font   (wifiTA_pass, &lv_font_montserrat_14,   0);
+  lv_obj_set_style_text_font   (wifiTA_pass, &lv_font_inter_14,   0);
 
   // Keyboard — same recipe as the rename screen, 128 tall at y=112.
   wifiPassKB = lv_keyboard_create(scrWifiPass);
@@ -4763,7 +5345,7 @@ static void build_scrWifiPass() {
   lv_obj_set_style_bg_opa      (wifiPassKB, LV_OPA_COVER,             LV_PART_ITEMS);
   lv_obj_set_style_bg_color    (wifiPassKB, lv_color_hex(CLR_PANEL2), LV_PART_ITEMS);
   lv_obj_set_style_text_color  (wifiPassKB, lv_color_hex(CLR_TXT),    LV_PART_ITEMS);
-  lv_obj_set_style_text_font   (wifiPassKB, &lv_font_montserrat_14,   LV_PART_ITEMS);
+  lv_obj_set_style_text_font   (wifiPassKB, &lv_font_inter_14,   LV_PART_ITEMS);
 }
 
 void show_scrWifi() {
@@ -4815,13 +5397,13 @@ static void build_scrOTA() {
   lv_obj_t *title = lv_label_create(scrOTA);
   lv_label_set_text(title, "Updating Firmware");
   lv_obj_set_style_text_color(title, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (title, &lv_font_montserrat_16, 0);
+  lv_obj_set_style_text_font (title, &lv_font_inter_16, 0);
   lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 28);
 
   lblOTAVersions = lv_label_create(scrOTA);
   lv_label_set_text(lblOTAVersions, "");
   lv_obj_set_style_text_color(lblOTAVersions, lv_color_hex(CLR_TXT_DIM), 0);
-  lv_obj_set_style_text_font (lblOTAVersions, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblOTAVersions, &lv_font_inter_14, 0);
   lv_obj_align(lblOTAVersions, LV_ALIGN_TOP_MID, 0, 60);
 
   barOTA = lv_bar_create(scrOTA);
@@ -4841,13 +5423,13 @@ static void build_scrOTA() {
   lblOTAStatus = lv_label_create(scrOTA);
   lv_label_set_text(lblOTAStatus, "Connecting...");
   lv_obj_set_style_text_color(lblOTAStatus, lv_color_hex(CLR_TXT), 0);
-  lv_obj_set_style_text_font (lblOTAStatus, &lv_font_montserrat_14, 0);
+  lv_obj_set_style_text_font (lblOTAStatus, &lv_font_inter_14, 0);
   lv_obj_align(lblOTAStatus, LV_ALIGN_CENTER, 0, 30);
 
   lv_obj_t *warn = lv_label_create(scrOTA);
   lv_label_set_text(warn, LV_SYMBOL_WARNING "  Do not power off the device.");
   lv_obj_set_style_text_color(warn, lv_color_hex(CLR_AMBER), 0);
-  lv_obj_set_style_text_font (warn, &lv_font_montserrat_12, 0);
+  lv_obj_set_style_text_font (warn, &lv_font_inter_12, 0);
   lv_obj_align(warn, LV_ALIGN_BOTTOM_MID, 0, -22);
 }
 
