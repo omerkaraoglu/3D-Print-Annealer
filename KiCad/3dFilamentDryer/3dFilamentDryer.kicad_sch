@@ -15665,7 +15665,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_THT:LFU09V-103"
+		(property "Footprint" "Rev3:LFU09V-103"
 			(at 99.06 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -17056,7 +17056,7 @@
 		)
 		(uuid "5fdc0eb6-d2e8-4d02-9374-0c0b2e5d909e")
 	)
-	(global_label "LCD_D7"
+	(global_label "LCD_D4"
 		(shape output)
 		(at 100.33 234.95 0)
 		(fields_autoplaced yes)
@@ -17091,7 +17091,7 @@
 		)
 		(uuid "bc8b3a6f-08e4-4081-9618-dafb41c191ad")
 	)
-	(global_label "LCD_WR"
+	(global_label "LCD_D3"
 		(shape output)
 		(at 100.33 237.49 0)
 		(fields_autoplaced yes)
@@ -17126,7 +17126,7 @@
 		)
 		(uuid "d59709ce-c120-4e26-ab75-368a474e3404")
 	)
-	(global_label "LCD_DC"
+	(global_label "LCD_D2"
 		(shape output)
 		(at 100.33 240.03 0)
 		(fields_autoplaced yes)
@@ -17161,7 +17161,7 @@
 		)
 		(uuid "69672e51-3c5f-4243-8d0b-57c91d33734c")
 	)
-	(global_label "LCD_RST"
+	(global_label "LCD_D1"
 		(shape output)
 		(at 100.33 212.09 0)
 		(fields_autoplaced yes)
@@ -17333,7 +17333,7 @@
 		)
 		(uuid "3383b0ac-6476-4a19-9521-199bf7aba022")
 	)
-	(global_label "LCD_D1"
+	(global_label "LCD_RST"
 		(shape output)
 		(at 100.33 219.71 0)
 		(fields_autoplaced yes)
@@ -17403,7 +17403,7 @@
 		)
 		(uuid "27179e5b-3c97-4538-8d9f-6baf81641205")
 	)
-	(global_label "LCD_D2"
+	(global_label "LCD_DC"
 		(shape output)
 		(at 100.33 222.25 0)
 		(fields_autoplaced yes)
@@ -17438,7 +17438,7 @@
 		)
 		(uuid "e755f70d-2b1c-4696-83ab-b30def0bed17")
 	)
-	(global_label "LCD_D3"
+	(global_label "LCD_WR"
 		(shape output)
 		(at 100.33 224.79 0)
 		(fields_autoplaced yes)
@@ -17473,7 +17473,7 @@
 		)
 		(uuid "13ea6e6d-7b41-4bf6-a91c-05eae082b4aa")
 	)
-	(global_label "LCD_D4"
+	(global_label "LCD_D5"
 		(shape output)
 		(at 100.33 227.33 0)
 		(fields_autoplaced yes)
@@ -17508,7 +17508,7 @@
 		)
 		(uuid "b5ec44b2-e99b-4e90-839d-1d92df961dff")
 	)
-	(global_label "LCD_D5"
+	(global_label "LCD_D6"
 		(shape output)
 		(at 100.33 229.87 0)
 		(fields_autoplaced yes)
@@ -17543,7 +17543,7 @@
 		)
 		(uuid "a9c7c53f-32df-437d-b224-0ab3260f768e")
 	)
-	(global_label "LCD_D6"
+	(global_label "LCD_D7"
 		(shape output)
 		(at 100.33 232.41 0)
 		(fields_autoplaced yes)

@@ -19,8 +19,10 @@
 //      (this is how the firmware was compile-checked with arduino-cli).
 //
 //  Pin map (fixed by the Rev3.0 PCB, do not change):
-//    D0=IO16 D1=IO17 D2=IO18 D3=IO19 D4=IO21 D5=IO22 D6=IO23 D7=IO25
-//    WR=IO26  DC=IO27  CS=IO5  RST=IO14 (shared with the GT911 touch)
+//    D0=IO16 D1=IO14 D2=IO27 D3=IO26 D4=IO25 D5=IO21 D6=IO22 D7=IO23
+//    WR=IO19  DC=IO18  CS=IO5  RST=IO17 (shared with the GT911 touch)
+//    (layout-driven order from the Rev3.0 PCB routing; the 33 R series
+//     resistors stay at the module pins, only the functions moved)
 //    RD = not connected to the ESP32 (tied high on the board)
 //
 //  Notes
@@ -36,7 +38,10 @@
 //     the sketch re-programs PLL / pixel clock / porches for the SAT070AT40D21
 //     afterwards (Display_SSD1963.h). The library's own 8-bit-bus SSD1963
 //     path expands RGB565 to RGB888 (3 writes per pixel) as the panel needs.
-//   • Colour order: if red and blue come out swapped on the panel, change
+//   • Colour order: the Rev3.0 PCB wires the SSD1963 LDATA R lanes to the
+//     panel's B pins and vice versa (crossed on purpose so the RGB bus routes
+//     with one via per line); set_address_mode bit 3 (TFT_BGR) undoes that.
+//     If red and blue still come out swapped on the panel, change
 //     TFT_RGB_ORDER below to TFT_RGB.
 // ══════════════════════════════════════════════════════════════════
 #define USER_SETUP_ID   300
@@ -45,23 +50,23 @@
 // ---- Interface / driver --------------------------------------------------
 #define TFT_PARALLEL_8_BIT          // ESP32 8-bit 8080 bus
 #define SSD1963_800_DRIVER          // 480 x 800 controller, used in landscape via setRotation(1)
-#define TFT_RGB_ORDER TFT_BGR       // swap to TFT_RGB if R/B are exchanged on the panel
+#define TFT_RGB_ORDER TFT_BGR       // R/B lanes are crossed on the PCB (see notes); swap to TFT_RGB if colours are wrong
 
 // ---- Pins (Rev3.0 PCB) ---------------------------------------------------
 #define TFT_CS    5
-#define TFT_DC   27                 // must be 0-31
+#define TFT_DC   18                 // must be 0-31
 #define TFT_RST  -1                 // shared reset is driven by the GT911 init, see notes
-#define TFT_WR   26                 // must be 0-31
+#define TFT_WR   19                 // must be 0-31
 // #define TFT_RD  -1               // intentionally undefined (RD not connected)
 
 #define TFT_D0   16                 // data bus, all must be 0-31
-#define TFT_D1   17
-#define TFT_D2   18
-#define TFT_D3   19
-#define TFT_D4   21
-#define TFT_D5   22
-#define TFT_D6   23
-#define TFT_D7   25
+#define TFT_D1   14
+#define TFT_D2   27
+#define TFT_D3   26
+#define TFT_D4   25
+#define TFT_D5   21
+#define TFT_D6   22
+#define TFT_D7   23
 
 // ---- Fonts ---------------------------------------------------------------
 // LVGL renders all text; TFT_eSPI's own fonts are unused. Load only the

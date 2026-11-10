@@ -1,0 +1,142 @@
+(footprint "LFU09V-103"
+	(version 20240108)
+	(layer "F.Cu")
+	(uuid "01540fb1-3b7d-4314-9754-61cc9e4cf800")
+	(property "Reference" "L1"
+		(at 0 7.25 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "c2607d16-c9cc-4ace-a1cf-4c85b9173eb8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "LFU09V-103"
+		(at 0 9.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "f59162cc-675e-455f-ad2a-a948018dfd91")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d8145740-e4ad-4522-b1ad-dce5dc73de12")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "CHOKE COMMON MODE 10mH/1kHz"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fab5e0a1-10a7-4948-a4de-159e470568a5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property ki_fp_filters "L*CommonMode*Wurth*WE*CNSW*1206*")
+	(units
+		(unit
+			(name "A")
+			(pins "1" "4" "2" "3")
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -6.75 -8.5)
+		(end 6.75 -8.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "74b37cba-4780-4788-8610-eb77deb7f4f4")
+	)
+	(fp_line
+		(start -6.75 8.5)
+		(end -6.75 -8.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "999b7973-23fb-4469-91cd-c30dcffb5f0d")
+	)
+	(fp_line
+		(start 6.75 -8.5)
+		(end 6.75 8.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "2adde9c6-652c-4132-8be7-4f34b87dcd4c")
+	)
+	(fp_line
+		(start 6.75 8.5)
+		(end -6.75 8.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "6c3714d3-30ba-48b5-9419-ce1d2c91f3cc")
+	)
+	
+	(pad "1" thru_hole circle
+		(at -3.5 4 270)
+		(size 2.54 2.54)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(net "NEUT")
+		(uuid "798186bc-2903-4840-95d2-33b3e602806d")
+	)
+	(pad "2" thru_hole circle
+		(at 3.5 4 270)
+		(size 2.54 2.54)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(net "Net-(PS1-AC{slash}N)")
+		(uuid "3c4dab48-9138-4a5e-9af8-0fddc57d8453")
+	)
+	(pad "3" thru_hole circle
+		(at 3.5 -4 270)
+		(size 2.54 2.54)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(net "Net-(PS1-AC{slash}L)")
+		(uuid "6f3433d0-b7ea-4851-bff4-287cd5f94e60")
+	)
+	(pad "4" thru_hole circle
+		(at -3.5 -4 270)
+		(size 2.54 2.54)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(net "Net-(C1-Pad1)")
+		(uuid "c9cbee05-06dc-46c9-8f15-87cd9bff8bb0")
+	)
+	(embedded_fonts no)
+	)

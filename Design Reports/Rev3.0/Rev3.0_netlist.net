@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\KiCad\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
-		(date "2026-11-10T11:00:20")
+		(date "2026-11-10T21:12:27")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
@@ -1302,12 +1302,12 @@
 		(comp
 			(ref "L1")
 			(value "LFU09V-103")
-			(footprint "Inductor_THT:LFU09V-103")
+			(footprint "Rev3:LFU09V-103")
 			(datasheet "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799")
 			(description "CHOKE COMMON MODE 10mH/1kHz")
 			(fields
 				(field
-					(name "Footprint") "Inductor_THT:LFU09V-103")
+					(name "Footprint") "Rev3:LFU09V-103")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799")
 				(field
@@ -4450,7 +4450,7 @@
 		(comp
 			(ref "J10")
 			(value "TFT_SAT070AT40D21_FPC40")
-			(footprint "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal")
+			(footprint "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal")
 			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 			(description "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC (connector: Connfly DS1020-09-40VBT1A bottom contact, verify contact side)")
 			(fields
@@ -4461,7 +4461,7 @@
 				(field
 					(name "Panel") "SAT70AT40D21-33KN-CTP-V1")
 				(field
-					(name "Footprint") "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
@@ -4632,7 +4632,7 @@
 		(comp
 			(ref "J11")
 			(value "CTP_GT911_FPC6")
-			(footprint "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal")
+			(footprint "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal")
 			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 			(description "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC (connector: Connfly DS1020-09-06VBT1A bottom contact, verify contact side)")
 			(fields
@@ -4641,7 +4641,7 @@
 				(field
 					(name "Manufacturer") "Connfly")
 				(field
-					(name "Footprint") "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
@@ -4706,7 +4706,7 @@
 		(comp
 			(ref "L11")
 			(value "10uH 1A")
-			(footprint "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
+			(footprint "Rev3:L_Viking_PCD0403")
 			(datasheet "https://www.ozdisan.com/c?search=PCD0403MT100")
 			(description "Power inductor 10 uH 1.04 A 182 mOhm 4.5x4x3.2 mm (footprint placeholder: verify against PCD0403 drawing)")
 			(fields
@@ -4715,7 +4715,7 @@
 				(field
 					(name "Manufacturer") "Viking")
 				(field
-					(name "Footprint") "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
+					(name "Footprint") "Rev3:L_Viking_PCD0403")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/c?search=PCD0403MT100")
 				(field
@@ -4772,11 +4772,11 @@
 		(comp
 			(ref "L12")
 			(value "2.2uH 1A")
-			(footprint "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
+			(footprint "Rev3:L_Viking_PCD0403")
 			(description "Pi-filter inductor 2.2 uH >=1 A SMD 4x4 mm (e.g. Viking PCD0403 / Core Master FPI0403S series, pick in-stock value at Ozdisan)")
 			(fields
 				(field
-					(name "Footprint") "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
+					(name "Footprint") "Rev3:L_Viking_PCD0403")
 				(field
 					(name "Datasheet")
 				)
@@ -7161,7 +7161,7 @@
 		(comp
 			(ref "J20")
 			(value "K-type TC")
-			(footprint "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal")
+			(footprint "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P")
 			(datasheet "https://www.ozdisan.com/c?search=DG127H-5.08-02P-14-00AH")
 			(description "PCB screw terminal block 2-pin 5.08 mm, 12 A 300 V, 26-14 AWG")
 			(fields
@@ -7170,7 +7170,7 @@
 				(field
 					(name "Manufacturer") "DEGSON")
 				(field
-					(name "Footprint") "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal")
+					(name "Footprint") "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/c?search=DG127H-5.08-02P-14-00AH")
 				(field
@@ -8247,7 +8247,7 @@
 		(comp
 			(ref "L30")
 			(value "4.7uH 4A")
-			(footprint "Inductor_SMD:L_Bourns_SRN6045TA")
+			(footprint "Rev3:L_CoreMaster_SRI0605B")
 			(datasheet "https://www.ozdisan.com/c?search=SRI0605B-4R7M")
 			(description "Shielded power inductor 4.7 uH 4 A 70 mOhm 6.6x6.2x5 mm (footprint placeholder: verify against SRI0605B drawing)")
 			(fields
@@ -8256,7 +8256,7 @@
 				(field
 					(name "Manufacturer") "Core Master")
 				(field
-					(name "Footprint") "Inductor_SMD:L_Bourns_SRN6045TA")
+					(name "Footprint") "Rev3:L_CoreMaster_SRI0605B")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/c?search=SRI0605B-4R7M")
 				(field
@@ -10058,7 +10058,7 @@
 				(field
 					(name "Value") "CTP_GT911_FPC6")
 				(field
-					(name "Footprint") "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
@@ -10825,7 +10825,7 @@
 				(field
 					(name "Value") "TFT_SAT070AT40D21_FPC40")
 				(field
-					(name "Footprint") "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
@@ -11426,7 +11426,7 @@
 		(net
 			(code "2")
 			(name "+3V3")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "C112")
 				(pin "1")
@@ -11711,7 +11711,7 @@
 		(net
 			(code "3")
 			(name "+5V")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "C127")
 				(pin "1")
@@ -11780,8 +11780,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "81")
-				(pinfunction "LDATA0_81")
+				(pin "59")
+				(pinfunction "LDATA16_59")
 				(pintype "output")
 			)
 		)
@@ -11797,8 +11797,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "80")
-				(pinfunction "LDATA1_80")
+				(pin "35")
+				(pinfunction "LDATA17_35")
 				(pintype "output")
 			)
 		)
@@ -11814,8 +11814,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "79")
-				(pinfunction "LDATA2_79")
+				(pin "86")
+				(pinfunction "LDATA18_86")
 				(pintype "output")
 			)
 		)
@@ -11831,8 +11831,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "78")
-				(pinfunction "LDATA3_78")
+				(pin "85")
+				(pinfunction "LDATA19_85")
 				(pintype "output")
 			)
 		)
@@ -11848,8 +11848,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "77")
-				(pinfunction "LDATA4_77")
+				(pin "31")
+				(pinfunction "LDATA20_31")
 				(pintype "output")
 			)
 		)
@@ -11865,8 +11865,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "76")
-				(pinfunction "LDATA5_76")
+				(pin "30")
+				(pinfunction "LDATA21_30")
 				(pintype "output")
 			)
 		)
@@ -11882,8 +11882,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "72")
-				(pinfunction "LDATA6_72")
+				(pin "29")
+				(pinfunction "LDATA22_29")
 				(pintype "output")
 			)
 		)
@@ -11899,8 +11899,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "71")
-				(pinfunction "LDATA7_71")
+				(pin "28")
+				(pinfunction "LDATA23_28")
 				(pintype "output")
 			)
 		)
@@ -12227,8 +12227,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "59")
-				(pinfunction "LDATA16_59")
+				(pin "81")
+				(pinfunction "LDATA0_81")
 				(pintype "output")
 			)
 		)
@@ -12244,8 +12244,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "35")
-				(pinfunction "LDATA17_35")
+				(pin "80")
+				(pinfunction "LDATA1_80")
 				(pintype "output")
 			)
 		)
@@ -12261,8 +12261,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "86")
-				(pinfunction "LDATA18_86")
+				(pin "79")
+				(pinfunction "LDATA2_79")
 				(pintype "output")
 			)
 		)
@@ -12278,8 +12278,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "85")
-				(pinfunction "LDATA19_85")
+				(pin "78")
+				(pinfunction "LDATA3_78")
 				(pintype "output")
 			)
 		)
@@ -12295,8 +12295,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "31")
-				(pinfunction "LDATA20_31")
+				(pin "77")
+				(pinfunction "LDATA4_77")
 				(pintype "output")
 			)
 		)
@@ -12312,8 +12312,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "30")
-				(pinfunction "LDATA21_30")
+				(pin "76")
+				(pinfunction "LDATA5_76")
 				(pintype "output")
 			)
 		)
@@ -12329,8 +12329,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "29")
-				(pinfunction "LDATA22_29")
+				(pin "72")
+				(pinfunction "LDATA6_72")
 				(pintype "output")
 			)
 		)
@@ -12346,8 +12346,8 @@
 			)
 			(node
 				(ref "U10")
-				(pin "28")
-				(pinfunction "LDATA23_28")
+				(pin "71")
+				(pinfunction "LDATA7_71")
 				(pintype "output")
 			)
 		)
@@ -12388,7 +12388,7 @@
 			(name "/Display/SSD_D1")
 			(class "Default")
 			(node
-				(ref "R111")
+				(ref "R121")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12404,7 +12404,7 @@
 			(name "/Display/SSD_D2")
 			(class "Default")
 			(node
-				(ref "R112")
+				(ref "R119")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12420,7 +12420,7 @@
 			(name "/Display/SSD_D3")
 			(class "Default")
 			(node
-				(ref "R113")
+				(ref "R120")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12436,7 +12436,7 @@
 			(name "/Display/SSD_D4")
 			(class "Default")
 			(node
-				(ref "R114")
+				(ref "R117")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12452,7 +12452,7 @@
 			(name "/Display/SSD_D5")
 			(class "Default")
 			(node
-				(ref "R115")
+				(ref "R114")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12468,7 +12468,7 @@
 			(name "/Display/SSD_D6")
 			(class "Default")
 			(node
-				(ref "R116")
+				(ref "R115")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12484,7 +12484,7 @@
 			(name "/Display/SSD_D7")
 			(class "Default")
 			(node
-				(ref "R117")
+				(ref "R116")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12500,7 +12500,7 @@
 			(name "/Display/SSD_DC")
 			(class "Default")
 			(node
-				(ref "R119")
+				(ref "R112")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12532,7 +12532,7 @@
 			(name "/Display/SSD_RST")
 			(class "Default")
 			(node
-				(ref "R121")
+				(ref "R111")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12548,7 +12548,7 @@
 			(name "/Display/SSD_WR")
 			(class "Default")
 			(node
-				(ref "R120")
+				(ref "R113")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -12649,8 +12649,8 @@
 			)
 			(node
 				(ref "D114")
-				(pin "2")
-				(pinfunction "A_2")
+				(pin "1")
+				(pinfunction "K_1")
 				(pintype "passive")
 			)
 			(node
@@ -13216,8 +13216,8 @@
 			)
 			(node
 				(ref "D114")
-				(pin "1")
-				(pinfunction "K_1")
+				(pin "2")
+				(pinfunction "A_2")
 				(pintype "passive")
 			)
 			(node
@@ -13617,7 +13617,7 @@
 		(net
 			(code "73")
 			(name "LCD_CS")
-			(class "Default")
+			(class "Bus")
 			(node
 				(ref "R118")
 				(pin "1")
@@ -13633,7 +13633,7 @@
 		(net
 			(code "74")
 			(name "LCD_D0")
-			(class "Default")
+			(class "Bus")
 			(node
 				(ref "R110")
 				(pin "1")
@@ -13649,141 +13649,7 @@
 		(net
 			(code "75")
 			(name "LCD_D1")
-			(class "Default")
-			(node
-				(ref "R111")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "28")
-				(pinfunction "IO17_28")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "76")
-			(name "LCD_D2")
-			(class "Default")
-			(node
-				(ref "R112")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "30")
-				(pinfunction "IO18_30")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "77")
-			(name "LCD_D3")
-			(class "Default")
-			(node
-				(ref "R113")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "31")
-				(pinfunction "IO19_31")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "78")
-			(name "LCD_D4")
-			(class "Default")
-			(node
-				(ref "R114")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "33")
-				(pinfunction "IO21_33")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "79")
-			(name "LCD_D5")
-			(class "Default")
-			(node
-				(ref "R115")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "36")
-				(pinfunction "IO22_36")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "80")
-			(name "LCD_D6")
-			(class "Default")
-			(node
-				(ref "R116")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "37")
-				(pinfunction "IO23_37")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "81")
-			(name "LCD_D7")
-			(class "Default")
-			(node
-				(ref "R117")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "10")
-				(pinfunction "IO25_10")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "82")
-			(name "LCD_DC")
-			(class "Default")
-			(node
-				(ref "R119")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "12")
-				(pinfunction "IO27_12")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "83")
-			(name "LCD_RST")
-			(class "Default")
-			(node
-				(ref "J11")
-				(pin "6")
-				(pinfunction "RST_6")
-				(pintype "input")
-			)
+			(class "Bus")
 			(node
 				(ref "R121")
 				(pin "1")
@@ -13797,9 +13663,25 @@
 			)
 		)
 		(net
-			(code "84")
-			(name "LCD_WR")
-			(class "Default")
+			(code "76")
+			(name "LCD_D2")
+			(class "Bus")
+			(node
+				(ref "R119")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "12")
+				(pinfunction "IO27_12")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "77")
+			(name "LCD_D3")
+			(class "Bus")
 			(node
 				(ref "R120")
 				(pin "1")
@@ -13813,9 +13695,127 @@
 			)
 		)
 		(net
+			(code "78")
+			(name "LCD_D4")
+			(class "Bus")
+			(node
+				(ref "R117")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "10")
+				(pinfunction "IO25_10")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "79")
+			(name "LCD_D5")
+			(class "Bus")
+			(node
+				(ref "R114")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "33")
+				(pinfunction "IO21_33")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "80")
+			(name "LCD_D6")
+			(class "Bus")
+			(node
+				(ref "R115")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "36")
+				(pinfunction "IO22_36")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "81")
+			(name "LCD_D7")
+			(class "Bus")
+			(node
+				(ref "R116")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "37")
+				(pinfunction "IO23_37")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "82")
+			(name "LCD_DC")
+			(class "Bus")
+			(node
+				(ref "R112")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "30")
+				(pinfunction "IO18_30")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "83")
+			(name "LCD_RST")
+			(class "Bus")
+			(node
+				(ref "J11")
+				(pin "6")
+				(pinfunction "RST_6")
+				(pintype "input")
+			)
+			(node
+				(ref "R111")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "28")
+				(pinfunction "IO17_28")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "84")
+			(name "LCD_WR")
+			(class "Bus")
+			(node
+				(ref "R113")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "31")
+				(pinfunction "IO19_31")
+				(pintype "bidirectional")
+			)
+		)
+		(net
 			(code "85")
 			(name "LINE")
-			(class "Default")
+			(class "MainsHeater")
 			(node
 				(ref "F1")
 				(pin "1")
@@ -13846,7 +13846,7 @@
 		(net
 			(code "86")
 			(name "LINE_FILT")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "C1")
 				(pin "1")
@@ -13877,7 +13877,7 @@
 		(net
 			(code "87")
 			(name "LINE_FUSED")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "F1")
 				(pin "2")
@@ -13893,7 +13893,7 @@
 		(net
 			(code "88")
 			(name "NEUT")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "C1")
 				(pin "2")
@@ -13940,7 +13940,7 @@
 		(net
 			(code "89")
 			(name "Net-(C4-Pad1)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "C4")
 				(pin "1")
@@ -13955,7 +13955,7 @@
 		(net
 			(code "90")
 			(name "Net-(D1-A)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "D1")
 				(pin "2")
@@ -13977,7 +13977,7 @@
 		(net
 			(code "91")
 			(name "Net-(D1-K)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "D1")
 				(pin "1")
@@ -13999,7 +13999,7 @@
 		(net
 			(code "92")
 			(name "Net-(D2-K)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "D2")
 				(pin "1")
@@ -14021,7 +14021,7 @@
 		(net
 			(code "93")
 			(name "Net-(D3-A)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "D3")
 				(pin "2")
@@ -14143,7 +14143,7 @@
 		(net
 			(code "99")
 			(name "Net-(J4-Pin_1)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "J4")
 				(pin "1")
@@ -14201,7 +14201,7 @@
 		(net
 			(code "102")
 			(name "Net-(Q1-A1)")
-			(class "Default")
+			(class "MainsHeater")
 			(node
 				(ref "C4")
 				(pin "2")
@@ -14232,7 +14232,7 @@
 		(net
 			(code "103")
 			(name "Net-(Q1-A2)")
-			(class "Default")
+			(class "MainsHeater")
 			(node
 				(ref "F3")
 				(pin "1")
@@ -14263,7 +14263,7 @@
 		(net
 			(code "104")
 			(name "Net-(Q1-G)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "Q1")
 				(pin "3")
@@ -14386,7 +14386,7 @@
 		(net
 			(code "110")
 			(name "Net-(R3-Pad1)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "R3")
 				(pin "1")
@@ -14534,7 +14534,7 @@
 		(net
 			(code "121")
 			(name "unconnected-(K1-Pad4)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "K1")
 				(pin "4")
@@ -14544,7 +14544,7 @@
 		(net
 			(code "122")
 			(name "unconnected-(U1-NC-Pad3)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "U1")
 				(pin "3")
@@ -14697,7 +14697,7 @@
 		(net
 			(code "136")
 			(name "unconnected-(U5-NC-Pad5)")
-			(class "Default")
+			(class "Mains")
 			(node
 				(ref "U5")
 				(pin "5")

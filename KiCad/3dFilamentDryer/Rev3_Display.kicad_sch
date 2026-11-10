@@ -3509,7 +3509,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal"
+			(property "Footprint" "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal"
 				(at 0 0 0)
 				(hide yes)
 				(show_name no)
@@ -5404,7 +5404,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal"
+			(property "Footprint" "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal"
 				(at 0 0 0)
 				(hide yes)
 				(show_name no)
@@ -6839,7 +6839,7 @@
 		)
 		(uuid "1e509055-09c7-4ca1-8b1d-9986396d782a")
 	)
-	(label "B0"
+	(label "R0"
 		(at 217.17 165.1 0)
 		(effects
 			(font
@@ -6860,7 +6860,7 @@
 		)
 		(uuid "0f7aaf96-b88a-433a-a122-c0736beb8f5d")
 	)
-	(label "B1"
+	(label "R1"
 		(at 217.17 162.56 0)
 		(effects
 			(font
@@ -6881,7 +6881,7 @@
 		)
 		(uuid "4aa84fda-7d0c-46da-be1e-388aa6345919")
 	)
-	(label "B2"
+	(label "R2"
 		(at 217.17 160.02 0)
 		(effects
 			(font
@@ -6902,7 +6902,7 @@
 		)
 		(uuid "e6d290d4-88ab-49bc-934f-a4a19488f249")
 	)
-	(label "B3"
+	(label "R3"
 		(at 217.17 157.48 0)
 		(effects
 			(font
@@ -6923,7 +6923,7 @@
 		)
 		(uuid "49c57de5-00bd-43d1-a62a-de6f4f5c3afb")
 	)
-	(label "B4"
+	(label "R4"
 		(at 217.17 154.94 0)
 		(effects
 			(font
@@ -6944,7 +6944,7 @@
 		)
 		(uuid "bde3e8ad-bade-4859-8ae9-624f22e28e61")
 	)
-	(label "B5"
+	(label "R5"
 		(at 217.17 152.4 0)
 		(effects
 			(font
@@ -6965,7 +6965,7 @@
 		)
 		(uuid "ef7b3547-0ee9-4702-83ca-6da9da3c03db")
 	)
-	(label "B6"
+	(label "R6"
 		(at 217.17 149.86 0)
 		(effects
 			(font
@@ -6986,7 +6986,7 @@
 		)
 		(uuid "6c719bf7-6089-4dfd-bd8c-af1188a62e07")
 	)
-	(label "B7"
+	(label "R7"
 		(at 217.17 147.32 0)
 		(effects
 			(font
@@ -7175,7 +7175,7 @@
 		)
 		(uuid "37054564-f1a9-4404-8a9c-44ed0160027e")
 	)
-	(label "R0"
+	(label "B0"
 		(at 217.17 124.46 0)
 		(effects
 			(font
@@ -7196,7 +7196,7 @@
 		)
 		(uuid "592077d6-49fb-40ff-a994-12984b472e29")
 	)
-	(label "R1"
+	(label "B1"
 		(at 217.17 121.92 0)
 		(effects
 			(font
@@ -7217,7 +7217,7 @@
 		)
 		(uuid "f78b9495-6ccf-4c27-a3f8-3630478d2182")
 	)
-	(label "R2"
+	(label "B2"
 		(at 217.17 119.38 0)
 		(effects
 			(font
@@ -7238,7 +7238,7 @@
 		)
 		(uuid "8fd75256-7c04-41fd-8762-cfd441f79a3b")
 	)
-	(label "R3"
+	(label "B3"
 		(at 217.17 116.84 0)
 		(effects
 			(font
@@ -7259,7 +7259,7 @@
 		)
 		(uuid "f7197e2a-a1fb-4a46-866b-c277cfdaedb2")
 	)
-	(label "R4"
+	(label "B4"
 		(at 217.17 114.3 0)
 		(effects
 			(font
@@ -7280,7 +7280,7 @@
 		)
 		(uuid "c32e8731-9f2f-4fdb-b14e-1104c7ea806f")
 	)
-	(label "R5"
+	(label "B5"
 		(at 217.17 111.76 0)
 		(effects
 			(font
@@ -7301,7 +7301,7 @@
 		)
 		(uuid "438f2fa5-5b2e-43e9-8837-15ecb9bc345d")
 	)
-	(label "R6"
+	(label "B6"
 		(at 217.17 109.22 0)
 		(effects
 			(font
@@ -7322,7 +7322,7 @@
 		)
 		(uuid "a2f5d245-fc49-4579-921d-36b56dddc729")
 	)
-	(label "R7"
+	(label "B7"
 		(at 217.17 106.68 0)
 		(effects
 			(font
@@ -8238,7 +8238,7 @@
 		)
 		(uuid "6763fe73-4a56-4419-9056-398a0ade97e8")
 	)
-	(global_label "LCD_D1"
+	(global_label "LCD_RST"
 		(shape bidirectional)
 		(at 74.93 62.23 90)
 		(fields_autoplaced yes)
@@ -8273,7 +8273,7 @@
 		)
 		(uuid "3734d8b7-4d5a-4e2e-b4aa-dde0129a23cb")
 	)
-	(label "SSD_D1"
+	(label "SSD_RST"
 		(at 74.93 77.47 270)
 		(effects
 			(font
@@ -8376,7 +8376,7 @@
 		)
 		(uuid "e826357d-e322-40b8-92aa-7baf518e96e4")
 	)
-	(global_label "LCD_D2"
+	(global_label "LCD_DC"
 		(shape bidirectional)
 		(at 90.17 62.23 90)
 		(fields_autoplaced yes)
@@ -8411,7 +8411,7 @@
 		)
 		(uuid "92edded3-c1f4-43bd-8867-1b5b39f66b6d")
 	)
-	(label "SSD_D2"
+	(label "SSD_DC"
 		(at 90.17 77.47 270)
 		(effects
 			(font
@@ -8514,7 +8514,7 @@
 		)
 		(uuid "f127e1d5-ce06-412f-9cc1-4c1cf30c5b67")
 	)
-	(global_label "LCD_D3"
+	(global_label "LCD_WR"
 		(shape bidirectional)
 		(at 105.41 62.23 90)
 		(fields_autoplaced yes)
@@ -8549,7 +8549,7 @@
 		)
 		(uuid "b457448a-576d-4269-8d7a-8c1a5d507ddd")
 	)
-	(label "SSD_D3"
+	(label "SSD_WR"
 		(at 105.41 77.47 270)
 		(effects
 			(font
@@ -8652,7 +8652,7 @@
 		)
 		(uuid "03277196-5d8f-4e59-8610-c1642edcb9e3")
 	)
-	(global_label "LCD_D4"
+	(global_label "LCD_D5"
 		(shape bidirectional)
 		(at 119.38 62.23 90)
 		(fields_autoplaced yes)
@@ -8687,7 +8687,7 @@
 		)
 		(uuid "276d1da1-174f-4353-8870-6cc279fcd879")
 	)
-	(label "SSD_D4"
+	(label "SSD_D5"
 		(at 119.38 77.47 270)
 		(effects
 			(font
@@ -8790,7 +8790,7 @@
 		)
 		(uuid "7185be03-a484-4805-8d2b-fe3e8f6d71f9")
 	)
-	(global_label "LCD_D5"
+	(global_label "LCD_D6"
 		(shape bidirectional)
 		(at 134.62 62.23 90)
 		(fields_autoplaced yes)
@@ -8825,7 +8825,7 @@
 		)
 		(uuid "0fd83259-e7b8-45c0-b282-05833951bf0b")
 	)
-	(label "SSD_D5"
+	(label "SSD_D6"
 		(at 134.62 77.47 270)
 		(effects
 			(font
@@ -8928,7 +8928,7 @@
 		)
 		(uuid "16c46373-833b-4d4f-ab6c-f2f08e05c8ef")
 	)
-	(global_label "LCD_D6"
+	(global_label "LCD_D7"
 		(shape bidirectional)
 		(at 59.69 92.71 90)
 		(fields_autoplaced yes)
@@ -8963,7 +8963,7 @@
 		)
 		(uuid "5ddb15bd-5a31-40d9-9714-0c673e40c949")
 	)
-	(label "SSD_D6"
+	(label "SSD_D7"
 		(at 59.69 107.95 270)
 		(effects
 			(font
@@ -9066,7 +9066,7 @@
 		)
 		(uuid "046a8379-2c02-4cb6-910a-a22f603111a9")
 	)
-	(global_label "LCD_D7"
+	(global_label "LCD_D4"
 		(shape bidirectional)
 		(at 74.93 92.71 90)
 		(fields_autoplaced yes)
@@ -9101,7 +9101,7 @@
 		)
 		(uuid "269e41ad-b0b3-4280-9a94-3133aadb8fa9")
 	)
-	(label "SSD_D7"
+	(label "SSD_D4"
 		(at 74.93 107.95 270)
 		(effects
 			(font
@@ -9342,7 +9342,7 @@
 		)
 		(uuid "221c722d-8bc9-4447-a10a-0da359f0040e")
 	)
-	(global_label "LCD_DC"
+	(global_label "LCD_D2"
 		(shape bidirectional)
 		(at 105.41 92.71 90)
 		(fields_autoplaced yes)
@@ -9377,7 +9377,7 @@
 		)
 		(uuid "330d8880-ff03-4902-946c-2c92658145ee")
 	)
-	(label "SSD_DC"
+	(label "SSD_D2"
 		(at 105.41 107.95 270)
 		(effects
 			(font
@@ -9480,7 +9480,7 @@
 		)
 		(uuid "7a9f4ee6-ef98-4686-a2a9-c0d38eb6b283")
 	)
-	(global_label "LCD_WR"
+	(global_label "LCD_D3"
 		(shape bidirectional)
 		(at 119.38 92.71 90)
 		(fields_autoplaced yes)
@@ -9515,7 +9515,7 @@
 		)
 		(uuid "8443a900-748d-4bac-be7d-0aa5ed9ee556")
 	)
-	(label "SSD_WR"
+	(label "SSD_D3"
 		(at 119.38 107.95 270)
 		(effects
 			(font
@@ -9618,7 +9618,7 @@
 		)
 		(uuid "47e64989-87ba-4ef0-bd7b-4373d3206688")
 	)
-	(global_label "LCD_RST"
+	(global_label "LCD_D1"
 		(shape bidirectional)
 		(at 134.62 92.71 90)
 		(fields_autoplaced yes)
@@ -9653,7 +9653,7 @@
 		)
 		(uuid "33314a4a-84bd-4873-bc31-3231f18d423a")
 	)
-	(label "SSD_RST"
+	(label "SSD_D1"
 		(at 134.62 107.95 270)
 		(effects
 			(font
@@ -13174,7 +13174,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal"
+		(property "Footprint" "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal"
 			(at 299.72 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -15679,7 +15679,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Taiyo-Yuden_NR-40xx"
+		(property "Footprint" "Rev3:L_Viking_PCD0403"
 			(at 261.62 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -16191,7 +16191,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Taiyo-Yuden_NR-40xx"
+		(property "Footprint" "Rev3:L_Viking_PCD0403"
 			(at 330.2 199.39 0)
 			(hide yes)
 			(show_name no)
@@ -16645,7 +16645,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_Zener")
-		(at 374.65 214.63 90)
+		(at 374.65 214.63 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17713,7 +17713,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal"
+		(property "Footprint" "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal"
 			(at 80.01 245.11 0)
 			(hide yes)
 			(show_name no)

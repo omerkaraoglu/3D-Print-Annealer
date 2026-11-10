@@ -2665,7 +2665,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_Bourns_SRN6045TA"
+		(property "Footprint" "Rev3:L_CoreMaster_SRI0605B"
 			(at 134.62 69.85 0)
 			(hide yes)
 			(show_name no)
