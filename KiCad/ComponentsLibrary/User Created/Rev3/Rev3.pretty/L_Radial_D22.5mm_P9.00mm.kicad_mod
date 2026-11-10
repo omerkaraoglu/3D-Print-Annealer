@@ -1,0 +1,78 @@
+(footprint "L_Radial_D22.5mm_P9.00mm"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Radial inductor D22.5 mm, pitch 9.00 mm (ozdisan IND-120UH-THT); pad/drill sized for 0.8 mm leads")
+	(tags "inductor radial choke")
+	(attr through_hole)
+	(fp_text reference "REF**"
+		(at 0 -13.5)
+		(layer "F.SilkS")
+		(uuid "a3552893-3f27-42f9-96ab-180d11ee3b4b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text value "VAL**"
+		(at 0 13.5)
+		(layer "F.Fab")
+		(uuid "0f3d8a22-6a0b-4a0a-ac7a-6f949d5314f1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_circle
+		(center 0 0)
+		(end 11.25 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "55a2bfd0-e2ce-4e46-9450-c196a0391569")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 11.25 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "f1178585-ce45-44b1-aba8-d37e149a3866")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 11.75 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "c43ad191-2764-407b-ae60-6c47ab4ed1a8")
+	)
+	(pad "1" thru_hole rect
+		(at -4.5 0)
+		(size 2.2 2.2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(uuid "a94fd520-d558-4e9e-a75c-cefc8cce3344")
+	)
+	(pad "2" thru_hole circle
+		(at 4.5 0)
+		(size 2.2 2.2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(uuid "7f49721b-812a-43e7-97ca-86870233a2ec")
+	)
+)

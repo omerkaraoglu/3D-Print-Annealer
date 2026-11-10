@@ -1,0 +1,87 @@
+{
+ "buck_2 x 22 uF nominal": {
+  "dIL_App": 0.412,
+  "Vripple_pp_mV": 1.91,
+  "analytic_cap_mV": 2.02,
+  "analytic_esr_mV": 1.03
+ },
+ "buck_2 x 14 uF (DC-bias derated)": {
+  "dIL_App": 0.412,
+  "Vripple_pp_mV": 2.94,
+  "analytic_cap_mV": 3.17,
+  "analytic_esr_mV": 1.03
+ },
+ "boost_input": {
+  "D": 0.479,
+  "dIL_App": 0.2,
+  "IL_avg_A": 0.316
+ },
+ "filter_none": {
+  "total_rail_pp_mV": 28.89,
+  "resistive_step_pp_mV": 18.97,
+  "ringing_above_resistive_step_mV": 9.91,
+  "rail_1p2MHz_ripple_pp_mV": 0.119,
+  "boost_input_1p2MHz_ripple_pp_mV": 2.11
+ },
+ "filter_pi": {
+  "total_rail_pp_mV": 42.45,
+  "resistive_step_pp_mV": 18.97,
+  "ringing_above_resistive_step_mV": 23.47,
+  "rail_1p2MHz_ripple_pp_mV": 0.001,
+  "boost_input_1p2MHz_ripple_pp_mV": 1.92
+ },
+ "filter_pi+damp": {
+  "total_rail_pp_mV": 18.98,
+  "resistive_step_pp_mV": 18.97,
+  "ringing_above_resistive_step_mV": 0.0,
+  "rail_1p2MHz_ripple_pp_mV": 0.001,
+  "boost_input_1p2MHz_ripple_pp_mV": 1.89
+ },
+ "filter_pi+damp+bulk": {
+  "total_rail_pp_mV": 18.96,
+  "resistive_step_pp_mV": 18.97,
+  "ringing_above_resistive_step_mV": -0.01,
+  "rail_1p2MHz_ripple_pp_mV": 0.001,
+  "boost_input_1p2MHz_ripple_pp_mV": 1.89
+ },
+ "zt_none": {
+  "1kHz_dBohm": -24.6,
+  "10kHz_dBohm": -25.1,
+  "40kHz_dBohm": -23.6,
+  "100kHz_dBohm": -22.6,
+  "1200kHz_dBohm": -61.4,
+  "3600kHz_dBohm": -81.9,
+  "peak_Hz": 74989.0,
+  "peak_dBohm": -21.8
+ },
+ "zt_pi": {
+  "1kHz_dBohm": -24.6,
+  "10kHz_dBohm": -24.3,
+  "40kHz_dBohm": -17.6,
+  "100kHz_dBohm": -40.4,
+  "1200kHz_dBohm": -107.1,
+  "3600kHz_dBohm": -127.8,
+  "peak_Hz": 33497.0,
+  "peak_dBohm": -12.7
+ },
+ "zt_pi+damp": {
+  "1kHz_dBohm": -24.6,
+  "10kHz_dBohm": -25.2,
+  "40kHz_dBohm": -27.1,
+  "100kHz_dBohm": -41.3,
+  "1200kHz_dBohm": -107.2,
+  "3600kHz_dBohm": -127.9,
+  "peak_Hz": 22387.0,
+  "peak_dBohm": -24.8
+ },
+ "zt_pi+damp+bulk": {
+  "1kHz_dBohm": -24.6,
+  "10kHz_dBohm": -26.2,
+  "40kHz_dBohm": -32.8,
+  "100kHz_dBohm": -51.1,
+  "1200kHz_dBohm": -108.1,
+  "3600kHz_dBohm": -128.6,
+  "peak_Hz": 2113.0,
+  "peak_dBohm": -25.0
+ }
+}

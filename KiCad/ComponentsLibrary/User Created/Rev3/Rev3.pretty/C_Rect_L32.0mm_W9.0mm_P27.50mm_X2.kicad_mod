@@ -1,0 +1,78 @@
+(footprint "C_Rect_L32.0mm_W9.0mm_P27.50mm_X2"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Film capacitor box 32 x 9 mm (H 18 mm), pitch 27.5 mm (Faratronic C42P2105KBSC400)")
+	(tags "capacitor film X2 MKP")
+	(attr through_hole)
+	(fp_text reference "REF**"
+		(at 0 -6.5)
+		(layer "F.SilkS")
+		(uuid "4f674e79-a97b-48ae-b8f2-3b02195e17c7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text value "VAL**"
+		(at 0 6.5)
+		(layer "F.Fab")
+		(uuid "c3a87a89-c5c6-4fa1-b207-221a57fe13cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_rect
+		(start -16 -4.5)
+		(end 16 4.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "6aee64c5-76d2-4147-b732-f5c253fef0f0")
+	)
+	(fp_rect
+		(start -16 -4.5)
+		(end 16 4.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "d128c5c1-ffbf-47e7-883c-a5fe9630951d")
+	)
+	(fp_rect
+		(start -16.5 -5)
+		(end 16.5 5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "10fd865a-cd8e-46b0-832b-efc9d160f5d1")
+	)
+	(pad "1" thru_hole rect
+		(at -13.75 0)
+		(size 2.4 2.4)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(uuid "f77d0ac0-95b7-447a-ac34-b59c6958e75f")
+	)
+	(pad "2" thru_hole circle
+		(at 13.75 0)
+		(size 2.4 2.4)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b900a6f8-859a-4b8d-8482-503133a13c5f")
+	)
+)

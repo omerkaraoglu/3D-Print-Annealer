@@ -1,0 +1,370 @@
+{
+ "microstrip": {
+  "2-layer 1.6 mm, w=0.25 mm (h=1.5 mm core)": {
+   "w": 0.25,
+   "h": 1.5,
+   "t": 0.035,
+   "er": 4.3,
+   "Z0_hammerstad": 128.6,
+   "Z0_ipc2141": 132.6,
+   "eps_eff": 2.906,
+   "tpd_ps_per_mm": 5.69,
+   "C_per_mm_pF": 0.0442,
+   "L_per_mm_nH": 0.7315
+  },
+  "2-layer 1.6 mm, w=0.60 mm": {
+   "w": 0.6,
+   "h": 1.5,
+   "t": 0.035,
+   "er": 4.3,
+   "Z0_hammerstad": 101.0,
+   "Z0_ipc2141": 104.0,
+   "eps_eff": 2.981,
+   "tpd_ps_per_mm": 5.76,
+   "C_per_mm_pF": 0.057,
+   "L_per_mm_nH": 0.5815
+  },
+  "4-layer, w=0.25 mm (h=0.20 mm prepreg)": {
+   "w": 0.25,
+   "h": 0.2,
+   "t": 0.035,
+   "er": 4.4,
+   "Z0_hammerstad": 59.0,
+   "Z0_ipc2141": 58.7,
+   "eps_eff": 3.257,
+   "tpd_ps_per_mm": 6.02,
+   "C_per_mm_pF": 0.102,
+   "L_per_mm_nH": 0.3551
+  },
+  "4-layer, w=0.30 mm": {
+   "w": 0.3,
+   "h": 0.2,
+   "t": 0.035,
+   "er": 4.4,
+   "Z0_hammerstad": 54.0,
+   "Z0_ipc2141": 53.1,
+   "eps_eff": 3.298,
+   "tpd_ps_per_mm": 6.06,
+   "C_per_mm_pF": 0.1122,
+   "L_per_mm_nH": 0.3269
+  }
+ },
+ "critical_length": {
+  "tpd_ps_per_mm": 6.5,
+  "rows": [
+   {
+    "tr_ns": 1.0,
+    "l_tr6_mm": 25.6,
+    "l_tr4_mm": 38.5,
+    "l_roundtrip_mm": 76.9,
+    "f_knee_MHz": 500.0
+   },
+   {
+    "tr_ns": 2.0,
+    "l_tr6_mm": 51.3,
+    "l_tr4_mm": 76.9,
+    "l_roundtrip_mm": 153.8,
+    "f_knee_MHz": 250.0
+   },
+   {
+    "tr_ns": 4.0,
+    "l_tr6_mm": 102.6,
+    "l_tr4_mm": 153.8,
+    "l_roundtrip_mm": 307.7,
+    "f_knee_MHz": 125.0
+   }
+  ],
+  "td_60mm_ps": 390.0,
+  "td_90mm_ps": 585.0
+ },
+ "harmonics": {
+  "f1_MHz": 12.7,
+  "corners": {
+   "tr_1ns": 318.3,
+   "tr_2ns": 159.2,
+   "tr_4ns": 79.6
+  },
+  "levels_dBuV": {
+   "tr_1ns": {
+    "20MHz": 126.4,
+    "60MHz": 116.9,
+    "100MHz": 112.5,
+    "200MHz": 106.4,
+    "300MHz": 102.9,
+    "500MHz": 94.6,
+    "1000MHz": 82.5
+   },
+   "tr_2ns": {
+    "20MHz": 126.4,
+    "60MHz": 116.9,
+    "100MHz": 112.5,
+    "200MHz": 104.5,
+    "300MHz": 97.4,
+    "500MHz": 88.5,
+    "1000MHz": 76.5
+   },
+   "tr_4ns": {
+    "20MHz": 126.4,
+    "60MHz": 116.9,
+    "100MHz": 110.5,
+    "200MHz": 98.4,
+    "300MHz": 91.4,
+    "500MHz": 82.5,
+    "1000MHz": 70.5
+   }
+  }
+ },
+ "efield": {
+  "limits_dBuV_m_at_3m": {
+   "30-230MHz": 40,
+   "230-1000MHz": 47
+  },
+  "assumptions": {
+   "loop_area_2layer_m2": 8.999999999999999e-05,
+   "loop_area_4layer_m2": 1.2e-05,
+   "cm_antenna_length_m": 0.15,
+   "ground_return_inductance_nH": {
+    "solid_plane": 0.5,
+    "split_or_2layer_gap": 10
+   },
+   "cm_path_impedance_ohm": 150,
+   "n_lines_switching": 9
+  },
+  "rows": [
+   {
+    "Rs": 0,
+    "f_MHz": 100.0,
+    "tr_eff_ns": 1.75,
+    "I_harm_mA_total": 27.01,
+    "E_dm_2layer_dBuV_m": 46.6,
+    "E_dm_4layer_dBuV_m": 29.1,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 8.49,
+      "i_cm_uA": 56.6,
+      "E_cm_dBuV_m": 51.0
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 169.71,
+      "i_cm_uA": 1131.4,
+      "E_cm_dBuV_m": 77.1
+     }
+    }
+   },
+   {
+    "Rs": 0,
+    "f_MHz": 200.0,
+    "tr_eff_ns": 1.75,
+    "I_harm_mA_total": 12.31,
+    "E_dm_2layer_dBuV_m": 51.8,
+    "E_dm_4layer_dBuV_m": 34.3,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 7.74,
+      "i_cm_uA": 51.6,
+      "E_cm_dBuV_m": 56.3
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 154.72,
+      "i_cm_uA": 1031.5,
+      "E_cm_dBuV_m": 82.3
+     }
+    }
+   },
+   {
+    "Rs": 0,
+    "f_MHz": 300.0,
+    "tr_eff_ns": 1.75,
+    "I_harm_mA_total": 5.47,
+    "E_dm_2layer_dBuV_m": 51.8,
+    "E_dm_4layer_dBuV_m": 34.3,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 5.16,
+      "i_cm_uA": 34.4,
+      "E_cm_dBuV_m": 56.3
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 103.15,
+      "i_cm_uA": 687.6,
+      "E_cm_dBuV_m": 82.3
+     }
+    }
+   },
+   {
+    "Rs": 33,
+    "f_MHz": 100.0,
+    "tr_eff_ns": 2.29,
+    "I_harm_mA_total": 21.86,
+    "E_dm_2layer_dBuV_m": 44.7,
+    "E_dm_4layer_dBuV_m": 27.2,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 6.87,
+      "i_cm_uA": 45.8,
+      "E_cm_dBuV_m": 49.2
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 137.34,
+      "i_cm_uA": 915.6,
+      "E_cm_dBuV_m": 75.2
+     }
+    }
+   },
+   {
+    "Rs": 33,
+    "f_MHz": 200.0,
+    "tr_eff_ns": 2.29,
+    "I_harm_mA_total": 7.58,
+    "E_dm_2layer_dBuV_m": 47.6,
+    "E_dm_4layer_dBuV_m": 30.1,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 4.76,
+      "i_cm_uA": 31.8,
+      "E_cm_dBuV_m": 52.0
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 95.29,
+      "i_cm_uA": 635.3,
+      "E_cm_dBuV_m": 78.1
+     }
+    }
+   },
+   {
+    "Rs": 33,
+    "f_MHz": 300.0,
+    "tr_eff_ns": 2.29,
+    "I_harm_mA_total": 3.37,
+    "E_dm_2layer_dBuV_m": 47.6,
+    "E_dm_4layer_dBuV_m": 30.1,
+    "cm": {
+     "solid_plane": {
+      "v_gb_mV": 3.18,
+      "i_cm_uA": 21.2,
+      "E_cm_dBuV_m": 52.0
+     },
+     "split_or_2layer_gap": {
+      "v_gb_mV": 63.53,
+      "i_cm_uA": 423.5,
+      "E_cm_dBuV_m": 78.1
+     }
+    }
+   }
+  ]
+ },
+ "termination": {
+  "ideal_Rs_Z0_55": 20,
+  "ideal_Rs_Z0_105": 70,
+  "ideal_Rs_Z0_130": 95,
+  "t10_90_Rs0_Z055_ns": 1.16,
+  "t10_90_Rs0_Z0105_ns": 0.9,
+  "t10_90_Rs22_Z055_ns": 1.89,
+  "t10_90_Rs22_Z0105_ns": 1.47,
+  "t10_90_Rs33_Z055_ns": 2.26,
+  "t10_90_Rs33_Z0105_ns": 1.75,
+  "t10_90_Rs47_Z055_ns": 2.72,
+  "t10_90_Rs47_Z0105_ns": 2.11
+ },
+ "i2c": {
+  "Rp_min_ohm": 967.0,
+  "Rp_max_ohm": {
+   "Cb_50pF": 7081.0,
+   "Cb_100pF": 3541.0
+  },
+  "rise_ns": {
+   "Rp_1500_Cb_50pF": 64.0,
+   "Rp_1500_Cb_100pF": 127.0,
+   "Rp_2200_Cb_50pF": 93.0,
+   "Rp_2200_Cb_100pF": 186.0,
+   "Rp_2700_Cb_50pF": 114.0,
+   "Rp_2700_Cb_100pF": 229.0,
+   "Rp_3300_Cb_50pF": 140.0,
+   "Rp_3300_Cb_100pF": 280.0,
+   "Rp_4700_Cb_50pF": 199.0,
+   "Rp_4700_Cb_100pF": 398.0,
+   "Rp_10000_Cb_50pF": 424.0,
+   "Rp_10000_Cb_100pF": 847.0
+  },
+  "sink_mA": {
+   "Rp_1500": 1.93,
+   "Rp_2200": 1.32,
+   "Rp_2700": 1.07,
+   "Rp_3300": 0.88,
+   "Rp_4700": 0.62,
+   "Rp_10000": 0.29
+  }
+ },
+ "thermocouple": {
+  "R_ohm": 1000.0,
+  "Cdiff_nF": 100.0,
+  "Ccm_nF": 10.0,
+  "f_dm_Hz": 757.9,
+  "f_cm_Hz": 15915.0,
+  "att_dm_50Hz_dB": -0.019,
+  "att_dm_100kHz_dB": -42.4,
+  "att_cm_50Hz_dB": -0.0,
+  "att_cm_100kHz_dB": -16.1,
+  "cm_to_dm_10pct_mismatch_50Hz_uV_per_V": 314.2,
+  "cm_to_dm_1pct_mismatch_50Hz_uV_per_V": 31.42,
+  "thermal_noise_filterBW_nVrms": 217.0,
+  "thermal_noise_16Hz_nVrms": 25.2,
+  "LSB_uV": 7.8125,
+  "LSB_degC": 0.191,
+  "fullscale_degC_equiv": 6244.0,
+  "adc_noise_rms_uV": 3.76,
+  "adc_noise_rms_degC": 0.092,
+  "adc_noise_rms_degC_1s_avg_16SPS": 0.023,
+  "adc_noise_rms_degC_1s_avg_32SPS": 0.016,
+  "settle_time_to_1LSB_ms": 1.5,
+  "bias_current_nA": 165.0,
+  "err_bias_at_terminal_uV": 1.65,
+  "err_bias_at_terminal_degC": 0.04,
+  "err_bias_after_filterR_uV": 331.6,
+  "err_bias_after_filterR_degC": 8.09,
+  "gain_err_from_Zin_pct": 0.283,
+  "gain_err_from_Zin_degC_at_300C": 0.85,
+  "open_tc_reading_mV": 113.1,
+  "open_tc_reading_LSB": 14481.0,
+  "open_tc_time_constant_s": 0.525,
+  "cm_bias_V": 1.65,
+  "cmrr_residual_uV_per_V": 5.62,
+  "adc_filter_50Hz_dB_16SPS": -28.2,
+  "adc_filter_50Hz_dB_32SPS": -14.0
+ },
+ "buck": {
+  "nominal 2x22uF": {
+   "D": 0.66,
+   "dIL_App": 0.412,
+   "Vripple_cap_mV": 2.02,
+   "Vripple_esr_mV": 1.03,
+   "Vripple_total_mV": 3.05,
+   "Vripple_esl_0p3nH_mV": 0.211
+  },
+  "derated 2x14uF (DC bias)": {
+   "D": 0.66,
+   "dIL_App": 0.412,
+   "Vripple_cap_mV": 3.17,
+   "Vripple_esr_mV": 1.03,
+   "Vripple_total_mV": 4.2,
+   "Vripple_esl_0p3nH_mV": 0.211
+  }
+ },
+ "boost": {
+  "D": 0.479,
+  "dIL_App": 0.2,
+  "IL_avg_A": 0.316,
+  "IL_peak_A": 0.416,
+  "Vin_ripple_single_10uF_mVpp": 3.97,
+  "pi_filter": {
+   "L_uH": 2.2,
+   "C_each_uF_eff": 7.0,
+   "fc_Hz": 40556.0,
+   "att_at_fsw_dB": 58.8,
+   "ripple_on_5V_after_filter_uVpp": 4.5,
+   "Zo_ohm": 0.561,
+   "Q_undamped_ESR_5mohm": 56.1,
+   "pwm_dim_step_mA": 316.0
+  }
+ }
+}
