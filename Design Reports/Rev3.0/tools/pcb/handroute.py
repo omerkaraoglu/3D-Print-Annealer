@@ -32,7 +32,8 @@ SCR = os.path.dirname(os.path.abspath(__file__))
 KIPY = r"C:/Program Files/KiCad/10.0/bin/python.exe"
 
 class Router:
-    def __init__(self, geom="geom.json"):
+    def __init__(self, geom="geom.json", placed="rev3_placed.kicad_pcb"):
+        self.placed = placed
         g = json.load(open(os.path.join(SCR, geom)))
         self.pads = {}; self.bynet = {}
         for p in g["pads"]:
@@ -70,7 +71,7 @@ class Router:
         mf = os.path.join(SCR, "_merged_" + os.path.basename(fn))
         json.dump(merged, open(mf, "w"))
         board = os.path.join(SCR, out)
-        subprocess.run([KIPY, os.path.join(SCR, "import_tracks.py"), os.path.join(SCR, "rev3_placed.kicad_pcb"), mf, board], check=True, capture_output=True)
+        subprocess.run([KIPY, os.path.join(SCR, "import_tracks.py"), os.path.join(SCR, self.placed), mf, board], check=True, capture_output=True)
         r = subprocess.run([sys.executable, os.path.join(SCR, "drc_run.py"), board, "0"], capture_output=True, text=True)
         print(r.stdout.strip().splitlines()[0] if r.stdout else r.stderr[-500:])
         d = json.load(open(os.path.splitext(board)[0] + "_drc.json", encoding="utf-8"))

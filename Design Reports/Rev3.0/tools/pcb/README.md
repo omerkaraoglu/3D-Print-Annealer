@@ -8,7 +8,7 @@ millimetres (x right, y down, origin at the board's top-left corner); `placement
 
 | Step | Script | Interpreter | What it does |
 |---|---|---|---|
-| 0 | `gen_footprints.py` | KiCad | writes the verified footprints into `ComponentsLibrary/User Created/Rev3/Rev3.pretty` (Connfly DS1020-09, Core Master SRI0605B, Viking PCD0403, DEGSON DG127H, LFU09V-103) |
+| 0 | `gen_footprints.py`, `gen_heatsink_fp.py` | KiCad / any | write the verified footprints into `ComponentsLibrary/User Created/Rev3/Rev3.pretty` (Connfly DS1020-09, Core Master SRI0605B, Viking PCD0403, DEGSON DG127H, LFU09V-103; pass 2: Fischer SK 409 63,5 STC heatsink with its own F.Cu keep-out zones) |
 | 1 | `kicad-cli sch export netlist --format kicadsexpr -o rev3.net 3dFilamentDryer.kicad_sch` | kicad-cli | netlist used by the builder (`netdump.py` lists it) |
 | 2 | `netclasses.py` | any | net classes (IPC-2152 widths) into `3dFilamentDryer.kicad_pro`, isolation / creepage rules into `3dFilamentDryer.kicad_dru` |
 | 3 | `build_board.py [out.kicad_pcb]` | KiCad | 4-layer board, outline, slots, mounting holes, placement from `placement.py`, planes, keep-outs, rule areas, texts (no tracks) → `rev3_placed.kicad_pcb` |
@@ -24,3 +24,26 @@ Clearances enforced by the DRC rules (and mirrored in the helpers): 0.2 mm SELV,
 0.4/0.5 mm pitch packages (rule areas `u10_escape`, `u20_escape`), 2.5 mm mains-to-mains (IPC-2221B B2, 301-500 V
 peak), 6.4 mm clearance **and** creepage mains-to-SELV, 1.0 mm mains-to-edge. Component-inherent exceptions (relay coil,
 optocoupler and triac pin pitches, the L/N chains) are explicit named rules in the `.kicad_dru`.
+
+## Layout pass 2 (2026-11-11)
+
+`sch_pass2.py` made the schematic edits of pass 2 (Q1 → BTA24-800CWRG, R1 = 1 kW heater, new HS1 heatsink symbol with no-connect
+pins; `extract_sym.py` copies the KiCad `Mechanical:Heatsink_Pad_2Pin` symbol into the sheet). `placement.py` now applies every
+`placement_override_<region>.py` (display / power / mains) after its own list — each routing agent moved its own parts there;
+`build_board.py` and `export_geom.py` accept an output name so each region could rebuild its own placed board. `netclasses.py`
+adds the `heatsink_pins_vs_mains/selv` rules. `fill_zones.py` + `deliver.py` fill the zones under the project name and re-export
+netlist / BOM / CPL / DRC. The briefs the agents worked from are `AGENT_BRIEF.md` (pass 1, common rules) and `PASS2_BRIEF.md`.
+
+Notes from the pass-2 merge:
+- KiCad evaluates **creepage per net pair** (a footprint test such as `memberOfFootprint` is ignored) and a later creepage rule
+  cannot relax an earlier one, so the HS1 pin nets (`unconnected-(HS1-Pad1/2)`) are excluded by name from
+  `mains_to_selv_creepage` and get their own `heatsink_pins_vs_mains_creepage` (2.5 mm) / `heatsink_pins_vs_selv_creepage`
+  (6.4 mm). The intended Q1-on-HS1 courtyard overlap is silenced by `q1_on_heatsink_courtyard` (`severity ignore`).
+- The mains "no inner copper" polygon and the SELV plane outline share the corner under the PSU body; it is at y 60 (was 80) so
+  that the In2 3V3 plane reaches the strip east of the +5 V island (R125's 3V3 via lives there). Keep the two polygons in step.
+- When a region is re-routed, strip **every** stub of the moved parts from `tracks_signals.json`, not only the moved nets:
+  pass 2 left nine GND/+3V3 stubs of the old J11 companions behind, which collided with the relocated buck (fixed in the merge).
+- `mains2_check.py geom.json crt_all.json tracks_display.json,tracks_signals.json,tracks_power.json` (system Python, shapely) is
+  the pass-2 mains placement checker (heatsink envelope vs tall parts, HS1 pins, creepage proxies, edge); `dump_crt.py` writes
+  the courtyard JSON it needs from the built board. `d2_lanes.py` / `display_lane_decision.md` hold the RGB lane-order analysis
+  (the current netlist is the crossing-minimal mapping; 59 vs 187 ribbon crossings).

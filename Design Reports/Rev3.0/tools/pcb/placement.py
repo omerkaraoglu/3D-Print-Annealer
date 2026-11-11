@@ -38,15 +38,15 @@ put('C113', 50.4, 81.2, 180)   # display: GND pad west (pin 33), 3V3 east (pin 3
 put('R124', 54.5, 56.6, 270)        # RD pull-up (pin 121 x=54.6)
 put('C119', 58.5, 58.6, 0); put('C115', 61.5, 58.6, 0); put('C116', 66.0, 58.6, 0)
 put('C114', 67.5, 62.5, 90)    # display: next to pin 95
-put('U31', 80.0, 68.0, 180)        # LD1117-1.2: pins at x=79.15 (GND 65.7 / OUT 68 / IN 70.3), tab (72.85,68)
-put('C335', 86.5, 68.0, 270)   # display: 3V3 pad toward U31.3, GND toward U31.1
-put('C336', 78.0, 74.0, 0); put('C337', 82.0, 74.0, 0)
+put('U31', 64.0, 82.0, 180)        # LD1117-1.2: pins at x=79.15 (GND 65.7 / OUT 68 / IN 70.3), tab (72.85,68)
+put('C335', 70.0, 82.0, 270)   # display: 3V3 pad toward U31.3, GND toward U31.1
+put('C336', 62.0, 88.0, 0); put('C337', 66.0, 88.0, 0)
 
 # ---------------- FPC connectors (back side, bottom edge) ----------------
-put('J10', 62.55, 94.6, 0, 'B')     # mirrored: pin1 (VLED-) x=72.25 ... pin40 x=52.75
-put('J11', 81.55, 94.6, 0, 'B')     # mirrored: pin1 x=81.25 .. pin6 x=78.75
-put('C123', 70.5, 88.5, 90); put('C122', 72.7, 88.5, 90); put('R125', 75.2, 88.5, 90)   # TFT_VDD
-put('D113', 78.0, 88.5, 90); put('D112', 80.0, 88.5, 90); put('C126', 82.0, 88.5, 90); put('R129', 84.3, 88.5, 90)
+put('J10', 135.65, 94.6, 0, 'B')     # mirrored: pin1 (VLED-) x=72.25 ... pin40 x=52.75
+put('J11', 40.3, 94.6, 0, 'B')     # mirrored: pin1 x=81.25 .. pin6 x=78.75
+put('C123', 139.5, 96.0, 0); put('C122', 142.0, 96.0, 0); put('R125', 144.5, 96.0, 0)   # TFT_VDD
+put('D113', 45.0, 88.5, 90); put('D112', 47.0, 88.5, 90); put('C126', 49.0, 88.5, 90); put('R129', 51.3, 88.5, 90)
 
 # ---------------- Thermocouple front end (bottom-left) ----------------
 put('J20', 6.5, 80.0, 270)         # pins (6.5,80),(6.5,85.08); body x 1..10.8; wires exit left
@@ -64,21 +64,21 @@ put('R226', 36.0, 85.0, 90); put('R227', 36.0, 90.0, 90); put('C226', 38.5, 87.5
 
 # ---------------- LV power: buck / boost at the PSU DC pins ----------------
 # PS1 DC pins: +5V (134.8, 87.5), GND (157.4, 87.5)
-put('C2', 125.5, 90.0, 0)          # 220u bulk: +5V (125.5,90), GND (128,90)
-put('U30', 112.0, 70.0, 0)         # TPS562201
-put('C332', 112.0, 67.2, 180)
-put('L30', 105.5, 70.5, 180)       # SRI0605B, pin1 (SW) toward U30
-put('C333', 101.0, 76.5, 90); put('C334', 104.0, 76.5, 90)
-put('C330', 110.5, 75.0, 90); put('C331', 113.5, 75.0, 90)
-put('R330', 116.5, 68.5, 0); put('R331', 116.5, 71.5, 0)
-put('U11', 112.0, 88.0, 0)         # MIC2288
-put('L11', 106.5, 85.0, 0)
-put('D111', 106.5, 92.0, 0)
-put('C125', 101.5, 91.0, 90); put('D114', 101.5, 86.0, 270)   # D114 rot 270 + schematic polarity fix: K (pin 1) on VLED_P at the same pad position
-put('R122', 97.0, 86.0, 90); put('R123', 97.0, 90.0, 90); put('R126', 102.5, 81.5, 0)
-put('R128', 69.5, 84.0, 0); put('R127', 73.0, 84.0, 0)       # BL_PWM/EN next to the SSD1963 PWM pin
-put('L12', 116.0, 82.5, 0); put('C127', 120.0, 83.0, 90); put('C124', 112.0, 81.5, 90)
-put('R132', 107.5, 80.0, 0); put('C128', 96.0, 80.0, 0)
+put('C2', 127.5, 80.5, 90)          # 220u bulk: +5V (125.5,90), GND (128,90)
+put('U30', 88.0, 74.5, 0)         # TPS562201
+put('C332', 88.0, 71.7, 180)
+put('L30', 81.5, 75.0, 180)       # SRI0605B, pin1 (SW) toward U30
+put('C333', 77.0, 81.0, 90); put('C334', 80.0, 81.0, 90)
+put('C330', 86.5, 79.5, 90); put('C331', 89.5, 79.5, 90)
+put('R330', 92.5, 73.0, 0); put('R331', 92.5, 76.0, 0)
+put('U11', 88.0, 92.5, 0)         # MIC2288
+put('L11', 82.5, 89.5, 0)
+put('D111', 82.5, 96.5, 0)
+put('C125', 77.5, 95.5, 90); put('D114', 77.5, 90.5, 270)   # D114 rot 270 + schematic polarity fix: K (pin 1) on VLED_P at the same pad position
+put('R122', 73.0, 90.5, 90); put('R123', 73.0, 94.5, 90); put('R126', 78.5, 86.0, 0)
+put('R128', 60.0, 87.0, 0); put('R127', 64.0, 87.0, 0)       # BL_PWM/EN next to the SSD1963 PWM pin
+put('L12', 92.0, 87.0, 0); put('C127', 96.0, 87.5, 90); put('C124', 88.0, 86.0, 90)
+put('R132', 83.5, 84.5, 0); put('C128', 72.0, 84.5, 0)
 
 # ---------------- Isolation boundary parts (SELV side, y >= 55) ----------------
 put('R4', 101.0, 57.5, 90)
@@ -105,6 +105,7 @@ put('D2', 126.3, 39.4, 0)        # bottom D2-K / top D1-K
 put('K1', 70.0, 48.0, 90)          # relay rot90: COM (80,48), coil (86.05,46.05)/(73.95,46.05), NO (86.05,33.85), NC (74,33.8); body x 72..88, y 29.7..49.9
 put('J4', 83.0, 3.5, 0)            # fan wires: NO (93,3.5), NEUT (100.8,3.5)
 put('F3', 107.42, 16.1, 0)           # Q1-A2 (105/110.2,5) .. LINE (120.3/125.5,5)
+put('HS1', 112.62, 33.6, 0)          # Fischer SK 409 63,5 STC: plate centre; TO-220 at (x-2.54, y+4.7)
 put('Q1', 110.08, 38.3, 0)          # BTA12 vertical: A1 (138,24), A2 (140.54,24), G (143.08,24); heatsink box x 126..150, y 10..22
 put('R3', 98.5, 45.7, 180)          # 360R: U5.6 (104,43) .. A2 (116.7,43)
 put('R2', 102.46, 44.1, 0)        # gate 360R: A1 (158,27) .. G (145.3,27)
@@ -112,3 +113,8 @@ put('R1', 102.32, 3.5, 0)           # heater wires: A1 (140,3.5), NEUT (147.8,3.
 put('RV2', 98.0, 37.1, 180)         # across triac: A2 (152,32), A1 (159.5,33.4)
 put('R5', 83.5, 41.1, 0)         # snubber 47R: C4n (156.5,20) .. A2 (156.5,4.76)
 put('C4', 83.5, 31.9, 0)         # snubber 10n X2: C4n (161.5,20) .. A1 (161.5,10)
+
+# ---------------- pass-2 region overrides: one file per routing agent (placement_override_<region>.py), applied in name order ----------------
+import os as _os, glob as _glob
+for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "placement_override_*.py"))):
+    exec(open(_f, encoding="utf-8").read())

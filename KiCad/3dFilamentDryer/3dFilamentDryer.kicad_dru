@@ -7,7 +7,7 @@
    (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !((A.NetName == 'LINE' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'unconnected-(K1-Pad4)' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'unconnected-(K1-Pad4)' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')))"))
 (rule "mains_to_selv_creepage"
    (constraint creepage (min 6.4mm))
-   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !((A.NetName == 'LINE' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'unconnected-(K1-Pad4)' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'unconnected-(K1-Pad4)' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')))"))
+   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !((A.NetName == 'LINE' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'unconnected-(K1-Pad4)' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'unconnected-(K1-Pad4)' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)'))) && !(A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)' || B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)')"))
 (rule "mains_to_edge"
    (constraint edge_clearance (min 1.0mm))
    (condition "A.NetClass == 'Mains' || A.NetClass == 'MainsHeater'"))
@@ -63,3 +63,24 @@
 (rule "fine_pitch_escape"
    (constraint clearance (min 0.13mm))
    (condition "A.memberOfFootprint('U10') || B.memberOfFootprint('U10') || A.memberOfFootprint('U20') || B.memberOfFootprint('U20') || (A.insideArea('u10_escape') && B.insideArea('u10_escape')) || (A.insideArea('u20_escape') && B.insideArea('u20_escape'))"))
+# HS1 (Fischer SK 409 heatsink, floating metal on the insulated BTA24 tab): its solder pins are treated as mains-potential conductors
+# (triac insulation = one level): 2.5 mm to any mains copper, 6.4 mm to any SELV copper; the triac's own leads are 15 mm away.
+(rule "heatsink_pins_vs_mains"
+   (constraint clearance (min 2.5mm))
+   (condition "(A.memberOfFootprint('HS1') && (B.NetClass == 'Mains' || B.NetClass == 'MainsHeater')) || (B.memberOfFootprint('HS1') && (A.NetClass == 'Mains' || A.NetClass == 'MainsHeater'))"))
+(rule "heatsink_pins_vs_selv"
+   (constraint clearance (min 6.4mm))
+   (condition "(A.memberOfFootprint('HS1') && B.NetClass != 'Mains' && B.NetClass != 'MainsHeater' && B.NetName != '') || (B.memberOfFootprint('HS1') && A.NetClass != 'Mains' && A.NetClass != 'MainsHeater' && A.NetName != '')"))
+# creepage counterparts: KiCad evaluates creepage per net pair (memberOfFootprint is ignored) and a later creepage rule cannot
+# relax an earlier one, so the HS1 pin nets are excluded from mains_to_selv_creepage above and get their own creepage rules.
+(rule "heatsink_pins_vs_mains_creepage"
+   (constraint creepage (min 2.5mm))
+   (condition "((A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)') && (B.NetClass == 'Mains' || B.NetClass == 'MainsHeater')) || ((B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)') && (A.NetClass == 'Mains' || A.NetClass == 'MainsHeater'))"))
+# Q1 (BTA24) is mounted on the HS1 plate by design: its courtyard lies inside the heatsink's courtyard.
+(rule "q1_on_heatsink_courtyard"
+   (constraint courtyard_clearance (min 0mm))
+   (severity ignore)
+   (condition "(A.Reference == 'Q1' && B.Reference == 'HS1') || (A.Reference == 'HS1' && B.Reference == 'Q1')"))
+(rule "heatsink_pins_vs_selv_creepage"
+   (constraint creepage (min 6.4mm))
+   (condition "((A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)') && B.NetClass != 'Mains' && B.NetClass != 'MainsHeater' && B.NetName != '') || ((B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)') && A.NetClass != 'Mains' && A.NetClass != 'MainsHeater' && A.NetName != '')"))

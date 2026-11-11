@@ -29,9 +29,9 @@ class Grid:
     def __iter__(self): return (o for o in self.items if o is not None)
 
 class DR(Router):
-    def __init__(self, extra=("tracks_power.json", "_signals_noRST.json", "tracks_mains.json")):
-        super().__init__("geom.json")
-        g = json.load(open(os.path.join(SCR, "geom.json")))
+    def __init__(self, extra=("tracks_power.json", "_signals_noRST.json", "tracks_mains.json"), geom="geom.json", placed="rev3_placed.kicad_pcb"):
+        super().__init__(geom, placed=placed)
+        g = json.load(open(os.path.join(SCR, geom)))
         self.obs = {"F": Grid(), "B": Grid()}  # (geom, net) with a 1 mm grid index
         for p in g["pads"]:
             poly = Polygon([(x - OX, y - OY) for x, y in p["poly"]])

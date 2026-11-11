@@ -58,6 +58,8 @@ print("project net classes written")
 K1NETS = lambda A: "(%s.NetName == 'LINE' || %s.NetName == '+5V' || %s.NetName == 'Net-(D5-A)' || %s.NetName == 'Net-(J4-Pin_1)')" % (A, A, A, A)
 COILN = lambda A: "(%s.NetName == '+5V' || %s.NetName == 'Net-(D5-A)')" % (A, A)
 EXC = "(A.NetName == 'LINE' && %s) || (B.NetName == 'LINE' && %s) || (A.NetName == 'unconnected-(K1-Pad4)' && %s) || (B.NetName == 'unconnected-(K1-Pad4)' && %s)" % (COILN('B'), COILN('A'), COILN('B'), COILN('A'))
+# HS1 solder pins (unconnected nets) by net name: creepage rules see nets, not footprints
+HSN = lambda X: "%s.NetName == 'unconnected-(HS1-Pad1)' || %s.NetName == 'unconnected-(HS1-Pad2)'" % (X, X)
 mainsc = lambda A: "%s.NetClass == 'Mains' || %s.NetClass == 'MainsHeater'" % (A, A)
 notmains = lambda A: "%s.NetClass != 'Mains' && %s.NetClass != 'MainsHeater'" % (A, A)
 dru = f"""(version 1)
@@ -69,7 +71,7 @@ dru = f"""(version 1)
    (condition "((({mainsc('A')}) && ({notmains('B')})) || (({mainsc('B')}) && ({notmains('A')}))) && !({EXC})"))
 (rule "mains_to_selv_creepage"
    (constraint creepage (min 6.4mm))
-   (condition "((({mainsc('A')}) && ({notmains('B')})) || (({mainsc('B')}) && ({notmains('A')}))) && !({EXC})"))
+   (condition "((({mainsc('A')}) && ({notmains('B')})) || (({mainsc('B')}) && ({notmains('A')}))) && !({EXC}) && !({HSN('A')} || {HSN('B')})"))
 (rule "mains_to_edge"
    (constraint edge_clearance (min 1.0mm))
    (condition "{mainsc('A')}"))
@@ -125,6 +127,27 @@ dru = f"""(version 1)
 (rule "fine_pitch_escape"
    (constraint clearance (min 0.13mm))
    (condition "A.memberOfFootprint('U10') || B.memberOfFootprint('U10') || A.memberOfFootprint('U20') || B.memberOfFootprint('U20') || (A.insideArea('u10_escape') && B.insideArea('u10_escape')) || (A.insideArea('u20_escape') && B.insideArea('u20_escape'))"))
+# HS1 (Fischer SK 409 heatsink, floating metal on the insulated BTA24 tab): its solder pins are treated as mains-potential conductors
+# (triac insulation = one level): 2.5 mm to any mains copper, 6.4 mm to any SELV copper; the triac's own leads are 15 mm away.
+(rule "heatsink_pins_vs_mains"
+   (constraint clearance (min 2.5mm))
+   (condition "(A.memberOfFootprint('HS1') && ({mainsc('B')})) || (B.memberOfFootprint('HS1') && ({mainsc('A')}))"))
+(rule "heatsink_pins_vs_selv"
+   (constraint clearance (min 6.4mm))
+   (condition "(A.memberOfFootprint('HS1') && {notmains('B')} && B.NetName != '') || (B.memberOfFootprint('HS1') && {notmains('A')} && A.NetName != '')"))
+# creepage counterparts: KiCad evaluates creepage per net pair (memberOfFootprint is ignored) and a later creepage rule cannot
+# relax an earlier one, so the HS1 pin nets are excluded from mains_to_selv_creepage above and get their own creepage rules.
+(rule "heatsink_pins_vs_mains_creepage"
+   (constraint creepage (min 2.5mm))
+   (condition "(({HSN('A')}) && ({mainsc('B')})) || (({HSN('B')}) && ({mainsc('A')}))"))
+# Q1 (BTA24) is mounted on the HS1 plate by design: its courtyard lies inside the heatsink's courtyard.
+(rule "q1_on_heatsink_courtyard"
+   (constraint courtyard_clearance (min 0mm))
+   (severity ignore)
+   (condition "(A.Reference == 'Q1' && B.Reference == 'HS1') || (A.Reference == 'HS1' && B.Reference == 'Q1')"))
+(rule "heatsink_pins_vs_selv_creepage"
+   (constraint creepage (min 6.4mm))
+   (condition "(({HSN('A')}) && {notmains('B')} && B.NetName != '') || (({HSN('B')}) && {notmains('A')} && A.NetName != '')"))
 """
 open(DRU, "w", encoding="utf-8").write(dru)
 print("dru written")

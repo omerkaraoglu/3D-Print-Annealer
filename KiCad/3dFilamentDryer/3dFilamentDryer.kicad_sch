@@ -12,6 +12,159 @@
 		(comment 1 "M. Ömer Karaoğlu")
 	)
 	(lib_symbols
+		(symbol "Mechanical:Heatsink_Pad_2Pin"
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "HS"
+				(at 0 5.715 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Heatsink_Pad_2Pin"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.3048 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0.3048 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Heatsink with electrical connection, 2 pin"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "thermal heat temperature"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Heatsink_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Heatsink_Pad_2Pin_0_1"
+				(polyline
+					(pts
+						(xy -0.3302 0) (xy -0.9652 0) (xy -0.9652 2.54) (xy -1.6002 2.54) (xy -1.6002 0) (xy -2.2352 0)
+						(xy -2.2352 2.54) (xy -2.8702 2.54) (xy -2.8702 -1.27) (xy -0.9652 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.3302 0) (xy -0.3302 2.54) (xy 0.3048 2.54) (xy 0.3048 0) (xy 0.9398 0) (xy 0.9398 2.54)
+						(xy 1.5748 2.54) (xy 1.5748 0) (xy 2.2098 0) (xy 2.2098 2.54) (xy 2.8448 2.54) (xy 2.8448 -1.27)
+						(xy -0.9652 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "Heatsink_Pad_2Pin_1_1"
+				(pin passive line
+					(at -2.54 -2.54 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -2.54 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "74xGxx:SN74LVC1G14DBV"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -14847,7 +15000,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Heater 1300W"
+		(property "Value" "Heater 1kW"
 			(at 317.5 92.7099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14880,7 +15033,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistive heater (500W safe, 550W fuse 100%)"
+		(property "Description" "Resistive heater 1 kW at 230 V (4.35 A RMS), fused by F3 8 A, switched by Q1"
 			(at 314.96 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -15557,7 +15710,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BTA12-600BW"
+		(property "Value" "BTA24-800CWRG"
 			(at 318.77 69.1641 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15581,7 +15734,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://www.st.com/resource/en/datasheet/bta16.pdf"
+		(property "Datasheet" "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751"
 			(at 314.96 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -15593,7 +15746,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "16A RMS, 600V Off-State Voltage, 50mA Sensitivity, Snubberless, Insulated, Triac, TO-220"
+		(property "Description" "Triac 25 A RMS, 800 V, IGT 35 mA (CW), Snubberless, insulated TO-220AB (2500 V RMS), Rth(j-c) 1.7 K/W; 1 kW heater = 4.35 A RMS -> 3.7 W, on HS1"
 			(at 314.96 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -15604,7 +15757,7 @@
 				)
 			)
 		)
-		(property "Heatsink Needed" "5.6°C/W"
+		(property "Heatsink Needed" "HS1 Fischer SK 409 63,5 STC (5.6 K/W)"
 			(at 314.96 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -17761,6 +17914,115 @@
 			(justify left top)
 		)
 		(uuid "3a485714-c4c3-492f-a1b9-10b0a6bee082")
+	)
+	(symbol
+		(lib_id "Mechanical:Heatsink_Pad_2Pin")
+		(at 330.2 261.62 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim yes)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1119eeb4-ae94-40d4-bc4a-ce1d98eeb631")
+		(property "Reference" "HS1"
+			(at 330.2 254.0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SK 409 63,5 STC"
+			(at 330.2 256.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Rev3:Heatsink_Fischer_SK409_63.5_STC"
+			(at 330.2 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367"
+			(at 330.2 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Heatsink for Q1: Fischer SK 409 63,5 STC, 45 x 12.7 x 63.5 mm, 5.6 K/W (natural convection, 80 K rise), two solder pins, TO-220 clip/screw mount; DigiKey 5496-SK40963,5STCTO220-ND"
+			(at 330.2 271.78000000000003 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "SK 409 63,5 STC TO 220"
+			(at 330.2 274.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Fischer Elektronik"
+			(at 330.2 276.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4e75f18d-bb02-496c-a719-485cc57e90dc")
+		)
+		(pin "2"
+			(uuid "3e5deaab-9c58-41d7-b9bf-3733ba988298")
+		)
+		(instances
+			(project "3dFilamentDryer"
+				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
+					(reference "HS1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(no_connect
+		(at 327.65999999999997 264.16)
+		(uuid "98e11b76-0d49-48eb-bbad-d84747aef0da")
+	)
+	(no_connect
+		(at 332.74 264.16)
+		(uuid "7c31034d-b78d-45f6-a296-3314acf0ed71")
 	)
 	(sheet_instances
 		(path "/"
