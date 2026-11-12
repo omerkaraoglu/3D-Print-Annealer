@@ -148,7 +148,7 @@ Pass 3 (2026-11-12): DRC 0 violations / 0 unconnected / 0 parity errors on the b
 
 | # | Item | Owner / type | Status |
 |---|---|---|---|
-| 1 | Heater firing pattern → 20 s burst frame with error carry (F2) | firmware (deferred by decision) | **required for 61000-3-3**; rule given in F2 |
+| 1 | Heater firing pattern → 20 s burst frame with error carry (F2) | firmware | **required for 61000-3-3**; rule given in F2; **decided 2026-11-12: will be implemented, deferred together with the other firmware work** (spec §10 item 5) |
 | 2 | Series 33 Ω on PCLK/HSYNC/VSYNC/DE at U10; 100 nF/1 nF at J10 on VLED/TFT_VDD; optional 22–33 Ω arrays on the 24 data lines (0 Ω until measured) (F3) | schematic + layout | decision needed |
 | 3 | RV1/RV2 class vs the BTA24-800 (F7 surge) | schematic (part number) | recommend 10D431K-class across the triac |
 | 4 | ESD on TP_INT / LCD_RST at the FPCs (F7) | schematic | minor |
