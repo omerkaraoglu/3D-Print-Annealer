@@ -106,6 +106,7 @@ fp=re.sub(r'\n\t\t\(sheetname "[^"]*"\)','',fp); fp=re.sub(r'\n\t\t\(sheetfile "
 fp=re.sub(r'\(net \d+ "[^"]*"\)\s*','',fp)
 fp=re.sub(r'\n\s*\(pintype "[^"]*"\)','',fp); fp=re.sub(r'\n\s*\(pinfunction "[^"]*"\)','',fp)
 fp=re.sub(r'\(uuid "[^"]*"\)',lambda m:f'(uuid "{U()}")',fp)
+fp=fp.replace('(fp_text user "${LFU09V-103}"','(fp_text user "${REFERENCE}"')   # the Rev2.1 board carried an unresolved text variable (DRC: unresolved_variable)
 fp="\n".join(l[1:] if l.startswith("\t\t") else l for l in fp.split("\n"))
 fp=fp.replace('(footprint "LFU09V-103"','(footprint "LFU09V-103"\n\t(version 20240108)',1) if '(version' not in fp else fp
 open(os.path.join(LIB,"LFU09V-103.kicad_mod"),"w",encoding="utf-8").write(fp+"\n")

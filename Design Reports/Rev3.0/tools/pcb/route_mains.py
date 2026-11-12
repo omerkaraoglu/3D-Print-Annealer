@@ -1,73 +1,69 @@
-"""Mains band (230 VAC) - hand routing, Rev3.0 layout pass 3 (agent "mains").  Idempotent: rebuilds tracks_mains.json.
-Placement: placement_override_mains.py.  Pass 3b: heater (R1) and fan (J4) wire pads on the top edge.  Pass 3 topology: J3.L -> F3 (main fuse) -> L40 (RC1415U) -> LINE_FILT, with C40 / C1 /
-RV1 to NEUT at the filter output; LINE_FILT feeds the heater (Q1.A2), the fan relay (K1.COM) and the PSU fuse F1 -> PSU_L -> L1.
-Local board mm.  Layer plan:
-  F.Cu  - LINE / LINE_FUSED on the top edge and down to L40, the 2.5 mm LINE_FILT trunk L40.1 -> y 17.5 -> F1.1a, heater NEUT
-          return R1.N -> J3.N on the edge, C40.2 link, NEUT east to L1 (y 13.2), K1.COM drop, PS1 AC pair at L1, ZCD feeds,
-          triac drive, LINE_FILT snubber bus (y 39.1, below the heatsink fins), C4n.
-  B.Cu  - LINE_FILT from F1.1a (THT fuse-clip pad, same type as F3's heater clips) straight down x 112.75 into Q1.A2, the A1
-          trunk from R1.A1 (top edge) down x 109 / 107.6 into Q1.A1, A1 snubber bus, A1 -> R2, NEUT J3.N -> fan (y 8.5/8.0)
-          and C40.2 -> RV1.2, F1 -> C1.1, PSU_L, fan NO -> K1, AC/L R6.1 -> PS1.1, AC/N L1.2 -> PS1.2, D1-A -> U1.
-No vias anywhere in the mains band (every layer change is at a THT pad).  Heater path 2.5 mm, necked to 1.6 mm over the
-last 2.5 mm into the TO-220 pins."""
+"""Mains band (230 VAC) - hand routing, Rev3.0 layout pass 4 (agent "mains").  Idempotent: rebuilds tracks_mains.json.
+Placement: placement_override_mains.py (pass 4: PS1 top right, Q1 on the heatsink's north face, input filter at the west end,
+H11AA1 ZCD fed straight from R6/R7).  Local board mm.  No vias anywhere in the mains band (every layer change is at a THT pad).
+Heater path 2.5 mm, necked to 1.6 mm over the last 2.5 mm into the TO-220 pins.
+Layer plan:
+  F.Cu  - heater loop: LINE J3.L -> F3.2, LINE_FUSED F3.1 -> L40.2, LINE_FILT trunk L40.1 -> y 12.8 east -> x 103.0 straight down
+          into Q1.2, A1 trunk R1.A1 straight down x 108.0 into Q1.1, heater NEUT return R1.N -> J3.N on the top edge.
+          LINE_FILT west bus (y 18) to C40/C1/RV1 and the K1 COM drop, NEUT west bus (y 8.75) to C40/C1/RV1, triac-drive rungs
+          (RV2, F1, C4, R2) and stubs, C4 node, gate R2 -> Q1.3, PSU_L F1.2 -> L1.4, AC/N L1.2 -> R7.1 and -> PS1.2.
+  B.Cu  - NEUT corridor J4.N -> J3.N under F3/J3 (y 8.5), NEUT R1.N -> L1.1 under the A1 trunk (y 8.5), fan NO J4.1 -> K1 NO,
+          AC/L L1.3 -> PS1.1 and -> R6.1 (under PS1's west edge, north of y 40), and everything under the heatsink:
+          R3-P1 -> U5.6, gate Q1.3 -> U5.4, /ZCD_N R7.2 -> U1.2, /ZCD_L R6.2 -> U1.1."""
 from handroute import Router
 R = Router("geom_mains.json", placed="rev3_placed_mains.kicad_pcb")
-H, W, NK, S = 2.5, 1.0, 1.6, 1.5
+H, W, NK = 2.5, 1.0, 1.6
 def T(net, layer, pts, w=W): R.track(net, layer, pts, w)
 A1, LF, G = "Net-(Q1-A1)", "LINE_FILT", "Net-(Q1-G)"
+ACL, ACN = "Net-(PS1-AC/L)", "Net-(PS1-AC/N)"
 
-# ================= heater loop: J3.L -> F3 -> L40 -> LINE_FILT trunk -> Q1.A2 | Q1.A1 -> R1.A1 , R1.N -> J3.N =================
-T("LINE", "F", [(87.76, 3.5), (83.5, 3.5)], H)                                    # J3.L -> F3.2b
-T("LINE", "F", [(78.3, 3.5), (83.5, 3.5)], H)                                     # F3.2 clip pads
-T("LINE_FUSED", "F", [(63.0, 3.5), (68.2, 3.5)], H)                               # F3.1 clip pads
-T("LINE_FUSED", "F", [(63.0, 3.5), (63.0, 13.1), (61.0, 15.1)], H)                # F3.1a -> L40.2
-T(LF, "F", [(68.5, 15.1), (70.9, 17.5), (112.75, 17.5), (112.75, 21.0)], H)       # L40.1 -> F.Cu trunk -> F1.1a (layer change)
-T(LF, "F", [(76.25, 12.5), (76.25, 17.5)], H)                                     # C40.1 onto the trunk (7.8 mm from L40.1)
-T(LF, "B", [(112.75, 21.0), (112.75, 34.15)], H)                                  # F1.1a -> straight down under the heatsink
-T(LF, "B", [(112.75, 34.15), (112.75, 36.65)], NK)                                # neck into Q1.2 (A2)
-T(A1, "B", [(110.21, 36.65), (107.6, 34.04)], NK)                                 # neck out of Q1.1
-T(A1, "B", [(107.6, 34.04), (107.6, 16.4), (109.0, 15.0), (109.0, 3.5)], H)       # A1 trunk up to R1.A1 on the top edge (under the F.Cu trunk)
-T("NEUT", "F", [(101.2, 3.5), (95.56, 3.5)], H)                                   # R1.N -> J3.N along the edge
+# ================= heater loop: J3.L -> F3 -> L40 -> LINE_FILT trunk -> Q1.2 | Q1.1 -> A1 trunk -> R1.A1, R1.N -> J3.N =================
+T("LINE", "F", [(87.0, 3.5), (82.9, 3.5)], H)                                     # J3.L -> F3.2b
+T("LINE", "F", [(77.7, 3.5), (82.9, 3.5)], H)                                     # F3.2 clip pads
+T("LINE_FUSED", "F", [(62.4, 3.5), (67.6, 3.5)], H)                               # F3.1 clip pads
+T("LINE_FUSED", "F", [(67.6, 3.5), (67.6, 14.15), (68.55, 15.1)], H)              # F3.1b straight down into L40.2
+T(LF, "F", [(76.05, 15.1), (78.35, 12.8), (84.5, 12.8), (89.0, 12.8), (100.5, 12.8), (103.0, 12.8),
+            (103.0, 20.4), (103.0, 32.1)], H)                                      # L40.1 -> y 12.8 (R3.2, R5.2 on it) -> down x 103
+T(LF, "F", [(103.0, 32.1), (103.0, 34.6)], NK)                                    # neck into Q1.2
+T(A1, "F", [(108.0, 3.5), (108.0, 13.9), (108.0, 25.5), (108.0, 29.8), (108.0, 32.14)], H)   # R1.A1 straight down (RV2.2, C4.2, R2 taps)
+T(A1, "F", [(108.0, 32.14), (105.54, 34.6)], NK)                                  # neck into Q1.1
+T("NEUT", "F", [(94.8, 3.5), (100.2, 3.5)], H)                                    # heater return R1.N -> J3.N on the top edge
 
-# ================= filter / PSU branch =================
-T("NEUT", "F", [(103.75, 12.5), (103.75, 6.05), (101.2, 3.5)], S)                 # C40.2 -> R1.N / J3.N
-T("NEUT", "B", [(95.56, 3.5), (95.56, 6.5), (93.56, 8.5), (82.6, 8.5), (82.1, 8.0), (60.0, 8.0), (57.5, 5.5), (57.5, 3.5)])  # J3.N -> fan N (J4.2) under J3 / F3
-T("NEUT", "B", [(103.75, 12.5), (103.75, 13.5), (97.5, 19.75), (97.5, 22.4)])     # C40.2 -> RV1.2 under the trunk
-T(LF, "F", [(90.0, 21.0), (90.0, 17.5)], S)                                       # RV1.1 onto the trunk
-T(LF, "F", [(112.75, 21.0), (117.95, 21.0)], S)                                   # F1.1 clip pads
-T(LF, "B", [(117.95, 21.0), (117.95, 15.25), (129.7, 3.5)], S)                    # F1.1b -> C1.1 (top edge) under the NEUT run
-T("PSU_L", "F", [(128.05, 21.0), (133.25, 21.0)])                                 # F1.2 clip pads
-T("PSU_L", "B", [(133.25, 21.0), (133.25, 17.75), (139.5, 11.5)])                 # -> L1.4 under the NEUT run
-T("NEUT", "F", [(103.75, 12.5), (104.45, 13.2), (133.2, 13.2), (139.5, 19.5)])    # NEUT east -> L1.1 (north of the trunk)
-T("NEUT", "F", [(114.7, 3.5), (114.7, 13.2)])                                     # C1.2 -> NEUT run
-T(LF, "F", [(68.5, 15.1), (69.0, 15.6), (69.0, 47.0), (70.0, 48.0)])              # L40.1 -> fan relay COM
-T("Net-(J4-Pin_1)", "B", [(50.5, 3.5), (50.5, 24.0), (55.5, 29.0), (71.2, 29.0), (76.05, 33.85)])  # J4.1 -> K1 NO west of L40
+# ================= LINE_FILT branches =================
+T(LF, "F", [(76.05, 15.1), (73.15, 18.0), (70.5, 18.0), (63.5, 18.0), (60.75, 15.25), (60.75, 13.0)], W)   # L40.1 -> C40.1 (y 18 bus)
+T(LF, "F", [(63.5, 18.0), (51.6, 18.0), (48.2, 21.4)], W)                         # bus -> C1.1
+T(LF, "F", [(48.2, 21.4), (48.2, 23.8), (44.0, 28.0)], W)                         # C1.1 -> RV1.1
+T(LF, "F", [(70.5, 18.0), (70.5, 47.5), (70.0, 48.0)], W)                         # K1 COM drop between the relay pins
+T(LF, "F", [(100.5, 12.8), (100.5, 12.5)], W)                                     # RV2.1 at the trunk corner
+T(LF, "F", [(97.6, 20.4), (102.8, 20.4), (103.0, 20.4)], W)                       # F1.1 clips onto the descent
 
-# ================= PS1 AC pair at L1 =================
-T("Net-(PS1-AC/L)", "F", [(146.5, 11.5), (148.5, 9.5), (156.0, 9.5)])             # L1.3 -> R6.1
-T("Net-(PS1-AC/L)", "B", [(156.0, 9.5), (151.6, 13.9), (151.6, 43.4), (150.0, 45.0)])   # R6.1 -> PS1.1 (right of the ladder)
-T("Net-(PS1-AC/N)", "F", [(146.5, 19.5), (150.0, 16.0), (157.5, 16.0), (161.0, 12.5), (161.0, 9.5)])  # L1.2 -> R7.1 (under R6)
-T("Net-(PS1-AC/N)", "B", [(146.5, 19.5), (143.0, 23.0), (143.0, 44.2), (142.2, 45.0)])  # L1.2 -> PS1.2 between the ladder columns
+# ================= NEUT =================
+T("NEUT", "B", [(56.9, 3.5), (56.9, 8.5), (94.8, 8.5), (94.8, 3.5)], W)           # corridor J4.N -> J3.N under F3 / J3
+T("NEUT", "F", [(56.9, 3.5), (56.9, 5.0), (53.15, 8.75), (33.25, 8.75), (33.25, 13.0)], W)   # J4.N -> C40.2 (west bus)
+T("NEUT", "F", [(33.25, 13.0), (33.25, 21.35), (33.2, 21.4)], W)                  # C40.2 -> C1.2
+T("NEUT", "F", [(33.2, 21.4), (33.2, 22.5), (36.5, 25.8)], W)                     # C1.2 -> RV1.2
+T("NEUT", "B", [(100.2, 3.5), (100.2, 6.0), (102.7, 8.5), (114.6, 8.5), (119.1, 13.0), (120.0, 13.0)], W)   # R1.N -> L1.1 under A1
 
-# ================= ZCD ladder (DC column x 137.2 toward U1, AC column x 147.36) =================
-T("Net-(D3-A)", "F", [(156.0, 24.74), (152.84, 27.9), (147.36, 27.9), (147.36, 31.3)])  # R6.2 -> AC1 rungs
-T("Net-(D1-K)", "F", [(161.0, 24.74), (161.0, 30.6), (155.6, 36.0), (147.36, 36.0), (147.36, 39.4)])  # R7.2 -> AC2 rungs
-T("Net-(D2-K)", "F", [(137.2, 27.9), (139.4, 30.1), (139.4, 37.2), (137.2, 39.4)])  # DC+ rungs
-T("Net-(D1-A)", "F", [(137.2, 31.3), (137.2, 36.0)])                               # DC- rungs
-T("Net-(D2-K)", "F", [(137.2, 39.4), (137.2, 44.56), (134.38, 47.38), (121.5, 47.38)])  # DC+ -> U1.1
-T("Net-(D1-A)", "B", [(137.2, 36.0), (135.4, 36.0), (134.9, 36.5), (134.9, 41.1), (131.0, 45.0), (118.96, 45.0), (118.96, 47.38)])  # DC- -> U1.2
+# ================= fan: J4.1 (NO) -> K1.3 =================
+T("Net-(J4-Pin_1)", "B", [(49.9, 3.5), (49.9, 16.4), (52.5, 19.0), (52.5, 28.5), (55.0, 28.5), (57.5, 31.0),
+                          (73.2, 31.0), (76.05, 33.85)], W)
 
-# ================= triac drive (pass 2) =================
-T(G, "F", [(115.29, 36.65), (115.29, 44.0), (111.91, 47.38), (110.08, 47.38)])    # Q1.G -> R2.2 -> U5.4
-T(A1, "B", [(110.21, 36.65), (110.21, 37.0), (103.21, 44.0), (102.59, 44.0)])     # Q1.A1 -> R2.1
-T("Net-(R3-Pad1)", "F", [(98.5, 45.9), (99.98, 47.38), (105.0, 47.38)])            # R3.1 -> U5.6
+# ================= PSU branch: F1 -> L1 -> PS1, ZCD taps =================
+T("PSU_L", "F", [(112.9, 20.4), (118.1, 20.4)], W)                                # F1.2 clip pads
+T("PSU_L", "F", [(112.9, 20.4), (112.9, 8.0), (115.9, 5.0), (120.0, 5.0)], W)     # F1.2a -> L1.4
+T(ACL, "B", [(127.0, 5.0), (131.3, 9.3), (145.7, 9.3), (150.0, 5.0)], W)          # L1.3 -> PS1.1 (under PS1, around PS1.2)
+T(ACL, "B", [(131.3, 9.3), (131.3, 16.7), (128.0, 20.0)], W)                      # -> R6.1
+T(ACN, "F", [(127.0, 13.0), (124.5, 15.5), (123.0, 17.0), (123.0, 20.0)], W)      # L1.2 -> R7.1
+T(ACN, "F", [(127.0, 13.0), (134.2, 13.0), (142.2, 5.0)], W)                      # L1.2 -> PS1.2
+T("/ZCD_N", "B", [(123.0, 25.08), (114.0, 34.08), (114.0, 42.2), (118.96, 47.16), (118.96, 47.38)], W)        # R7.2 -> U1.2
+T("/ZCD_L", "B", [(128.0, 25.08), (127.5, 25.08), (115.6, 36.98), (115.6, 41.4), (121.5, 47.3), (121.5, 47.38)], W)         # R6.2 -> U1.1
 
-# ================= snubber / MOV (pass 2; the A2 node is LINE_FILT now) =================
-T(LF, "F", [(112.75, 36.65), (112.75, 39.1), (87.8, 39.1), (84.7, 36.0)])          # LINE_FILT bus under the fins -> RV2.1
-T(LF, "F", [(98.84, 39.1), (98.84, 41.35)])                                        # -> R5.2
-T(LF, "F", [(98.84, 41.35), (90.35, 41.35), (85.8, 45.9)])                         # -> R3.2 (under R5's body)
-T("Net-(C4-Pad1)", "F", [(80.3, 37.04), (80.3, 38.05), (83.6, 41.35)])             # C4.1 -> R5.1
-T(A1, "B", [(107.6, 26.7), (87.9, 26.7), (86.1, 28.5)])                            # A1 bus from the A1 trunk -> RV2.2
-T(A1, "B", [(87.9, 26.7), (80.64, 26.7), (80.3, 27.04)])                           # -> C4.2
+# ================= triac drive =================
+T("Net-(C4-Pad1)", "F", [(89.0, 28.04), (91.54, 25.5), (98.25, 25.5)], W)         # R5.1 -> C4.1
+T("Net-(R3-Pad1)", "B", [(84.5, 25.5), (84.5, 31.5), (85.3, 32.3), (91.5, 32.3), (91.5, 45.0), (102.62, 45.0), (105.0, 47.38)], W)  # R3.1 -> U5.6
+T(G, "F", [(97.9, 29.8), (97.9, 32.04), (100.46, 34.6)], W)                       # R2.2 -> Q1.3
+T(G, "B", [(100.46, 34.6), (100.46, 35.9), (110.08, 45.52), (110.08, 47.38)], W)  # Q1.3 -> U5.4 under the heatsink
+T(A1, "F", [(108.0, 25.5), (108.25, 25.5)], W)                                    # C4.2 on the trunk
+T(A1, "F", [(110.6, 29.8), (108.0, 29.8)], W)                                     # R2.1 stub
 
 R.save("tracks_mains.json")

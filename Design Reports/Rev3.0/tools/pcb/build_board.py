@@ -95,12 +95,21 @@ SLOTS = [(101.5, 50.6, 113.5, 51.8),     # U5: mains pins y=47.38, SELV pins y=5
 for (x1, y1, x2, y2) in SLOTS:
     outline_poly([(x1, y1), (x2, y1), (x2, y2), (x1, y2)])
 
-# mounting holes (M3, NPTH 3.2 mm with 6.4 mm copper keep-out)
+# mounting holes (M3, NPTH 3.2 mm; the footprint's 6.4 mm NPTH pad plus the 9.4 mm washer keep-out rule areas below)
 HOLES = [(4, 4), (4, 95), (160, 95), (97, 95.5)]
 for (hx, hy) in HOLES:
     fp = pcbnew.FootprintLoad(STD + "MountingHole.pretty", "MountingHole_3.2mm_M3")
     fp.SetReference("H"); fp.SetPosition(mm(hx, hy)); fp.Reference().SetVisible(False); fp.Value().SetVisible(False)
     board.Add(fp)
+# pass 4: copper keep-out under the screw head / ISO 7089 washer (M3: washer OD 7 mm + position tolerance -> 9.4 mm, Battery
+# Sentinel IPC summary R8 / IPC-2221 mounting-hole clearance), all copper layers, no tracks / vias / pads / footprints / fills
+WASHER_R = 4.7
+def washer_keepouts():
+    import math
+    for (hx, hy) in HOLES:
+        pts = [(hx + WASHER_R * math.cos(2 * math.pi * k / 24), hy + WASHER_R * math.sin(2 * math.pi * k / 24)) for k in range(24)]
+        for layer in (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu):
+            add_zone(None, layer, pts, 10, "M3 washer keep-out", keepout="zones tracks vias pads fp")
 
 # ---------- zones ----------
 def add_zone(net, layer, pts, priority=0, name="", keepout=None, fill=True, min_th=0.25):
@@ -119,12 +128,13 @@ def add_zone(net, layer, pts, priority=0, name="", keepout=None, fill=True, min_
     for (x, y) in pts: z.AppendCorner(mm(x, y), -1)
     board.Add(z); return z
 
-LV = [(0.5, 0.5), (25.5, 0.5), (25.5, 35.5), (52.0, 35.5), (52.0, 38.8), (58.0, 39.81), (58.0, 56.0), (96.0, 56.0), (96.0, 54.8), (126.0, 54.8), (130.0, 55.5), (130.0, 60.0), (161.0, 60.0), (161.0, 98.5), (0.5, 98.5)]   # SELV copper region (pass 2: y 60 under the PSU body, was 80)
+LV = [(0.5, 0.5), (25.5, 0.5), (25.5, 35.5), (52.0, 35.5), (52.0, 38.8), (58.0, 39.81), (58.0, 56.0), (96.0, 56.0), (96.0, 54.8), (126.0, 54.8), (130.0, 55.5), (130.0, 40.0), (161.0, 40.0), (161.0, 98.5), (0.5, 98.5)]   # SELV copper region (pass 4: y 40 at x > 130, the PSU DC pins are at y 47.5)
+washer_keepouts()
 # inner planes: GND on In1, 3V3 on In2 (+1V2 island under U10)
 add_zone("GND", pcbnew.In1_Cu, LV, 0, "GND plane")
 add_zone("+3V3", pcbnew.In2_Cu, LV, 0, "3V3 plane")
 # 5 V pour on In2 near the PSU output / buck / boost input
-add_zone("+5V", pcbnew.In2_Cu, [(70, 70), (147, 70), (147, 98), (70, 98)], 1, "5V island")   # pass 2: LV power block x 70..100, y 71..98.5 + PSI DC pins
+add_zone("+5V", pcbnew.In2_Cu, [(70, 70), (132, 70), (132, 49), (147, 49), (147, 98), (70, 98)], 1, "5V island")   # pass 4: lobe toward the PSU +5V pin (134.8, 47.5; joined by F.Cu bar + vias at y 50.6/52.3); x >= 132 keeps a 2 mm 3V3 channel at x 130..132 to the strip east of the island   # pass 2: LV power block x 70..100, y 71..98.5 + PSI DC pins
 # outer-layer GND pours over the SELV region (crystal guard, thermal), hatched not needed
 add_zone("GND", pcbnew.F_Cu, LV, 0, "GND top pour", min_th=0.25)
 add_zone("GND", pcbnew.B_Cu, LV, 0, "GND bottom pour", min_th=0.25)
@@ -133,8 +143,15 @@ add_zone("GND", pcbnew.B_Cu, LV, 0, "GND bottom pour", min_th=0.25)
 for (cx, cy) in ((51.0, 63.0), (65.0, 63.0), (51.0, 77.0), (65.0, 77.0)):
     add_zone(None, pcbnew.F_Cu, [(cx - 0.6, cy - 0.6), (cx + 0.6, cy - 0.6), (cx + 0.6, cy + 0.6), (cx - 0.6, cy + 0.6)], 10, "U10 corner", keepout="tracks vias")
 # named rule areas (no restrictions) used by the DRC escape rule
+# pass 4: the q1_fanout area follows Q1 (pass-2 box was (106.58, 35.3, 118.68, 43.3) around Q1 at (110.21, 36.65) rot 0,
+# i.e. x -3.63..+8.47, y -1.35..+6.65 from the footprint origin; rot 180 mirrors both offsets)
+_q1 = board.FindFootprintByReference("Q1"); _qx, _qy = _q1.GetPosition().x / 1e6 - 20, _q1.GetPosition().y / 1e6 - 20
+_q1r = round(_q1.GetOrientationDegrees()) % 360
+if _q1r == 0: Q1_BOX = (_qx - 3.63, _qy - 1.35, _qx + 8.47, _qy + 6.65)
+elif _q1r == 180: Q1_BOX = (_qx - 8.47, _qy - 6.65, _qx + 3.63, _qy + 1.35)
+else: raise SystemExit("q1_fanout: Q1 rotation %s not handled" % _q1r)
 for nm, (x1, y1, x2, y2) in (("u10_escape", (48.0, 60.0, 68.0, 80.0)), ("u20_escape", (25.5, 79.5, 33.6, 85.5)),
-                             ("q1_fanout", (106.58, 35.3, 118.68, 43.3)), ("k1_pins", (60.5, 30.5, 79.5, 51.5)), ("u1_pins", (113.6, 42.5, 125.0, 58.5)), ("u5_pins", (101.5, 44.0, 113.4, 58.5))):
+                             ("q1_fanout", Q1_BOX), ("k1_pins", (60.5, 30.5, 79.5, 51.5)), ("u1_pins", (113.6, 42.5, 125.0, 58.5)), ("u5_pins", (101.5, 44.0, 113.4, 58.5))):
     for layer in (pcbnew.F_Cu, pcbnew.B_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu):
         add_zone(None, layer, [(x1, y1), (x2, y1), (x2, y2), (x1, y2)], 0, nm, keepout="")
 # keep-outs
@@ -149,7 +166,8 @@ for (x1, y1, x2, y2) in [(72.3, 86.0, 80.3, 94.0), (80.9, 78.35, 86.9, 84.35)]: 
 # mains region: no inner copper at all, no SELV copper (annotated)
 # pass 2: the corner under the PSU body is at y 60 (was 80) so the In2 3V3 plane reaches the strip east of the +5V island (R125);
 # the nearest mains copper there is the PS1 AC pin row (y 45) and the AC/N track (y 49.2) -> >= 10 mm.
-MAINS = [(25.5, 0.5), (163.5, 0.5), (163.5, 60.0), (130.0, 60.0), (130.0, 55.5), (126.0, 54.8), (96.0, 54.8), (96.0, 56.0), (58.0, 56.0), (58.0, 39.81), (52.0, 38.8), (52.0, 35.5), (25.5, 35.5)]
+# pass 4: PS1 moved up (AC pins y 5, DC pins y 47.5): the mains region ends at y 40 for x > 130.
+MAINS = [(25.5, 0.5), (163.5, 0.5), (163.5, 40.0), (130.0, 40.0), (130.0, 55.5), (126.0, 54.8), (96.0, 54.8), (96.0, 56.0), (58.0, 56.0), (58.0, 39.81), (52.0, 38.8), (52.0, 35.5), (25.5, 35.5)]
 for layer in (pcbnew.In1_Cu, pcbnew.In2_Cu):
     add_zone(None, layer, MAINS, 10, "mains: no inner copper", keepout="zones tracks")
 for k in range(len(MAINS) - 1):

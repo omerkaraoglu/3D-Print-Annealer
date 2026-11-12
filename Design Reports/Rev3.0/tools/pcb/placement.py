@@ -43,8 +43,8 @@ put('C335', 70.0, 82.0, 270)   # display: 3V3 pad toward U31.3, GND toward U31.1
 put('C336', 62.0, 88.0, 0); put('C337', 66.0, 88.0, 0)
 
 # ---------------- FPC connectors (back side, bottom edge) ----------------
-put('J10', 135.65, 94.6, 0, 'B')     # mirrored: pin1 (VLED-) x=72.25 ... pin40 x=52.75
-put('J11', 40.3, 94.6, 0, 'B')     # mirrored: pin1 x=81.25 .. pin6 x=78.75
+put('J10', 135.65, 92.0, 0, 'F')     # pass 4: TOP side, upper-contact connector, 7 mm from the edge for the tail fold (display agent orients: pin 1 east, entry toward the edge)     # mirrored: pin1 (VLED-) x=72.25 ... pin40 x=52.75
+put('J11', 40.3, 92.0, 0, 'F')       # pass 4: TOP side, KLS upper-contact     # mirrored: pin1 x=81.25 .. pin6 x=78.75
 put('C123', 139.5, 96.0, 0); put('C122', 142.0, 96.0, 0); put('R125', 144.5, 96.0, 0)   # TFT_VDD
 put('D113', 45.0, 88.5, 90); put('D112', 47.0, 88.5, 90); put('C126', 49.0, 88.5, 90); put('R129', 51.3, 88.5, 90)
 
@@ -88,7 +88,7 @@ put('R8', 118.0, 59.5, 90); put('U6', 122.0, 61.5, 0); put('R9', 126.5, 60.0, 0)
 put('Q4', 82.0, 57.5, 0); put('D5', 86.5, 57.5, 180); put('R15', 78.0, 57.5, 0)   # relay driver, coil pins at (73.95/86.05, 46.05)
 
 # ---------------- Mains band (y < 52) ----------------
-put('PS1', 150.0, 45.0, 270)       # HLK-10M05 vertical: AC L (150,45), N (142.2,45); DC GND (157.4,87.5), +5V (134.8,87.5); body x 130.6..161.6, y 41.25..91.25
+put('PS1', 150.0, 5.0, 270)        # pass 4: HLK-10M05 moved to the top-right corner: AC L (150,5), N (142.2,5) at the top edge; DC GND (157.4,47.5), +5V (134.8,47.5); body x 130.6..161.6, y 1.2..51.3 -> J10 fits on the top side
 put('J3', 123.4, 3.5, 180)            # mains in: LINE (30,3.5), NEUT (37.8,3.5)
 put('F1', 70.5, 5.0, 180)            # LINE (44/49.2,5) .. LINE_FUSED (59.3/64.5,5)
 put('L40', 42.0, 21.0, 0)          # 120u radial: LINE_FILT (38.5,21), LINE_FUSED (47.5,21)
@@ -115,6 +115,10 @@ put('R5', 83.5, 41.1, 0)         # snubber 47R: C4n (156.5,20) .. A2 (156.5,4.76
 put('C4', 83.5, 31.9, 0)         # snubber 10n X2: C4n (161.5,20) .. A1 (161.5,10)
 
 # ---------------- pass-2 region overrides: one file per routing agent (placement_override_<region>.py), applied in name order ----------------
+# pass 4 first-cut positions (display agent re-places in placement_override_display.py)
+for _k in range(7): put('RN%d' % (_k + 1), 73.0, 60.5 + 1.8 * _k, 90)   # 33R x4 arrays at the start of the RGB ribbon (0.8 mm pin pitch)
+put('C129', 139.5, 89.0, 0); put('C130', 142.0, 89.0, 0); put('C131', 144.5, 89.0, 0); put('C132', 147.0, 89.0, 0)   # RF return caps at J10
+put('C133', 53.5, 88.5, 90); put('D115', 56.0, 88.5, 90); put('D116', 58.5, 88.5, 90)   # TP_VDD 1 nF, ESD on TP_INT / LCD_RST at J11
 import os as _os, glob as _glob
 for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "placement_override_*.py"))):
     exec(open(_f, encoding="utf-8").read())

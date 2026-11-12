@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\KiCad\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
-		(date "2026-11-12T13:34:01")
+		(date "2026-11-12T16:40:17")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
@@ -610,270 +610,6 @@
 				(tstamps "/")
 			)
 			(tstamps "683b91f0-18e8-4982-a529-b901af3d3c55")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "D1")
-			(value "1N4007-HT")
-			(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-			(description "DIODE STAND. Single 1A 1000V THT DO41")
-			(fields
-				(field
-					(name "Sim.Device") "D")
-				(field
-					(name "Sim.Pins") "1=K 2=A")
-				(field
-					(name "Footprint") "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-				(field
-					(name "Description") "DIODE STAND. Single 1A 1000V THT DO41")
-			)
-			(libsource
-				(lib "Diode")
-				(part "1N4007")
-				(description "1000V 1A General Purpose Rectifier Diode, DO-41")
-			)
-			(property
-				(name "Sim.Device")
-				(value "D")
-			)
-			(property
-				(name "Sim.Pins")
-				(value "1=K 2=A")
-			)
-			(property
-				(name "Sheetname")
-				(value "")
-			)
-			(property
-				(name "Sheetfile")
-				(value "3dFilamentDryer.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "diode")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "D*DO?41*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "96e9c20b-94dd-4380-9c12-845a5912a7a9")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "D2")
-			(value "1N4007-HT")
-			(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-			(description "DIODE STAND. Single 1A 1000V THT DO41")
-			(fields
-				(field
-					(name "Sim.Device") "D")
-				(field
-					(name "Sim.Pins") "1=K 2=A")
-				(field
-					(name "Footprint") "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-				(field
-					(name "Description") "DIODE STAND. Single 1A 1000V THT DO41")
-			)
-			(libsource
-				(lib "Diode")
-				(part "1N4007")
-				(description "1000V 1A General Purpose Rectifier Diode, DO-41")
-			)
-			(property
-				(name "Sim.Device")
-				(value "D")
-			)
-			(property
-				(name "Sim.Pins")
-				(value "1=K 2=A")
-			)
-			(property
-				(name "Sheetname")
-				(value "")
-			)
-			(property
-				(name "Sheetfile")
-				(value "3dFilamentDryer.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "diode")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "D*DO?41*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "5662d786-36a4-43e0-9c89-afe8e686263a")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "D3")
-			(value "1N4007-HT")
-			(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-			(description "DIODE STAND. Single 1A 1000V THT DO41")
-			(fields
-				(field
-					(name "Sim.Device") "D")
-				(field
-					(name "Sim.Pins") "1=K 2=A")
-				(field
-					(name "Footprint") "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-				(field
-					(name "Description") "DIODE STAND. Single 1A 1000V THT DO41")
-			)
-			(libsource
-				(lib "Diode")
-				(part "1N4007")
-				(description "1000V 1A General Purpose Rectifier Diode, DO-41")
-			)
-			(property
-				(name "Sim.Device")
-				(value "D")
-			)
-			(property
-				(name "Sim.Pins")
-				(value "1=K 2=A")
-			)
-			(property
-				(name "Sheetname")
-				(value "")
-			)
-			(property
-				(name "Sheetfile")
-				(value "3dFilamentDryer.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "diode")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "D*DO?41*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "812f210f-d238-4b3b-ad4b-b1d3cf9e2965")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "D4")
-			(value "1N4007-HT")
-			(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-			(description "DIODE STAND. Single 1A 1000V THT DO41")
-			(fields
-				(field
-					(name "Sim.Device") "D")
-				(field
-					(name "Sim.Pins") "1=K 2=A")
-				(field
-					(name "Footprint") "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207")
-				(field
-					(name "Description") "DIODE STAND. Single 1A 1000V THT DO41")
-			)
-			(libsource
-				(lib "Diode")
-				(part "1N4007")
-				(description "1000V 1A General Purpose Rectifier Diode, DO-41")
-			)
-			(property
-				(name "Sim.Device")
-				(value "D")
-			)
-			(property
-				(name "Sim.Pins")
-				(value "1=K 2=A")
-			)
-			(property
-				(name "Sheetname")
-				(value "")
-			)
-			(property
-				(name "Sheetfile")
-				(value "3dFilamentDryer.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "diode")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "D*DO?41*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "13a2915a-c630-475a-97bc-c5bf184eb509")
 			(units
 				(unit
 					(name "A")
@@ -2036,12 +1772,12 @@
 		(comp
 			(ref "R6")
 			(value "33k 1W 500V")
-			(footprint "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal")
+			(footprint "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 			(datasheet "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
 			(description "RES.C.FILM 1W-S 33K Ohms 5% THT")
 			(fields
 				(field
-					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal")
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
 				(field
@@ -2090,12 +1826,12 @@
 		(comp
 			(ref "R7")
 			(value "33k 1W 500V")
-			(footprint "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal")
+			(footprint "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 			(datasheet "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
 			(description "RES.C.FILM 1W-S 33K Ohms 5% THT")
 			(fields
 				(field
-					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal")
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
 				(field
@@ -2629,10 +2365,10 @@
 		)
 		(comp
 			(ref "RV1")
-			(value "10561K")
-			(footprint "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm")
-			(datasheet "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305")
-			(description "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT")
+			(value "TVR14431KSU15Y")
+			(footprint "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm")
+			(datasheet "https://www.ozdisan.com/c?search=TVR14431KSU15Y")
+			(description "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)")
 			(fields
 				(field
 					(name "Sim.Name") "kicad_builtin_varistor")
@@ -2645,11 +2381,11 @@
 				(field
 					(name "Sim.Library") "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
 				(field
-					(name "Footprint") "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm")
+					(name "Footprint") "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305")
+					(name "Datasheet") "https://www.ozdisan.com/c?search=TVR14431KSU15Y")
 				(field
-					(name "Description") "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT")
+					(name "Description") "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)")
 			)
 			(libsource
 				(lib "Device")
@@ -2797,22 +2533,34 @@
 		)
 		(comp
 			(ref "U1")
-			(value "4N28")
+			(value "H11AA1")
 			(footprint "Package_DIP:DIP-6_W7.62mm")
-			(datasheet "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-4n28-637076")
-			(description "IC-4N28 OPTOISO 5300V TRANS OUTPUT 1CH DIP6")
+			(datasheet "https://www.ozdisan.com/ps/transistor-ve-fotovoltaik-cikisli-optokuplorler-189?f=&s=H11AA1")
+			(description "IC-H11AA1 AC-input optocoupler (two inverse-parallel LEDs on pins 1/2), NPN output, 5300 V, DIP-6: zero-cross detector, replaces the 4N28 + D1-D4 bridge (layout pass 4, Isocom H11AA1X, Ozdisan 1,573 pcs)")
 			(fields
+				(field
+					(name "MPN") "H11AA1X")
+				(field
+					(name "Manufacturer") "Isocom")
 				(field
 					(name "Footprint") "Package_DIP:DIP-6_W7.62mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-4n28-637076")
+					(name "Datasheet") "https://www.ozdisan.com/ps/transistor-ve-fotovoltaik-cikisli-optokuplorler-189?f=&s=H11AA1")
 				(field
-					(name "Description") "IC-4N28 OPTOISO 5300V TRANS OUTPUT 1CH DIP6")
+					(name "Description") "IC-H11AA1 AC-input optocoupler (two inverse-parallel LEDs on pins 1/2), NPN output, 5300 V, DIP-6: zero-cross detector, replaces the 4N28 + D1-D4 bridge (layout pass 4, Isocom H11AA1X, Ozdisan 1,573 pcs)")
 			)
 			(libsource
 				(lib "Isolator")
-				(part "4N28")
-				(description "DC Optocoupler Base Connected, Vce 30V, CTR 10%, Viso 2500V, DIP6")
+				(part "H11AA1")
+				(description "AC/DC NPN Optocoupler, DIP-6")
+			)
+			(property
+				(name "MPN")
+				(value "H11AA1X")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Isocom")
 			)
 			(property
 				(name "Sheetname")
@@ -2824,7 +2572,7 @@
 			)
 			(property
 				(name "ki_keywords")
-				(value "NPN DC Optocoupler Base Connected")
+				(value "NPN AC DC Optocoupler")
 			)
 			(property
 				(name "ki_fp_filters")
@@ -4262,6 +4010,276 @@
 			)
 		)
 		(comp
+			(ref "C129")
+			(value "100nF 25V X7R")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(description "100 nF across the backlight pair at J10: RF return for the FPC (EMC pass 4)")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "100 nF across the backlight pair at J10: RF return for the FPC (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "3f7b0e0a-608a-41c8-b8dc-8f401e1c034c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C130")
+			(value "1nF 50V C0G")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(description "1 nF RF return at J10 pin 2 (EMC pass 4)")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "1 nF RF return at J10 pin 2 (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "38796d47-5789-43a0-9e14-be566f074bc6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C131")
+			(value "1nF 50V C0G")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(description "1 nF RF return at J10 pin 1 (EMC pass 4)")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "1 nF RF return at J10 pin 1 (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "6f458aae-2498-473d-a685-ff86de9ad64e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C132")
+			(value "1nF 50V C0G")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(description "1 nF RF return at J10 pin 4 next to C123 (EMC pass 4)")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "1 nF RF return at J10 pin 4 next to C123 (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "1cd0818a-694b-4ef9-8e19-3d24fc8d0212")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C133")
+			(value "1nF 50V C0G")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(description "1 nF RF return at J11 pin 1 (EMC pass 4)")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "1 nF RF return at J11 pin 1 (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "03af6417-95f4-4670-a560-3cbb4c134a57")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "D111")
 			(value "SS14")
 			(footprint "Diode_SMD:D_SMA")
@@ -4514,24 +4532,156 @@
 			)
 		)
 		(comp
-			(ref "J10")
-			(value "TFT_SAT070AT40D21_FPC40")
-			(footprint "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
-			(description "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC (connector: Connfly DS1020-09-40VBT1A bottom contact, verify contact side)")
+			(ref "D115")
+			(value "PESD5V0S1BA")
+			(footprint "Diode_SMD:D_SOD-323")
+			(datasheet "https://www.ozdisan.com/c?search=PESD5V0S1BA")
+			(description "Bidirectional ESD/TVS diode 5 V 130 W SOD-323")
 			(fields
 				(field
-					(name "MPN") "DS1020-09-40VBT1A")
+					(name "MPN") "PESD5V0S1BA,115")
+				(field
+					(name "Manufacturer") "Nexperia")
+				(field
+					(name "Footprint") "Diode_SMD:D_SOD-323")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=PESD5V0S1BA")
+				(field
+					(name "Description") "Bidirectional ESD/TVS diode 5 V 130 W SOD-323")
+			)
+			(libsource
+				(lib "Device")
+				(part "D_TVS")
+				(description "Bidirectional transient-voltage-suppression diode")
+			)
+			(property
+				(name "MPN")
+				(value "PESD5V0S1BA,115")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Nexperia")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode TVS thyrector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "d822baa5-2eae-4e13-849f-c31560aa6182")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D116")
+			(value "PESD5V0S1BA")
+			(footprint "Diode_SMD:D_SOD-323")
+			(datasheet "https://www.ozdisan.com/c?search=PESD5V0S1BA")
+			(description "Bidirectional ESD/TVS diode 5 V 130 W SOD-323")
+			(fields
+				(field
+					(name "MPN") "PESD5V0S1BA,115")
+				(field
+					(name "Manufacturer") "Nexperia")
+				(field
+					(name "Footprint") "Diode_SMD:D_SOD-323")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=PESD5V0S1BA")
+				(field
+					(name "Description") "Bidirectional ESD/TVS diode 5 V 130 W SOD-323")
+			)
+			(libsource
+				(lib "Device")
+				(part "D_TVS")
+				(description "Bidirectional transient-voltage-suppression diode")
+			)
+			(property
+				(name "MPN")
+				(value "PESD5V0S1BA,115")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Nexperia")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode TVS thyrector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "b2051043-6f3f-46e1-adea-b90ea6eb1f51")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J10")
+			(value "TFT_SAT070AT40D21_FPC40")
+			(footprint "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide")
+			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
+			(description "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC. Connector on the TOP side (pass 4): Connfly DS1020-09-40VBT1B UPPER contact, tail folded once around the PCB bottom edge; footprint pads numbered in panel order (mirrored)")
+			(fields
+				(field
+					(name "MPN") "DS1020-09-40VBT1B")
 				(field
 					(name "Manufacturer") "Connfly")
 				(field
 					(name "Panel") "SAT70AT40D21-33KN-CTP-V1")
 				(field
-					(name "Footprint") "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
-					(name "Description") "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC (connector: Connfly DS1020-09-40VBT1A bottom contact, verify contact side)")
+					(name "Description") "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC. Connector on the TOP side (pass 4): Connfly DS1020-09-40VBT1B UPPER contact, tail folded once around the PCB bottom edge; footprint pads numbered in panel order (mirrored)")
 			)
 			(libsource
 				(lib "Rev3")
@@ -4540,7 +4690,7 @@
 			)
 			(property
 				(name "MPN")
-				(value "DS1020-09-40VBT1A")
+				(value "DS1020-09-40VBT1B")
 			)
 			(property
 				(name "Manufacturer")
@@ -4698,20 +4848,20 @@
 		(comp
 			(ref "J11")
 			(value "CTP_GT911_FPC6")
-			(footprint "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal")
+			(footprint "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide")
 			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
-			(description "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC (connector: Connfly DS1020-09-06VBT1A bottom contact, verify contact side)")
+			(description "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC. Connector on the TOP side (pass 4): KLS L-KLS1-242D-1.2-06-T-U-R UPPER contact, H 1.2 mm; footprint pads numbered in panel order (mirrored)")
 			(fields
 				(field
-					(name "MPN") "DS1020-09-06VBT1A")
+					(name "MPN") "L-KLS1-242D-1.2-06-T-U-R")
 				(field
-					(name "Manufacturer") "Connfly")
+					(name "Manufacturer") "KLS Electronic")
 				(field
-					(name "Footprint") "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal")
+					(name "Footprint") "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
 				(field
-					(name "Description") "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC (connector: Connfly DS1020-09-06VBT1A bottom contact, verify contact side)")
+					(name "Description") "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC. Connector on the TOP side (pass 4): KLS L-KLS1-242D-1.2-06-T-U-R UPPER contact, H 1.2 mm; footprint pads numbered in panel order (mirrored)")
 			)
 			(libsource
 				(lib "Rev3")
@@ -4720,11 +4870,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "DS1020-09-06VBT1A")
+				(value "L-KLS1-242D-1.2-06-T-U-R")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Connfly")
+				(value "KLS Electronic")
 			)
 			(property
 				(name "Sheetname")
@@ -6126,6 +6276,594 @@
 						)
 						(pin
 							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN1")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "d7b8d524-919f-4ef7-9e42-a60d8c3663c2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN2")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "d9c0f2e8-2fb9-4dfa-8f19-d99b637aef7d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN3")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "7444683f-f743-4f70-a065-ce0b36c6fd3a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN4")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "51884449-02d5-40a4-8bff-23e73a140d6f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN5")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "f91eb045-c05a-45cc-a545-faead96700ab")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN6")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "0a4b6b7a-0dd6-4463-a1d4-a46c8a0a5ba4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "RN7")
+			(value "33R x4")
+			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
+			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(fields
+				(field
+					(name "MPN") "4D02WGJ0330TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
+					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+				(field
+					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_Pack04")
+				(description "4 resistor network, parallel topology")
+			)
+			(property
+				(name "MPN")
+				(value "4D02WGJ0330TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R network parallel topology isolated")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP* SOIC* R*Array*Concave* R*Array*Convex* MSOP*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "9cb82dbd-cf4c-4a7b-b69d-a90d31854ef1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
 						)
 					)
 				)
@@ -9495,6 +10233,74 @@
 		)
 		(libpart
 			(lib "Device")
+			(part "R_Pack04")
+			(description "4 resistor network, parallel topology")
+			(footprints
+				(fp "DIP*")
+				(fp "SOIC*")
+				(fp "R*Array*Concave*")
+				(fp "R*Array*Convex*")
+				(fp "MSOP*")
+			)
+			(fields
+				(field
+					(name "Reference") "RN")
+				(field
+					(name "Value") "R_Pack04")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "4 resistor network, parallel topology")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "R1.1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "R2.1")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "R3.1")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "R4.1")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "R4.2")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "R3.2")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "R2.2")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "R1.2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
 			(part "Thermistor_NTC")
 			(description "Temperature dependent resistor, negative temperature coefficient")
 			(footprints
@@ -9575,43 +10381,6 @@
 		)
 		(libpart
 			(lib "Diode")
-			(part "1N4007")
-			(description "1000V 1A General Purpose Rectifier Diode, DO-41")
-			(docs "http://www.vishay.com/docs/88503/1n4001.pdf")
-			(footprints
-				(fp "D*DO?41*")
-			)
-			(fields
-				(field
-					(name "Reference") "D")
-				(field
-					(name "Value") "1N4007")
-				(field
-					(name "Footprint") "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
-				(field
-					(name "Datasheet") "http://www.vishay.com/docs/88503/1n4001.pdf")
-				(field
-					(name "Description") "1000V 1A General Purpose Rectifier Diode, DO-41")
-				(field
-					(name "Sim.Device") "D")
-				(field
-					(name "Sim.Pins") "1=K 2=A")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "K")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "A")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "Diode")
 			(part "MMSD4148")
 			(description "100V 200mA Switching Diode, SOD-123")
 			(docs "https://www.onsemi.com/pub/Collateral/MMSD4148T1-D.PDF")
@@ -9649,9 +10418,9 @@
 		)
 		(libpart
 			(lib "Isolator")
-			(part "4N28")
-			(description "DC Optocoupler Base Connected, Vce 30V, CTR 10%, Viso 2500V, DIP6")
-			(docs "https://www.vishay.com/docs/83725/4n25.pdf")
+			(part "H11AA1")
+			(description "AC/DC NPN Optocoupler, DIP-6")
+			(docs "https://www.vishay.com/docs/83608/h11aa1.pdf")
 			(footprints
 				(fp "DIP*W7.62mm*")
 			)
@@ -9659,13 +10428,13 @@
 				(field
 					(name "Reference") "U")
 				(field
-					(name "Value") "4N28")
+					(name "Value") "H11AA1")
 				(field
 					(name "Footprint") "Package_DIP:DIP-6_W7.62mm")
 				(field
-					(name "Datasheet") "https://www.vishay.com/docs/83725/4n25.pdf")
+					(name "Datasheet") "https://www.vishay.com/docs/83608/h11aa1.pdf")
 				(field
-					(name "Description") "DC Optocoupler Base Connected, Vce 30V, CTR 10%, Viso 2500V, DIP6")
+					(name "Description") "AC/DC NPN Optocoupler, DIP-6")
 			)
 			(pins
 				(pin
@@ -11883,6 +12652,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN5")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
+			(name "/Display/B0_T")
+			(class "Default")
+			(node
+				(ref "RN5")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "59")
 				(pinfunction "LDATA16_59")
@@ -11890,7 +12676,7 @@
 			)
 		)
 		(net
-			(code "5")
+			(code "6")
 			(name "/Display/B1")
 			(class "Default")
 			(node
@@ -11900,6 +12686,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN6")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "/Display/B1_T")
+			(class "Default")
+			(node
+				(ref "RN6")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "35")
 				(pinfunction "LDATA17_35")
@@ -11907,7 +12710,7 @@
 			)
 		)
 		(net
-			(code "6")
+			(code "8")
 			(name "/Display/B2")
 			(class "Default")
 			(node
@@ -11917,6 +12720,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN1")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
+			(name "/Display/B2_T")
+			(class "Default")
+			(node
+				(ref "RN1")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "86")
 				(pinfunction "LDATA18_86")
@@ -11924,7 +12744,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "10")
 			(name "/Display/B3")
 			(class "Default")
 			(node
@@ -11934,6 +12754,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN1")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "11")
+			(name "/Display/B3_T")
+			(class "Default")
+			(node
+				(ref "RN1")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "85")
 				(pinfunction "LDATA19_85")
@@ -11941,7 +12778,7 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "12")
 			(name "/Display/B4")
 			(class "Default")
 			(node
@@ -11951,6 +12788,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN7")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "13")
+			(name "/Display/B4_T")
+			(class "Default")
+			(node
+				(ref "RN7")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "31")
 				(pinfunction "LDATA20_31")
@@ -11958,7 +12812,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "14")
 			(name "/Display/B5")
 			(class "Default")
 			(node
@@ -11968,6 +12822,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN7")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "15")
+			(name "/Display/B5_T")
+			(class "Default")
+			(node
+				(ref "RN7")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "30")
 				(pinfunction "LDATA21_30")
@@ -11975,7 +12846,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "16")
 			(name "/Display/B6")
 			(class "Default")
 			(node
@@ -11985,6 +12856,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN7")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "17")
+			(name "/Display/B6_T")
+			(class "Default")
+			(node
+				(ref "RN7")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "29")
 				(pinfunction "LDATA22_29")
@@ -11992,7 +12880,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "18")
 			(name "/Display/B7")
 			(class "Default")
 			(node
@@ -12002,6 +12890,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN7")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "19")
+			(name "/Display/B7_T")
+			(class "Default")
+			(node
+				(ref "RN7")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "28")
 				(pinfunction "LDATA23_28")
@@ -12009,7 +12914,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "20")
 			(name "/Display/BL_DAMP")
 			(class "Default")
 			(node
@@ -12024,7 +12929,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "21")
 			(name "/Display/BL_EN")
 			(class "Default")
 			(node
@@ -12045,7 +12950,7 @@
 			)
 		)
 		(net
-			(code "14")
+			(code "22")
 			(name "/Display/BL_FB")
 			(class "Default")
 			(node
@@ -12061,7 +12966,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "23")
 			(name "/Display/BL_PWM")
 			(class "Default")
 			(node
@@ -12077,7 +12982,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "24")
 			(name "/Display/BL_SW")
 			(class "Default")
 			(node
@@ -12100,7 +13005,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "25")
 			(name "/Display/BL_VIN")
 			(class "Default")
 			(node
@@ -12133,7 +13038,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "26")
 			(name "/Display/DE")
 			(class "Default")
 			(node
@@ -12143,6 +13048,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN5")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "27")
+			(name "/Display/DE_T")
+			(class "Default")
+			(node
+				(ref "RN5")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "49")
 				(pinfunction "LDEN_49")
@@ -12150,7 +13072,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "28")
 			(name "/Display/G0")
 			(class "Default")
 			(node
@@ -12160,6 +13082,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN3")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "29")
+			(name "/Display/G0_T")
+			(class "Default")
+			(node
+				(ref "RN3")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "70")
 				(pinfunction "LDATA8_70")
@@ -12167,7 +13106,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "30")
 			(name "/Display/G1")
 			(class "Default")
 			(node
@@ -12177,6 +13116,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN3")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "31")
+			(name "/Display/G1_T")
+			(class "Default")
+			(node
+				(ref "RN3")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "69")
 				(pinfunction "LDATA9_69")
@@ -12184,7 +13140,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "32")
 			(name "/Display/G2")
 			(class "Default")
 			(node
@@ -12194,6 +13150,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN4")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "33")
+			(name "/Display/G2_T")
+			(class "Default")
+			(node
+				(ref "RN4")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "68")
 				(pinfunction "LDATA10_68")
@@ -12201,7 +13174,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "34")
 			(name "/Display/G3")
 			(class "Default")
 			(node
@@ -12211,6 +13184,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN4")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "35")
+			(name "/Display/G3_T")
+			(class "Default")
+			(node
+				(ref "RN4")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "67")
 				(pinfunction "LDATA11_67")
@@ -12218,7 +13208,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "36")
 			(name "/Display/G4")
 			(class "Default")
 			(node
@@ -12228,6 +13218,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN4")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "37")
+			(name "/Display/G4_T")
+			(class "Default")
+			(node
+				(ref "RN4")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "63")
 				(pinfunction "LDATA12_63")
@@ -12235,7 +13242,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "38")
 			(name "/Display/G5")
 			(class "Default")
 			(node
@@ -12245,6 +13252,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN4")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "39")
+			(name "/Display/G5_T")
+			(class "Default")
+			(node
+				(ref "RN4")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "62")
 				(pinfunction "LDATA13_62")
@@ -12252,7 +13276,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "40")
 			(name "/Display/G6")
 			(class "Default")
 			(node
@@ -12262,6 +13286,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN5")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "41")
+			(name "/Display/G6_T")
+			(class "Default")
+			(node
+				(ref "RN5")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "61")
 				(pinfunction "LDATA14_61")
@@ -12269,7 +13310,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "42")
 			(name "/Display/G7")
 			(class "Default")
 			(node
@@ -12279,6 +13320,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN5")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "/Display/G7_T")
+			(class "Default")
+			(node
+				(ref "RN5")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "60")
 				(pinfunction "LDATA15_60")
@@ -12286,7 +13344,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "44")
 			(name "/Display/HSYNC")
 			(class "Default")
 			(node
@@ -12296,6 +13354,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN6")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "45")
+			(name "/Display/HSYNC_T")
+			(class "Default")
+			(node
+				(ref "RN6")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "44")
 				(pinfunction "LLINE_44")
@@ -12303,7 +13378,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "46")
 			(name "/Display/PCLK")
 			(class "Default")
 			(node
@@ -12313,6 +13388,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN6")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "47")
+			(name "/Display/PCLK_T")
+			(class "Default")
+			(node
+				(ref "RN6")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "45")
 				(pinfunction "LSHIFT_45")
@@ -12320,7 +13412,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "48")
 			(name "/Display/R0")
 			(class "Default")
 			(node
@@ -12330,6 +13422,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN1")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "49")
+			(name "/Display/R0_T")
+			(class "Default")
+			(node
+				(ref "RN1")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "81")
 				(pinfunction "LDATA0_81")
@@ -12337,7 +13446,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "50")
 			(name "/Display/R1")
 			(class "Default")
 			(node
@@ -12347,6 +13456,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN1")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "51")
+			(name "/Display/R1_T")
+			(class "Default")
+			(node
+				(ref "RN1")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "80")
 				(pinfunction "LDATA1_80")
@@ -12354,7 +13480,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "52")
 			(name "/Display/R2")
 			(class "Default")
 			(node
@@ -12364,6 +13490,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN2")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "53")
+			(name "/Display/R2_T")
+			(class "Default")
+			(node
+				(ref "RN2")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "79")
 				(pinfunction "LDATA2_79")
@@ -12371,7 +13514,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "54")
 			(name "/Display/R3")
 			(class "Default")
 			(node
@@ -12381,6 +13524,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN2")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "55")
+			(name "/Display/R3_T")
+			(class "Default")
+			(node
+				(ref "RN2")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "78")
 				(pinfunction "LDATA3_78")
@@ -12388,7 +13548,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "56")
 			(name "/Display/R4")
 			(class "Default")
 			(node
@@ -12398,6 +13558,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN2")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "57")
+			(name "/Display/R4_T")
+			(class "Default")
+			(node
+				(ref "RN2")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "77")
 				(pinfunction "LDATA4_77")
@@ -12405,7 +13582,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "58")
 			(name "/Display/R5")
 			(class "Default")
 			(node
@@ -12415,6 +13592,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN2")
+				(pin "5")
+				(pinfunction "R4.2_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "59")
+			(name "/Display/R5_T")
+			(class "Default")
+			(node
+				(ref "RN2")
+				(pin "4")
+				(pinfunction "R4.1_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "76")
 				(pinfunction "LDATA5_76")
@@ -12422,7 +13616,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "60")
 			(name "/Display/R6")
 			(class "Default")
 			(node
@@ -12432,6 +13626,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN3")
+				(pin "8")
+				(pinfunction "R1.2_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "61")
+			(name "/Display/R6_T")
+			(class "Default")
+			(node
+				(ref "RN3")
+				(pin "1")
+				(pinfunction "R1.1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "72")
 				(pinfunction "LDATA6_72")
@@ -12439,7 +13650,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "62")
 			(name "/Display/R7")
 			(class "Default")
 			(node
@@ -12449,6 +13660,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN3")
+				(pin "7")
+				(pinfunction "R2.2_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "63")
+			(name "/Display/R7_T")
+			(class "Default")
+			(node
+				(ref "RN3")
+				(pin "2")
+				(pinfunction "R2.1_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "71")
 				(pinfunction "LDATA7_71")
@@ -12456,7 +13684,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "64")
 			(name "/Display/SSD_CS")
 			(class "Default")
 			(node
@@ -12472,7 +13700,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "65")
 			(name "/Display/SSD_D0")
 			(class "Default")
 			(node
@@ -12488,7 +13716,7 @@
 			)
 		)
 		(net
-			(code "39")
+			(code "66")
 			(name "/Display/SSD_D1")
 			(class "Default")
 			(node
@@ -12504,7 +13732,7 @@
 			)
 		)
 		(net
-			(code "40")
+			(code "67")
 			(name "/Display/SSD_D2")
 			(class "Default")
 			(node
@@ -12520,7 +13748,7 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "68")
 			(name "/Display/SSD_D3")
 			(class "Default")
 			(node
@@ -12536,7 +13764,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "69")
 			(name "/Display/SSD_D4")
 			(class "Default")
 			(node
@@ -12552,7 +13780,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "70")
 			(name "/Display/SSD_D5")
 			(class "Default")
 			(node
@@ -12568,7 +13796,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "71")
 			(name "/Display/SSD_D6")
 			(class "Default")
 			(node
@@ -12584,7 +13812,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "72")
 			(name "/Display/SSD_D7")
 			(class "Default")
 			(node
@@ -12600,7 +13828,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "73")
 			(name "/Display/SSD_DC")
 			(class "Default")
 			(node
@@ -12616,7 +13844,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "74")
 			(name "/Display/SSD_RD")
 			(class "Default")
 			(node
@@ -12632,7 +13860,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "75")
 			(name "/Display/SSD_RST")
 			(class "Default")
 			(node
@@ -12648,7 +13876,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "76")
 			(name "/Display/SSD_WR")
 			(class "Default")
 			(node
@@ -12664,7 +13892,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "77")
 			(name "/Display/TFT_VDD")
 			(class "Default")
 			(node
@@ -12674,6 +13902,11 @@
 			)
 			(node
 				(ref "C123")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C132")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -12690,11 +13923,16 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "78")
 			(name "/Display/TP_VDD")
 			(class "Default")
 			(node
 				(ref "C126")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C133")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -12711,9 +13949,19 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "79")
 			(name "/Display/VLED_N")
 			(class "Default")
+			(node
+				(ref "C129")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C131")
+				(pin "1")
+				(pintype "passive")
+			)
 			(node
 				(ref "J10")
 				(pin "1")
@@ -12737,11 +13985,21 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "80")
 			(name "/Display/VLED_P")
 			(class "Default")
 			(node
 				(ref "C125")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C129")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C130")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -12765,7 +14023,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "81")
 			(name "/Display/VSYNC")
 			(class "Default")
 			(node
@@ -12775,6 +14033,23 @@
 				(pintype "input")
 			)
 			(node
+				(ref "RN6")
+				(pin "6")
+				(pinfunction "R3.2_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "82")
+			(name "/Display/VSYNC_T")
+			(class "Default")
+			(node
+				(ref "RN6")
+				(pin "3")
+				(pinfunction "R3.1_3")
+				(pintype "passive")
+			)
+			(node
 				(ref "U10")
 				(pin "43")
 				(pinfunction "LFRAME_43")
@@ -12782,7 +14057,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "83")
 			(name "/Display/XTAL_IN")
 			(class "Default")
 			(node
@@ -12804,7 +14079,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "84")
 			(name "/Display/XTAL_OUT")
 			(class "Default")
 			(node
@@ -12826,7 +14101,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "85")
 			(name "/FAN")
 			(class "Default")
 			(node
@@ -12842,7 +14117,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "86")
 			(name "/Power/BUCK_BST")
 			(class "Default")
 			(node
@@ -12858,7 +14133,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "87")
 			(name "/Power/BUCK_FB")
 			(class "Default")
 			(node
@@ -12879,7 +14154,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "88")
 			(name "/Power/BUCK_SW")
 			(class "Default")
 			(node
@@ -12901,7 +14176,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "89")
 			(name "/TRIG")
 			(class "Default")
 			(node
@@ -12917,7 +14192,7 @@
 			)
 		)
 		(net
-			(code "62")
+			(code "90")
 			(name "/Thermocouple front end (K-type, ADS1115)/NTC_MID")
 			(class "Default")
 			(node
@@ -12943,7 +14218,7 @@
 			)
 		)
 		(net
-			(code "63")
+			(code "91")
 			(name "/Thermocouple front end (K-type, ADS1115)/TCF_N")
 			(class "Default")
 			(node
@@ -12969,7 +14244,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "92")
 			(name "/Thermocouple front end (K-type, ADS1115)/TCF_P")
 			(class "Default")
 			(node
@@ -12995,7 +14270,7 @@
 			)
 		)
 		(net
-			(code "65")
+			(code "93")
 			(name "/Thermocouple front end (K-type, ADS1115)/TC_N")
 			(class "Default")
 			(node
@@ -13022,7 +14297,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "94")
 			(name "/Thermocouple front end (K-type, ADS1115)/TC_P")
 			(class "Default")
 			(node
@@ -13049,7 +14324,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "95")
 			(name "/Thermocouple front end (K-type, ADS1115)/VREF_HALF")
 			(class "Default")
 			(node
@@ -13075,7 +14350,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "96")
 			(name "/ZCD")
 			(class "Default")
 			(node
@@ -13096,7 +14371,37 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "97")
+			(name "/ZCD_L")
+			(class "Mains")
+			(node
+				(ref "R6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "98")
+			(name "/ZCD_N")
+			(class "Mains")
+			(node
+				(ref "R7")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "99")
 			(name "ADC_RDY")
 			(class "Default")
 			(node
@@ -13118,7 +14423,7 @@
 			)
 		)
 		(net
-			(code "70")
+			(code "100")
 			(name "GND")
 			(class "Default")
 			(node
@@ -13213,6 +14518,26 @@
 			)
 			(node
 				(ref "C128")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C130")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C131")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C132")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C133")
 				(pin "2")
 				(pintype "passive")
 			)
@@ -13322,6 +14647,18 @@
 				(ref "D114")
 				(pin "2")
 				(pinfunction "A_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D115")
+				(pin "1")
+				(pinfunction "A1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "D116")
+				(pin "1")
+				(pinfunction "A1_1")
 				(pintype "passive")
 			)
 			(node
@@ -13651,7 +14988,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "101")
 			(name "I2C_SCL")
 			(class "Default")
 			(node
@@ -13685,7 +15022,7 @@
 			)
 		)
 		(net
-			(code "72")
+			(code "102")
 			(name "I2C_SDA")
 			(class "Default")
 			(node
@@ -13719,7 +15056,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "103")
 			(name "LCD_CS")
 			(class "Bus")
 			(node
@@ -13735,7 +15072,7 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "104")
 			(name "LCD_D0")
 			(class "Bus")
 			(node
@@ -13751,7 +15088,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "105")
 			(name "LCD_D1")
 			(class "Bus")
 			(node
@@ -13767,7 +15104,7 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "106")
 			(name "LCD_D2")
 			(class "Bus")
 			(node
@@ -13783,7 +15120,7 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "107")
 			(name "LCD_D3")
 			(class "Bus")
 			(node
@@ -13799,7 +15136,7 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "108")
 			(name "LCD_D4")
 			(class "Bus")
 			(node
@@ -13815,7 +15152,7 @@
 			)
 		)
 		(net
-			(code "79")
+			(code "109")
 			(name "LCD_D5")
 			(class "Bus")
 			(node
@@ -13831,7 +15168,7 @@
 			)
 		)
 		(net
-			(code "80")
+			(code "110")
 			(name "LCD_D6")
 			(class "Bus")
 			(node
@@ -13847,7 +15184,7 @@
 			)
 		)
 		(net
-			(code "81")
+			(code "111")
 			(name "LCD_D7")
 			(class "Bus")
 			(node
@@ -13863,7 +15200,7 @@
 			)
 		)
 		(net
-			(code "82")
+			(code "112")
 			(name "LCD_DC")
 			(class "Bus")
 			(node
@@ -13879,9 +15216,15 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "113")
 			(name "LCD_RST")
 			(class "Bus")
+			(node
+				(ref "D116")
+				(pin "2")
+				(pinfunction "A2_2")
+				(pintype "passive")
+			)
 			(node
 				(ref "J11")
 				(pin "6")
@@ -13901,7 +15244,7 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "114")
 			(name "LCD_WR")
 			(class "Bus")
 			(node
@@ -13917,7 +15260,7 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "115")
 			(name "LINE")
 			(class "MainsHeater")
 			(node
@@ -13938,7 +15281,7 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "116")
 			(name "LINE_FILT")
 			(class "MainsHeater")
 			(node
@@ -13995,7 +15338,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "117")
 			(name "LINE_FUSED")
 			(class "MainsHeater")
 			(node
@@ -14011,7 +15354,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "118")
 			(name "NEUT")
 			(class "Mains")
 			(node
@@ -14058,7 +15401,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "119")
 			(name "Net-(C4-Pad1)")
 			(class "Mains")
 			(node
@@ -14073,95 +15416,7 @@
 			)
 		)
 		(net
-			(code "90")
-			(name "Net-(D1-A)")
-			(class "Mains")
-			(node
-				(ref "D1")
-				(pin "2")
-				(pinfunction "A_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "D4")
-				(pin "2")
-				(pinfunction "A_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "91")
-			(name "Net-(D1-K)")
-			(class "Mains")
-			(node
-				(ref "D1")
-				(pin "1")
-				(pinfunction "K_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "D2")
-				(pin "2")
-				(pinfunction "A_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R7")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "92")
-			(name "Net-(D2-K)")
-			(class "Mains")
-			(node
-				(ref "D2")
-				(pin "1")
-				(pinfunction "K_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "D3")
-				(pin "1")
-				(pinfunction "K_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "93")
-			(name "Net-(D3-A)")
-			(class "Mains")
-			(node
-				(ref "D3")
-				(pin "2")
-				(pinfunction "A_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "D4")
-				(pin "1")
-				(pinfunction "K_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R6")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "94")
+			(code "120")
 			(name "Net-(D5-A)")
 			(class "Default")
 			(node
@@ -14183,7 +15438,7 @@
 			)
 		)
 		(net
-			(code "95")
+			(code "121")
 			(name "Net-(J2-Pin_2)")
 			(class "Default")
 			(node
@@ -14205,7 +15460,7 @@
 			)
 		)
 		(net
-			(code "96")
+			(code "122")
 			(name "Net-(J2-Pin_3)")
 			(class "Default")
 			(node
@@ -14227,7 +15482,7 @@
 			)
 		)
 		(net
-			(code "97")
+			(code "123")
 			(name "Net-(J2-Pin_4)")
 			(class "Default")
 			(node
@@ -14244,7 +15499,7 @@
 			)
 		)
 		(net
-			(code "98")
+			(code "124")
 			(name "Net-(J2-Pin_5)")
 			(class "Default")
 			(node
@@ -14261,7 +15516,7 @@
 			)
 		)
 		(net
-			(code "99")
+			(code "125")
 			(name "Net-(J4-Pin_1)")
 			(class "Mains")
 			(node
@@ -14277,7 +15532,7 @@
 			)
 		)
 		(net
-			(code "100")
+			(code "126")
 			(name "Net-(PS1-AC{slash}L)")
 			(class "Default")
 			(node
@@ -14298,7 +15553,7 @@
 			)
 		)
 		(net
-			(code "101")
+			(code "127")
 			(name "Net-(PS1-AC{slash}N)")
 			(class "Default")
 			(node
@@ -14319,7 +15574,7 @@
 			)
 		)
 		(net
-			(code "102")
+			(code "128")
 			(name "Net-(Q1-A1)")
 			(class "MainsHeater")
 			(node
@@ -14350,7 +15605,7 @@
 			)
 		)
 		(net
-			(code "103")
+			(code "129")
 			(name "Net-(Q1-G)")
 			(class "Mains")
 			(node
@@ -14371,7 +15626,7 @@
 			)
 		)
 		(net
-			(code "104")
+			(code "130")
 			(name "Net-(Q2-B)")
 			(class "Default")
 			(node
@@ -14387,7 +15642,7 @@
 			)
 		)
 		(net
-			(code "105")
+			(code "131")
 			(name "Net-(Q2-C)")
 			(class "Default")
 			(node
@@ -14409,7 +15664,7 @@
 			)
 		)
 		(net
-			(code "106")
+			(code "132")
 			(name "Net-(Q3-B)")
 			(class "Default")
 			(node
@@ -14425,7 +15680,7 @@
 			)
 		)
 		(net
-			(code "107")
+			(code "133")
 			(name "Net-(Q3-C)")
 			(class "Default")
 			(node
@@ -14452,7 +15707,7 @@
 			)
 		)
 		(net
-			(code "108")
+			(code "134")
 			(name "Net-(Q4-B)")
 			(class "Default")
 			(node
@@ -14473,7 +15728,7 @@
 			)
 		)
 		(net
-			(code "109")
+			(code "135")
 			(name "Net-(R3-Pad1)")
 			(class "Mains")
 			(node
@@ -14488,7 +15743,7 @@
 			)
 		)
 		(net
-			(code "110")
+			(code "136")
 			(name "Net-(R4-Pad2)")
 			(class "Default")
 			(node
@@ -14503,7 +15758,7 @@
 			)
 		)
 		(net
-			(code "111")
+			(code "137")
 			(name "Net-(R8-Pad2)")
 			(class "Default")
 			(node
@@ -14523,7 +15778,7 @@
 			)
 		)
 		(net
-			(code "112")
+			(code "138")
 			(name "Net-(R9-Pad1)")
 			(class "Default")
 			(node
@@ -14538,7 +15793,7 @@
 			)
 		)
 		(net
-			(code "113")
+			(code "139")
 			(name "PSU_L")
 			(class "Mains")
 			(node
@@ -14553,9 +15808,15 @@
 			)
 		)
 		(net
-			(code "114")
+			(code "140")
 			(name "TP_INT")
 			(class "Default")
+			(node
+				(ref "D115")
+				(pin "2")
+				(pinfunction "A2_2")
+				(pintype "passive")
+			)
 			(node
 				(ref "J11")
 				(pin "3")
@@ -14570,7 +15831,7 @@
 			)
 		)
 		(net
-			(code "115")
+			(code "141")
 			(name "unconnected-(HS1-Pad1)")
 			(class "Default")
 			(node
@@ -14580,7 +15841,7 @@
 			)
 		)
 		(net
-			(code "116")
+			(code "142")
 			(name "unconnected-(HS1-Pad2)")
 			(class "Default")
 			(node
@@ -14590,7 +15851,7 @@
 			)
 		)
 		(net
-			(code "117")
+			(code "143")
 			(name "unconnected-(J10-NC-Pad31)")
 			(class "Default")
 			(node
@@ -14601,7 +15862,7 @@
 			)
 		)
 		(net
-			(code "118")
+			(code "144")
 			(name "unconnected-(J10-NC-Pad35)")
 			(class "Default")
 			(node
@@ -14612,7 +15873,7 @@
 			)
 		)
 		(net
-			(code "119")
+			(code "145")
 			(name "unconnected-(J10-XL-Pad39)")
 			(class "Default")
 			(node
@@ -14623,7 +15884,7 @@
 			)
 		)
 		(net
-			(code "120")
+			(code "146")
 			(name "unconnected-(J10-XR-Pad37)")
 			(class "Default")
 			(node
@@ -14634,7 +15895,7 @@
 			)
 		)
 		(net
-			(code "121")
+			(code "147")
 			(name "unconnected-(J10-YD-Pad38)")
 			(class "Default")
 			(node
@@ -14645,7 +15906,7 @@
 			)
 		)
 		(net
-			(code "122")
+			(code "148")
 			(name "unconnected-(J10-YU-Pad40)")
 			(class "Default")
 			(node
@@ -14656,7 +15917,7 @@
 			)
 		)
 		(net
-			(code "123")
+			(code "149")
 			(name "unconnected-(K1-Pad4)")
 			(class "Mains")
 			(node
@@ -14666,7 +15927,7 @@
 			)
 		)
 		(net
-			(code "124")
+			(code "150")
 			(name "unconnected-(U1-NC-Pad3)")
 			(class "Mains")
 			(node
@@ -14677,7 +15938,7 @@
 			)
 		)
 		(net
-			(code "125")
+			(code "151")
 			(name "unconnected-(U1-Pad6)")
 			(class "Default")
 			(node
@@ -14687,7 +15948,7 @@
 			)
 		)
 		(net
-			(code "126")
+			(code "152")
 			(name "unconnected-(U3-IO2-Pad24)")
 			(class "Default")
 			(node
@@ -14698,7 +15959,7 @@
 			)
 		)
 		(net
-			(code "127")
+			(code "153")
 			(name "unconnected-(U3-IO12-Pad14)")
 			(class "Default")
 			(node
@@ -14709,7 +15970,7 @@
 			)
 		)
 		(net
-			(code "128")
+			(code "154")
 			(name "unconnected-(U3-NC-Pad32)")
 			(class "Default")
 			(node
@@ -14720,7 +15981,7 @@
 			)
 		)
 		(net
-			(code "129")
+			(code "155")
 			(name "unconnected-(U3-SCK{slash}CLK-Pad20)")
 			(class "Default")
 			(node
@@ -14731,7 +15992,7 @@
 			)
 		)
 		(net
-			(code "130")
+			(code "156")
 			(name "unconnected-(U3-SCS{slash}CMD-Pad19)")
 			(class "Default")
 			(node
@@ -14742,7 +16003,7 @@
 			)
 		)
 		(net
-			(code "131")
+			(code "157")
 			(name "unconnected-(U3-SDI{slash}SD1-Pad22)")
 			(class "Default")
 			(node
@@ -14753,7 +16014,7 @@
 			)
 		)
 		(net
-			(code "132")
+			(code "158")
 			(name "unconnected-(U3-SDO{slash}SD0-Pad21)")
 			(class "Default")
 			(node
@@ -14764,7 +16025,7 @@
 			)
 		)
 		(net
-			(code "133")
+			(code "159")
 			(name "unconnected-(U3-SENSOR_VN-Pad5)")
 			(class "Default")
 			(node
@@ -14775,7 +16036,7 @@
 			)
 		)
 		(net
-			(code "134")
+			(code "160")
 			(name "unconnected-(U3-SENSOR_VP-Pad4)")
 			(class "Default")
 			(node
@@ -14786,7 +16047,7 @@
 			)
 		)
 		(net
-			(code "135")
+			(code "161")
 			(name "unconnected-(U3-SHD{slash}SD2-Pad17)")
 			(class "Default")
 			(node
@@ -14797,7 +16058,7 @@
 			)
 		)
 		(net
-			(code "136")
+			(code "162")
 			(name "unconnected-(U3-SWP{slash}SD3-Pad18)")
 			(class "Default")
 			(node
@@ -14808,7 +16069,7 @@
 			)
 		)
 		(net
-			(code "137")
+			(code "163")
 			(name "unconnected-(U5-NC-Pad3)")
 			(class "Default")
 			(node
@@ -14819,7 +16080,7 @@
 			)
 		)
 		(net
-			(code "138")
+			(code "164")
 			(name "unconnected-(U5-NC-Pad5)")
 			(class "Mains")
 			(node
@@ -14830,7 +16091,7 @@
 			)
 		)
 		(net
-			(code "139")
+			(code "165")
 			(name "unconnected-(U6-NC-Pad1)")
 			(class "Default")
 			(node
@@ -14841,7 +16102,7 @@
 			)
 		)
 		(net
-			(code "140")
+			(code "166")
 			(name "unconnected-(U10-D8-Pad113)")
 			(class "Default")
 			(node
@@ -14852,7 +16113,7 @@
 			)
 		)
 		(net
-			(code "141")
+			(code "167")
 			(name "unconnected-(U10-D9-Pad112)")
 			(class "Default")
 			(node
@@ -14863,7 +16124,7 @@
 			)
 		)
 		(net
-			(code "142")
+			(code "168")
 			(name "unconnected-(U10-D10-Pad111)")
 			(class "Default")
 			(node
@@ -14874,7 +16135,7 @@
 			)
 		)
 		(net
-			(code "143")
+			(code "169")
 			(name "unconnected-(U10-D11-Pad107)")
 			(class "Default")
 			(node
@@ -14885,7 +16146,7 @@
 			)
 		)
 		(net
-			(code "144")
+			(code "170")
 			(name "unconnected-(U10-D12-Pad106)")
 			(class "Default")
 			(node
@@ -14896,7 +16157,7 @@
 			)
 		)
 		(net
-			(code "145")
+			(code "171")
 			(name "unconnected-(U10-D13-Pad105)")
 			(class "Default")
 			(node
@@ -14907,7 +16168,7 @@
 			)
 		)
 		(net
-			(code "146")
+			(code "172")
 			(name "unconnected-(U10-D14-Pad104)")
 			(class "Default")
 			(node
@@ -14918,7 +16179,7 @@
 			)
 		)
 		(net
-			(code "147")
+			(code "173")
 			(name "unconnected-(U10-D15-Pad103)")
 			(class "Default")
 			(node
@@ -14929,7 +16190,7 @@
 			)
 		)
 		(net
-			(code "148")
+			(code "174")
 			(name "unconnected-(U10-D16-Pad99)")
 			(class "Default")
 			(node
@@ -14940,7 +16201,7 @@
 			)
 		)
 		(net
-			(code "149")
+			(code "175")
 			(name "unconnected-(U10-D17-Pad98)")
 			(class "Default")
 			(node
@@ -14951,7 +16212,7 @@
 			)
 		)
 		(net
-			(code "150")
+			(code "176")
 			(name "unconnected-(U10-D18-Pad88)")
 			(class "Default")
 			(node
@@ -14962,7 +16223,7 @@
 			)
 		)
 		(net
-			(code "151")
+			(code "177")
 			(name "unconnected-(U10-D19-Pad87)")
 			(class "Default")
 			(node
@@ -14973,7 +16234,7 @@
 			)
 		)
 		(net
-			(code "152")
+			(code "178")
 			(name "unconnected-(U10-D20-Pad92)")
 			(class "Default")
 			(node
@@ -14984,7 +16245,7 @@
 			)
 		)
 		(net
-			(code "153")
+			(code "179")
 			(name "unconnected-(U10-D21-Pad91)")
 			(class "Default")
 			(node
@@ -14995,7 +16256,7 @@
 			)
 		)
 		(net
-			(code "154")
+			(code "180")
 			(name "unconnected-(U10-D22-Pad90)")
 			(class "Default")
 			(node
@@ -15006,7 +16267,7 @@
 			)
 		)
 		(net
-			(code "155")
+			(code "181")
 			(name "unconnected-(U10-D23-Pad89)")
 			(class "Default")
 			(node
@@ -15017,7 +16278,7 @@
 			)
 		)
 		(net
-			(code "156")
+			(code "182")
 			(name "unconnected-(U10-GAMAS0-Pad52)")
 			(class "Default")
 			(node
@@ -15028,7 +16289,7 @@
 			)
 		)
 		(net
-			(code "157")
+			(code "183")
 			(name "unconnected-(U10-GAMAS1-Pad53)")
 			(class "Default")
 			(node
@@ -15039,7 +16300,7 @@
 			)
 		)
 		(net
-			(code "158")
+			(code "184")
 			(name "unconnected-(U10-GPIO0-Pad36)")
 			(class "Default")
 			(node
@@ -15050,7 +16311,7 @@
 			)
 		)
 		(net
-			(code "159")
+			(code "185")
 			(name "unconnected-(U10-GPIO1-Pad37)")
 			(class "Default")
 			(node
@@ -15061,7 +16322,7 @@
 			)
 		)
 		(net
-			(code "160")
+			(code "186")
 			(name "unconnected-(U10-GPIO2-Pad38)")
 			(class "Default")
 			(node
@@ -15072,7 +16333,7 @@
 			)
 		)
 		(net
-			(code "161")
+			(code "187")
 			(name "unconnected-(U10-GPIO3-Pad39)")
 			(class "Default")
 			(node
@@ -15083,7 +16344,7 @@
 			)
 		)
 		(net
-			(code "162")
+			(code "188")
 			(name "unconnected-(U10-TE-Pad50)")
 			(class "Default")
 			(node

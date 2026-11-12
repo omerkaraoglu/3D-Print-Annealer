@@ -54,3 +54,14 @@ Notes from the pass-2 merge:
 mains agent re-placed and re-routed the band, the display agent re-spaced the via rows so that no In1 anti-pads merge
 (`in1_web_check.py board.kicad_pcb` must report 0 merged groups; rule: ≥ 1.35 mm between non-GND vias, ≥ 1.10 mm GND-to-signal).
 The EMC estimates and the IEC 61000-4-15 flickermeter model live in `Design Reports/Rev3.0/sim/emc/`.
+
+## Layout pass 4 (2026-11-12, top-side FPC connectors + EMC provisions)
+
+`sch_pass4.py` (needs `rpack04_sym.txt`, the KiCad `Device:R_Pack04` symbol) changed the schematic: J10/J11 to the upper-contact
+top-side connectors (footprints from `gen_fp_pass4.py`: Connfly DS1020-09-40VBT1B with the VBT1A land pattern, KLS
+L-KLS1-242D-1.2-06 from the KLS drawing; pads numbered in panel order, i.e. mirrored, because the tail folds once around the
+PCB's bottom edge), RN1..RN7 33 Ω arrays on the RGB/sync lines (controller-side nets `<net>_T`), C129..C133 RF-return
+capacitors at the connectors, D115/D116 ESD diodes, RV1 275 V-class MOV. `build_board.py`: 9.4 mm washer keep-out rule areas at
+the four M3 holes (all copper layers), PS1 moved to the top-right corner (mains boundary y 40 at x > 130), +5 V island lobe up
+to the PSU pin. Agents: mains (band re-placed around the new PSU position), power (+5 V feed, VLED pair, hole ring), display
+(J10/J11 fan-in without vias, arrays, capacitors).

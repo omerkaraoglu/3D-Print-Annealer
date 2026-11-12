@@ -5,7 +5,7 @@ from shapely.geometry import Polygon, LineString, Point, box
 from shapely.strtree import STRtree
 from handroute import Router, SCR, OX, OY
 
-BUS = lambda n: n.startswith(("LCD_", "/Display/SSD_")) or n.split("/")[-1] in (
+BUS = lambda n: n.startswith(("LCD_", "/Display/SSD_")) or n.split("/")[-1].replace("_T", "") in (
     ["%s%d" % (c, i) for c in "RGB" for i in range(8)] + ["PCLK", "HSYNC", "VSYNC", "DE"])
 
 class Grid:

@@ -12,6 +12,446 @@
 		(comment 1 "M. Ömer Karaoğlu")
 	)
 	(lib_symbols
+	(symbol "Isolator:H11AA1"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -5.334 4.953 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "H11AA1"
+				(at 0.635 4.953 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_DIP:DIP-6_W7.62mm"
+				(at -12.446 -4.953 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "https://www.vishay.com/docs/83608/h11aa1.pdf"
+				(at 19.304 16.002 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "AC/DC NPN Optocoupler, DIP-6"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "NPN AC DC Optocoupler"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "DIP*W7.62mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "H11AA1_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.635) (xy -0.762 0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 2.54) (xy -3.175 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 0.635) (xy -1.397 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 0.635) (xy -1.397 -0.635)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 0.635) (xy -2.032 -0.635) (xy -0.762 -0.635) (xy -1.397 0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 -0.635) (xy -1.397 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.397 -2.54) (xy -3.175 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "H11AA1_1_1"
+				(rectangle
+					(start -5.08 3.81)
+					(end 5.08 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 -2.54) (xy -3.175 -2.54) (xy -3.175 2.54) (xy -5.08 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 -0.635) (xy -2.54 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.175 -0.635) (xy -3.81 0.635) (xy -2.54 0.635) (xy -3.175 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.127 0.508) (xy 1.143 0.508) (xy 0.762 0.381) (xy 0.762 0.635) (xy 1.143 0.508)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.127 -0.508) (xy 1.143 -0.508) (xy 0.762 -0.635) (xy 0.762 -0.381) (xy 1.143 -0.508)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.667 -0.254) (xy 2.667 -2.286)
+					)
+					(stroke
+						(width 0.3556)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.667 -1.143) (xy 3.81 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.667 -1.397) (xy 3.81 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.683 -2.413) (xy 3.429 -1.905) (xy 3.175 -2.159) (xy 3.683 -2.413)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 0) (xy 5.08 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -2.54) (xy 5.08 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 2.54) (xy 1.905 2.54) (xy 1.905 -1.27) (xy 2.54 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -7.62 2.54 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 -2.54 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -5.08 0 0)
+					(length 2.54)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 2.54 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Mechanical:Heatsink_Pad_2Pin"
 			(pin_names
 				(offset 0)
@@ -8395,12 +8835,7 @@
 		(color 0 0 0 0)
 		(uuid "33c4f819-32e9-4cf9-b330-210a69423eb6")
 	)
-	(junction
-		(at 130.81 91.44)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "347a475c-f174-4d0f-a66f-7948fb7a1aaf")
-	)
+	
 	(junction
 		(at 68.58 27.94)
 		(diameter 0)
@@ -8449,18 +8884,8 @@
 		(color 0 0 0 0)
 		(uuid "6cc8019d-6619-44a6-97f8-5e10024127f4")
 	)
-	(junction
-		(at 147.32 101.6)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "71ed4397-9998-40bf-b2c8-3576ddd64948")
-	)
-	(junction
-		(at 147.32 71.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7554936d-89fc-4c00-9fe5-8fc33241c353")
-	)
+	
+	
 	(junction
 		(at 58.42 191.77)
 		(diameter 0)
@@ -8515,12 +8940,7 @@
 		(color 0 0 0 0)
 		(uuid "ca0d9d27-e221-47cc-960d-8be8419f8680")
 	)
-	(junction
-		(at 147.32 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ed58c0a3-6d86-4379-a0f0-667a9a834139")
-	)
+	
 	(junction
 		(at 153.67 39.37)
 		(diameter 0)
@@ -8736,17 +9156,7 @@
 		)
 		(uuid "1ee8736f-3f2e-4fff-99c1-06a058507927")
 	)
-	(wire
-		(pts
-			(xy 130.81 91.44)
-			(xy 130.81 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "21012470-b488-4a46-987a-2789cecf25f2")
-	)
+	
 	(wire
 		(pts
 			(xy 185.42 199.39)
@@ -8934,17 +9344,7 @@
 		)
 		(uuid "4bbe6e64-901a-477a-8b2f-6705a464f8b1")
 	)
-	(wire
-		(pts
-			(xy 163.83 83.82)
-			(xy 163.83 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4df14cbd-d8be-4b69-a196-f41fd589cc24")
-	)
+	
 	(wire
 		(pts
 			(xy 48.26 191.77)
@@ -9000,17 +9400,7 @@
 		)
 		(uuid "54a4cf03-4d24-4b78-9cf9-ad18254c5037")
 	)
-	(wire
-		(pts
-			(xy 147.32 78.74)
-			(xy 147.32 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "57652843-c7e8-44f1-855e-af60704f4297")
-	)
+	
 	(wire
 		(pts
 			(xy 107.95 191.77)
@@ -9066,17 +9456,7 @@
 		)
 		(uuid "5c90c6d2-9447-400b-a9fd-4ac379a7111d")
 	)
-	(wire
-		(pts
-			(xy 130.81 101.6)
-			(xy 147.32 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5e9e7fe4-7e44-49a0-92e3-9ec0f7826611")
-	)
+	
 	(wire
 		(pts
 			(xy 228.6 86.36)
@@ -9154,17 +9534,7 @@
 		)
 		(uuid "6a3672a7-0fa4-48be-bc26-1c09d4d0720e")
 	)
-	(wire
-		(pts
-			(xy 123.19 91.44)
-			(xy 130.81 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6af137d5-3daa-4bbf-9854-28280bf0fb9d")
-	)
+	
 	(wire
 		(pts
 			(xy 130.81 25.4)
@@ -9341,17 +9711,7 @@
 		)
 		(uuid "980fa622-c7e1-4e13-bf93-95d48c0e4b92")
 	)
-	(wire
-		(pts
-			(xy 130.81 93.98)
-			(xy 130.81 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "98edc2b3-91f4-4af3-9c66-1c05317add7b")
-	)
+	
 	(wire
 		(pts
 			(xy 185.42 167.64)
@@ -9418,28 +9778,8 @@
 		)
 		(uuid "a4f0b206-ca97-4d9f-b02f-f6ff1156e145")
 	)
-	(wire
-		(pts
-			(xy 163.83 101.6)
-			(xy 147.32 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a62c6512-4f4f-44b7-8d5d-0c89c6b99f76")
-	)
-	(wire
-		(pts
-			(xy 147.32 81.28)
-			(xy 147.32 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a847412d-fdce-482f-9ddd-a983313f3881")
-	)
+	
+	
 	(wire
 		(pts
 			(xy 92.71 199.39)
@@ -9671,17 +10011,7 @@
 		)
 		(uuid "c65e3bec-952e-4e8f-a1e7-44403d8070b7")
 	)
-	(wire
-		(pts
-			(xy 130.81 71.12)
-			(xy 147.32 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9d74991-e42f-4820-8642-6d1b754080a3")
-	)
+	
 	(wire
 		(pts
 			(xy 303.53 167.64)
@@ -9693,17 +10023,7 @@
 		)
 		(uuid "cb0bbcab-2d44-431a-bc9e-1d23dd134ff7")
 	)
-	(wire
-		(pts
-			(xy 123.19 81.28)
-			(xy 147.32 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce109449-0ca8-49d2-bf26-efa2fc2417cc")
-	)
+	
 	(wire
 		(pts
 			(xy 194.31 170.18)
@@ -9715,17 +10035,7 @@
 		)
 		(uuid "cfded670-c511-4a0d-ba5f-906eb1cd0e35")
 	)
-	(wire
-		(pts
-			(xy 147.32 71.12)
-			(xy 163.83 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cff42ae2-b862-430b-96ea-6a7745001482")
-	)
+	
 	(wire
 		(pts
 			(xy 364.49 167.64)
@@ -9913,17 +10223,7 @@
 		)
 		(uuid "ee522ec4-6362-466e-a509-0dac88399159")
 	)
-	(wire
-		(pts
-			(xy 163.83 88.9)
-			(xy 163.83 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f5e0dae3-9ce6-4e47-8f10-81d061bd05a9")
-	)
+	
 	(wire
 		(pts
 			(xy 58.42 144.78)
@@ -10534,110 +10834,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 147.32 97.79 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "13a2915a-c630-475a-97bc-c5bf184eb509")
-		(property "Reference" "D4"
-			(at 149.86 96.5199 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4007-HT"
-			(at 149.86 99.0599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 142.875 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207"
-			(at 147.32 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "DIODE STAND. Single 1A 1000V THT DO41"
-			(at 147.32 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 147.32 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 147.32 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "03e9e222-634e-44c5-a0af-4c80095b1fa0")
-		)
-		(pin "2"
-			(uuid "5c283af4-a848-4d6d-93bc-438dd11aa699")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "D4")
-					(unit 1)
-				)
-			)
-		)
-	)
+	
 	(symbol
 		(lib_id "power:GND")
 		(at 77.47 257.81 0)
@@ -11648,7 +11845,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Isolator:4N28")
+		(lib_id "Isolator:H11AA1")
 		(at 171.45 86.36 0)
 		(unit 1)
 		(body_style 1)
@@ -11669,7 +11866,7 @@
 				)
 			)
 		)
-		(property "Value" "4N28"
+		(property "Value" "H11AA1"
 			(at 171.45 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11692,7 +11889,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-4n28-637076"
+		(property "Datasheet" "https://www.ozdisan.com/ps/transistor-ve-fotovoltaik-cikisli-optokuplorler-189?f=&s=H11AA1"
 			(at 171.45 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11704,7 +11901,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "IC-4N28 OPTOISO 5300V TRANS OUTPUT 1CH DIP6"
+		(property "Description" "IC-H11AA1 AC-input optocoupler (two inverse-parallel LEDs on pins 1/2), NPN output, 5300 V, DIP-6: zero-cross detector, replaces the 4N28 + D1-D4 bridge (layout pass 4, Isocom H11AA1X, Ozdisan 1,573 pcs)"
 			(at 171.45 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -11723,6 +11920,28 @@
 		)
 		(pin "2"
 			(uuid "0c611daa-37e5-4bd2-a222-681794fdd40b")
+		)
+		(property "MPN" "H11AA1X"
+			(at 171.45 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Isocom"
+			(at 171.45 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "1"
 			(uuid "31caf66f-35dd-466e-bd21-ab9d440c9b55")
@@ -11820,110 +12039,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 130.81 74.93 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5662d786-36a4-43e0-9c89-afe8e686263a")
-		(property "Reference" "D2"
-			(at 133.35 73.6599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4007-HT"
-			(at 133.35 76.1999 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 126.365 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207"
-			(at 130.81 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "DIODE STAND. Single 1A 1000V THT DO41"
-			(at 130.81 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 130.81 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 130.81 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "54e0016c-b629-49c5-9b9b-f8de5f5b48f3")
-		)
-		(pin "2"
-			(uuid "75b391df-6868-4d25-b563-3ffc6205cd40")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
+	
 	(symbol
 		(lib_id "power:GND")
 		(at 48.26 200.66 0)
@@ -12430,7 +12546,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical"
 			(at 119.38 83.058 90)
 			(hide yes)
 			(show_name no)
@@ -12895,110 +13011,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 147.32 74.93 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "812f210f-d238-4b3b-ad4b-b1d3cf9e2965")
-		(property "Reference" "D3"
-			(at 149.86 73.6599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4007-HT"
-			(at 149.86 76.1999 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 142.875 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207"
-			(at 147.32 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "DIODE STAND. Single 1A 1000V THT DO41"
-			(at 147.32 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 147.32 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 147.32 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c7cde093-09d8-4d56-a5b5-43c064230b70")
-		)
-		(pin "2"
-			(uuid "a62ec568-41c9-46d6-ba49-7249b6bcb0d0")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "D3")
-					(unit 1)
-				)
-			)
-		)
-	)
+	
 	(symbol
 		(lib_id "Relay:SANYOU_SRD_Form_C")
 		(at 287.02 171.45 180)
@@ -13533,110 +13546,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 130.81 97.79 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "96e9c20b-94dd-4380-9c12-845a5912a7a9")
-		(property "Reference" "D1"
-			(at 133.35 96.5199 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4007-HT"
-			(at 133.35 99.0599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 126.365 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/hottech-1n4007-ht-417207"
-			(at 130.81 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "DIODE STAND. Single 1A 1000V THT DO41"
-			(at 130.81 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 130.81 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 130.81 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "39e92097-5f73-4f2b-9a25-f27eb0a52a50")
-		)
-		(pin "2"
-			(uuid "2a1a3f39-e8eb-45bc-a985-26798b9a1e3a")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
+	
 	(symbol
 		(lib_id "power:GND")
 		(at 97.79 171.45 0)
@@ -14295,7 +14205,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10561K"
+		(property "Value" "TVR14431KSU15Y"
 			(at 54.61 37.0232 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14306,7 +14216,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm"
+		(property "Footprint" "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm"
 			(at 50.292 35.56 90)
 			(hide yes)
 			(show_name no)
@@ -14317,7 +14227,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305"
+		(property "Datasheet" "https://www.ozdisan.com/c?search=TVR14431KSU15Y"
 			(at 52.07 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -14328,7 +14238,7 @@
 				)
 			)
 		)
-		(property "Description" "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT"
+		(property "Description" "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)"
 			(at 52.07 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -15913,7 +15823,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical"
 			(at 119.38 93.218 90)
 			(hide yes)
 			(show_name no)
@@ -17933,6 +17843,103 @@
 	(no_connect
 		(at 332.74 264.16)
 		(uuid "7c31034d-b78d-45f6-a296-3314acf0ed71")
+	)
+	(wire
+		(pts
+			(xy 123.19 81.28)
+			(xy 158.75 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c893eec8-7cf5-4c5b-b676-96de6535b9c8")
+	)
+	(wire
+		(pts
+			(xy 158.75 81.28)
+			(xy 158.75 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1e7aacd-0113-4891-97eb-6d5b235eb3bc")
+	)
+	(wire
+		(pts
+			(xy 158.75 83.82)
+			(xy 163.83 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bed04885-b1ae-4f84-88fa-8f5e3bf37217")
+	)
+	(label "ZCD_L"
+		(at 139.7 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a0ddacdc-e4d7-4fd3-80c4-b92f8e62e1db")
+	)
+	(wire
+		(pts
+			(xy 123.19 91.44)
+			(xy 158.75 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc429709-0890-4a96-8817-3d1ee7536086")
+	)
+	(wire
+		(pts
+			(xy 158.75 91.44)
+			(xy 158.75 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4c36052-c659-439e-9696-53eca8362dff")
+	)
+	(wire
+		(pts
+			(xy 158.75 88.9)
+			(xy 163.83 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6af2d679-d478-47b6-8e22-0c5c2e89ef61")
+	)
+	(label "ZCD_N"
+		(at 139.7 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "805b44f3-a175-4600-8161-7f62982680ae")
+	)
+	(text "ZCD (pass 4): H11AA1 AC-input optocoupler fed by R6/R7 (2 x 33k) from the PSU AC pair; the 4N28 + D1-D4 bridge is gone. ZCD_L/ZCD_N differ by one LED drop (0.5 mm rule)."
+		(exclude_from_sim no)
+		(at 123.19 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ce90ada8-f496-437d-b2a0-eba2ff6686e9")
 	)
 	(sheet_instances
 		(path "/"

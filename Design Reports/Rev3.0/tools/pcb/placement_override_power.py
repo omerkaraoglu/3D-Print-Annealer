@@ -26,5 +26,7 @@ put('L30', 76.3, 90.0, 180)        # SRI0605B, pin 1 (SW) toward U30
 put('C330', 81.3, 94.5, 90); put('C331', 84.3, 94.5, 90)       # input caps, GND pads toward the IC, +5V bar + island vias below
 put('R331', 86.9, 91.8, 0); put('R330', 86.9, 93.2, 180)      # FB divider at U30.4 (FB stub < 3 mm), 3V3 sense from C334.1
 put('C333', 71.8, 96.0, 90); put('C334', 74.8, 96.0, 90)      # output caps, +3V3 bar at y 96.95 -> west to the 3V3 vias
-# ---- bulk at the PSU +5V pin
-put('C2', 126.5, 72.6, 90)   # reviewer 2026-11-11: moved north (display agent: at (127,88) its pads cut 10 B.Cu RGB rows); pads +5V (126.5,72.6) / GND (126.5,70.1) on the In2 island / In1         # 220u radial at the bottom of its window, 7.8 mm west of the PSU +5V pin: both pads THT on the In2 +5V island / In1 GND (no track: the J10 RGB fan-in runs between C2 and PS1.4); the RGB band passes north of it, the DE..PCLK drops (x >= 128.9) pass east of its pads; courtyard clear of PS1 (x 130.56)
+# ---- bulk at the PSU +5V pin (pass 4: PS1 moved to the top-right corner, DC pins GND (157.4, 47.5) / +5V (134.8, 47.5))
+put('C2', 134.8, 55.8, 0)    # 220u radial in the In2 +5V lobe (x 130.5..147, y 48..70) straight under PS1.4: +5V pad (134.8, 55.8) on a 1.5 mm
+                             # F.Cu bar from the pin (2 island vias on it), GND pad (137.3, 55.8) east toward PS1.3 (THT on In1); courtyard
+                             # y 52.36..59.24 = 1.06 mm below the PS1 courtyard (51.3), > 12 mm from the mains band (y < 40)

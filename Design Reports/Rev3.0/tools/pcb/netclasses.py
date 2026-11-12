@@ -4,7 +4,7 @@ PRO = r"C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/KiCad/3dFil
 DRU = r"C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/KiCad/3dFilamentDryer/3dFilamentDryer.kicad_dru"
 
 MAINS = ["LINE", "LINE_FUSED", "LINE_FILT", "PSU_L", "NEUT", "Net-(PS1-AC/L)", "Net-(PS1-AC/N)", "Net-(Q1-A1)", "Net-(Q1-A2)",
-         "Net-(Q1-G)", "Net-(C4-Pad1)", "Net-(R3-Pad1)", "Net-(J4-Pin_1)", "Net-(D1-A)", "Net-(D1-K)", "Net-(D2-K)", "Net-(D3-A)"]
+         "Net-(Q1-G)", "Net-(C4-Pad1)", "Net-(R3-Pad1)", "Net-(J4-Pin_1)", "/ZCD_L", "/ZCD_N"]   # pass 4: H11AA1 replaces the 4N28 + D1-D4 bridge
 HEATER = ["LINE", "LINE_FUSED", "LINE_FILT", "Net-(Q1-A1)", "Net-(Q1-A2)"]   # pass 3: the LC filter is in the heater path                       # 5.7 A heater path -> 2.5 mm (IPC-2152, 1 oz, 20 K rise at 85 C)
 POWER = ["+5V", "+3V3", "/Power/BUCK_SW", "/Display/BL_VIN", "/Display/BL_SW", "/Display/BL_DAMP", "/Display/VLED_P", "/Display/VLED_N", "/Display/TFT_VDD"]
 P1V2 = ["+1V2"]
@@ -39,6 +39,9 @@ pat.append({"netclass": "Bus", "pattern": "LCD_*"}); pat.append({"netclass": "Bu
 for g in ("R", "G", "B"):
     pat.append({"netclass": "Bus", "pattern": "/Display/%s[0-7]" % g})
 for n in ("PCLK", "HSYNC", "VSYNC", "DE"): pat.append({"netclass": "Bus", "pattern": "/Display/" + n})
+# pass 4: SSD1963-side halves of the RGB/sync lines (before the series resistor arrays)
+for g in "RGB": pat.append({"netclass": "Bus", "pattern": "/Display/%s[0-7]_T" % g})
+for n in ("PCLK", "HSYNC", "VSYNC", "DE"): pat.append({"netclass": "Bus", "pattern": "/Display/" + n + "_T"})
 ns["netclass_patterns"] = pat
 ns["netclass_assignments"] = None
 r = p["board"]["design_settings"]["rules"]
@@ -93,7 +96,7 @@ dru = f"""(version 1)
 # ZCD bridge DC side: the two nodes differ by one LED drop
 (rule "zcd_dc_pair"
    (constraint clearance (min 0.5mm))
-   (condition "(A.NetName == 'Net-(D1-A)' && B.NetName == 'Net-(D2-K)') || (B.NetName == 'Net-(D1-A)' && A.NetName == 'Net-(D2-K)')"))
+   (condition "(A.NetName == '/ZCD_L' && B.NetName == '/ZCD_N') || (B.NetName == '/ZCD_L' && A.NetName == '/ZCD_N')"))
 # component-inherent pin spacing (TO-220, DIP-6, relay, wire pads): pad to pad inside one footprint
 (rule "same_footprint_pads"
    (constraint clearance (min 0.4mm))
@@ -145,6 +148,26 @@ dru = f"""(version 1)
    (constraint courtyard_clearance (min 0mm))
    (severity ignore)
    (condition "(A.Reference == 'Q1' && B.Reference == 'HS1') || (A.Reference == 'HS1' && B.Reference == 'Q1')"))
+# keep-out areas as explicit rules: kicad-cli 10 DRC does not report tracks/vias inside rule areas flagged "no tracks/vias"
+# (found in pass 4 by the power agent; zone fills do honour them). Pads/footprints in the washer rings are caught by courtyards.
+(rule "keepout_washer"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('M3 washer keep-out')"))
+(rule "keepout_inductors_inner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('no inner Cu under inductor')"))
+(rule "keepout_antenna"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('antenna keepout')"))
+(rule "keepout_mains_inner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('mains: no inner copper')"))
+(rule "keepout_heatsink"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('fins_left') || A.intersectsArea('fins_right') || A.intersectsArea('plate')"))
+(rule "keepout_u10_corner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('U10 corner')"))
 (rule "heatsink_pins_vs_selv_creepage"
    (constraint creepage (min 6.4mm))
    (condition "(({HSN('A')}) && {notmains('B')} && B.NetName != '') || (({HSN('B')}) && {notmains('A')} && A.NetName != '')"))

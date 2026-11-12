@@ -29,7 +29,7 @@
 # ZCD bridge DC side: the two nodes differ by one LED drop
 (rule "zcd_dc_pair"
    (constraint clearance (min 0.5mm))
-   (condition "(A.NetName == 'Net-(D1-A)' && B.NetName == 'Net-(D2-K)') || (B.NetName == 'Net-(D1-A)' && A.NetName == 'Net-(D2-K)')"))
+   (condition "(A.NetName == '/ZCD_L' && B.NetName == '/ZCD_N') || (B.NetName == '/ZCD_L' && A.NetName == '/ZCD_N')"))
 # component-inherent pin spacing (TO-220, DIP-6, relay, wire pads): pad to pad inside one footprint
 (rule "same_footprint_pads"
    (constraint clearance (min 0.4mm))
@@ -81,6 +81,26 @@
    (constraint courtyard_clearance (min 0mm))
    (severity ignore)
    (condition "(A.Reference == 'Q1' && B.Reference == 'HS1') || (A.Reference == 'HS1' && B.Reference == 'Q1')"))
+# keep-out areas as explicit rules: kicad-cli 10 DRC does not report tracks/vias inside rule areas flagged "no tracks/vias"
+# (found in pass 4 by the power agent; zone fills do honour them). Pads/footprints in the washer rings are caught by courtyards.
+(rule "keepout_washer"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('M3 washer keep-out')"))
+(rule "keepout_inductors_inner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('no inner Cu under inductor')"))
+(rule "keepout_antenna"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('antenna keepout')"))
+(rule "keepout_mains_inner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('mains: no inner copper')"))
+(rule "keepout_heatsink"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('fins_left') || A.intersectsArea('fins_right') || A.intersectsArea('plate')"))
+(rule "keepout_u10_corner"
+   (constraint disallow track via)
+   (condition "A.intersectsArea('U10 corner')"))
 (rule "heatsink_pins_vs_selv_creepage"
    (constraint creepage (min 6.4mm))
    (condition "((A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)') && B.NetClass != 'Mains' && B.NetClass != 'MainsHeater' && B.NetName != '') || ((B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)') && A.NetClass != 'Mains' && A.NetClass != 'MainsHeater' && A.NetName != '')"))
