@@ -1,0 +1,7 @@
+# binary files: never apply line-ending conversion (the reportlab PDF has no NUL in its first bytes, so git would treat it as text)
+*.pdf binary
+*.png binary
+*.jpg binary
+*.zip binary
+*.step binary
+*.stl binary
