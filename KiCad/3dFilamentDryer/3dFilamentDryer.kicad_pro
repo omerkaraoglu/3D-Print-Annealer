@@ -531,6 +531,25 @@
       },
       {
         "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.25,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Bus",
+        "pcb_color": "rgba(255, 200, 0, 0.502)",
+        "priority": 5,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
         "clearance": 2.5,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -539,7 +558,7 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Mains",
-        "pcb_color": "rgba(255, 0, 0, 0.500)",
+        "pcb_color": "rgba(255, 0, 0, 0.502)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
@@ -558,7 +577,7 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "MainsHeater",
-        "pcb_color": "rgba(255, 80, 0, 0.500)",
+        "pcb_color": "rgba(255, 80, 0, 0.502)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 2.5,
@@ -576,14 +595,14 @@
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "name": "Power",
-        "pcb_color": "rgba(0, 120, 255, 0.500)",
-        "priority": 2,
+        "name": "P1V2",
+        "pcb_color": "rgba(0, 200, 120, 0.502)",
+        "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0,
+        "track_width": 0.6,
         "tuning_profile": "",
-        "via_diameter": 0.9,
-        "via_drill": 0.45,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
         "wire_width": 6
       },
       {
@@ -595,14 +614,14 @@
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "name": "P1V2",
-        "pcb_color": "rgba(0, 200, 120, 0.500)",
-        "priority": 3,
+        "name": "Power",
+        "pcb_color": "rgba(0, 120, 255, 0.502)",
+        "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.6,
+        "track_width": 1.0,
         "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
+        "via_diameter": 0.9,
+        "via_drill": 0.45,
         "wire_width": 6
       },
       {
@@ -615,29 +634,10 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "TC",
-        "pcb_color": "rgba(200, 0, 200, 0.500)",
+        "pcb_color": "rgba(200, 0, 200, 0.502)",
         "priority": 4,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.3,
-        "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "clearance": 0.15,
-        "diff_pair_gap": 0.25,
-        "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.25,
-        "line_style": 0,
-        "microvia_diameter": 0.3,
-        "microvia_drill": 0.1,
-        "name": "Bus",
-        "pcb_color": "rgba(255, 200, 0, 0.500)",
-        "priority": 5,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.25,
         "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3,
@@ -656,6 +656,14 @@
       },
       {
         "netclass": "MainsHeater",
+        "pattern": "LINE_FUSED"
+      },
+      {
+        "netclass": "MainsHeater",
+        "pattern": "LINE_FILT"
+      },
+      {
+        "netclass": "MainsHeater",
         "pattern": "Net-(Q1-A1)"
       },
       {
@@ -664,11 +672,7 @@
       },
       {
         "netclass": "Mains",
-        "pattern": "LINE_FUSED"
-      },
-      {
-        "netclass": "Mains",
-        "pattern": "LINE_FILT"
+        "pattern": "PSU_L"
       },
       {
         "netclass": "Mains",

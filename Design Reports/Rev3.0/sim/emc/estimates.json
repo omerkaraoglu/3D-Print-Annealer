@@ -1,0 +1,284 @@
+{
+ "conducted_heater_turn_on": {
+  "model": "current step dI=V_on/R at 100 Hz, exponential rise tau=L/R, LISN 50 ohm||50 uH per line, CISPR 16-1-1 Band B pulse weighting (0.158 uVs <-> 60 dBuV at 100 Hz PRF)",
+  "limit": "EN 55014-1 Table 5 col 2 (QP): 66->56 dBuV 0.15-0.5 MHz, 56 dBuV 0.5-5 MHz, 60 dBuV 5-30 MHz",
+  "cases": {
+   "as designed (no filter in heater path), V_on 23 V": {
+    "at_150k": 92.8,
+    "at_500k": 75.1,
+    "at_1M": 63.4,
+    "at_5M": 35.6,
+    "worst_margin_dB": -26.8,
+    "worst_at_MHz": 0.15
+   },
+   "as designed, V_on 40 V (late ZCD)": {
+    "at_150k": 97.6,
+    "at_500k": 79.9,
+    "at_1M": 68.2,
+    "at_5M": 40.4,
+    "worst_margin_dB": -31.6,
+    "worst_at_MHz": 0.15
+   },
+   "as designed, V_on 10 V": {
+    "at_150k": 85.5,
+    "at_500k": 67.9,
+    "at_1M": 56.2,
+    "at_5M": 28.3,
+    "worst_margin_dB": -19.5,
+    "worst_at_MHz": 0.15
+   },
+   "X2 0.22 uF across heater branch": {
+    "at_150k": 76.7,
+    "at_500k": 51.5,
+    "at_1M": 34.7,
+    "at_5M": -6.7,
+    "worst_margin_dB": -10.7,
+    "worst_at_MHz": 0.15
+   },
+   "X2 0.47 uF across heater branch": {
+    "at_150k": 69.9,
+    "at_500k": 44.9,
+    "at_1M": 28.1,
+    "at_5M": -13.3,
+    "worst_margin_dB": -3.9,
+    "worst_at_MHz": 0.15
+   },
+   "X2 1 uF across heater branch": {
+    "at_150k": 63.2,
+    "at_500k": 38.3,
+    "at_1M": 21.6,
+    "at_5M": -19.8,
+    "worst_margin_dB": 2.8,
+    "worst_at_MHz": 0.15
+   },
+   "X2 0.47 uF + 47 uH series (heater branch)": {
+    "at_150k": 66.3,
+    "at_500k": 38.6,
+    "at_1M": 17.8,
+    "at_5M": -36.7,
+    "worst_margin_dB": -0.3,
+    "worst_at_MHz": 0.15
+   },
+   "heater behind existing L40 120 uH + C40 1 uF + C1": {
+    "at_150k": 54.8,
+    "at_500k": 24.8,
+    "at_1M": 2.9,
+    "at_5M": -52.2,
+    "worst_margin_dB": 11.2,
+    "worst_at_MHz": 0.15
+   },
+   "heater behind L40/C40, V_on 40 V": {
+    "at_150k": 59.6,
+    "at_500k": 29.6,
+    "at_1M": 7.7,
+    "at_5M": -47.4,
+    "worst_margin_dB": 6.4,
+    "worst_at_MHz": 0.15
+   }
+  }
+ },
+ "harmonics_61000_3_2": {
+  "note": "whole-cycle on/off control adds no integer harmonics (the gate is constant over each cycle); only the turn-on notch t_d after each zero crossing does; full-on case shown, Class A Table 1 limits",
+  "cases": {
+   "t_d=230us": {
+    "I_rms": 4.348,
+    "I3": 0.01,
+    "I5": 0.01,
+    "I7": 0.0099,
+    "worst_ratio_to_classA": 0.139,
+    "worst_order": 39
+   },
+   "t_d=500us": {
+    "I_rms": 4.346,
+    "I3": 0.0474,
+    "I5": 0.0469,
+    "I7": 0.0461,
+    "worst_ratio_to_classA": 0.3413,
+    "worst_order": 27
+   },
+   "t_d=1000us": {
+    "I_rms": 4.334,
+    "I3": 0.186,
+    "I5": 0.178,
+    "I7": 0.1664,
+    "worst_ratio_to_classA": 0.6648,
+    "worst_order": 15
+   }
+  }
+ },
+ "radiated_dm_loops": {
+  "model": "Ott small-loop DM: E = 1.316e-14 f^2 A I / r, +6 dB ground reflection, 3 m; harmonic envelope of a trapezoid",
+  "cases": {
+   "buck hot loop (C330/C331-U30-GND, 1 A, 580 kHz, 20 ns)": {
+    "30MHz": {
+     "I_harm_mA": 6.53,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 42.0
+    },
+    "50MHz": {
+     "I_harm_mA": 2.351,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 40.2
+    },
+    "100MHz": {
+     "I_harm_mA": 0.588,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 37.9
+    },
+    "200MHz": {
+     "I_harm_mA": 0.147,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 35.5
+    },
+    "300MHz": {
+     "I_harm_mA": 0.065,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 42
+    },
+    "500MHz": {
+     "I_harm_mA": 0.024,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 42
+    },
+    "1000MHz": {
+     "I_harm_mA": 0.006,
+     "E_3m_dBuVm": -5.8,
+     "limit_far3m": 42
+    }
+   },
+   "boost loop (L11-U11-D111-C125, 0.5 A, 1.2 MHz, 15 ns)": {
+    "30MHz": {
+     "I_harm_mA": 9.006,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 42.0
+    },
+    "50MHz": {
+     "I_harm_mA": 3.242,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 40.2
+    },
+    "100MHz": {
+     "I_harm_mA": 0.811,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 37.9
+    },
+    "200MHz": {
+     "I_harm_mA": 0.203,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 35.5
+    },
+    "300MHz": {
+     "I_harm_mA": 0.09,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 42
+    },
+    "500MHz": {
+     "I_harm_mA": 0.032,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 42
+    },
+    "1000MHz": {
+     "I_harm_mA": 0.008,
+     "E_3m_dBuVm": 3.1,
+     "limit_far3m": 42
+    }
+   },
+   "RGB bus, 28 lines in phase, 33 MHz PCLK, 2 ns edges, 110 mm over 0.2 mm": {
+    "30MHz": {
+     "I_harm_mA": 294.118,
+     "E_3m_dBuVm": 36.0,
+     "limit_far3m": 42.0
+    },
+    "50MHz": {
+     "I_harm_mA": 98.039,
+     "E_3m_dBuVm": 45.5,
+     "limit_far3m": 40.2
+    },
+    "100MHz": {
+     "I_harm_mA": 98.039,
+     "E_3m_dBuVm": 45.5,
+     "limit_far3m": 37.9
+    },
+    "200MHz": {
+     "I_harm_mA": 28.688,
+     "E_3m_dBuVm": 49.6,
+     "limit_far3m": 35.5
+    },
+    "300MHz": {
+     "I_harm_mA": 17.355,
+     "E_3m_dBuVm": 49.6,
+     "limit_far3m": 42
+    },
+    "500MHz": {
+     "I_harm_mA": 6.248,
+     "E_3m_dBuVm": 49.6,
+     "limit_far3m": 42
+    },
+    "1000MHz": {
+     "I_harm_mA": 1.463,
+     "E_3m_dBuVm": 49.6,
+     "limit_far3m": 42
+    }
+   }
+  }
+ },
+ "common_mode_current_budget_uA": {
+  "model": "E = 1.257e-6 f L I / r (short wire) or 60 I / r (resonant, L >= lambda/4), FAR 3 m limit, no ground-reflection margin",
+  "budget": {
+   "mains cable 2 m": {
+    "30MHz": 5.01,
+    "50MHz": 5.14,
+    "100MHz": 3.91,
+    "200MHz": 2.97,
+    "300MHz": 6.29,
+    "500MHz": 6.29,
+    "1000MHz": 6.29
+   },
+   "heater cable 1 m": {
+    "30MHz": 10.02,
+    "50MHz": 4.91,
+    "100MHz": 3.91,
+    "200MHz": 2.97,
+    "300MHz": 6.29,
+    "500MHz": 6.29,
+    "1000MHz": 6.29
+   },
+   "thermocouple cable 1 m": {
+    "30MHz": 10.02,
+    "50MHz": 4.91,
+    "100MHz": 3.91,
+    "200MHz": 2.97,
+    "300MHz": 6.29,
+    "500MHz": 6.29,
+    "1000MHz": 6.29
+   },
+   "fan cable 0.5 m": {
+    "30MHz": 20.03,
+    "50MHz": 9.82,
+    "100MHz": 3.73,
+    "200MHz": 2.97,
+    "300MHz": 6.29,
+    "500MHz": 6.29,
+    "1000MHz": 6.29
+   },
+   "TFT FPC 50 mm": {
+    "30MHz": 200.31,
+    "50MHz": 98.19,
+    "100MHz": 37.32,
+    "200MHz": 14.18,
+    "300MHz": 20.03,
+    "500MHz": 12.02,
+    "1000MHz": 6.01
+   },
+   "CTP FPC 50 mm": {
+    "30MHz": 200.31,
+    "50MHz": 98.19,
+    "100MHz": 37.32,
+    "200MHz": 14.18,
+    "300MHz": 20.03,
+    "500MHz": 12.02,
+    "1000MHz": 6.01
+   }
+  }
+ }
+}

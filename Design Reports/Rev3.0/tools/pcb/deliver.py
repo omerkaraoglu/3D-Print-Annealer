@@ -46,7 +46,7 @@ if only in ("all", "tools"):
               "mains_placement_proposal.py", "mains_propcheck.py",
               "gen_heatsink_fp.py", "sch_pass2.py", "extract_sym.py", "fill_zones.py", "deliver.py",
               "placement_override_display.py", "placement_override_power.py", "placement_override_mains.py", "AGENT_BRIEF.md", "PASS2_BRIEF.md",
-              "mains2_check.py", "dump_crt.py", "d2_lanes.py", "display_lane_decision.md"]:
+              "mains2_check.py", "dump_crt.py", "d2_lanes.py", "display_lane_decision.md", "sch_pass3.py", "in1_web_check.py", "gen_l40_fp.py", "disp_web.py", "web_json.py"]:
         p = os.path.join(SCR, f)
         if os.path.exists(p): shutil.copy(p, T)
         else: print("tools: missing", f)

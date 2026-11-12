@@ -1,0 +1,608 @@
+{
+ "fs_hz": 4000.0,
+ "decimation": 4,
+ "pre_roll_s": 30.0,
+ "observation_s": 600.0,
+ "calibration_gain": 319139.88889712334,
+ "rect": [
+  {
+   "kind": "rect",
+   "cpm": 1,
+   "dvv_pct": 2.724,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.017278930225955,
+   "pst_exact": 1.0171740425857478,
+   "pinst_max": 29.07495893003185
+  },
+  {
+   "kind": "rect",
+   "cpm": 2,
+   "dvv_pct": 2.211,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.0233133309530944,
+   "pst_exact": 1.0236110637170592,
+   "pinst_max": 18.74276444247027
+  },
+  {
+   "kind": "rect",
+   "cpm": 7,
+   "dvv_pct": 1.459,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.0207907699002612,
+   "pst_exact": 1.0207706374718866,
+   "pinst_max": 8.044497182632815
+  },
+  {
+   "kind": "rect",
+   "cpm": 39,
+   "dvv_pct": 0.906,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.028386337930196,
+   "pst_exact": 1.0283724899146272,
+   "pinst_max": 3.160741860049545
+  },
+  {
+   "kind": "rect",
+   "cpm": 110,
+   "dvv_pct": 0.725,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.019007213157912,
+   "pst_exact": 1.0189938042793514,
+   "pinst_max": 2.4044387512435796
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.0010933961928998,
+   "pst_exact": 1.0010086123638324,
+   "pinst_max": 1.9872349343253486
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 45,
+   "pst_cpf": 1.001023208859953,
+   "pst_exact": 1.0010000502975065,
+   "pinst_max": 1.9872399330443091
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 90,
+   "pst_cpf": 1.0006392562376552,
+   "pst_exact": 1.0006068958660839,
+   "pinst_max": 1.9843831038294535
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 135,
+   "pst_cpf": 1.000921591524548,
+   "pst_exact": 1.0008806577909743,
+   "pinst_max": 1.9857132708124756
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 180,
+   "pst_cpf": 1.0010933850179116,
+   "pst_exact": 1.0010085973897043,
+   "pinst_max": 1.9872349343648141
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 225,
+   "pst_cpf": 1.001023288985189,
+   "pst_exact": 1.0009997110470497,
+   "pinst_max": 1.9872399330893353
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 270,
+   "pst_cpf": 1.0006548476046901,
+   "pst_exact": 1.0006066003177647,
+   "pinst_max": 1.9852843910555655
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 1,
+   "phase_deg": 315,
+   "pst_cpf": 1.0009124838156962,
+   "pst_exact": 1.0008809612317058,
+   "pinst_max": 1.9865293822759018
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.0324324631038677,
+   "pst_exact": 1.0326049133073003,
+   "pinst_max": 2.0961449442701516
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 45,
+   "pst_cpf": 1.0393125215219314,
+   "pst_exact": 1.0390721626697248,
+   "pinst_max": 2.1392055981051135
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 90,
+   "pst_cpf": 1.0337208383764565,
+   "pst_exact": 1.0334489420394948,
+   "pinst_max": 2.123600929106706
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 135,
+   "pst_cpf": 1.028840523473762,
+   "pst_exact": 1.0285925552832766,
+   "pinst_max": 2.0959109720299702
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 180,
+   "pst_cpf": 1.0326228789140914,
+   "pst_exact": 1.0326188253898414,
+   "pinst_max": 2.1187864769192832
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 225,
+   "pst_cpf": 1.0388528659759095,
+   "pst_exact": 1.0387089822791467,
+   "pinst_max": 2.136673460665159
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 270,
+   "pst_cpf": 1.033174939025023,
+   "pst_exact": 1.0334384194146489,
+   "pinst_max": 2.0995689584915285
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 1,
+   "phase_deg": 315,
+   "pst_cpf": 1.0281615952238727,
+   "pst_exact": 1.0282024131686753,
+   "pinst_max": 2.0917729052164105
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 0,
+   "pst_cpf": 1.3085956502298093,
+   "pst_exact": 1.3085413597759024,
+   "pinst_max": 3.3898701886945366
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 45,
+   "pst_cpf": 1.343127828621855,
+   "pst_exact": 1.3430963656379744,
+   "pinst_max": 3.760562773079467
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 90,
+   "pst_cpf": 1.3158400709845526,
+   "pst_exact": 1.3155988661842837,
+   "pinst_max": 3.705646522079203
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 135,
+   "pst_cpf": 1.3441551898692847,
+   "pst_exact": 1.3442003553419433,
+   "pinst_max": 3.7605628274851153
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 180,
+   "pst_cpf": 1.3112978641648105,
+   "pst_exact": 1.3112068772956016,
+   "pinst_max": 3.5297694332330387
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 225,
+   "pst_cpf": 1.3458130165141375,
+   "pst_exact": 1.345834852884286,
+   "pinst_max": 3.760562773075508
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 270,
+   "pst_cpf": 1.310158557970802,
+   "pst_exact": 1.3099015699154108,
+   "pinst_max": 3.5297498970670063
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 1,
+   "phase_deg": 315,
+   "pst_cpf": 1.3523711743620017,
+   "pst_exact": 1.3524208146105603,
+   "pinst_max": 3.7605628270268725
+  },
+  {
+   "kind": "rect",
+   "cpm": 1,
+   "dvv_pct": 2.724,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.007667505868818,
+   "pst_exact": 1.0072146599802498,
+   "pinst_max": 27.723249085063028
+  },
+  {
+   "kind": "rect",
+   "cpm": 2,
+   "dvv_pct": 2.211,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.0103319152696664,
+   "pst_exact": 1.0104043421727038,
+   "pinst_max": 17.91819906812029
+  },
+  {
+   "kind": "rect",
+   "cpm": 7,
+   "dvv_pct": 1.459,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.004147514312189,
+   "pst_exact": 1.0040750322180627,
+   "pinst_max": 7.5738654151916505
+  },
+  {
+   "kind": "rect",
+   "cpm": 39,
+   "dvv_pct": 0.906,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.0202531517616171,
+   "pst_exact": 1.020274387652356,
+   "pinst_max": 3.118494509221143
+  },
+  {
+   "kind": "rect",
+   "cpm": 110,
+   "dvv_pct": 0.725,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.0211005239345285,
+   "pst_exact": 1.0210699202950058,
+   "pinst_max": 2.416326069808181
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.0011042270471255,
+   "pst_exact": 1.0010324933913695,
+   "pinst_max": 1.9874528098283115
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 45,
+   "pst_cpf": 1.0010346110630604,
+   "pst_exact": 1.0009863033592583,
+   "pinst_max": 1.9873298844550655
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 90,
+   "pst_cpf": 1.0006492946086483,
+   "pst_exact": 1.0006127125745012,
+   "pinst_max": 1.9844607999981037
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 135,
+   "pst_cpf": 1.000891312162801,
+   "pst_exact": 1.0008855188511685,
+   "pinst_max": 1.9857665024074747
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 180,
+   "pst_cpf": 1.0011042153915062,
+   "pst_exact": 1.0010324752411959,
+   "pinst_max": 1.9874528098569606
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 225,
+   "pst_cpf": 1.0010342299939803,
+   "pst_exact": 1.0009862210793614,
+   "pinst_max": 1.9873298844973135
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 270,
+   "pst_cpf": 1.0006781234410067,
+   "pst_exact": 1.0006121878745504,
+   "pinst_max": 1.9853397278916467
+  },
+  {
+   "kind": "rect",
+   "cpm": 1620,
+   "dvv_pct": 0.402,
+   "hp_order": 6,
+   "phase_deg": 315,
+   "pst_cpf": 1.000926963536853,
+   "pst_exact": 1.0008856222798765,
+   "pinst_max": 1.9867427953123622
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.0324221309241848,
+   "pst_exact": 1.0325912581368692,
+   "pinst_max": 2.0960985736247033
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 45,
+   "pst_cpf": 1.0393125889384238,
+   "pst_exact": 1.0390543360412066,
+   "pinst_max": 2.139234344522305
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 90,
+   "pst_cpf": 1.0336803245988895,
+   "pst_exact": 1.0334355769780097,
+   "pinst_max": 2.123407290023324
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 135,
+   "pst_cpf": 1.0288143018990696,
+   "pst_exact": 1.0285757838460579,
+   "pinst_max": 2.0957641781707137
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 180,
+   "pst_cpf": 1.032575138983801,
+   "pst_exact": 1.032605453947695,
+   "pinst_max": 2.118524645638225
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 225,
+   "pst_cpf": 1.0388229261117319,
+   "pst_exact": 1.0386906939478462,
+   "pinst_max": 2.136525567874568
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 270,
+   "pst_cpf": 1.033206758985894,
+   "pst_exact": 1.033425127015387,
+   "pinst_max": 2.099521619868674
+  },
+  {
+   "kind": "rect",
+   "cpm": 4000,
+   "dvv_pct": 2.4,
+   "hp_order": 6,
+   "phase_deg": 315,
+   "pst_cpf": 1.028147191635496,
+   "pst_exact": 1.028183634087164,
+   "pinst_max": 2.091634587860056
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 0,
+   "pst_cpf": 1.3085883950070045,
+   "pst_exact": 1.3085716424911054,
+   "pinst_max": 3.390149277402969
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 45,
+   "pst_cpf": 1.3431006043994953,
+   "pst_exact": 1.3431335042525785,
+   "pinst_max": 3.7595787959585536
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 90,
+   "pst_cpf": 1.3158118527007758,
+   "pst_exact": 1.3156203107203102,
+   "pinst_max": 3.7052095467912793
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 135,
+   "pst_cpf": 1.34411480199752,
+   "pst_exact": 1.3441992616312721,
+   "pinst_max": 3.759579147909544
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 180,
+   "pst_cpf": 1.311150574265021,
+   "pst_exact": 1.311237884583257,
+   "pinst_max": 3.5302116420100367
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 225,
+   "pst_cpf": 1.3457329480311275,
+   "pst_exact": 1.3458317616264077,
+   "pinst_max": 3.7595787959310734
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 270,
+   "pst_cpf": 1.3099639920531176,
+   "pst_exact": 1.309937658393938,
+   "pinst_max": 3.5301923570186178
+  },
+  {
+   "kind": "rect",
+   "cpm": 4800,
+   "dvv_pct": 4.834,
+   "hp_order": 6,
+   "phase_deg": 315,
+   "pst_cpf": 1.3523186584688958,
+   "pst_exact": 1.352345240810094,
+   "pinst_max": 3.759579147377475
+  }
+ ],
+ "sine": [
+  {
+   "kind": "sine",
+   "f_hz": 8.8,
+   "dvv_pct": 0.25,
+   "hp_order": 1,
+   "pinst_max": 1.0308439514363683,
+   "pinst_mean": 1.0002247917704754
+  },
+  {
+   "kind": "sine",
+   "f_hz": 8.8,
+   "dvv_pct": 0.25,
+   "hp_order": 6,
+   "pinst_max": 1.0308695454166341,
+   "pinst_mean": 1.0002246739670133
+  }
+ ],
+ "runtime_s": 14.629702806472778
+}

@@ -1,6 +1,6 @@
 import re,sys
 from sx import *
-d=parse(open('rev3.net',encoding='utf-8').read())
+d=parse(open(sys.argv[1] if len(sys.argv)>1 else 'rev3.net',encoding='utf-8').read())
 comps=find(first(d,'components'),'comp')
 print("components",len(comps))
 rows=[]

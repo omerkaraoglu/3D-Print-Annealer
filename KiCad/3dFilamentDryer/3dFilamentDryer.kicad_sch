@@ -8749,17 +8749,6 @@
 	)
 	(wire
 		(pts
-			(xy 314.96 58.42)
-			(xy 314.96 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "225e651d-f6dd-4f33-b0f4-c5d65c026247")
-	)
-	(wire
-		(pts
 			(xy 185.42 199.39)
 			(xy 185.42 167.64)
 		)
@@ -9010,28 +8999,6 @@
 			(type default)
 		)
 		(uuid "54a4cf03-4d24-4b78-9cf9-ad18254c5037")
-	)
-	(wire
-		(pts
-			(xy 20.32 22.86)
-			(xy 20.32 27.94)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "55931ec3-bb6e-47d8-87ae-792cf00b87f0")
-	)
-	(wire
-		(pts
-			(xy 90.17 27.94)
-			(xy 68.58 27.94)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5755a1b7-08c9-4f5d-85e5-b750d97a1d1e")
 	)
 	(wire
 		(pts
@@ -9769,17 +9736,6 @@
 			(type default)
 		)
 		(uuid "d01f30cd-af61-4b54-ba55-7c5fda3d5135")
-	)
-	(wire
-		(pts
-			(xy 281.94 161.29)
-			(xy 281.94 163.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d47ba4ca-f55c-45b7-81a0-f5a18a720c2c")
 	)
 	(wire
 		(pts
@@ -11414,84 +11370,6 @@
 			(project "3dFilamentDryer"
 				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
 					(reference "#PWR030")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:LINE")
-		(at 281.94 161.29 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3e4bfe3c-3d0c-4b9d-8010-ce33d2742207")
-		(property "Reference" "#PWR029"
-			(at 281.94 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LINE"
-			(at 281.94 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 281.94 161.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 281.94 161.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"LINE\""
-			(at 281.94 161.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4c6102ae-0091-4d6f-ac68-0b3026bf114a")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -15216,84 +15094,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:LINE")
-		(at 20.32 22.86 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c882b3cf-04e3-42be-b02c-3b519b4da449")
-		(property "Reference" "#PWR09"
-			(at 20.32 26.67 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LINE"
-			(at 20.32 17.78 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 20.32 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 20.32 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"LINE\""
-			(at 20.32 22.86 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "70f22ef4-3237-48b1-8366-c5cf970e310a")
-		)
-		(instances
-			(project "3dFilamentDryer"
-				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f"
-					(reference "#PWR09")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 68.58 35.56 0)
 		(unit 1)
@@ -16746,6 +16546,116 @@
 	)
 	(global_label "LINE_FUSED"
 		(shape passive)
+		(at 314.96 58.42 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1a784f0d-e119-4167-8edc-74bfb0d1550a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 314.96 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LINE_FILT"
+		(shape passive)
+		(at 314.96 63.5 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4a2a2b63-ca32-43e7-a98f-db4253a60288")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 314.96 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LINE_FILT"
+		(shape passive)
+		(at 281.94 163.83 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "21d0f6d2-928e-45df-be33-eeb58f23a370")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 281.94 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LINE_FILT"
+		(shape passive)
+		(at 20.32 27.94 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e9bb4170-2f0b-435b-b15a-283f2fce75d1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 20.32 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PSU_L"
+		(shape passive)
+		(at 90.17 27.94 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2234b3b2-658a-4355-8f43-cb33cb292c07")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 90.17 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PSU_L"
+		(shape passive)
 		(at 43.18 27.94 0)
 		(fields_autoplaced yes)
 		(effects
@@ -17874,7 +17784,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "3a0f6c2e-0001-4c3e-9b1e-000000000004")
-		(property "Sheetname" "Mains input EMC filter (PSU branch)"
+		(property "Sheetname" "Mains input EMC filter"
 			(at 367.03 215.2 0)
 			(show_name no)
 			(do_not_autoplace no)

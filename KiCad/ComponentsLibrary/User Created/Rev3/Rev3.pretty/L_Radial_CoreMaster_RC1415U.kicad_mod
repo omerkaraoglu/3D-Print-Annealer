@@ -1,0 +1,78 @@
+(footprint "L_Radial_CoreMaster_RC1415U"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Radial inductor Core Master RC1415U (D16.5 x H17 mm, pitch 7.5 mm, leads 1.0 mm; spec HX8817022 for RC1415U-101K 100 uH 5 A); drill 1.3, pad 2.4")
+	(tags "inductor radial choke")
+	(attr through_hole)
+	(fp_text reference "REF**"
+		(at 0 -10.5)
+		(layer "F.SilkS")
+		(uuid "f7c2a514-a241-42fb-a78a-ea034c2710c8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text value "VAL**"
+		(at 0 10.5)
+		(layer "F.Fab")
+		(uuid "3bafcbcb-874a-44ea-8b39-79617a06e177")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_circle
+		(center 0 0)
+		(end 8.25 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "f82071b3-6d7e-4d33-82a1-c401f1f0ec54")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 8.25 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "8d56968f-e77f-4532-a854-c8f1532ee556")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 8.75 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "c3f00d83-3434-451e-81eb-c47bd2b0b49c")
+	)
+	(pad "1" thru_hole rect
+		(at -3.75 0)
+		(size 2.4 2.4)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(uuid "2d5374d1-731a-495c-b4f2-77e8965240af")
+	)
+	(pad "2" thru_hole circle
+		(at 3.75 0)
+		(size 2.4 2.4)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(uuid "19b662c6-becb-4683-8b71-4b80fbc831a8")
+	)
+)

@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\KiCad\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
-		(date "2026-11-11T18:17:30")
+		(date "2026-11-12T13:34:01")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
@@ -198,10 +198,10 @@
 		)
 		(sheet
 			(number "5")
-			(name "/Mains input EMC filter (PSU branch)/")
+			(name "/Mains input EMC filter/")
 			(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000004/")
 			(title_block
-				(title "Rev3.0 Mains input EMC filter (PSU branch)")
+				(title "Rev3.0 Mains input EMC filter")
 				(company "READARK")
 				(rev "3.0")
 				(date "2026-11-09")
@@ -8664,7 +8664,7 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "Mains input EMC filter (PSU branch)")
+				(value "Mains input EMC filter")
 			)
 			(property
 				(name "Sheetfile")
@@ -8679,7 +8679,7 @@
 				(value "C_*")
 			)
 			(sheetpath
-				(names "/Mains input EMC filter (PSU branch)/")
+				(names "/Mains input EMC filter/")
 				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000004/")
 			)
 			(tstamps "9dda995d-4dca-4927-9ee1-c5dce541f338")
@@ -8699,21 +8699,21 @@
 		)
 		(comp
 			(ref "L40")
-			(value "120uH")
-			(footprint "Rev3:L_Radial_D22.5mm_P9.00mm")
-			(datasheet "https://www.ozdisan.com/p/sabit-induktorler-468/oem-ind-120uh-tht-954101")
-			(description "Inductor fixed radial 120 uH, wire wound, unshielded, D22.5 x 8.25 mm, pitch 9 mm, THT")
+			(value "100uH 5A")
+			(footprint "Rev3:L_Radial_CoreMaster_RC1415U")
+			(datasheet "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941")
+			(description "Inductor fixed radial 100 uH +/-10 %, 5 A, 100 mOhm, D16.5 x H17 mm, pitch 7.5 mm, THT (Core Master spec HX8817022); main input filter choke, carries the heater current 4.4 A (the earlier IND-120UH-THT has no published rating)")
 			(fields
 				(field
-					(name "MPN") "IND-120UH-THT")
+					(name "MPN") "RC1415U-101K")
 				(field
-					(name "Manufacturer") "OEM (ozdisan)")
+					(name "Manufacturer") "CORE MASTER")
 				(field
-					(name "Footprint") "Rev3:L_Radial_D22.5mm_P9.00mm")
+					(name "Footprint") "Rev3:L_Radial_CoreMaster_RC1415U")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/sabit-induktorler-468/oem-ind-120uh-tht-954101")
+					(name "Datasheet") "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941")
 				(field
-					(name "Description") "Inductor fixed radial 120 uH, wire wound, unshielded, D22.5 x 8.25 mm, pitch 9 mm, THT")
+					(name "Description") "Inductor fixed radial 100 uH +/-10 %, 5 A, 100 mOhm, D16.5 x H17 mm, pitch 7.5 mm, THT (Core Master spec HX8817022); main input filter choke, carries the heater current 4.4 A (the earlier IND-120UH-THT has no published rating)")
 			)
 			(libsource
 				(lib "Device")
@@ -8722,15 +8722,15 @@
 			)
 			(property
 				(name "MPN")
-				(value "IND-120UH-THT")
+				(value "RC1415U-101K")
 			)
 			(property
 				(name "Manufacturer")
-				(value "OEM (ozdisan)")
+				(value "CORE MASTER")
 			)
 			(property
 				(name "Sheetname")
-				(value "Mains input EMC filter (PSU branch)")
+				(value "Mains input EMC filter")
 			)
 			(property
 				(name "Sheetfile")
@@ -8745,7 +8745,7 @@
 				(value "Choke_* *Coil* Inductor_* L_*")
 			)
 			(sheetpath
-				(names "/Mains input EMC filter (PSU branch)/")
+				(names "/Mains input EMC filter/")
 				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000004/")
 			)
 			(tstamps "4e3fb52b-4919-4a33-bf13-9340163e0069")
@@ -13921,11 +13921,6 @@
 			(name "LINE")
 			(class "MainsHeater")
 			(node
-				(ref "F1")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
 				(ref "F3")
 				(pin "2")
 				(pintype "passive")
@@ -13937,11 +13932,6 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "K1")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
 				(ref "V1")
 				(pin "1")
 				(pintype "passive")
@@ -13950,7 +13940,7 @@
 		(net
 			(code "86")
 			(name "LINE_FILT")
-			(class "Mains")
+			(class "MainsHeater")
 			(node
 				(ref "C1")
 				(pin "1")
@@ -13962,8 +13952,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "L1")
-				(pin "4")
+				(ref "F1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "K1")
+				(pin "1")
 				(pintype "passive")
 			)
 			(node
@@ -13973,7 +13968,28 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "Q1")
+				(pin "2")
+				(pinfunction "A2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
 				(ref "RV1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "RV2")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -13981,10 +13997,10 @@
 		(net
 			(code "87")
 			(name "LINE_FUSED")
-			(class "Mains")
+			(class "MainsHeater")
 			(node
-				(ref "F1")
-				(pin "2")
+				(ref "F3")
+				(pin "1")
 				(pintype "passive")
 			)
 			(node
@@ -14335,37 +14351,6 @@
 		)
 		(net
 			(code "103")
-			(name "Net-(Q1-A2)")
-			(class "MainsHeater")
-			(node
-				(ref "F3")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "Q1")
-				(pin "2")
-				(pinfunction "A2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R3")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R5")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "RV2")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "104")
 			(name "Net-(Q1-G)")
 			(class "Mains")
 			(node
@@ -14386,7 +14371,7 @@
 			)
 		)
 		(net
-			(code "105")
+			(code "104")
 			(name "Net-(Q2-B)")
 			(class "Default")
 			(node
@@ -14402,7 +14387,7 @@
 			)
 		)
 		(net
-			(code "106")
+			(code "105")
 			(name "Net-(Q2-C)")
 			(class "Default")
 			(node
@@ -14424,7 +14409,7 @@
 			)
 		)
 		(net
-			(code "107")
+			(code "106")
 			(name "Net-(Q3-B)")
 			(class "Default")
 			(node
@@ -14440,7 +14425,7 @@
 			)
 		)
 		(net
-			(code "108")
+			(code "107")
 			(name "Net-(Q3-C)")
 			(class "Default")
 			(node
@@ -14467,7 +14452,7 @@
 			)
 		)
 		(net
-			(code "109")
+			(code "108")
 			(name "Net-(Q4-B)")
 			(class "Default")
 			(node
@@ -14488,7 +14473,7 @@
 			)
 		)
 		(net
-			(code "110")
+			(code "109")
 			(name "Net-(R3-Pad1)")
 			(class "Mains")
 			(node
@@ -14503,7 +14488,7 @@
 			)
 		)
 		(net
-			(code "111")
+			(code "110")
 			(name "Net-(R4-Pad2)")
 			(class "Default")
 			(node
@@ -14518,7 +14503,7 @@
 			)
 		)
 		(net
-			(code "112")
+			(code "111")
 			(name "Net-(R8-Pad2)")
 			(class "Default")
 			(node
@@ -14538,7 +14523,7 @@
 			)
 		)
 		(net
-			(code "113")
+			(code "112")
 			(name "Net-(R9-Pad1)")
 			(class "Default")
 			(node
@@ -14550,6 +14535,21 @@
 				(ref "U6")
 				(pin "4")
 				(pintype "output")
+			)
+		)
+		(net
+			(code "113")
+			(name "PSU_L")
+			(class "Mains")
+			(node
+				(ref "F1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "L1")
+				(pin "4")
+				(pintype "passive")
 			)
 		)
 		(net

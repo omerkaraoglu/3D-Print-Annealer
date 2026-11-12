@@ -286,6 +286,8 @@ Recommended boost input network (schematic): 5 V rail → 10 µF 0805 X7R → 2.
 
 ## 5. Pre-compliance test plan
 
+> Superseded for the EMC part on 2026-11-12 by `EMC_PostLayout_Assessment.md` §7, which targets the household-appliance standards (EN 55014-1/-2, IEC 61000-3-2/-3-3) instead of CISPR 32; the signal-integrity items below stay valid.
+
 ### 5.1 Near-field probe scan (bench, spectrum analyser 9 kHz–1 GHz, peak detector, 100 kHz RBW)
 Magnetic-field probe (small loop, 10 mm) at ≤ 5 mm, with the display running a full-screen refresh loop (worst-case bus activity) and the heater at 50 % phase angle:
 

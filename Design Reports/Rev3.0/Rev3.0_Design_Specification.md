@@ -10,7 +10,7 @@ Date: 2026-11-09  ·  Branch: `Rev3.0`  ·  Author: generated with Claude for M.
 | 2 | **SSD1963QL9** display controller added on the PCB (8-bit 8080 bus from the ESP32, 1215 KB frame buffer, RGB timing generator) | The panel has no controller of its own; the ESP32-WROOM-32E cannot generate RGB timing; every ESP32-S3 module is out of stock at Özdisan, so the MCU was kept |
 | 3 | MAX6675 header module removed; **ADS1115IDGSR** 16-bit ADC thermocouple front end built from SMD parts, K-type thermocouple on a 5.08 mm screw terminal, NTC cold-junction sensor | Requested |
 | 4 | Power: **HLK-10M05** (5 V / 2 A) replaces HLK-PM01; **TPS562201** buck replaces the TLV1117-33 LDO; **LD1117S12** added for the SSD1963 1.2 V core; **MIC2288** boost LED driver for the backlight | 7" backlight (1.35 W) and the display controller push the 5 V budget to ~5.5 W and the 3.3 V load to ~0.9 A; an LDO would dissipate ~1.5 W at 85 °C ambient |
-| 5 | Mains input EMC stage **IND-120UH-THT + C42P2105KBSC400 (1 µF X2)** inserted after fuse F1 on the PSU branch | Requested (filter existed in the earlier design but was not on the board) |
+| 5 | Mains input EMC stage **L40 + C42P2105KBSC400 (1 µF X2)** as the main filter at the mains input (L40 = Core Master RC1415U-101K 100 µH / 5 A since pass 3; the IND-120UH-THT of the built unit has no published current rating): LINE → F3 (8 A main fuse) → L40 → LINE_FILT feeds the triac, the fan relay and, through F1 (1 A), the common-mode choke L1 and the PSU (pass 3, 2026-11-12; passes 1–2 wrongly had it on the PSU branch only) | Requested (filter existed in the earlier design but was not on the board; the choke carries the heater current) |
 | 6 | 33 Ω series terminations on all ESP32→SSD1963 bus lines, 2.2 kΩ I2C pull-ups, ESD/TVS on the thermocouple and touch lines, LC pi-filter on mains | EMC (CISPR 32 Class B target) |
 | 7 | ESP32 module part number changed to **ESP32-WROOM-32E-N16** | -N4 has 0 stock at Özdisan, -N16 has 1,213 |
 
@@ -41,7 +41,7 @@ All new main components were checked on ozdisan.com for stock and operating temp
 | L11 | PCD0403MT100 (Viking, 10 µH 1 A) | boost inductor | 8,969 | ₺5.9 | — |
 | D111 | SS14 (SMA) | boost rectifier | >10,000 | ₺1–6 | -65..+125 |
 | Y10 | CX3225GB10000P0HPQCC (Kyocera, 10 MHz 18 pF) | SSD1963 crystal | 3,906 | ₺15 | -40..+85 |
-| L40 | IND-120UH-THT (radial 120 µH, D22.5 P9) | mains filter choke | 9,774 | ₺233 / $4.6 | — |
+| L40 | RC1415U-101K (Core Master, radial 100 µH ±10 %, 5 A, 100 mΩ, Ø16.5 × 17 mm, P7.5) — pass 3; was IND-120UH-THT (no rating published) | mains filter choke, carries the heater current | 613 | ₺43.6 / $0.87 | — |
 | C40 | C42P2105KBSC400 (Faratronic 1 µF 275 VAC X2, P27.5) | mains filter cap | 57,151 | ₺12 | -40..+125 |
 | L12, C127/C124, R132, C128 | 2.2 µH ≥1 A SMD, 2 × 10 µF, 0.5 Ω 1206, 47 µF 10 V | backlight boost input pi-filter + damper (added from the EMI analysis) | commodity values; pick in-stock MPNs at Özdisan (Viking PCD0403 / Core Master FPI0403S 2.2 µH, Koshin 47 µF) | — | — |
 | R220/R221, C221/C222 | 1 kΩ 0.1 % 0603, 10 nF C0G 1 % 0603 | thermocouple filter precision parts (EMI analysis: common-mode rejection depends on their matching) | commodity | — | — |
@@ -51,7 +51,9 @@ Not available / rejected: MAX31855, MAX31856, MCP9600, ADS1118 (not stocked); OP
 ## 3. Architecture
 
 ```
-mains ─ F1 ─ [L40 120µH ─ C40 1µF X2] ─ RV1/C1/L1(CMC) ─ PS1 HLK-10M05 ─ 5V ─┬─ U30 TPS562201 ─ 3V3 ─┬─ ESP32 / ADS1115 / GT911
+mains ─ F3 8A ─ [L40 100µH 5A ─ C40 1µF X2 / C1 / RV1] ─┬─ Q1 triac ─ heater 1 kW
+                                                   ├─ K1 relay ─ fan
+                                                   └─ F1 1A ─ L1(CMC) ─ PS1 HLK-10M05 ─ 5V ─┬─ U30 TPS562201 ─ 3V3 ─┬─ ESP32 / ADS1115 / GT911
                                                                               │                      └─ U31 LD1117-1.2 ─ 1V2 ─ SSD1963 core
                                                                               ├─ U11 MIC2288 boost ─ 9.6 V / 138 mA ─ backlight
                                                                               └─ relay coil, fan
@@ -179,9 +181,10 @@ Design rules carried into the schematic and to be followed in layout:
 - `EMI_Signal_Integrity_Analysis.md` + `sim/` — formulas, ngspice/PySpice scripts, JSON results, 11 plots, 24 layout rules, pre-compliance test plan (near-field scan points, LISN conducted, radiated bands, EN 61000-4-x)
 - `tools/gen_rev3.py` — regenerates the Rev3 sheets and patches the root from the Rev2.1 root in git (re-run instead of hand-editing when changing the structure)
 - `Rev3.0_CPL.csv` — pick-and-place (both sides, mm, from the Rev3.0 board)
+- `EMC_PostLayout_Assessment.md` + `sim/emc/` — post-layout EMC assessment against EN 55014-1/-2, IEC 61000-3-2/-3-3 (conducted/radiated estimates, IEC 61000-4-15 flickermeter model, test plan, open items)
 - `tools/pcb/` — PCB layout generator and hand-routing scripts (see §12 and its README; pass 2: `sch_pass2.py`, `gen_heatsink_fp.py`, `placement_override_*.py`, `mains2_check.py`, `PASS2_BRIEF.md`); the design rules live in `KiCad/3dFilamentDryer/3dFilamentDryer.kicad_dru` + the net classes in the `.kicad_pro`
 
-## 12. PCB layout note (Rev3.0, pass 1 2026-11-10, pass 2 2026-11-11)
+## 12. PCB layout note (Rev3.0, pass 1 2026-11-10, pass 2 2026-11-11, pass 3 2026-11-12)
 
 Board file: `KiCad/3dFilamentDryer/3dFilamentDryer.kicad_pcb` (the Rev2.1 board is kept as `3dFilamentDryer_Rev2.1.kicad_pcb`). The board was generated from the schematic netlist by the scripts in `tools/pcb/` (placement, planes and rules by script; every track written by hand-routing scripts, one per region, in the style of the Battery Sentinel layout: fan-out with reserved exits, 0/45/90° only, 90° turns as two 45°s, track ends at pad centres). Re-run the scripts rather than hand-editing when the placement changes (see `tools/pcb/README.md`). **Pass 2 (2026-11-11)** re-placed and re-routed three regions for the connector positions read from the panel drawings, the 1 kW heater's triac + heatsink and the moved LV power block; the ESP32 / 8080 bus / thermocouple / relay / mains-input-filter regions are unchanged from pass 1.
 
@@ -215,7 +218,14 @@ Board file: `KiCad/3dFilamentDryer/3dFilamentDryer.kicad_pcb` (the Rev2.1 board 
 
 - DRC (`kicad-cli pcb drc --severity-error`, project rules incl. 6.4 mm clearance + creepage, schematic parity): pass 1 0/0/0 on 2026-11-10; **pass 2 (2026-11-11): 0 violations, 0 unconnected, 0 parity errors** on the board as saved (zones filled) and again with `--refill-zones`; `kicad-cli pcb drc --severity-error --all-track-errors --schematic-parity`.
 - Bus length ESP32 pin → 33 Ω → SSD1963 pin: 29–73 mm, 0 vias (limit 80 mm); longest D7 72.6 mm, D6 70.1 mm, D5 65.1 mm (unchanged pass-1 routing, U10 moved 2 mm).
-- Layer changes: 234 vias in total (GND 101, +3V3 39, +1V2 23, +5V 7, signals 64: 28 RGB/sync, 3 LCD_RST, 6 I2C, the rest fan/relay/ZCD/boost); no vias on mains nets; 8080 bus 0 vias. Every RGB/sync via has a GND return via within 1.5 mm (pass-1 exceptions removed by the pass-2 via field). Total track length 6.45 m, 1253 segments.
+- Layer changes (pass 3): 221 vias in total (GND 104, +3V3 38, +1V2 8, +5V 7, signals 64: 28 RGB/sync, 3 LCD_RST, 6 I2C, the rest fan/relay/ZCD/boost); no vias on mains nets; 8080 bus 0 vias. Every RGB/sync via has a GND return via within 1.5 mm and ≥ 1.35 mm from the next signal via (no merged anti-pads). Total track length 6.29 m, 1238 segments. (Pass 2 had 234 vias / 6.45 m.)
 - Courtyard overlaps: none except Q1 on the HS1 plate (intended; `q1_on_heatsink_courtyard` rule). Mains placement checker (`mains2_check.py`): 0 issues.
 - Schematic changes made during layout: D114 (15 V zener) was drawn backwards in Rev3_Display and has been turned round (cathode on VLED_P); the 8080 function-to-pin remap and the R/B lane crossing above (labels only; the firmware pin defines and §4/§5 follow).
-- Open items after pass 2: series 33 Ω on PCLK/HSYNC/VSYNC/DE at U10 (schematic change, see 12.3); confirm the BTA24-800CWRG data (Rth(j-c) 1.7 K/W, IGT 35 mA) against the ST datasheet (the ST site could not be fetched; the values come from second-source copies of the ST table); firmware recompile with the §12 pin map and the colour-order / touch-orientation check on hardware; DG127H body height (Özdisan's 19.1 mm vs the 10 mm drawing); HLK-10M05 derating above 60 °C (§9).
+- Open items after pass 2 (see also `EMC_PostLayout_Assessment.md` §9 for the EMC items): series 33 Ω on PCLK/HSYNC/VSYNC/DE at U10 (schematic change, see 12.3); confirm the BTA24-800CWRG data (Rth(j-c) 1.7 K/W, IGT 35 mA) against the ST datasheet (the ST site could not be fetched; the values come from second-source copies of the ST table); firmware recompile with the §12 pin map and the colour-order / touch-orientation check on hardware; DG127H body height (Özdisan's 19.1 mm vs the 10 mm drawing); HLK-10M05 derating above 60 °C (§9).
+
+### 12.5 Layout pass 3 (2026-11-12, from the post-layout EMC assessment)
+
+- **Input filter moved to the mains input** (schematic `sch_pass3.py`): LINE → F3 (8 A, now the main fuse) → LINE_FUSED → L40 (Core Master RC1415U-101K, 100 µH 5 A, new footprint `Rev3:L_Radial_CoreMaster_RC1415U`) → LINE_FILT; C40 (1 µF X2), C1 (100 nF X2) and RV1 across LINE_FILT/NEUT; LINE_FILT feeds Q1.A2 (heater), K1.1 (fan relay) and F1 (1 A) → new net PSU_L → L1 → PS1. Net classes: LINE/LINE_FUSED/LINE_FILT joined the 2.5 mm MainsHeater class, PSU_L is Mains; the 1.0 mm same-potential L-chain rule covers LINE, LINE_FUSED, LINE_FILT, PSU_L and PS1-AC/L. Reason: the triac's zero-cross turn-on steps (0.44 A at 100 Hz) reached the LISN unfiltered in passes 1–2 (≈ 27 dB over the EN 55014-1 limit at 150 kHz by model); behind L40/C40 the estimate is 11 dB under the limit.
+- **Via anti-pad slots in the In1 ground plane removed** (`tools/pcb/in1_web_check.py`): non-GND vias now sit ≥ 1.35 mm apart (≥ 1.10 mm to GND vias) at the J10 via field, the RGB down-leg staircase and the U10 3V3/1V2 ring, so the zone's 0.25 mm minimum web survives everywhere (IPC-2221C 9.1.4.1).
+- Mains band re-placed and re-routed around the new filter position by the mains agent; display region re-spaced by the display agent; power, signals and thermocouple regions unchanged.
+- Verification: DRC 0 violations / 0 unconnected / 0 parity errors on the board as saved (zones filled) and with `--refill-zones` (2026-11-12); mains placement checker 0 issues; In1 anti-pad check: 0 merged groups in the display and mains regions, 4 residual two-via pairs of DC/low-speed nets (J2 FTDI pins 2/3 and 4/5, a +3V3/GND pair at the ESP32 and a +3V3 pair at the buck output, ≈ 2 mm slots each, accepted). 221 vias (GND 104, +3V3 38, +1V2 8 — the 1.2 V core pins are now tied by an F.Cu ring instead of a B.Cu ring —, +5V 7, signals 64), no mains vias; total track length 6.29 m. Heater copper F3 → L40 → Q1 82 mm, whole heater loop 132 mm (pass 2: 87 mm without the choke in the path); C40 8 mm from L40's output pad; LINE_FILT changes from F.Cu to B.Cu through F1's clip pad (Ø1.3 mm barrel, plated cross-section ≈ the 2.5 mm trunk's). RGB lines 100.9–124.5 mm, 8080 bus unchanged (29–73 mm, 0 vias). The heater and fan wire pads (R1, J4) stay on the top edge with J3; the band's west end x 25–50 is free.

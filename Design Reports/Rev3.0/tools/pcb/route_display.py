@@ -2,6 +2,11 @@
 ESP32 -> SSD1963 8080 bus (pass-1 stage 2, unchanged), RGB/sync fan-in U10 -> J10 (new: J10 at (135.65, 94.6) B.Cu),
 U31 LD1117-1.2 + 1V2 feed, J10 companions (TFT_VDD, GND), BL_PWM/BL_EN stubs at R128/R127, J11 touch block (I2C, TP_INT,
 TP_VDD, LCD_RST).  Idempotent: rebuilds everything and writes tracks_display.json.  Local board mm.
+Pass 2b (In1 anti-pad web rule, EMI rule 2 / IPC-2221C 9.1.4.1: non-GND via pitch >= 1.35 mm, GND/non-GND >= 1.10 mm):
+  U10 1V2 pins tie to an F.Cu ring under the die (B.Cu ring removed), 3V3/GND keep one via per pin on LP-solved lanes
+  (plan_lanes), pin 54 shares pin 58's outward via; down-leg field vias raised up their columns (RAISE) with pocket GND vias;
+  sync columns PCLK|HSYNC 1.25 apart; J10 via field as a gable; LCD_RST / I2C_SDA vias nudged; C118 shares C121's via.
+  Every via placed by a search (try_via) is checked against the web rule (disp_web.Web).
 Run:  python route_display.py [--check]            (needs geom_display.json / rev3_placed_display.kicad_pcb, see PASS2_BRIEF.md)"""
 import sys, os, math, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -18,6 +23,11 @@ D = "/Display/"
 WS = 0.25                      # signal / bus width
 V6 = dict(d=0.6, drill=0.3)
 LOG = ["extra track files: %s" % XTRA]
+# pass 2b: In1 anti-pad web rule (EMI rule 2): every via placed by a search (try_via) must keep the GND-plane web >= 0.25 mm
+from disp_web import Web, solve_lanes
+WEBCHK = Web(R, XTRA)
+_try_via0 = R.try_via
+R.try_via = lambda net, x, y, d=0.6, esc=False: _try_via0(net, x, y, d, esc) and WEBCHK.ok(net, x, y, d)
 D = "/Display/"
 WS = 0.25                      # signal / bus width
 V6 = dict(d=0.6, drill=0.3)
@@ -43,7 +53,7 @@ for n in SIGPINS:                       # reserve the first 1.2 mm of every sign
     R.obs["F"].append((__import__("shapely.geometry", fromlist=["x"]).LineString([P("U10", n), ipt(side(n), sval(n), -1.3)]).buffer(0.125), "<rsv>"))
 from shapely.geometry import LineString as _LS
 for cx, cy, ux, uy in ((IN_L, IN_T, 1, 1), (IN_R, IN_T, -1, 1), (IN_L, IN_B, 1, -1), (IN_R, IN_B, -1, -1)):
-    R.obs["F"].append((_LS([(cx, cy), (cx + 5 * ux, cy + 5 * uy)]), "<bis>"))     # corner bisectors: no stub crosses them
+    R.obs["F"].append((_LS([(cx, cy), (cx + 2.0 * ux, cy + 2.0 * uy)]), "<bis>"))     # corner bisectors: no stub crosses them
 VIA_AT = {}
 OUTWARD_GND = {"2", "3", "5", "13", "15", "17", "19", "20", "26"}      # left column GND pins -> vias just outside the pads
 ROWA = 2.3
@@ -81,7 +91,7 @@ def join_neighbour(n, net):
                     if R.try_track(net, "F", pts, WS, esc=True):
                         R.track(net, "F", pts, WS); VIA_AT[n] = VIA_AT[str(m)]; return True
     return False
-def plan_side(sd, pins, d=ROWA):
+def plan_side(sd, pins, d=ROWA):          # pass 1 planner (0.8 mm via ring), superseded by plan_lanes in pass 2b; kept for reference
     lo, hi = SIDE_LO[sd] + d + 0.62, SIDE_HI[sd] - d - 0.62
     pins = sorted(pins, key=sval); t = spread([sval(n) for n in pins], lo, hi)
     neg = [n for n, tt in zip(pins, t) if tt < sval(n) - 1e-6]; pos = [n for n, tt in zip(pins, t) if tt > sval(n) + 1e-6]
@@ -103,12 +113,65 @@ def plan_side(sd, pins, d=ROWA):
 OUT_L = {"2": (48.8, 64.4), "3": (48.8, 64.4), "5": (48.8, 65.62), "15": (48.8, 69.68), "17": (48.8, 70.48),
          "19": (48.8, 71.28), "20": (48.8, 71.28), "26": (48.8, 73.8)}
 OUT_X = {"124": (53.0, 60.95), "58": (61.5, 79.5), "94": (67.5, 64.3)}   # pass 2: 58 moved 0.1 W (B0 escape)   # single outward vias (inner ring full on that side)
+OUT_X54 = True     # pass 2b: pin 54 (3V3) leaves outward and shares pin 58's via (bottom side lane budget, see plan_lanes)
 CAP_FED = {"97", "100"}                                                     # 3V3 corner/top pins fed through C116 / C115 (stage 4)
-OUTWARD_GND = set(OUT_L) | set(OUT_X) | CAP_FED
+OUTWARD_GND = set(OUT_L) | set(OUT_X) | CAP_FED | {"54"}
+# ---- pass 2b (In1 anti-pad web rule): per-pin vias for all three rails cannot keep 1.35 mm (non-GND) / 1.10 mm (GND/non-GND)
+# along a 8 mm side (left side: 9 non-GND + 2 GND vias).  The 1V2 pins therefore tie to an F.Cu ring under the die (inset 3.0,
+# chamfered) by straight stubs; only 3V3 and GND keep a per-pin via in one row at inset 2.3.  Lane positions along each side come
+# from an LP (disp_web.solve_lanes): pin order kept, via/via pitch by net, 0.56 mm between a via and a stub passing it,
+# per-corner margins so the end vias of two sides also keep the pitch.  Pin 46's stub continues to a 1V2 tie via (U31 feed, B.Cu).
+RING = 3.0; RINGC = 0.5; RINGW = 0.4
+RINGPTS = [(IN_L + RING, IN_T + RING + RINGC), (IN_L + RING + RINGC, IN_T + RING), (IN_R - RING - RINGC, IN_T + RING), (IN_R - RING, IN_T + RING + RINGC),
+           (IN_R - RING, IN_B - RING - RINGC), (IN_R - RING - RINGC, IN_B - RING), (IN_L + RING + RINGC, IN_B - RING), (IN_L + RING, IN_B - RING - RINGC),
+           (IN_L + RING, IN_T + RING + RINGC)]
+TIE_IN = 4.3                                                                 # 1V2 tie via (pin 46 lane) inset
+MARG = {("T", "lo"): 0.4, ("L", "lo"): 1.0, ("T", "hi"): 1.0, ("Ri", "lo"): 0.5, ("L", "hi"): 1.25, ("Bo", "lo"): 0.55, ("Bo", "hi"): 0.93, ("Ri", "hi"): 0.62}
+STUB_AT = {}
+def ring_hit(sd, t):
+    from shapely.geometry import LineString as _L3, Point as _P3
+    a, b = ipt(sd, t, 0.0), ipt(sd, t, 6.9)
+    xs = _L3([a, b]).intersection(_L3(RINGPTS))
+    if xs.geom_type == "Point": pts = [xs]
+    elif xs.geom_type == "LineString": pts = [_P3(c) for c in xs.coords]          # lane on the ring side line: its nearer end
+    else: pts = [g if g.geom_type == "Point" else _P3(g.coords[0]) for g in xs.geoms]
+    p = min(pts, key=lambda q: _P3(a).distance(q))
+    return (round(p.x, 4), round(p.y, 4))
+def plan_lanes(sd, pins, d=ROWA):
+    pins = sorted(pins, key=sval)
+    kinds = [("sB" if n == "46" else "s") if u10[n] == "+1V2" else "v" + u10[n] for n in pins]
+    lo, hi = SIDE_LO[sd] + d + MARG[(sd, "lo")], SIDE_HI[sd] - d - MARG[(sd, "hi")]
+    t = solve_lanes([sval(n) for n in pins], kinds, lo, hi, SIDE_LO[sd] + RING, SIDE_HI[sd] - RING)
+    if t is None: LOG.append("lane LP infeasible on side %s" % sd); return list(pins)
+    neg = [n for n, tt in zip(pins, t) if tt < sval(n) - 1e-6]; pos = [n for n, tt in zip(pins, t) if tt > sval(n) + 1e-6]
+    e = {}; sv = {round(sval(n), 2): n for n in pins}
+    for n in neg:
+        p = sv.get(round(sval(n) - 0.4, 2)); e[n] = e[p] + 0.2 if p in e and p in neg else 0.35
+    for n in reversed(pos):
+        p = sv.get(round(sval(n) + 0.4, 2)); e[n] = e[p] + 0.2 if p in e and p in pos else 0.35
+    bad = []
+    for n, tt, k in zip(pins, t, kinds):
+        net = u10[n]; s0 = sval(n); dl = round(tt - s0, 4)
+        head = [P("U10", n)] if abs(dl) < 1e-6 else [P("U10", n), ipt(sd, s0, e[n]), ipt(sd, tt, e[n] + abs(dl))]
+        if k[0] == "v":
+            vp = ipt(sd, tt, d); pts = head + [vp]
+            if abs(dl) > 1e-6 and e[n] + abs(dl) > d - 0.05: bad.append(n); LOG.append("jog too deep pin %s" % n); continue
+            if R.try_via(net, *vp, esc=True) and R.try_track(net, "F", pts, WS, esc=True):
+                R.track(net, "F", pts, WS); R.via(net, *vp, **V6); VIA_AT[n] = (d, dl, vp, e[n] if abs(dl) > 1e-6 else d)
+            else: bad.append(n); LOG.append("lane via blocked pin %s at %s" % (n, vp))
+        else:
+            end = ring_hit(sd, tt); pts = head + [end]
+            if k == "sB": pts += [ipt(sd, tt, TIE_IN)]
+            if R.try_track(net, "F", pts, WS, esc=True):
+                R.track(net, "F", pts, WS); STUB_AT[n] = (tt, pts[-1])
+            else: bad.append(n); LOG.append("1V2 stub blocked pin %s lane %.3f" % (n, tt))
+    return bad
 FAILED = []
 for sd in ("L", "Bo", "Ri", "T"):
     pins = [n for n, net in u10.items() if side(n) == sd and net in ("GND", "+3V3", "+1V2") and int(n) not in CORNER and n not in OUTWARD_GND]
-    FAILED += plan_side(sd, pins)
+    FAILED += plan_lanes(sd, pins)
+if OUT_X54:
+    R.track("+3V3", "F", [P("U10", 54), (60.2, 78.7), (61.0, 79.5), (61.5, 79.5)], WS)
 for n, (vx, vy) in OUT_L.items():
     s0 = sval(n); dy = vy - s0
     pts = [P("U10", n), (vx + abs(dy), s0), (vx, vy)] if abs(dy) > 1e-6 else [P("U10", n), (vx, vy)]
@@ -226,28 +289,16 @@ c = P("C116", "1"); p = P("U10", 97); lnk("+3V3", [c, (c[0], 60.35), (p[0], 60.3
 c = P("C116", "2"); lnk("GND", [c, (c[0], 59.95)], 0.4, (c[0], 59.95))
 c = P("C114", "1"); p = P("U10", 95); lnk("+3V3", [c, (c[0], 63.35), (c[0] - 0.85, p[1]), p])
 c = P("C114", "2"); lnk("GND", [c, (68.4, c[1])], 0.4, (68.4, c[1]))
-# 1.2 V ring on B.Cu (inset 3.3) tied to every inner 1V2 via; outside 1V2 (pin 1, pin 32, caps) joins through C117 -> pin 14
-RX0, RY0, RX1, RY1 = IN_L + 3.3, IN_T + 3.3, IN_R - 3.3, IN_B - 3.3
-R.track("+1V2", "B", [(RX0, RY0), (RX1, RY0), (RX1, RY1), (RX0, RY1), (RX0, RY0)], 0.3)
-for n, v in VIA_AT.items():
-    if u10[n] != "+1V2" or int(n) in CORNER: continue
-    vx, vy = v[2]; sd = side(n)
-    if sd == "L": q = (RX0, min(max(vy, RY0), RY1))
-    elif sd == "Ri": q = (RX1, min(max(vy, RY0), RY1))
-    elif sd == "T": q = (min(max(vx, RX0), RX1), RY0)
-    else: q = (min(max(vx, RX0), RX1), RY1)
-    dx, dy = q[0] - vx, q[1] - vy
-    if abs(abs(dx) - abs(dy)) < 1e-6 or abs(dx) < 1e-6 or abs(dy) < 1e-6: pts = [(vx, vy), q]
-    elif abs(dx) > abs(dy): pts = [(vx, vy), (vx + (abs(dx) - abs(dy)) * (1 if dx > 0 else -1), vy), q]
-    else: pts = [(vx, vy), (vx, vy + (abs(dy) - abs(dx)) * (1 if dy > 0 else -1)), q]
-    if R.try_track("+1V2", "B", pts, 0.3, esc=True): R.track("+1V2", "B", pts, 0.3)
-    else: LOG.append("1V2 ring stub blocked at pin %s" % n)
-# bottom-right corner pin 64 via -> pin 56's via (B); bottom-left caps + pin 32 via -> C117's via (B)
-v64, v56 = VIA_AT["64"][2], VIA_AT["56"][2]
-R.track("+1V2", "B", [v64, (v56[0] + 0.3, v64[1]), (v56[0], v64[1] - 0.3), v56], 0.3)
+# 1.2 V ring (pass 2b): F.Cu under the die at inset 3.0 (chamfered), every inner 1V2 pin joins it by its stub (plan_lanes); the
+# B.Cu side keeps the outside network (pin 1 / pin 32 / C117 / C118 / C120 / C121 on x 45.4) and the U31 feed into the tie via
+R.track("+1V2", "F", RINGPTS, RINGW)
+# bottom-right corner pin 64 via -> B.Cu west under the bottom pad ring -> the U31 feed lane (pin 46 lane)
+v64 = VIA_AT["64"][2]; XT = STUB_AT["46"][0]; YT = IN_B - TIE_IN
+R.via("+1V2", XT, YT, **V6)
+R.track("+1V2", "B", [v64, (round(v64[0] - (76.0 - v64[1]), 4), 76.0), (XT, 76.0)], 0.3)
 v32 = VIA_AT["32"][2]; c117v = (P("C117", "1")[0], 69.9)
-R.track("+1V2", "B", [c117v, (45.4, 70.58), (45.4, VIA_AT["32"][2][1]), (45.4, 78.775), (45.4, 81.975), (45.4, 82.6)], 0.4); R.via("+1V2", 45.4, 82.6, **V6)
-R.track("+1V2", "F", [P("C118", "1"), (45.4, 82.6)], 0.4)
+R.track("+1V2", "B", [c117v, (45.4, 70.58), (45.4, VIA_AT["32"][2][1]), (45.4, 78.775), (45.4, 81.975)], 0.4)
+c8 = P("C118", "1"); R.track("+1V2", "F", [c8, (round(c8[0] + 81.975 - c8[1], 4), 81.975), (46.15, 81.975)], 0.4)   # pass 2b: shares C121's via
 R.track("+1V2", "B", [v32, (45.4, v32[1])], 0.4)
 for ref, y in (("C120", 78.775), ("C121", 81.975)):
     c = P(ref, "1"); R.track("+1V2", "F", [c, (46.15, c[1])], 0.4); R.via("+1V2", 46.15, c[1], **V6); R.track("+1V2", "B", [(46.15, c[1]), (45.4, c[1])], 0.4)
@@ -259,8 +310,8 @@ R.track("GND", "F", [P("C118", "2"), (46.2, P("C118", "2")[1]), (46.2, P("C121",
 # then the former signals corridor (B.Cu y 59.3, x 41.75 column, y 95.85 under J10/J11) into J11.6
 NR = "LCD_RST"; p28 = P("U3", 28); j6 = P("J11", 6)
 R.track(NR, "F", [p28, (p28[0], 42.85)], WS); R.via(NR, p28[0], 42.85, **V6)
-R.track(NR, "B", [(p28[0], 42.85), (27.75, 42.85), (28.3, 43.4), (28.3, 55.6)], WS); R.via(NR, 28.3, 55.6, **V6)
-R.track(NR, "F", [(28.3, 55.6), (28.3, 59.6)], WS); R.via(NR, 28.3, 59.6, **V6)
+R.track(NR, "B", [(p28[0], 42.85), (27.75, 42.85), (28.3, 43.4), (28.3, 55.15)], WS); R.via(NR, 28.3, 55.15, **V6)   # pass 2b: 0.45 N (web to the GND via at (27.3, 55.715))
+R.track(NR, "F", [(28.3, 55.15), (28.3, 59.6)], WS); R.via(NR, 28.3, 59.6, **V6)
 R.track(NR, "B", [(28.3, 59.6), (28.6, 59.3)], WS)        # pass 2: continues in stage 6 (J11 now at (40.3, 94.6))
 def gnd_near(net_xy, cands):
     for gx, gy in cands:
@@ -317,6 +368,7 @@ YF0, PF = 78.2, 0.6                                                    # field r
 GAPW = 1.25                                                            # column gap that leaves a GND pocket
 GAPS = [0.6 if (i % 3) != 1 else GAPW for i in range(len(FCOLS) - 1)]  # east -> west gaps between consecutive columns
 GAPS = FIELD_GAPS if "FIELD_GAPS" in globals() else GAPS
+GAPS[18], GAPS[22] = GAPW, 0.6    # pass 2b: PCLK|HSYNC needs 1.25 (web rule: their vias are 0.6 apart in y); B4|B5 had no pocket use
 XB7 = 100.75                                                           # west-most column (1 mm from R123's courtyard)
 XCOL = {}
 x = XB7
@@ -340,8 +392,14 @@ def fpath(nm, yend):
     return pts
 VIAS = {}
 FIELD = FCOLS[:22]                                                     # B4..B7 pass the field on F (south-band vias)
+# pass 2b (In1 web rule): the field vias may sit anywhere up their own F column (the B.Cu continues down the column to the
+# row corner, which no other B row reaches).  Per column triplet (a, b, c east -> west, rows y, y+0.6, y+1.2): a 2.756 above its
+# corner, b 1.8 above, c at its corner; the GND return via sits in the 1.25 pocket west of c, 1.056 above c's corner.  Every
+# signal-via pair >= 1.35 mm, GND/signal 1.1..1.5 mm.  The sync crossbar keeps its vias at the corners (rows cross).
+RAISE = {"R0": 1.0, "R2": 2.756, "R3": 1.8, "R5": 2.756, "R6": 1.8, "G0": 2.756, "G1": 1.8, "G3": 2.756, "G4": 1.8, "G6": 2.756, "G7": 1.8}
 for nm in FIELD:
-    R.track(D + nm, "F", fpath(nm, YFR[nm]), WS); R.via(D + nm, XCOL[nm], YFR[nm], **V6); VIAS[nm] = (XCOL[nm], YFR[nm])
+    vy = round(YFR[nm] - RAISE.get(nm, 0.0), 4)
+    R.track(D + nm, "F", fpath(nm, vy), WS); R.via(D + nm, XCOL[nm], vy, **V6); VIAS[nm] = (XCOL[nm], vy)
 
 # ---- B rows east from the field, 45 deg jog to the J10 row pitch (0.4) east of the F-through columns
 XJ = round(X0F + 1.6, 4)
@@ -356,8 +414,8 @@ JY = 91.725
 BR = {}
 for nm, r in FROW.items():
     if r > 21: continue
-    vx, vy = VIAS[nm]; t = TROW[nm]
-    BR[nm] = [(vx, vy)] + jog(vy, t, vx)
+    vx, vy = VIAS[nm]; t = TROW[nm]; yr = YFR[nm]
+    BR[nm] = ([(vx, vy), (vx, round(yr - 0.5, 4)), (round(vx + 0.5, 4), yr)] if yr - vy > 1e-6 else [(vx, vy)]) + jog(yr, t, vx)
 # R0..G6: east above the pin, drop into the pads
 for nm in FCOLS[:15]:
     xp = JX[nm]; t = TROW[nm]
@@ -377,18 +435,19 @@ for nm, pts in BR.items():
 # y 94.2 just south of the pads (0.8 pitch), B.Cu stubs north into the pad south ends; GND return vias at y 95.05 between them
 # (VLED pair on B.Cu at y >= 96.05 stays clear).  F rows north -> south B2..B7, the south-most turns first.
 SROW = {"B2": 91.0, "B3": 91.4, "B4": 91.8, "B5": 92.2, "B6": 92.6, "B7": 93.0}
-SVX = {"B7": 131.15, "B6": 131.95, "B5": 132.75, "B4": 133.55, "B3": 134.35, "B2": 135.15}
-SVY = 94.2
+# pass 2b (In1 web rule): the six vias form a gable south of the pads - west triple B7/B6/B5 and east triple B2/B3/B4 on
+# 1.25 x 0.6 steps (pitch 1.39), B5|B4 1.5 apart at the bottom; B.Cu stubs leave the pad ends straight down, 45 deg, then a short
+# row out to the via; four GND vias (1.17..1.23 mm from their signal vias) west, east and under the two bottom pairs.
+JV = {"B7": (129.9, 93.5), "B6": (131.15, 94.1), "B5": (132.4, 94.7), "B4": (133.9, 94.7), "B3": (135.15, 94.1), "B2": (136.4, 93.5)}
 for nm in ("B2", "B3", "B4", "B5", "B6", "B7"):
-    xc = XCOL[nm]; yr = SROW[nm]; vx = SVX[nm]
-    pts = fpath(nm, round(yr - 0.5, 4)) + [(round(xc + 0.5, 4), yr), (round(vx - 0.5, 4), yr), (vx, round(yr + 0.5, 4)), (vx, SVY)]
-    R.track(D + nm, "F", pts, WS); R.via(D + nm, vx, SVY, **V6); VIAS[nm] = (vx, SVY)
-    xp = JX[nm]; dj = xp - vx
-    bp = [(vx, SVY), (vx, 93.6)]
-    if abs(dj) > 1e-6: bp += [(xp, round(93.6 - abs(dj), 4))]
-    R.track(D + nm, "B", bp + [(xp, JY)], WS)
-for gx in (131.55, 133.15, 134.75):
-    R.via("GND", gx, 95.05, **V6)
+    xc = XCOL[nm]; yr = SROW[nm]; vx, vy = JV[nm]
+    pts = fpath(nm, round(yr - 0.5, 4)) + [(round(xc + 0.5, 4), yr), (round(vx - 0.5, 4), yr), (vx, round(yr + 0.5, 4)), (vx, vy)]
+    R.track(D + nm, "F", pts, WS); R.via(D + nm, vx, vy, **V6); VIAS[nm] = (vx, vy)
+    xp = JX[nm]; sgn = 1 if vx > xp else -1                              # east triple turns east, west triple west
+    R.track(D + nm, "B", [(vx, vy), (round(xp + 0.5 * sgn, 4), vy), (xp, round(vy - 0.5, 4)), (xp, JY)], WS)
+for gx, gy in ((128.9, 94.2), (131.4, 95.3), (134.9, 95.3), (137.4, 94.2)):
+    if not (R.try_via("GND", gx, gy)): LOG.append("J10 field GND via (%.2f, %.2f) fails the checks" % (gx, gy))
+    R.via("GND", gx, gy, **V6)
 
 # ---- GND return vias: every RGB/sync signal via gets a GND via within 1.5 mm (greedy: the candidate covering most open vias)
 def gnd_vias_all():
@@ -414,13 +473,13 @@ def place_return_vias(sigvias, rmax=1.5):
         R.via("GND", gx, gy, **V6)
         for n in cov: open_.pop(n)
     return open_
-for i, g in enumerate(GAPS[:21]):                                      # pockets of the wide column gaps (cover 3 vias each)
-    if g < 1.2: continue
-    e, w = FCOLS[i], FCOLS[i + 1]
-    for d in (0.5, 0.6, 0.7, 0.8, 0.9):
-        gx, gy = round((XCOL[e] + XCOL[w]) / 2, 3), round(YFR[e] - d, 3)
-        if R.try_via("GND", gx, gy) and all(math.hypot(gx - qx, gy - qy) >= 0.8 for qx, qy in gnd_vias_all()):
-            R.via("GND", gx, gy, **V6); break
+FGND = [(round((XCOL[e] + XCOL[w]) / 2, 3), round(YFR[e] - 1.056, 3)) for e, w in
+        (("R1", "R2"), ("R4", "R5"), ("R7", "G0"), ("G2", "G3"), ("G5", "G6"), ("B0", "DE"))]          # pockets west of each c line
+FGND += [(round((XCOL["PCLK"] + XCOL["HSYNC"]) / 2, 3), 87.7), (round((XCOL["HSYNC"] + XCOL["VSYNC"]) / 2, 3), 87.7),   # PCLK, B1
+         (104.9, 91.0), (105.75, 91.1)]                                                                                 # HSYNC+VSYNC, DE
+for gx, gy in FGND:
+    if not R.try_via("GND", gx, gy): LOG.append("field GND via (%.3f, %.3f) fails the checks" % (gx, gy))
+    R.via("GND", gx, gy, **V6)
 MISS = place_return_vias(VIAS)
 LOG.append("RGB/sync signal vias: %d, without GND via within 1.5 mm: %s" % (len(VIAS), sorted(MISS)))
 
@@ -428,8 +487,8 @@ STAGE3B_END = len(R.items)
 # ================================================================== stage 4 (pass 2): U31 LD1117-1.2 group, BL_PWM crossing, BL_EN link
 tab, p2c = P("U31", "2"), (59.8, 92.15)                                  # geom keeps the tab for pad "2"; the centre pin is at y 92.15
 R.track("+1V2", "F", [p2c, (59.8, 86.85)], 0.5)                          # centre pin 2 -> tab under the body
-R.track("+1V2", "F", [tab, (57.195, tab[1])], 0.5); R.via("+1V2", 57.195, tab[1], **V6)
-R.track("+1V2", "B", [(57.195, tab[1]), (57.195, 74.625)], 0.4)          # straight up to pin 46's inner 1V2 via (B ring)
+R.track("+1V2", "F", [tab, (XT, tab[1])], 0.5); R.via("+1V2", XT, tab[1], **V6)
+R.track("+1V2", "B", [(XT, tab[1]), (XT, YT)], 0.3)                      # pass 2b: straight up the pin-46 lane to the 1V2 tie via
 c = P("C337", "1"); R.track("+1V2", "F", [tab, c], 0.5)
 c = P("C337", "2"); R.track("GND", "F", [c, (66.6, c[1])], 0.4); R.via("GND", 66.6, c[1], **V6)
 c = P("C336", "1"); R.track("+1V2", "F", [p2c, (59.8, 94.05), (c[0], 95.0)], 0.5)
@@ -466,9 +525,9 @@ c = P("R125", "1"); R.track("+3V3", "F", [c, (round(c[0] + 96.0 - c[1], 4), 96.0
 # and LCD_RST (41.75); at y 83.3 the four columns jog SE to x 45.25..47.5, pass east of J11's mounting pad and enter the pad
 # south ends from rows y 96.0..97.2 (this turns the column order into J11's pin order).
 SD, SC = "I2C_SDA", "I2C_SCL"
-R.track(SD, "F", [(23.23, 41.25), (23.23, 41.75), (23.98, 42.5), (28.99, 42.5), (28.99, 42.7), (29.49, 43.2), (30.95, 43.2), (31.45, 43.7), (31.45, 60.75)], WS)
-R.via(SD, 31.45, 60.75, **V6)
-R.track(SD, "B", [(31.45, 60.75), (31.45, 75.7), (32.85, 77.1)], WS); R.via(SD, 32.85, 77.1, **V6)
+R.track(SD, "F", [(23.23, 41.25), (23.23, 41.75), (23.98, 42.5), (28.99, 42.5), (28.99, 42.7), (29.49, 43.2), (30.95, 43.2), (31.45, 43.7), (31.45, 61.15)], WS)
+R.via(SD, 31.45, 61.15, **V6)                                        # pass 2b: 0.4 S of pass 1 (1.37 mm from the SCL via)
+R.track(SD, "B", [(31.45, 61.15), (31.45, 75.7), (32.85, 77.1)], WS); R.via(SD, 32.85, 77.1, **V6)
 R.track(SD, "F", [(32.85, 77.1), (32.85, 81.6), (32.45, 82.0), (31.7, 82.0)], WS)
 R.track(SC, "F", [(25.75, 45.555), (28.945, 45.555), (28.99, 45.6), (28.99, 45.8), (29.49, 46.3), (30.2, 46.3), (30.7, 46.8), (30.7, 60.0)], WS)
 R.via(SC, 30.7, 60.0, **V6)
@@ -479,7 +538,7 @@ R.track(TI, "F", [(16.88, 58.75), (16.88, 65.1), (17.63, 65.85), (32.6, 65.85)],
 YS4 = 83.3
 DJ = {TI: 5.75, "I2C_SDA": 5.75, "I2C_SCL": 6.3, "LCD_RST": 6.3}   # 1.3 mm gap SDA|SCL after the jog: GND return via
 J11C = {TI: (39.5, 96.0, "3"), SD: (40.25, 96.45, "4"), SC: (41.0, 96.9, "5"), "LCD_RST": (41.75, 97.35, "6")}   # 0.45 pitch (Default class)
-HEAD = {TI: [(32.6, 65.85), (39.0, 65.85), (39.5, 66.35)], SD: [(31.45, 60.75), (39.75, 60.75), (40.25, 61.25)],
+HEAD = {TI: [(32.6, 65.85), (39.0, 65.85), (39.5, 66.35)], SD: [(31.45, 61.15), (31.85, 60.75), (39.75, 60.75), (40.25, 61.25)],
         SC: [(30.7, 60.0), (40.5, 60.0), (41.0, 60.5)], "LCD_RST": [(28.6, 59.3), (41.25, 59.3), (41.75, 59.8)]}
 for net, (xc, yr, pin) in J11C.items():
     x2 = round(xc + DJ[net], 4); xp, yp = P("J11", pin)

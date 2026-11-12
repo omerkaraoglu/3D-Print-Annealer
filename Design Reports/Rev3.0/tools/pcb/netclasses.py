@@ -3,9 +3,9 @@ import json, sys, re
 PRO = r"C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/KiCad/3dFilamentDryer/3dFilamentDryer.kicad_pro"
 DRU = r"C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/KiCad/3dFilamentDryer/3dFilamentDryer.kicad_dru"
 
-MAINS = ["LINE", "LINE_FUSED", "LINE_FILT", "NEUT", "Net-(PS1-AC/L)", "Net-(PS1-AC/N)", "Net-(Q1-A1)", "Net-(Q1-A2)",
+MAINS = ["LINE", "LINE_FUSED", "LINE_FILT", "PSU_L", "NEUT", "Net-(PS1-AC/L)", "Net-(PS1-AC/N)", "Net-(Q1-A1)", "Net-(Q1-A2)",
          "Net-(Q1-G)", "Net-(C4-Pad1)", "Net-(R3-Pad1)", "Net-(J4-Pin_1)", "Net-(D1-A)", "Net-(D1-K)", "Net-(D2-K)", "Net-(D3-A)"]
-HEATER = ["LINE", "Net-(Q1-A1)", "Net-(Q1-A2)"]                       # 5.7 A heater path -> 2.5 mm (IPC-2152, 1 oz, 20 K rise at 85 C)
+HEATER = ["LINE", "LINE_FUSED", "LINE_FILT", "Net-(Q1-A1)", "Net-(Q1-A2)"]   # pass 3: the LC filter is in the heater path                       # 5.7 A heater path -> 2.5 mm (IPC-2152, 1 oz, 20 K rise at 85 C)
 POWER = ["+5V", "+3V3", "/Power/BUCK_SW", "/Display/BL_VIN", "/Display/BL_SW", "/Display/BL_DAMP", "/Display/VLED_P", "/Display/VLED_N", "/Display/TFT_VDD"]
 P1V2 = ["+1V2"]
 TC = ["/Thermocouple front end (K-type, ADS1115)/TC_P", "/Thermocouple front end (K-type, ADS1115)/TC_N",
@@ -55,9 +55,9 @@ json.dump(p, open(PRO, "w", encoding="utf-8"), indent=2)
 print("project net classes written")
 
 # component-inherent exceptions (the SRD-05 relay: coil pins 6.3 mm from the COM contact; the relay carries the reinforced insulation)
-K1NETS = lambda A: "(%s.NetName == 'LINE' || %s.NetName == '+5V' || %s.NetName == 'Net-(D5-A)' || %s.NetName == 'Net-(J4-Pin_1)')" % (A, A, A, A)
+K1NETS = lambda A: "(%s.NetName == 'LINE' || %s.NetName == 'LINE_FILT' || %s.NetName == '+5V' || %s.NetName == 'Net-(D5-A)' || %s.NetName == 'Net-(J4-Pin_1)')" % (A, A, A, A, A)   # pass 3: K1 COM is on LINE_FILT
 COILN = lambda A: "(%s.NetName == '+5V' || %s.NetName == 'Net-(D5-A)')" % (A, A)
-EXC = "(A.NetName == 'LINE' && %s) || (B.NetName == 'LINE' && %s) || (A.NetName == 'unconnected-(K1-Pad4)' && %s) || (B.NetName == 'unconnected-(K1-Pad4)' && %s)" % (COILN('B'), COILN('A'), COILN('B'), COILN('A'))
+EXC = "(A.NetName == 'LINE' && %s) || (B.NetName == 'LINE' && %s) || (A.NetName == 'LINE_FILT' && %s) || (B.NetName == 'LINE_FILT' && %s) || (A.NetName == 'unconnected-(K1-Pad4)' && %s) || (B.NetName == 'unconnected-(K1-Pad4)' && %s)" % (COILN('B'), COILN('A'), COILN('B'), COILN('A'), COILN('B'), COILN('A'))
 # HS1 solder pins (unconnected nets) by net name: creepage rules see nets, not footprints
 HSN = lambda X: "%s.NetName == 'unconnected-(HS1-Pad1)' || %s.NetName == 'unconnected-(HS1-Pad2)'" % (X, X)
 mainsc = lambda A: "%s.NetClass == 'Mains' || %s.NetClass == 'MainsHeater'" % (A, A)
@@ -82,7 +82,7 @@ dru = f"""(version 1)
 # nodes that sit at the same potential (fuse / choke / filter chain on L, and on N): 1.0 mm functional
 (rule "mains_L_group"
    (constraint clearance (min 1.0mm))
-   (condition "(A.NetName == 'LINE' && B.NetName == 'LINE_FUSED') || (A.NetName == 'LINE' && B.NetName == 'LINE_FILT') || (A.NetName == 'LINE' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'LINE_FUSED' && B.NetName == 'LINE') || (A.NetName == 'LINE_FUSED' && B.NetName == 'LINE_FILT') || (A.NetName == 'LINE_FUSED' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'LINE_FILT' && B.NetName == 'LINE') || (A.NetName == 'LINE_FILT' && B.NetName == 'LINE_FUSED') || (A.NetName == 'LINE_FILT' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE_FUSED') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE_FILT')"))
+   (condition "(A.NetName == 'LINE' && B.NetName == 'LINE_FUSED') || (A.NetName == 'LINE' && B.NetName == 'LINE_FILT') || (A.NetName == 'LINE' && B.NetName == 'PSU_L') || (A.NetName == 'LINE' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'LINE_FUSED' && B.NetName == 'LINE') || (A.NetName == 'LINE_FUSED' && B.NetName == 'LINE_FILT') || (A.NetName == 'LINE_FUSED' && B.NetName == 'PSU_L') || (A.NetName == 'LINE_FUSED' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'LINE_FILT' && B.NetName == 'LINE') || (A.NetName == 'LINE_FILT' && B.NetName == 'LINE_FUSED') || (A.NetName == 'LINE_FILT' && B.NetName == 'PSU_L') || (A.NetName == 'LINE_FILT' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'PSU_L' && B.NetName == 'LINE') || (A.NetName == 'PSU_L' && B.NetName == 'LINE_FUSED') || (A.NetName == 'PSU_L' && B.NetName == 'LINE_FILT') || (A.NetName == 'PSU_L' && B.NetName == 'Net-(PS1-AC/L)') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE_FUSED') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'LINE_FILT') || (A.NetName == 'Net-(PS1-AC/L)' && B.NetName == 'PSU_L')"))
 (rule "mains_N_group"
    (constraint clearance (min 1.0mm))
    (condition "(A.NetName == 'NEUT' && B.NetName == 'Net-(PS1-AC/N)') || (B.NetName == 'NEUT' && A.NetName == 'Net-(PS1-AC/N)')"))

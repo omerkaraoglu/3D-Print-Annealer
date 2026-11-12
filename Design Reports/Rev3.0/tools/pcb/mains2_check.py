@@ -8,10 +8,10 @@ import json, math, sys, itertools
 from shapely.geometry import Polygon, Point, box, LineString
 G = json.load(open(sys.argv[1])); C = json.load(open(sys.argv[2]))
 TJ = [f for f in (sys.argv[3].split(",") if len(sys.argv) > 3 else []) if f]
-MAINS = {"LINE", "LINE_FUSED", "LINE_FILT", "NEUT", "Net-(PS1-AC/L)", "Net-(PS1-AC/N)", "Net-(Q1-A1)", "Net-(Q1-A2)", "Net-(Q1-G)",
+MAINS = {"LINE", "LINE_FUSED", "LINE_FILT", "PSU_L", "NEUT", "Net-(PS1-AC/L)", "Net-(PS1-AC/N)", "Net-(Q1-A1)", "Net-(Q1-A2)", "Net-(Q1-G)",
          "Net-(C4-Pad1)", "Net-(R3-Pad1)", "Net-(J4-Pin_1)", "Net-(D1-A)", "Net-(D1-K)", "Net-(D2-K)", "Net-(D3-A)",
          "unconnected-(K1-Pad4)", "unconnected-(U1-NC-Pad3)", "unconnected-(U5-NC-Pad5)"}
-LCH = {"LINE", "LINE_FUSED", "LINE_FILT", "Net-(PS1-AC/L)"}; NCH = {"NEUT", "Net-(PS1-AC/N)"}
+LCH = {"LINE", "LINE_FUSED", "LINE_FILT", "PSU_L", "Net-(PS1-AC/L)"}; NCH = {"NEUT", "Net-(PS1-AC/N)"}
 TALL = ("L40", "C40", "K1", "L1", "PS1")
 LV = Polygon([(0.5, 0.5), (25.5, 0.5), (25.5, 35.5), (52.0, 35.5), (52.0, 38.8), (58.0, 39.81), (58.0, 56.0), (96.0, 56.0), (96.0, 54.8),
               (126.0, 54.8), (130.0, 55.5), (130.0, 80.0), (161.0, 80.0), (161.0, 98.5), (0.5, 98.5)])

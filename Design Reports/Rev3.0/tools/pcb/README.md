@@ -47,3 +47,10 @@ Notes from the pass-2 merge:
   the pass-2 mains placement checker (heatsink envelope vs tall parts, HS1 pins, creepage proxies, edge); `dump_crt.py` writes
   the courtyard JSON it needs from the built board. `d2_lanes.py` / `display_lane_decision.md` hold the RGB lane-order analysis
   (the current netlist is the crossing-minimal mapping; 59 vs 187 ribbon crossings).
+
+## Layout pass 3 (2026-11-12, EMC assessment)
+
+`sch_pass3.py` moved the LC input filter to the mains input (F3 main fuse → L40 → LINE_FILT → triac / relay / F1 → PSU_L → L1); the
+mains agent re-placed and re-routed the band, the display agent re-spaced the via rows so that no In1 anti-pads merge
+(`in1_web_check.py board.kicad_pcb` must report 0 merged groups; rule: ≥ 1.35 mm between non-GND vias, ≥ 1.10 mm GND-to-signal).
+The EMC estimates and the IEC 61000-4-15 flickermeter model live in `Design Reports/Rev3.0/sim/emc/`.

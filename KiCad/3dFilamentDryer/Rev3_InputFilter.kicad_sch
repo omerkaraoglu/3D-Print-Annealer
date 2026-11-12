@@ -5,7 +5,7 @@
 	(uuid "3a0f6c2e-0001-4c3e-9b1e-000000000004")
 	(paper "A3")
 	(title_block
-		(title "Rev3.0 Mains input EMC filter (PSU branch)")
+		(title "Rev3.0 Mains input EMC filter")
 		(date "2026-11-09")
 		(rev "3.0")
 		(company "READARK")
@@ -524,7 +524,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "120uH"
+		(property "Value" "100uH 5A"
 			(at 82.55 69.85 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -535,7 +535,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Rev3:L_Radial_D22.5mm_P9.00mm"
+		(property "Footprint" "Rev3:L_Radial_CoreMaster_RC1415U"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -546,7 +546,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ozdisan.com/p/sabit-induktorler-468/oem-ind-120uh-tht-954101"
+		(property "Datasheet" "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -557,7 +557,7 @@
 				)
 			)
 		)
-		(property "Description" "Inductor fixed radial 120 uH, wire wound, unshielded, D22.5 x 8.25 mm, pitch 9 mm, THT"
+		(property "Description" "Inductor fixed radial 100 uH +/-10 %, 5 A, 100 mOhm, D16.5 x H17 mm, pitch 7.5 mm, THT (Core Master spec HX8817022); main input filter choke, carries the heater current 4.4 A (the earlier IND-120UH-THT has no published rating)"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -568,7 +568,7 @@
 				)
 			)
 		)
-		(property "MPN" "IND-120UH-THT"
+		(property "MPN" "RC1415U-101K"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -579,7 +579,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "OEM (ozdisan)"
+		(property "Manufacturer" "CORE MASTER"
 			(at 80.01 69.85 0)
 			(hide yes)
 			(show_name no)
