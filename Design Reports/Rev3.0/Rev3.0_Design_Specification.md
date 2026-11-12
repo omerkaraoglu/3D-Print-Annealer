@@ -181,6 +181,7 @@ Design rules carried into the schematic and to be followed in layout:
 - `EMI_Signal_Integrity_Analysis.md` + `sim/` — formulas, ngspice/PySpice scripts, JSON results, 11 plots, 24 layout rules, pre-compliance test plan (near-field scan points, LISN conducted, radiated bands, EN 61000-4-x)
 - `tools/gen_rev3.py` — regenerates the Rev3 sheets and patches the root from the Rev2.1 root in git (re-run instead of hand-editing when changing the structure)
 - `Rev3.0_CPL.csv` — pick-and-place (both sides, mm, from the Rev3.0 board)
+- `EMC_Scorecard_Decided_Design.pdf` — pass/fail scorecard of the decided configuration only (pass-4 hardware + 20 s burst-frame firmware; `sim/emc/make_decided_pdf.py`)
 - `EMC_Simulation_Results.pdf` — the simulation results as a report (built by `sim/emc/make_emc_pdf.py` from the JSON results and plots)
 - `EMC_PostLayout_Assessment.md` + `sim/emc/` — post-layout EMC assessment against EN 55014-1/-2, IEC 61000-3-2/-3-3 (conducted/radiated estimates, IEC 61000-4-15 flickermeter model, test plan, open items)
 - `tools/pcb/` — PCB layout generator and hand-routing scripts (see §12 and its README; pass 2: `sch_pass2.py`, `gen_heatsink_fp.py`, `placement_override_*.py`, `mains2_check.py`, `PASS2_BRIEF.md`); the design rules live in `KiCad/3dFilamentDryer/3dFilamentDryer.kicad_dru` + the net classes in the `.kicad_pro`
