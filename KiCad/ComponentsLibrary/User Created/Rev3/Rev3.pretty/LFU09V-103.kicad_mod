@@ -150,4 +150,9 @@
 		(uuid "dfd9b015-00d0-4d74-87de-9fdb1327102a")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/LFU09V-103.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
 	)
+)

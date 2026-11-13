@@ -1,0 +1,1216 @@
+{
+ "Rev3:L_Radial_CoreMaster_RC1415U": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -3.75,
+    "y": 0.0,
+    "w": 2.4,
+    "h": 2.4,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 3.75,
+    "y": 0.0,
+    "w": 2.4,
+    "h": 2.4,
+    "drill": 1.3,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Radial_CoreMaster_RC1415U.step"
+  ]
+ },
+ "Rev3:L_CoreMaster_SRI0605B": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -2.375,
+    "y": 0.0,
+    "w": 2.25,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": 2.375,
+    "y": 0.0,
+    "w": 2.25,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_CoreMaster_SRI0605B.step"
+  ]
+ },
+ "Rev3:L_Viking_PCD0403": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -1.625,
+    "y": 0.0,
+    "w": 1.75,
+    "h": 4.5,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": 1.625,
+    "y": 0.0,
+    "w": 1.75,
+    "h": 4.5,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Viking_PCD0403.step"
+  ]
+ },
+ "Rev3:LFU09V-103": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -3.5,
+    "y": 4.0,
+    "w": 2.54,
+    "h": 2.54,
+    "drill": 0.8,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 3.5,
+    "y": 4.0,
+    "w": 2.54,
+    "h": 2.54,
+    "drill": 0.8,
+    "smd": false
+   },
+   {
+    "num": "3",
+    "x": 3.5,
+    "y": -4.0,
+    "w": 2.54,
+    "h": 2.54,
+    "drill": 0.8,
+    "smd": false
+   },
+   {
+    "num": "4",
+    "x": -3.5,
+    "y": -4.0,
+    "w": 2.54,
+    "h": 2.54,
+    "drill": 0.8,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/LFU09V-103.step"
+  ]
+ },
+ "Rev3:Heatsink_Fischer_SK409_63.5_STC": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -17.75,
+    "y": 0.0,
+    "w": 4.2,
+    "h": 4.2,
+    "drill": 2.8,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 17.75,
+    "y": 0.0,
+    "w": 4.2,
+    "h": 4.2,
+    "drill": 2.8,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Heatsink_Fischer_SK409_63.5_STC.step"
+  ]
+ },
+ "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 9.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": 9.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "3",
+    "x": 8.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "4",
+    "x": 8.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "5",
+    "x": 7.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "6",
+    "x": 7.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "7",
+    "x": 6.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "8",
+    "x": 6.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "9",
+    "x": 5.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "10",
+    "x": 5.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "11",
+    "x": 4.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "12",
+    "x": 4.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "13",
+    "x": 3.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "14",
+    "x": 3.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "15",
+    "x": 2.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "16",
+    "x": 2.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "17",
+    "x": 1.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "18",
+    "x": 1.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "19",
+    "x": 0.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "20",
+    "x": 0.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "21",
+    "x": -0.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "22",
+    "x": -0.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "23",
+    "x": -1.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "24",
+    "x": -1.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "25",
+    "x": -2.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "26",
+    "x": -2.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "27",
+    "x": -3.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "28",
+    "x": -3.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "29",
+    "x": -4.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "30",
+    "x": -4.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "31",
+    "x": -5.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "32",
+    "x": -5.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "33",
+    "x": -6.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "34",
+    "x": -6.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "35",
+    "x": -7.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "36",
+    "x": -7.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "37",
+    "x": -8.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "38",
+    "x": -8.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "39",
+    "x": -9.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "40",
+    "x": -9.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": -11.7,
+    "y": -0.975,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": 11.7,
+    "y": -0.975,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide.step"
+  ]
+ },
+ "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -9.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": -9.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "3",
+    "x": -8.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "4",
+    "x": -8.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "5",
+    "x": -7.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "6",
+    "x": -7.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "7",
+    "x": -6.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "8",
+    "x": -6.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "9",
+    "x": -5.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "10",
+    "x": -5.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "11",
+    "x": -4.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "12",
+    "x": -4.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "13",
+    "x": -3.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "14",
+    "x": -3.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "15",
+    "x": -2.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "16",
+    "x": -2.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "17",
+    "x": -1.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "18",
+    "x": -1.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "19",
+    "x": -0.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "20",
+    "x": -0.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "21",
+    "x": 0.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "22",
+    "x": 0.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "23",
+    "x": 1.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "24",
+    "x": 1.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "25",
+    "x": 2.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "26",
+    "x": 2.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "27",
+    "x": 3.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "28",
+    "x": 3.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "29",
+    "x": 4.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "30",
+    "x": 4.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "31",
+    "x": 5.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "32",
+    "x": 5.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "33",
+    "x": 6.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "34",
+    "x": 6.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "35",
+    "x": 7.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "36",
+    "x": 7.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "37",
+    "x": 8.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "38",
+    "x": 8.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "39",
+    "x": 9.25,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "40",
+    "x": 9.75,
+    "y": -2.875,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": -11.7,
+    "y": -0.975,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": 11.7,
+    "y": -0.975,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal.step"
+  ]
+ },
+ "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -1.25,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": -0.75,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "3",
+    "x": -0.25,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "4",
+    "x": 0.25,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "5",
+    "x": 0.75,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "6",
+    "x": 1.25,
+    "y": -2.6,
+    "w": 0.3,
+    "h": 1.8,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": -3.2,
+    "y": -0.7,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": 3.2,
+    "y": -0.7,
+    "w": 2.5,
+    "h": 3.2,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal.step"
+  ]
+ },
+ "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 1.25,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "2",
+    "x": 0.75,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "3",
+    "x": 0.25,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "4",
+    "x": -0.25,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "5",
+    "x": -0.75,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "6",
+    "x": -1.25,
+    "y": -2.05,
+    "w": 0.3,
+    "h": 1.25,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": -3.79,
+    "y": 0.55,
+    "w": 2.0,
+    "h": 2.45,
+    "drill": 0.0,
+    "smd": true
+   },
+   {
+    "num": "MP",
+    "x": 3.79,
+    "y": 0.55,
+    "w": 2.0,
+    "h": 2.45,
+    "drill": 0.0,
+    "smd": true
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide.step"
+  ]
+ },
+ "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "w": 2.6,
+    "h": 2.6,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 5.08,
+    "y": 0.0,
+    "w": 2.6,
+    "h": 2.6,
+    "drill": 1.3,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/TerminalBlock_DEGSON_DG127H-5.08-02P.step"
+  ]
+ },
+ "Rev3:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2": {
+  "pads": [
+   {
+    "num": "1",
+    "x": -13.75,
+    "y": 0.0,
+    "w": 2.4,
+    "h": 2.4,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 13.75,
+    "y": 0.0,
+    "w": 2.4,
+    "h": 2.4,
+    "drill": 1.3,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42.step"
+  ]
+ },
+ "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "w": 2.3,
+    "h": 2.3,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "1",
+    "x": 5.2,
+    "y": 0.0,
+    "w": 2.3,
+    "h": 2.3,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 15.3,
+    "y": 0.0,
+    "w": 2.3,
+    "h": 2.3,
+    "drill": 1.3,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 20.5,
+    "y": 0.0,
+    "w": 2.3,
+    "h": 2.3,
+    "drill": 1.3,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal.step"
+  ]
+ },
+ "Connector_Wire:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "w": 3.9,
+    "h": 3.9,
+    "drill": 2.15,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 7.8,
+    "y": 0.0,
+    "w": 3.9,
+    "h": 3.9,
+    "drill": 2.15,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KICAD10_3DMODEL_DIR}/Connector_Wire.3dshapes/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm.step"
+  ]
+ },
+ "Connector_Wire:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm": {
+  "pads": [
+   {
+    "num": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "w": 3.5,
+    "h": 3.5,
+    "drill": 1.6,
+    "smd": false
+   },
+   {
+    "num": "2",
+    "x": 7.0,
+    "y": 0.0,
+    "w": 3.5,
+    "h": 3.5,
+    "drill": 1.6,
+    "smd": false
+   }
+  ],
+  "models": [
+   "${KICAD10_3DMODEL_DIR}/Connector_Wire.3dshapes/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm.step"
+  ]
+ }
+}

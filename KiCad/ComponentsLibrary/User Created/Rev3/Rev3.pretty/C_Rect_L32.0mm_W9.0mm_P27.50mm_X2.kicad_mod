@@ -75,4 +75,9 @@
 		(layers "*.Cu" "*.Mask")
 		(uuid "b900a6f8-859a-4b8d-8482-503133a13c5f")
 	)
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

@@ -20,4 +20,9 @@
 	(fp_line (start 3.400 -3.200) (end 3.400 -1.200) (stroke (width 0.12) (type solid)) (layer "F.SilkS") (uuid "c1c98b25-68ff-468e-9865-bc116f0d8434"))
 	(fp_line (start 3.400 3.200) (end 3.400 1.200) (stroke (width 0.12) (type solid)) (layer "F.SilkS") (uuid "0bb72c8b-fbaa-4049-95cd-f72d54d8f750"))
 	(fp_rect (start -3.800 -3.600) (end 3.800 3.600) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "3f7d6aea-ecfd-46a8-a8a0-941098ef5c84"))
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_CoreMaster_SRI0605B.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

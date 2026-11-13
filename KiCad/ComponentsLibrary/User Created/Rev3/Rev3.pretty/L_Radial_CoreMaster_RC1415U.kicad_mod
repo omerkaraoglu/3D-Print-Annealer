@@ -75,4 +75,9 @@
 		(layers "*.Cu" "*.Mask")
 		(uuid "19b662c6-becb-4683-8b71-4b80fbc831a8")
 	)
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Radial_CoreMaster_RC1415U.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

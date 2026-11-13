@@ -24,4 +24,9 @@
 	(fp_line (start 4.400 2.700) (end 4.400 1.200) (stroke (width 0.12) (type solid)) (layer "F.SilkS") (uuid "d5401d1e-4e83-4a55-ab9c-783cb7aba9bc"))
 	(fp_line (start -1.700 -3.800) (end -1.700 -4.600) (stroke (width 0.15) (type solid)) (layer "F.SilkS") (uuid "14296f3f-43b2-43c8-a6b6-bd9a24cfc0bf"))
 	(fp_rect (start -4.950 -4.000) (end 4.950 3.100) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "180d7605-362f-405d-b98d-2a30fb1cb7da"))
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

@@ -1,0 +1,328 @@
+{
+ "_note": "Write models.json: the 3D-model changes the board-editing agent applies to\n3dFilamentDryer.kicad_pcb (this toolchain never writes the board).\n\nEvery entry REPLACES the footprint's whole model list with the one model given\n(the board's embedded copies of the Rev3 footprints carry no model; F1/F3/J3/\nJ4/R1 point at stock KiCad models that do not exist in KiCad 10).\n\"mechanical\" lists footprints to ADD (not in the schematic).",
+ "C40": {
+  "footprint": "Rev3:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "HS1": {
+  "footprint": "Rev3:Heatsink_Fischer_SK409_63.5_STC",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Heatsink_Fischer_SK409_63.5_STC.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "J10": {
+  "footprint": "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "J11": {
+  "footprint": "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "J20": {
+  "footprint": "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/TerminalBlock_DEGSON_DG127H-5.08-02P.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "L1": {
+  "footprint": "Rev3:LFU09V-103",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/LFU09V-103.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "L11": {
+  "footprint": "Rev3:L_Viking_PCD0403",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Viking_PCD0403.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "L12": {
+  "footprint": "Rev3:L_Viking_PCD0403",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Viking_PCD0403.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "L30": {
+  "footprint": "Rev3:L_CoreMaster_SRI0605B",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_CoreMaster_SRI0605B.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "L40": {
+  "footprint": "Rev3:L_Radial_CoreMaster_RC1415U",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/L_Radial_CoreMaster_RC1415U.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "F1": {
+  "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "F3": {
+  "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "J3": {
+  "footprint": "Connector_Wire:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "R1": {
+  "footprint": "Connector_Wire:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "J4": {
+  "footprint": "Connector_Wire:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm",
+  "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub.step",
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "rotate": [
+   0,
+   0,
+   0
+  ],
+  "scale": [
+   1,
+   1,
+   1
+  ]
+ },
+ "mechanical": {
+  "DS1": {
+   "footprint": "Rev3:TFT7_SAT070AT40D21_Mech",
+   "model": "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/TFT7_SAT070AT40D21.step",
+   "offset": [
+    0,
+    0,
+    0
+   ],
+   "rotate": [
+    0,
+    0,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position_abs_mm": [
+    102.47,
+    69.0
+   ],
+   "layer": "B.Cu",
+   "orientation_deg": 180.0,
+   "how": "Add on F.Cu at the position with orientation 0, then Flip left/right about its own position (KiCad stores B.Cu, orientation 180). Panel back on the PCB back, bottom edges flush (y 119.0), TFT tail fingers centred on J10 x 155.65.",
+   "attributes": [
+    "board_only",
+    "exclude_from_pos_files",
+    "exclude_from_bom",
+    "allow_missing_courtyard"
+   ],
+   "panel_outline_abs_mm": [
+    20.02,
+    19.0,
+    184.92,
+    119.0
+   ]
+  }
+ }
+}

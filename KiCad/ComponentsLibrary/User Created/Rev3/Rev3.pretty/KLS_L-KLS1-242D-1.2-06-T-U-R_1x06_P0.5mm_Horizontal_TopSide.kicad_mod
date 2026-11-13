@@ -24,4 +24,9 @@
 	(fp_line (start 4.600 2.150) (end 4.600 2.075) (stroke (width 0.12) (type solid)) (layer "F.SilkS") (uuid "e41a5797-cbd3-4369-8a59-df9051fc5abd"))
 	(fp_line (start 1.700 -2.975) (end 1.700 -3.775) (stroke (width 0.15) (type solid)) (layer "F.SilkS") (uuid "96002983-a3cd-4460-aeaf-d5467d487a5a"))
 	(fp_rect (start -5.290 -3.175) (end 5.290 2.550) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "0aa682c7-55d0-4eda-b519-0d2aabb68065"))
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

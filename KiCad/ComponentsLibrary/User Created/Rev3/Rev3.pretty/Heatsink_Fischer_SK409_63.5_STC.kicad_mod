@@ -36,4 +36,9 @@
 	(zone (net 0) (net_name "") (layers "F.Cu") (uuid "2c96cba3-fd6d-4390-abee-6fec127de109") (name "plate") (hatch edge 0.5) (connect_pads (clearance 0)) (min_thickness 0.25) (filled_areas_thickness no)
 		(keepout (tracks not_allowed) (vias not_allowed) (pads allowed) (copperpour not_allowed) (footprints allowed))
 		(fill (thermal_gap 0.5) (thermal_bridge_width 0.5)) (polygon (pts (xy -13.000 -1.750) (xy 13.000 -1.750) (xy 13.000 1.750) (xy -13.000 1.750))))
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/Heatsink_Fischer_SK409_63.5_STC.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )

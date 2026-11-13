@@ -18,4 +18,9 @@
 	(fp_line (start -2.650 -4.410) (end -2.650 -5.200) (stroke (width 0.15) (type solid)) (layer "F.SilkS") (uuid "178af819-4e07-40aa-8e5e-7d117d00a4d5"))
 	(fp_line (start -2.650 -5.200) (end -1.600 -5.200) (stroke (width 0.15) (type solid)) (layer "F.SilkS") (uuid "30ea2249-52ec-4525-ae2e-00767eceb586"))
 	(fp_rect (start -3.040 -4.800) (end 8.120 6.000) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "3d396ecd-e31b-40d6-b831-0dc66690dbd9"))
+	(model "${KIPRJMOD}/../ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/TerminalBlock_DEGSON_DG127H-5.08-02P.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))
+	)
 )
