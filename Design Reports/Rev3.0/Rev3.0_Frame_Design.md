@@ -375,7 +375,7 @@ Tolerance notes (as v1):
    - The air gap from PS1's AC pins to the sheet is only 1.335 mm. The sheet is therefore the insulation that counts.
    - If the LCM frame is SELV-connected or accessible, IEC 60335-1 cl. 29.3 needs reinforced insulation. A thin sheet counts as reinforced only as ≥ 3 layers that each pass the electric-strength test (e.g. 3 × 0.13 mm), or ≥ 2 mm solid.
    - Decide the grade and the layer count. The pocket takes 0.4 mm as modelled.
-3. **Ten studs instead of eight.** Every eight-hole layout fails the gasket lift (best 178.1 µm against 90 µm; ten: 71.8 µm). Eight would need about twice the beam stiffness, e.g. a back rib along each side (not studied). OK with ten?
+3. **Ten studs instead of eight: accepted by the owner on 2026-11-13.** Every eight-hole layout fails the gasket lift (best 178.1 µm against 90 µm; ten: 71.8 µm). Eight would have needed about twice the beam stiffness, e.g. a back rib along each side (not studied).
 4. **Slots, radial orientation and the thermal bound.**
    - At the pessimistic bound (ΔT 60 K, 30 / 70 ppm/K) FH6/FH8 bear across their slot by 0.007 mm, and with the ±0.25 x-float every stud and one peg can bear. It is self-limiting (≤ 12.2 MPa restrained), and at ΔT 40 K everything is covered (§5.5).
    - Moisture swelling (0.2–0.3 %, §3) is not in this check. Over r ≈ 115 mm it is of the same order as the thermal growth (≈ 0.3 mm), radial, so mostly along the slots. Decide whether the tool is scaled for the conditioned state, and accept or re-check.

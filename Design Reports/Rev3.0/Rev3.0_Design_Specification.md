@@ -381,7 +381,7 @@ Design document: `Rev3.0_Frame_Design.md` (v2). CAD: Fusion 360 part "Rev3.0 Fra
 - **Open:**
   - gasket 1.0 vs 1.5 mm (LCM ± 0.3 tolerance gives 0–64 % compression);
   - insulating sheet grade and layers (GK-17 is 0.43 mm, GK-10 0.25 mm; reinforced insulation per cl. 29.3);
-  - ten studs instead of eight; slots and the thermal / moisture bound;
+  - slots and the thermal / moisture bound (ten studs instead of eight: accepted 2026-11-13);
   - pegs visible on the front (`pegs_on`); PEM vs weld studs and the sheet thickness; Q1 trimming step;
   - four sharp tail-pocket corners; stud-boss FEA and Moldflow before steel; material grade; tail handling.
 - **Files** (`Mechanical/Rev3.0_Frame/`):
