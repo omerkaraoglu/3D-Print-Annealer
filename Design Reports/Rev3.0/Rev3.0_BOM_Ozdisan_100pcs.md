@@ -1,18 +1,20 @@
 # Rev3.0 BOM — Özdisan availability and 100-board unit cost
 
-Generated 2026-11-12 by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on 2026-11-12 (USD prices as shown by Özdisan; TRY/USD on the site that day ≈ 50.3). PCB, assembly, the display panel (SAT070AT40D21) and the thermocouple probe are **not** included. Order quantity = max(100 × qty, MOQ) rounded up to the MOQ multiple; the unit price is that quantity's tier.
+Generated 2026-11-13 by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on 2026-11-12 (USD prices as shown by Özdisan; TRY/USD on the site that day ≈ 50.3). PCB, assembly and the display panel (SAT070AT40D21) are **not** included; the thermocouple probe (Motorobit) and the heatsink (DigiKey) are the only non-Özdisan lines. Order quantity = max(100 × qty, MOQ) rounded up to the MOQ multiple; the unit price is that quantity's tier.
 
 ## Totals
 
 | | USD / board |
 |---|---|
-| Components at the 100-board price breaks (qty × tier price) | **29.33** |
-| Same, including MOQ rounding (what you actually pay ÷ 100) | **29.34** |
-| of which not from Özdisan (HS1 heatsink, DigiKey) | 2.60 |
+| Components at the 100-board price breaks (qty × tier price) | **32.10** |
+| Same, including MOQ rounding (what you actually pay ÷ 100) | **32.11** |
+| of which not from Özdisan (HS1 heatsink from DigiKey, thermocouple probe from Motorobit) | 22.24 |
 
 ## Lines that need attention
 
-All lines are in stock for 100 boards.
+| Ref | Value | Part number | Özdisan stock | Order qty (100 boards) | Availability |
+|---|---|---|---|---|---|
+| TC1 (probe) | K-type thermocouple, M6 ring tip, 1 m | WRNT-02 (SNS.SCK.01.000085) | 10 | 100 | SHORT: stock 10 < 100 |
 
 ## Substitutions and merged parts (vs the schematic values)
 
@@ -32,13 +34,15 @@ All lines are in stock for 100 boards.
 | F3 | 250VAC 8A Normal | 5GT8A | 5x20 8 A fast glass |
 | HS1 | SK 409 63,5 STC | SK 409 63,5 STC TO 220 | NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural |
 | K1 | SRD-05VDC-SL-C | HJR-3FF-S-Z-4/05VDC | SRD-05VDC-SL-C not stocked; HJR-3FF has the same footprint and pinout, 7 A SPDT (heater draws 4.3 A) |
-| L12 | 2.2uH 1A | NRS5014T2R2NMGGV | 2.2 uH 2 A shielded 4.9x4.9x1.4; no 2.2 uH in the PCD0403 series at Ozdisan, so L12 gets the NRS5014 land pattern |
+| L12 | 10uH 1A | PCD0403MT100 | 2.2 uH PCD0403 not stocked; L12 changed to 10 uH PCD0403MT100 (same part as L11, same footprint): pi-filter corner 34 kHz -> 16 kHz, DCR 182 mOhm at ~0.3 A = 55 mV, Isat 1.04 A OK |
 | Q2,Q3 | S8050-J3Y | MMBT4401-TP | S8050 not stocked; MMBT4401 600 mA 40 V NPN SOT-23, same pinout |
+| R9 | 120 1/10W | 0603SAJ0121T5E | R9 180 R -> 120 R because U5 is now the MOC3052 (IFT 10 mA): (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 17 mA typical, within the 60 mA LED rating |
 | R122,R123 | 18R 0.125W | TC0525B180JT5F | the only 18 R 0805 in stock is the 0.1 % thin-film part |
 | R132 | 0.5R 0.25W | HP06W2F500LT5E | 0.5 R 1 % 0.5 W 1206 (HP series); Uniohm RR1206J050KT5E 5 % 0.25 W is the cheaper alternative (0.046 USD) |
 | TH220 | 10k NTC B3380 | TSM1B103F3381RZ | NCP18XH103F03RB not stocked; Thinking 10k 1 % B3380 0603 |
 | U5 | MOC3053M | MOC3052X | MOC3053M not stocked; MOC3052 is the 10 mA-IFT sibling (600 V, random phase): change R9 180 R to 120 R; alternative Liteon MOC3023-LIT (5 mA IFT, 400 V, 71k stock, 0.139 USD) |
 | F1/F3 clips | 5x20 fuse clip | R3-5A | 5x20 PCB fuse clip, 4 per board (not in the schematic; clip pin diameter vs the 1.3 mm footprint holes to be confirmed) |
+| TC1 (probe) | K-type thermocouple, M6 ring tip, 1 m | WRNT-02 (SNS.SCK.01.000085) | K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs |
 
 ## Not purchased
 
@@ -49,7 +53,7 @@ All lines are in stock for 100 boards.
 
 ## Thermocouple probe (not on the PCB, screws into J20)
 
-Özdisan lists no thermocouple probes (sensor categories and site search checked). The probe that ships with the MAX6675 kit used on Rev2.1 is a generic **K-type, M6 ring-terminal tip, 1 m fibreglass-insulated lead with stainless-steel braid, 0–600 °C (heat-shrink at the tip softens above ≈300 °C), bare/spade ends**, which goes straight into the DG127H screw terminal J20 (red = +, blue = −; the braid can be bonded to the enclosure at the gland for EMC). Sources: Motorobit WRNT-02 (K-type, M6, 0–600 °C, 1 m) 145.86 TL + KDV ≈ 2.9 USD, stock 10+, https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre ; ProtoSupplies THC-3 (same part) 2.45 USD, https://protosupplies.com/product/thermocouple-k-type-m6-ring-terminal-sensor-1m/ ; for 100 pieces the same item is the usual AliExpress/LCSC-market 'K type thermocouple M6 1 m' at roughly 1.5–2.5 USD. If the chamber will exceed 300 °C at the sensor, use the stainless 4 × 30 mm cylindrical variant (same lead, 0–400 °C, no heat-shrink at the tip). Budget ≈ 2.5 USD per unit.
+**Chosen: Motorobit WRNT-02** (BOM line TC1). Özdisan lists no thermocouple probes (sensor categories and site search checked). The probe that ships with the MAX6675 kit used on Rev2.1 is a generic **K-type, M6 ring-terminal tip, 1 m fibreglass-insulated lead with stainless-steel braid, 0–600 °C (heat-shrink at the tip softens above ≈300 °C), bare/spade ends**, which goes straight into the DG127H screw terminal J20 (red = +, blue = −; the braid can be bonded to the enclosure at the gland for EMC). Sources: Motorobit WRNT-02 (K-type, M6, 0–600 °C, 1 m) 145.86 TL + KDV ≈ 2.9 USD, stock 10+, https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre ; ProtoSupplies THC-3 (same part) 2.45 USD, https://protosupplies.com/product/thermocouple-k-type-m6-ring-terminal-sensor-1m/ ; for 100 pieces the same item is the usual AliExpress/LCSC-market 'K type thermocouple M6 1 m' at roughly 1.5–2.5 USD. If the chamber will exceed 300 °C at the sensor, use the stainless 4 × 30 mm cylindrical variant (same lead, 0–400 °C, no heat-shrink at the tip). Budget ≈ 2.5 USD per unit.
 
 ## Full BOM
 
@@ -88,7 +92,7 @@ All lines are in stock for 100 boards.
 | K1 | 1 | SRD-05VDC-SL-C | HJR-3FF-S-Z-4/05VDC | Tianbo | 2638 | 1 | 100 | 0.31280 | 0.3128 | OK |
 | L1 | 1 | LFU09V-103 | LFU09V-103 | CORE MASTER | 8868 | 1 | 100 | 0.38576 | 0.3858 | OK |
 | L11 | 1 | 10uH 1A | PCD0403MT100 | VIKING | 8969 | 1 | 100 | 0.11086 | 0.1109 | OK |
-| L12 | 1 | 2.2uH 1A | NRS5014T2R2NMGGV | Taiyo Yuden | 3825 | 1 | 100 | 0.24218 | 0.2422 | OK |
+| L12 | 1 | 10uH 1A | PCD0403MT100 | VIKING | 8969 | 1 | 100 | 0.11086 | 0.1109 | OK |
 | L30 | 1 | 4.7uH 4A | SRI0605B-4R7M | CORE MASTER | 1961 | 1 | 100 | 0.32479 | 0.3248 | OK |
 | L40 | 1 | 100uH 5A | RC1415U-101K | CORE MASTER | 613 | 1 | 100 | 0.68691 | 0.6869 | OK |
 | PS1 | 1 | HLK-10M05 | HLK-10M05 | HI-LINK | 333 | 1 | 100 | 3.90413 | 3.9041 | OK |
@@ -100,7 +104,7 @@ All lines are in stock for 100 boards.
 | R5 | 1 | 47 2W 500V | KNP02SJ0470A10 | ROYALOHM | 590 | 5 | 100 | 0.02610 | 0.0261 | OK |
 | R6,R7 | 2 | 33k 1W 500V | CFR01SJ0333A10 | ROYALOHM | 4213 | 5 | 200 | 0.02552 | 0.0510 | OK |
 | R8,R10-R15,R124,R224 | 9 | 10k | 0402WGJ0103TCE | ROYALOHM | 189000 | 200 | 1000 | 0.00044 | 0.0040 | OK |
-| R9 | 1 | 180 1/10W | 0603SAJ0181T5E | ROYALOHM | 219230 | 200 | 200 | 0.00090 | 0.0009 | OK |
+| R9 | 1 | 120 1/10W | 0603SAJ0121T5E | Royalohm | 97860 | 200 | 200 | 0.00090 | 0.0009 | OK |
 | R16 | 1 | 1k | 0402WGJ0102TCE | ROYALOHM | 299000 | 200 | 200 | 0.00050 | 0.0005 | OK |
 | R110-R121 | 12 | 33R | RC0402JR-0733RL | Yageo | 58600 | 100 | 1200 | 0.00145 | 0.0174 | OK |
 | R122,R123 | 2 | 18R 0.125W | TC0525B180JT5F | Royalohm | 13395 | 5 | 200 | 0.03348 | 0.0670 | OK |
@@ -129,3 +133,4 @@ All lines are in stock for 100 boards.
 | U31 | 1 | LD1117S12CTR | LD1117S12CTR | STM | 2500 | 1 | 100 | 0.11377 | 0.1138 | OK |
 | Y10 | 1 | 10MHz | CX3225GB10000P0HPQCC | Kyocera AVX | 3906 | 1 | 100 | 0.27840 | 0.2784 | OK |
 | F1/F3 clips | 4 | 5x20 fuse clip | R3-5A | Reomax | 41572 | 2 | 400 | 0.02272 | 0.0909 | OK |
+| TC1 (probe) | 1 | K-type thermocouple, M6 ring tip, 1 m | WRNT-02 (SNS.SCK.01.000085) | Motorobit | 10 | 1 | 100 | 2.90000 | 2.9000 | SHORT: stock 10 < 100 |

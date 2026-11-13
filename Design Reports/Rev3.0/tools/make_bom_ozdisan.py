@@ -29,6 +29,7 @@ SKIP = {"V1": "simulation source, not a part", "R1": "the 1 kW heater element (c
 # extra purchased items that have no schematic symbol
 EXTRA = [
     {"ref": "F1/F3 clips", "val": "5x20 fuse clip", "fp": "Fuseholder_Clip-5x20mm (2 per fuse)", "qty": 4, "key": "FCLIP"},
+    {"ref": "TC1 (probe)", "val": "K-type thermocouple, M6 ring tip, 1 m", "fp": "wired to J20 (DG127H screw terminal)", "qty": 1, "key": "TCPROBE"},
 ]
 
 def tier_price(tiers, q):
@@ -104,20 +105,20 @@ def md_table(rows, cols):
         out.append("| " + " | ".join(str(r[c]).replace("|", "/") for c in cols) + " |")
     return "\n".join(out)
 
-non_ozd = [r for r in rows if r["Part number"] and "digikey" in r["URL"]]
+non_ozd = [r for r in rows if r["Part number"] and "ozdisan" not in r["URL"]]
 short = [r for r in rows if r["Availability"].startswith("SHORT") or r["Availability"] in ("NOT STOCKED", "NOT FOUND")]
 subs = [r for r in rows if r["Note"] and r["Note"] != "(same part as above)"]
 md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "",
       "Generated %s by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on 2026-11-12 (USD prices as shown by Özdisan; TRY/USD on the site that day ≈ 50.3). "
-      "PCB, assembly, the display panel (SAT070AT40D21) and the thermocouple probe are **not** included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple; the unit price is that quantity's tier." % (datetime.date.today().isoformat(), N),
+      "PCB, assembly and the display panel (SAT070AT40D21) are **not** included; the thermocouple probe (Motorobit) and the heatsink (DigiKey) are the only non-Özdisan lines. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple; the unit price is that quantity's tier." % (datetime.date.today().isoformat(), N),
       "",
       "## Totals",
       "",
       "| | USD / board |", "|---|---|",
       "| Components at the %d-board price breaks (qty × tier price) | **%.2f** |" % (N, tot_line),
       "| Same, including MOQ rounding (what you actually pay ÷ %d) | **%.2f** |" % (N, tot_purchase),
-      "| of which not from Özdisan (HS1 heatsink, DigiKey) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
+      "| of which not from Özdisan (HS1 heatsink from DigiKey, thermocouple probe from Motorobit) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
       "",
       "## Lines that need attention",
       "",
@@ -133,7 +134,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "",
       "## Thermocouple probe (not on the PCB, screws into J20)",
       "",
-      "Özdisan lists no thermocouple probes (sensor categories and site search checked). The probe that ships with the MAX6675 kit used on Rev2.1 is a generic "
+      "**Chosen: Motorobit WRNT-02** (BOM line TC1). Özdisan lists no thermocouple probes (sensor categories and site search checked). The probe that ships with the MAX6675 kit used on Rev2.1 is a generic "
       "**K-type, M6 ring-terminal tip, 1 m fibreglass-insulated lead with stainless-steel braid, 0–600 °C (heat-shrink at the tip softens above ≈300 °C), bare/spade ends**, "
       "which goes straight into the DG127H screw terminal J20 (red = +, blue = −; the braid can be bonded to the enclosure at the gland for EMC). Sources: "
       "Motorobit WRNT-02 (K-type, M6, 0–600 °C, 1 m) 145.86 TL + KDV ≈ 2.9 USD, stock 10+, https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre ; "

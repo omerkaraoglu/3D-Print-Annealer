@@ -32,7 +32,7 @@ J20,1,K-type TC,TerminalBlock_DEGSON_DG127H-5.08-02P,DG127H-5.08-02P-14-00AH,DEG
 K1,1,SRD-05VDC-SL-C,Relay_SPDT_SANYOU_SRD_Series_Form_C,HJR-3FF-S-Z-4/05VDC,Tianbo,2638,1,100,0.31280,0.3128,0.3128,OK,"SRD-05VDC-SL-C not stocked; HJR-3FF has the same footprint and pinout, 7 A SPDT (heater draws 4.3 A)",https://www.ozdisan.com/p/genel-tip-roleler-403/tianbo-hjr-3ff-s-z-4-05vdc-415763
 L1,1,LFU09V-103,LFU09V-103,LFU09V-103,CORE MASTER,8868,1,100,0.38576,0.3858,0.3858,OK,,
 L11,1,10uH 1A,L_Viking_PCD0403,PCD0403MT100,VIKING,8969,1,100,0.11086,0.1109,0.1109,OK,,https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950
-L12,1,2.2uH 1A,L_Viking_PCD0403,NRS5014T2R2NMGGV,Taiyo Yuden,3825,1,100,0.24218,0.2422,0.2422,OK,"2.2 uH 2 A shielded 4.9x4.9x1.4; no 2.2 uH in the PCD0403 series at Ozdisan, so L12 gets the NRS5014 land pattern",https://www.ozdisan.com/p/sabit-induktorler-468/taiyo-yuden-nrs5014t2r2nmggv-695641
+L12,1,10uH 1A,L_Viking_PCD0403,PCD0403MT100,VIKING,8969,1,100,0.11086,0.1109,0.1109,OK,"2.2 uH PCD0403 not stocked; L12 changed to 10 uH PCD0403MT100 (same part as L11, same footprint): pi-filter corner 34 kHz -> 16 kHz, DCR 182 mOhm at ~0.3 A = 55 mV, Isat 1.04 A OK",https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950
 L30,1,4.7uH 4A,L_CoreMaster_SRI0605B,SRI0605B-4R7M,CORE MASTER,1961,1,100,0.32479,0.3248,0.3248,OK,,https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415
 L40,1,100uH 5A,L_Radial_CoreMaster_RC1415U,RC1415U-101K,CORE MASTER,613,1,100,0.68691,0.6869,0.6869,OK,,
 PS1,1,HLK-10M05,Converter_ACDC_Hi-Link_HLK-10Mxx,HLK-10M05,HI-LINK,333,1,100,3.90413,3.9041,3.9041,OK,,
@@ -44,7 +44,7 @@ R4,1,200,R_0402_1005Metric,0402WGJ0201TCE,ROYALOHM,172145,200,200,0.00050,0.0005
 R5,1,47 2W 500V,R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal,KNP02SJ0470A10,ROYALOHM,590,5,100,0.02610,0.0261,0.0261,OK,,
 "R6,R7",2,33k 1W 500V,R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical,CFR01SJ0333A10,ROYALOHM,4213,5,200,0.02552,0.0510,0.0510,OK,,
 "R8,R10-R15,R124,R224",9,10k,R_0402_1005Metric,0402WGJ0103TCE,ROYALOHM,189000,200,1000,0.00044,0.0040,0.0044,OK,,
-R9,1,180 1/10W,R_0603_1608Metric,0603SAJ0181T5E,ROYALOHM,219230,200,200,0.00090,0.0009,0.0018,OK,,
+R9,1,120 1/10W,R_0603_1608Metric,0603SAJ0121T5E,Royalohm,97860,200,200,0.00090,0.0009,0.0018,OK,"R9 180 R -> 120 R because U5 is now the MOC3052 (IFT 10 mA): (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 17 mA typical, within the 60 mA LED rating",https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209
 R16,1,1k,R_0402_1005Metric,0402WGJ0102TCE,ROYALOHM,299000,200,200,0.00050,0.0005,0.0010,OK,,
 R110-R121,12,33R,R_0402_1005Metric,RC0402JR-0733RL,Yageo,58600,100,1200,0.00145,0.0174,0.0174,OK,,https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557
 "R122,R123",2,18R 0.125W,R_0805_2012Metric,TC0525B180JT5F,Royalohm,13395,5,200,0.03348,0.0670,0.0670,OK,the only 18 R 0805 in stock is the 0.1 % thin-film part,https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649
@@ -73,3 +73,4 @@ U30,1,TPS562201DDCR,TSOT-23-6,TPS562201DDCR,TEXAS,2323,1,100,0.20824,0.2082,0.20
 U31,1,LD1117S12CTR,SOT-223-3_TabPin2,LD1117S12CTR,STM,2500,1,100,0.11377,0.1138,0.1138,OK,,https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395
 Y10,1,10MHz,Crystal_SMD_3225-4Pin_3.2x2.5mm,CX3225GB10000P0HPQCC,Kyocera AVX,3906,1,100,0.27840,0.2784,0.2784,OK,,https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628
 F1/F3 clips,4,5x20 fuse clip,Fuseholder_Clip-5x20mm (2 per fuse),R3-5A,Reomax,41572,2,400,0.02272,0.0909,0.0909,OK,"5x20 PCB fuse clip, 4 per board (not in the schematic; clip pin diameter vs the 1.3 mm footprint holes to be confirmed)",https://www.ozdisan.com/p/sigorta-yuvalari-847/reomax-r3-5a-575555
+TC1 (probe),1,"K-type thermocouple, M6 ring tip, 1 m",wired to J20 (DG127H screw terminal),WRNT-02 (SNS.SCK.01.000085),Motorobit,10,1,100,2.90000,2.9000,2.9000,SHORT: stock 10 < 100,"K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs",https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre

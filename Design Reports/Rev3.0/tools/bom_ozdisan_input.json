@@ -317,10 +317,10 @@
   },
   {
    "ref": "L12",
-   "val": "2.2uH 1A",
+   "val": "10uH 1A",
    "fp": "L_Viking_PCD0403",
-   "mpn": "",
-   "mfr": "",
+   "mpn": "PCD0403MT100",
+   "mfr": "Viking",
    "desc": "Pi-filter inductor 2.2 uH >=1 A SMD 4x4 mm (e.g. Viking PCD0403 / Core Master FPI0403S series, pick in-stock value at Ozdisan)",
    "qty": 1
   },
@@ -434,7 +434,7 @@
   },
   {
    "ref": "R9",
-   "val": "180 1/10W",
+   "val": "120 1/10W",
    "fp": "R_0603_1608Metric",
    "mpn": "",
    "mfr": "",
@@ -1241,9 +1241,9 @@
    ]
   },
   "R9": {
-   "code": "0603SAJ0181T5E",
-   "mfr": "ROYALOHM",
-   "stock": 219230,
+   "code": "0603SAJ0121T5E",
+   "mfr": "Royalohm",
+   "stock": 97860,
    "moq": 200,
    "tiers": [
     [
@@ -1257,8 +1257,14 @@
     [
      1000,
      0.00078
+    ],
+    [
+     2000,
+     0.00072
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209",
+   "note": "R9 180 R -> 120 R because U5 is now the MOC3052 (IFT 10 mA): (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 17 mA typical, within the 60 mA LED rating"
   },
   "R16": {
    "code": "0402WGJ0102TCE",
@@ -2167,34 +2173,30 @@
    "url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407"
   },
   "L12": {
-   "code": "NRS5014T2R2NMGGV",
-   "mfr": "Taiyo Yuden",
-   "stock": 3825,
+   "code": "PCD0403MT100",
+   "mfr": "VIKING",
+   "stock": 8969,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.25889
+     0.11851
     ],
     [
      100,
-     0.24218
-    ],
-    [
-     250,
-     0.22548
+     0.11086
     ],
     [
      500,
-     0.20878
+     0.10322
     ],
     [
      1000,
-     0.19208
+     0.09557
     ]
    ],
-   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/taiyo-yuden-nrs5014t2r2nmggv-695641",
-   "note": "2.2 uH 2 A shielded 4.9x4.9x1.4; no 2.2 uH in the PCD0403 series at Ozdisan, so L12 gets the NRS5014 land pattern"
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "note": "2.2 uH PCD0403 not stocked; L12 changed to 10 uH PCD0403MT100 (same part as L11, same footprint): pi-filter corner 34 kHz -> 16 kHz, DCR 182 mOhm at ~0.3 A = 55 mV, Isat 1.04 A OK"
   },
   "R110-R121": {
    "code": "RC0402JR-0733RL",
@@ -2584,6 +2586,20 @@
    ],
    "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
    "note": "NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural"
+  },
+  "TCPROBE": {
+   "code": "WRNT-02 (SNS.SCK.01.000085)",
+   "mfr": "Motorobit",
+   "stock": 10,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     2.9
+    ]
+   ],
+   "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
+   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs"
   }
  }
 }
