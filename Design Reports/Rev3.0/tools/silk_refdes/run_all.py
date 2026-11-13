@@ -6,6 +6,7 @@
   5. refdes_place.py                 designators + legend maps -> work/placement.json
   6. refdes_apply.py                 orig + legend + designators + maps -> stage/3dFilamentDryer.kicad_pcb
   6b. silk_fix.py                    U1/U5 outlines off the creepage slot, J20 pin-1 mark off D220, Q1/HS1 silk rule
+  6c. art/art_gen.py, art/art_apply.py   readark logo + Manrope text block in place of the four title-block texts
   7. work/regions.json               crop windows of the circuit groups (for refdes_render.py)
 python run_all.py
 """
@@ -73,6 +74,8 @@ def main():
     run(sys.executable, os.path.join(HERE, "refdes_place.py"))
     run(sys.executable, os.path.join(HERE, "refdes_apply.py"), LABELS, PLACEMENT, STAGE)
     run(sys.executable, os.path.join(HERE, "silk_fix.py"), STAGE, STAGE)
+    run(sys.executable, os.path.join(HERE, "art", "art_gen.py"))
+    run(KPY, os.path.join(HERE, "art", "art_apply.py"), STAGE, STAGE)
     regions()
 
 

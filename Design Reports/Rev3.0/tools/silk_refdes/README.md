@@ -13,6 +13,9 @@ legend pass (`silk.py`): same obstacle raster, candidate generation, ownership t
 | `refdes_place.py` | system | designator placement (raster 0.025 mm, mask 0.15, silk 0.15, edge / holes 0.30, ownership test, row consistency, legend maps) |
 | `refdes_apply.py` | system | CRLF-preserving text patch of `orig/` (Reference fields, removed old texts, new legend / notes / map graphics, uuid5 uuids) |
 | `silk_fix.py` | system | silk-only fixes of footprint instances (U1/U5 outlines off the creepage slot with pin-1 triangles, J20 pin-1 mark off D220) and the Q1/HS1 silk rule in the staged `.kicad_dru` |
+| `art/art_gen.py` | system | front artwork: readark logo PNG + Manrope lines traced to polygons (OpenCV), placed by search on the obstacle raster (mask 0.15, silk 0.15, courtyards 0.15, edge 1.0, holes 0.3, antenna keep-out), logo as wide as the free spot allows → `work/art/art.json` (needs opencv-python, fontTools) |
+| `art/art_apply.py` | KiCad | removes the four title-block texts, appends the artwork as fractured filled gr_poly on F.SilkS (uuid5) |
+| `art/assets/` | – | `readark-logo-white.png`, `Manrope[wght].ttf` and its `OFL.txt` (SIL Open Font License 1.1), copied from Battery Sentinel's Silkscreen-Art |
 | `run_all.py` | system | the whole chain, see below |
 | `refdes_check.py` | KiCad | exact polygon check of every designator, map graphic and legend text, ownership, maps as uniform scaled copies, KiCad DRC with check-only silk rules |
 | `refdes_diff.py` | system | structural diff orig vs stage: only Reference fields, removed old texts and the new items may differ |
@@ -28,7 +31,7 @@ System python needs numpy, scipy, Pillow, matplotlib and PyMuPDF; KiCad python i
 ```
 # 0. working tree (ROOT): orig/ = the board to start from, never written
 #    orig/3dFilamentDryer.kicad_pcb, orig/3dFilamentDryer.kicad_pro (from git HEAD), orig/3dFilamentDryer.kicad_dru
-python run_all.py                                   # geom -> legend -> labelled board -> geom -> designators -> stage/ -> silk_fix
+python run_all.py                                   # geom -> legend -> labelled board -> geom -> designators -> stage/ -> silk_fix -> artwork
 "C:\Program Files\KiCad\10.0\bin\python.exe" refdes_check.py    # 0 failures expected
 python refdes_diff.py                               # other differences: 0
 python refdes_drc.py                                # orig vs stage, item by item
@@ -49,3 +52,7 @@ Each run from the same `orig/` gives the same file (uuids are uuid5 of item name
   geometry), so the renderer plots SVG; F.Fab stays PDF for its `--exclude-refdes` option.
 - `OWN_EXEMPT`: Q1 sits on the HS1 heatsink plate (courtyard inside the heatsink's), so HS1 is not an "other part" for
   Q1's label (refdes_place.py and refdes_check.py).
+- The open KiCad session rewrites `3dFilamentDryer.kicad_pro` with stale net classes when the board file changes
+  under it (seen twice on 2026-11-13); with that file DRC reports hundreds of clearance errors. Restore it from git
+  HEAD (`git show HEAD:KiCad/3dFilamentDryer/3dFilamentDryer.kicad_pro > ...`) before running DRC, and close or
+  reload KiCad before saving anything.

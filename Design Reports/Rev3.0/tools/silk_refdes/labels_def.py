@@ -32,6 +32,8 @@ LABELS = [
 ]
 
 BLOCKS = [
+    # title block: reserves the area during the designator placement; art/art_apply.py replaces these four texts
+    # with the readark logo + Manrope artwork (OVEN CONTROLLER, rev / date, designer, ratings)
     {"name": "title", "lines": [("3D Printer Filament Dryer", (1.2, 1.2, 0.18)), ("& Print Annealer", (1.2, 1.2, 0.18)),
                                 ("PCB Rev3.0  2026-11-13", (1.0, 1.0, 0.15)), ("readark", (1.5, 1.5, 0.22))],
      "gap": 0.6, "targets": [(168.5, 90.0, 14.0), (172.0, 100.0, 20.0), (40.0, 75.0, 20.0)]},
@@ -53,7 +55,7 @@ OLD_TEXTS = {
 
 FAB_X, FAB_Y, FAB_DY = 200.0, 20.0, 1.6     # Cmts.User notes right of the board (absolute mm), 1.0 mm / 0.12 stroke
 FAB_NOTES = [
-    "FABRICATION NOTES - 3D PRINTER FILAMENT DRYER & PRINT ANNEALER, PCB REV3.0 (2026-11-13)",
+    "FABRICATION NOTES - OVEN CONTROLLER PCB Rev3.0 (3D Printer Filament Dryer & Print Annealer), 2026-11-13",
     "1. Outline 164.0 x 99.0 mm body, 183.7 x 118.7 mm overall incl. the nine screw ears; R3 corners. Thickness 1.6 mm.",
     "2. 4 layers, 1.6 mm FR4 (Tg >= 150 C, UL 94 V-0), 35 um (1 oz) finished copper on all layers:",
     "   F.Cu / prepreg 0.2 mm / In1 (GND) / core 1.0 mm / In2 (3V3, +5V island) / prepreg 0.2 mm / B.Cu.",

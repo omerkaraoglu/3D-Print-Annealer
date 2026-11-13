@@ -81,7 +81,14 @@ def main():
     PL = json.load(open(plf, encoding="utf-8"))
     LB = json.load(open(LABELS, encoding="utf-8"))
     want_gfx = {str(uuid.uuid5(NS, g["name"])): g for g in PL["graphics"]}
-    want_gfx.update({str(uuid.uuid5(NS, g["name"])): g for g in LB["texts"]})
+    art_file = os.path.join(WORK, "art", "art.json")
+    ART = json.load(open(art_file, encoding="utf-8")) if os.path.exists(art_file) else {"replaces": [], "items": []}
+    want_gfx.update({str(uuid.uuid5(NS, g["name"])): g for g in LB["texts"] if g["name"] not in ART["replaces"]})
+    art_uuids = set()
+    for it in ART["items"]:                  # front artwork gr_poly (art/art_apply.py)
+        for n in range(2000):
+            art_uuids.add(str(uuid.uuid5(NS, "art-%s-%d" % (it["name"], n))))
+    want_gfx.update({u: {"layer": "F.SilkS"} for u in art_uuids})
     deleted = set()
     A = open(orig, encoding="utf-8", newline="").read()
     B = open(stage, encoding="utf-8", newline="").read()
@@ -106,13 +113,14 @@ def main():
             stats["old board texts removed"] += 1
             i += 1
             continue
-        if xb is not None and head(xb)[0] in ("gr_rect", "gr_line", "gr_text") and own_uuid(B, cb[j]) in want_gfx and \
+        if xb is not None and head(xb)[0] in ("gr_rect", "gr_line", "gr_text", "gr_poly") and \
+                own_uuid(B, cb[j]) in want_gfx and \
                 (xa is None or own_uuid(A, ca[i]) != own_uuid(B, cb[j])):
             u = own_uuid(B, cb[j])
             lay = want_gfx[u].get("layer", "F.SilkS")
             if '(layer "%s")' % lay not in xb or lay not in ("F.SilkS", "Cmts.User"):
                 bad.append(("new graphic not on its layer", u))
-            stats["new %s items" % lay] += 1
+            stats["new %s items%s" % (lay, " (artwork gr_poly)" if u in art_uuids else "")] += 1
             if u in seen_gfx:
                 bad.append(("duplicate new graphic", u))
             seen_gfx.add(u)
@@ -178,7 +186,9 @@ def main():
             break
     if deleted != set(LB["delete"]):
         bad.append(("old texts not removed", sorted(set(LB["delete"]) - deleted)))
-    missing = set(want_gfx) - seen_gfx
+    missing = set(want_gfx) - seen_gfx - art_uuids
+    if ART["items"] and not (seen_gfx & art_uuids):
+        bad.append(("front artwork missing",))
     if missing:
         bad.append(("legend graphics missing from the stage", sorted(missing)))
     tail_a = A[ca[-1][1]:] if ca else ""

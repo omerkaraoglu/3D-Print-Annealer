@@ -36,6 +36,8 @@ LIM = {"mask": 0.15, "fid": 1.00, "silk": 0.15, "edge": 0.30, "hole": 0.30}
 # board legend (functional labels, pin marks, title, mains warning): placed with pads 0.25 / silk, edge, holes 0.5;
 # checked here against pads 0.25, any other silk 0.15 (designators may come to 0.15 of a label), edge / holes 0.5
 LIM_LABEL = {"mask": 0.25, "fid": 1.00, "silk": 0.15, "edge": 0.50, "hole": 0.50}
+# front artwork (logo + Manrope lines): mask apertures 0.15, other silk 0.15, edge 0.5, holes 0.3
+LIM_ART = {"mask": 0.15, "fid": 1.00, "silk": 0.15, "edge": 0.50, "hole": 0.30}
 OWN_EXEMPT = {"Q1": {"HS1"}}      # BTA24 on the heatsink plate: the heatsink is not an "other part" for Q1's label
 
 
@@ -178,17 +180,30 @@ def main():
     NS = _u.UUID("6b1f3c2e-9a57-4f0e-8d3b-5c1a2e7f9b40")
     for g in PL["graphics"]:
         gfx_names[str(_u.uuid5(NS, g["name"]))] = g["name"]
+    # front artwork (art/art_gen.py + art_apply.py): replaces the title-block texts, its gr_poly are checked as "art"
+    art_file = os.path.join(WORK, "art", "art.json")
+    ART = json.load(open(art_file, encoding="utf-8")) if os.path.exists(art_file) else {"replaces": [], "items": []}
+    art_names = {str(_u.uuid5(NS, "art-%s-%d" % (it["name"], n))): "art-%s-%d" % (it["name"], n)
+                 for it in ART["items"] for n in range(2000)}
     lab_names = {}
     for g in LB["texts"]:
-        if g["layer"] == "F.SilkS":
+        if g["layer"] == "F.SilkS" and g["name"] not in ART["replaces"]:
             lab_names[str(_u.uuid5(NS, g["name"]))] = g["name"]
+    gone = {str(_u.uuid5(NS, n)) for n in ART["replaces"]}
     for d in b.GetDrawings():
         u = d.m_Uuid.AsString()
         if u in lab_names:
             rl = poly(d, pcbnew.F_SilkS)
             mine.append((lab_names[u], rl, bbox(rl), "label", None))
+        elif u in art_names:
+            rl = poly(d, pcbnew.F_SilkS)
+            mine.append((art_names[u], rl, bbox(rl), "art", "art"))
+        elif u in gone:
+            fail.append(("art", "replaced title text still present", d.GetText()))
     if sum(1 for m in mine if m[3] == "label") != len(lab_names):
         fail.append(("labels", "missing in stage", len(lab_names)))
+    if ART["items"] and not any(m[3] == "art" for m in mine):
+        fail.append(("art", "artwork missing in stage"))
     for d in b.GetDrawings():
         if d.GetClass() == "PCB_TEXT" and d.m_Uuid.AsString() in LB["delete"]:
             fail.append(("labels", "old text still present", d.GetText()))
@@ -225,7 +240,7 @@ def main():
             cys[ref] = (rl, bbox(rl))
     for d in b.GetDrawings():
         if d.GetLayer() == pcbnew.F_SilkS and d.m_Uuid.AsString() not in new_uuids and \
-                d.m_Uuid.AsString() not in lab_names:
+                d.m_Uuid.AsString() not in lab_names and d.m_Uuid.AsString() not in art_names:
             rl = poly(d, pcbnew.F_SilkS)
             silk.append(("board " + (d.GetText() if d.GetClass() == "PCB_TEXT" else d.GetClass()), rl, bbox(rl)))
     ps = pcbnew.SHAPE_POLY_SET()
@@ -241,7 +256,7 @@ def main():
     worst = {"mask": 9, "fid": 9, "silk": 9, "edge": 9, "hole": 9}
     for key, rl, bb, kind, blk in mine:
         r = {}
-        LL = LIM_LABEL if kind == "label" else LIM
+        LL = LIM_LABEL if kind == "label" else (LIM_ART if kind == "art" else LIM)
         for name, orl, obb, k in mask:
             lim = LL[k]
             if bdist(bb, obb) >= lim + 0.5:
@@ -254,7 +269,8 @@ def main():
         others = [(n, orl, obb) for n, orl, obb in silk] + \
                  [(k2, rl2, bb2) for k2, rl2, bb2, kd2, blk2 in mine if k2 != key and not (
                      # lines and rectangles of one map may touch (frame / leader); its texts may not
-                     kind == "gfx" and kd2 == "gfx" and blk2 == blk and "-anchor-" not in key and "-anchor-" not in k2)]
+                     kind == "gfx" and kd2 == "gfx" and blk2 == blk and "-anchor-" not in key and "-anchor-" not in k2)
+                     and not (kind == "art" and kd2 == "art")]      # glyphs of the artwork among themselves
         for name, orl, obb in others:
             if bdist(bb, obb) >= LIM["silk"] + 0.5:
                 continue
@@ -374,8 +390,8 @@ def main():
         if any(" on F.Courtyard" in i["description"] or " on F.Fab" in i["description"] for i in v["items"]):
             continue                 # the check-only silk rule also matches courtyard / fab items: not silkscreen
         ids = [i.get("uuid") for i in v["items"]]
-        hit = [ref_uuids.get(u) or gfx_names.get(u) or lab_names.get(u) for u in ids
-               if u in ref_uuids or u in gfx_names or u in lab_names]
+        hit = [ref_uuids.get(u) or gfx_names.get(u) or lab_names.get(u) or art_names.get(u) for u in ids
+               if u in ref_uuids or u in gfx_names or u in lab_names or u in art_names]
         if hit:
             tight.append({"type": v["type"], "items": [i["description"] for i in v["items"]], "mine": hit})
     for t in tight:
@@ -387,8 +403,14 @@ def main():
     sl = [v["clearances"]["slack"] for v in rep["refs"].values() if "slack" in v.get("clearances", {})]
     rep["ownership_min_slack"] = round(min(sl), 4) if sl else None
     json.dump(rep, open(os.path.join(WORK, "check.json"), "w", encoding="utf-8"), indent=1)
-    print("designators %d, new map graphics %d, legend texts %d" % (sum(1 for m in mine if m[3] == "ref"),
-          sum(1 for m in mine if m[3] == "gfx"), sum(1 for m in mine if m[3] == "label")))
+    print("designators %d, new map graphics %d, legend texts %d, artwork polygons %d" % (
+        sum(1 for m in mine if m[3] == "ref"), sum(1 for m in mine if m[3] == "gfx"),
+        sum(1 for m in mine if m[3] == "label"), sum(1 for m in mine if m[3] == "art")))
+    for kd in ("label", "art"):
+        c = [v["clearances"] for k, v in rep["graphics"].items() if any(m[0] == k and m[3] == kd for m in mine)]
+        if c:
+            print("  worst %s clearances: mask %.3f silk %.3f edge %.3f" % (
+                kd, min(x.get("mask", 9) for x in c), min(x.get("silk", 9) for x in c), min(x.get("edge", 9) for x in c)))
     print("worst clearances (mm):", rep["worst"], "(limits", LIM, ")")
     print("ownership: %d designators outside blocks, smallest slack over the required margin %.3f mm" % (len(sl), min(sl)))
     print("KiCad DRC with check-only rules: %d violations in total, %d involve designators / new graphics" % (

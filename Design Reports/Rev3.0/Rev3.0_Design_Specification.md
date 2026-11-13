@@ -329,3 +329,8 @@ Scripts: `tools/silk_refdes/` (README there; adapted from the Battery Sentinel r
   - J20: the pin-1 corner mark is cut back off D220's outline and pad 1.
   - `.kicad_dru`: new rule `q1_on_heatsink_silk`, F.SilkS ↔ F.SilkS between Q1 and HS1 only, silk_clearance 0 with severity ignore, as in `q1_on_heatsink_courtyard`. Clearance 0 alone still reports the touching outlines.
   - Result: DRC `--severity-all` on the real file shows 0 errors, 0 unconnected, **0 warnings**, as saved and refilled. `.kicad_pro` still matches HEAD.
+- **Front artwork (owner request, same day):** the title-block texts are replaced by the readark logo with Manrope lines under it (scripts `tools/silk_refdes/art/`).
+  - Lines: "OVEN CONTROLLER" (board name, 2.7 mm cap), "PCB Rev3.0 · 2026-11-13", "Designed by Ömer Karaoğlu · readark" and the ratings line `230 V~ · 1 kW heater · 7" touch · K-type TC`.
+  - Placement: logo 35 mm wide, block 35 × 15.8 mm at abs x 148–183, y 82–98, right of the RGB arrays. It is the largest free front spot; clearances: mask/silk/courtyards 0.15, edge 1.0, holes 0.3 mm. Strokes are ≥ 0.15 mm.
+  - Fabrication note 1 now names the board "OVEN CONTROLLER PCB Rev3.0".
+  - Checks: exact checker 0 failures; DRC 0 / 0 / 0; only F.SilkS / Cmts.User items changed.
