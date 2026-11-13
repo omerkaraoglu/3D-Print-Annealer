@@ -6,8 +6,8 @@ Generated 2026-11-13 by `tools/make_bom_ozdisan.py` from the Özdisan product pa
 
 | | USD / board |
 |---|---|
-| Components at the 100-board price breaks (qty × tier price) | **32.10** |
-| Same, including MOQ rounding (what you actually pay ÷ 100) | **32.11** |
+| Components at the 100-board price breaks (qty × tier price) | **32.09** |
+| Same, including MOQ rounding (what you actually pay ÷ 100) | **32.09** |
 | of which not from Özdisan (HS1 heatsink from DigiKey, thermocouple probe from Motorobit) | 22.24 |
 
 ## Lines that need attention
@@ -21,7 +21,8 @@ Generated 2026-11-13 by `tools/make_bom_ozdisan.py` from the Özdisan product pa
 | Ref | Value | Part number | Note |
 |---|---|---|---|
 | C2 | 220uF 16V | PKRJ-016V221ME070-T2.5 | 220 uF 16 V 6.3x7 2.5 mm 105 C (fits the 6.3x11 footprint) |
-| C5,C6,C8 | 100n | CC0402KRX7R9BB104 | one 50 V X7R part for every 100 nF 0402 position (C5,C6,C8, C112-C115,C117-C119,C123,C126,C223,C225,C226, C129,C332) |
+| C5,C8 | 100n | CC0402KRX7R9BB104 | one 50 V X7R part for every 100 nF 0402 position (C5,C6,C8, C112-C115,C117-C119,C123,C126,C223,C225,C226, C129,C332) |
+| C6 | 1uF 6.3V X5R | CL05A105KQ5NNNC | C6 100 nF -> 1 uF: ESP32 EN RC per Espressif (10k + 1 uF), decided 2026-11-13 |
 | C116,C122,C336 | 10uF 6.3V X5R | CL21A106KPFNNNE | 10 V X5R used for both the 6.3 V (C116,C122,C336) and 10 V (C124,C127,C330,C331) positions |
 | C120,C121,C337 | 1uF 6.3V X7R | C1608X7R1C105K080AC | 16 V X7R for C120,C121,C337 (6.3 V) and C224,C335 (16 V) |
 | C125 | 4.7uF 25V X7R | CL21A475KBQNNNE | 4.7 uF 50 V X5R instead of 25 V X7R (no 25 V X7R 0805 in stock; the 50 V rating gives better DC bias) |
@@ -62,17 +63,18 @@ Generated 2026-11-13 by `tools/make_bom_ozdisan.py` from the Özdisan product pa
 | C1 | 1 | 100n 275VAC X2 | C42P2104M6SC361 | FARATRONIC | 31530 | 2 | 100 | 0.05076 | 0.0508 | OK |
 | C2 | 1 | 220uF 16V | PKRJ-016V221ME070-T2.5 | Koshin | 17966 | 5 | 100 | 0.02784 | 0.0278 | OK |
 | C4 | 1 | 10n 305VAC X2 | C42Q2103K40A405 | FARATRONIC | 9691 | 2 | 100 | 0.06048 | 0.0605 | OK |
-| C5,C6,C8 | 3 | 100n | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1700 | 0.01923 | 0.0577 | OK |
+| C5,C8 | 2 | 100n | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1600 | 0.01923 | 0.0385 | OK |
+| C6 | 1 | 1uF 6.3V X5R | CL05A105KQ5NNNC | SAMSUNG | 1813001 | 25 | 100 | 0.00469 | 0.0047 | OK |
 | C7 | 1 | 10uF | CL10A106KP8NNNC | SAMSUNG | 1489217 | 2 | 100 | 0.05537 | 0.0554 | OK |
 | C40 | 1 | 1uF 275VAC X2 | C42P2105KBSC400 | FARATRONIC | 56806 | 1 | 100 | 0.22272 | 0.2227 | OK |
 | C110,C111 | 2 | 27pF C0G | GRM1555C1H270JA01D | Murata | 50830 | 20 | 200 | 0.00464 | 0.0093 | OK |
-| C112-C115,C117-C119,C123,C126,C223,C225,C226 | 12 | 100nF 16V X7R | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1700 | 0.01923 | 0.2308 | OK |
+| C112-C115,C117-C119,C123,C126,C223,C225,C226 | 12 | 100nF 16V X7R | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1600 | 0.01923 | 0.2308 | OK |
 | C116,C122,C336 | 3 | 10uF 6.3V X5R | CL21A106KPFNNNE | Samsung | 352710 | 5 | 700 | 0.01898 | 0.0569 | OK |
 | C120,C121,C337 | 3 | 1uF 6.3V X7R | C1608X7R1C105K080AC | TDK | 4130 | 5 | 500 | 0.04150 | 0.1245 | OK |
 | C124,C127,C330,C331 | 4 | 10uF 10V X5R | CL21A106KPFNNNE | Samsung | 352710 | 5 | 700 | 0.01898 | 0.0759 | OK |
 | C125 | 1 | 4.7uF 25V X7R | CL21A475KBQNNNE | Samsung | 62505 | 1 | 100 | 0.10025 | 0.1003 | OK |
 | C128 | 1 | 47uF 10V | EEEFK1C470UR | Panasonic | 316 | 1 | 100 | 0.18514 | 0.1851 | OK |
-| C129,C332 | 2 | 100nF 25V X7R | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1700 | 0.01923 | 0.0385 | OK |
+| C129,C332 | 2 | 100nF 25V X7R | CC0402KRX7R9BB104 | Yageo | 4545 | 5 | 1600 | 0.01923 | 0.0385 | OK |
 | C130-C133 | 4 | 1nF 50V C0G | CL05C102JB5NNNC | Samsung | 2331 | 10 | 400 | 0.01489 | 0.0596 | OK |
 | C220 | 1 | 100nF 50V X7R | CC0603KRX7R9BB104 | Yageo | 2443557 | 10 | 100 | 0.01727 | 0.0173 | OK |
 | C221,C222 | 2 | 10nF 50V C0G 1% | CL10B103KB8NNNC | Samsung | 9799961 | 20 | 200 | 0.00709 | 0.0142 | OK |

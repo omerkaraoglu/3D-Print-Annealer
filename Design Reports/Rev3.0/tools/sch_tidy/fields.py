@@ -21,7 +21,7 @@ ALIAS = {
 NOT_PURCHASED = {"R1", "J3", "J4", "V1"}
 
 # value / description changes (brief of 2026-11-13); fields-only parts are not listed
-C100N = ["C5", "C6", "C8", "C112", "C113", "C114", "C115", "C117", "C118", "C119", "C123", "C126", "C223", "C225", "C226",
+C100N = ["C5", "C8", "C112", "C113", "C114", "C115", "C117", "C118", "C119", "C123", "C126", "C223", "C225", "C226",
          "C129", "C332"]
 VALUES = {
     "K1": "HJR-3FF-S-Z-4/05VDC", "U5": "MOC3052M", "Q2": "MMBT4401", "Q3": "MMBT4401",
@@ -36,13 +36,18 @@ for r in C100N:
 # round 2 (2026-11-13): the MOC3052 LED resistor is R4 (TRIG -> U5.1), not R9 (ZCD series resistor)
 VALUES["R4"] = "120"
 VALUES["R9"] = "180 1/10W"
+# C6 (ESP32 EN RC) 100 nF -> 1 uF, Espressif recommendation (2026-11-13, user decision)
+VALUES["C6"] = "1uF 6.3V X5R"
 OVERRIDE = {
+    "C6": dict(mpn="CL05A105KQ5NNNC", mfr="SAMSUNG",
+               url="https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943"),
     "R4": dict(mpn="0402WGJ0121TCE", mfr="ROYALOHM",
                url="https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369"),
     "R9": dict(mpn="0603SAJ0181T5E", mfr="ROYALOHM",
                url="https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227"),
 }
 DESCRIPTIONS = {
+    "C6": "MLCC (1005) 0402 1 uF 6.3 V X5R 10% (ESP32 EN RC: 10k + 1 uF per Espressif)",
     "K1": "Relay SPDT 5 V coil, 7 A 250 VAC contacts, Tianbo HJR-3FF-S-Z (SRD-05 footprint and pinout)",
     "U5": "Random-phase opto-triac 600 V, IFT 10 mA max (MOC3052), DIP-6",
     "R4": "RES.(1005) 0402 120 Ohms 5% 1/16W 100PPM",

@@ -553,7 +553,7 @@
 		)
 		(uuid "cd43ee26-6e5a-4353-b0b7-4af83aac0576")
 	)
-	(text "LINE_FILT feeds the heater triac Q1, the fan relay K1 and, through F1 (1 A), L1 (CM choke) and PS1"
+	(text "LINE_FILT feeds the heater triac Q1 and, through F1 (1 A), L1 (CM choke) and PS1; the fan relay K1 is fed from LINE_FUSED, before L40"
 		(exclude_from_sim no)
 		(at 149.86 147.32 0)
 		(effects

@@ -10456,7 +10456,7 @@
 		)
 		(uuid "4e5e3a60-6a20-42bf-814c-85b397edf524")
 	)
-	(text "LINE_FILT feeds the heater triac Q1, the fan relay K1 and, through F1 (1 A time-lag), the PSU branch PSU_L"
+	(text "LINE_FILT feeds the heater triac Q1 and, through F1 (1 A time-lag), the PSU branch PSU_L; the fan relay K1 is fed from LINE_FUSED (unfiltered)"
 		(exclude_from_sim no)
 		(at 38.1 121.92 0)
 		(effects
@@ -10830,7 +10830,7 @@
 		)
 		(uuid "c1cc7e38-4d7a-4d65-a0ba-363e642c2c32")
 	)
-	(text "EN: R11 10k pull-up + C6 100 nF; IO0 boot strap: R12 10k pull-up; IO2 and IO12 (MTDI strap) unused (NC)"
+	(text "EN: R11 10k pull-up + C6 1 uF (Espressif RC); IO0 boot strap: R12 10k pull-up; IO2 and IO12 (MTDI strap) unused (NC)"
 		(exclude_from_sim no)
 		(at 152.4 454.66 0)
 		(effects
@@ -10929,7 +10929,7 @@
 		)
 		(uuid "ad0329df-6814-45d5-9ac0-9a45b88fc0f5")
 	)
-	(text "K1 HJR-3FF-S-Z-4/05VDC (Tianbo; SRD-05 footprint and pinout, SPDT 7 A): COM = LINE_FILT,"
+	(text "K1 HJR-3FF-S-Z-4/05VDC (Tianbo; SRD-05 footprint and pinout, SPDT 7 A): COM = LINE_FUSED (after F3 only:"
 		(exclude_from_sim no)
 		(at 440.69 452.12 0)
 		(effects
@@ -10940,7 +10940,7 @@
 		)
 		(uuid "c0f8cf80-7a21-4b9e-9efd-91e37637ec4a")
 	)
-	(text "NO -> J4 fan lead pads (the fan returns to NEUT), NC unused"
+	(text "the oven fan needs no filter and its current stays out of L40); NO -> J4 fan lead pads (the fan returns to NEUT), NC unused"
 		(exclude_from_sim no)
 		(at 440.69 454.66 0)
 		(effects
@@ -11671,7 +11671,7 @@
 			)
 		)
 	)
-	(global_label "LINE_FILT"
+	(global_label "LINE_FUSED"
 		(shape input)
 		(at 467.36 381 180)
 		(fields_autoplaced yes)
@@ -15674,7 +15674,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF 50V X7R"
+		(property "Value" "1uF 6.3V X5R"
 			(at 168.91 368.3 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15696,7 +15696,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906"
+		(property "Datasheet" "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943"
 			(at 172.72 367.03 0)
 			(hide yes)
 			(show_name no)
@@ -15707,7 +15707,7 @@
 				)
 			)
 		)
-		(property "Description" "MLCC 0402 100 nF 50 V X7R 10%"
+		(property "Description" "MLCC (1005) 0402 1 uF 6.3 V X5R 10% (ESP32 EN RC: 10k + 1 uF per Espressif)"
 			(at 172.72 367.03 0)
 			(hide yes)
 			(show_name no)
@@ -15718,7 +15718,7 @@
 				)
 			)
 		)
-		(property "MPN" "CC0402KRX7R9BB104"
+		(property "MPN" "CL05A105KQ5NNNC"
 			(at 172.72 367.03 0)
 			(hide yes)
 			(show_name no)
@@ -15729,7 +15729,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Yageo"
+		(property "Manufacturer" "SAMSUNG"
 			(at 172.72 367.03 0)
 			(hide yes)
 			(show_name no)

@@ -28,13 +28,22 @@
    "qty": 1
   },
   {
-   "ref": "C5,C6,C8",
+   "ref": "C5,C8",
    "val": "100n",
    "fp": "C_0402_1005Metric",
    "mpn": "",
    "mfr": "",
    "desc": "MLCC (1005) 0402 100nF 25VDC ±10% X7R",
-   "qty": 3
+   "qty": 2
+  },
+  {
+   "ref": "C6",
+   "val": "1uF 6.3V X5R",
+   "fp": "C_0402_1005Metric",
+   "mpn": "",
+   "mfr": "",
+   "desc": "MLCC (1005) 0402 1uF 6.3VDC ±10% X5R",
+   "qty": 1
   },
   {
    "ref": "C7",
@@ -2605,6 +2614,40 @@
    ],
    "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
    "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs; Motorobit SKU SNS.SCK.01.000085"
+  },
+  "C6": {
+   "code": "CL05A105KQ5NNNC",
+   "mfr": "SAMSUNG",
+   "stock": 1813001,
+   "moq": 25,
+   "tiers": [
+    [
+     25,
+     0.00498
+    ],
+    [
+     100,
+     0.00469
+    ],
+    [
+     500,
+     0.00441
+    ],
+    [
+     1000,
+     0.00413
+    ],
+    [
+     2000,
+     0.00384
+    ],
+    [
+     5000,
+     0.00356
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
+   "note": "C6 100 nF -> 1 uF: ESP32 EN RC per Espressif (10k + 1 uF), decided 2026-11-13"
   }
  }
 }

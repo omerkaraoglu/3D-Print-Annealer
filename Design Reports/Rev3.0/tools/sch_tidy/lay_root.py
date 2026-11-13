@@ -83,7 +83,7 @@ def mains(b, dx=0, dy=0):
     g.note(96.52, 106.68, ["Fuse clips: Reomax R3-5A, 2 per fuse (BOM line, no symbol)"])
     g.note(38.1, 119.38, [
         "Mains input (Rev3.0 layout pass 3/4): J3 mains lead pads -> F3 8 A main fuse -> LINE_FUSED -> sheet 'Mains input EMC filter' (L40 100 uH 5 A, C40 1 uF X2) -> LINE_FILT",
-        "LINE_FILT feeds the heater triac Q1, the fan relay K1 and, through F1 (1 A time-lag), the PSU branch PSU_L",
+        "LINE_FILT feeds the heater triac Q1 and, through F1 (1 A time-lag), the PSU branch PSU_L; the fan relay K1 is fed from LINE_FUSED (unfiltered)",
         "RV1 TVR14431KSU15Y (14 mm, 275 V ac class MOV) and C1 100 nF X2 across LINE_FILT-NEUT; the X2 capacitors are bled by R6/R7",
         "L1 LFU09V-103 common-mode choke; PS1 HLK-10M05 (5 V / 2 A, 10 W); C2 220 uF 16 V on the 5 V output",
         "V1 is the simulation source only (230 V rms, 50 Hz), not a part; PWR_FLAGs on LINE/NEUT (wire pads) and on the PS1 AC pins (driven through L1)",
@@ -234,7 +234,7 @@ def mcu(b, dx=0, dy=0):
         b.lab("U3." + n, 33.02)
     g.note(152.4, 452.12, [
         "MCU: U3 ESP32-WROOM-32E-N16 (Espressif), 3V3 from U30 (sheet Power); C7 10 uF + C8 100 nF at VDD",
-        "EN: R11 10k pull-up + C6 100 nF; IO0 boot strap: R12 10k pull-up; IO2 and IO12 (MTDI strap) unused (NC)",
+        "EN: R11 10k pull-up + C6 1 uF (Espressif RC); IO0 boot strap: R12 10k pull-up; IO2 and IO12 (MTDI strap) unused (NC)",
         "GPIO map: LCD D0-D7 = IO16, IO14, IO27, IO26, IO25, IO21, IO22, IO23; WR = IO19, DC = IO18, CS = IO5, RST = IO17",
         "I2C SDA = IO4, SCL = IO15; TP_INT = IO32; ADC_RDY = IO35; TRIG = IO33, ZCD = IO34, FAN = IO13",
         "LCD_* and I2C/TP_INT/ADC_RDY go to the Display and Thermocouple sheets as global labels; the 33 R series resistors are on the Display sheet",
@@ -286,15 +286,15 @@ def fan(b, dx=0, dy=0):
     g.w("R16.1", "R15.1", "Q4.1")
     b.lab("R16.2", 5.08)
     g.w("K1.1", (477.52, 381.0), (467.36, 381.0))
-    b.lab_at(g.p(467.36, 381.0), "L", spec="K1.1")
+    b.lab_at(g.p(467.36, 381.0), "L", spec="K1.1")  # 2026-11-13 later the same day: K1.1 moved to LINE_FUSED (edited on the sheet; the baseline netlist still says LINE_FILT)
     g.place("J4", 452.12, 403.86, 0, f="L")
     g.w("K1.3", (474.98, 403.86), "J4.1")
     g.w("J4.2", (459.74, 406.4))
     b.power(g.p(459.74, 406.4), "NEUT")
     g.note(440.69, 449.58, [
         "Fan control: FAN (IO13) -> R16 1k -> Q4 BC817-25 (R15 10k pull-down) -> K1 coil (5 V), D5 1N4148W flyback",
-        "K1 HJR-3FF-S-Z-4/05VDC (Tianbo; SRD-05 footprint and pinout, SPDT 7 A): COM = LINE_FILT,",
-        "NO -> J4 fan lead pads (the fan returns to NEUT), NC unused",
+        "K1 HJR-3FF-S-Z-4/05VDC (Tianbo; SRD-05 footprint and pinout, SPDT 7 A): COM = LINE_FUSED (after F3 only:",
+        "the oven fan needs no filter and its current stays out of L40); NO -> J4 fan lead pads (the fan returns to NEUT), NC unused",
     ])
     return [("fan", 430 + dx, 365 + dy, 620 + dx, 465 + dy)]
 
