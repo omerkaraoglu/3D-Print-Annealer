@@ -221,6 +221,87 @@ def render(model, extra_lines=None, views=("iso", "top", "front"), fname=None):
     return path
 
 
+def render_ortho(parts, view, fname, clip=None, title="", hlines=(), vlines=(), notes=(), width_in=14, dpi=130):
+    """Orthographic 2D render with true aspect ratio (painter's algorithm), for fit checks.
+
+    parts : list of (label, cq Shape/Workplane, colour key)
+    view  : "front" = look along +Y (screen x = X, y = Z); "back" = look along -Y (screen x = -X);
+            "side"  = look along -X (screen x = Y, y = Z);   "top" = look along -Z (x = X, y = Y)
+    clip  : (x0, x1, y0, y1, z0, z1) box in model coordinates; shapes are intersected with it
+    hlines/vlines : (value, label, style) reference lines in screen coordinates
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.collections import PolyCollection
+    import numpy as np
+
+    os.makedirs(RENDER_DIR, exist_ok=True)
+    proj = {"front": (lambda P: (P[:, 0], P[:, 2], P[:, 1]), np.array([0, -1.0, 0])),
+            "back": (lambda P: (-P[:, 0], P[:, 2], -P[:, 1]), np.array([0, 1.0, 0])),
+            "side": (lambda P: (P[:, 1], P[:, 2], P[:, 0]), np.array([1.0, 0, 0])),
+            "top": (lambda P: (P[:, 0], P[:, 1], -P[:, 2]), np.array([0, 0, 1.0]))}[view]
+    light = np.array([0.35, -0.55, 0.75]); light /= np.linalg.norm(light)
+    cbox = None
+    if clip is not None:
+        x0, x1, y0, y1, z0, z1 = clip
+        cbox = box(x0, x1, y0, y1, z0, z1).val()
+    polys, cols, depth = [], [], []
+    for lbl, s, c in parts:
+        if isinstance(s, cq.Workplane):
+            s = s.val()
+        if cbox is not None:
+            bb = s.BoundingBox()
+            if bb.xmax < x0 or bb.xmin > x1 or bb.ymax < y0 or bb.ymin > y1 or bb.zmax < z0 or bb.zmin > z1:
+                continue
+            try:
+                s = s.intersect(cbox)
+            except Exception:
+                continue
+            if s is None or not s.Faces():
+                continue
+        vs, ts = s.tessellate(0.05, 0.2)
+        if not ts:
+            continue
+        V = np.array([[v.x, v.y, v.z] for v in vs])
+        T = np.array([list(t) for t in ts])
+        P = V[T]                                       # (n, 3, 3)
+        n = np.cross(P[:, 1] - P[:, 0], P[:, 2] - P[:, 0])
+        ln = np.linalg.norm(n, axis=1); ok = ln > 1e-12
+        P, n = P[ok], n[ok] / ln[ok, None]
+        k = 0.35 + 0.65 * np.abs(n @ light)
+        base = np.array(COL[c])
+        for tri, kk in zip(P, k):
+            sx, sy, sd = proj[0](tri)
+            polys.append(np.column_stack([sx, sy])); cols.append(np.clip(base * kk, 0, 1)); depth.append(sd.mean())
+    order = np.argsort(depth)[::-1]                    # far first
+    allp = np.vstack(polys) if polys else np.zeros((1, 2))
+    (xa, ya), (xb, yb) = allp.min(0), allp.max(0)
+    pad = 0.04 * max(xb - xa, yb - ya)
+    asp = (yb - ya + 2 * pad) / max(xb - xa + 2 * pad, 1e-6)
+    fig, ax = plt.subplots(figsize=(width_in, min(width_in, max(2.5, width_in * asp * 0.95 + 1.2))))
+    ax.add_collection(PolyCollection([polys[i] for i in order], facecolors=[cols[i] for i in order],
+                                     edgecolors=[cols[i] for i in order], linewidths=0.15))
+    ax.set_xlim(xa - pad, xb + pad); ax.set_ylim(ya - pad, yb + pad)
+    for v, lab, st in hlines:
+        ax.axhline(v, ls=st, lw=0.7, color="m"); ax.text(xa - pad * 0.9, v + 0.15, lab, fontsize=7, color="m")
+    for v, lab, st in vlines:
+        ax.axvline(v, ls=st, lw=0.7, color="b"); ax.text(v + 0.2, yb + pad * 0.3, lab, fontsize=7, color="b", rotation=90, va="top")
+    for x, y, txt in notes:
+        ax.annotate(txt, (x, y), fontsize=7, color="k", xytext=(5, 5), textcoords="offset points",
+                    arrowprops=dict(arrowstyle="-", lw=0.4))
+    ax.set_aspect("equal")
+    ax.grid(True, lw=0.3, alpha=0.5)
+    ax.set_xlabel({"front": "model X (mm)", "back": "-model X (mm)", "side": "model Y (mm)", "top": "model X (mm)"}[view])
+    ax.set_ylabel("model Z (mm)" if view != "top" else "model Y (mm)")
+    ax.set_title(title, fontsize=9)
+    fig.tight_layout()
+    path = os.path.join(RENDER_DIR, fname + ".png")
+    fig.savefig(path, dpi=dpi)
+    plt.close(fig)
+    return path
+
+
 # ---------------------------------------------------------------- driver
 def run(model, render_views=("iso", "top", "front"), verify_pins=True, extra_lines=None):
     os.makedirs(OUT_DIR, exist_ok=True)

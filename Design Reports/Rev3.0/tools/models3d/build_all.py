@@ -9,7 +9,10 @@ Steps:
   3. make_mech_footprint.py                         -> Rev3.pretty/TFT7_SAT070AT40D21_Mech.kicad_mod
   4. set_model_fields.py                            -> (model ...) in the Rev3.pretty footprints
   5. make_models_json.py                            -> models.json for the board editor
-  6. STEP re-import: bounding box of the file vs the script's own bounding box
+  6. dump_board_fps.py (KiCad Python, reads a COPY of the board) -> out/board_fps.json
+     standoff_fitcheck.py                           -> display stand-off check (lead protrusion vs
+                                                       tft7_sat070at40d21.STANDOFF), R2_*.png renders
+  7. STEP re-import: bounding box of the file vs the script's own bounding box
 """
 import glob
 import json
@@ -40,6 +43,10 @@ def main():
         sh([sys.executable, os.path.join(HERE, p)])
     for p in ("make_mech_footprint.py", "set_model_fields.py", "make_models_json.py"):
         sh([sys.executable, os.path.join(HERE, p)])
+    if os.path.exists(KICAD_PY):
+        sh([KICAD_PY, os.path.join(HERE, "dump_board_fps.py")])
+    if os.path.exists(os.path.join(HERE, "out", "board_fps.json")):
+        sh([sys.executable, os.path.join(HERE, "standoff_fitcheck.py")])
 
     import warnings
     warnings.filterwarnings("ignore")
@@ -48,6 +55,8 @@ def main():
     bad = 0
     for f in sorted(glob.glob(os.path.join(HERE, "out", "*.json"))):
         r = json.load(open(f))
+        if "bbox" not in r:          # board_fps.json, standoff_clearance.json
+            continue
         b = r["bbox"]
         s = cq.importers.importStep(r["files"]["step"]).val().BoundingBox()
         d = max(abs(s.xmin - b["xmin"]), abs(s.xmax - b["xmax"]), abs(s.ymin - b["ymin"]),

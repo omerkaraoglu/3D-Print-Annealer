@@ -52,10 +52,11 @@ def main():
              '\t(layer "F.Cu")\n' % NAME)
     s.append('\t(descr "SATOZ SAT070AT40D21Y0-35100T071KN 7in 800x480 TFT + GT911 CTP, mechanical only (no pads). '
              'Library view = panel FRONT view, origin = 164.9 x 100 outline centre; place on B.Cu (flip left/right) '
-             'with the panel back on the PCB back. Outline 164.90 x 100.00, LCM 3.34 + CTP 1.98 = 5.32 thick; '
+             'with the panel back %.1f mm off the PCB back (frame spacer; the 3D model includes the stand-off). '
+             'Outline 164.90 x 100.00, LCM 3.34 + CTP 1.98 = 5.32 thick; '
              'A.A. 154.08 x 85.92 (4.03 / 4.87 from left / top); cover VA 155.08 x 86.92 (3.53 left, 8.85 bottom). '
              'Tails: TFT 40p 67.65 long, fingers 19.02..39.52 from the left end; CTP 6p 50 long, fingers 40 from the right end '
-             '(front view). Sources: SAT spec V.2 sheet 16/18, Fannal CT0476-V2.0")\n')
+             '(front view). Sources: SAT spec V.2 sheet 16/18, Fannal CT0476-V2.0")\n' % t.STANDOFF)
     s.append('\t(tags "display TFT 7inch mechanical")\n')
     s.append('\t(property "Reference" "DS1" (at 0 %.2f 0) (layer "F.SilkS") (hide yes) (uuid "%s") '
              '(effects (font (size 1 1) (thickness 0.15))))\n' % (-hy - 2, u()))
@@ -79,6 +80,7 @@ def main():
         s.append(rect(fx - half, hy - 1.0, fx + half, hy, "Dwgs.User", 0.1))
     s.append(text("SAT070AT40D21 outline 164.90 x 100.00 (front view; place on B side)", -hx + 2, -hy + 2, "Cmts.User"))
     s.append(text("A.A. 154.08 x 85.92", -hx + 6, -hy + 7, "Cmts.User"))
+    s.append(text("panel back %.1f mm off the PCB back (frame spacer)" % t.STANDOFF, -hx + 6, -hy + 10, "Cmts.User"))
     s.append(text("TFT tail loop: %.1f below edge" % m.geo["tft"]["loop_bottom_below_board_edge"],
                   t.u_to_X(t.TFT_TAIL, 20), hy + 3, "Cmts.User", 0.8))
     s.append(text("CTP tail loop: %.1f below edge" % m.geo["ctp"]["loop_bottom_below_board_edge"],

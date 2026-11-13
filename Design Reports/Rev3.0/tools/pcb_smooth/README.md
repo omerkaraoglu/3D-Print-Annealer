@@ -29,7 +29,17 @@ through `fill.py`.
 | 7 | `drc.py`, `verify_real.py`, `conn_compare.py`, `tracks_json.py` (+ `../pcb/mains2_check.py`), `render_set.py` | mixed | verification and renders |
 | 8 | `t9_final.py in out models.json fplib` | KiCad | final pass: 3D models from `../models3d/models.json`, DS1 display envelope (added on F at its position, then flipped to B), holes renamed H1…H4, all holes board-only / excluded from BOM and position files |
 | 4/6 | `o4_probe.py geom.json [clr] [rmin]`, `final_checks.py geom.json` | system | return-via position search for single signal vias; K1 COM-to-coil distances and panel vs ear holes / washer keep-outs |
-| all | `build.py original workdir rulesdir [from_step]` | system | runs steps 1…9 in order (9 = DRC) |
+| all | `build.py original workdir rulesdir [from_step]` | system | runs steps 1…9 in order (9 = DRC), then the round-3 steps 10…15 on `s7` |
+| 10 | `r3_j11.py in out` | KiCad | round 3: J11 2.08 mm west, its six escapes re-drawn (same widths / layers / vias, tangent arcs), forced nudges of C226 (0.5 mm), R227 (re-placed horizontal north of the J11 courtyard) and C225's GND via; teardrops in the J11 box removed |
+| 11 | `r3_holes.py in out` + `fill.py` | KiCad | round 3: old holes (4,4) (4,95) (97,95.5) (160,95) and their 16 keep-outs deleted, left / bottom ears added (hole centres 4.8 mm outside the edge), outline redrawn by `t23_outline.outline()` with ears on all four edges, holes renumbered H1…H9 clockwise from the top-left, colliding stitching vias in the J11 area removed |
+| 12 | `teardrops.py … region=x0,y0,x1,y1` + `fill.py` | KiCad | round 3: teardrops regenerated only inside the J11 box |
+| 13 | `stitch_plan.py … region=…` (repeatable) | system | round 3: stitching re-planned on the existing board, new vias only in the J11 box and the four former hole areas; the hand-placed O4 return vias are not duplicated |
+| 14 | `r3_ds1.py in out models.json` | KiCad | round 3: applies DS1's model offset / rotation / scale from `models.json` if it changed, else copies the board |
+| chk | `r3_checks.py geom.json`, `r3_diff.py before after` | system / KiCad | round 3: hole table (mains, panel, tail loops), envelope, former-hole pour coverage, J11 vs the CTP finger zone; footprint moves and item counts |
+
+Round 3 was run on the board committed as bd375c0: copy it to `workdir/s7.kicad_pcb`, then `build.py x workdir rulesdir 10`.
+`t23_outline.py` is now importable (`outline(b, KEEP, top, right, bottom, left, off_*)`); run as a script it still draws the
+smoothing-round outline (top and right ears only). `render_set.py` uses the round-3 page box (x −9.3…174.3, y −10.3…108.3).
 
 Helpers: `common.py` (coordinate helpers), `inventory.py`, `netdump.py`, `region.py` (listings), `ear_scan.py`
 (clearance of candidate ear-hole positions from mains copper and bodies).

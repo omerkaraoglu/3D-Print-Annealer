@@ -26,10 +26,13 @@ panel back) and the connector entry heights (0.8 / 0.6 above the PCB top).
 
 Model frame (= footprint frame of Rev3:TFT7_SAT070AT40D21_Mech):
   origin = centre of the 164.9 x 100 outline, X/Y as in the FRONT view
-  (Y up = panel top edge), Z = 0 at the panel back, +Z towards the cover glass.
-  The footprint sits on the PCB's B side, so KiCad mirrors X and points +Z away
-  from the PCB back: the panel back lies on the PCB back, and the PCB occupies
-  model z -1.6..0. The tails hang down past the bottom edge, U-turn around it
+  (Y up = panel top edge), Z = 0 at the PCB BACK surface, +Z towards the cover
+  glass. The footprint sits on the PCB's B side, so KiCad mirrors X and points
+  +Z away from the PCB back; the PCB occupies model z -1.6..0.
+  Round 2 (owner decision): the frame holds the panel STANDOFF = 5.0 mm off the
+  PCB back (spacer), so the panel back is at model z = STANDOFF and the panel
+  occupies z 5.00..10.32; the stand-off is baked into the geometry, the
+  footprint's (model ...) offset stays 0 0 0. The tails hang down past the bottom edge, U-turn around it
   and run up the PCB top side (model z = -1.6 - entry height) into J10 / J11.
   The excess tail length is taken up by the U-loop below the board edge
   (hang length h, computed from the connector positions).
@@ -47,9 +50,10 @@ VA = (3.53, 100.0 - 8.85 - 86.92, 155.08, 86.92)
 
 # ------------------------------------------------------------ board / connector data
 PCB_T = 1.6
+STANDOFF = 5.0                               # gap PCB back -> panel back (frame spacer), mm
 BOARD = (20.0, 20.0, 184.0, 119.0)          # Edge.Cuts bbox, absolute mm
 J10 = (155.65, 112.0)                        # absolute, F side, rot 0 (footprint origin)
-J11 = (62.10, 112.4)
+J11 = (60.02, 112.4)                         # round 2: moved onto the CTP finger centre
 J10_ENTRY_Y, J10_DEPTH_IN = 2.875, 4.0       # FPC entry face at +y of the footprint, insertion depth
 J11_ENTRY_Y, J11_DEPTH_IN = 2.05, 3.0
 J10_ENTRY_H, J11_ENTRY_H = 0.8, 0.6          # FPC centre above the PCB top (estimated)
@@ -86,10 +90,15 @@ def u_to_X(tail, u):
     return -L_OUT / 2 + u if tail["ref"] == "left" else L_OUT / 2 - u
 
 
+def z_exit(tail):
+    """Height (model z) at which the tail leaves the panel: exit height above the panel back + stand-off."""
+    return STANDOFF + tail["z_exit"]
+
+
 def tail_geometry(tail, conn, entry_y, depth_in, entry_h):
     """Solve the hang length so that the tail end sits depth_in inside the connector."""
     z_ret = -PCB_T - entry_h
-    r = (tail["z_exit"] - z_ret) / 2
+    r = (z_exit(tail) - z_ret) / 2
     y_edge = -H_OUT / 2
     _, y_end = abs_to_model(conn[0], conn[1] + entry_y - depth_in)
     run_on_board = y_end - y_edge                    # length of the return leg above the board edge
@@ -101,10 +110,10 @@ def path_point(g, tail, s):
     """Point (Y, Z) and tangent angle at arc length s along the tail."""
     h, r, ye = g["h"], g["r"], g["y_edge"]
     if s <= h:
-        return ye - s, tail["z_exit"]
+        return ye - s, z_exit(tail)
     if s <= h + math.pi * r:
         phi = (s - h) / r
-        yc, zc = ye - h, (tail["z_exit"] + g["z_ret"]) / 2
+        yc, zc = ye - h, (z_exit(tail) + g["z_ret"]) / 2
         return yc - r * math.sin(phi), zc + r * math.cos(phi)
     return ye - h + (s - h - math.pi * r), g["z_ret"]
 
@@ -157,9 +166,9 @@ def fv_rect(r):
 def build():
     m = Model("TFT7_SAT070AT40D21", None, "SATOZ SAT070AT40D21Y0-35100T071KN 7in TFT + CTP, tails folded")
     hx, hy = L_OUT / 2, H_OUT / 2
-    m.add("lcm", box(-hx, hx, -hy, hy, 0, T_LCM), "steel")
+    m.add("lcm", box(-hx, hx, -hy, hy, STANDOFF, STANDOFF + T_LCM), "steel")
     va = fv_rect(VA)
-    z = T_LCM
+    z = STANDOFF + T_LCM
     m.add("pu_tape", rect_frame(-hx, -hy, hx, hy, *va, z, z + T_PU), "black"); z += T_PU
     m.add("sensor", box(-hx, hx, -hy, hy, z, z + T_SENSOR + T_OCA), "glass"); z += T_SENSOR + T_OCA
     m.add("cover_print", rect_frame(-hx, -hy, hx, hy, *va, z, z + T_COVER), "black")
@@ -175,6 +184,7 @@ def build():
         jx, jy = abs_to_model(*conn)
         geo[name] = {"hang_h": round(g["h"], 2), "loop_bottom_below_board_edge": round(g["h"] + g["r"], 2),
                      "bend_r": round(g["r"], 2), "z_return": round(g["z_ret"], 2),
+                     "z_exit": round(z_exit(tail), 2), "standoff": STANDOFF,
                      "finger_centre_X": round(u_to_X(tail, tail["finger_u"]), 3),
                      "connector_centre_X": round(jx, 3), "connector_centre_Y": round(jy, 3),
                      "lateral_offset_finger_minus_connector": round(u_to_X(tail, tail["finger_u"]) - jx, 3),

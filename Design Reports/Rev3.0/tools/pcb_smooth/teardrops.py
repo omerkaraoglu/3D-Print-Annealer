@@ -10,11 +10,17 @@ escapes), pads / vias sitting in a same-net pour on that layer (KiCad's "prefer 
 part is too short, arcs.  Track-to-track (track_end): collinear joints of two straight segments whose widths differ by
 > 10 %, flare from the narrow track into the wide one.
 A skip list (JSON list of "ref.pad|layer|x|y" / "via|..." keys from the DRC loop) removes or shrinks individual drops.
-Usage: teardrops.py in.kicad_pcb out.kicad_pcb report.json [skip.json]"""
+Round 3: `region=x0,y0,x1,y1` (local mm) only generates drops whose pad / via / joint centre lies in that box, for a
+board that already carries teardrops elsewhere (the caller removes the old drops in the box first).
+Usage: teardrops.py in.kicad_pcb out.kicad_pcb report.json [skip.json] [region=x0,y0,x1,y1]"""
 import sys, json, math, uuid, pcbnew
 from common import *
-b = pcbnew.LoadBoard(sys.argv[1])
-skip = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
+ARGS = [a for a in sys.argv if not a.startswith('region=')]
+REGION = [tuple(map(float, a[7:].split(','))) for a in sys.argv if a.startswith('region=')]
+def in_region(p):
+    return not REGION or any(r[0] <= p[0] <= r[2] and r[1] <= p[1] <= r[3] for r in REGION)
+b = pcbnew.LoadBoard(ARGS[1])
+skip = json.load(open(ARGS[4])) if len(ARGS) > 4 else {}
 LR, LMAX, WR, WMAX, FILT = 0.5, 1.0, 1.0, 2.0, 0.9
 NSEG = 8
 EXCL_FP = {'U10', 'U20'}
@@ -114,7 +120,7 @@ for t in tracks:
             for ref, p in pads:
                 if p.GetNetCode() == net and p.IsOnLayer(lay) and close(L(p.GetPosition()), C, 0.01):
                     owner = (ref, p); break
-        if owner is None:
+        if owner is None or not in_region(C):
             continue
         if owner[0] in EXCL_FP or in_escape(C):
             sk('fine-pitch escape'); continue
@@ -160,7 +166,7 @@ for t in tracks:
         ends.setdefault((t.GetNetCode(), t.GetLayer(), (round(p[0], 4), round(p[1], 4))), []).append(t)
 arcends = {(a.GetNetCode(), a.GetLayer(), (round(L(q)[0], 4), round(L(q)[1], 4))) for a in b.Tracks() if a.GetClass() == 'PCB_ARC' for q in (a.GetStart(), a.GetEnd())}
 for (net, lay, C), its in ends.items():
-    if len(its) != 2 or (net, lay, C) in arcends:
+    if len(its) != 2 or (net, lay, C) in arcends or not in_region(C):
         continue
     t1, t2 = its
     w1, w2 = mm(t1.GetWidth()), mm(t2.GetWidth())
@@ -199,7 +205,7 @@ for v in vias:
     q = L(v.GetPosition())
     if ("%.3f" % q[0], "%.3f" % q[1]) in via_pts:
         v.SetTeardropsEnabled(True); v.SetTeardropCurved(True)
-pcbnew.SaveBoard(sys.argv[2], b)
+pcbnew.SaveBoard(ARGS[2], b)
 
 # append the teardrop zones to the saved file (KiCad 10 s-expression)
 def esc(s):
@@ -214,9 +220,9 @@ for d in drops:
                '\t\t\t(island_area_min 10)\n\t\t)\n\t\t(polygon\n\t\t\t(pts\n\t\t\t\t%s\n\t\t\t)\n\t\t)\n\t)\n'
                % (esc(d['net']), d['layer'], uuid.uuid4(), 'padvia' if d['type'] == 'padvia' else 'track',
                   'padvia' if d['type'] == 'padvia' else 'track_end', pts))
-s = open(sys.argv[2], encoding='utf-8').read().rstrip()
+s = open(ARGS[2], encoding='utf-8').read().rstrip()
 assert s.endswith(')')
 s = s[:-1].rstrip() + '\n' + ''.join(txt) + ')\n'
-open(sys.argv[2], 'w', encoding='utf-8', newline='\n').write(s)
-json.dump(dict(stats=stats, drops=[{k: v for k, v in d.items() if k != 'poly'} for d in drops]), open(sys.argv[3], 'w'))
+open(ARGS[2], 'w', encoding='utf-8', newline='\n').write(s)
+json.dump(dict(stats=stats, drops=[{k: v for k, v in d.items() if k != 'poly'} for d in drops]), open(ARGS[3], 'w'))
 print("teardrops padvia %d track_end %d" % (stats['padvia'], stats['track_end']), stats['skipped'])

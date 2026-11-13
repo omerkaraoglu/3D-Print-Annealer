@@ -28,7 +28,8 @@ set MODELS3D_RENDER_DIR=<folder for PNG renders>   (default: .\renders)
 
 `build_all.py` runs, in order: `dump_pads.py` (KiCad Python) -> every part
 script -> `make_mech_footprint.py` -> `set_model_fields.py` ->
-`make_models_json.py`, then re-imports every STEP and prints a table
+`make_models_json.py` -> `dump_board_fps.py` (KiCad Python) ->
+`standoff_fitcheck.py`, then re-imports every STEP and prints a table
 (pins vs pads PASS/FAIL, bounding box, STEP re-import check). It exits non-zero
 on any failure.
 
@@ -55,6 +56,18 @@ placed on **B.Cu** (flip left/right), so KiCad mirrors it into the back view the
 PCB top side sees. The tail hang below the board edge is solved from the J10 /
 J11 positions (constants at the top of `tft7_sat070at40d21.py`) - re-run after
 moving a connector.
+
+### Display stand-off (round 2)
+
+`STANDOFF = 5.0` at the top of `tft7_sat070at40d21.py` is the gap between the
+PCB back and the panel back (a spacer in the frame). It is baked into the STEP
+(panel back at model z = STANDOFF), so the footprint's `(model ...)` offset
+stays `0 0 0`. `J10` / `J11` there are the connector positions the tails are
+solved for. `dump_board_fps.py` (KiCad Python, loads a temporary copy of the
+board) and `standoff_fitcheck.py` then list the lead protrusion of every
+through-hole part below the PCB back against the stand-off
+(`out/standoff_clearance.json`) and render `R2_*.png` (bottom edge, gap
+section, side view, J10 / J11 fold sections) into `MODELS3D_RENDER_DIR`.
 
 ## Files for the board editor
 

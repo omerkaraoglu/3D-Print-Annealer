@@ -51,8 +51,10 @@ def main():
             "layer": "B.Cu",
             "orientation_deg": 180.0,
             "how": ("Add on F.Cu at the position with orientation 0, then Flip left/right about its own "
-                    "position (KiCad stores B.Cu, orientation 180). Panel back on the PCB back, bottom edges "
-                    "flush (y 119.0), TFT tail fingers centred on J10 x 155.65."),
+                    "position (KiCad stores B.Cu, orientation 180). Panel back %.1f mm off the PCB back "
+                    "(frame spacer, baked into the STEP: model offset stays 0 0 0), bottom edges flush (y 119.0), "
+                    "TFT tail fingers centred on J10 x %.2f, CTP tail fingers on J11 x %.2f." % (t.STANDOFF, t.J10[0], t.J11[0])),
+            "standoff_mm": t.STANDOFF,
             "attributes": ["board_only", "exclude_from_pos_files", "exclude_from_bom", "allow_missing_courtyard"],
             "panel_outline_abs_mm": [round(t.CX - t.L_OUT / 2, 3), round(t.CY - t.H_OUT / 2, 3),
                                      round(t.CX + t.L_OUT / 2, 3), round(t.CY + t.H_OUT / 2, 3)],

@@ -21,11 +21,17 @@ U10, at the GND pads of J10 / J11, along the 8080 bus and the RGB ribbon, a 3 mm
 along the +5V island split in In2, one via into every GND fill piece that has no via yet (islands), then a grid of
 <= 4.5 mm pitch (a node is skipped if a GND via is already within 2.5 mm; otherwise the nearest valid point within
 1.5 mm is used).
-Usage: stitch_plan.py geom.json out.json [skip.json]"""
+Round 3: run again on a board that already carries the stitching, the planner only adds vias where coverage is
+missing (every step skips points with a GND via nearby; the hand-placed O4 vias are not duplicated).
+`region=x0,y0,x1,y1` (local mm, repeatable) restricts new vias to those boxes (round 3: the J11 area and the four
+former hole areas).
+Usage: stitch_plan.py geom.json out.json [skip.json] [region=...]"""
 import json, sys, math
 from shapely.geometry import Polygon, Point, LineString, MultiPolygon, box
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
+REGION = [tuple(map(float, a[7:].split(','))) for a in sys.argv if a.startswith('region=')]
+sys.argv = [a for a in sys.argv if not a.startswith('region=')]
 G = json.load(open(sys.argv[1]))
 skip = set(tuple(x) for x in json.load(open(sys.argv[3]))) if len(sys.argv) > 3 else set()
 M = set(G['mains'])
@@ -91,6 +97,7 @@ def why(x, y, outer=True):
     pt = Point(x, y)
     d = pt.buffer(RV, 16)
     if (round(x, 3), round(y, 3)) in skip: return 'skip'
+    if REGION and not any(r[0] <= x <= r[2] and r[1] <= y <= r[3] for r in REGION): return 'outside region'
     if EDGE.distance(pt) < 0.5 + RV: return 'edge'
     if FORB.intersects(d): return 'rule area'
     if MAINS_KO.contains(pt) or MAINS.distance(pt) < 6.4 + RV: return 'mains 6.4'
@@ -141,7 +148,8 @@ def try_around(x, y, kind, rmax=1.5, step=0.25, need_free=None):
 FORCED = [(147.35, 93.5, 'return O4 VLED_N'), (12.43, 38.64, 'return O4 J2 TXD0/RXD0'),
           (29.12, 58.46, 'return O4 Q4-B'), (60.67, 80.06, 'return O4 BL_PWM')]
 for fx, fy, fk in FORCED:
-    add(fx, fy, fk)
+    if not any(math.hypot(vx - fx, vy - fy) < 0.05 for vx, vy in gndv):   # round 3: already on the board -> keep, no copy
+        add(fx, fy, fk)
 # 1) return vias at signal vias
 SUP = {'GND', '+3V3', '+5V', '+1V2'}
 ret_ok, ret_miss = 0, []

@@ -9,6 +9,14 @@ Steps (each writes workdir/sN.kicad_pcb):
  7 stitch          plan (shapely) + apply + fill                                                   -> s6
  8 t9_final        3D models, DS1 display envelope, hole names / attributes                         -> s7
  9 drc             kicad-cli DRC with the rules, zones as saved
+Round 3 (2026-11-13, on s7 = the board committed as bd375c0; to start from the real board copy it to workdir/s7.kicad_pcb
+and run with from_step 10):
+10 r3_j11          J11 2.08 mm west + its escape re-routed, C226 / R227 / C225-via nudges          -> r1
+11 r3_holes+fill   old holes H1..H4 and their keep-outs out, left / bottom ears, outline, H1..H9  -> r2
+12 teardrops+fill  teardrops regenerated in the J11 area only (region=)                           -> r3
+13 stitch          plan restricted to the J11 area and the four former hole areas + apply + fill  -> r4
+14 r3_ds1          DS1 model offset from models.json if it changed (else a copy)                   -> r5
+15 drc             kicad-cli DRC with the rules, zones as saved
 """
 import subprocess, sys, os
 KPY = r"C:/Program Files/KiCad/10.0/bin/python.exe"
@@ -48,3 +56,20 @@ if start <= 8:
     run(KPY, "t9_final.py", p("s6.kicad_pcb"), p("s7.kicad_pcb"), MODELS, FPLIB)
 if start <= 9:
     run(KPY, "drc.py", p("s7.kicad_pcb"), R, "norefill", "40")
+# ---- round 3
+R3_TD = "region=33.5,83.8,46.0,93.4"
+R3_ST = ["region=33,83,49,95.5", "region=-1,-1,12,12", "region=-1,87,12,100", "region=89,87,105,100", "region=152,87,165,100"]
+if start <= 10: run(KPY, "r3_j11.py", p("s7.kicad_pcb"), p("r1.kicad_pcb"))
+if start <= 11:
+    run(KPY, "r3_holes.py", p("r1.kicad_pcb"), p("r2u.kicad_pcb"))
+    run(KPY, "fill.py", p("r2u.kicad_pcb"), p("r2.kicad_pcb"), R)
+if start <= 12:
+    run(KPY, "teardrops.py", p("r2.kicad_pcb"), p("r3u.kicad_pcb"), p("r3_td.json"), R3_TD)
+    run(KPY, "fill.py", p("r3u.kicad_pcb"), p("r3.kicad_pcb"), R)
+if start <= 13:
+    run(KPY, "geom_export.py", p("r3.kicad_pcb"), p("r3_geom.json"))
+    run(sys.executable, "stitch_plan.py", p("r3_geom.json"), p("stitch_r3.json"), *R3_ST)
+    run(KPY, "stitch_apply.py", p("r3.kicad_pcb"), p("r4u.kicad_pcb"), p("stitch_r3.json"))
+    run(KPY, "fill.py", p("r4u.kicad_pcb"), p("r4.kicad_pcb"), R)
+if start <= 14: run(KPY, "r3_ds1.py", p("r4.kicad_pcb"), p("r5.kicad_pcb"), MODELS)
+if start <= 15: run(KPY, "drc.py", p("r5.kicad_pcb"), R, "norefill", "40")
