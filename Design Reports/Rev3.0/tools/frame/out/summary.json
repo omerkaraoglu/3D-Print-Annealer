@@ -1,0 +1,534 @@
+{
+ "frame": {
+  "valid": true,
+  "volume_cm3": 32.5,
+  "mass_g_1.36": 44.2,
+  "bbox": [
+   6.5,
+   198.5,
+   -153.87,
+   -5.9,
+   -12.26,
+   4.23
+  ],
+  "size": [
+   192.0,
+   147.97,
+   16.48
+  ],
+  "support_ribs": 26,
+  "skipped_ribs": []
+ },
+ "levels": {
+  "Z_FRONT": -11.02,
+  "Z_GLASS": -10.32,
+  "Z_PANEL_BACK": -5.0,
+  "Z_SEAT": -4.6,
+  "Z_SHELF_BACK": -2.0999999999999996,
+  "Z_TROUGH_TOP": 4.05,
+  "OUTER": [
+   17.27,
+   187.67,
+   16.25,
+   153.7
+  ],
+  "POCKET": [
+   19.77,
+   185.17,
+   18.75,
+   119.25
+  ],
+  "TROUGH": [
+   39.2,
+   167.4,
+   119.25,
+   151.2
+  ],
+  "BEAM_Y1": 153.7,
+  "boss_base_d": 8.384709631017916
+ },
+ "fit": {
+  "board_dz": 0.08,
+  "components_checked": 145,
+  "component_overlaps": [],
+  "closest_components": [
+   {
+    "ref": "F3",
+    "part": "Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm",
+    "min_dist": 1.268,
+    "overlap_mm3": 0.0,
+    "zmin": -1.86,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "C333",
+    "part": "C_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.64,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "U3",
+    "part": "ESP32-WROOM-32E",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "R129",
+    "part": "R_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.64,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "J2",
+    "part": "PinHeader_1x06_P2.54mm_Vertical",
+    "min_dist": 1.752,
+    "overlap_mm3": 0.0,
+    "zmin": -1.37,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "R1",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.022,
+    "overlap_mm3": 0.0,
+    "zmin": -0.36,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "J3",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.022,
+    "overlap_mm3": 0.0,
+    "zmin": -0.36,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "J4",
+    "part": "SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub",
+    "min_dist": 2.14,
+    "overlap_mm3": 0.0,
+    "zmin": -0.36,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "PS1",
+    "part": "Converter_ACDC_Hi-Link_HLK-10Mxx",
+    "min_dist": 2.253,
+    "overlap_mm3": 0.0,
+    "zmin": -3.27,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "C334",
+    "part": "C_0805_2012Metric",
+    "min_dist": 2.324,
+    "overlap_mm3": 0.0,
+    "zmin": 1.64,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "C126",
+    "part": "C_0402_1005Metric",
+    "min_dist": 2.569,
+    "overlap_mm3": 0.0,
+    "zmin": 1.64,
+    "q1_trimmed": false
+   },
+   {
+    "ref": "J10",
+    "part": "Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide",
+    "min_dist": 2.631,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false
+   }
+  ],
+  "pcb_body": {
+   "min_dist": 0.08,
+   "overlap_mm3": 0.0,
+   "note": "0.08 = copper + mask not in the KiCad export: physical contact at the bosses and support ribs"
+  },
+  "panel_parts": [
+   {
+    "part": "lcm_0",
+    "min_dist": 0.15,
+    "overlap_mm3": 0.0,
+    "to_sheet": 0.005
+   },
+   {
+    "part": "pu_tape_1",
+    "min_dist": 0.179,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.345
+   },
+   {
+    "part": "sensor_2",
+    "min_dist": 0.183,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.745
+   },
+   {
+    "part": "cover_print_3",
+    "min_dist": 0.19,
+    "overlap_mm3": 0.0,
+    "to_sheet": 4.62
+   },
+   {
+    "part": "cover_va_4",
+    "min_dist": 3.824,
+    "overlap_mm3": 0.0,
+    "to_sheet": 4.62
+   }
+  ],
+  "tails": [
+   {
+    "part": "tft_tail_5",
+    "min_dist": 1.557,
+    "overlap_mm3": 0.0,
+    "to_sheet": 2.503
+   },
+   {
+    "part": "tft_fingers_6",
+    "min_dist": 3.386,
+    "overlap_mm3": 0.0,
+    "to_sheet": 6.825
+   },
+   {
+    "part": "ctp_tail_7",
+    "min_dist": 1.554,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.787
+   },
+   {
+    "part": "ctp_fingers_8",
+    "min_dist": 4.536,
+    "overlap_mm3": 0.0,
+    "to_sheet": 6.625
+   }
+  ],
+  "tail_min_dist": 1.554,
+  "panel_min_dist": 0.15,
+  "panel_overlap_mm3": 0.0,
+  "lead_protrusions": [
+   {
+    "ref": "PS1",
+    "protrusion": 3.27,
+    "gap_to_sheet": 1.33,
+    "gap_to_frame": 2.25,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "HS1",
+    "protrusion": 2.87,
+    "gap_to_sheet": 1.73,
+    "gap_to_frame": 31.57,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "Q1",
+    "protrusion": 2.5,
+    "gap_to_sheet": 2.1,
+    "gap_to_frame": 32.63,
+    "untrimmed_protrusion": 8.12
+   },
+   {
+    "ref": "L40",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 6.17,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "L1",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 2.81,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "F3",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 1.27,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J20",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 2.75,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C40",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 7.61,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "F1",
+    "protrusion": 1.86,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 16.28,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "K1",
+    "protrusion": 1.76,
+    "gap_to_sheet": 2.83,
+    "gap_to_frame": 28.31,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "U5",
+    "protrusion": 1.67,
+    "gap_to_sheet": 2.93,
+    "gap_to_frame": 41.22,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "U1",
+    "protrusion": 1.67,
+    "gap_to_sheet": 2.93,
+    "gap_to_frame": 40.18,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J2",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 1.75,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R3",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.82,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "RV1",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 23.5,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R5",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.77,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R2",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 27.05,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "RV2",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.52,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R7",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 17.07,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R6",
+    "protrusion": 1.36,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 17.07,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R1",
+    "protrusion": 0.36,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.02,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J4",
+    "protrusion": 0.36,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.14,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J3",
+    "protrusion": 0.36,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.02,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C2",
+    "protrusion": 0.36,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 23.4,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C4",
+    "protrusion": 0.26,
+    "gap_to_sheet": 4.33,
+    "gap_to_frame": 22.16,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C1",
+    "protrusion": 0.26,
+    "gap_to_sheet": 4.33,
+    "gap_to_frame": 17.65,
+    "untrimmed_protrusion": null
+   }
+  ],
+  "sheet_vs_frame": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "gasket_vs_frame": {
+   "min_dist": 0.607
+  },
+  "plan": {
+   "rib_to_pad_min": [
+    1.32,
+    "J3.1"
+   ],
+   "boss_to_pad_min": [
+    4.46,
+    "J2.1"
+   ],
+   "mains_to_frame_contact_min": [
+    1.32,
+    "J3.1"
+   ],
+   "creepage_mains_to_panel_mm": 8.52,
+   "clearance_mains_to_panel_mm": 6.7,
+   "creepage_req_mm": 6.4,
+   "clearance_req_mm": 4.0
+  },
+  "slivers": {
+   "faces": 342,
+   "slivers": []
+  },
+  "oven_sheet_vs_frame_overlap_mm3": 0.0
+ },
+ "calc": {
+  "boss": {
+   "screw": "ISO 7049-C / DIN 7981 ST2.9x9.5 A2 (alt. PT K30x10)",
+   "pilot_mm": 2.4,
+   "boss_od_mm": 8.0,
+   "od_over_d": 2.7586206896551726,
+   "engaged_mm": 6.4,
+   "torque_install_Nm": 0.4,
+   "torque_drive_Nm": 0.2,
+   "preload_cons_N": 690,
+   "preload_real_N": 345,
+   "bearing_area_mm2": 42.2,
+   "bearing_cons_MPa": 16.3,
+   "bearing_real_MPa": 8.2,
+   "creep_allow_MPa": 15.0,
+   "thread_shear_cons_MPa": 19.7,
+   "thread_shear_SF": 2.28,
+   "hoop_cons_MPa": 8.9,
+   "hoop_SF_short": 8.4,
+   "hoop_SF_longterm(0.4x)": 3.4
+  },
+  "gasket": {
+   "area_mm2": 2364,
+   "thickness_mm": 1.0,
+   "compression_nom_mm": 0.3,
+   "compression_nom_pct": 30,
+   "stack_tol_rss_mm": 0.34,
+   "compression_range_pct": [
+    0,
+    64
+   ],
+   "pressure_nom_MPa": 0.07,
+   "pressure_max_MPa": 0.25,
+   "force_nom_N": 165,
+   "force_max_N": 591
+  },
+  "feet": {
+   "nut": "ISO 10511 (DIN 985) M4 nyloc + DIN 9021 M4 washer on FH-M4-15 stud",
+   "torque_Nm": 0.6,
+   "preload_cons_N": 750,
+   "preload_real_N": 500,
+   "bearing_area_mm2": 55.0,
+   "bearing_cons_MPa": 13.6,
+   "bearing_real_MPa": 9.1,
+   "gasket_share_per_foot_N": 73.9,
+   "clamp_margin": 6.8
+  },
+  "shelf": {
+   "line_load_N_per_mm": 1.12,
+   "lever_mm": 1.8,
+   "bending_MPa": 1.93,
+   "deflection_um": 0.95,
+   "seat_pressure_MPa": 0.531
+  },
+  "frame_beam": {
+   "section_A_mm2": 34.7,
+   "I_mm4": 309,
+   "span_mm": 59.7,
+   "nom": {
+    "q_N_per_mm": 0.312,
+    "bending_MPa": 2.68,
+    "lift_short_um": 47.8,
+    "lift_1000h_um": 95.6
+   },
+   "max": {
+    "q_N_per_mm": 1.116,
+    "bending_MPa": 9.58,
+    "lift_short_um": 170.6,
+    "lift_1000h_um": 341.3
+   }
+  },
+  "weight": {
+   "masses_kg": {
+    "PCB with SMD parts": 0.12,
+    "panel (LCM + CTP)": 0.2,
+    "heatsink SK 409 63.5 + Q1": 0.06,
+    "PSU HLK-10M05": 0.05,
+    "relay, fuses, chokes, caps": 0.06
+   },
+   "total_kg": 0.49,
+   "static_N": 4.8,
+   "shock_10g_per_M4_stud_N": 6.0,
+   "shock_10g_per_PCB_screw_N": 3.2
+  }
+ },
+ "files": {
+  "Frame_iso_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Frame_iso_front.png",
+  "Frame_iso_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Frame_iso_back.png",
+  "Frame_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Frame_front.png",
+  "Frame_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Frame_back.png",
+  "Assembly_iso_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Assembly_iso_front.png",
+  "Assembly_iso_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Assembly_iso_back.png",
+  "Assembly_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Assembly_front.png",
+  "Assembly_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Assembly_back.png",
+  "Assembly_side": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Assembly_side.png",
+  "Section_A": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Section_A_ear_bosses_x30.png",
+  "Section_B": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Section_B_tail_pocket_x125.png",
+  "Section_C": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Section_C_gasket_feet_plane.png",
+  "Section_D": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Section_D_foot_F2_x72.7.png"
+ },
+ "seconds": 420
+}

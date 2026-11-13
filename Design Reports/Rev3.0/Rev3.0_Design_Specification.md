@@ -346,3 +346,52 @@ Scripts: `tools/silk_refdes/` (README there; adapted from the Battery Sentinel r
     - DRC `--severity-all`, as saved and refilled: 0 errors, 0 unconnected, 0 warnings.
     - A 60 px/mm render decodes to the URL with OpenCV and pyzbar, and still does at 12 and 6 px/mm.
     - `run_all.py` from the pre-silk board reproduces the file byte for byte (md5 `82cfd261…`).
+
+### 12.11 Carrier frame (2026-11-13)
+
+Design document: `Rev3.0_Frame_Design.md`. Scripts: `tools/frame/` (README there; CadQuery, `build.py`). Outputs: `Mechanical/Rev3.0_Frame/`.
+
+- **Part:** one injection-moulded PA6-GF30 frame, heat-stabilised, halogen-free FR. Material requirements: UL94 V-0, GWFI 960 °C, GWIT ≥ 775 °C (IEC 60335-1 cl. 30). Example grade: Durethan BKV30FN04, to be confirmed.
+- **What it holds and how it mounts:** the panel glass outward in a 165.40 × 100.50 pocket (0.25 mm per side, 0.8 × 45° lead-in), and the PCB 5.0 mm behind the panel back. It mounts to the oven front sheet from the inside. One pull direction, no undercuts, nominal wall 2.5 mm, ribs 1.5 mm, draft 1° (0.5° on the locating faces).
+- **Size:** body 170.4 × 137.5 mm; 192 × 148 × 15.1 mm overall with the feet; 44 g.
+- **Z stack (PCB back = 0):**
+  - Formex sheet 0.4 on a 2.6 mm shelf at −4.6;
+  - panel back −5.0;
+  - glass front −10.32;
+  - feet plane −11.02 (1.0 mm silicone sponge gasket at 30 %).
+  - Nothing above the PCB plane over the board.
+- **PCB seat:**
+  - nine Ø 8 bosses under H1–H9, Ø 2.4 pilots, for ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2 at 0.3–0.4 Nm;
+  - 26 support ribs on the shelf, ≥ 1.32 mm from every B.Cu pad.
+- **Tail pocket:** 128.2 × 31.9 mm below the bottom edge, open front (closed by the oven sheet) and open back. Clearance ≥ 1.55 mm to both U-loops; R 5 inner corners.
+- **Mounting:**
+  - eight feet (six were proposed; eight keep the spans ≤ 60 mm against the gasket lift);
+  - Ø 4.5 holes for PEM FH-M4-15 studs, DIN 9021 washer, ISO 10511 M4 nyloc at 0.6 Nm;
+  - two Ø 3 locating pegs.
+  - Sheet window 156.08 × 87.92 mm (cover view area + 0.5 mm per side). The hole table is in the design document and the DXF.
+- **Fit check (real board STEP, every model):**
+  - 0 intersections with the 145 component models, the PCB, the panel and the sheet;
+  - closest part: the F3 clip leads, 1.27 mm;
+  - tails 1.55 mm;
+  - lead tips to the Formex sheet: PS1 1.33 mm, HS1 1.73 mm, Q1 2.10 mm (leads trimmed to ≤ 2.5 mm, mandatory);
+  - mains copper → frame → panel metal: creepage 8.52 mm, clearance 6.70 mm;
+  - 0 sliver faces.
+- **Stresses at 110 °C allowances:**
+  - boss bearing 8–16 MPa, hoop 8.9 MPa (SF 8.4), thread shear SF 2.3;
+  - foot bearing 9–14 MPa;
+  - gasket lift between feet 48 µm nominal, 96 µm at 1000 h.
+- **Open:**
+  - gasket 1.0 vs 1.5 mm (LCM ± 0.3 tolerance gives 0–64 % compression);
+  - insulating sheet grade and layers (GK-17 is 0.43 mm, GK-10 0.25 mm; reinforced insulation per cl. 29.3);
+  - 8 vs 6 feet;
+  - pegs visible on the front;
+  - stud type and sheet thickness;
+  - Q1 trimming step;
+  - R 0.5 root fillets in the tooling CAD.
+- **Files** (`Mechanical/Rev3.0_Frame/`):
+  - `Rev3.0_Frame.step`, `.stl`;
+  - `Rev3.0_Assembly.step`;
+  - `Rev3.0_Frame_Drawing.png`;
+  - `Rev3.0_FrontSheet_Pattern.dxf`;
+  - renders `Frame_*` / `Assembly_*` (.png);
+  - sections `Section_A_ear_bosses_x30`, `Section_B_tail_pocket_x125`, `Section_C_gasket_feet_plane`, `Section_D_foot_F2_x72.7` (.png).

@@ -1,0 +1,85 @@
+{
+ "boss": {
+  "screw": "ISO 7049-C / DIN 7981 ST2.9x9.5 A2 (alt. PT K30x10)",
+  "pilot_mm": 2.4,
+  "boss_od_mm": 8.0,
+  "od_over_d": 2.7586206896551726,
+  "engaged_mm": 6.4,
+  "torque_install_Nm": 0.4,
+  "torque_drive_Nm": 0.2,
+  "preload_cons_N": 690,
+  "preload_real_N": 345,
+  "bearing_area_mm2": 42.2,
+  "bearing_cons_MPa": 16.3,
+  "bearing_real_MPa": 8.2,
+  "creep_allow_MPa": 15.0,
+  "thread_shear_cons_MPa": 19.7,
+  "thread_shear_SF": 2.28,
+  "hoop_cons_MPa": 8.9,
+  "hoop_SF_short": 8.4,
+  "hoop_SF_longterm(0.4x)": 3.4
+ },
+ "gasket": {
+  "area_mm2": 2364,
+  "thickness_mm": 1.0,
+  "compression_nom_mm": 0.3,
+  "compression_nom_pct": 30,
+  "stack_tol_rss_mm": 0.34,
+  "compression_range_pct": [
+   0,
+   64
+  ],
+  "pressure_nom_MPa": 0.07,
+  "pressure_max_MPa": 0.25,
+  "force_nom_N": 165,
+  "force_max_N": 591
+ },
+ "feet": {
+  "nut": "ISO 10511 (DIN 985) M4 nyloc + DIN 9021 M4 washer on FH-M4-15 stud",
+  "torque_Nm": 0.6,
+  "preload_cons_N": 750,
+  "preload_real_N": 500,
+  "bearing_area_mm2": 55.0,
+  "bearing_cons_MPa": 13.6,
+  "bearing_real_MPa": 9.1,
+  "gasket_share_per_foot_N": 73.9,
+  "clamp_margin": 6.8
+ },
+ "shelf": {
+  "line_load_N_per_mm": 1.12,
+  "lever_mm": 1.8,
+  "bending_MPa": 1.93,
+  "deflection_um": 0.95,
+  "seat_pressure_MPa": 0.531
+ },
+ "frame_beam": {
+  "section_A_mm2": 34.7,
+  "I_mm4": 309,
+  "span_mm": 59.7,
+  "nom": {
+   "q_N_per_mm": 0.312,
+   "bending_MPa": 2.68,
+   "lift_short_um": 47.8,
+   "lift_1000h_um": 95.6
+  },
+  "max": {
+   "q_N_per_mm": 1.116,
+   "bending_MPa": 9.58,
+   "lift_short_um": 170.6,
+   "lift_1000h_um": 341.3
+  }
+ },
+ "weight": {
+  "masses_kg": {
+   "PCB with SMD parts": 0.12,
+   "panel (LCM + CTP)": 0.2,
+   "heatsink SK 409 63.5 + Q1": 0.06,
+   "PSU HLK-10M05": 0.05,
+   "relay, fuses, chokes, caps": 0.06
+  },
+  "total_kg": 0.49,
+  "static_N": 4.8,
+  "shock_10g_per_M4_stud_N": 6.0,
+  "shock_10g_per_PCB_screw_N": 3.2
+ }
+}
