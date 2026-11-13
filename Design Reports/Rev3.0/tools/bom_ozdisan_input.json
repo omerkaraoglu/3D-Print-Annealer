@@ -398,11 +398,11 @@
   },
   {
    "ref": "R4",
-   "val": "200",
+   "val": "120",
    "fp": "R_0402_1005Metric",
    "mpn": "",
    "mfr": "",
-   "desc": "RES.(1005) 0402 200 Ohms 5% 1/16W 100PPM",
+   "desc": "RES.(1005) 0402 120 Ohms 5% 1/16W 100PPM",
    "qty": 1
   },
   {
@@ -434,7 +434,7 @@
   },
   {
    "ref": "R9",
-   "val": "120 1/10W",
+   "val": "180 1/10W",
    "fp": "R_0603_1608Metric",
    "mpn": "",
    "mfr": "",
@@ -1153,9 +1153,9 @@
    ]
   },
   "R4": {
-   "code": "0402WGJ0201TCE",
+   "code": "0402WGJ0121TCE",
    "mfr": "ROYALOHM",
-   "stock": 172145,
+   "stock": 10000,
    "moq": 200,
    "tiers": [
     [
@@ -1169,8 +1169,18 @@
     [
      1000,
      0.00044
+    ],
+    [
+     2000,
+     0.00041
+    ],
+    [
+     5000,
+     0.00038
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369",
+   "note": "R4 200 R -> 120 R: R4 is the MOC3052 LED resistor (TRIG -> U5 pin 1); IFT 10 mA, (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 18 mA / 39 mW best case (0402 1/16 W)"
   },
   "R5": {
    "code": "KNP02SJ0470A10",
@@ -1241,9 +1251,9 @@
    ]
   },
   "R9": {
-   "code": "0603SAJ0121T5E",
-   "mfr": "Royalohm",
-   "stock": 97860,
+   "code": "0603SAJ0181T5E",
+   "mfr": "ROYALOHM",
+   "stock": 219230,
    "moq": 200,
    "tiers": [
     [
@@ -1257,14 +1267,9 @@
     [
      1000,
      0.00078
-    ],
-    [
-     2000,
-     0.00072
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209",
-   "note": "R9 180 R -> 120 R because U5 is now the MOC3052 (IFT 10 mA): (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 17 mA typical, within the 60 mA LED rating"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227"
   },
   "R16": {
    "code": "0402WGJ0102TCE",
@@ -1334,7 +1339,7 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3052x-637272",
-   "note": "MOC3053M not stocked; MOC3052 is the 10 mA-IFT sibling (600 V, random phase): change R9 180 R to 120 R; alternative Liteon MOC3023-LIT (5 mA IFT, 400 V, 71k stock, 0.139 USD)"
+   "note": "MOC3053M not stocked; MOC3052 is the 10 mA-IFT sibling (600 V, random phase): change the LED resistor R4 200 R to 120 R (R9 is the ZCD series resistor and stays 180 R); alternative Liteon MOC3023-LIT (5 mA IFT, 400 V, 71k stock, 0.139 USD)"
   },
   "U6": {
    "code": "SN74AHC1G14DBVR",
@@ -2588,7 +2593,7 @@
    "note": "NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural"
   },
   "TCPROBE": {
-   "code": "WRNT-02 (SNS.SCK.01.000085)",
+   "code": "WRNT-02",
    "mfr": "Motorobit",
    "stock": 10,
    "moq": 1,
@@ -2599,7 +2604,7 @@
     ]
    ],
    "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
-   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs"
+   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs; Motorobit SKU SNS.SCK.01.000085"
   }
  }
 }

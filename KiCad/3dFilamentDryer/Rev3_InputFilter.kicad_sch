@@ -5,11 +5,13 @@
 	(uuid "3a0f6c2e-0001-4c3e-9b1e-000000000004")
 	(paper "A3")
 	(title_block
-		(title "Rev3.0 Mains input EMC filter")
-		(date "2026-11-09")
+		(title "3D Printer Filament Dryer & Print Annealer - Input filter")
+		(date "2026-11-13")
 		(rev "3.0")
 		(company "READARK")
-		(comment 1 "M. Ömer Karaoğlu")
+		(comment 1 "Mains LC filter: L40 100 uH 5 A + C40 1 uF X2 after the main fuse F3")
+		(comment 2 "LINE_FUSED in from F3; LINE_FILT out to Q1, K1 and F1 on the root sheet")
+		(comment 3 "M. Ömer Karaoğlu")
 	)
 	(lib_symbols
 		(symbol "Device:L"
@@ -490,20 +492,173 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Differential-mode LC stage on the PSU branch, inserted between fuse F1 (1 A slow blow) and the existing RV1 / C1 (X2) / L1 (CM choke) / PS1 chain:\nLINE_FUSED -> L40 120 uH (IND-120UH-THT, radial D22.5 mm, P9 mm) -> LINE_FILT; C40 1 uF 275 VAC X2 (Faratronic C42P2105KBSC400, P27.5 mm) from LINE_FILT to NEUT.\nWith C1 (100 nF X2) the stage is a pi-filter: fc = 1/(2*pi*sqrt(120u*1u)) = 14.5 kHz, ~40 dB/dec above it; attenuates the HLK-10M05 switching\nfundamental (~65 kHz) by ~26 dB and its harmonics more. Carries only the PSU current (<100 mA), not the heater or fan current.\nLayout: keep L40 away from the thermocouple input and the LCD bus (unshielded choke); C40 bleeder is R6/R7 (2x33k) already on the root sheet."
+	(junction
+		(at 210.82 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "931f981d-5666-4578-8be2-e9b70f9d70d4")
+	)
+	(wire
+		(pts
+			(xy 186.69 114.3)
+			(xy 173.99 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4928651e-de8b-42fe-9d2b-a5379e131e1c")
+	)
+	(wire
+		(pts
+			(xy 194.31 114.3)
+			(xy 210.82 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcd53f17-dbac-4703-b13a-282f1565c480")
+	)
+	(wire
+		(pts
+			(xy 210.82 114.3)
+			(xy 228.6 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b581952-65e6-4305-88f5-942731a32847")
+	)
+	(text "Mains input EMC filter: L40 + C40 (main filter at the mains input, since layout pass 3)"
 		(exclude_from_sim no)
-		(at 20 20 0)
+		(at 149.86 142.24 0)
 		(effects
 			(font
-				(size 1.6 1.6)
+				(size 1.27 1.27)
 			)
-			(justify left top)
+			(justify left bottom)
 		)
-		(uuid "48063f52-a800-42ba-b17f-d3fda184596c")
+		(uuid "c1c1ac37-e704-484f-98e9-95e1968f24f9")
+	)
+	(text "LINE -> F3 (8 A main fuse, root sheet) -> LINE_FUSED -> L40 -> LINE_FILT"
+		(exclude_from_sim no)
+		(at 149.86 144.78 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cd43ee26-6e5a-4353-b0b7-4af83aac0576")
+	)
+	(text "LINE_FILT feeds the heater triac Q1, the fan relay K1 and, through F1 (1 A), L1 (CM choke) and PS1"
+		(exclude_from_sim no)
+		(at 149.86 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4c4ce725-6fc9-4084-8c35-ee48cb988b5c")
+	)
+	(text "L40 Core Master RC1415U-101K, 100 uH 5 A 100 mOhm radial: carries the heater current (4.4 A rms, 1.9 W)"
+		(exclude_from_sim no)
+		(at 149.86 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c60f88fe-4c9a-4ade-bd69-87f3dfdf6bc0")
+	)
+	(text "C40 1 uF 275 VAC X2 (Faratronic C42P2105KBSC400, P27.5 mm) LINE_FILT-NEUT; C1 100 nF X2 and RV1 on the root sheet"
+		(exclude_from_sim no)
+		(at 149.86 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2eb9438f-325b-4305-bd8c-43c4fb7d5291")
+	)
+	(text "Pi with C1: fc = 1/(2*pi*sqrt(100u*1u)) = 16 kHz; triac turn-on steps and HLK-10M05 switching filtered (EMC assessment pass 3)"
+		(exclude_from_sim no)
+		(at 149.86 154.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c3748219-3221-43bc-996d-8e002e35056e")
+	)
+	(text "Layout: keep L40 (unshielded) away from the thermocouple input and the LCD bus; C40 bleeder is R6/R7 (2 x 33k) on the root sheet"
+		(exclude_from_sim no)
+		(at 149.86 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9f620697-3e97-4fdb-af27-964bc42c750a")
+	)
+	(global_label "LINE_FUSED"
+		(shape input)
+		(at 173.99 114.3 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3955b2c7-4619-4cda-a2f9-694917eb8384")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "LINE_FILT"
+		(shape output)
+		(at 228.6 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3b284768-17b2-4a86-a17f-caa55136105c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 228.6 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:L")
-		(at 80.01 69.85 90)
+		(at 190.5 114.3 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -511,32 +666,29 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "4e3fb52b-4919-4a33-bf13-9340163e0069")
 		(property "Reference" "L40"
-			(at 82.55 67.31 0)
+			(at 190.5 109.22 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Value" "100uH 5A"
-			(at 82.55 69.85 0)
+			(at 190.5 111.76 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" "Rev3:L_Radial_CoreMaster_RC1415U"
-			(at 80.01 69.85 0)
+			(at 190.5 114.3 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -547,7 +699,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941"
-			(at 80.01 69.85 0)
+			(at 190.5 114.3 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -558,7 +710,7 @@
 			)
 		)
 		(property "Description" "Inductor fixed radial 100 uH +/-10 %, 5 A, 100 mOhm, D16.5 x H17 mm, pitch 7.5 mm, THT (Core Master spec HX8817022); main input filter choke, carries the heater current 4.4 A (the earlier IND-120UH-THT has no published rating)"
-			(at 80.01 69.85 0)
+			(at 190.5 114.3 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -569,7 +721,7 @@
 			)
 		)
 		(property "MPN" "RC1415U-101K"
-			(at 80.01 69.85 0)
+			(at 190.5 114.3 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -580,7 +732,7 @@
 			)
 		)
 		(property "Manufacturer" "CORE MASTER"
-			(at 80.01 69.85 0)
+			(at 190.5 114.3 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -605,79 +757,9 @@
 			)
 		)
 	)
-	(wire
-		(pts
-			(xy 83.82 69.85)
-			(xy 91.44 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4820811f-7630-4091-98e5-78e33ae4b3aa")
-	)
-	(global_label "LINE_FUSED"
-		(shape passive)
-		(at 91.44 69.85 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1e80e694-367c-4d8d-9cca-8c8f62fc3f1b")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 91.44 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 76.2 69.85)
-			(xy 68.58 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b5092294-4da4-43f7-8e9e-9c2e42f9fc10")
-	)
-	(global_label "LINE_FILT"
-		(shape passive)
-		(at 68.58 69.85 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9820091f-27b6-4bc8-8566-e5ffd73f5e91")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 68.58 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(symbol
 		(lib_id "Device:C")
-		(at 110.49 85.09 0)
+		(at 210.82 118.11 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -685,10 +767,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "9dda995d-4dca-4927-9ee1-c5dce541f338")
 		(property "Reference" "C40"
-			(at 113.03 82.55 0)
+			(at 214.63 116.84 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -699,7 +780,7 @@
 			)
 		)
 		(property "Value" "1uF 275VAC X2"
-			(at 113.03 85.09 0)
+			(at 214.63 119.38 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -710,7 +791,7 @@
 			)
 		)
 		(property "Footprint" "Rev3:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2"
-			(at 110.49 85.09 0)
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -721,7 +802,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2105kbsc400-466649"
-			(at 110.49 85.09 0)
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -732,7 +813,7 @@
 			)
 		)
 		(property "Description" "Film capacitor X2 MKP 1 uF 275 VAC +/-10%, 32x18x9 mm, pitch 27.5 mm, -40..+125 C"
-			(at 110.49 85.09 0)
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -743,7 +824,7 @@
 			)
 		)
 		(property "MPN" "C42P2105KBSC400"
-			(at 110.49 85.09 0)
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -753,8 +834,8 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Faratronic"
-			(at 110.49 85.09 0)
+		(property "Manufacturer" "FARATRONIC"
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -779,55 +860,9 @@
 			)
 		)
 	)
-	(wire
-		(pts
-			(xy 110.49 81.28)
-			(xy 110.49 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6f951ba9-44b2-4009-959e-bf28b677a968")
-	)
-	(global_label "LINE_FILT"
-		(shape passive)
-		(at 110.49 76.2 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "cd1099b1-196b-4261-b251-cd870b66de92")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 110.49 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 110.49 88.9)
-			(xy 110.49 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1c7e3394-ecd6-41bb-b923-c1a54971c879")
-	)
 	(symbol
 		(lib_id "power:NEUT")
-		(at 110.49 91.44 180)
+		(at 210.82 121.92 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -835,10 +870,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ea0b82a2-723f-4920-bf4e-d6c2eaec15f1")
-		(property "Reference" "#PWR30501"
-			(at 113.03 88.9 0)
+		(uuid "f98ed3c4-f7a1-449b-8dbb-10f903b50cfe")
+		(property "Reference" "#PWR0601"
+			(at 210.82 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -846,22 +880,20 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Value" "NEUT"
-			(at 113.03 91.44 0)
+			(at 210.82 125.476 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 110.49 91.44 0)
+			(at 210.82 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -872,7 +904,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 110.49 91.44 0)
+			(at 210.82 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -883,7 +915,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"NEUT\""
-			(at 110.49 91.44 0)
+			(at 210.82 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -894,12 +926,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "45d76116-5bbb-46b2-a225-bd2207b6211b")
+			(uuid "97dd5776-4016-4cd0-81b8-db1fe3652ef8")
 		)
 		(instances
 			(project "3dFilamentDryer"
 				(path "/ea3996f2-7d6b-4a86-86ab-4ed62213f41f/3a0f6c2e-0001-4c3e-9b1e-000000000004"
-					(reference "#PWR30501")
+					(reference "#PWR0601")
 					(unit 1)
 				)
 			)

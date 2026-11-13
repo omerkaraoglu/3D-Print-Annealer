@@ -1356,7 +1356,7 @@
 				)
 			)
 			(pin power_in line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(name "VDDD"
 					(effects
@@ -1374,7 +1374,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1393,7 +1393,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1412,7 +1412,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1431,7 +1431,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1450,7 +1450,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1469,7 +1469,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1488,7 +1488,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1507,7 +1507,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1526,7 +1526,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1545,7 +1545,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1564,7 +1564,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1583,7 +1583,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1602,7 +1602,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1621,7 +1621,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1640,7 +1640,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1659,7 +1659,7 @@
 				)
 			)
 			(pin passive line
-				(at -11.43 48.26 270)
+				(at -10.16 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDD"
@@ -1678,7 +1678,7 @@
 				)
 			)
 			(pin power_in line
-				(at -3.81 48.26 270)
+				(at -5.08 48.26 270)
 				(length 2.54)
 				(name "VDDPLL"
 					(effects
@@ -1696,7 +1696,7 @@
 				)
 			)
 			(pin power_in line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(name "VDDIO"
 					(effects
@@ -1714,7 +1714,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1733,7 +1733,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1752,7 +1752,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1771,7 +1771,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1790,7 +1790,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1809,7 +1809,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1828,7 +1828,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1847,7 +1847,7 @@
 				)
 			)
 			(pin passive line
-				(at 3.81 48.26 270)
+				(at 0 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDIO"
@@ -1866,7 +1866,7 @@
 				)
 			)
 			(pin power_in line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(name "VDDLCD"
 					(effects
@@ -1884,7 +1884,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1903,7 +1903,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1922,7 +1922,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1941,7 +1941,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1960,7 +1960,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1979,7 +1979,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -1998,7 +1998,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -2017,7 +2017,7 @@
 				)
 			)
 			(pin passive line
-				(at 11.43 48.26 270)
+				(at 5.08 48.26 270)
 				(length 2.54)
 				(hide yes)
 				(name "VDDLCD"
@@ -2708,7 +2708,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_4-1734839-0_1x40-1MP_P0.5mm_Horizontal"
+		(property "Footprint" "Rev3:Connfly_DS1020-09-40VBT1A_1x40_P0.5mm_Horizontal"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -3553,7 +3553,7 @@
 				(justify left top)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_0-1734839-6_1x06-1MP_P0.5mm_Horizontal"
+		(property "Footprint" "Rev3:Connfly_DS1020-09-06VBT1A_1x06_P0.5mm_Horizontal"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -3738,6 +3738,101 @@
 						(font
 							(size 1.27 1.27)
 						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "BOM_Item"
+		(exclude_from_sim yes)
+		(in_bom yes)
+		(on_board no)
+		(in_pos_files no)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "MP"
+			(at 7.62 1.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "BOM_Item"
+			(at 7.62 -1.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Part in the BOM but not on the board (probe, cable, accessory); no pins"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "bom mechanical off-board accessory"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "BOM_Item_0_1"
+			(rectangle
+				(start -6.35 2.54)
+				(end 6.35 -2.54)
+				(stroke
+					(width 0)
+					(type dash)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(text "BOM"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)
