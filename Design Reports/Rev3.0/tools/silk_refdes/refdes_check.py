@@ -185,6 +185,11 @@ def main():
     ART = json.load(open(art_file, encoding="utf-8")) if os.path.exists(art_file) else {"replaces": [], "items": []}
     art_names = {str(_u.uuid5(NS, "art-%s-%d" % (it["name"], n))): "art-%s-%d" % (it["name"], n)
                  for it in ART["items"] for n in range(2000)}
+    # QR code (art/qr_gen.py + qr_apply.py): its gr_poly are checked as "art" too (LIM_ART), names qr-<item>-<n>
+    qr_file = os.path.join(WORK, "art", "qr.json")
+    QR = json.load(open(qr_file, encoding="utf-8")) if os.path.exists(qr_file) else {"items": []}
+    art_names.update({str(_u.uuid5(NS, "qr-%s-%d" % (it["name"], n))): "qr-%s-%d" % (it["name"], n)
+                      for it in QR["items"] for n in range(2000)})
     lab_names = {}
     for g in LB["texts"]:
         if g["layer"] == "F.SilkS" and g["name"] not in ART["replaces"]:
@@ -204,6 +209,8 @@ def main():
         fail.append(("labels", "missing in stage", len(lab_names)))
     if ART["items"] and not any(m[3] == "art" for m in mine):
         fail.append(("art", "artwork missing in stage"))
+    if QR["items"] and not any(m[3] == "art" and m[0].startswith("qr-") for m in mine):
+        fail.append(("qr", "QR code missing in stage"))
     for d in b.GetDrawings():
         if d.GetClass() == "PCB_TEXT" and d.m_Uuid.AsString() in LB["delete"]:
             fail.append(("labels", "old text still present", d.GetText()))
@@ -403,14 +410,20 @@ def main():
     sl = [v["clearances"]["slack"] for v in rep["refs"].values() if "slack" in v.get("clearances", {})]
     rep["ownership_min_slack"] = round(min(sl), 4) if sl else None
     json.dump(rep, open(os.path.join(WORK, "check.json"), "w", encoding="utf-8"), indent=1)
-    print("designators %d, new map graphics %d, legend texts %d, artwork polygons %d" % (
+    print("designators %d, new map graphics %d, legend texts %d, artwork polygons %d (of them QR code %d)" % (
         sum(1 for m in mine if m[3] == "ref"), sum(1 for m in mine if m[3] == "gfx"),
-        sum(1 for m in mine if m[3] == "label"), sum(1 for m in mine if m[3] == "art")))
+        sum(1 for m in mine if m[3] == "label"), sum(1 for m in mine if m[3] == "art"),
+        sum(1 for m in mine if m[3] == "art" and m[0].startswith("qr-"))))
     for kd in ("label", "art"):
         c = [v["clearances"] for k, v in rep["graphics"].items() if any(m[0] == k and m[3] == kd for m in mine)]
         if c:
             print("  worst %s clearances: mask %.3f silk %.3f edge %.3f" % (
                 kd, min(x.get("mask", 9) for x in c), min(x.get("silk", 9) for x in c), min(x.get("edge", 9) for x in c)))
+    c = [v["clearances"] for k, v in rep["graphics"].items() if k.startswith("qr-")]
+    if c:
+        print("  worst QR clearances: mask %.3f silk %.3f edge %.3f hole %.3f (limits %s)" % (
+            min(x.get("mask", 9) for x in c), min(x.get("silk", 9) for x in c), min(x.get("edge", 9) for x in c),
+            min(x.get("hole", 9) for x in c), LIM_ART))
     print("worst clearances (mm):", rep["worst"], "(limits", LIM, ")")
     print("ownership: %d designators outside blocks, smallest slack over the required margin %.3f mm" % (len(sl), min(sl)))
     print("KiCad DRC with check-only rules: %d violations in total, %d involve designators / new graphics" % (

@@ -88,6 +88,13 @@ def main():
     for it in ART["items"]:                  # front artwork gr_poly (art/art_apply.py)
         for n in range(2000):
             art_uuids.add(str(uuid.uuid5(NS, "art-%s-%d" % (it["name"], n))))
+    qr_file = os.path.join(WORK, "art", "qr.json")
+    QR = json.load(open(qr_file, encoding="utf-8")) if os.path.exists(qr_file) else {"items": []}
+    qr_uuids = set()
+    for it in QR["items"]:                   # QR code gr_poly (art/qr_apply.py)
+        for n in range(2000):
+            qr_uuids.add(str(uuid.uuid5(NS, "qr-%s-%d" % (it["name"], n))))
+    art_uuids |= qr_uuids
     want_gfx.update({u: {"layer": "F.SilkS"} for u in art_uuids})
     deleted = set()
     A = open(orig, encoding="utf-8", newline="").read()
@@ -120,7 +127,8 @@ def main():
             lay = want_gfx[u].get("layer", "F.SilkS")
             if '(layer "%s")' % lay not in xb or lay not in ("F.SilkS", "Cmts.User"):
                 bad.append(("new graphic not on its layer", u))
-            stats["new %s items%s" % (lay, " (artwork gr_poly)" if u in art_uuids else "")] += 1
+            stats["new %s items%s" % (lay, " (QR gr_poly)" if u in qr_uuids else
+                                      (" (artwork gr_poly)" if u in art_uuids else ""))] += 1
             if u in seen_gfx:
                 bad.append(("duplicate new graphic", u))
             seen_gfx.add(u)
@@ -189,6 +197,8 @@ def main():
     missing = set(want_gfx) - seen_gfx - art_uuids
     if ART["items"] and not (seen_gfx & art_uuids):
         bad.append(("front artwork missing",))
+    if QR["items"] and not (seen_gfx & qr_uuids):
+        bad.append(("QR code missing",))
     if missing:
         bad.append(("legend graphics missing from the stage", sorted(missing)))
     tail_a = A[ca[-1][1]:] if ca else ""

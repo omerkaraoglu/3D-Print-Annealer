@@ -334,3 +334,15 @@ Scripts: `tools/silk_refdes/` (README there; adapted from the Battery Sentinel r
   - Placement: logo 35 mm wide, block 35 × 15.8 mm at abs x 148–183, y 82–98, right of the RGB arrays. It is the largest free front spot; clearances: mask/silk/courtyards 0.15, edge 1.0, holes 0.3 mm. Strokes are ≥ 0.15 mm.
   - Fabrication note 1 now names the board "OVEN CONTROLLER PCB Rev3.0".
   - Checks: exact checker 0 failures; DRC 0 / 0 / 0; only F.SilkS / Cmts.User items changed.
+- **QR code (same day):** a QR code on the front silkscreen opens the AnnealX product video at `https://readark.eu/annealx/7j7aux/` (an unlisted page on readark.eu, noindex, not linked from the site).
+  - Code: QR version 3, error level M, 29 × 29 modules of 0.5 mm. The white square is 18.5 mm with a 4-module quiet zone and R1.8 mm corners, as on Battery Sentinel. The light modules and the quiet zone are printed; the dark modules are holes, so the mask shows through.
+  - Placement: abs x 121.5–140.0, y 99.5–118.0, centre (130.75, 108.75), in the empty pocket left of J10 along the bottom edge. It is 1.0 mm from the edge and 2.2 mm from J10's courtyard; R122/R123, RN7 and C128 bound the pocket.
+  - Why 0.5 mm modules and not Battery Sentinel's 0.625: the largest free square in the pocket is 19.22 mm. At 0.625 mm, v3 is 23.125 mm and v2 is 20.625 mm, so neither fits. v2 could not hold the 34-character URL anyway (v2-M holds 26 bytes). The code is still well over 12 mm, so the spot the owner asked for was kept.
+  - Clearances: mask, other silk and courtyards 0.15 mm, edge 0.5 mm, holes 0.3 mm; ESP32 antenna keep-out.
+  - Scripts: `tools/silk_refdes/art/qr_gen.py` (segno, placement search) and `art/qr_apply.py` (37 filled F.SilkS gr_poly, uuid5). `run_all.py` step 6d runs them, and `refdes_check.py` / `refdes_diff.py` check the QR too.
+  - Checks on the real file:
+    - Exact checker: 0 failures. Worst QR clearance is 1.01 mm to the edge; nothing else lies within 0.65 mm.
+    - Structural diff against HEAD: all 3114 items byte-identical and in order, plus exactly 37 new F.SilkS gr_poly.
+    - DRC `--severity-all`, as saved and refilled: 0 errors, 0 unconnected, 0 warnings.
+    - A 60 px/mm render decodes to the URL with OpenCV and pyzbar, and still does at 12 and 6 px/mm.
+    - `run_all.py` from the pre-silk board reproduces the file byte for byte (md5 `82cfd261…`).

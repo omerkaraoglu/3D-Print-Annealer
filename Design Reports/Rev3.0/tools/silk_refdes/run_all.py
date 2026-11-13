@@ -7,7 +7,10 @@
   6. refdes_apply.py                 orig + legend + designators + maps -> stage/3dFilamentDryer.kicad_pcb
   6b. silk_fix.py                    U1/U5 outlines off the creepage slot, J20 pin-1 mark off D220, Q1/HS1 silk rule
   6c. art/art_gen.py, art/art_apply.py   readark logo + Manrope text block in place of the four title-block texts
-  7. work/regions.json               crop windows of the circuit groups (for refdes_render.py)
+  6d. refdes_geom.py (KiCad python)  stage           -> work/geom_now.json  (the board with legend, designators, artwork)
+      art/qr_gen.py VIDEO_URL        QR code to the AnnealX video, placed left of J10 -> work/art/qr.json
+      art/qr_apply.py (KiCad python) stage + QR code -> stage/3dFilamentDryer.kicad_pcb
+  7. work/regions.json              crop windows of the circuit groups (for refdes_render.py)
 python run_all.py
 """
 import json
@@ -18,6 +21,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from cfg import GEOM, KPY, LABELS, ORIG, PLACEMENT, STAGE, WORK  # noqa: E402
+
+VIDEO_URL = "https://readark.eu/annealx/7j7aux/"     # unlisted AnnealX product video page (readark-website acee62a)
 
 GROUPS = {
     "mains_input": "J4 F3 J3 RV1 C1 C40 L40",
@@ -76,6 +81,9 @@ def main():
     run(sys.executable, os.path.join(HERE, "silk_fix.py"), STAGE, STAGE)
     run(sys.executable, os.path.join(HERE, "art", "art_gen.py"))
     run(KPY, os.path.join(HERE, "art", "art_apply.py"), STAGE, STAGE)
+    run(KPY, os.path.join(HERE, "refdes_geom.py"), STAGE, os.path.join(WORK, "geom_now.json"))
+    run(sys.executable, os.path.join(HERE, "art", "qr_gen.py"), VIDEO_URL)
+    run(KPY, os.path.join(HERE, "art", "qr_apply.py"), STAGE, STAGE)
     regions()
 
 

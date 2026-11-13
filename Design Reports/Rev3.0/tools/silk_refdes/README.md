@@ -15,6 +15,8 @@ legend pass (`silk.py`): same obstacle raster, candidate generation, ownership t
 | `silk_fix.py` | system | silk-only fixes of footprint instances (U1/U5 outlines off the creepage slot with pin-1 triangles, J20 pin-1 mark off D220) and the Q1/HS1 silk rule in the staged `.kicad_dru` |
 | `art/art_gen.py` | system | front artwork: readark logo PNG + Manrope lines traced to polygons (OpenCV), placed by search on the obstacle raster (mask 0.15, silk 0.15, courtyards 0.15, edge 1.0, holes 0.3, antenna keep-out), logo as wide as the free spot allows → `work/art/art.json` (needs opencv-python, fontTools) |
 | `art/art_apply.py` | KiCad | removes the four title-block texts, appends the artwork as fractured filled gr_poly on F.SilkS (uuid5) |
+| `art/qr_gen.py` | system | QR code to the AnnealX product video (segno, lowest version at level M; light modules + quiet zone printed, dark modules show the mask, R1.8 corners as on Battery Sentinel), 0.5 mm modules, placed by search on the obstacle raster of the real board (`work/geom_now.json` + designator boxes; mask 0.15, silk 0.15, courtyards 0.15, edge 0.5, holes 0.3, antenna keep-out) in the pocket left of J10 → `work/art/qr.json`; `--map` prints the largest free squares (needs segno, opencv-python) |
+| `art/qr_apply.py` | KiCad | appends the QR code as fractured filled gr_poly on F.SilkS (uuid5), refuses a board that already has it, writes atomically (temp file + `os.replace`) |
 | `art/assets/` | – | `readark-logo-white.png`, `Manrope[wght].ttf` and its `OFL.txt` (SIL Open Font License 1.1), copied from Battery Sentinel's Silkscreen-Art |
 | `run_all.py` | system | the whole chain, see below |
 | `refdes_check.py` | KiCad | exact polygon check of every designator, map graphic and legend text, ownership, maps as uniform scaled copies, KiCad DRC with check-only silk rules |
@@ -31,7 +33,11 @@ System python needs numpy, scipy, Pillow, matplotlib and PyMuPDF; KiCad python i
 ```
 # 0. working tree (ROOT): orig/ = the board to start from, never written
 #    orig/3dFilamentDryer.kicad_pcb, orig/3dFilamentDryer.kicad_pro (from git HEAD), orig/3dFilamentDryer.kicad_dru
-python run_all.py                                   # geom -> legend -> labelled board -> geom -> designators -> stage/ -> silk_fix -> artwork
+python run_all.py                                   # geom -> legend -> labelled board -> geom -> designators -> stage/ -> silk_fix -> artwork -> QR code
+# QR code alone, on a board that has everything else (URL = run_all.VIDEO_URL):
+#   "C:\Program Files\KiCad\10.0\bin\python.exe" refdes_geom.py <board> <ROOT>/work/geom_now.json
+#   python art/qr_gen.py https://readark.eu/annealx/7j7aux/    (python art/qr_gen.py --map: largest free squares)
+#   "C:\Program Files\KiCad\10.0\bin\python.exe" art/qr_apply.py <board> <out board>
 "C:\Program Files\KiCad\10.0\bin\python.exe" refdes_check.py    # 0 failures expected
 python refdes_diff.py                               # other differences: 0
 python refdes_drc.py                                # orig vs stage, item by item
