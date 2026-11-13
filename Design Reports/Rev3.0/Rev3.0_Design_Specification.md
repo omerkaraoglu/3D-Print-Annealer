@@ -294,3 +294,38 @@ Scripts: `tools/pcb_smooth/` (README there). Full report with the hole table: si
 - Every footprint now carries a 3D model. KiCad's generic models stay for passives and standard packages; 15 parts were modelled from manufacturer drawings with CadQuery (`tools/models3d/`, venv recipe in its README, `build_all.py`; STEP + WRL in `KiCad/ComponentsLibrary/User Created/Rev3/Rev3.3dshapes/`): L40 RC1415U, L30 SRI0605B, L11/L12 PCD0403, L1 LFU09V-103 (envelope only, drawing not obtainable), HS1 SK 409 63,5 STC, J10 Connfly DS1020-09-40VBT1B, J11 KLS L-KLS1-242D (envelope from the footprint values, no KLS PDF), J20 DG127H (19.1 mm tall), C40 Faratronic C42 32 × 18 × 9, F1/F3 Reomax R3-5A clips with a 5 × 20 fuse, the solder-wire stubs J3/J4/R1, and the display. Every model's pins were checked against the footprint pads (0.000 mm on all 124 pads). K1 keeps the SRD model (Tianbo outline within 0.6 mm), PS1 the Hi-Link model.
 - **Display DS1** (`Rev3:TFT7_SAT070AT40D21_Mech`, board-only mechanical footprint, no pads, excluded from BOM and position files) sits on the back side at (102.47, 69.00) abs, 180°: panel back flush on the PCB back, bottom and left edges flush, outline abs x 20.02–184.92 / y 19.00–119.00 (overhangs the PCB 1.00 mm at the top, 0.92 mm on the right). Derived from the SAT070AT40D21 V.2 drawing (LCM 164.9 × 100 × 3.34, CTP stack +1.98 mm; active area 154.08 × 85.92 at 4.03 / 4.87) with the TFT tail fingers on J10. The tails are modelled folded around the bottom edge into J10/J11.
 - **Open mechanical items for the owner:** (1) with the TFT tail on J10, the CTP tail fingers land at abs x 60.02, J11 is at 62.10: move J11 2.08 mm west or accept the skew on the 3.5 mm tail end; (2) both tails are longer than the fold needs (TFT 67.65 mm, CTP 50 mm): the surplus forms a U-loop ≈ 28 / 20 mm below the board edge that the frame must pocket (≈ 5.3–6.4 mm thick), or an S-fold behind a frame lip; (3) the panel covers the four original M3 holes H1–H4, so the frame can only use the ears H5–H9 (§12.8); (4) through-hole leads (HS1's Ø 2.3 mm pins most of all) protrude from the PCB back into the panel's space: the frame needs a ≥ 2 mm spacer between PCB and panel, or all leads are cut flush (≤ 0.5 mm) before assembly.
+
+### 12.10 Silkscreen and reference designators (2026-11-13)
+
+Scripts: `tools/silk_refdes/` (README there; adapted from the Battery Sentinel refdes round, same rules and parameters). Full report: side-session note `rev3-silk-refdes-report.md`. Backups: scratch `silk_backup/`; renders: scratch `silk_renders/`.
+
+- **Designators:** every one of the 145 placed footprints has its Reference on F.SilkS, centred, 0°/90°, not mirrored.
+  - Sizes: 0.8 × 0.7 / 0.10 mm (91), 0.8 × 0.6 / 0.10 (11), 1.0 × 1.0 / 0.15 for connectors and large parts (36). The board minimum of 0.8 mm / 0.08 mm is met and was not changed.
+  - Placement: 138 sit directly at their part (obstacle raster 0.025 mm; mask 0.15, silk 0.15, edge/holes 0.30 mm; ownership test d_oth ≥ d_own + 0.30 / 0.22 and ≥ 2 × d_own; rows read the same way).
+  - Seven are in three framed legend maps (true uniform-scale copies, leader with arrow): LEG1 C129/C130 at J10, LEG2 C225/R227/C226 next to J11, LEG3 C133/C126 at J11.
+  - The U10 bus block, the RN arrays, the decoupling rows and the thermocouple front end all have direct labels.
+  - H1–H9 and DS1 (board-only) keep hidden references; values stay hidden.
+- **Board legend (1.0 mm / 0.15 mm):**
+  - J3: L / N under the pads with "J3" between them, "MAINS IN" below.
+  - R1: "HEATER" under "R1".
+  - J4: "FAN" between the pads.
+  - J2: "FTDI", "GND" at pin 1, "3V3" at pin 6.
+  - J20: "K-TYPE TC", "+" / "−" at the TC+ / TC− pads.
+  - "TFT" under J10, "TOUCH" under J11.
+  - Mains warning "230 V~ MAINS / HAZARDOUS VOLTAGE" in the mains band.
+  - Title block "3D Printer Filament Dryer / & Print Annealer / PCB Rev3.0  2026-11-13 / readark" right of the RGB ribbon.
+  - Placed at free spots: pads 0.25 mm, silk, edge and holes 0.5 mm.
+  - The six old board texts are removed. Three of them were at the wrong connector: "MAINS IN" at J4, "FAN" at J3, "HEATER" at PS1.
+- **Fabrication notes:** added on Cmts.User, right of the board. They cover outline and size with ears, 4 layers / 1.6 mm / 1 oz, ENIG (TBD), 0.15/0.15 mm, vias 0.6/0.3 and 0.9/0.45, 9 × Ø3.2 NPTH, the 1.2 × 23.5 mm creepage slot, the mains band and IPC class 2.
+- **Checks (real file):**
+  - Exact checker: 0 failures.
+  - Structural diff: only the Reference fields, the removed texts and the new silk/Cmts texts differ; copper is byte-identical.
+  - `kicad-cli pcb drc --severity-all`, as saved and refilled: 0 errors, 0 unconnected. Warnings 261 → 10, text_height 145 → 0.
+  - The 10 remaining warnings are library silk, all present before this round: U1/U5 outlines across the creepage slot (4), Q1 outline on the HS1 plate (4), J20 outline over D220 and its pad 1 (2).
+  - Schematic parity: 218 items, unchanged from before. They are the pending "Update PCB from schematic" items of §12.7 (MPN fields, values, renames, TC1).
+  - `.kicad_pro` restored from HEAD; an open KiCad had written back stale teardrop and net-class settings.
+- **Warnings cleared (follow-up, same day):** silk-only edits by `silk_fix.py`; no copper or placement change.
+  - U5 and U1: the outline sides crossing the creepage slot are cut back to ≥ 0.30 mm from the slot. The DIP notch arcs, which lay wholly inside the slot band, are replaced by pin-1 triangles at pad 1.
+  - J20: the pin-1 corner mark is cut back off D220's outline and pad 1.
+  - `.kicad_dru`: new rule `q1_on_heatsink_silk`, F.SilkS ↔ F.SilkS between Q1 and HS1 only, silk_clearance 0 with severity ignore, as in `q1_on_heatsink_courtyard`. Clearance 0 alone still reports the touching outlines.
+  - Result: DRC `--severity-all` on the real file shows 0 errors, 0 unconnected, **0 warnings**, as saved and refilled. `.kicad_pro` still matches HEAD.

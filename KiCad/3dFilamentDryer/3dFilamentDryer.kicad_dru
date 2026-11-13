@@ -81,6 +81,14 @@
    (constraint courtyard_clearance (min 0mm))
    (severity ignore)
    (condition "(A.Reference == 'Q1' && B.Reference == 'HS1') || (A.Reference == 'HS1' && B.Reference == 'Q1')"))
+# Q1's TO-220 outline lies on the HS1 plate outline by design (same case as the courtyard rule above): silk to silk
+# between these two footprints only. A clearance of 0 alone does not do it (KiCad still reports touching silk as
+# silk_overlap, and an unrestricted silk rule also starts checking silk against F.Fab / F.Courtyard), hence the layer
+# condition and the ignore, as in q1_on_heatsink_courtyard.
+(rule "q1_on_heatsink_silk"
+   (constraint silk_clearance (min 0mm))
+   (severity ignore)
+   (condition "A.Layer == 'F.SilkS' && B.Layer == 'F.SilkS' && ((A.memberOfFootprint('Q1') && B.memberOfFootprint('HS1')) || (A.memberOfFootprint('HS1') && B.memberOfFootprint('Q1')))"))
 # keep-out areas as explicit rules: kicad-cli 10 DRC does not report tracks/vias inside rule areas flagged "no tracks/vias"
 # (found in pass 4 by the power agent; zone fills do honour them). Pads/footprints in the washer rings are caught by courtyards.
 (rule "keepout_washer"
