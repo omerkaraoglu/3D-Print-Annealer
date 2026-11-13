@@ -1,0 +1,789 @@
+{
+ "tag": "v1",
+ "inputs": {
+  "frame": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame.step",
+  "params": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\frame_v2\\v1_params.json",
+  "board_step": "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\62ff0a1a-4475-4c41-9c45-d7dae40b64a5\\scratchpad\\cad\\Rev3.0_PCB_full.step",
+  "board_geom": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\frame_v2\\out\\board_geom.json"
+ },
+ "frame": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame.step",
+  "bytes": 1509216,
+  "mtime": "2026-11-13 17:20:21",
+  "solids": 1,
+  "valid": true,
+  "volume_cm3": 32.504,
+  "mass_g_1.36": 44.2,
+  "faces": 342,
+  "edges": 952,
+  "bbox_model": [
+   6.6,
+   198.4,
+   -153.7,
+   -6.0,
+   -11.82,
+   4.05
+  ],
+  "size": [
+   191.8,
+   147.7,
+   15.87
+  ],
+  "single_solid": true,
+  "read_s": 0.4
+ },
+ "sanity": {
+  "ok": true,
+  "notes": []
+ },
+ "params": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\frame_v2\\v1_params.json",
+  "used": {
+   "AA": {
+    "value": [
+     26.76,
+     180.94,
+     23.82,
+     109.84
+    ],
+    "source": "AA"
+   },
+   "BOSS_OD": {
+    "value": 8.0,
+    "source": "BOSS_OD"
+   },
+   "CBORE_D": {
+    "value": 3.2,
+    "source": "CBORE_D"
+   },
+   "CBORE_H": {
+    "value": 0.5,
+    "source": "CBORE_H"
+   },
+   "CUTOUT_MARGIN": {
+    "value": 0.5,
+    "source": "CUTOUT_MARGIN"
+   },
+   "CUTOUT_R": {
+    "value": 1.0,
+    "source": "CUTOUT_R"
+   },
+   "DRAFT": {
+    "value": 1.0,
+    "source": "DRAFT"
+   },
+   "DRAFT_LOC": {
+    "value": 0.5,
+    "source": "DRAFT_LOC"
+   },
+   "FLANGE_R": {
+    "value": 0.0,
+    "source": "fallback"
+   },
+   "FLANGE_T": {
+    "value": 2.5,
+    "source": "FLANGE_T"
+   },
+   "FLANGE_W": {
+    "value": 0.0,
+    "source": "FLANGE_W"
+   },
+   "FLANGE_W_B": {
+    "value": 0.0,
+    "source": "fallback"
+   },
+   "FLANGE_W_L": {
+    "value": 0.0,
+    "source": "fallback"
+   },
+   "FLANGE_W_R": {
+    "value": 0.0,
+    "source": "fallback"
+   },
+   "FLANGE_W_T": {
+    "value": 0.0,
+    "source": "fallback"
+   },
+   "GASKET_COMP": {
+    "value": 0.3,
+    "source": "GASKET_COMP"
+   },
+   "GASKET_IN_MARGIN": {
+    "value": 1.0,
+    "source": "GASKET_IN_MARGIN"
+   },
+   "GASKET_OUT_INSET": {
+    "value": 0.3,
+    "source": "GASKET_OUT_INSET"
+   },
+   "GASKET_T": {
+    "value": 1.0,
+    "source": "GASKET_T"
+   },
+   "LOOP_CLR": {
+    "value": 1.5,
+    "source": "LOOP_CLR"
+   },
+   "LOOP_Z": {
+    "value": [
+     -9.06,
+     2.55
+    ],
+    "source": "LOOP_Z"
+   },
+   "OUTER": {
+    "value": [
+     17.27,
+     187.67,
+     16.25,
+     153.7
+    ],
+    "source": "OUTER"
+   },
+   "OVEN_SHEET_T": {
+    "value": 1.0,
+    "source": "OVEN_SHEET_T"
+   },
+   "PAD_CLR": {
+    "value": 1.0,
+    "source": "PAD_CLR"
+   },
+   "PANEL": {
+    "value": [
+     20.02,
+     184.92,
+     19.0,
+     119.0
+    ],
+    "source": "PANEL"
+   },
+   "PANEL_T": {
+    "value": 5.32,
+    "source": "PANEL_T"
+   },
+   "PANEL_T_TOL": {
+    "value": 0.3,
+    "source": "PANEL_T_TOL"
+   },
+   "PCB_RIM_W": {
+    "value": 2.1,
+    "source": "PCB_RIM_W"
+   },
+   "PCB_T": {
+    "value": 1.6,
+    "source": "PCB_T"
+   },
+   "PEG_D": {
+    "value": 3.0,
+    "source": "PEG_D"
+   },
+   "PEG_H": {
+    "value": 0.8,
+    "source": "PEG_H"
+   },
+   "PEG_SLOT": {
+    "value": 0.0,
+    "source": "PEG_SLOT"
+   },
+   "PILOT_D": {
+    "value": 2.4,
+    "source": "PILOT_D"
+   },
+   "POCKET": {
+    "value": [
+     19.77,
+     185.17,
+     18.75,
+     119.25
+    ],
+    "source": "POCKET"
+   },
+   "POCKET_CLR": {
+    "value": 0.25,
+    "source": "POCKET_CLR"
+   },
+   "RIB_T": {
+    "value": 1.5,
+    "source": "RIB_T"
+   },
+   "SCREW_D": {
+    "value": 2.9,
+    "source": "SCREW_D"
+   },
+   "SEAT_W": {
+    "value": 2.6,
+    "source": "SEAT_W"
+   },
+   "SHEET_INSET": {
+    "value": 0.5,
+    "source": "SHEET_INSET"
+   },
+   "SHEET_R": {
+    "value": 1.0,
+    "source": "SHEET_R"
+   },
+   "SHEET_T": {
+    "value": 0.4,
+    "source": "SHEET_T"
+   },
+   "SHELF_T": {
+    "value": 2.5,
+    "source": "SHELF_T"
+   },
+   "STANDOFF": {
+    "value": 5.0,
+    "source": "STANDOFF"
+   },
+   "STUD_H": {
+    "value": 5.0,
+    "source": "STUD_H"
+   },
+   "STUD_HOLE_D": {
+    "value": 4.5,
+    "source": "STUD_HOLE_D"
+   },
+   "STUD_OD": {
+    "value": 9.5,
+    "source": "STUD_OD"
+   },
+   "STUD_OFFSET": {
+    "value": null,
+    "source": "fallback"
+   },
+   "STUD_OFFSET_B": {
+    "value": null,
+    "source": "fallback"
+   },
+   "STUD_OFFSET_L": {
+    "value": null,
+    "source": "fallback"
+   },
+   "STUD_OFFSET_R": {
+    "value": null,
+    "source": "fallback"
+   },
+   "STUD_OFFSET_T": {
+    "value": null,
+    "source": "fallback"
+   },
+   "STUD_RIB_T": {
+    "value": 0.0,
+    "source": "STUD_RIB_T"
+   },
+   "TROUGH": {
+    "value": [
+     39.2,
+     167.4,
+     119.25,
+     151.2
+    ],
+    "source": "TROUGH"
+   },
+   "TROUGH_R": {
+    "value": 5.0,
+    "source": "TROUGH_R"
+   },
+   "VA": {
+    "value": [
+     26.31,
+     181.39,
+     23.23,
+     110.15
+    ],
+    "source": "VA"
+   },
+   "WALL": {
+    "value": 2.5,
+    "source": "WALL"
+   },
+   "Z_FLANGE_BACK": {
+    "value": -8.52,
+    "source": "Z_FLANGE_BACK"
+   },
+   "Z_FRONT": {
+    "value": -11.02,
+    "source": "Z_FRONT"
+   },
+   "Z_GLASS": {
+    "value": -10.32,
+    "source": "Z_GLASS"
+   },
+   "Z_PANEL_BACK": {
+    "value": -5.0,
+    "source": "Z_PANEL_BACK"
+   },
+   "Z_PCB": {
+    "value": 0.0,
+    "source": "Z_PCB"
+   },
+   "Z_SEAT": {
+    "value": -4.6,
+    "source": "Z_SEAT"
+   },
+   "Z_SHELF_BACK": {
+    "value": -2.0999999999999996,
+    "source": "Z_SHELF_BACK"
+   },
+   "Z_STUD_TOP": {
+    "value": -6.02,
+    "source": "Z_STUD_TOP"
+   },
+   "Z_TROUGH_TOP": {
+    "value": 4.05,
+    "source": "Z_TROUGH_TOP"
+   }
+  },
+  "defaults_used": [],
+  "derived": [],
+  "notes": []
+ },
+ "design": {
+  "Z_PCB": 0.0,
+  "Z_SHELF_BACK": -2.0999999999999996,
+  "Z_SEAT": -4.6,
+  "Z_PANEL_BACK": -5.0,
+  "Z_GLASS": -10.32,
+  "Z_FRONT": -11.02,
+  "Z_FLANGE_BACK": -8.52,
+  "Z_STUD_TOP": -6.02,
+  "Z_TROUGH_TOP": 4.05,
+  "OUTER": [
+   17.27,
+   187.67,
+   16.25,
+   153.7
+  ],
+  "POCKET": [
+   19.77,
+   185.17,
+   18.75,
+   119.25
+  ],
+  "TROUGH": [
+   39.2,
+   167.4,
+   119.25,
+   151.2
+  ],
+  "FLANGE_W": 0.0,
+  "FLANGE_T": 2.5,
+  "STUD_OD": 9.5,
+  "STUD_HOLE_D": 4.5,
+  "STUD_RIB_T": 0.0,
+  "STUD_OFFSET": null,
+  "stud_holes": {
+   "F1": [
+    13.0,
+    12.0
+   ],
+   "F2": [
+    72.7,
+    12.0
+   ],
+   "F3": [
+    132.3,
+    12.0
+   ],
+   "F4": [
+    192.0,
+    12.0
+   ],
+   "F5": [
+    192.4,
+    69.0
+   ],
+   "F6": [
+    177.0,
+    139.0
+   ],
+   "F7": [
+    28.0,
+    139.0
+   ],
+   "F8": [
+    12.6,
+    69.0
+   ]
+  },
+  "stud_slots": {},
+  "datum": null,
+  "peg_slots": {
+   "P1": null,
+   "P2": null
+  },
+  "stud_spec": "PEM FH-M4-15",
+  "flange_w_side": {
+   "top": 0.0,
+   "right": 0.0,
+   "bottom": 0.0,
+   "left": 0.0
+  },
+  "stud_offset_side": {
+   "top": null,
+   "right": null,
+   "bottom": null,
+   "left": null
+  },
+  "pcb_holes": {
+   "H1": [
+    30.0,
+    14.2
+   ],
+   "H2": [
+    93.0,
+    14.2
+   ],
+   "H3": [
+    174.0,
+    14.2
+   ],
+   "H4": [
+    189.8,
+    30.0
+   ],
+   "H5": [
+    189.8,
+    109.0
+   ],
+   "H6": [
+    175.0,
+    123.8
+   ],
+   "H7": [
+    30.0,
+    123.8
+   ],
+   "H8": [
+    15.2,
+    109.0
+   ],
+   "H9": [
+    15.2,
+    30.0
+   ]
+  },
+  "pegs": {
+   "P1": [
+    32.5,
+    146.0
+   ],
+   "P2": [
+    172.5,
+    146.0
+   ]
+  }
+ },
+ "params_file_body": {
+  "volume_cm3": 32.5,
+  "mass_g": 44.2,
+  "bbox_model": [
+   6.5,
+   198.5,
+   -153.87,
+   -5.9,
+   -12.26,
+   4.23
+  ],
+  "support_ribs": 26,
+  "boss_base_d": 8.384709631017916,
+  "stud_tube_base_d": 9.674550649282176
+ },
+ "params_file_checks": {
+  "fit_min_component_mm": 1.268,
+  "slivers": 0,
+  "faces": 342
+ },
+ "params_file_rib_reach": [],
+ "verdicts": {
+  "single valid solid": true,
+  "STEP matches params (bbox, flange plane, volume)": true,
+  "slivers (owner rule)": true,
+  "slivers other than root-fillet corner blends": true,
+  "thin walls / slots < 1.0": true,
+  "flange face flat, only pegs proud": true,
+  "features found at the params positions": true,
+  "components / PCB / panel / tails / sheet / oven fit": true,
+  "contact patches vs pads, creepage, clearance": true,
+  "tool access (socket vs board)": true,
+  "washer + socket vs frame": false,
+  "nothing above Z 0 within board + 1 mm": false,
+  "stud tube bearing <= creep allowance": true,
+  "flange bending (realistic case c)": true,
+  "flange bending (brief case a, conservative)": false,
+  "beam lift (1000 h, nominal) <= limit": false,
+  "thermal: every stud covered by its hole / slot (from the fixed point)": false,
+  "thermal: peg holes absorb the peg-to-peg growth": false
+ },
+ "all_ok": false,
+ "key": {
+  "closest_component": {
+   "ref": "F3",
+   "part": "Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm",
+   "min_dist": 1.268,
+   "overlap_mm3": 0.0,
+   "zmin": -1.87,
+   "q1_trimmed": false,
+   "approx": false
+  },
+  "tail_min": 1.554,
+  "panel_min": 0.15,
+  "pcb_body": 0.08,
+  "pads_contact": [
+   1.37,
+   "J3.1",
+   "rib"
+  ],
+  "pads_footprint": [
+   1.32,
+   "J3.1",
+   "rib"
+  ],
+  "creepage_contact": 8.57,
+  "creepage_footprint": 8.52,
+  "clearance": 6.7,
+  "tool_access_min": 1.0,
+  "washer_vs_frame": [
+   "F2",
+   "F3",
+   "F5",
+   "F8"
+  ],
+  "above_pcb_mm3": 11.9469,
+  "above_pcb_plan_gap": 0.404,
+  "slivers": [
+   0,
+   342
+  ],
+  "draft_flagged": {
+   "cylinder parallel to the pull (no draft) - stud": 8,
+   "cylinder parallel to the pull (no draft) - PCB": 18,
+   "planar wall without draft": 1
+  },
+  "v_notches": 17,
+  "beam_I_mm4": 308.9,
+  "worst_lift_1000h_nom_um": 3708.2,
+  "stud_bearing_real_MPa": 9.3,
+  "thermal_not_covered": [
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F8"
+  ],
+  "thermal_reference": "pegs' midpoint (all pegs round)",
+  "rib_height_measured": null,
+  "governing_3d_pad_component": {
+   "contact": {
+    "pad": "J3.1",
+    "component": "J3",
+    "min_dist_3d": 2.022
+   },
+   "footprint": {
+    "pad": "J3.1",
+    "component": "J3",
+    "min_dist_3d": 2.022
+   }
+  }
+ },
+ "fit_table": "components (145) overlapping                   0                                            0              OK\nclosest component                              F3 1.268 mm                                  > 0            OK\nPCB body                                       0.080 mm, 0.0000 mm3                         0.08 / 0       OK\npanel parts                                    min 0.150 mm, 0.0000 mm3                     > 0 / 0        OK\nFPC tails                                      min 1.554 mm                                 >= 1.5         OK\nFormex sheet                                   0.000 mm, 0.0000 mm3                         0 vol          OK\ngasket                                         0.607 mm, 0.0000 mm3                         0 vol          OK\noven-sheet patch                               0.000 mm, 0.0000 mm3                         0 vol          OK\nlead protrusion -> Formex sheet (closest)      PS1 3.27 -> gap 1.33 mm                      > 0            OK\nZ 0 contact patches vs B.Cu pads               1.37 mm at J3.1 (rib)                        >= 1.0         OK\n  - rib                                        1.37 mm at J3.1 (rib)                                       OK\n  - boss                                       5.99 mm at F3.2 (boss)                                      OK\n  - wall                                       2.84 mm at J3.1 (wall)                                      OK\nZ 0 contact patches: mains copper -> frame     1.37 mm (J3.1)                                              OK\nZ 0 contact patches: creepage mains -> panel   8.57 mm                                      >= 6.4         OK\n(info) rib-base footprint Z -2.08 vs B.Cu pads 1.32 mm at J3.1 (rib)                        info           OK\n  - rib                                        1.32 mm at J3.1 (rib)                                       OK\n  - boss                                       6.02 mm at F3.2 (boss)                                      OK\n  - wall                                       2.80 mm at J3.1 (wall)                                      OK\n(info) rib-base footprint Z -2.08: mains copper -> frame 1.32 mm (J3.1)                                              OK\n(info) rib-base footprint Z -2.08: creepage mains -> panel 8.52 mm                                      info           OK\n3D frame -> J3 model (nearest pad J3.1, contact) 2.022 mm                                     >= 1.0         OK\n3D frame -> J3 model (nearest pad J3.1, footprint) 2.022 mm                                     >= 1.0         OK\nclearance mains -> panel                       6.70 mm (R1.2)                               >= 4.0         OK\ntool access dia 12 Z -6.52..45                 min 1.00 mm at F2 (DS1 lcm_0)                no overlap     OK\nwasher dia 12 + socket over each stud vs frame OVERLAP at F2, F3, F5, F8                    no overlap     FAIL\nnothing above Z 0 inside board + 1 mm          11.9469 mm3 (inside outline 0.0000)          0              FAIL\n  frame above Z 0: plan gap to board edge      0.404 mm at [169.71, 119.44]                 >= 1.0         FAIL",
+ "files": {},
+ "drawing": null,
+ "seconds": {
+  "cadcheck": 14.3,
+  "fitcheck": 203.3,
+  "calc": 7.7,
+  "total": 225.7
+ },
+ "regression": {
+  "reference": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\frame\\out",
+  "rows": [
+   {
+    "quantity": "component overlaps",
+    "v1": 0,
+    "v2_toolchain": 0,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "closest component (F3)",
+    "v1": 1.268,
+    "v2_toolchain": 1.268,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "closest component ref",
+    "v1": "F3",
+    "v2_toolchain": "F3",
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "FPC tails min",
+    "v1": 1.554,
+    "v2_toolchain": 1.554,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "panel min",
+    "v1": 0.15,
+    "v2_toolchain": 0.15,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "PCB body distance",
+    "v1": 0.08,
+    "v2_toolchain": 0.08,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "ribs vs B.Cu pads (footprint at the rib base, as v1)",
+    "v1": 1.32,
+    "v2_toolchain": 1.32,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "  pad",
+    "v1": "J3.1",
+    "v2_toolchain": "J3.1",
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "ribs vs B.Cu pads (Z 0 contact faces of the STEP)",
+    "v1": 1.32,
+    "v2_toolchain": 1.37,
+    "match": false,
+    "why": "the STEP's rib tops are drafted 1 deg over 2.1 mm: 0.037 mm per side narrower than v1's nominal rib rectangle (v1 checked the rib base); the footprint row reproduces v1"
+   },
+   {
+    "quantity": "bosses vs B.Cu pads (Z 0 contact faces)",
+    "v1": 4.46,
+    "v2_toolchain": 5.99,
+    "match": false,
+    "why": "v1 measured to the full dia-8 circle, including the part merged into the outer wall; the STEP exposes only the outer arc of H8/H9, so J2.1 is nearest to a rib (2.49) and the nearest exposed boss arc is at F3.2"
+   },
+   {
+    "quantity": "mains copper -> frame contact (footprint)",
+    "v1": 1.32,
+    "v2_toolchain": 1.32,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "creepage mains -> panel (footprint)",
+    "v1": 8.52,
+    "v2_toolchain": 8.52,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "creepage mains -> panel (Z 0 contact)",
+    "v1": 8.52,
+    "v2_toolchain": 8.57,
+    "match": false,
+    "why": "+0.05 from the drafted rib top (see above)"
+   },
+   {
+    "quantity": "clearance mains -> panel",
+    "v1": 6.7,
+    "v2_toolchain": 6.7,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "sliver faces",
+    "v1": "0 of 342",
+    "v2_toolchain": "0 of 342",
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "gasket vs frame",
+    "v1": 0.607,
+    "v2_toolchain": 0.607,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "Formex sheet overlap mm3",
+    "v1": 0.0,
+    "v2_toolchain": 0.0,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "oven-sheet patch overlap mm3",
+    "v1": 0.0,
+    "v2_toolchain": 0.0,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "PS1 leads gap to the Formex sheet",
+    "v1": 1.33,
+    "v2_toolchain": 1.33,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "frame volume cm3",
+    "v1": 32.5,
+    "v2_toolchain": 32.504,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "beam I (analytic) mm4",
+    "v1": 309,
+    "v2_toolchain": 308.9,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "longest top span mm",
+    "v1": 59.7,
+    "v2_toolchain": 59.6,
+    "match": false,
+    "why": "corners count as supports (brief): F1 at x 13 sits outside the body corner (17.27), so the F1-F2 run is 55.4; the longest top run is F2-F3 = 59.6 (v1 took F1-F2 = 72.7 - 13 = 59.7)"
+   },
+   {
+    "quantity": "top lift 1000 h nominal um (full q, analytic I)",
+    "v1": 95.6,
+    "v2_toolchain": 94.9,
+    "match": false,
+    "why": "span 59.6 instead of 59.7 (L^4)"
+   },
+   {
+    "quantity": "stud tube bearing real MPa",
+    "v1": 9.1,
+    "v2_toolchain": 9.3,
+    "match": false,
+    "why": "bearing area measured on the STEP: F2/F3 tubes merge into the wall, the free ring is 53.9 mm2, not the nominal 55.0"
+   },
+   {
+    "quantity": "PCB boss bearing (cons) MPa",
+    "v1": 16.3,
+    "v2_toolchain": 16.3,
+    "match": true,
+    "why": ""
+   },
+   {
+    "quantity": "gasket force max N",
+    "v1": 591,
+    "v2_toolchain": 591,
+    "match": true,
+    "why": ""
+   }
+  ],
+  "all_match": false,
+  "explained": true
+ }
+}

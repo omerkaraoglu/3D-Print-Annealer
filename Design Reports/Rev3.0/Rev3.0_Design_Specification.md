@@ -347,51 +347,44 @@ Scripts: `tools/silk_refdes/` (README there; adapted from the Battery Sentinel r
     - A 60 px/mm render decodes to the URL with OpenCV and pyzbar, and still does at 12 and 6 px/mm.
     - `run_all.py` from the pre-silk board reproduces the file byte for byte (md5 `82cfd261…`).
 
-### 12.11 Carrier frame (2026-11-13)
+### 12.11 Carrier frame (2026-11-13 v2)
 
-Design document: `Rev3.0_Frame_Design.md`. Scripts: `tools/frame/` (README there; CadQuery, `build.py`). Outputs: `Mechanical/Rev3.0_Frame/`.
+Design document: `Rev3.0_Frame_Design.md` (v2). CAD: Fusion 360 part "Rev3.0 Frame v2" v6 and "Rev3.0 Frame v2 fit assembly" v6 (hub1 › Oven › "Rev3.0 OVEN CONTROLLER"), built by `tools/frame_v2/fusion/` (README there). Independent CadQuery checks: `tools/frame_v2/build_v2.py`. Outputs: `Mechanical/Rev3.0_Frame/`. The v1 CadQuery model in `tools/frame/` (eight feet) is superseded.
 
-- **Part:** one injection-moulded PA6-GF30 frame, heat-stabilised, halogen-free FR. Material requirements: UL94 V-0, GWFI 960 °C, GWIT ≥ 775 °C (IEC 60335-1 cl. 30). Example grade: Durethan BKV30FN04, to be confirmed.
-- **What it holds and how it mounts:** the panel glass outward in a 165.40 × 100.50 pocket (0.25 mm per side, 0.8 × 45° lead-in), and the PCB 5.0 mm behind the panel back. It mounts to the oven front sheet from the inside. One pull direction, no undercuts, nominal wall 2.5 mm, ribs 1.5 mm, draft 1° (0.5° on the locating faces).
-- **Size:** body 170.4 × 137.5 mm; 192 × 148 × 15.1 mm overall with the feet; 44 g.
+- **Part:** one injection-moulded PA6-GF30 frame, heat-stabilised, halogen-free FR. Material requirements: UL94 V-0, GWFI 960 °C, GWIT ≥ 775 °C (IEC 60335-1 cl. 30). Example grade: Durethan BKV30FN04, to be confirmed. One pull, no undercuts, wall 2.5 mm, ribs 1.5 mm, draft 1° (0.5° on locating faces, pilots, slots, pegs), R 0.5 root fillets modelled on 337 roots.
+- **What changed from v1:** the owner rejected the eight cantilevered feet. v2 has a continuous perimeter flange (14 × 2.5 mm, R 12 corners, front face = sealing / parting plane at Z −11.02), ten M4 stud bosses with radial slots, and the locating pegs on the side flanges. Every eight-stud layout failed the gasket-lift limit (best 178 µm against 90 µm).
+- **Size:** body 170.4 × 137.45 mm; 198.4 × 165.45 × 15.07 mm overall (+0.8 mm pegs); 55.06 cm³, 74.9 g (v1: 192 × 148 mm, 44 g).
 - **Z stack (PCB back = 0):**
-  - Formex sheet 0.4 on a 2.6 mm shelf at −4.6;
-  - panel back −5.0;
-  - glass front −10.32;
-  - feet plane −11.02 (1.0 mm silicone sponge gasket at 30 %).
-  - Nothing above the PCB plane over the board.
-- **PCB seat:**
-  - nine Ø 8 bosses under H1–H9, Ø 2.4 pilots, for ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2 at 0.3–0.4 Nm;
-  - 26 support ribs on the shelf, ≥ 1.32 mm from every B.Cu pad.
-- **Tail pocket:** 128.2 × 31.9 mm below the bottom edge, open front (closed by the oven sheet) and open back. Clearance ≥ 1.55 mm to both U-loops; R 5 inner corners.
+  - Formex sheet 0.4 on a 2.6 mm shelf at −4.6; panel back −5.0; glass front −10.32;
+  - stud-tube tops (washer seat) −3.52; flange back −8.52; flange front −11.02 (1.0 mm silicone sponge gasket at 30 %).
+  - Nothing above Z 0 within the board outline + 1 mm (0 mm³). The tail-pocket walls rise to +4.05 only for y ≥ 129, ≥ 2.6 mm off the board.
+- **Panel seat:** 165.40 × 100.50 pocket (0.25 mm per side, 0.8 × 45° lead-in), as v1.
+- **PCB seat:** nine Ø 8 bosses under H1–H9 with blind Ø 2.4 pilots (1.0 mm floor), ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2 at 0.3–0.4 Nm; 26 support ribs flush with the shelf edge, ≥ 1.21 mm from every B.Cu pad (J4.1).
+- **Tail pocket:** 128.2 × 32.1 mm below the bottom edge, open front (closed by the oven sheet) and open back. Clearance ≥ 1.55 mm to both U-loops; R 5 inner corners.
 - **Mounting:**
-  - eight feet (six were proposed; eight keep the spans ≤ 60 mm against the gasket lift);
-  - Ø 4.5 holes for PEM FH-M4-15 studs, DIN 9021 washer, ISO 10511 M4 nyloc at 0.6 Nm;
-  - two Ø 3 locating pegs.
-  - Sheet window 156.08 × 87.92 mm (cover view area + 0.5 mm per side). The hole table is in the design document and the DXF.
-- **Fit check (real board STEP, every model):**
-  - 0 intersections with the 145 component models, the PCB, the panel and the sheet;
-  - closest part: the F3 clip leads, 1.27 mm;
-  - tails 1.55 mm;
-  - lead tips to the Formex sheet: PS1 1.33 mm, HS1 1.73 mm, Q1 2.10 mm (leads trimmed to ≤ 2.5 mm, mandatory);
-  - mains copper → frame → panel metal: creepage 8.52 mm, clearance 6.70 mm;
-  - 0 sliver faces.
-- **Stresses at 110 °C allowances:**
-  - boss bearing 8–16 MPa, hoop 8.9 MPa (SF 8.4), thread shear SF 2.3;
-  - foot bearing 9–14 MPa;
-  - gasket lift between feet 48 µm nominal, 96 µm at 1000 h.
+  - 10 PEM FH-M4-18 studs on the sheet (stack 7.5 frame + 1.0 washer + 5 nut = 13.5 mm), DIN 9021 M4 washers, ISO 10511 M4 nyloc at 0.6 Nm;
+  - stud bosses Ø 10, 5 mm above the flange back, one full-height 1.5 mm rib each, hole 7.5 mm outside the wall. Slots 4.5 × 5.3 radial from the datum (102.47, 69.5) take the 0.2–0.4 mm frame-to-steel growth at ΔT 60 K;
+  - pegs Ø 3 × 0.8 on the side flanges at (9.77 / 195.17, 69.5) into two 3.2 × 3.9 sheet slots along X: glass located y ±0.1, x ±0.25;
+  - Ø 12 socket from the component side: ≥ 1.29 mm to the board, 1.64 mm to the frame.
+  - Sheet window 156.08 × 87.92 mm R 1 (cover view area + 0.5 mm per side), stud holes Ø 4.22 +0.08. The hole table is in the design document (§1.4), `Rev3.0_Frame_Drawing_v2.png` and `Rev3.0_FrontSheet_Pattern_v2.dxf`.
+- **Fit check (real board STEP, every model; the Fusion assembly and CadQuery agree):**
+  - 0 intersections with the 145 component models (282 bodies); closest part: the F3 clip leads, 1.364 mm;
+  - PCB 0.08 mm (copper + mask); panel 0.138 mm; tails 1.554 / 1.557 mm; Formex sheet touching, gasket 0.607 mm, oven-sheet patch coplanar, 0 overlap;
+  - lead tips to the Formex sheet: PS1 1.335 mm, HS1 1.735 mm, Q1 2.10 mm (leads trimmed to ≤ 2.5 mm, mandatory);
+  - mains copper → frame → panel metal: creepage 7.95 mm (≥ 6.4), clearance 6.70 mm (≥ 4.0);
+  - 0 slivers on design faces, 0 draft flags, no wall < 1 mm.
+- **Stresses (PA6-GF30 FR at 110 °C: tensile 75 MPa, creep allowance 15 MPa):**
+  - PCB bosses as v1 (bearing 8–16 MPa, hoop SF 8.4, thread shear SF 2.3); stud-tube bearing 8.4 / 12.6 MPa;
+  - flange bending at a stud: T-section with the 5 mm rib 23.5 MPa worst (SF 3.2), 6.2 MPa sustained. The plate-only model gives 46 MPa: FEA before tooling;
+  - gasket lift at 1000 h, nominal: top 44, sides 38, bottom 72 µm (limit 90); beam I 713 mm⁴ = 2.3 × v1;
+  - thermal: at the pessimistic bound FH6/FH8 bear 0.007 mm across their slots (self-limiting, ≤ 12.2 MPa); covered at ΔT 40 K.
 - **Open:**
   - gasket 1.0 vs 1.5 mm (LCM ± 0.3 tolerance gives 0–64 % compression);
   - insulating sheet grade and layers (GK-17 is 0.43 mm, GK-10 0.25 mm; reinforced insulation per cl. 29.3);
-  - 8 vs 6 feet;
-  - pegs visible on the front;
-  - stud type and sheet thickness;
-  - Q1 trimming step;
-  - R 0.5 root fillets in the tooling CAD.
+  - ten studs instead of eight; slots and the thermal / moisture bound;
+  - pegs visible on the front (`pegs_on`); PEM vs weld studs and the sheet thickness; Q1 trimming step;
+  - four sharp tail-pocket corners; stud-boss FEA and Moldflow before steel; material grade; tail handling.
 - **Files** (`Mechanical/Rev3.0_Frame/`):
-  - `Rev3.0_Frame.step`, `.stl`;
-  - `Rev3.0_Assembly.step`;
-  - `Rev3.0_Frame_Drawing.png`;
-  - `Rev3.0_FrontSheet_Pattern.dxf`;
-  - renders `Frame_*` / `Assembly_*` (.png);
-  - sections `Section_A_ear_bosses_x30`, `Section_B_tail_pocket_x125`, `Section_C_gasket_feet_plane`, `Section_D_foot_F2_x72.7` (.png).
+  - `Rev3.0_Frame_v2.step`, `.stl`, `.f3d`; `Rev3.0_Frame_v2_params.json`; `Rev3.0_FrontSheet_Pattern_v2.dxf`;
+  - `renders_v2/`: `Frame_*`, `Assembly_*`, sections `Section_A_stud_FH2_x103.5`, `Section_B_pcb_bosses_x30`, `Section_C_tail_pocket_x125`, `Section_D_flange_plan_Z-9.77`, `Section_E_stud_FH10_y40.5`, `Rev3.0_Frame_Drawing_v2`, Fusion screenshots `Fusion_*` (.png);
+  - scripts: `tools/frame_v2/fusion/01…68` + `fv2lib.py` (Fusion build), `tools/frame_v2/build_v2.py` (checks; v1 regression with `--v1`), `tools/frame_v2/hole_pattern_calc.py`.

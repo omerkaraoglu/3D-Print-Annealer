@@ -1,0 +1,2170 @@
+{
+ "frame": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame_v2.step",
+ "frame_info": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame_v2.step",
+  "bytes": 1440817,
+  "mtime": "2026-11-13 21:26:31",
+  "solids": 1,
+  "valid": true,
+  "volume_cm3": 55.053,
+  "mass_g_1.36": 74.9,
+  "faces": 732,
+  "edges": 1946,
+  "bbox_model": [
+   3.27,
+   201.67,
+   -167.7,
+   -2.25,
+   -11.82,
+   4.05
+  ],
+  "size": [
+   198.4,
+   165.45,
+   15.87
+  ],
+  "single_solid": true,
+  "read_s": 1.7
+ },
+ "slivers": {
+  "faces": 732,
+  "slivers": [
+   {
+    "type": "BSPLINE",
+    "area": 0.395,
+    "2A/P": 0.334,
+    "at_abs": [
+     184.92,
+     119.0,
+     -4.85
+    ],
+    "class": "fillet blend: bspline patch 0.50 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.395,
+    "2A/P": 0.334,
+    "at_abs": [
+     184.92,
+     19.0,
+     -4.85
+    ],
+    "class": "fillet blend: bspline patch 0.50 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.395,
+    "2A/P": 0.334,
+    "at_abs": [
+     20.02,
+     119.0,
+     -4.85
+    ],
+    "class": "fillet blend: bspline patch 0.50 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.395,
+    "2A/P": 0.334,
+    "at_abs": [
+     20.02,
+     19.0,
+     -4.85
+    ],
+    "class": "fillet blend: bspline patch 0.50 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.396,
+    "2A/P": 0.335,
+    "at_abs": [
+     184.92,
+     119.0,
+     -1.86
+    ],
+    "class": "fillet blend: bspline patch 0.51 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.396,
+    "2A/P": 0.335,
+    "at_abs": [
+     20.02,
+     119.0,
+     -1.86
+    ],
+    "class": "fillet blend: bspline patch 0.51 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.396,
+    "2A/P": 0.335,
+    "at_abs": [
+     20.02,
+     19.0,
+     -1.86
+    ],
+    "class": "fillet blend: bspline patch 0.51 mm"
+   },
+   {
+    "type": "BSPLINE",
+    "area": 0.396,
+    "2A/P": 0.335,
+    "at_abs": [
+     184.92,
+     19.0,
+     -1.86
+    ],
+    "class": "fillet blend: bspline patch 0.51 mm"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     29.01,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     20.01,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     29.01,
+     150.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     20.01,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.466,
+    "2A/P": 0.371,
+    "at_abs": [
+     25.9,
+     122.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     29.01,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.318,
+    "2A/P": 0.289,
+    "at_abs": [
+     29.05,
+     128.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     30.99,
+     150.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     30.99,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     36.5,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.466,
+    "2A/P": 0.371,
+    "at_abs": [
+     34.1,
+     122.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.318,
+    "2A/P": 0.289,
+    "at_abs": [
+     30.95,
+     128.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     30.99,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     36.5,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 0.29,
+    "2A/P": 0.252,
+    "at_abs": [
+     34.56,
+     121.93,
+     -8.34
+    ],
+    "class": "fillet blend: cylinder patch 0.50 mm"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     174.01,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     170.1,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     174.01,
+     150.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     170.1,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "TORUS",
+    "area": 0.246,
+    "2A/P": 0.227,
+    "at_abs": [
+     170.03,
+     123.59,
+     -8.33
+    ],
+    "class": "fillet blend: torus r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     174.01,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.318,
+    "2A/P": 0.289,
+    "at_abs": [
+     174.05,
+     128.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     175.99,
+     150.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     175.99,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     184.93,
+     139.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.466,
+    "2A/P": 0.371,
+    "at_abs": [
+     179.1,
+     122.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.318,
+    "2A/P": 0.289,
+    "at_abs": [
+     175.95,
+     128.05,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     175.99,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.384,
+    "2A/P": 0.328,
+    "at_abs": [
+     184.93,
+     138.01,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     33.04,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     34.96,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     101.54,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     103.46,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     170.04,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     171.96,
+     155.99,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     189.96,
+     99.46,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     189.96,
+     97.54,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     189.96,
+     41.46,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     189.96,
+     39.54,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     162.96,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     161.04,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     104.46,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     102.54,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     44.46,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     42.54,
+     13.96,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     14.98,
+     99.46,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     14.98,
+     97.54,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     14.98,
+     39.54,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   },
+   {
+    "type": "SPHERE",
+    "area": 0.33,
+    "2A/P": 0.296,
+    "at_abs": [
+     14.98,
+     41.46,
+     -8.28
+    ],
+    "class": "fillet blend: sphere r 0.50"
+   }
+  ],
+  "by_class": {
+   "fillet blend: bspline patch 0.50 mm": 4,
+   "fillet blend: bspline patch 0.51 mm": 4,
+   "fillet blend: sphere r 0.50": 47,
+   "fillet blend: cylinder patch 0.50 mm": 1,
+   "fillet blend: torus r 0.50": 1
+  },
+  "slivers_not_fillet_blends": 0,
+  "planar_narrow_extent": [],
+  "rule": "2A/P < 0.3 mm or area < 0.5 mm2",
+  "ok": false,
+  "ok_excluding_fillet_blends": true
+ },
+ "draft": {
+  "counts": {
+   "plane drafted": 177,
+   "cone axis Z": 93,
+   "cylinder other axis": 252,
+   "plane horizontal": 77,
+   "bspline": 50,
+   "torus": 35,
+   "sphere": 37,
+   "sphere fillet blend (sampled normals pass the vertical, not a draft error)": 11
+  },
+  "cone_semi_angles_deg": {
+   "0.5": 44,
+   "1.0": 45,
+   "45.0": 4
+  },
+  "flagged": [],
+  "flagged_summary": {},
+  "draft_min_deg": 0.25
+ },
+ "thin": {
+  "min_mm": 1.0,
+  "raster_mm": 0.05,
+  "planes": [
+   {
+    "plane": "Z_FRONT+1.25",
+    "z": -9.77,
+    "shifted": false,
+    "material_mm2": 11721.8,
+    "thin_walls": [],
+    "thin_gaps": [],
+    "slots_or_walls": [],
+    "v_notches": 0,
+    "ignored_corner_specks": {
+     "wall": 6,
+     "gap": 228
+    }
+   },
+   {
+    "plane": "Z-6",
+    "z": -6.0,
+    "shifted": false,
+    "material_mm2": 2659.7,
+    "thin_walls": [],
+    "thin_gaps": [],
+    "slots_or_walls": [],
+    "v_notches": 0,
+    "ignored_corner_specks": {
+     "wall": 166,
+     "gap": 583
+    }
+   },
+   {
+    "plane": "Z-3",
+    "z": -3.0,
+    "shifted": false,
+    "material_mm2": 3399.7,
+    "thin_walls": [],
+    "thin_gaps": [],
+    "slots_or_walls": [],
+    "v_notches": 0,
+    "ignored_corner_specks": {
+     "wall": 44,
+     "gap": 250
+    }
+   },
+   {
+    "plane": "Z-0.5",
+    "z": -0.487,
+    "shifted": true,
+    "material_mm2": 1973.2,
+    "thin_walls": [],
+    "thin_gaps": [],
+    "slots_or_walls": [],
+    "v_notches": 0,
+    "ignored_corner_specks": {
+     "wall": 123,
+     "gap": 464
+    }
+   }
+  ],
+  "ok": true,
+  "method": "plan section rasterised at 0.05 mm; local thickness = largest inscribed disc (opening with a dia-1.0 disc, scipy EDT) for material and for the gaps; components < 0.10 mm2 or < 1.0 mm long (sharp-corner specks) ignored"
+ },
+ "flange_face": {
+  "z_front": -11.02,
+  "faces": [
+   {
+    "area_mm2": 11440.53,
+    "holes": 13,
+    "bbox_abs": [
+     3.27,
+     201.67,
+     2.25,
+     167.7
+    ]
+   }
+  ],
+  "total_area_mm2": 11440.5,
+  "near_coplanar_recesses": [],
+  "proud_below_front": [
+   {
+    "centre_abs": [
+     195.17,
+     69.5
+    ],
+    "size": [
+     3.0,
+     3.0
+    ],
+    "depth_below_Z_FRONT": 0.8,
+    "volume_mm3": 5.614,
+    "peg": "P2"
+   },
+   {
+    "centre_abs": [
+     9.77,
+     69.5
+    ],
+    "size": [
+     3.0,
+     3.0
+    ],
+    "depth_below_Z_FRONT": 0.8,
+    "volume_mm3": 5.614,
+    "peg": "P1"
+   }
+  ],
+  "pegs_found": [
+   "P1",
+   "P2"
+  ],
+  "unexpected_proud": [],
+  "zmin_without_pegs": -11.02,
+  "ok": true
+ },
+ "features": {
+  "studs": [
+   {
+    "name": "FH1",
+    "x": 43.5,
+    "y": 8.75,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       43.779,
+       9.037
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       43.221,
+       8.463
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       43.5,
+       8.75
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      -0.6965166454835655,
+      -0.7175406347826729
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH2",
+    "x": 103.5,
+    "y": 8.75,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       103.493,
+       9.15
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       103.507,
+       8.35
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       103.5,
+       8.75
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.016952005161547316,
+      -0.9998563044362939
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH3",
+    "x": 162.0,
+    "y": 8.75,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       161.72,
+       9.036
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       162.28,
+       8.464
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       162.0,
+       8.75
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.6998989143446264,
+      -0.7142419125892945
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH4",
+    "x": 195.17,
+    "y": 40.5,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       194.788,
+       40.619
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       195.552,
+       40.381
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       195.17,
+       40.5
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.9543883315698343,
+      -0.2985681037273544
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH5",
+    "x": 195.17,
+    "y": 98.5,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       194.788,
+       98.381
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       195.552,
+       98.619
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       195.17,
+       98.5
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.9543883315698343,
+      0.2985681037273544
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH6",
+    "x": 171.0,
+    "y": 161.2,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       170.761,
+       160.88
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       171.239,
+       161.52
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       171.0,
+       161.2
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.5986291998473033,
+      0.8010262674158554
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH7",
+    "x": 102.5,
+    "y": 161.2,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       102.5,
+       160.8
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       102.5,
+       161.6
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       102.5,
+       161.2
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      0.00032699998251710984,
+      0.9999999465355043
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH8",
+    "x": 34.0,
+    "y": 161.2,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       34.239,
+       160.879
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       33.761,
+       161.521
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       34.0,
+       161.2
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      -0.5982931960672937,
+      0.801277262587416
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH9",
+    "x": 9.77,
+    "y": 98.5,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       10.152,
+       98.381
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       9.388,
+       98.619
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       9.77,
+       98.5
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      -0.9543883315698343,
+      0.2985681037273544
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   },
+   {
+    "name": "FH10",
+    "x": 9.77,
+    "y": 40.5,
+    "hole": [
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       10.152,
+       40.619
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 4.565,
+      "z": [
+       -11.02,
+       -3.52
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       9.388,
+       40.381
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 10.079,
+      "z": [
+       -8.029,
+       -3.52
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       9.77,
+       40.5
+      ]
+     }
+    ],
+    "slot": {
+     "axis": [
+      -0.9543883315698343,
+      -0.2985681037273544
+     ],
+     "len": 5.3,
+     "w": 4.5,
+     "ends_found": 2
+    },
+    "top_z": -3.52,
+    "washer_bearing_area_mm2": 59.39,
+    "top_face_area_mm2": 60.92,
+    "found": true
+   }
+  ],
+  "pcb_holes": [
+   {
+    "name": "H1",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       30.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       30.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H2",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       93.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       93.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H3",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       174.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       174.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H4",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       189.8,
+       30.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       189.8,
+       30.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H5",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       189.8,
+       109.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       189.8,
+       109.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H6",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       175.0,
+       123.8
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       175.0,
+       123.8
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H7",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       30.0,
+       123.8
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       30.0,
+       123.8
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H8",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       15.2,
+       109.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       15.2,
+       109.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H9",
+    "pilot": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.308,
+      "z": [
+       -10.02,
+       -0.5
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       15.2,
+       30.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.14,
+      "z": [
+       -8.029,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       15.2,
+       30.0
+      ]
+     }
+    ],
+    "found": true
+   }
+  ],
+  "pegs": [
+   {
+    "name": "P1",
+    "peg": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.993,
+      "z": [
+       -11.82,
+       -11.02
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       9.77,
+       69.5
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "P2",
+    "peg": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.993,
+      "z": [
+       -11.82,
+       -11.02
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       195.17,
+       69.5
+      ]
+     }
+    ],
+    "found": true
+   }
+  ],
+  "unmatched_small_axial_faces": [
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     10.152,
+     40.619
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     9.388,
+     40.381
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     10.152,
+     98.381
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     9.388,
+     98.619
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     34.239,
+     160.879
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     33.761,
+     161.521
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     102.5,
+     161.6
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     102.5,
+     160.8
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     171.239,
+     161.52
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     170.761,
+     160.88
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     195.552,
+     98.619
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     194.788,
+     98.381
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     195.552,
+     40.381
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     194.788,
+     40.619
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     162.28,
+     8.464
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     161.72,
+     9.036
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     103.507,
+     8.35
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     103.493,
+     9.15
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     43.779,
+     9.037
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.565,
+    "z": [
+     -11.02,
+     -3.52
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     43.221,
+     8.463
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.045,
+    "z": [
+     -1.609,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     184.67,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.045,
+    "z": [
+     -1.609,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     184.67,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.157,
+    "z": [
+     -8.029,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     21.77,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.157,
+    "z": [
+     -8.029,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     183.17,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.166,
+    "z": [
+     -8.029,
+     0.491
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     171.856,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.157,
+    "z": [
+     -8.029,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     171.856,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.044,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     181.32,
+     115.4
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.044,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     23.62,
+     115.4
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.044,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     181.32,
+     22.6
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.044,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     23.62,
+     22.6
+    ]
+   }
+  ],
+  "stud_top_z_measured": [
+   -3.52
+  ],
+  "stud_top_z_params": -3.52,
+  "ok": true
+ },
+ "body_ok": true,
+ "seconds": 24.9
+}

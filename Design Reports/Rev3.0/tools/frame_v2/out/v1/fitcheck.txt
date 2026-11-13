@@ -1,0 +1,28 @@
+components (145) overlapping                   0                                            0              OK
+closest component                              F3 1.268 mm                                  > 0            OK
+PCB body                                       0.080 mm, 0.0000 mm3                         0.08 / 0       OK
+panel parts                                    min 0.150 mm, 0.0000 mm3                     > 0 / 0        OK
+FPC tails                                      min 1.554 mm                                 >= 1.5         OK
+Formex sheet                                   0.000 mm, 0.0000 mm3                         0 vol          OK
+gasket                                         0.607 mm, 0.0000 mm3                         0 vol          OK
+oven-sheet patch                               0.000 mm, 0.0000 mm3                         0 vol          OK
+lead protrusion -> Formex sheet (closest)      PS1 3.27 -> gap 1.33 mm                      > 0            OK
+Z 0 contact patches vs B.Cu pads               1.37 mm at J3.1 (rib)                        >= 1.0         OK
+  - rib                                        1.37 mm at J3.1 (rib)                                       OK
+  - boss                                       5.99 mm at F3.2 (boss)                                      OK
+  - wall                                       2.84 mm at J3.1 (wall)                                      OK
+Z 0 contact patches: mains copper -> frame     1.37 mm (J3.1)                                              OK
+Z 0 contact patches: creepage mains -> panel   8.57 mm                                      >= 6.4         OK
+(info) rib-base footprint Z -2.08 vs B.Cu pads 1.32 mm at J3.1 (rib)                        info           OK
+  - rib                                        1.32 mm at J3.1 (rib)                                       OK
+  - boss                                       6.02 mm at F3.2 (boss)                                      OK
+  - wall                                       2.80 mm at J3.1 (wall)                                      OK
+(info) rib-base footprint Z -2.08: mains copper -> frame 1.32 mm (J3.1)                                              OK
+(info) rib-base footprint Z -2.08: creepage mains -> panel 8.52 mm                                      info           OK
+3D frame -> J3 model (nearest pad J3.1, contact) 2.022 mm                                     >= 1.0         OK
+3D frame -> J3 model (nearest pad J3.1, footprint) 2.022 mm                                     >= 1.0         OK
+clearance mains -> panel                       6.70 mm (R1.2)                               >= 4.0         OK
+tool access dia 12 Z -6.52..45                 min 1.00 mm at F2 (DS1 lcm_0)                no overlap     OK
+washer dia 12 + socket over each stud vs frame OVERLAP at F2, F3, F5, F8                    no overlap     FAIL
+nothing above Z 0 inside board + 1 mm          11.9469 mm3 (inside outline 0.0000)          0              FAIL
+  frame above Z 0: plan gap to board edge      0.404 mm at [169.71, 119.44]                 >= 1.0         FAIL

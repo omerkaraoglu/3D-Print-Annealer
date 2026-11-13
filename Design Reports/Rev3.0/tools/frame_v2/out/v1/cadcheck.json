@@ -1,0 +1,2044 @@
+{
+ "frame": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame.step",
+ "frame_info": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame.step",
+  "bytes": 1509216,
+  "mtime": "2026-11-13 17:20:21",
+  "solids": 1,
+  "valid": true,
+  "volume_cm3": 32.504,
+  "mass_g_1.36": 44.2,
+  "faces": 342,
+  "edges": 952,
+  "bbox_model": [
+   6.6,
+   198.4,
+   -153.7,
+   -6.0,
+   -11.82,
+   4.05
+  ],
+  "size": [
+   191.8,
+   147.7,
+   15.87
+  ],
+  "single_solid": true,
+  "read_s": 0.4
+ },
+ "slivers": {
+  "faces": 342,
+  "slivers": [],
+  "by_class": {},
+  "slivers_not_fillet_blends": 0,
+  "planar_narrow_extent": [],
+  "rule": "2A/P < 0.3 mm or area < 0.5 mm2",
+  "ok": true,
+  "ok_excluding_fillet_blends": true
+ },
+ "draft": {
+  "counts": {
+   "plane horizontal": 44,
+   "cylinder axis Z": 26,
+   "cone axis Z": 81,
+   "plane drafted": 190,
+   "plane parallel to Z": 1
+  },
+  "cone_semi_angles_deg": {
+   "0.5": 6,
+   "1.0": 71,
+   "45.0": 4
+  },
+  "flagged": [
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     192.0,
+     12.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     192.0,
+     12.0
+    ],
+    "feature": "stud F4"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     174.0,
+     14.2,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     174.0,
+     14.2
+    ],
+    "feature": "PCB hole H3"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     174.0,
+     14.2,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     174.0,
+     14.2
+    ],
+    "feature": "PCB hole H3"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     30.0,
+     123.8,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     30.0,
+     123.8
+    ],
+    "feature": "PCB hole H7"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     175.0,
+     123.8,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     175.0,
+     123.8
+    ],
+    "feature": "PCB hole H6"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     189.8,
+     30.0,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     189.8,
+     30.0
+    ],
+    "feature": "PCB hole H4"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     93.0,
+     14.2,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     93.0,
+     14.2
+    ],
+    "feature": "PCB hole H2"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     30.0,
+     14.2,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     30.0,
+     14.2
+    ],
+    "feature": "PCB hole H1"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     15.2,
+     30.0,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     15.2,
+     30.0
+    ],
+    "feature": "PCB hole H9"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     189.8,
+     109.0,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     189.8,
+     109.0
+    ],
+    "feature": "PCB hole H5"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 5.027,
+    "at_abs": [
+     15.2,
+     109.0,
+     -0.25
+    ],
+    "z": [
+     -0.5,
+     0.0
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.6,
+    "axis_abs": [
+     15.2,
+     109.0
+    ],
+    "feature": "PCB hole H8"
+   },
+   {
+    "type": "PLANE",
+    "area": 321.17,
+    "at_abs": [
+     103.3,
+     119.0,
+     -3.35
+    ],
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "why": "planar wall without draft",
+    "draft_deg": 0.0
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     189.8,
+     30.0,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     189.8,
+     30.0
+    ],
+    "feature": "PCB hole H4"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     132.3,
+     12.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     132.3,
+     12.0
+    ],
+    "feature": "stud F3"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     192.4,
+     69.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     192.4,
+     69.0
+    ],
+    "feature": "stud F5"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     93.0,
+     14.2,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     93.0,
+     14.2
+    ],
+    "feature": "PCB hole H2"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     72.7,
+     12.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     72.7,
+     12.0
+    ],
+    "feature": "stud F2"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     30.0,
+     14.2,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     30.0,
+     14.2
+    ],
+    "feature": "PCB hole H1"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     13.0,
+     12.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     13.0,
+     12.0
+    ],
+    "feature": "stud F1"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     15.2,
+     30.0,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     15.2,
+     30.0
+    ],
+    "feature": "PCB hole H9"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     12.6,
+     69.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     12.6,
+     69.0
+    ],
+    "feature": "stud F8"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     189.8,
+     109.0,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     189.8,
+     109.0
+    ],
+    "feature": "PCB hole H5"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     175.0,
+     123.8,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     175.0,
+     123.8
+    ],
+    "feature": "PCB hole H6"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     177.0,
+     139.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     177.0,
+     139.0
+    ],
+    "feature": "stud F6"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     15.2,
+     109.0,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     15.2,
+     109.0
+    ],
+    "feature": "PCB hole H8"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 79.319,
+    "at_abs": [
+     30.0,
+     123.8,
+     -5.76
+    ],
+    "z": [
+     -11.02,
+     -0.5
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 1.2,
+    "axis_abs": [
+     30.0,
+     123.8
+    ],
+    "feature": "PCB hole H7"
+   },
+   {
+    "type": "CYLINDER",
+    "area": 70.686,
+    "at_abs": [
+     28.0,
+     139.0,
+     -8.52
+    ],
+    "z": [
+     -11.02,
+     -6.02
+    ],
+    "why": "cylinder parallel to the pull (no draft)",
+    "r": 2.25,
+    "axis_abs": [
+     28.0,
+     139.0
+    ],
+    "feature": "stud F7"
+   }
+  ],
+  "flagged_summary": {
+   "cylinder parallel to the pull (no draft) - stud": 8,
+   "cylinder parallel to the pull (no draft) - PCB": 18,
+   "planar wall without draft": 1
+  },
+  "draft_min_deg": 0.25
+ },
+ "thin": {
+  "min_mm": 1.0,
+  "raster_mm": 0.05,
+  "planes": [
+   {
+    "plane": "Z_FRONT+1.25",
+    "z": -9.77,
+    "shifted": false,
+    "material_mm2": 3590.7,
+    "thin_walls": [],
+    "thin_gaps": [
+     {
+      "at_abs": [
+       19.79,
+       16.72
+      ],
+      "width_max": 0.5,
+      "length": 1.24,
+      "area_mm2": 0.245,
+      "fill_ratio": 0.39,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       185.15,
+       16.72
+      ],
+      "width_max": 0.5,
+      "length": 1.24,
+      "area_mm2": 0.245,
+      "fill_ratio": 0.39,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       17.7,
+       18.79
+      ],
+      "width_max": 0.583,
+      "length": 1.27,
+      "area_mm2": 0.272,
+      "fill_ratio": 0.37,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       187.25,
+       18.79
+      ],
+      "width_max": 0.583,
+      "length": 1.27,
+      "area_mm2": 0.272,
+      "fill_ratio": 0.37,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     }
+    ],
+    "slots_or_walls": [],
+    "v_notches": 4,
+    "ignored_corner_specks": {
+     "wall": 81,
+     "gap": 322
+    }
+   },
+   {
+    "plane": "Z-6",
+    "z": -6.0,
+    "shifted": false,
+    "material_mm2": 2016.8,
+    "thin_walls": [],
+    "thin_gaps": [
+     {
+      "at_abs": [
+       26.14,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       33.86,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       89.14,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       96.86,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       170.14,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       177.86,
+       16.11
+      ],
+      "width_max": 0.5,
+      "length": 1.0,
+      "area_mm2": 0.173,
+      "fill_ratio": 0.34,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       187.77,
+       26.2
+      ],
+      "width_max": 0.5,
+      "length": 1.01,
+      "area_mm2": 0.183,
+      "fill_ratio": 0.36,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       187.77,
+       105.2
+      ],
+      "width_max": 0.5,
+      "length": 1.01,
+      "area_mm2": 0.183,
+      "fill_ratio": 0.36,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       170.83,
+       122.41
+      ],
+      "width_max": 0.849,
+      "length": 1.91,
+      "area_mm2": 0.725,
+      "fill_ratio": 0.45,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     }
+    ],
+    "slots_or_walls": [],
+    "v_notches": 9,
+    "ignored_corner_specks": {
+     "wall": 45,
+     "gap": 166
+    }
+   },
+   {
+    "plane": "Z-3",
+    "z": -3.0,
+    "shifted": false,
+    "material_mm2": 3451.1,
+    "thin_walls": [],
+    "thin_gaps": [
+     {
+      "at_abs": [
+       171.02,
+       122.15
+      ],
+      "width_max": 0.721,
+      "length": 1.66,
+      "area_mm2": 0.508,
+      "fill_ratio": 0.42,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     }
+    ],
+    "slots_or_walls": [],
+    "v_notches": 1,
+    "ignored_corner_specks": {
+     "wall": 47,
+     "gap": 190
+    }
+   },
+   {
+    "plane": "Z-0.5",
+    "z": -0.487,
+    "shifted": true,
+    "material_mm2": 1934.8,
+    "thin_walls": [],
+    "thin_gaps": [
+     {
+      "at_abs": [
+       187.67,
+       33.64
+      ],
+      "width_max": 0.5,
+      "length": 1.01,
+      "area_mm2": 0.18,
+      "fill_ratio": 0.36,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       187.67,
+       112.64
+      ],
+      "width_max": 0.5,
+      "length": 1.01,
+      "area_mm2": 0.18,
+      "fill_ratio": 0.36,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     },
+     {
+      "at_abs": [
+       171.09,
+       122.04
+      ],
+      "width_max": 0.707,
+      "length": 1.56,
+      "area_mm2": 0.453,
+      "fill_ratio": 0.41,
+      "class": "V-notch / sharp re-entrant corner (wedge tapering to 0)"
+     }
+    ],
+    "slots_or_walls": [],
+    "v_notches": 3,
+    "ignored_corner_specks": {
+     "wall": 120,
+     "gap": 239
+    }
+   }
+  ],
+  "ok": true,
+  "method": "plan section rasterised at 0.05 mm; local thickness = largest inscribed disc (opening with a dia-1.0 disc, scipy EDT) for material and for the gaps; components < 0.10 mm2 or < 1.0 mm long (sharp-corner specks) ignored"
+ },
+ "flange_face": {
+  "z_front": -11.02,
+  "faces": [
+   {
+    "area_mm2": 3277.52,
+    "holes": 20,
+    "bbox_abs": [
+     6.6,
+     198.4,
+     6.0,
+     153.7
+    ]
+   }
+  ],
+  "total_area_mm2": 3277.5,
+  "near_coplanar_recesses": [],
+  "proud_below_front": [
+   {
+    "centre_abs": [
+     32.5,
+     146.0
+    ],
+    "size": [
+     3.0,
+     3.0
+    ],
+    "depth_below_Z_FRONT": 0.8,
+    "volume_mm3": 5.614,
+    "peg": "P1"
+   },
+   {
+    "centre_abs": [
+     172.5,
+     146.0
+    ],
+    "size": [
+     3.0,
+     3.0
+    ],
+    "depth_below_Z_FRONT": 0.8,
+    "volume_mm3": 5.614,
+    "peg": "P2"
+   }
+  ],
+  "pegs_found": [
+   "P1",
+   "P2"
+  ],
+  "unexpected_proud": [],
+  "zmin_without_pegs": -11.02,
+  "ok": true
+ },
+ "features": {
+  "studs": [
+   {
+    "name": "F1",
+    "x": 13.0,
+    "y": 12.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       13.0,
+       12.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       13.0,
+       12.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 54.98,
+    "top_face_area_mm2": 54.98,
+    "found": true
+   },
+   {
+    "name": "F2",
+    "x": 72.7,
+    "y": 12.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       72.7,
+       12.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       72.7,
+       12.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 53.9,
+    "top_face_area_mm2": 53.9,
+    "found": true
+   },
+   {
+    "name": "F3",
+    "x": 132.3,
+    "y": 12.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       132.3,
+       12.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       132.3,
+       12.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 53.9,
+    "top_face_area_mm2": 53.9,
+    "found": true
+   },
+   {
+    "name": "F4",
+    "x": 192.0,
+    "y": 12.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       192.0,
+       12.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       192.0,
+       12.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 54.98,
+    "top_face_area_mm2": 54.98,
+    "found": true
+   },
+   {
+    "name": "F5",
+    "x": 192.4,
+    "y": 69.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       192.4,
+       69.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       192.4,
+       69.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 54.98,
+    "top_face_area_mm2": 54.98,
+    "found": true
+   },
+   {
+    "name": "F6",
+    "x": 177.0,
+    "y": 139.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       177.0,
+       139.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       177.0,
+       139.0
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       177.0,
+       139.0
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       177.0,
+       139.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 60.43,
+    "top_face_area_mm2": 72.73,
+    "found": true
+   },
+   {
+    "name": "F7",
+    "x": 28.0,
+    "y": 139.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       28.0,
+       139.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       28.0,
+       139.0
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       28.0,
+       139.0
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       28.0,
+       139.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 60.43,
+    "top_face_area_mm2": 75.07,
+    "found": true
+   },
+   {
+    "name": "F8",
+    "x": 12.6,
+    "y": 69.0,
+    "hole": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 4.5,
+      "z": [
+       -11.02,
+       -6.02
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       12.6,
+       69.0
+      ]
+     }
+    ],
+    "tube": [
+     {
+      "kind": "CONE",
+      "dia_mid": 9.544,
+      "z": [
+       -8.52,
+       -6.02
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       12.6,
+       69.0
+      ]
+     }
+    ],
+    "top_z": -6.02,
+    "washer_bearing_area_mm2": 54.98,
+    "top_face_area_mm2": 54.98,
+    "found": true
+   }
+  ],
+  "pcb_holes": [
+   {
+    "name": "H1",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       30.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       30.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H2",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       93.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       93.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H3",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       174.0,
+       14.2
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       174.0,
+       14.2
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H4",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       189.8,
+       30.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       189.8,
+       30.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H5",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       189.8,
+       109.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       189.8,
+       109.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H6",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       175.0,
+       123.8
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.149,
+      "z": [
+       -8.52,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       175.0,
+       123.8
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 8.376,
+      "z": [
+       -11.02,
+       -10.54
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       175.0,
+       123.8
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H7",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       30.0,
+       123.8
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.149,
+      "z": [
+       -8.52,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       30.0,
+       123.8
+      ]
+     },
+     {
+      "kind": "CONE",
+      "dia_mid": 8.376,
+      "z": [
+       -11.02,
+       -10.54
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       30.0,
+       123.8
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H8",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       15.2,
+       109.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       15.2,
+       109.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "H9",
+    "pilot": [
+     {
+      "kind": "CYLINDER",
+      "dia_mid": 2.4,
+      "z": [
+       -11.02,
+       -0.5
+      ],
+      "semi_deg": 0.0,
+      "axis_abs": [
+       15.2,
+       30.0
+      ]
+     }
+    ],
+    "boss": [
+     {
+      "kind": "CONE",
+      "dia_mid": 8.192,
+      "z": [
+       -11.02,
+       0.0
+      ],
+      "semi_deg": 1.0,
+      "axis_abs": [
+       15.2,
+       30.0
+      ]
+     }
+    ],
+    "found": true
+   }
+  ],
+  "pegs": [
+   {
+    "name": "P1",
+    "peg": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.993,
+      "z": [
+       -11.82,
+       -11.02
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       32.5,
+       146.0
+      ]
+     }
+    ],
+    "found": true
+   },
+   {
+    "name": "P2",
+    "peg": [
+     {
+      "kind": "CONE",
+      "dia_mid": 2.993,
+      "z": [
+       -11.82,
+       -11.02
+      ],
+      "semi_deg": 0.5,
+      "axis_abs": [
+       172.5,
+       146.0
+      ]
+     }
+    ],
+    "found": true
+   }
+  ],
+  "unmatched_small_axial_faces": [
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     21.77,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     34.7,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     34.7,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     21.77,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     171.9,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     183.17,
+     149.2
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     183.17,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 4.149,
+    "z": [
+     -8.52,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     171.9,
+     123.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.303,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     181.093,
+     22.827
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.049,
+    "z": [
+     -10.223,
+     -4.6
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     20.27,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.049,
+    "z": [
+     -10.223,
+     -4.6
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     184.67,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.049,
+    "z": [
+     -10.223,
+     -4.6
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     184.67,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.049,
+    "z": [
+     -10.223,
+     -4.6
+    ],
+    "semi_deg": 0.5,
+    "axis_abs": [
+     20.27,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.303,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     181.093,
+     115.173
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.303,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     23.847,
+     22.827
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 2.303,
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     23.847,
+     115.173
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.037,
+    "z": [
+     -2.1,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     184.67,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.037,
+    "z": [
+     -2.1,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     184.67,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.037,
+    "z": [
+     -2.1,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     20.27,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.037,
+    "z": [
+     -2.1,
+     0.0
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     20.27,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.895,
+    "z": [
+     -11.02,
+     -10.223
+    ],
+    "semi_deg": 45.0,
+    "axis_abs": [
+     184.67,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.895,
+    "z": [
+     -11.02,
+     -10.223
+    ],
+    "semi_deg": 45.0,
+    "axis_abs": [
+     184.67,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.895,
+    "z": [
+     -11.02,
+     -10.223
+    ],
+    "semi_deg": 45.0,
+    "axis_abs": [
+     20.27,
+     19.25
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 1.895,
+    "z": [
+     -11.02,
+     -10.223
+    ],
+    "semi_deg": 45.0,
+    "axis_abs": [
+     20.27,
+     118.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     129.3,
+     15.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     129.3,
+     9.0
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     75.7,
+     15.75
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     135.3,
+     9.0
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     75.7,
+     9.0
+    ]
+   },
+   {
+    "kind": "CONE",
+    "dia_mid": 5.956,
+    "z": [
+     -11.02,
+     -8.52
+    ],
+    "semi_deg": 1.0,
+    "axis_abs": [
+     135.3,
+     15.75
+    ]
+   }
+  ],
+  "stud_top_z_measured": [
+   -6.02
+  ],
+  "stud_top_z_params": -6.02,
+  "ok": true
+ },
+ "body_ok": true,
+ "seconds": 14.3
+}

@@ -1,0 +1,1699 @@
+{
+ "frame": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame_v2.step",
+ "board_step": "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\62ff0a1a-4475-4c41-9c45-d7dae40b64a5\\scratchpad\\cad\\Rev3.0_PCB_full.step",
+ "fit3d": {
+  "board_dz": 0.08,
+  "components_checked": 145,
+  "component_overlaps": [],
+  "closest_components": [
+   {
+    "ref": "F3",
+    "part": "Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm",
+    "min_dist": 1.364,
+    "overlap_mm3": 0.0,
+    "zmin": -1.87,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C333",
+    "part": "C_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "U3",
+    "part": "ESP32-WROOM-32E",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "R129",
+    "part": "R_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J2",
+    "part": "PinHeader_1x06_P2.54mm_Vertical",
+    "min_dist": 1.836,
+    "overlap_mm3": 0.0,
+    "zmin": -1.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "PS1",
+    "part": "Converter_ACDC_Hi-Link_HLK-10Mxx",
+    "min_dist": 1.993,
+    "overlap_mm3": 0.0,
+    "zmin": -3.27,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "R1",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.074,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J3",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.074,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J4",
+    "part": "SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub",
+    "min_dist": 2.198,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C126",
+    "part": "C_0402_1005Metric",
+    "min_dist": 2.254,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J10",
+    "part": "Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide",
+    "min_dist": 2.291,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C334",
+    "part": "C_0805_2012Metric",
+    "min_dist": 2.323,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   }
+  ],
+  "components_all": [
+   {
+    "ref": "F3",
+    "min_dist": 1.364,
+    "approx": false
+   },
+   {
+    "ref": "C333",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "U3",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "R129",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "J2",
+    "min_dist": 1.836,
+    "approx": false
+   },
+   {
+    "ref": "PS1",
+    "min_dist": 1.993,
+    "approx": false
+   },
+   {
+    "ref": "R1",
+    "min_dist": 2.074,
+    "approx": false
+   },
+   {
+    "ref": "J3",
+    "min_dist": 2.074,
+    "approx": false
+   },
+   {
+    "ref": "J4",
+    "min_dist": 2.198,
+    "approx": false
+   },
+   {
+    "ref": "C126",
+    "min_dist": 2.254,
+    "approx": false
+   },
+   {
+    "ref": "J10",
+    "min_dist": 2.291,
+    "approx": false
+   },
+   {
+    "ref": "C334",
+    "min_dist": 2.323,
+    "approx": false
+   },
+   {
+    "ref": "J20",
+    "min_dist": 2.754,
+    "approx": false
+   },
+   {
+    "ref": "L1",
+    "min_dist": 2.809,
+    "approx": false
+   },
+   {
+    "ref": "C133",
+    "min_dist": 3.325,
+    "approx": false
+   },
+   {
+    "ref": "C336",
+    "min_dist": 3.831,
+    "approx": false
+   },
+   {
+    "ref": "C331",
+    "min_dist": 3.852,
+    "approx": false
+   },
+   {
+    "ref": "C330",
+    "min_dist": 3.852,
+    "approx": false
+   },
+   {
+    "ref": "L30",
+    "min_dist": 4.186,
+    "approx": false
+   },
+   {
+    "ref": "J11",
+    "min_dist": 4.234,
+    "approx": false
+   },
+   {
+    "ref": "C335",
+    "min_dist": 4.646,
+    "approx": false
+   },
+   {
+    "ref": "R330",
+    "min_dist": 4.787,
+    "approx": false
+   },
+   {
+    "ref": "U31",
+    "min_dist": 5.432,
+    "approx": true
+   },
+   {
+    "ref": "L40",
+    "min_dist": 5.745,
+    "approx": true
+   },
+   {
+    "ref": "R331",
+    "min_dist": 5.767,
+    "approx": true
+   },
+   {
+    "ref": "R127",
+    "min_dist": 5.858,
+    "approx": true
+   },
+   {
+    "ref": "U30",
+    "min_dist": 6.74,
+    "approx": true
+   },
+   {
+    "ref": "C40",
+    "min_dist": 7.169,
+    "approx": true
+   },
+   {
+    "ref": "D115",
+    "min_dist": 7.228,
+    "approx": true
+   },
+   {
+    "ref": "C8",
+    "min_dist": 7.259,
+    "approx": true
+   },
+   {
+    "ref": "R116",
+    "min_dist": 7.439,
+    "approx": true
+   },
+   {
+    "ref": "C5",
+    "min_dist": 7.455,
+    "approx": true
+   },
+   {
+    "ref": "R128",
+    "min_dist": 7.548,
+    "approx": true
+   },
+   {
+    "ref": "R11",
+    "min_dist": 7.797,
+    "approx": true
+   },
+   {
+    "ref": "R223",
+    "min_dist": 7.973,
+    "approx": true
+   },
+   {
+    "ref": "C128",
+    "min_dist": 8.031,
+    "approx": true
+   },
+   {
+    "ref": "R225",
+    "min_dist": 8.244,
+    "approx": true
+   },
+   {
+    "ref": "R14",
+    "min_dist": 8.372,
+    "approx": true
+   },
+   {
+    "ref": "C222",
+    "min_dist": 8.428,
+    "approx": true
+   },
+   {
+    "ref": "R227",
+    "min_dist": 8.552,
+    "approx": true
+   },
+   {
+    "ref": "R115",
+    "min_dist": 8.561,
+    "approx": true
+   },
+   {
+    "ref": "D112",
+    "min_dist": 8.63,
+    "approx": true
+   },
+   {
+    "ref": "C225",
+    "min_dist": 8.758,
+    "approx": true
+   },
+   {
+    "ref": "C131",
+    "min_dist": 9.069,
+    "approx": true
+   },
+   {
+    "ref": "C226",
+    "min_dist": 9.235,
+    "approx": true
+   },
+   {
+    "ref": "TH220",
+    "min_dist": 9.412,
+    "approx": true
+   },
+   {
+    "ref": "D221",
+    "min_dist": 9.671,
+    "approx": true
+   },
+   {
+    "ref": "D113",
+    "min_dist": 9.771,
+    "approx": true
+   },
+   {
+    "ref": "C7",
+    "min_dist": 9.859,
+    "approx": true
+   },
+   {
+    "ref": "D220",
+    "min_dist": 9.905,
+    "approx": true
+   },
+   {
+    "ref": "C129",
+    "min_dist": 9.951,
+    "approx": true
+   },
+   {
+    "ref": "C332",
+    "min_dist": 10.208,
+    "approx": true
+   },
+   {
+    "ref": "R132",
+    "min_dist": 10.342,
+    "approx": true
+   },
+   {
+    "ref": "RV2",
+    "min_dist": 10.62,
+    "approx": true
+   },
+   {
+    "ref": "C130",
+    "min_dist": 10.848,
+    "approx": true
+   },
+   {
+    "ref": "C337",
+    "min_dist": 10.865,
+    "approx": true
+   },
+   {
+    "ref": "R5",
+    "min_dist": 10.87,
+    "approx": true
+   },
+   {
+    "ref": "R3",
+    "min_dist": 10.921,
+    "approx": true
+   },
+   {
+    "ref": "D116",
+    "min_dist": 11.157,
+    "approx": true
+   },
+   {
+    "ref": "R221",
+    "min_dist": 11.186,
+    "approx": true
+   },
+   {
+    "ref": "C6",
+    "min_dist": 11.189,
+    "approx": true
+   },
+   {
+    "ref": "R226",
+    "min_dist": 11.292,
+    "approx": true
+   },
+   {
+    "ref": "Q3",
+    "min_dist": 11.329,
+    "approx": true
+   },
+   {
+    "ref": "R114",
+    "min_dist": 12.104,
+    "approx": true
+   },
+   {
+    "ref": "C127",
+    "min_dist": 12.29,
+    "approx": true
+   },
+   {
+    "ref": "C132",
+    "min_dist": 12.376,
+    "approx": true
+   },
+   {
+    "ref": "L12",
+    "min_dist": 12.586,
+    "approx": true
+   },
+   {
+    "ref": "U20",
+    "min_dist": 12.668,
+    "approx": true
+   },
+   {
+    "ref": "L11",
+    "min_dist": 13.658,
+    "approx": true
+   },
+   {
+    "ref": "C220",
+    "min_dist": 13.664,
+    "approx": true
+   },
+   {
+    "ref": "C123",
+    "min_dist": 13.91,
+    "approx": true
+   },
+   {
+    "ref": "R113",
+    "min_dist": 14.542,
+    "approx": true
+   },
+   {
+    "ref": "R222",
+    "min_dist": 14.619,
+    "approx": true
+   },
+   {
+    "ref": "C121",
+    "min_dist": 14.747,
+    "approx": true
+   },
+   {
+    "ref": "C113",
+    "min_dist": 15.121,
+    "approx": true
+   },
+   {
+    "ref": "C118",
+    "min_dist": 15.211,
+    "approx": true
+   },
+   {
+    "ref": "C122",
+    "min_dist": 15.291,
+    "approx": true
+   },
+   {
+    "ref": "R220",
+    "min_dist": 15.588,
+    "approx": true
+   },
+   {
+    "ref": "R122",
+    "min_dist": 15.709,
+    "approx": true
+   },
+   {
+    "ref": "R112",
+    "min_dist": 15.772,
+    "approx": true
+   },
+   {
+    "ref": "C124",
+    "min_dist": 15.889,
+    "approx": true
+   },
+   {
+    "ref": "R123",
+    "min_dist": 15.898,
+    "approx": true
+   },
+   {
+    "ref": "F1",
+    "min_dist": 16.01,
+    "approx": true
+   },
+   {
+    "ref": "C223",
+    "min_dist": 16.136,
+    "approx": true
+   },
+   {
+    "ref": "R125",
+    "min_dist": 16.489,
+    "approx": true
+   },
+   {
+    "ref": "Q2",
+    "min_dist": 16.79,
+    "approx": true
+   },
+   {
+    "ref": "R118",
+    "min_dist": 17.009,
+    "approx": true
+   },
+   {
+    "ref": "R117",
+    "min_dist": 17.019,
+    "approx": true
+   },
+   {
+    "ref": "R7",
+    "min_dist": 17.162,
+    "approx": true
+   },
+   {
+    "ref": "R6",
+    "min_dist": 17.162,
+    "approx": true
+   },
+   {
+    "ref": "C1",
+    "min_dist": 17.457,
+    "approx": true
+   },
+   {
+    "ref": "C120",
+    "min_dist": 17.9,
+    "approx": true
+   },
+   {
+    "ref": "D111",
+    "min_dist": 17.979,
+    "approx": true
+   },
+   {
+    "ref": "C224",
+    "min_dist": 18.138,
+    "approx": true
+   },
+   {
+    "ref": "R111",
+    "min_dist": 18.25,
+    "approx": true
+   },
+   {
+    "ref": "R120",
+    "min_dist": 18.26,
+    "approx": true
+   },
+   {
+    "ref": "U11",
+    "min_dist": 18.446,
+    "approx": true
+   },
+   {
+    "ref": "U10",
+    "min_dist": 18.558,
+    "approx": true
+   },
+   {
+    "ref": "D114",
+    "min_dist": 18.652,
+    "approx": true
+   },
+   {
+    "ref": "C221",
+    "min_dist": 19.485,
+    "approx": true
+   },
+   {
+    "ref": "R110",
+    "min_dist": 19.495,
+    "approx": true
+   },
+   {
+    "ref": "R119",
+    "min_dist": 19.505,
+    "approx": true
+   },
+   {
+    "ref": "RN7",
+    "min_dist": 19.652,
+    "approx": true
+   },
+   {
+    "ref": "C111",
+    "min_dist": 20.048,
+    "approx": true
+   },
+   {
+    "ref": "C125",
+    "min_dist": 20.247,
+    "approx": true
+   },
+   {
+    "ref": "R224",
+    "min_dist": 20.451,
+    "approx": true
+   },
+   {
+    "ref": "R121",
+    "min_dist": 20.753,
+    "approx": true
+   },
+   {
+    "ref": "RN6",
+    "min_dist": 21.598,
+    "approx": true
+   },
+   {
+    "ref": "R13",
+    "min_dist": 21.772,
+    "approx": true
+   },
+   {
+    "ref": "R12",
+    "min_dist": 21.993,
+    "approx": true
+   },
+   {
+    "ref": "C4",
+    "min_dist": 22.26,
+    "approx": true
+   },
+   {
+    "ref": "R126",
+    "min_dist": 22.462,
+    "approx": true
+   },
+   {
+    "ref": "Y10",
+    "min_dist": 22.506,
+    "approx": true
+   },
+   {
+    "ref": "RV1",
+    "min_dist": 23.475,
+    "approx": true
+   },
+   {
+    "ref": "C2",
+    "min_dist": 23.494,
+    "approx": true
+   },
+   {
+    "ref": "RN5",
+    "min_dist": 23.591,
+    "approx": true
+   },
+   {
+    "ref": "RN4",
+    "min_dist": 25.556,
+    "approx": true
+   },
+   {
+    "ref": "C110",
+    "min_dist": 26.143,
+    "approx": true
+   },
+   {
+    "ref": "R131",
+    "min_dist": 26.625,
+    "approx": true
+   },
+   {
+    "ref": "R16",
+    "min_dist": 26.691,
+    "approx": true
+   },
+   {
+    "ref": "R130",
+    "min_dist": 26.691,
+    "approx": true
+   },
+   {
+    "ref": "R2",
+    "min_dist": 27.145,
+    "approx": true
+   },
+   {
+    "ref": "RN3",
+    "min_dist": 27.548,
+    "approx": true
+   },
+   {
+    "ref": "C117",
+    "min_dist": 27.551,
+    "approx": true
+   },
+   {
+    "ref": "K1",
+    "min_dist": 28.26,
+    "approx": true
+   },
+   {
+    "ref": "RN2",
+    "min_dist": 29.526,
+    "approx": true
+   },
+   {
+    "ref": "C112",
+    "min_dist": 31.117,
+    "approx": true
+   },
+   {
+    "ref": "RN1",
+    "min_dist": 31.516,
+    "approx": true
+   },
+   {
+    "ref": "HS1",
+    "min_dist": 31.554,
+    "approx": true
+   },
+   {
+    "ref": "Q1",
+    "min_dist": 32.722,
+    "approx": true
+   },
+   {
+    "ref": "C114",
+    "min_dist": 33.652,
+    "approx": true
+   },
+   {
+    "ref": "U6",
+    "min_dist": 33.793,
+    "approx": true
+   },
+   {
+    "ref": "R10",
+    "min_dist": 33.9,
+    "approx": true
+   },
+   {
+    "ref": "R9",
+    "min_dist": 35.267,
+    "approx": true
+   },
+   {
+    "ref": "R8",
+    "min_dist": 36.615,
+    "approx": true
+   },
+   {
+    "ref": "C116",
+    "min_dist": 37.409,
+    "approx": true
+   },
+   {
+    "ref": "Q4",
+    "min_dist": 37.691,
+    "approx": true
+   },
+   {
+    "ref": "C119",
+    "min_dist": 37.781,
+    "approx": true
+   },
+   {
+    "ref": "C115",
+    "min_dist": 37.781,
+    "approx": true
+   },
+   {
+    "ref": "D5",
+    "min_dist": 38.386,
+    "approx": true
+   },
+   {
+    "ref": "R4",
+    "min_dist": 38.628,
+    "approx": true
+   },
+   {
+    "ref": "R15",
+    "min_dist": 38.873,
+    "approx": true
+   },
+   {
+    "ref": "R124",
+    "min_dist": 39.524,
+    "approx": true
+   },
+   {
+    "ref": "U1",
+    "min_dist": 40.072,
+    "approx": true
+   },
+   {
+    "ref": "U5",
+    "min_dist": 41.318,
+    "approx": true
+   }
+  ],
+  "pcb_body": {
+   "min_dist": 0.08,
+   "overlap_mm3": 0.0,
+   "note": "0.08 = copper + mask not in the KiCad export: physical contact at the Z 0 patches"
+  },
+  "panel_parts": [
+   {
+    "part": "lcm_0",
+    "min_dist": 0.138,
+    "overlap_mm3": 0.0,
+    "to_sheet": 0.005,
+    "approx": false
+   },
+   {
+    "part": "pu_tape_1",
+    "min_dist": 0.179,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.345,
+    "approx": false
+   },
+   {
+    "part": "sensor_2",
+    "min_dist": 0.183,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.745,
+    "approx": false
+   },
+   {
+    "part": "cover_print_3",
+    "min_dist": 0.19,
+    "overlap_mm3": 0.0,
+    "to_sheet": 4.62,
+    "approx": false
+   },
+   {
+    "part": "cover_va_4",
+    "min_dist": 3.824,
+    "overlap_mm3": 0.0,
+    "to_sheet": 4.62,
+    "approx": false
+   }
+  ],
+  "tails": [
+   {
+    "part": "tft_tail_5",
+    "min_dist": 1.557,
+    "overlap_mm3": 0.0,
+    "to_sheet": 2.503,
+    "approx": false
+   },
+   {
+    "part": "tft_fingers_6",
+    "min_dist": 3.056,
+    "overlap_mm3": 0.0,
+    "to_sheet": 6.825,
+    "approx": false
+   },
+   {
+    "part": "ctp_tail_7",
+    "min_dist": 1.554,
+    "overlap_mm3": 0.0,
+    "to_sheet": 3.787,
+    "approx": false
+   },
+   {
+    "part": "ctp_fingers_8",
+    "min_dist": 4.577,
+    "overlap_mm3": 0.0,
+    "to_sheet": 6.625,
+    "approx": false
+   }
+  ],
+  "tail_min_dist": 1.554,
+  "panel_min_dist": 0.138,
+  "panel_overlap_mm3": 0.0,
+  "tail_overlap_mm3": 0.0,
+  "lead_protrusions": [
+   {
+    "ref": "PS1",
+    "protrusion": 3.27,
+    "gap_to_sheet": 1.33,
+    "gap_to_frame": 1.99,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "HS1",
+    "protrusion": 2.87,
+    "gap_to_sheet": 1.73,
+    "gap_to_frame": 31.55,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "Q1",
+    "protrusion": 2.5,
+    "gap_to_sheet": 2.1,
+    "gap_to_frame": 32.72,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": 8.12
+   },
+   {
+    "ref": "L40",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 5.74,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "L1",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 2.81,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "F3",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 1.36,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J20",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 2.75,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C40",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 7.17,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "F1",
+    "protrusion": 1.87,
+    "gap_to_sheet": 2.73,
+    "gap_to_frame": 16.01,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "K1",
+    "protrusion": 1.77,
+    "gap_to_sheet": 2.83,
+    "gap_to_frame": 28.26,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "U5",
+    "protrusion": 1.67,
+    "gap_to_sheet": 2.93,
+    "gap_to_frame": 41.32,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "U1",
+    "protrusion": 1.67,
+    "gap_to_sheet": 2.93,
+    "gap_to_frame": 40.07,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J2",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 1.84,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R3",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.92,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "RV1",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 23.48,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R5",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.87,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R2",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 27.14,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "RV2",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 10.62,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R7",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 17.16,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R6",
+    "protrusion": 1.37,
+    "gap_to_sheet": 3.23,
+    "gap_to_frame": 17.16,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "R1",
+    "protrusion": 0.37,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.07,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J4",
+    "protrusion": 0.37,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.2,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "J3",
+    "protrusion": 0.37,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 2.07,
+    "gap_to_frame_approx": false,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C2",
+    "protrusion": 0.37,
+    "gap_to_sheet": 4.23,
+    "gap_to_frame": 23.49,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C4",
+    "protrusion": 0.27,
+    "gap_to_sheet": 4.33,
+    "gap_to_frame": 22.26,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   },
+   {
+    "ref": "C1",
+    "protrusion": 0.27,
+    "gap_to_sheet": 4.33,
+    "gap_to_frame": 17.46,
+    "gap_to_frame_approx": true,
+    "untrimmed_protrusion": null
+   }
+  ],
+  "sheet_vs_frame": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "gasket_vs_frame": {
+   "min_dist": 0.607,
+   "overlap_mm3": 0.0
+  },
+  "oven_sheet_vs_frame": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  }
+ },
+ "tool_access": {
+  "socket_d": 12.0,
+  "z_range": [
+   -4.02,
+   45.0
+  ],
+  "warn_below_mm": 1.0,
+  "holes": [
+   {
+    "hole": "FH1",
+    "x": 43.5,
+    "y": 8.75,
+    "min_dist": 4.07,
+    "closest": "PCB",
+    "approx": true,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH2",
+    "x": 103.5,
+    "y": 8.75,
+    "min_dist": 1.33,
+    "closest": "PCB",
+    "approx": false,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH3",
+    "x": 162.0,
+    "y": 8.75,
+    "min_dist": 2.69,
+    "closest": "PCB",
+    "approx": true,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH4",
+    "x": 195.17,
+    "y": 40.5,
+    "min_dist": 1.29,
+    "closest": "PCB",
+    "approx": false,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH5",
+    "x": 195.17,
+    "y": 98.5,
+    "min_dist": 1.29,
+    "closest": "PCB",
+    "approx": false,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH6",
+    "x": 171.0,
+    "y": 161.2,
+    "min_dist": 9.14,
+    "closest": "DS1 tft_tail_5",
+    "approx": true,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH7",
+    "x": 102.5,
+    "y": 161.2,
+    "min_dist": 9.14,
+    "closest": "DS1 tft_tail_5",
+    "approx": true,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH8",
+    "x": 34.0,
+    "y": 161.2,
+    "min_dist": 18.0,
+    "closest": "DS1 ctp_tail_7",
+    "approx": true,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH9",
+    "x": 9.77,
+    "y": 98.5,
+    "min_dist": 1.32,
+    "closest": "PCB",
+    "approx": false,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   },
+   {
+    "hole": "FH10",
+    "x": 9.77,
+    "y": 40.5,
+    "min_dist": 1.32,
+    "closest": "PCB",
+    "approx": false,
+    "overlaps": [],
+    "ok": true,
+    "warn": false
+   }
+  ],
+  "min_dist": 1.29,
+  "ok": true
+ },
+ "washer_vs_frame": {
+  "washer_d": 12.0,
+  "holes": [
+   {
+    "hole": "FH1",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH2",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH3",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH4",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH5",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH6",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH7",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH8",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH9",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   },
+   {
+    "hole": "FH10",
+    "tube_top_z": -3.52,
+    "min_dist": 0.005,
+    "overlap_mm3": 0.0,
+    "ok": true,
+    "approx": false
+   }
+  ],
+  "overlapping": [],
+  "ok": true,
+  "min_dist": 0.005
+ },
+ "above_pcb": {
+  "margin_mm": 1.0,
+  "volume_mm3": 0.0,
+  "volume_inside_outline_mm3": 0.0,
+  "ok": true,
+  "frame_zmax": 4.05,
+  "plan_gap_above_z0_to_board_edge_mm": 2.679,
+  "plan_gap_at_abs": [
+   169.71,
+   128.65
+  ]
+ },
+ "plan": {
+  "pad_clr_req": 1.0,
+  "creepage_req_mm": 6.4,
+  "clearance_req_mm": 4.0,
+  "contact_patches": [
+   {
+    "id": "Z0#0",
+    "area_mm2": 1554.1,
+    "bbox_abs": [
+     11.2,
+     193.8,
+     10.2,
+     153.51
+    ],
+    "holes": 9
+   },
+   {
+    "id": "Z0#1",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     154.94,
+     156.36,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   },
+   {
+    "id": "Z0#2",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     133.66,
+     135.09,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   },
+   {
+    "id": "Z0#3",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     112.39,
+     113.82,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   },
+   {
+    "id": "Z0#4",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     91.12,
+     92.55,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   },
+   {
+    "id": "Z0#5",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     48.58,
+     50.0,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   },
+   {
+    "id": "Z0#6",
+    "area_mm2": 3.48,
+    "bbox_abs": [
+     69.85,
+     71.28,
+     116.48,
+     118.92
+    ],
+    "holes": 0
+   }
+  ],
+  "contact_faces": 7,
+  "contact": {
+   "pad_min": [
+    1.21,
+    "J4.1",
+    "rib"
+   ],
+   "pad_min_by_kind": {
+    "boss": [
+     6.17,
+     "F3.2",
+     "boss"
+    ],
+    "rib": [
+     1.21,
+     "J4.1",
+     "rib"
+    ],
+    "wall": [
+     2.84,
+     "J3.1",
+     "wall"
+    ]
+   },
+   "closest_pads": [
+    {
+     "pad": "J4.1",
+     "dist": 1.206,
+     "kind": "rib",
+     "at": [
+      67.03,
+      21.52
+     ]
+    },
+    {
+     "pad": "J3.1",
+     "dist": 1.224,
+     "kind": "rib",
+     "at": [
+      110.14,
+      21.52
+     ]
+    },
+    {
+     "pad": "J3.2",
+     "dist": 1.842,
+     "kind": "rib",
+     "at": [
+      111.57,
+      21.52
+     ]
+    },
+    {
+     "pad": "J2.1",
+     "dist": 2.232,
+     "kind": "rib",
+     "at": [
+      22.54,
+      27.71
+     ]
+    },
+    {
+     "pad": "F3.1",
+     "dist": 2.691,
+     "kind": "rib",
+     "at": [
+      91.12,
+      21.52
+     ]
+    },
+    {
+     "pad": "R1.1",
+     "dist": 2.837,
+     "kind": "wall",
+     "at": [
+      129.71,
+      18.71
+     ]
+    },
+    {
+     "pad": "R1.2",
+     "dist": 2.841,
+     "kind": "wall",
+     "at": [
+      120.12,
+      18.71
+     ]
+    },
+    {
+     "pad": "J4.2",
+     "dist": 3.04,
+     "kind": "wall",
+     "at": [
+      76.92,
+      18.71
+     ]
+    }
+   ],
+   "pad_ok": true,
+   "mains_to_frame_min": [
+    1.21,
+    "J4.1",
+    "rib"
+   ],
+   "creepage_tail_mm": 6.74,
+   "rib_reach_at_contact_mm": 2.556,
+   "rib_reach_source": "measured on the footprint",
+   "mains_contact_point_abs": [
+    67.03,
+    21.52
+   ],
+   "creepage_mains_to_panel_mm": 7.95
+  },
+  "footprint_z": -2.08,
+  "footprint_faces": 7,
+  "footprint": {
+   "pad_min": [
+    0.83,
+    "J4.1",
+    "rib"
+   ],
+   "pad_min_by_kind": {
+    "boss": [
+     6.22,
+     "F3.2",
+     "boss"
+    ],
+    "rib": [
+     0.83,
+     "J4.1",
+     "rib"
+    ],
+    "wall": [
+     5.14,
+     "R1.1",
+     "wall"
+    ]
+   },
+   "closest_pads": [
+    {
+     "pad": "J4.1",
+     "dist": 0.831,
+     "kind": "rib",
+     "at": [
+      67.41,
+      21.56
+     ]
+    },
+    {
+     "pad": "J3.1",
+     "dist": 0.837,
+     "kind": "rib",
+     "at": [
+      109.75,
+      21.56
+     ]
+    },
+    {
+     "pad": "J3.2",
+     "dist": 1.494,
+     "kind": "rib",
+     "at": [
+      111.96,
+      21.56
+     ]
+    },
+    {
+     "pad": "J2.1",
+     "dist": 1.884,
+     "kind": "rib",
+     "at": [
+      22.58,
+      28.1
+     ]
+    },
+    {
+     "pad": "F3.1",
+     "dist": 2.326,
+     "kind": "rib",
+     "at": [
+      90.73,
+      21.56
+     ]
+    },
+    {
+     "pad": "R1.1",
+     "dist": 2.449,
+     "kind": "rib",
+     "at": [
+      126.29,
+      19.1
+     ]
+    },
+    {
+     "pad": "R1.2",
+     "dist": 2.453,
+     "kind": "rib",
+     "at": [
+      120.24,
+      19.1
+     ]
+    },
+    {
+     "pad": "J4.2",
+     "dist": 2.652,
+     "kind": "rib",
+     "at": [
+      77.0,
+      19.1
+     ]
+    }
+   ],
+   "pad_ok": false,
+   "mains_to_frame_min": [
+    0.83,
+    "J4.1",
+    "rib"
+   ],
+   "creepage_tail_mm": 6.74,
+   "rib_reach_at_contact_mm": 2.556,
+   "rib_reach_source": "measured on the footprint",
+   "mains_contact_point_abs": [
+    67.41,
+    21.56
+   ],
+   "creepage_mains_to_panel_mm": 7.57,
+   "informational": true
+  },
+  "pads_checked": 88,
+  "mains_items": 117,
+  "clearance_mains_to_panel_mm": 6.7,
+  "clearance_worst_item": "R1.2",
+  "governing_3d": {
+   "contact": {
+    "pad": "J4.1",
+    "component": "J4",
+    "min_dist_3d": 2.198
+   },
+   "footprint": {
+    "pad": "J4.1",
+    "component": "J4",
+    "min_dist_3d": 2.198
+   }
+  },
+  "governing_3d_min": 2.198,
+  "ok": true
+ },
+ "table": "components (145) overlapping                   0                                            0              OK\nclosest component                              F3 1.364 mm                                  > 0            OK\nPCB body                                       0.080 mm, 0.0000 mm3                         0.08 / 0       OK\npanel parts                                    min 0.138 mm, 0.0000 mm3                     > 0 / 0        OK\nFPC tails                                      min 1.554 mm                                 >= 1.5         OK\nFormex sheet                                   0.000 mm, 0.0000 mm3                         0 vol          OK\ngasket                                         0.607 mm, 0.0000 mm3                         0 vol          OK\noven-sheet patch                               0.000 mm, 0.0000 mm3                         0 vol          OK\nlead protrusion -> Formex sheet (closest)      PS1 3.27 -> gap 1.33 mm                      > 0            OK\nZ 0 contact patches vs B.Cu pads               1.21 mm at J4.1 (rib)                        >= 1.0         OK\n  - rib                                        1.21 mm at J4.1 (rib)                                       OK\n  - boss                                       6.17 mm at F3.2 (boss)                                      OK\n  - wall                                       2.84 mm at J3.1 (wall)                                      OK\nZ 0 contact patches: mains copper -> frame     1.21 mm (J4.1)                                              OK\nZ 0 contact patches: creepage mains -> panel   7.95 mm                                      >= 6.4         OK\n(info) rib-base footprint Z -2.08 vs B.Cu pads 0.83 mm at J4.1 (rib)                        info           OK\n  - rib                                        0.83 mm at J4.1 (rib)                                       OK\n  - boss                                       6.22 mm at F3.2 (boss)                                      OK\n  - wall                                       5.14 mm at R1.1 (wall)                                      OK\n(info) rib-base footprint Z -2.08: mains copper -> frame 0.83 mm (J4.1)                                              OK\n(info) rib-base footprint Z -2.08: creepage mains -> panel 7.57 mm                                      info           OK\n3D frame -> J4 model (nearest pad J4.1, contact) 2.198 mm                                     >= 1.0         OK\n3D frame -> J4 model (nearest pad J4.1, footprint) 2.198 mm                                     >= 1.0         OK\nclearance mains -> panel                       6.70 mm (R1.2)                               >= 4.0         OK\ntool access dia 12 Z -4.02..45                 min 1.29 mm at FH4 (PCB)                     no overlap     OK\nwasher dia 12 + socket over each stud vs frame clear (seat contact only)                    no overlap     OK\nnothing above Z 0 inside board + 1 mm          0.0000 mm3 (inside outline 0.0000)           0              OK\n  frame above Z 0: plan gap to board edge      2.679 mm at [169.71, 128.65]                 >= 1.0         OK",
+ "ok": true,
+ "seconds": 270.9
+}
