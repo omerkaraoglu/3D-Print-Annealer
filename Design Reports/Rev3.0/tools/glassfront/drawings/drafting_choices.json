@@ -1,0 +1,417 @@
+{
+ "about": "Values used on the GF drawings that are NOT defined in the frozen master Rev3.0_GlassFront_params.json (GF-1.1): reference data quoted from the research reports R1/R2 and the concept, jig design values, inspection limits and drafting choices. Each item is a judgement call for the lead to confirm; drawings_report.json lists which drawing uses which item. Product geometry (glass, cut-out, lip, holes, strips, pips, fasteners) is never taken from here.",
+ "items": [
+  {
+   "name": "qty_glass",
+   "value": 110,
+   "unit": "pcs",
+   "source": "lead brief; R2 sec. 6 (100 ovens + 10 % spares)"
+  },
+  {
+   "name": "min_hole_to_cutout",
+   "value": 8.0,
+   "unit": "mm",
+   "source": "concept sec. 11.4 rule 'to cut-out edge (>= 8)'; R2 sec. 2.4 item 3 (PEM 7.2, design to 8)",
+   "note": "centre of a hole / stud to the cut-out edge"
+  },
+  {
+   "name": "sheet_general_tol",
+   "value": "ISO 2768-mK",
+   "source": "judgement (common sheet-metal practice)"
+  },
+  {
+   "name": "stud_perpendicularity_deg",
+   "value": 1.0,
+   "unit": "deg",
+   "source": "PROPOSAL (GF-D01 / GF-D02, round 3): no source states one. 16 x tan 1 deg = 0.28 at the tip of the M4 x 16 stud; with the +-0.3 axis position that is 0.58 < 0.70 radial clearance of the M4 stud across the 5.4 slot. 2 deg (0.56 at the tip) would use the whole clearance."
+  },
+  {
+   "name": "display_px",
+   "value": [
+    800,
+    480
+   ],
+   "unit": "px",
+   "source": "R1 sec. 3.3 step 7 (1 px = 0.1926 x 0.179 mm); concept sec. 4.3"
+  },
+  {
+   "name": "section_u",
+   "value": -25.0,
+   "unit": "mm",
+   "source": "drafting: typical edge section A-A on the top edge at u = -25, clear of F1/F5 and the pips"
+  },
+  {
+   "name": "ink_black",
+   "value": "RAL 9005 / Pantone Black 6 C, optical density OD >= 4 at 550 nm, no pin-holes visible on a 1000 lx light box",
+   "source": "R2 sec. 1.3; R1 sec. 4.3"
+  },
+  {
+   "name": "ink_tests",
+   "value": "cross-cut ISO 2409 (1 mm grid) GT0-1 dry and after 1 h in boiling water; silicone bead peel coupon >= 90 % cohesive failure (7 d cure, again after 7 d 70 C / 95 % RH); LOCA cure-inhibition coupon (fully cured, tack-free) per ink lot",
+   "source": "R1 sec. 4.3 and 3.3 step 4"
+  },
+  {
+   "name": "glass_standards",
+   "value": {
+    "thermal": "EN 12150-1 (thermally toughened soda-lime safety glass), fragmentation test per EN 12150-1",
+    "chemical_sl": "EN 12337-1 (chemically strengthened soda-lime glass); CS >= 450 MPa, DOL >= 10 um",
+    "chemical_as": "aluminosilicate cover glass (no EN): CS >= 700 MPa, DOL >= 35 um",
+    "base": "float glass EN 572-2, clear (low-iron preferred)"
+   },
+   "source": "R1 sec. 4.6, R2 sec. 1.2 and 1.4 (CS/DOL values); EN 12337-1 named by the drafter"
+  },
+  {
+   "name": "enamel_strength",
+   "value": 75.0,
+   "unit": "MPa",
+   "source": "R1 sec. 4.3: EN 12150-1 minimum bending strength 75 MPa for enamelled toughened glass (120 for float)"
+  },
+  {
+   "name": "glass_cosmetic",
+   "value": {
+    "view": "300-500 mm, 1000 lx, 3 s per face",
+    "window_A": "no visible scratch; points <= 0.10 ignore, 0.10-0.20 max 2 per piece >= 20 apart, > 0.20 reject",
+    "border_B": "seen from the front: no pin-hole, no clear spot, no ink voids; ink edge raggedness at the window <= 0.10; scratch <= 0.05 wide x 5 long max 2",
+    "edge": "no chips > 0.3 seen from the front; shells on the back face <= 0.5 x 0.5"
+   },
+   "source": "judgement (R2 sec. 1.3 asks for cosmetic limits, values by the drafter)"
+  },
+  {
+   "name": "glass_sampling",
+   "value": "outline: every piece (go/no-go gauge); thickness and flatness: 5 per lot; ink tests: per ink lot; fragmentation (thermal only): 1 sacrificial piece per tempering lot",
+   "source": "judgement"
+  },
+  {
+   "name": "bead_dispense_triangle",
+   "value": [
+    3.6,
+    2.4
+   ],
+   "unit": "mm (base x height)",
+   "source": "judgement: triangle area >= bead_w x t_bond so that it squeezes to 4.0 x 1.0"
+  },
+  {
+   "name": "j2_plate",
+   "value": [
+    290.0,
+    250.0,
+    20.0
+   ],
+   "unit": "mm",
+   "source": "judgement (flange + >= 25 per side), free +-1",
+   "note": "free"
+  },
+  {
+   "name": "j2_plate_material",
+   "value": "EN AW-5083 cast tooling plate (or 6082-T651), stress-relieved",
+   "source": "judgement"
+  },
+  {
+   "name": "j2_flatness",
+   "value": 0.02,
+   "unit": "mm",
+   "source": "concept sec. 6 / sec. 5.1 stack ('plate 0.02')"
+  },
+  {
+   "name": "j2_ra",
+   "value": 0.8,
+   "unit": "um",
+   "source": "judgement"
+  },
+  {
+   "name": "j2_pin_d",
+   "value": 5.2,
+   "unit": "mm",
+   "source": "judgement: slot 5.4 -> 0.1 per side across the radial slot",
+   "note": "tolerance 0/-0.02"
+  },
+  {
+   "name": "j2_pin_proud",
+   "value": 6.0,
+   "unit": "mm",
+   "source": "judgement: flange front is t_sheet + t_gap above the plate; pin engages the flange + tube"
+  },
+  {
+   "name": "j2_pin_press",
+   "value": 8.0,
+   "unit": "mm",
+   "source": "judgement"
+  },
+  {
+   "name": "j2_pos_tol",
+   "value": 0.05,
+   "unit": "mm",
+   "source": "judgement (pins and stop holes to the plate datum)"
+  },
+  {
+   "name": "j2_stop_d",
+   "value": 4.0,
+   "unit": "mm",
+   "source": "judgement: ISO 2338 dowel 4 h8, removable (slip fit in 4 H7)"
+  },
+  {
+   "name": "j2_stop_proud",
+   "value": 2.0,
+   "unit": "mm",
+   "source": "judgement"
+  },
+  {
+   "name": "j2_stop_u",
+   "value": 60.0,
+   "unit": "mm",
+   "source": "judgement: two stops on the top edge at u = +-60, one on the side edge at v = 0"
+  },
+  {
+   "name": "j2_shim",
+   "value": {
+    "w": 10.0,
+    "h": 15.0,
+    "per_size": 8
+   },
+   "unit": "mm (w x h), pcs per size",
+   "source": "judgement: PTFE shim body 10 x 15, 8 of each size (2 per side); the thickness sets are in the master (jig_and_mounting_shims, GF-1.1 round 4); the same count is used for the mounting set"
+  },
+  {
+   "name": "shim_rule",
+   "value": {
+    "en_extra": "the same size on all four sides",
+    "tr": "dört kenarın hepsine giren en kalın ölçüyü kullanın; dört kenarda aynı ölçü"
+   },
+   "source": "lead round-3 addition A: the master shim_rule ('use the thickest size that enters on all four sides') + the lead's second clause; TR by the drafter"
+  },
+  {
+   "name": "j2_weight",
+   "value": 5.0,
+   "unit": "kg",
+   "source": "concept sec. 6 step 4 (ring weight on the flange back)"
+  },
+  {
+   "name": "j2_groove",
+   "value": [
+    2.0,
+    1.5,
+    6.0,
+    3.0
+   ],
+   "unit": "mm (width, depth, inset from the glass edge, port dia)",
+   "source": "judgement (optional vacuum groove under the glass border)"
+  },
+  {
+   "name": "j1_base",
+   "value": [
+    320.0,
+    260.0,
+    15.0
+   ],
+   "unit": "mm",
+   "source": "judgement, free +-1",
+   "note": "free"
+  },
+  {
+   "name": "j1_top",
+   "value": [
+    250.0,
+    210.0,
+    12.0
+   ],
+   "unit": "mm",
+   "source": "judgement, free +-1",
+   "note": "free"
+  },
+  {
+   "name": "j1_guide",
+   "value": [
+    12.0,
+    110.0,
+    90.0
+   ],
+   "unit": "mm (pin dia, +-u, +-v)",
+   "source": "judgement: 4 guide pins 12 g6 in the base, bushings 12 H7 in the top plate"
+  },
+  {
+   "name": "j1_carrier_margin",
+   "value": 15.0,
+   "unit": "mm",
+   "source": "judgement: carrier = panel outline + this per side, free"
+  },
+  {
+   "name": "j1_nest_clr",
+   "value": 0.3,
+   "unit": "mm",
+   "source": "judgement: panel pocket in the carrier = panel outline + this per side (POM-lined)"
+  },
+  {
+   "name": "j1_travel",
+   "value": [
+    1.5,
+    1.0
+   ],
+   "unit": "mm, deg",
+   "source": "judgement: XY +-1.5 covers LCM outline-to-AA +-0.2 (concept sec. 9) + print-to-edge +-0.2 + stops"
+  },
+  {
+   "name": "j1_micrometer",
+   "value": "3 x micrometer head 0-13 mm, 0.01 graduation (X; Y1/Y2 give Y and theta), spring return, 2 clamp screws",
+   "source": "R1 sec. 3.3 'XY + theta stage (+-0.01 mm micrometers)'"
+  },
+  {
+   "name": "j1_parallel",
+   "value": 0.02,
+   "unit": "mm",
+   "source": "judgement: top plate glass face parallel to the base over the panel area"
+  },
+  {
+   "name": "j1_opening_margin",
+   "value": 3.0,
+   "unit": "mm",
+   "source": "judgement: top-plate opening = print window + this per side (window edge visible everywhere)"
+  },
+  {
+   "name": "j1_groove_inset",
+   "value": 6.0,
+   "unit": "mm",
+   "source": "judgement: vacuum groove loop on the top plate, inside the glass edge, in the black border"
+  },
+  {
+   "name": "j2_checks",
+   "value": "0.05 feeler must not enter between the lip top and the plate at 8 points; g2 by feeler at 20 C within the gap acceptance limits (this sheet)",
+   "source": "concept sec. 6 step 6; limits from gap_acceptance (lead round-3 addition D)"
+  },
+  {
+   "name": "gap_acceptance",
+   "value": {
+    "temp_C": 20,
+    "g2_sides": [
+     0.2,
+     0.6
+    ],
+    "g1_sides": [
+     0.3,
+     0.55
+    ],
+    "corners": {
+     "en": "not smaller than the adjacent sides, at most 0.80",
+     "tr": "komşu kenarlardan küçük değil, en fazla 0,80"
+    },
+    "corner_max": 0.8
+   },
+   "unit": "mm",
+   "source": "lead round-3 addition D (replaces the old corner limits g2 0.40-0.60 / g1 0.35-0.65 and the side limits g2 0.30-0.50 / g1 0.25-0.55). Drafter's worst-case stack, part centred, per side: g2 0.40 +- (glass/2 + lip/2) = 0.30-0.50 with glass +-0.1 (0.25-0.55 with +-0.2), lip outline +-0.1 on size [P]; g1 0.40 +- (cut-out/2 + lip/2) = 0.30-0.50 with cut-out +-0.1. Shim-rule centring adds up to (total - 2 x 0.30)/2 per side when the total clearance exceeds 0.65"
+  },
+  {
+   "name": "mount_procedure",
+   "value": "IPA-wipe the sheet back (VHB primer on powder coat if required), remove the liner, apply the corner dabs, lower the module from behind (lip into the cut-out, studs through the slots), centre with 8 PTFE shims in g1 ({shims}), press about 1 kN (about 100 kPa on the tape) for 30 s, washers + nyloc nuts crosswise, remove the shims; keep a pressure frame on >= 20 min",
+   "source": "concept sec. 6 'Mounting' and sec. 11.5 (spring-back); shims: master jig_and_mounting_shims.sheet_mounting_shims + shim_rule (round 4), replacing the single 0.30"
+  },
+  {
+   "name": "flush_check",
+   "value": "dial gauge on a bridge, 12 points round the cut-out: glass and lip vs steel within +-0.15; g1 by feeler at 20 C within the gap acceptance limits (this sheet); recheck the 4 mid-edges after 24 h",
+   "source": "concept sec. 6 'Inspection'; limits from gap_acceptance (lead round-3 addition D)"
+  },
+  {
+   "name": "cure",
+   "value": "2-C: 1-2 h in the jig (1-2 jigs for 100); 1-C: 24 h (about 5 jigs)",
+   "source": "concept sec. 6 step 5"
+  },
+  {
+   "name": "qty_ovens",
+   "value": 100,
+   "unit": "pcs",
+   "source": "lead brief (first batch)"
+  },
+  {
+   "name": "glass_samples",
+   "value": [
+    5,
+    5
+   ],
+   "unit": "pcs",
+   "source": "judgement: first samples for approval; printed ink coupons per ink lot (R2 RFQ asks 5 samples)"
+  },
+  {
+   "name": "j1_stop_tol",
+   "value": 0.1,
+   "unit": "mm",
+   "source": "judgement: J1 glass stops only place the glass inside the XY range"
+  },
+  {
+   "name": "j2_pin_detail",
+   "value": [
+    0.1,
+    0.5,
+    8.0,
+    10.0
+   ],
+   "unit": "mm (pin proud tol, pin chamfer x 45 deg, stop-hole depth, stop-pin length)",
+   "source": "judgement"
+  },
+  {
+   "name": "print_rim_max",
+   "value": 0.5,
+   "unit": "mm",
+   "source": "round-1 finding M2 / lead round-2 correction 5: ink cannot lie on the 0.3-0.5 x 45 deg face-2 arris; allowed unprinted rim = arris max, measured from the outline"
+  },
+  {
+   "name": "frame_lip_outline_tol",
+   "value": 0.1,
+   "unit": "mm",
+   "source": "PROPOSAL (GF-D50): +-0.1 on the lip inner (recess) and lip outer outline sizes, +-0.1 on their corner radii; the design document names only TG5, which is too loose for the 0.4 gaps (g1 / g2 budget +-0.09 / +-0.12 RSS per side, concept 5.2)"
+  },
+  {
+   "name": "frame_lip_width_tol",
+   "value": 0.05,
+   "unit": "mm",
+   "source": "PROPOSAL (GF-D50): lip width 1.0 nominal +-0.05 (no tolerance in any source)"
+  },
+  {
+   "name": "frame_slot_tol",
+   "value": [
+    0.1,
+    0.0,
+    0.1
+   ],
+   "unit": "mm (width +, width -, length +-)",
+   "source": "PROPOSAL (GF-D50): slot 5.4 +0.1/0 x 7.0 +-0.1 (a dia 4.8 rivet must pass and still be located; position +-0.1 is in the master)"
+  },
+  {
+   "name": "frame_cb_tol",
+   "value": [
+    0.2,
+    0.0,
+    0.2,
+    0.0
+   ],
+   "unit": "mm (size +, size -, floor depth +, floor depth -)",
+   "source": "PROPOSAL (GF-D50): counterbore size +0.2/0 and floor depth +0.2/0 - the weld-stud flange (dia 5.3-5.7 x 0.7-1.4, + paint) must never touch"
+  },
+  {
+   "name": "frame_tube_top_tol",
+   "value": 0.1,
+   "unit": "mm",
+   "source": "PROPOSAL (GF-D50): tube tops (washer / rivet seats) +-0.1 to datum A"
+  },
+  {
+   "name": "frame_core_r_in_tol",
+   "value": [
+    0.0,
+    0.1
+   ],
+   "unit": "mm (+, -)",
+   "source": "PROPOSAL (GF-D50): coring groove inner radius r_in +0/-0.1 - a larger r_in shrinks the dia-12.4 washer seat inside the groove (master washer_nut note: 80.7 mm2 centred, 65.9 at the slot end; cad_rules: the M5 rivet washer does not bridge the groove)"
+  },
+  {
+   "name": "frame_boss_tol",
+   "value": [
+    0.1,
+    0.1
+   ],
+   "unit": "mm (coplanarity, Z to datum A)",
+   "source": "PROPOSAL (GF-D50): PCB boss tops H1-H9 coplanar 0.1 and +-0.1 to datum A (v2 has no stated tolerance; v2 general TG5)"
+  },
+  {
+   "name": "frame_lip_texture",
+   "value": "lip top and lip outer face: plain mould finish, black (material colour, no paint); texture VDI 3400 Ref 24 as a priced option (owner decision D9)",
+   "source": "concept sec. 4.6; design document sec. 2 / D9"
+  }
+ ]
+}

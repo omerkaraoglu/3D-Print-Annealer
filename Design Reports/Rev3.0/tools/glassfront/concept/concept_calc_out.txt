@@ -1,0 +1,265 @@
+
+====================================================================================================
+3. LEVELS (Z = 0 at the PCB back, -Z to the front). PCB side (Z >= -5.0) = v2
+====================================================================================================
+  level                  t=1.1     t=2.0     t=3.0     t=4.0   expression
+  Z_TROUGH_TOP           +4.05     +4.05     +4.05     +4.05   4.05 (v2)
+  Z_PCB                  +0.00     +0.00     +0.00     +0.00   0 (v2)
+  Z_SHELF_BACK           -2.10     -2.10     -2.10     -2.10   -2.10 (v2)
+  Z_SEAT                 -4.60     -4.60     -4.60     -4.60   -4.60 (v2)
+  Z_FORMEX_FRONT         -5.00     -5.00     -5.00     -5.00   Z_SEAT - 0.40
+  Z_PANEL_BACK           -5.80     -5.80     -5.80     -5.80   Z_FORMEX_FRONT - g_bs
+  Z_CTP_FRONT           -11.12    -11.12    -11.12    -11.12   Z_PANEL_BACK - panel_t
+  Z_GLASS_BACK          -11.42    -11.42    -11.42    -11.42   Z_CTP_FRONT - t_opt
+  Z_GLASS_FRONT         -12.52    -13.42    -14.42    -15.42   Z_GLASS_BACK - glass_t
+  Z_SHEET_BACK          -11.52    -12.42    -13.42    -14.42   Z_GLASS_FRONT + t_sheet
+  Z_FLANGE_FRONT        -10.52    -11.42    -12.42    -13.42   Z_SHEET_BACK + t_gap
+  Z_FLANGE_BACK          -7.92     -8.92     -9.92    -10.92   Z_FLANGE_FRONT + flange_t; = Z_STEPWALL_BACK if within 0.5 of Z_LANDPLATE_BACK (level snap)
+  Z_LAND                -10.42    -10.42    -10.42    -10.42   Z_GLASS_BACK + t_bond
+  Z_PIP_TOP             -10.92    -10.92    -10.92    -10.92   Z_LAND - pip_h
+  Z_LANDPLATE_BACK       -7.92     -7.92     -7.92     -7.92   Z_LAND + wall
+  Z_STEPWALL_BACK        -7.92     -7.92     -7.92     -7.92   max(Z_FLANGE_BACK, Z_LANDPLATE_BACK); snap both to it if they differ < 0.5
+  Z_TUBE_TOP             -5.42     -6.42     -7.42     -8.42   Z_FLANGE_BACK + tube_h
+  Z_TAIL_TFT_EXIT        -8.40     -8.40     -8.40     -8.40   Z_PANEL_BACK - 2.6
+  Z_TAIL_CTP_EXIT        -9.70     -9.70     -9.70     -9.70   Z_PANEL_BACK - 3.9
+  Z_LOOP_FRONT           -9.85     -9.85     -9.85     -9.85   Z_TAIL_CTP_EXIT - 0.15
+  t 1.1: land +0.10 behind the flange front; flange back (unsnapped) vs land-plate back +0.10  -> SNAP (< 0.5): flange back to -7.92 (flange 2.60); step wall 3.60 tall; frame depth behind the sheet back 15.57
+  t 2.0: land +1.00 behind the flange front; flange back (unsnapped) vs land-plate back +1.00; step wall 4.50 tall; frame depth behind the sheet back 16.47
+  t 3.0: land +2.00 behind the flange front; flange back (unsnapped) vs land-plate back +2.00; step wall 5.50 tall; frame depth behind the sheet back 17.47
+  t 4.0: land +3.00 behind the flange front; flange back (unsnapped) vs land-plate back +3.00; step wall 6.50 tall; frame depth behind the sheet back 18.47
+
+====================================================================================================
+4. PLAN GEOMETRY (KiCad abs, y down)
+====================================================================================================
+  AA x 26.81-180.89 y 23.87-109.79; VA margin outside AA (L/R/T/B) 0.50 0.50 0.64 0.36
+  WINDOW x 27.11-180.59  y 24.17-109.49  (153.48 x 85.32), centre (103.85, 66.83)
+  GLASS x 13.11-194.59  y 10.17-154.00  (181.48 x 143.83), centre (103.850, 82.085); chin border 44.51
+  land abs left (front-view right)                 6.11  bead 0.9..4.9 inside the edge -> 1.21 to the pocket face (OK)
+  land abs right (front-view left)                 8.87  bead 0.9..4.9 inside the edge -> 3.97 to the pocket face (OK)
+  land top                                         8.03  bead 0.9..4.9 inside the edge -> 3.13 to the pocket face (OK)
+  land bottom (over the tail-pocket bottom beam)   6.30  bead 0.9..4.9 inside the edge -> 1.40 to the pocket face (OK)
+  AA              x   26.81- 180.89  y   23.87- 109.79  (154.08 x  85.92)  R 0.0   display active area (DS)
+  VA_CTP          x   26.31- 181.39  y   23.23- 110.15  (155.08 x  86.92)  R -   CTP cover-lens view window (v2 va_*)
+  print_window    x   27.11- 180.59  y   24.17- 109.49  (153.48 x  85.32)  R 0.5   print window = AA - print_inset per side, corner R0.5
+  glass           x   13.11- 194.59  y   10.17- 154.00  (181.48 x 143.83)  R 6.0   glass outline, +-0.2
+  lip_in          x   12.71- 194.99  y    9.77- 154.40  (182.28 x 144.63)  R 6.4   lip inner face = glass recess wall, at the lip top
+  lip_out         x   11.71- 195.99  y    8.77- 155.40  (184.28 x 146.63)  R 7.4   lip outer face
+  seat_ring_out   x   10.21- 197.49  y    7.27- 156.90  (187.28 x 149.63)  R 8.9   sheet-seat ring outer edge (ring = lip_out .. this)
+  cut             x   11.31- 196.39  y    8.37- 155.80  (185.08 x 147.43)  R 7.8   SHEET CUT-OUT, laser, +-0.1
+  tape_in         x    9.21- 198.49  y    6.27- 157.90  (189.28 x 151.63)  R -   tape strips inner edge (straight strips)
+  tape_out        x   -2.79- 210.49  y   -5.73- 169.90  (213.28 x 175.63)  R -   tape strips outer edge
+  fastener_line   x    2.11- 205.59  y   -0.83- 165.00  (203.48 x 165.83)  R -   fastener centre lines
+  flange          x   -7.89- 215.59  y  -10.83- 175.00  (223.48 x 185.83)  R 10.0   flange outline (corner radius flange_R, centred on F1-F4)
+  pocket          x   19.22- 185.72  y   18.20- 119.80  (166.50 x 101.60)  R 0.5   clearance pocket = panel + pocket_clr
+  tail_pocket     x   39.20- 167.40  y  119.00- 147.70  (128.20 x  28.70)  R 1.5   tail pocket (bottom face moved from v2 151.2)
+  logo zone centre (103.85, 131.745) 100.0 x 20.0; 12.25 from the window (R2 >= 1)
+  overall at the sheet (flange) 223.48 x 185.83; visible module (cut-out) 185.08 x 147.43
+  tail-pocket bottom y 147.70, R1.5: TFT loop corner -> arc 1.50 (>= 1.5)
+  pip P1 (  58.48,   13.07)
+  pip P2 (  58.48,  151.10)
+  pip P3 ( 149.22,   13.07)
+  pip P4 ( 149.22,  151.10)
+  pip P5 (  16.01,   46.13)
+  pip P6 ( 191.69,   46.13)
+  pip P7 (  16.01,  118.04)
+  pip P8 ( 191.69,  118.04)
+
+====================================================================================================
+4a. FASTENERS (F1-F4 corners, used by S4/R4/S8; F5-F8 mid-sides, optional, used by S8)
+====================================================================================================
+  J20 courtyard [20.455, 96.915, 31.345, 108.165], J2 courtyard [22.685, 28.685, 26.315, 45.015]
+             x       y axis deg    r_c outline  ear hole  J20/J2  tails boss gap cut edge flange
+  F1      2.11   -0.83    39.18  131.2   27.18  H1 31.68    27.5  125.4     18.7    16.24   1.00  OK
+  F2    205.59   -0.83   140.82  131.2   30.14  H4 34.64   181.4  125.8     21.6    16.24   1.00  OK
+  F3    205.59  165.00  -140.82  131.2   46.81  H6 51.31   182.7   41.9     38.3    16.24   1.00  OK
+  F4      2.11  165.00   -39.18  131.2   45.25  H7 49.75    54.8   40.9     36.8    16.24   1.00  OK
+  F5    103.85   -0.83    90.00   82.9   14.04  H2 18.54    82.3  119.8      5.5     9.20   1.00  OK
+  F6    205.59   82.09   180.00  101.7   21.59  H5 31.20   174.7   53.1     18.2     9.20   1.00  OK
+  F7    103.85  165.00   -90.00   82.9   46.00  H6 82.22    90.9   17.3     69.2     9.20   1.00  OK
+  F8      2.11   82.09     0.00  101.7   17.89  H8 29.93    12.8   52.3     16.9     9.20   1.00  OK
+  rules: outline >= 6.5 and ear hole >= 11.0 (v2 dia-12 socket rule), tube (R9) clear of PCB bosses (R4), >= 8.0 to the cut-out (R2 sheet rule)
+
+====================================================================================================
+4b. PRINT WINDOW vs AA (per side)
+====================================================================================================
+  print_inset 0.30 (frozen)   active alignment  RSS +-0.10: window edge -0.40..-0.20 from AA; covers <= 2.2 px; black matrix shown 0.00; CTP print shown 0.00
+  print_inset 0.30 (frozen)   active alignment  WC +-0.16: window edge -0.46..-0.14 from AA; covers <= 2.6 px; black matrix shown 0.00; CTP print shown 0.00
+  print_inset 0.30 (frozen)   passive alignment RSS +-0.32: window edge -0.62..+0.02 from AA; covers <= 3.4 px; black matrix shown 0.02; CTP print shown 0.00
+  print_inset 0.30 (frozen)   passive alignment WC +-0.70: window edge -1.00..+0.40 from AA; covers <= 5.6 px; black matrix shown 0.40; CTP print shown 0.04
+  alternative AA + 0.25 (R1)  active alignment  RSS +-0.10: window edge +0.15..+0.35 from AA; covers <= 0.0 px; black matrix shown 0.35; CTP print shown 0.00
+  alternative AA + 0.25 (R1)  active alignment  WC +-0.16: window edge +0.09..+0.41 from AA; covers <= 0.0 px; black matrix shown 0.41; CTP print shown 0.05
+  alternative AA + 0.25 (R1)  passive alignment RSS +-0.32: window edge -0.07..+0.57 from AA; covers <= 0.4 px; black matrix shown 0.57; CTP print shown 0.21
+  alternative AA + 0.25 (R1)  passive alignment WC +-0.70: window edge -0.45..+0.95 from AA; covers <= 2.5 px; black matrix shown 0.95; CTP print shown 0.59
+
+====================================================================================================
+4c. FLUSHNESS, BOND LINE, PIPS AND BACK-STOP GAP (jig: glass front and lip top on one flat plate)
+====================================================================================================
+  glass front vs lip top: nominal +0.000  WC +-0.110  RSS +-0.061  -> WC [-0.110, +0.110]  RSS [-0.061, +0.061]
+      +-0.020  plate flatness
+      +-0.050  glass bow residual
+      +-0.020  cure shrinkage
+      +-0.020  spring-back
+  lip top vs sheet front: nominal +0.000  WC +-0.140  RSS +-0.091  -> WC [-0.140, +0.140]  RSS [-0.091, +0.091]
+      +-0.030  lip above seat ring (one tool half)
+      +-0.080  sheet EN 10131 normal
+      +-0.030  sheet seating on the ring
+  lip top vs sheet front, sheet +-0.05: nominal +0.000  WC +-0.110  RSS +-0.066  -> WC [-0.110, +0.110]  RSS [-0.066, +0.066]
+  glass front vs sheet front: nominal +0.000  WC +-0.250  RSS +-0.109  -> WC [-0.250, +0.250]  RSS [-0.109, +0.109]
+  glass front vs lip top, fixed-thickness tape instead (3.0 +-0.2): nominal +0.000  WC +-0.350  RSS +-0.218  -> WC [-0.350, +0.350]  RSS [-0.218, +0.218]
+  glass 1.1 (+-0.1): bond line WC 0.83-1.17 (RSS 0.89-1.11); pip top 0.50+0.05 -> min clearance to the glass +0.23 (never touches); back-stop gap WC 0.18-1.42, RSS 0.46-1.14
+  glass 2.0 (+-0.2): bond line WC 0.73-1.27 (RSS 0.79-1.21); pip top 0.50+0.05 -> min clearance to the glass +0.13 (never touches); back-stop gap WC 0.08-1.52, RSS 0.42-1.18
+  glass 3.0 (+-0.2): bond line WC 0.73-1.27 (RSS 0.79-1.21); pip top 0.50+0.05 -> min clearance to the glass +0.13 (never touches); back-stop gap WC 0.08-1.52, RSS 0.42-1.18
+  glass 4.0 (+-0.2): bond line WC 0.73-1.27 (RSS 0.79-1.21); pip top 0.50+0.05 -> min clearance to the glass +0.13 (never touches); back-stop gap WC 0.08-1.52, RSS 0.42-1.18
+  CTP tail front -> glass back 1.57 (all thicknesses); tails are not in front of any frame feature (chin)
+  TFT: stand-off 5.00 -> 5.80: U radius 5.00 -> 5.40, loop bottom moves -0.23 (up)
+  CTP: stand-off 5.00 -> 5.80: U radius 5.55 -> 5.95, loop bottom moves -0.23 (up)
+
+====================================================================================================
+5. THERMAL (assembled at 20 C): gaps, bead and tape shear, slot float
+====================================================================================================
+  per-side tolerance: g2 RSS 0.122 / WC 0.200; g1 RSS 0.087 / WC 0.150
+  frame flow 30   -20 C                 : g2  0.32 (RSS min +0.20, WC +0.12) | g1  0.45 (RSS min +0.37, WC +0.30)
+  frame flow 30   +70 frame / +50 sheet : g2  0.48 (RSS min +0.35, WC +0.28) | g1  0.29 (RSS min +0.21, WC +0.14)
+  frame design 50 -20 C                 : g2  0.25 (RSS min +0.13, WC +0.05) | g1  0.51 (RSS min +0.42, WC +0.36)
+  frame design 50 +70 frame / +50 sheet : g2  0.55 (RSS min +0.42, WC +0.35) | g1  0.20 (RSS min +0.12, WC +0.05)
+  frame bound 70  -20 C                 : g2  0.18 (RSS min +0.06, WC -0.02) | g1  0.57 (RSS min +0.48, WC +0.42)
+  frame bound 70  +70 frame / +50 sheet : g2  0.62 (RSS min +0.50, WC +0.42) | g1  0.11 (RSS min +0.02, WC -0.04)
+  bead (corner r 111.7) frame flow 30   +70 C: 0.117 mm -> 11.7 % at t 1.0, 16.1 % at the 3.0-glass min bond line
+  bead (corner r 111.7) frame design 50 +70 C: 0.229 mm -> 22.9 % at t 1.0, 31.4 % at the 3.0-glass min bond line
+  bead (corner r 111.7) frame bound 70  +70 C: 0.341 mm -> 34.1 % at t 1.0, 46.7 % at the 3.0-glass min bond line
+  tape (outer corner r 138.1) frame flow 30   +70/+50 C: 0.157 mm -> 15.7 % shear (VHB)
+  tape (outer corner r 138.1) frame design 50 +70/+50 C: 0.296 mm -> 29.6 % shear (VHB)
+  tape (outer corner r 138.1) frame bound 70  +70/+50 C: 0.434 mm -> 43.4 % shear (VHB)
+  slot 5.4 x 7.0 on M4: float along 1.50 - stud position 0.20 - centring 0.15 = 1.15; across 0.35
+   frame flow 30  : radial move at r 131.2 = 0.118 mm along the slot -> OK
+   frame design 50: radial move at r 131.2 = 0.249 mm along the slot -> OK
+   frame bound 70 : radial move at r 131.2 = 0.381 mm along the slot -> OK
+
+====================================================================================================
+6. JOINTS: bead, LOCA, tape, slot + washer, rivet
+====================================================================================================
+  glass mass 1.1: 72 g, 2.0: 130 g, 3.0: 196 g, 4.0: 261 g; frame ~105 g (est., ~77 cm3); panel 200; PCB etc. 290
+  bead area 2510 mm2 (was 1846); dead load glass 3.0 + panel 3.88 N -> 1.55 kPa; 250 N pull -> 0.100 MPa mean
+  tape: 4 straight strips 12 wide, top/bottom 183.48 long, sides 145.83 long, area 7903 mm2; module dead load 7.76 N -> 0.98 kPa
+  strip ends 1.0 from the corner pads (pad R9 at s 11.0): end at s +1.0 beyond the glass edge line; corner gap sealed with a dab of the bead adhesive (4 places)
+  DIN 9021 M4 (stud)          : shaft offset up to 1.50 along; washer R6.0 vs slot far end 5.00 -> rim 1.00; across rim 2.60; on the R9 tube top: washer edge 7.50 (inside); bearing 82 mm2
+  DIN 9021 M5 (rivet backing) : shaft offset up to 1.10 along; washer R7.5 vs slot far end 4.60 -> rim 2.90; across rim 4.50; on the R9 tube top: washer edge 8.60 (inside); bearing 145 mm2
+  stud M4 nyloc 0.6 Nm ~500 N -> 6.1 MPa (creep 15)
+  glass 1.1: rivet grip (sheet + gap/pad + flange 2.60 + tube + washer 1.2) = 8.30 mm; stud length above the sheet back >= 13.60 -> M4 x 16
+  glass 2.0: rivet grip (sheet + gap/pad + flange 2.50 + tube + washer 1.2) = 8.20 mm; stud length above the sheet back >= 13.50 -> M4 x 16
+  glass 3.0: rivet grip (sheet + gap/pad + flange 2.50 + tube + washer 1.2) = 8.20 mm; stud length above the sheet back >= 13.50 -> M4 x 16
+  glass 4.0: rivet grip (sheet + gap/pad + flange 2.50 + tube + washer 1.2) = 8.20 mm; stud length above the sheet back >= 13.50 -> M4 x 16
+  slot lead's 5.0 x 6.5: dia-4.8 rivet across clearance 0.10/side vs frame-to-sheet location RSS 0.12 and GESIPA tri-fold hole 5.1-5.4 (R2); M4 stud float along 0.90, across 0.15
+  slot frozen 5.4 x 7.0: dia-4.8 rivet across clearance 0.30/side vs frame-to-sheet location RSS 0.12 and GESIPA tri-fold hole 5.1-5.4 (R2); M4 stud float along 1.15, across 0.35
+
+====================================================================================================
+7. PUSH ON THE GLASS - grillage (panel, LOCA and PCB stiffness NOT counted; frame E 3500 MPa; VHB E 1 MPa)
+====================================================================================================
+  ring section, glass 1.1: A 101.6 mm2, centroid Z -7.77, I 789 mm4, J 218 mm4 (v2 713)
+  ring section, glass 2.0: A 102.1 mm2, centroid Z -8.26, I 971 mm4, J 211 mm4 (v2 713)
+  ring section, glass 3.0: A 104.6 mm2, centroid Z -8.82, I 1222 mm4, J 216 mm4 (v2 713)
+  ring section, glass 4.0: A 107.1 mm2, centroid Z -9.37, I 1524 mm4, J 221 mm4 (v2 713)
+  tape band s 3.9..15.9: 2.29 mm to the glass-edge line, 9.71 mm to the fastener line
+
+  glass 1.1 chemically strengthene | S4/R4: 4 corner studs + VHB (recommended)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                         141   1.407        0.170   420.0 MPa    8.2 MPa     -23 N
+    glass top edge, mid                    13   0.128        0.128    72.7 MPa   21.1 MPa      -3 N
+    glass side edge, mid                   12   0.125        0.125    74.0 MPa   21.3 MPa      -1 N
+    chin centre (over tail pocket)         67   0.669        0.193   361.1 MPa   14.3 MPa     -11 N
+    glass bottom edge, mid                 13   0.128        0.128    72.6 MPa   21.1 MPa      -3 N
+
+  glass 1.1 chemically strengthene | S8: 8 studs (+ foam gasket, no tension)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                         209   2.085        0.447   450.7 MPa   13.3 MPa      94 N
+    glass top edge, mid                    30   0.300        0.300   198.6 MPa   14.9 MPa     204 N
+    glass side edge, mid                   27   0.269        0.269   187.1 MPa   18.1 MPa     189 N
+    chin centre (over tail pocket)        115   1.149        0.471   414.8 MPa   14.7 MPa     150 N
+    glass bottom edge, mid                 30   0.300        0.300   198.4 MPa   14.9 MPa     204 N
+
+  glass 2.0 chemically strengthene | S4/R4: 4 corner studs + VHB (recommended)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          37   0.368        0.077   139.3 MPa    3.7 MPa     -18 N
+    glass top edge, mid                     9   0.086        0.086    39.5 MPa   15.5 MPa      -3 N
+    glass side edge, mid                    9   0.086        0.086    40.0 MPa   15.7 MPa      -2 N
+    chin centre (over tail pocket)         21   0.206        0.093   125.4 MPa    7.3 MPa     -10 N
+    glass bottom edge, mid                  9   0.086        0.086    39.5 MPa   15.5 MPa      -3 N
+
+  glass 2.0 chemically strengthene | S8: 8 studs (+ foam gasket, no tension)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          50   0.501        0.162   146.2 MPa    6.7 MPa      98 N
+    glass top edge, mid                    17   0.169        0.169   100.5 MPa    8.8 MPa     197 N
+    glass side edge, mid                   15   0.154        0.154    95.4 MPa   11.0 MPa     180 N
+    chin centre (over tail pocket)         33   0.327        0.190   139.4 MPa    7.4 MPa     151 N
+    glass bottom edge, mid                 17   0.169        0.169   100.4 MPa    8.8 MPa     197 N
+
+  glass 3.0 thermally tempered (CS | S4/R4: 4 corner studs + VHB (recommended)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          14   0.139        0.045    64.1 MPa    2.2 MPa     -14 N
+    glass top edge, mid                     7   0.067        0.067    39.3 MPa   11.0 MPa      -4 N
+    glass side edge, mid                    7   0.066        0.066    40.4 MPa   11.3 MPa      -2 N
+    chin centre (over tail pocket)          9   0.092        0.060    56.5 MPa    4.5 MPa      -9 N
+    glass bottom edge, mid                  7   0.067        0.067    39.4 MPa   11.0 MPa      -4 N
+
+  glass 3.0 thermally tempered (CS | S8: 8 studs (+ foam gasket, no tension)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          19   0.193        0.093    66.0 MPa    4.2 MPa      90 N
+    glass top edge, mid                    13   0.127        0.127    46.5 MPa    7.0 MPa     175 N
+    glass side edge, mid                   11   0.113        0.113    43.2 MPa    8.5 MPa     155 N
+    chin centre (over tail pocket)         15   0.153        0.119    62.3 MPa    5.0 MPa     137 N
+    glass bottom edge, mid                 13   0.127        0.127    46.5 MPa    7.0 MPa     175 N
+
+  glass 3.0 thermally tempered (CS | reference: 4 corner studs only
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          44   0.436        0.378    76.3 MPa   12.0 MPa      74 N
+    glass top edge, mid                    58   0.581        0.581   100.7 MPa   28.2 MPa     117 N
+    glass side edge, mid                   39   0.391        0.391    93.0 MPa   26.0 MPa     118 N
+    chin centre (over tail pocket)         48   0.478        0.496    88.2 MPa   18.3 MPa     100 N
+    glass bottom edge, mid                 58   0.581        0.581   100.8 MPa   28.2 MPa     117 N
+
+  glass 4.0 thermally tempered     | S4/R4: 4 corner studs + VHB (recommended)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                           7   0.072        0.033    36.5 MPa    1.6 MPa      -9 N
+    glass top edge, mid                     5   0.054        0.054    34.9 MPa    7.8 MPa      -2 N
+    glass side edge, mid                    5   0.053        0.053    36.1 MPa    8.1 MPa       4 N
+    chin centre (over tail pocket)          6   0.057        0.046    31.8 MPa    3.1 MPa      -6 N
+    glass bottom edge, mid                  5   0.054        0.054    34.9 MPa    7.8 MPa      -2 N
+
+  glass 4.0 thermally tempered     | S8: 8 studs (+ foam gasket, no tension)
+    load point                        w@5N um   w@50N lip line@50N glass@250N ring@250N stud@250N
+    window centre                          11   0.106        0.067    37.2 MPa    2.8 MPa      78 N
+    glass top edge, mid                    10   0.101        0.101    26.3 MPa    5.9 MPa     147 N
+    glass side edge, mid                    9   0.087        0.087    29.9 MPa    6.7 MPa     126 N
+    chin centre (over tail pocket)         10   0.098        0.089    34.7 MPa    3.6 MPa     116 N
+    glass bottom edge, mid                 10   0.101        0.101    26.3 MPa    5.9 MPa     147 N
+
+  S8 foam gasket preload (no tape): lift of the lip line between studs = visible flushness error
+    glass 1.1: gasket q 0.10 N/mm (8 kPa on a 12 mm strip): lip-line lift max    73 um short-term, ~  95 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+    glass 1.1: gasket q 0.36 N/mm (30 kPa on a 12 mm strip): lip-line lift max   263 um short-term, ~ 342 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+    glass 1.1: gasket q 0.84 N/mm (70 kPa on a 12 mm strip): lip-line lift max   614 um short-term, ~ 798 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+    glass 3.0: gasket q 0.10 N/mm (8 kPa on a 12 mm strip): lip-line lift max    39 um short-term, ~  51 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+    glass 3.0: gasket q 0.36 N/mm (30 kPa on a 12 mm strip): lip-line lift max   141 um short-term, ~ 183 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+    glass 3.0: gasket q 0.84 N/mm (70 kPa on a 12 mm strip): lip-line lift max   328 um short-term, ~ 426 um long-term (frame share creeps, glass does not; ASSUMED x1.3)
+
+====================================================================================================
+8. GLASS STRESS (Roark SS circular plate, equivalent radius) - 250 N on a dia-10 probe and IEC 60335-1 0.5 J
+====================================================================================================
+  display: equivalent radius 50.8; chin over the pocket: free span 128.2 x 28.7 (panel edge y 119.0 -> beam land y 147.7), equivalent radius 17.2
+  1.1 chemically strengthened (aluminosi (char. 250): 250 N centre  377.7 MPa no panel credit /  151.4 on the LOCA-panel foundation; 0.5 J centre: bound  457.3, mass-ratio  222.2 MPa (F 87 N, SF 1.1)
+      chin over the pocket (nothing behind): k local 586 / global 75 N/mm; 0.5 J bound  477.8, mass-ratio  235.6 MPa (F 119 N, SF 1.1)
+  2.0 chemically strengthened soda-lime  (char. 250): 250 N centre  114.2 MPa no panel credit /   62.1 on the LOCA-panel foundation; 0.5 J centre: bound  256.4, mass-ratio  131.1 MPa (F 184 N, SF 1.9)
+      chin over the pocket (nothing behind): k local 3523 / global 243 N/mm; 0.5 J bound  253.2, mass-ratio  130.6 MPa (F 237 N, SF 1.9)
+  3.0 thermally tempered (CS if the supp (char. 120): 250 N centre   50.8 MPa no panel credit /   32.5 on the LOCA-panel foundation; 0.5 J centre: bound  174.9, mass-ratio   94.8 MPa (F 320 N, SF 1.3)
+      chin over the pocket (nothing behind): k local 11890 / global 543 N/mm; 0.5 J bound  158.0, mass-ratio   86.4 MPa (F 383 N, SF 1.4)
+  4.0 thermally tempered                 (char. 120): 250 N centre   28.6 MPa no panel credit /   20.3 on the LOCA-panel foundation; 0.5 J centre: bound  129.8, mass-ratio   73.9 MPa (F 467 N, SF 1.6)
+      chin over the pocket (nothing behind): k local 28183 / global 881 N/mm; 0.5 J bound  107.4, mass-ratio   61.5 MPa (F 519 N, SF 2.0)
+  Quasi-static, order of magnitude: ignores the striker/plate dynamics beyond a mass ratio; the chin has no panel behind it, so a broken chin
+  opens into the tail pocket (FPC tails, SELV) - no live part becomes accessible; cl. 21.1 still asks for 'no damage impairing 8.1/15.1/29'.
+  VHB spring-back (S4/R4): a 1.1 tape pressed to the 1.0 hard stops stores <= 9 % elastic strain; if the corner studs alone held the
+  frame, the lip line could stand up to ~100 um off the seat ring between corners until the acrylic foam relaxes ->
+  keep the pressure frame on for >= 20 min after mounting and check the lip line on the first articles.
+
+====================================================================================================
+9. WRITING THE MASTER PARAMETER FILE
+====================================================================================================
+  wrote Mechanical\Rev3.0_GlassFront\Rev3.0_GlassFront_params.json and concept_params.json (116 flat parameters)

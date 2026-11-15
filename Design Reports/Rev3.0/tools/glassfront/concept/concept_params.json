@@ -1,0 +1,819 @@
+{
+ "about": "Rev3.0 glass-front concept GF-1.0, flat list (same values as the master file)",
+ "source": "concept_calc.py",
+ "master": "Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_params.json",
+ "parameters": [
+  {
+   "name": "glass_t",
+   "value": 3.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "glass thickness, DRIVING; design valid for 1.1 / 2.0 / 3.0 / 4.0 (sec. 3 table)"
+  },
+  {
+   "name": "t_opt",
+   "value": 0.3,
+   "unit": "mm",
+   "group": "driving",
+   "note": "optical bond glass -> CTP lens (LOCA / silicone gel, hard stops 0.30 +-0.03; R1 sec.3.3)"
+  },
+  {
+   "name": "t_bond",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "glass -> land bond line, elastic gap-filling bead, nominal (set by the flush jig)"
+  },
+  {
+   "name": "t_sheet",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "oven front sheet, steel (0.8-1.5); lip height above the seat ring = t_sheet"
+  },
+  {
+   "name": "t_gap",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "flange front -> sheet back between hard stops (seat ring + corner pads); VHB 1.1 or foam 1.5 lives here"
+  },
+  {
+   "name": "g_bs",
+   "value": 0.8,
+   "unit": "mm",
+   "group": "driving",
+   "note": "panel back -> Formex air gap, nominal (back-stop)"
+  },
+  {
+   "name": "print_inset",
+   "value": 0.3,
+   "unit": "mm",
+   "group": "driving",
+   "note": "print window = AA inset by this per side; ALTERNATIVE AA + 0.25 (R1 sec.3.3 step 7) = -0.25"
+  },
+  {
+   "name": "border",
+   "value": 14.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "window edge -> glass edge, top / left / right (A1)"
+  },
+  {
+   "name": "glass_y1",
+   "value": 154.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "glass bottom edge, abs y (A1; chin)"
+  },
+  {
+   "name": "R_glass",
+   "value": 6.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "glass corner radius (R2: >= 3)"
+  },
+  {
+   "name": "g2",
+   "value": 0.4,
+   "unit": "mm",
+   "group": "driving",
+   "note": "gap glass edge -> lip inner face at 20 C"
+  },
+  {
+   "name": "lip_w",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "lip width (root)"
+  },
+  {
+   "name": "g1",
+   "value": 0.4,
+   "unit": "mm",
+   "group": "driving",
+   "note": "gap lip outer face -> sheet cut-out edge at 20 C"
+  },
+  {
+   "name": "seat_ring_w",
+   "value": 1.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "sheet-seat ring width outside the lip (s 1.4 .. 2.9)"
+  },
+  {
+   "name": "pocket_clr",
+   "value": 0.8,
+   "unit": "mm",
+   "group": "driving",
+   "note": "panel outline -> clearance pocket wall, per side"
+  },
+  {
+   "name": "bead_w",
+   "value": 4.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "glass->frame bead width after squeeze (A1)"
+  },
+  {
+   "name": "bead_edge",
+   "value": 0.9,
+   "unit": "mm",
+   "group": "driving",
+   "note": "bead outer edge inside the glass edge (A1: >= 0.9)"
+  },
+  {
+   "name": "bead_pocket_min",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "min distance bead inner edge -> pocket face (A1)"
+  },
+  {
+   "name": "fast_off",
+   "value": 11.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "fastener centre outside the glass edge, in x and y (corners) / in the normal direction (mid-sides)"
+  },
+  {
+   "name": "flange_beyond_glass",
+   "value": 21.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "flange outline = glass + this (pad/tube R9 + 1 mm beyond the fastener)"
+  },
+  {
+   "name": "flange_R",
+   "value": 10.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "flange outer corner radius (centre = corner fastener)"
+  },
+  {
+   "name": "flange_t",
+   "value": 2.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "flange thickness = wall (v2)"
+  },
+  {
+   "name": "slot_w",
+   "value": 5.4,
+   "unit": "mm",
+   "group": "driving",
+   "note": "fastener stadium slot width (A4 asked 5.0; 5.4 needed for a dia-4.8 rivet, sec. 11)"
+  },
+  {
+   "name": "slot_l",
+   "value": 7.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "fastener stadium slot length, long axis towards the glass centre (A4 asked 6.5)"
+  },
+  {
+   "name": "pad_d",
+   "value": 18.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "corner pad dia (front, top at Z_SHEET_BACK) and fastener tube top dia (back)"
+  },
+  {
+   "name": "tube_h",
+   "value": 2.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "fastener tube height above the flange back (washer / rivet seat)"
+  },
+  {
+   "name": "pip_d",
+   "value": 1.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "stand-off pip dia at the base (A2), 1 deg draft"
+  },
+  {
+   "name": "pip_h",
+   "value": 0.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "stand-off pip height above the land (A2), +-0.05"
+  },
+  {
+   "name": "tape_w",
+   "value": 12.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "VHB strip width (standard 12 mm roll, 3M 5952 class, 1.1 thick) (A3)"
+  },
+  {
+   "name": "tape_margin",
+   "value": 1.0,
+   "unit": "mm",
+   "group": "driving",
+   "note": "min flat flange face beyond each tape edge (A3)"
+  },
+  {
+   "name": "trough_R",
+   "value": 1.5,
+   "unit": "mm",
+   "group": "driving",
+   "note": "tail-pocket bottom inner corner radius (keeps 1.5 to the TFT loop corner)"
+  },
+  {
+   "name": "Z_TROUGH_TOP",
+   "value": 4.05,
+   "unit": "mm",
+   "group": "level",
+   "note": "tail-pocket walls / bottom beam top, outside the board only [= 4.05 (v2)] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_PCB",
+   "value": 0.0,
+   "unit": "mm",
+   "group": "level",
+   "note": "PCB back = boss / support-rib / pocket-wall tops [= 0 (v2)] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_SHELF_BACK",
+   "value": -2.1,
+   "unit": "mm",
+   "group": "level",
+   "note": "shelf back [= -2.10 (v2)] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_SEAT",
+   "value": -4.6,
+   "unit": "mm",
+   "group": "level",
+   "note": "shelf front = Formex back (Formex PSA-bonded) [= -4.60 (v2)] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_FORMEX_FRONT",
+   "value": -5.0,
+   "unit": "mm",
+   "group": "level",
+   "note": "Formex front (= v2 panel back) [= Z_SEAT - 0.40] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_PANEL_BACK",
+   "value": -5.8,
+   "unit": "mm",
+   "group": "level",
+   "note": "panel back, nominal (floats with the tolerances, sec. 4c) [= Z_FORMEX_FRONT - g_bs] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_CTP_FRONT",
+   "value": -11.12,
+   "unit": "mm",
+   "group": "level",
+   "note": "CTP cover-lens front (panel_t 5.32) [= Z_PANEL_BACK - panel_t] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_GLASS_BACK",
+   "value": -11.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "glass printed face [= Z_CTP_FRONT - t_opt] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_GLASS_FRONT",
+   "value": -14.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "FLUSH PLANE = lip top = sheet front [= Z_GLASS_BACK - glass_t] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_SHEET_BACK",
+   "value": -13.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "sheet back = seat-ring top = corner-pad tops = parting plane [= Z_GLASS_FRONT + t_sheet] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_FLANGE_FRONT",
+   "value": -12.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "flange front face (tape / gasket on it) [= Z_SHEET_BACK + t_gap] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_FLANGE_BACK",
+   "value": -9.92,
+   "unit": "mm",
+   "group": "level",
+   "note": "flange back [= Z_FLANGE_FRONT + flange_t; = Z_STEPWALL_BACK if within 0.5 of Z_LANDPLATE_BACK (level snap)] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_LAND",
+   "value": -10.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "glass land = recess floor (bead, pips) [= Z_GLASS_BACK + t_bond] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_PIP_TOP",
+   "value": -10.92,
+   "unit": "mm",
+   "group": "level",
+   "note": "stand-off pip tops [= Z_LAND - pip_h] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_LANDPLATE_BACK",
+   "value": -7.92,
+   "unit": "mm",
+   "group": "level",
+   "note": "land-plate back (corner-cell floors, PCB-boss bases) [= Z_LAND + wall] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_STEPWALL_BACK",
+   "value": -7.92,
+   "unit": "mm",
+   "group": "level",
+   "note": "back of the step wall [= max(Z_FLANGE_BACK, Z_LANDPLATE_BACK); snap both to it if they differ < 0.5] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_TUBE_TOP",
+   "value": -7.42,
+   "unit": "mm",
+   "group": "level",
+   "note": "fastener tube top = washer / rivet seat [= Z_FLANGE_BACK + tube_h] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_TAIL_TFT_EXIT",
+   "value": -8.4,
+   "unit": "mm",
+   "group": "level",
+   "note": "TFT tail centre at the panel edge (panel model, estimated) [= Z_PANEL_BACK - 2.6] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_TAIL_CTP_EXIT",
+   "value": -9.7,
+   "unit": "mm",
+   "group": "level",
+   "note": "CTP tail centre at the panel edge (estimated) [= Z_PANEL_BACK - 3.9] (glass_t 3.0)"
+  },
+  {
+   "name": "Z_LOOP_FRONT",
+   "value": -9.85,
+   "unit": "mm",
+   "group": "level",
+   "note": "front-most point of the tail loops [= Z_TAIL_CTP_EXIT - 0.15] (glass_t 3.0)"
+  },
+  {
+   "name": "AA_x0",
+   "value": 26.81,
+   "unit": "mm",
+   "group": "plan",
+   "note": "display active area (DS)"
+  },
+  {
+   "name": "AA_x1",
+   "value": 180.89,
+   "unit": "mm",
+   "group": "plan",
+   "note": "display active area (DS)"
+  },
+  {
+   "name": "AA_y0",
+   "value": 23.87,
+   "unit": "mm",
+   "group": "plan",
+   "note": "display active area (DS)"
+  },
+  {
+   "name": "AA_y1",
+   "value": 109.79,
+   "unit": "mm",
+   "group": "plan",
+   "note": "display active area (DS)"
+  },
+  {
+   "name": "AA_R",
+   "value": 0.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "display active area (DS) - corner radius"
+  },
+  {
+   "name": "VA_CTP_x0",
+   "value": 26.31,
+   "unit": "mm",
+   "group": "plan",
+   "note": "CTP cover-lens view window (v2 va_*)"
+  },
+  {
+   "name": "VA_CTP_x1",
+   "value": 181.39,
+   "unit": "mm",
+   "group": "plan",
+   "note": "CTP cover-lens view window (v2 va_*)"
+  },
+  {
+   "name": "VA_CTP_y0",
+   "value": 23.23,
+   "unit": "mm",
+   "group": "plan",
+   "note": "CTP cover-lens view window (v2 va_*)"
+  },
+  {
+   "name": "VA_CTP_y1",
+   "value": 110.15,
+   "unit": "mm",
+   "group": "plan",
+   "note": "CTP cover-lens view window (v2 va_*)"
+  },
+  {
+   "name": "print_window_x0",
+   "value": 27.11,
+   "unit": "mm",
+   "group": "plan",
+   "note": "print window = AA - print_inset per side, corner R0.5"
+  },
+  {
+   "name": "print_window_x1",
+   "value": 180.59,
+   "unit": "mm",
+   "group": "plan",
+   "note": "print window = AA - print_inset per side, corner R0.5"
+  },
+  {
+   "name": "print_window_y0",
+   "value": 24.17,
+   "unit": "mm",
+   "group": "plan",
+   "note": "print window = AA - print_inset per side, corner R0.5"
+  },
+  {
+   "name": "print_window_y1",
+   "value": 109.49,
+   "unit": "mm",
+   "group": "plan",
+   "note": "print window = AA - print_inset per side, corner R0.5"
+  },
+  {
+   "name": "print_window_R",
+   "value": 0.5,
+   "unit": "mm",
+   "group": "plan",
+   "note": "print window = AA - print_inset per side, corner R0.5 - corner radius"
+  },
+  {
+   "name": "glass_x0",
+   "value": 13.11,
+   "unit": "mm",
+   "group": "plan",
+   "note": "glass outline, +-0.2"
+  },
+  {
+   "name": "glass_x1",
+   "value": 194.59,
+   "unit": "mm",
+   "group": "plan",
+   "note": "glass outline, +-0.2"
+  },
+  {
+   "name": "glass_y0",
+   "value": 10.17,
+   "unit": "mm",
+   "group": "plan",
+   "note": "glass outline, +-0.2"
+  },
+  {
+   "name": "glass_y1",
+   "value": 154.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "glass outline, +-0.2"
+  },
+  {
+   "name": "glass_R",
+   "value": 6.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "glass outline, +-0.2 - corner radius"
+  },
+  {
+   "name": "lip_in_x0",
+   "value": 12.71,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip inner face = glass recess wall, at the lip top"
+  },
+  {
+   "name": "lip_in_x1",
+   "value": 194.99,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip inner face = glass recess wall, at the lip top"
+  },
+  {
+   "name": "lip_in_y0",
+   "value": 9.77,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip inner face = glass recess wall, at the lip top"
+  },
+  {
+   "name": "lip_in_y1",
+   "value": 154.4,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip inner face = glass recess wall, at the lip top"
+  },
+  {
+   "name": "lip_in_R",
+   "value": 6.4,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip inner face = glass recess wall, at the lip top - corner radius"
+  },
+  {
+   "name": "lip_out_x0",
+   "value": 11.71,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip outer face"
+  },
+  {
+   "name": "lip_out_x1",
+   "value": 195.99,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip outer face"
+  },
+  {
+   "name": "lip_out_y0",
+   "value": 8.77,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip outer face"
+  },
+  {
+   "name": "lip_out_y1",
+   "value": 155.4,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip outer face"
+  },
+  {
+   "name": "lip_out_R",
+   "value": 7.4,
+   "unit": "mm",
+   "group": "plan",
+   "note": "lip outer face - corner radius"
+  },
+  {
+   "name": "seat_ring_out_x0",
+   "value": 10.21,
+   "unit": "mm",
+   "group": "plan",
+   "note": "sheet-seat ring outer edge (ring = lip_out .. this)"
+  },
+  {
+   "name": "seat_ring_out_x1",
+   "value": 197.49,
+   "unit": "mm",
+   "group": "plan",
+   "note": "sheet-seat ring outer edge (ring = lip_out .. this)"
+  },
+  {
+   "name": "seat_ring_out_y0",
+   "value": 7.27,
+   "unit": "mm",
+   "group": "plan",
+   "note": "sheet-seat ring outer edge (ring = lip_out .. this)"
+  },
+  {
+   "name": "seat_ring_out_y1",
+   "value": 156.9,
+   "unit": "mm",
+   "group": "plan",
+   "note": "sheet-seat ring outer edge (ring = lip_out .. this)"
+  },
+  {
+   "name": "seat_ring_out_R",
+   "value": 8.9,
+   "unit": "mm",
+   "group": "plan",
+   "note": "sheet-seat ring outer edge (ring = lip_out .. this) - corner radius"
+  },
+  {
+   "name": "cut_x0",
+   "value": 11.31,
+   "unit": "mm",
+   "group": "plan",
+   "note": "SHEET CUT-OUT, laser, +-0.1"
+  },
+  {
+   "name": "cut_x1",
+   "value": 196.39,
+   "unit": "mm",
+   "group": "plan",
+   "note": "SHEET CUT-OUT, laser, +-0.1"
+  },
+  {
+   "name": "cut_y0",
+   "value": 8.37,
+   "unit": "mm",
+   "group": "plan",
+   "note": "SHEET CUT-OUT, laser, +-0.1"
+  },
+  {
+   "name": "cut_y1",
+   "value": 155.8,
+   "unit": "mm",
+   "group": "plan",
+   "note": "SHEET CUT-OUT, laser, +-0.1"
+  },
+  {
+   "name": "cut_R",
+   "value": 7.8,
+   "unit": "mm",
+   "group": "plan",
+   "note": "SHEET CUT-OUT, laser, +-0.1 - corner radius"
+  },
+  {
+   "name": "tape_in_x0",
+   "value": 9.21,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips inner edge (straight strips)"
+  },
+  {
+   "name": "tape_in_x1",
+   "value": 198.49,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips inner edge (straight strips)"
+  },
+  {
+   "name": "tape_in_y0",
+   "value": 6.27,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips inner edge (straight strips)"
+  },
+  {
+   "name": "tape_in_y1",
+   "value": 157.9,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips inner edge (straight strips)"
+  },
+  {
+   "name": "tape_out_x0",
+   "value": -2.79,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips outer edge"
+  },
+  {
+   "name": "tape_out_x1",
+   "value": 210.49,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips outer edge"
+  },
+  {
+   "name": "tape_out_y0",
+   "value": -5.73,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips outer edge"
+  },
+  {
+   "name": "tape_out_y1",
+   "value": 169.9,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tape strips outer edge"
+  },
+  {
+   "name": "fastener_line_x0",
+   "value": 2.11,
+   "unit": "mm",
+   "group": "plan",
+   "note": "fastener centre lines"
+  },
+  {
+   "name": "fastener_line_x1",
+   "value": 205.59,
+   "unit": "mm",
+   "group": "plan",
+   "note": "fastener centre lines"
+  },
+  {
+   "name": "fastener_line_y0",
+   "value": -0.83,
+   "unit": "mm",
+   "group": "plan",
+   "note": "fastener centre lines"
+  },
+  {
+   "name": "fastener_line_y1",
+   "value": 165.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "fastener centre lines"
+  },
+  {
+   "name": "flange_x0",
+   "value": -7.89,
+   "unit": "mm",
+   "group": "plan",
+   "note": "flange outline (corner radius flange_R, centred on F1-F4)"
+  },
+  {
+   "name": "flange_x1",
+   "value": 215.59,
+   "unit": "mm",
+   "group": "plan",
+   "note": "flange outline (corner radius flange_R, centred on F1-F4)"
+  },
+  {
+   "name": "flange_y0",
+   "value": -10.83,
+   "unit": "mm",
+   "group": "plan",
+   "note": "flange outline (corner radius flange_R, centred on F1-F4)"
+  },
+  {
+   "name": "flange_y1",
+   "value": 175.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "flange outline (corner radius flange_R, centred on F1-F4)"
+  },
+  {
+   "name": "pocket_x0",
+   "value": 19.22,
+   "unit": "mm",
+   "group": "plan",
+   "note": "clearance pocket = panel + pocket_clr"
+  },
+  {
+   "name": "pocket_x1",
+   "value": 185.72,
+   "unit": "mm",
+   "group": "plan",
+   "note": "clearance pocket = panel + pocket_clr"
+  },
+  {
+   "name": "pocket_y0",
+   "value": 18.2,
+   "unit": "mm",
+   "group": "plan",
+   "note": "clearance pocket = panel + pocket_clr"
+  },
+  {
+   "name": "pocket_y1",
+   "value": 119.8,
+   "unit": "mm",
+   "group": "plan",
+   "note": "clearance pocket = panel + pocket_clr"
+  },
+  {
+   "name": "pocket_R",
+   "value": 0.5,
+   "unit": "mm",
+   "group": "plan",
+   "note": "clearance pocket = panel + pocket_clr - corner radius"
+  },
+  {
+   "name": "tail_pocket_x0",
+   "value": 39.2,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tail pocket (bottom face moved from v2 151.2)"
+  },
+  {
+   "name": "tail_pocket_x1",
+   "value": 167.4,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tail pocket (bottom face moved from v2 151.2)"
+  },
+  {
+   "name": "tail_pocket_y0",
+   "value": 119.0,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tail pocket (bottom face moved from v2 151.2)"
+  },
+  {
+   "name": "tail_pocket_y1",
+   "value": 147.7,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tail pocket (bottom face moved from v2 151.2)"
+  },
+  {
+   "name": "tail_pocket_R",
+   "value": 1.5,
+   "unit": "mm",
+   "group": "plan",
+   "note": "tail pocket (bottom face moved from v2 151.2) - corner radius"
+  }
+ ]
+}

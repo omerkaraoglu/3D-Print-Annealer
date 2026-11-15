@@ -1,0 +1,79 @@
+{
+ "about": "Errata to Rev3.0_GlassFront_Frame_report.json, which stays byte-identical to the version written with the independently verified frame STEP (sha256 47742d2f...). Correct values measured on the model (v13 frame geometry = v14 document).",
+ "frame_report_sha256": "b283d015b8f6f30901377ef634f2c6c7f9cc60b83280f14adadacd03da2af3ee",
+ "sources": {
+  "corners": "20_scan on the v13 frame (scan_gf11_cb74.json, unfilleted concave roots)",
+  "S8": "64_gf11_round3_hardware.py (round3_hardware.json) and the v14 user parameters"
+ },
+ "errata": [
+  {
+   "path": "sharp_inside_corners[3].where_abs",
+   "reads": [
+    39.077,
+    118.978
+   ],
+   "correct": [
+    38.777,
+    118.978
+   ],
+   "z": [
+    -4.6,
+    -2.1
+   ],
+   "why": "GF-1.1 item 4: tail-pocket side walls moved out 0.3 (the entry is the GF-1.0 position)"
+  },
+  {
+   "path": "sharp_inside_corners[4].where_abs",
+   "reads": [
+    167.523,
+    118.978
+   ],
+   "correct": [
+    167.823,
+    118.978
+   ],
+   "z": [
+    -4.6,
+    -2.1
+   ],
+   "why": "as above"
+  },
+  {
+   "path": "sharp_inside_corners[5].where_abs",
+   "reads": "y 119.80, x 29.27..39.06",
+   "correct": "y 119.80, x 29.27..38.75",
+   "why": "the shelf-back segment ends at the moved tail-pocket wall"
+  },
+  {
+   "path": "sharp_inside_corners[6].where_abs",
+   "reads": "y 119.80, x 167.55..175.67",
+   "correct": "y 119.80, x 167.85..175.67",
+   "why": "as above"
+  },
+  {
+   "path": "stage3_GF-1.1.changes[6] (item 7: S8 spacer)",
+   "reads": {
+    "built": "DIN 988 6 x 12 x 1.0 shim (spacer_id 6.0 / spacer_od 12) on the stud between sheet and flange at F5-F8; bodies renamed 'Spacer DIN 988 6x12x1.0 Fk'",
+    "parameters": [
+     "spacer_id",
+     "spacer_od"
+    ],
+    "numbers": {
+     "radial_clearance_to_flange_5.5": 0.25,
+     "radial_clearance_to_flange_5.7": 0.15
+    }
+   },
+   "correct": {
+    "built": "DIN 988 7 x 13 x 1.0 shim (spacer_id 7 / spacer_od 13; lead round 3, first GF-1.1 build 6 x 12) on the stud between sheet and flange at F5-F8; bodies 'Spacer DIN 988 7x13x1.0 Fk'",
+    "numbers": {
+     "radial_clearance_to_flange_5.5": 0.75,
+     "radial_clearance_to_flange_5.7": 0.65,
+     "radial_clearance_to_envelope_5.8": 0.6,
+     "contact_on_flange_front_mm2": 78.35,
+     "contact_on_sheet_mm2": 94.25
+    }
+   },
+   "why": "lead round 3 changed the S8 shim (hardware only, frame unchanged)"
+  }
+ ]
+}

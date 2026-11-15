@@ -1,0 +1,2533 @@
+{
+ "frame": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+  "bytes": 1475753,
+  "mtime": "2026-11-15 14:21:18",
+  "sha256": "e238b9b34cf5bd45e9a2dd2c6e6d89c5bca08ec573ebee415492dad9147d408f",
+  "declared_unit": "cm",
+  "solids": 1,
+  "valid": true,
+  "volume_mm3": 84014.915,
+  "faces": 787,
+  "edges": 1992,
+  "bbox_model": [
+   -7.89,
+   215.59,
+   -175.0,
+   10.83,
+   -14.42,
+   4.05
+  ],
+  "bbox_abs": {
+   "x": [
+    -7.89,
+    215.59
+   ],
+   "y_down": [
+    -10.83,
+    175.0
+   ],
+   "z": [
+    -14.42,
+    4.05
+   ]
+  },
+  "size": [
+   223.48,
+   185.83,
+   18.47
+  ],
+  "read_s": 2.2
+ },
+ "gaps": {
+  "corner_radii": {
+   "front (Z_GLASS_FRONT + 0.32, below the R0.3 rounds)": {
+    "lip_inner_R": {
+     "TL": 6.3944,
+     "TR": 6.3944,
+     "BR": 6.3944,
+     "BL": 6.3944
+    },
+    "lip_outer_R": {
+     "TL": 7.3881,
+     "TR": 7.3881,
+     "BR": 7.3881,
+     "BL": 7.3881
+    },
+    "lip_inner_centre_offset": {
+     "TL": 0.0,
+     "TR": 0.0,
+     "BR": 0.0,
+     "BL": 0.0
+    },
+    "params": {
+     "glass_R": 6.0,
+     "lip_in_R": 6.4,
+     "lip_out_R": 7.4,
+     "cut_R": 7.8
+    }
+   },
+   "mid-lip": {
+    "lip_inner_R": {
+     "TL": 6.3913,
+     "TR": 6.3913,
+     "BR": 6.3913,
+     "BL": 6.3913
+    },
+    "lip_outer_R": {
+     "TL": 7.3913,
+     "TR": 7.3913,
+     "BR": 7.3913,
+     "BL": 7.3913
+    },
+    "lip_inner_centre_offset": {
+     "TL": 0.0,
+     "TR": 0.0,
+     "BR": 0.0,
+     "BL": 0.0
+    },
+    "params": {
+     "glass_R": 6.0,
+     "lip_in_R": 6.4,
+     "lip_out_R": 7.4,
+     "cut_R": 7.8
+    }
+   },
+   "root (Z_SHEET_BACK - 0.21, above the R0.2 root)": {
+    "lip_inner_R": {
+     "TL": 6.3862,
+     "TR": 6.3862,
+     "BR": 6.3862,
+     "BL": 6.3862
+    },
+    "lip_outer_R": {
+     "TL": 7.3963,
+     "TR": 7.3963,
+     "BR": 7.3963,
+     "BL": 7.3963
+    },
+    "lip_inner_centre_offset": {
+     "TL": 0.0,
+     "TR": 0.0,
+     "BR": 0.0,
+     "BL": 0.0
+    },
+    "params": {
+     "glass_R": 6.0,
+     "lip_in_R": 6.4,
+     "lip_out_R": 7.4,
+     "cut_R": 7.8
+    }
+   }
+  },
+  "front (Z_GLASS_FRONT + 0.32, below the R0.3 rounds)": {
+   "z": -14.1,
+   "g2_sides_min_max": [
+    0.3944,
+    0.3945
+   ],
+   "g2_corners_min_max": [
+    0.3926,
+    0.3949
+   ],
+   "g1_sides_min_max": [
+    0.4119,
+    0.412
+   ],
+   "g1_corners_min_max": [
+    0.4112,
+    0.4139
+   ]
+  },
+  "mid-lip": {
+   "z": -13.92,
+   "g2_sides_min_max": [
+    0.3913,
+    0.3914
+   ],
+   "g2_corners_min_max": [
+    0.3895,
+    0.3918
+   ],
+   "g1_sides_min_max": [
+    0.4087,
+    0.4088
+   ],
+   "g1_corners_min_max": [
+    0.4081,
+    0.4107
+   ]
+  },
+  "root (Z_SHEET_BACK - 0.21, above the R0.2 root)": {
+   "z": -13.63,
+   "g2_sides_min_max": [
+    0.3862,
+    0.3863
+   ],
+   "g2_corners_min_max": [
+    0.3844,
+    0.3867
+   ],
+   "g1_sides_min_max": [
+    0.4037,
+    0.4038
+   ],
+   "g1_corners_min_max": [
+    0.403,
+    0.4057
+   ]
+  },
+  "thermal": {
+   "-20 C, 50 ppm": {
+    "g2_sides_min": 0.246,
+    "g2_corners_min": 0.207,
+    "g2_max": 0.277,
+    "g1_sides_min": 0.524,
+    "g1_corners_min": 0.525,
+    "g1_max": 0.589
+   },
+   "+70 C frame/glass, +50 C sheet, 50 ppm": {
+    "g2_sides_min": 0.542,
+    "g2_corners_min": 0.543,
+    "g2_max": 0.627,
+    "g1_sides_min": 0.214,
+    "g1_corners_min": 0.165,
+    "g1_max": 0.254
+   },
+   "-20 C, 70 ppm": {
+    "g2_sides_min": 0.173,
+    "g2_corners_min": 0.116,
+    "g2_max": 0.219,
+    "g1_sides_min": 0.583,
+    "g1_corners_min": 0.584,
+    "g1_max": 0.681
+   },
+   "+70 C frame/glass, +50 C sheet, 70 ppm": {
+    "g2_sides_min": 0.614,
+    "g2_corners_min": 0.615,
+    "g2_max": 0.74,
+    "g1_sides_min": 0.121,
+    "g1_corners_min": 0.05,
+    "g1_max": 0.181
+   }
+  },
+  "at_20C": {
+   "corner_radii": {
+    "front (Z_GLASS_FRONT + 0.32, below the R0.3 rounds)": {
+     "lip_inner_R": {
+      "TL": 6.3944,
+      "TR": 6.3944,
+      "BR": 6.3944,
+      "BL": 6.3944
+     },
+     "lip_outer_R": {
+      "TL": 7.3881,
+      "TR": 7.3881,
+      "BR": 7.3881,
+      "BL": 7.3881
+     },
+     "lip_inner_centre_offset": {
+      "TL": 0.0,
+      "TR": 0.0,
+      "BR": 0.0,
+      "BL": 0.0
+     },
+     "params": {
+      "glass_R": 6.0,
+      "lip_in_R": 6.4,
+      "lip_out_R": 7.4,
+      "cut_R": 7.8
+     }
+    },
+    "mid-lip": {
+     "lip_inner_R": {
+      "TL": 6.3913,
+      "TR": 6.3913,
+      "BR": 6.3913,
+      "BL": 6.3913
+     },
+     "lip_outer_R": {
+      "TL": 7.3913,
+      "TR": 7.3913,
+      "BR": 7.3913,
+      "BL": 7.3913
+     },
+     "lip_inner_centre_offset": {
+      "TL": 0.0,
+      "TR": 0.0,
+      "BR": 0.0,
+      "BL": 0.0
+     },
+     "params": {
+      "glass_R": 6.0,
+      "lip_in_R": 6.4,
+      "lip_out_R": 7.4,
+      "cut_R": 7.8
+     }
+    },
+    "root (Z_SHEET_BACK - 0.21, above the R0.2 root)": {
+     "lip_inner_R": {
+      "TL": 6.3862,
+      "TR": 6.3862,
+      "BR": 6.3862,
+      "BL": 6.3862
+     },
+     "lip_outer_R": {
+      "TL": 7.3963,
+      "TR": 7.3963,
+      "BR": 7.3963,
+      "BL": 7.3963
+     },
+     "lip_inner_centre_offset": {
+      "TL": 0.0,
+      "TR": 0.0,
+      "BR": 0.0,
+      "BL": 0.0
+     },
+     "params": {
+      "glass_R": 6.0,
+      "lip_in_R": 6.4,
+      "lip_out_R": 7.4,
+      "cut_R": 7.8
+     }
+    }
+   },
+   "front (Z_GLASS_FRONT + 0.32, below the R0.3 rounds)": {
+    "z": -14.1,
+    "g2_sides_min_max": [
+     0.3944,
+     0.3945
+    ],
+    "g2_corners_min_max": [
+     0.3926,
+     0.3949
+    ],
+    "g1_sides_min_max": [
+     0.4119,
+     0.412
+    ],
+    "g1_corners_min_max": [
+     0.4112,
+     0.4139
+    ]
+   },
+   "mid-lip": {
+    "z": -13.92,
+    "g2_sides_min_max": [
+     0.3913,
+     0.3914
+    ],
+    "g2_corners_min_max": [
+     0.3895,
+     0.3918
+    ],
+    "g1_sides_min_max": [
+     0.4087,
+     0.4088
+    ],
+    "g1_corners_min_max": [
+     0.4081,
+     0.4107
+    ]
+   },
+   "root (Z_SHEET_BACK - 0.21, above the R0.2 root)": {
+    "z": -13.63,
+    "g2_sides_min_max": [
+     0.3862,
+     0.3863
+    ],
+    "g2_corners_min_max": [
+     0.3844,
+     0.3867
+    ],
+    "g1_sides_min_max": [
+     0.4037,
+     0.4038
+    ],
+    "g1_corners_min_max": [
+     0.403,
+     0.4057
+    ]
+   }
+  }
+ },
+ "plan_params": {
+  "print_inset_aa": [
+   0.3000000000000007,
+   0.29999999999998295,
+   0.3000000000000007,
+   0.30000000000001137
+  ],
+  "print_inset_va": [
+   0.8000000000000007,
+   0.799999999999983,
+   0.9400000000000013,
+   0.6600000000000108
+  ]
+ },
+ "assembly_vs_frame": {
+  "glass": {
+   "min_dist": 0.3476,
+   "overlap_mm3": 0.0
+  },
+  "loca": {
+   "min_dist": 1.1414,
+   "overlap_mm3": 0.0
+  },
+  "panel_env": {
+   "min_dist": 0.8208,
+   "overlap_mm3": 0.0
+  },
+  "formex": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "bead": {
+   "min_dist": 0.0,
+   "overlap_mm3": 6.9866
+  },
+  "tape_top": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "tape_bottom": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "tape_left": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "tape_right": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "sheet": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 stud F1": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S4 washer F1": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 nut F1": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 stud F2": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S4 washer F2": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 nut F2": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 stud F3": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S4 washer F3": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 nut F3": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 stud F4": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S4 washer F4": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S4 nut F4": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F1": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F1": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F1": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F2": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F2": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F2": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F3": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F3": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F3": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F4": {
+   "min_dist": 0.6913,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F4": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F4": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F5": {
+   "min_dist": 0.7,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F5": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F5": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 spacer F5": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F6": {
+   "min_dist": 0.7,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F6": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F6": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 spacer F6": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F7": {
+   "min_dist": 0.7,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F7": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F7": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 spacer F7": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 stud F8": {
+   "min_dist": 0.7,
+   "overlap_mm3": 0.0
+  },
+  "S8 washer F8": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 nut F8": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "S8 spacer F8": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet F1": {
+   "min_dist": 0.2913,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet head F1": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 backing washer F1": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet blind side F1": {
+   "min_dist": 1.2,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet F2": {
+   "min_dist": 0.2913,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet head F2": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 backing washer F2": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet blind side F2": {
+   "min_dist": 1.2,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet F3": {
+   "min_dist": 0.2913,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet head F3": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 backing washer F3": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet blind side F3": {
+   "min_dist": 1.2,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet F4": {
+   "min_dist": 0.2913,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet head F4": {
+   "min_dist": 1.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 backing washer F4": {
+   "min_dist": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "R4 rivet blind side F4": {
+   "min_dist": 1.2,
+   "overlap_mm3": 0.0
+  }
+ },
+ "bead_to_pocket": {
+  "top": 3.029,
+  "bottom (beam)": 1.4,
+  "left": 1.109,
+  "right": 3.869
+ },
+ "fit3d": {
+  "components_checked": 145,
+  "component_overlaps": [],
+  "closest_components": [
+   {
+    "ref": "F3",
+    "part": "Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm",
+    "min_dist": 1.364,
+    "overlap_mm3": 0.0,
+    "zmin": -1.87,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C333",
+    "part": "C_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "U3",
+    "part": "ESP32-WROOM-32E",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "R129",
+    "part": "R_0805_2012Metric",
+    "min_dist": 1.635,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J2",
+    "part": "PinHeader_1x06_P2.54mm_Vertical",
+    "min_dist": 1.836,
+    "overlap_mm3": 0.0,
+    "zmin": -1.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "PS1",
+    "part": "Converter_ACDC_Hi-Link_HLK-10Mxx",
+    "min_dist": 1.993,
+    "overlap_mm3": 0.0,
+    "zmin": -3.27,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "R1",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.074,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J3",
+    "part": "SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub",
+    "min_dist": 2.074,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J4",
+    "part": "SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub",
+    "min_dist": 2.198,
+    "overlap_mm3": 0.0,
+    "zmin": -0.37,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C126",
+    "part": "C_0402_1005Metric",
+    "min_dist": 2.254,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J10",
+    "part": "Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide",
+    "min_dist": 2.291,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C334",
+    "part": "C_0805_2012Metric",
+    "min_dist": 2.323,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "L1",
+    "part": "LFU09V-103",
+    "min_dist": 3.09,
+    "overlap_mm3": 0.0,
+    "zmin": -1.87,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "J20",
+    "part": "TerminalBlock_DEGSON_DG127H-5.08-02P",
+    "min_dist": 3.128,
+    "overlap_mm3": 0.0,
+    "zmin": -1.87,
+    "q1_trimmed": false,
+    "approx": false
+   },
+   {
+    "ref": "C133",
+    "part": "C_0402_1005Metric",
+    "min_dist": 3.325,
+    "overlap_mm3": 0.0,
+    "zmin": 1.63,
+    "q1_trimmed": false,
+    "approx": false
+   }
+  ],
+  "components_all": [
+   {
+    "ref": "F3",
+    "min_dist": 1.364,
+    "approx": false
+   },
+   {
+    "ref": "C333",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "U3",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "R129",
+    "min_dist": 1.635,
+    "approx": false
+   },
+   {
+    "ref": "J2",
+    "min_dist": 1.836,
+    "approx": false
+   },
+   {
+    "ref": "PS1",
+    "min_dist": 1.993,
+    "approx": false
+   },
+   {
+    "ref": "R1",
+    "min_dist": 2.074,
+    "approx": false
+   },
+   {
+    "ref": "J3",
+    "min_dist": 2.074,
+    "approx": false
+   },
+   {
+    "ref": "J4",
+    "min_dist": 2.198,
+    "approx": false
+   },
+   {
+    "ref": "C126",
+    "min_dist": 2.254,
+    "approx": false
+   },
+   {
+    "ref": "J10",
+    "min_dist": 2.291,
+    "approx": false
+   },
+   {
+    "ref": "C334",
+    "min_dist": 2.323,
+    "approx": false
+   },
+   {
+    "ref": "L1",
+    "min_dist": 3.09,
+    "approx": false
+   },
+   {
+    "ref": "J20",
+    "min_dist": 3.128,
+    "approx": false
+   },
+   {
+    "ref": "C133",
+    "min_dist": 3.325,
+    "approx": false
+   },
+   {
+    "ref": "C336",
+    "min_dist": 3.831,
+    "approx": false
+   },
+   {
+    "ref": "C331",
+    "min_dist": 3.852,
+    "approx": false
+   },
+   {
+    "ref": "C330",
+    "min_dist": 3.852,
+    "approx": false
+   },
+   {
+    "ref": "L30",
+    "min_dist": 4.186,
+    "approx": false
+   },
+   {
+    "ref": "J11",
+    "min_dist": 4.234,
+    "approx": false
+   },
+   {
+    "ref": "C335",
+    "min_dist": 4.646,
+    "approx": false
+   },
+   {
+    "ref": "R330",
+    "min_dist": 4.787,
+    "approx": false
+   },
+   {
+    "ref": "U31",
+    "min_dist": 5.432,
+    "approx": true
+   },
+   {
+    "ref": "L40",
+    "min_dist": 5.745,
+    "approx": true
+   },
+   {
+    "ref": "R331",
+    "min_dist": 5.767,
+    "approx": true
+   },
+   {
+    "ref": "R127",
+    "min_dist": 5.858,
+    "approx": true
+   },
+   {
+    "ref": "U30",
+    "min_dist": 6.74,
+    "approx": true
+   },
+   {
+    "ref": "C40",
+    "min_dist": 7.169,
+    "approx": true
+   },
+   {
+    "ref": "D115",
+    "min_dist": 7.228,
+    "approx": true
+   },
+   {
+    "ref": "C8",
+    "min_dist": 7.259,
+    "approx": true
+   },
+   {
+    "ref": "R116",
+    "min_dist": 7.439,
+    "approx": true
+   },
+   {
+    "ref": "C5",
+    "min_dist": 7.455,
+    "approx": true
+   },
+   {
+    "ref": "R128",
+    "min_dist": 7.548,
+    "approx": true
+   },
+   {
+    "ref": "R11",
+    "min_dist": 7.797,
+    "approx": true
+   },
+   {
+    "ref": "R223",
+    "min_dist": 7.973,
+    "approx": true
+   },
+   {
+    "ref": "C128",
+    "min_dist": 8.031,
+    "approx": true
+   },
+   {
+    "ref": "R225",
+    "min_dist": 8.244,
+    "approx": true
+   },
+   {
+    "ref": "R14",
+    "min_dist": 8.372,
+    "approx": true
+   },
+   {
+    "ref": "C222",
+    "min_dist": 8.428,
+    "approx": true
+   },
+   {
+    "ref": "R227",
+    "min_dist": 8.552,
+    "approx": true
+   },
+   {
+    "ref": "R115",
+    "min_dist": 8.561,
+    "approx": true
+   },
+   {
+    "ref": "D112",
+    "min_dist": 8.63,
+    "approx": true
+   },
+   {
+    "ref": "C225",
+    "min_dist": 8.758,
+    "approx": true
+   },
+   {
+    "ref": "C131",
+    "min_dist": 9.069,
+    "approx": true
+   },
+   {
+    "ref": "C226",
+    "min_dist": 9.235,
+    "approx": true
+   },
+   {
+    "ref": "TH220",
+    "min_dist": 9.412,
+    "approx": true
+   },
+   {
+    "ref": "D221",
+    "min_dist": 9.671,
+    "approx": true
+   },
+   {
+    "ref": "D113",
+    "min_dist": 9.771,
+    "approx": true
+   },
+   {
+    "ref": "C7",
+    "min_dist": 9.859,
+    "approx": true
+   },
+   {
+    "ref": "D220",
+    "min_dist": 9.905,
+    "approx": true
+   },
+   {
+    "ref": "C129",
+    "min_dist": 9.951,
+    "approx": true
+   },
+   {
+    "ref": "C332",
+    "min_dist": 10.208,
+    "approx": true
+   },
+   {
+    "ref": "R132",
+    "min_dist": 10.342,
+    "approx": true
+   },
+   {
+    "ref": "RV2",
+    "min_dist": 10.62,
+    "approx": true
+   },
+   {
+    "ref": "C130",
+    "min_dist": 10.848,
+    "approx": true
+   },
+   {
+    "ref": "C337",
+    "min_dist": 10.865,
+    "approx": true
+   },
+   {
+    "ref": "R5",
+    "min_dist": 10.87,
+    "approx": true
+   },
+   {
+    "ref": "R3",
+    "min_dist": 10.921,
+    "approx": true
+   },
+   {
+    "ref": "D116",
+    "min_dist": 11.157,
+    "approx": true
+   },
+   {
+    "ref": "R221",
+    "min_dist": 11.186,
+    "approx": true
+   },
+   {
+    "ref": "C6",
+    "min_dist": 11.189,
+    "approx": true
+   },
+   {
+    "ref": "R226",
+    "min_dist": 11.292,
+    "approx": true
+   },
+   {
+    "ref": "Q3",
+    "min_dist": 11.329,
+    "approx": true
+   },
+   {
+    "ref": "R114",
+    "min_dist": 12.104,
+    "approx": true
+   },
+   {
+    "ref": "C127",
+    "min_dist": 12.29,
+    "approx": true
+   },
+   {
+    "ref": "C132",
+    "min_dist": 12.376,
+    "approx": true
+   },
+   {
+    "ref": "L12",
+    "min_dist": 12.586,
+    "approx": true
+   },
+   {
+    "ref": "U20",
+    "min_dist": 12.668,
+    "approx": true
+   },
+   {
+    "ref": "L11",
+    "min_dist": 13.658,
+    "approx": true
+   },
+   {
+    "ref": "C220",
+    "min_dist": 13.664,
+    "approx": true
+   },
+   {
+    "ref": "C123",
+    "min_dist": 13.91,
+    "approx": true
+   },
+   {
+    "ref": "R113",
+    "min_dist": 14.542,
+    "approx": true
+   },
+   {
+    "ref": "R222",
+    "min_dist": 14.619,
+    "approx": true
+   },
+   {
+    "ref": "C121",
+    "min_dist": 14.747,
+    "approx": true
+   },
+   {
+    "ref": "C113",
+    "min_dist": 15.121,
+    "approx": true
+   },
+   {
+    "ref": "C118",
+    "min_dist": 15.211,
+    "approx": true
+   },
+   {
+    "ref": "C122",
+    "min_dist": 15.291,
+    "approx": true
+   },
+   {
+    "ref": "R220",
+    "min_dist": 15.588,
+    "approx": true
+   },
+   {
+    "ref": "R122",
+    "min_dist": 15.709,
+    "approx": true
+   },
+   {
+    "ref": "R112",
+    "min_dist": 15.772,
+    "approx": true
+   },
+   {
+    "ref": "C124",
+    "min_dist": 15.889,
+    "approx": true
+   },
+   {
+    "ref": "R123",
+    "min_dist": 15.898,
+    "approx": true
+   },
+   {
+    "ref": "F1",
+    "min_dist": 16.01,
+    "approx": true
+   },
+   {
+    "ref": "C223",
+    "min_dist": 16.136,
+    "approx": true
+   },
+   {
+    "ref": "R125",
+    "min_dist": 16.489,
+    "approx": true
+   },
+   {
+    "ref": "Q2",
+    "min_dist": 16.79,
+    "approx": true
+   },
+   {
+    "ref": "R118",
+    "min_dist": 17.009,
+    "approx": true
+   },
+   {
+    "ref": "R117",
+    "min_dist": 17.019,
+    "approx": true
+   },
+   {
+    "ref": "R7",
+    "min_dist": 17.162,
+    "approx": true
+   },
+   {
+    "ref": "R6",
+    "min_dist": 17.162,
+    "approx": true
+   },
+   {
+    "ref": "C1",
+    "min_dist": 17.457,
+    "approx": true
+   },
+   {
+    "ref": "C120",
+    "min_dist": 17.9,
+    "approx": true
+   },
+   {
+    "ref": "D111",
+    "min_dist": 17.979,
+    "approx": true
+   },
+   {
+    "ref": "C224",
+    "min_dist": 18.138,
+    "approx": true
+   },
+   {
+    "ref": "R111",
+    "min_dist": 18.25,
+    "approx": true
+   },
+   {
+    "ref": "R120",
+    "min_dist": 18.26,
+    "approx": true
+   },
+   {
+    "ref": "U11",
+    "min_dist": 18.446,
+    "approx": true
+   },
+   {
+    "ref": "U10",
+    "min_dist": 18.558,
+    "approx": true
+   },
+   {
+    "ref": "D114",
+    "min_dist": 18.652,
+    "approx": true
+   },
+   {
+    "ref": "C221",
+    "min_dist": 19.485,
+    "approx": true
+   },
+   {
+    "ref": "R110",
+    "min_dist": 19.495,
+    "approx": true
+   },
+   {
+    "ref": "R119",
+    "min_dist": 19.505,
+    "approx": true
+   },
+   {
+    "ref": "RN7",
+    "min_dist": 19.652,
+    "approx": true
+   },
+   {
+    "ref": "C111",
+    "min_dist": 20.048,
+    "approx": true
+   },
+   {
+    "ref": "C125",
+    "min_dist": 20.247,
+    "approx": true
+   },
+   {
+    "ref": "R224",
+    "min_dist": 20.451,
+    "approx": true
+   },
+   {
+    "ref": "R121",
+    "min_dist": 20.753,
+    "approx": true
+   },
+   {
+    "ref": "RN6",
+    "min_dist": 21.598,
+    "approx": true
+   },
+   {
+    "ref": "R13",
+    "min_dist": 21.772,
+    "approx": true
+   },
+   {
+    "ref": "R12",
+    "min_dist": 21.993,
+    "approx": true
+   },
+   {
+    "ref": "C4",
+    "min_dist": 22.26,
+    "approx": true
+   },
+   {
+    "ref": "R126",
+    "min_dist": 22.462,
+    "approx": true
+   },
+   {
+    "ref": "Y10",
+    "min_dist": 22.506,
+    "approx": true
+   },
+   {
+    "ref": "RV1",
+    "min_dist": 23.475,
+    "approx": true
+   },
+   {
+    "ref": "C2",
+    "min_dist": 23.494,
+    "approx": true
+   },
+   {
+    "ref": "RN5",
+    "min_dist": 23.591,
+    "approx": true
+   },
+   {
+    "ref": "RN4",
+    "min_dist": 25.556,
+    "approx": true
+   },
+   {
+    "ref": "C110",
+    "min_dist": 26.143,
+    "approx": true
+   },
+   {
+    "ref": "R131",
+    "min_dist": 26.625,
+    "approx": true
+   },
+   {
+    "ref": "R16",
+    "min_dist": 26.691,
+    "approx": true
+   },
+   {
+    "ref": "R130",
+    "min_dist": 26.691,
+    "approx": true
+   },
+   {
+    "ref": "R2",
+    "min_dist": 27.145,
+    "approx": true
+   },
+   {
+    "ref": "RN3",
+    "min_dist": 27.548,
+    "approx": true
+   },
+   {
+    "ref": "C117",
+    "min_dist": 27.551,
+    "approx": true
+   },
+   {
+    "ref": "K1",
+    "min_dist": 28.26,
+    "approx": true
+   },
+   {
+    "ref": "RN2",
+    "min_dist": 29.526,
+    "approx": true
+   },
+   {
+    "ref": "C112",
+    "min_dist": 31.117,
+    "approx": true
+   },
+   {
+    "ref": "RN1",
+    "min_dist": 31.516,
+    "approx": true
+   },
+   {
+    "ref": "HS1",
+    "min_dist": 31.554,
+    "approx": true
+   },
+   {
+    "ref": "Q1",
+    "min_dist": 32.722,
+    "approx": true
+   },
+   {
+    "ref": "C114",
+    "min_dist": 33.652,
+    "approx": true
+   },
+   {
+    "ref": "U6",
+    "min_dist": 33.793,
+    "approx": true
+   },
+   {
+    "ref": "R10",
+    "min_dist": 33.9,
+    "approx": true
+   },
+   {
+    "ref": "R9",
+    "min_dist": 35.267,
+    "approx": true
+   },
+   {
+    "ref": "R8",
+    "min_dist": 36.615,
+    "approx": true
+   },
+   {
+    "ref": "C116",
+    "min_dist": 37.409,
+    "approx": true
+   },
+   {
+    "ref": "Q4",
+    "min_dist": 37.691,
+    "approx": true
+   },
+   {
+    "ref": "C119",
+    "min_dist": 37.781,
+    "approx": true
+   },
+   {
+    "ref": "C115",
+    "min_dist": 37.781,
+    "approx": true
+   },
+   {
+    "ref": "D5",
+    "min_dist": 38.386,
+    "approx": true
+   },
+   {
+    "ref": "R4",
+    "min_dist": 38.628,
+    "approx": true
+   },
+   {
+    "ref": "R15",
+    "min_dist": 38.873,
+    "approx": true
+   },
+   {
+    "ref": "R124",
+    "min_dist": 39.524,
+    "approx": true
+   },
+   {
+    "ref": "U1",
+    "min_dist": 40.072,
+    "approx": true
+   },
+   {
+    "ref": "U5",
+    "min_dist": 41.318,
+    "approx": true
+   }
+  ],
+  "pcb_body": {
+   "min_dist": 0.08,
+   "overlap_mm3": 0.0
+  },
+  "panel_parts": [
+   {
+    "part": "lcm_0",
+    "min_dist": 0.821,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     20.02,
+     19.0,
+     -5.8
+    ],
+    "to_formex": 0.805
+   },
+   {
+    "part": "pu_tape_1",
+    "min_dist": 0.879,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     20.02,
+     119.0,
+     -9.15
+    ],
+    "to_formex": 4.145
+   },
+   {
+    "part": "sensor_2",
+    "min_dist": 0.886,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     20.02,
+     19.0,
+     -9.54
+    ],
+    "to_formex": 4.545
+   },
+   {
+    "part": "cover_print_3",
+    "min_dist": 0.901,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     20.02,
+     119.0,
+     -10.42
+    ],
+    "to_formex": 5.42
+   },
+   {
+    "part": "cover_va_4",
+    "min_dist": 4.431,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     181.39,
+     110.15,
+     -10.42
+    ],
+    "to_formex": 5.42
+   }
+  ],
+  "tails": [
+   {
+    "part": "tft_tail_5",
+    "min_dist": 1.445,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     156.36,
+     116.48,
+     1.44
+    ],
+    "to_formex": 3.292,
+    "to_glass": 2.865,
+    "to_bead": 5.635
+   },
+   {
+    "part": "tft_fingers_6",
+    "min_dist": 2.534,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     156.36,
+     114.39,
+     1.42
+    ],
+    "to_formex": 6.025,
+    "to_glass": 12.845,
+    "to_bead": 26.8
+   },
+   {
+    "part": "ctp_tail_7",
+    "min_dist": 1.53,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     40.72,
+     128.51,
+     -9.86
+    ],
+    "to_formex": 4.581,
+    "to_glass": 1.565,
+    "to_bead": 12.975
+   },
+   {
+    "part": "ctp_fingers_8",
+    "min_dist": 3.872,
+    "overlap_mm3": 0.0,
+    "approx": false,
+    "at_abs": [
+     61.27,
+     114.46,
+     1.22
+    ],
+    "to_formex": 5.825,
+    "to_glass": 12.645,
+    "to_bead": 36.545
+   }
+  ],
+  "lead_protrusions": [
+   {
+    "ref": "PS1",
+    "protrusion": 3.27,
+    "gap_to_formex": 1.335,
+    "gap_to_frame": 1.99
+   },
+   {
+    "ref": "HS1",
+    "protrusion": 2.87,
+    "gap_to_formex": 1.735,
+    "gap_to_frame": 31.55
+   },
+   {
+    "ref": "Q1",
+    "protrusion": 2.5,
+    "gap_to_formex": 2.1,
+    "gap_to_frame": 32.72
+   },
+   {
+    "ref": "L40",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 5.74
+   },
+   {
+    "ref": "L1",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 3.09
+   },
+   {
+    "ref": "F3",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 1.36
+   },
+   {
+    "ref": "J20",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 3.13
+   },
+   {
+    "ref": "C40",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 7.17
+   },
+   {
+    "ref": "F1",
+    "protrusion": 1.87,
+    "gap_to_formex": 2.735,
+    "gap_to_frame": 16.01
+   },
+   {
+    "ref": "K1",
+    "protrusion": 1.77,
+    "gap_to_formex": 2.835,
+    "gap_to_frame": 28.26
+   },
+   {
+    "ref": "U5",
+    "protrusion": 1.67,
+    "gap_to_formex": 2.935,
+    "gap_to_frame": 41.32
+   },
+   {
+    "ref": "U1",
+    "protrusion": 1.67,
+    "gap_to_formex": 2.935,
+    "gap_to_frame": 40.07
+   },
+   {
+    "ref": "J2",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 1.84
+   },
+   {
+    "ref": "R3",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 10.92
+   },
+   {
+    "ref": "RV1",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 23.48
+   },
+   {
+    "ref": "R5",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 10.87
+   },
+   {
+    "ref": "R2",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 27.14
+   },
+   {
+    "ref": "RV2",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 10.62
+   },
+   {
+    "ref": "R7",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 17.16
+   },
+   {
+    "ref": "R6",
+    "protrusion": 1.37,
+    "gap_to_formex": 3.235,
+    "gap_to_frame": 17.16
+   },
+   {
+    "ref": "R1",
+    "protrusion": 0.37,
+    "gap_to_formex": 4.235,
+    "gap_to_frame": 2.07
+   },
+   {
+    "ref": "J4",
+    "protrusion": 0.37,
+    "gap_to_formex": 4.235,
+    "gap_to_frame": 2.2
+   },
+   {
+    "ref": "J3",
+    "protrusion": 0.37,
+    "gap_to_formex": 4.235,
+    "gap_to_frame": 2.07
+   },
+   {
+    "ref": "C2",
+    "protrusion": 0.37,
+    "gap_to_formex": 4.235,
+    "gap_to_frame": 23.49
+   },
+   {
+    "ref": "C4",
+    "protrusion": 0.27,
+    "gap_to_formex": 4.335,
+    "gap_to_frame": 22.26
+   },
+   {
+    "ref": "C1",
+    "protrusion": 0.27,
+    "gap_to_formex": 4.335,
+    "gap_to_frame": 17.46
+   }
+  ]
+ },
+ "tails_unmoved": [
+  {
+   "part": "tft_tail_5",
+   "unmoved_min_dist": 1.546,
+   "unmoved_at_abs": [
+    165.9,
+    140.91,
+    -7.76
+   ],
+   "split_min_dist": 1.532,
+   "split_where": "panel side (moved, Z < -2.1)",
+   "split_at_abs": [
+    165.9,
+    140.91,
+    -8.56
+   ]
+  },
+  {
+   "part": "tft_fingers_6",
+   "unmoved_min_dist": 3.056,
+   "unmoved_at_abs": [
+    156.36,
+    114.39,
+    2.22
+   ],
+   "split_min_dist": 3.056,
+   "split_where": "connector side (unmoved, Z > -2.1)",
+   "split_at_abs": [
+    156.36,
+    114.39,
+    2.22
+   ]
+  },
+  {
+   "part": "ctp_tail_7",
+   "unmoved_min_dist": 1.544,
+   "unmoved_at_abs": [
+    40.72,
+    128.51,
+    -9.06
+   ],
+   "split_min_dist": 1.53,
+   "split_where": "panel side (moved, Z < -2.1)",
+   "split_at_abs": [
+    40.72,
+    128.51,
+    -9.86
+   ]
+  },
+  {
+   "part": "ctp_fingers_8",
+   "unmoved_min_dist": 4.577,
+   "unmoved_at_abs": [
+    61.27,
+    114.46,
+    2.02
+   ],
+   "split_min_dist": 4.577,
+   "split_where": "connector side (unmoved, Z > -2.1)",
+   "split_at_abs": [
+    61.27,
+    114.46,
+    2.02
+   ]
+  }
+ ],
+ "tool_access": [
+  {
+   "hole": "F1",
+   "x": 2.11,
+   "y": -0.83,
+   "board_min_dist": 5.2,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F2",
+   "x": 205.59,
+   "y": -0.83,
+   "board_min_dist": 6.95,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F3",
+   "x": 205.59,
+   "y": 165.0,
+   "board_min_dist": 31.14,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F4",
+   "x": 2.11,
+   "y": 165.0,
+   "board_min_dist": 30.8,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F5",
+   "x": 103.85,
+   "y": -0.83,
+   "board_min_dist": 8.04,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F6",
+   "x": 205.59,
+   "y": 82.085,
+   "board_min_dist": 5.28,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F7",
+   "x": 103.85,
+   "y": 165.0,
+   "board_min_dist": 12.94,
+   "closest": "DS1 tft_tail_5 (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  },
+  {
+   "hole": "F8",
+   "x": 2.11,
+   "y": 82.085,
+   "board_min_dist": 11.89,
+   "closest": "PCB (lower bound: bbox gap / sampled)",
+   "board_overlaps": [],
+   "frame_min_dist": 0.005,
+   "frame_overlap_mm3": 0.0
+  }
+ ],
+ "above_pcb": {
+  "margin_mm": 1.0,
+  "volume_mm3": 0.0,
+  "volume_inside_outline_mm3": 0.0,
+  "plan_gap_above_z0_to_board_edge_mm": 2.671,
+  "plan_gap_at_abs": [
+   169.72,
+   128.65
+  ],
+  "ok": true
+ },
+ "electrical": {
+  "contact_faces": 7,
+  "pad_min": {
+   "pad": "J4.1",
+   "dist": 1.206,
+   "kind": "rib",
+   "at": [
+    67.03,
+    21.52
+   ]
+  },
+  "closest_pads": [
+   {
+    "pad": "J4.1",
+    "dist": 1.206,
+    "kind": "rib",
+    "at": [
+     67.03,
+     21.52
+    ]
+   },
+   {
+    "pad": "J3.1",
+    "dist": 1.224,
+    "kind": "rib",
+    "at": [
+     110.14,
+     21.52
+    ]
+   },
+   {
+    "pad": "J3.2",
+    "dist": 1.842,
+    "kind": "rib",
+    "at": [
+     111.57,
+     21.52
+    ]
+   },
+   {
+    "pad": "J2.1",
+    "dist": 2.232,
+    "kind": "rib",
+    "at": [
+     22.54,
+     27.71
+    ]
+   },
+   {
+    "pad": "F3.1",
+    "dist": 2.691,
+    "kind": "rib",
+    "at": [
+     91.12,
+     21.52
+    ]
+   },
+   {
+    "pad": "R1.1",
+    "dist": 3.387,
+    "kind": "wall",
+    "at": [
+     129.71,
+     18.16
+    ]
+   },
+   {
+    "pad": "R1.2",
+    "dist": 3.391,
+    "kind": "wall",
+    "at": [
+     120.12,
+     18.16
+    ]
+   },
+   {
+    "pad": "J4.2",
+    "dist": 3.59,
+    "kind": "wall",
+    "at": [
+     76.92,
+     18.16
+    ]
+   },
+   {
+    "pad": "J2.6",
+    "dist": 3.683,
+    "kind": "rib",
+    "at": [
+     22.54,
+     47.29
+    ]
+   },
+   {
+    "pad": "PS1.3",
+    "dist": 3.916,
+    "kind": "rib",
+    "at": [
+     182.4,
+     68.29
+    ]
+   }
+  ],
+  "pad_min_by_kind": {
+   "rib": {
+    "pad": "J4.1",
+    "dist": 1.206,
+    "kind": "rib",
+    "at": [
+     67.03,
+     21.52
+    ]
+   },
+   "wall": {
+    "pad": "R1.1",
+    "dist": 3.387,
+    "kind": "wall",
+    "at": [
+     129.71,
+     18.16
+    ]
+   }
+  },
+  "mains_to_contact": [
+   1.206,
+   "J4.1",
+   "rib",
+   [
+    67.03,
+    21.52
+   ]
+  ],
+  "rib_reach_at_contact": 2.556,
+  "creepage_tail_mm": 6.744,
+  "creepage_mm": 7.949,
+  "clearance_v2_formula_mm": 6.7,
+  "clearance_item": "R1.2",
+  "clearance_depth_bound_nominal_mm": 5.8,
+  "clearance_depth_bound_backstop_mm": 5.0,
+  "governing_3d": {
+   "pad": "J4.1",
+   "component": "J4",
+   "min_dist_3d": 2.198
+  }
+ },
+ "washer_bearing_mm2": {
+  "F1": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F2": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F3": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F4": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F5": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F6": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F7": [
+   80.7,
+   80.5,
+   80.5
+  ],
+  "F8": [
+   80.7,
+   80.5,
+   80.5
+  ]
+ },
+ "rivet": {
+  "frame_stack_mm": 6.000000000000002,
+  "grip_mm": 8.200000000000001
+ },
+ "rows": [
+  {
+   "group": "gaps",
+   "check": "g2 glass -> lip inner face at the flush plane, 20 C (all round)",
+   "measured": "0.393..0.395 (corners 0.393..0.395)",
+   "required": "0.40",
+   "verdict": "PASS",
+   "note": "measured 0.32 behind the flush plane (below the R0.3 rounds), 1-deg wall extrapolated"
+  },
+  {
+   "group": "gaps",
+   "check": "corner radii (STEP, Z -14.10): lip inner / lip outer vs params glass R6.0 + g2, cut-out R7.8 - g1",
+   "measured": "inner 6.394..6.394, outer 7.388..7.388 (concentric with the glass corners, centre offset <= 0.0000)",
+   "required": "6.3944 / 7.3881 at this Z (6.4 at the top, 7.4 at the root, 1 deg draft)",
+   "verdict": "PASS",
+   "note": "corner gaps at 20 C therefore equal the side gaps; g2 corner min 0.393, g1 corner min 0.411 (this Z)"
+  },
+  {
+   "group": "gaps",
+   "check": "g1 lip outer face -> sheet cut-out, 20 C, at the flush plane / at the lip root",
+   "measured": "0.411..0.414 / 0.403..0.406",
+   "required": "0.40",
+   "verdict": "INFO",
+   "note": "lip_out is at the root, so the visible g1 at the front is 0.40 + 1 x tan(1deg) = 0.417"
+  },
+  {
+   "group": "gaps",
+   "check": "g2 at -20 C, 50 ppm (sides / corners)",
+   "measured": "0.246 / 0.207",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "WC with glass outline +-0.2/side: 0.046 / 0.007"
+  },
+  {
+   "group": "gaps",
+   "check": "g1 at -20 C, 50 ppm (sides / corners)",
+   "measured": "0.524 / 0.525",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.384 / 0.385"
+  },
+  {
+   "group": "gaps",
+   "check": "g2 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)",
+   "measured": "0.542 / 0.543",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "WC with glass outline +-0.2/side: 0.342 / 0.343"
+  },
+  {
+   "group": "gaps",
+   "check": "g1 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)",
+   "measured": "0.214 / 0.165",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.074 / 0.025"
+  },
+  {
+   "group": "gaps",
+   "check": "g2 at -20 C, 70 ppm (sides / corners)",
+   "measured": "0.173 / 0.116",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "WC with glass outline +-0.2/side: -0.027 / -0.084"
+  },
+  {
+   "group": "gaps",
+   "check": "g1 at -20 C, 70 ppm (sides / corners)",
+   "measured": "0.583 / 0.584",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.443 / 0.444"
+  },
+  {
+   "group": "gaps",
+   "check": "g2 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)",
+   "measured": "0.614 / 0.615",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "WC with glass outline +-0.2/side: 0.414 / 0.415"
+  },
+  {
+   "group": "gaps",
+   "check": "g1 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)",
+   "measured": "0.121 / 0.050",
+   "required": "> 0 nominal",
+   "verdict": "PASS",
+   "note": "measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: -0.019 / -0.090"
+  },
+  {
+   "group": "print",
+   "check": "print window inside the active area (per side l/r/t/b)",
+   "measured": "0.30 / 0.30 / 0.30 / 0.30",
+   "required": "0.30",
+   "verdict": "PASS",
+   "note": "AA from the panel DS, window R0.5"
+  },
+  {
+   "group": "print",
+   "check": "print window inside the CTP cover-lens view area (l/r/t/b)",
+   "measured": "0.80 / 0.80 / 0.94 / 0.66",
+   "required": "> 0 (window hides the CTP print edge)",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "flush",
+   "check": "glass front / lip top / sheet front",
+   "measured": "-14.42 / -14.42 / -14.42",
+   "required": "one plane",
+   "verdict": "PASS",
+   "note": "sheet seated on the seat ring at Z_SHEET_BACK; glass set on the lip plane by the jig"
+  },
+  {
+   "group": "assembly",
+   "check": "glass vs frame (overlap / min gap)",
+   "measured": "0.0000 mm3 / 0.348",
+   "required": "0 / ~0.33 (recess wall at the glass back)",
+   "verdict": "PASS",
+   "note": "glass modelled without arris"
+  },
+  {
+   "group": "assembly",
+   "check": "bead vs frame: common volume = the 8 pips (by design), bead on the land",
+   "measured": "6.987 mm3 (pips 6.987) / gap 0.000",
+   "required": "pips only / 0 (contact)",
+   "verdict": "PASS",
+   "note": "bead 4.0 x 1.0 at 0.9..4.9 inside the glass edge; pips dia 1.5 x 0.5 on its centre line"
+  },
+  {
+   "group": "assembly",
+   "check": "bead inner edge -> pocket face at the land (top / bottom beam / left / right)",
+   "measured": "3.029 / 1.400 / 1.109 / 3.869",
+   "required": ">= 1.0 (A1); params 3.13 / 1.40 / 1.21 / 3.97",
+   "verdict": "PASS",
+   "note": "the pocket face is drafted 1 deg open to the front, so at the land it is ~0.10 closer than the params' rectangle"
+  },
+  {
+   "group": "assembly",
+   "check": "panel envelope vs frame",
+   "measured": "0.0000 mm3 / 0.821",
+   "required": ">= 0.8 (pocket_clr)",
+   "verdict": "PASS",
+   "note": "LCM 164.9 x 100 outline, Z_CTP_FRONT..Z_PANEL_BACK"
+  },
+  {
+   "group": "assembly",
+   "check": "LOCA vs frame",
+   "measured": "0.0000 mm3 / 1.141",
+   "required": "> 0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "assembly",
+   "check": "Formex vs frame (bonded to the shelf front)",
+   "measured": "0.0000 mm3 / 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "assembly",
+   "check": "panel back -> Formex front (back-stop gap)",
+   "measured": "0.80",
+   "required": "0.80 (g_bs); WC [0.08, 1.52]",
+   "verdict": "PASS",
+   "note": "from the levels"
+  },
+  {
+   "group": "assembly",
+   "check": "VHB strips vs frame (on the flange front)",
+   "measured": "overlap 0.0000 mm3, min 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS",
+   "note": "strips run over the F5-F8 slots by design"
+  },
+  {
+   "group": "assembly",
+   "check": "oven sheet vs frame (seat ring / pads at the sheet back, lip in the cut-out)",
+   "measured": "0.0000 mm3 / 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "hardware",
+   "check": "S4 hardware vs frame (12 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS",
+   "note": "studs through the slots, washers / spacers / rivet parts touching their seats"
+  },
+  {
+   "group": "hardware",
+   "check": "S8 hardware vs frame (28 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS",
+   "note": "studs through the slots, washers / spacers / rivet parts touching their seats"
+  },
+  {
+   "group": "hardware",
+   "check": "R4 hardware vs frame (16 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS",
+   "note": "studs through the slots, washers / spacers / rivet parts touching their seats"
+  },
+  {
+   "group": "assembly",
+   "check": "VHB strip ends -> corner pads (dia 18)",
+   "measured": "1.000",
+   "required": ">= 1.0 (tape_margin)",
+   "verdict": "PASS",
+   "note": "pad dia 18 at its base; the pad face is 17.965 (draft)"
+  },
+  {
+   "group": "assembly",
+   "check": "pip tops -> glass back (nominal; WC from the params)",
+   "measured": "0.500 (8 pip tops)",
+   "required": "> 0 (params WC 0.13)",
+   "verdict": "PASS",
+   "note": "pips never touch the glass; the bead sets the bond line"
+  },
+  {
+   "group": "hardware",
+   "check": "DIN 9021 M4 washer (12 / 4.3) bearing on the tube tops, stud centred / at the slot ends +-1.5",
+   "measured": "min 80.5 mm2 -> 6.2 MPa at 500 N",
+   "required": "82 mm2 / 6.1 MPa (params); creep 15 MPa",
+   "verdict": "PASS",
+   "note": "slot 5.4 x 7.0 under the washer"
+  },
+  {
+   "group": "board",
+   "check": "component models overlapping the frame (145)",
+   "measured": "0",
+   "required": "0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "board",
+   "check": "closest component model",
+   "measured": "F3 1.364",
+   "required": "> 0",
+   "verdict": "PASS",
+   "note": "next: C333 1.64, U3 1.64, R129 1.64, J2 1.84, PS1 1.99"
+  },
+  {
+   "group": "board",
+   "check": "PCB body",
+   "measured": "0.080 / 0.0000 mm3",
+   "required": "0.08 (copper + mask) / 0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "panel",
+   "check": "DS1 panel parts (moved -0.80 with the panel) vs frame",
+   "measured": "min 0.821 (lcm_0 at [20.02, 19.0, -5.8]), overlap 0.0000 mm3",
+   "required": ">= 0.8 (pocket) / 0",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "panel",
+   "check": "DS1 panel parts vs Formex",
+   "measured": "0.805",
+   "required": "0.8 (g_bs)",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "tails",
+   "check": "FPC tails vs frame - split model (panel legs moved -0.80, connector legs at J10/J11 unmoved)",
+   "measured": "1.530 (ctp_tail_7, panel side (moved, Z < -2.1), at [40.72, 128.51, -9.86])",
+   "required": ">= 1.5",
+   "verdict": "PASS",
+   "note": "all: tft_tail_5 1.532, tft_fingers_6 3.056, ctp_tail_7 1.530, ctp_fingers_8 4.577"
+  },
+  {
+   "group": "tails",
+   "check": "FPC tails rigidly moved with the panel (bound) vs frame",
+   "measured": "1.445 (tft_tail_5 at [156.36, 116.48, 1.44])",
+   "required": ">= 1.5",
+   "verdict": "INFO",
+   "note": "upper bound of the move: near J10/J11 the tails stay with the PCB; all: tft_tail_5 1.445, tft_fingers_6 2.534, ctp_tail_7 1.530, ctp_fingers_8 3.872"
+  },
+  {
+   "group": "tails",
+   "check": "FPC tails at the v2 position (not moved, bound) vs frame",
+   "measured": "1.544 (ctp_tail_7 at [40.72, 128.51, -9.06])",
+   "required": ">= 1.5",
+   "verdict": "INFO",
+   "note": "lower bound of the move; v2 measured TFT 1.557 / CTP 1.554"
+  },
+  {
+   "group": "tails",
+   "check": "FPC tails vs glass / bead",
+   "measured": "1.565 / 5.635",
+   "required": "> 0 (info: >= 1.5 asked to the frame only)",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "electrical",
+   "check": "lead protrusion -> Formex back (closest)",
+   "measured": "PS1 3.27 below Z 0 -> gap 1.335",
+   "required": "> 0",
+   "verdict": "PASS",
+   "note": "next: HS1 1.74, Q1 2.10, L40 2.73, L1 2.73, F3 2.73"
+  },
+  {
+   "group": "electrical",
+   "check": "Z 0 contact faces vs B.Cu pads",
+   "measured": "1.206 at J4.1 (rib)",
+   "required": ">= 1.0",
+   "verdict": "PASS",
+   "note": "by kind: rib 1.21 J4.1, wall 3.39 R1.1"
+  },
+  {
+   "group": "electrical",
+   "check": "3D frame -> model of the nearest pad (J4.1)",
+   "measured": "2.198",
+   "required": ">= 1.0",
+   "verdict": "PASS",
+   "note": "leads / solder fillets in the model"
+  },
+  {
+   "group": "electrical",
+   "check": "mains creepage -> panel metal via the frame (back-stop case, v2 formula)",
+   "measured": "7.95 (copper->contact 1.21 at J4.1 + path 6.74)",
+   "required": ">= 6.4",
+   "verdict": "PASS",
+   "note": "nominal: the panel hangs on the glass and touches no frame face -> no surface path at all"
+  },
+  {
+   "group": "electrical",
+   "check": "mains clearance -> panel metal",
+   "measured": "6.70 (v2 formula, R1.2); any path >= 5.80 nominal / 5.00 back-stop",
+   "required": ">= 4.0",
+   "verdict": "PASS",
+   "note": "the panel back lies 5.8 (nominal) / 5.0 (bond failed) below the PCB back"
+  },
+  {
+   "group": "electrical",
+   "check": "frame volume above Z 0 inside the board outline + 1",
+   "measured": "0.0000 mm3 (inside outline 0.0000)",
+   "required": "0",
+   "verdict": "PASS",
+   "note": "plan gap of frame material above Z 0 to the board edge 2.671 at [169.72, 128.65]"
+  },
+  {
+   "group": "tool",
+   "check": "dia-12 socket F1-F8, Z_TUBE_TOP-0.5 .. +45, vs every board body",
+   "measured": "min >= 5.20 at F1 (PCB (lower bound: bbox gap / sampled))",
+   "required": "no overlap (warn < 1.0)",
+   "verdict": "PASS",
+   "note": "F1 5.2; F2 7.0; F3 31.1; F4 30.8; F5 8.0; F6 5.3; F7 12.9; F8 11.9"
+  },
+  {
+   "group": "tool",
+   "check": "dia-12 washer + socket F1-F8, tube top .. +45, vs frame",
+   "measured": "min 0.005 at F1, overlap 0.0000",
+   "required": "no overlap",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "group": "rivet",
+   "check": "R4 blind side envelope (dia 12 x 10 beyond the M5 washer) vs frame",
+   "measured": "min 1.200, overlap 0.0000",
+   "required": "no overlap",
+   "verdict": "PASS",
+   "note": "envelope ASSUMED (tri-fold / bulb)"
+  },
+  {
+   "group": "rivet",
+   "check": "R4 grip = sheet + frame stack at F1 (measured) + M5 washer",
+   "measured": "8.20 (stack 6.00)",
+   "required": "8.2 (concept 11.4)",
+   "verdict": "PASS",
+   "note": ""
+  }
+ ],
+ "counts": {
+  "PASS": 45,
+  "FAIL": 0,
+  "INFO": 3
+ },
+ "seconds": 221.9,
+ "table": "group       check                                                                          measured                                                     required                             verdict\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\ngaps        g2 glass -> lip inner face at the flush plane, 20 C (all round)                0.393..0.395 (corners 0.393..0.395)                          0.40                                 PASS\n              note: measured 0.32 behind the flush plane (below the R0.3 rounds), 1-deg wall extrapolated\ngaps        corner radii (STEP, Z -14.10): lip inner / lip outer vs params glass R6.0 + g2 inner 6.394..6.394, outer 7.388..7.388 (concentric with the  6.3944 / 7.3881 at this Z (6.4 at th PASS\n              note: corner gaps at 20 C therefore equal the side gaps; g2 corner min 0.393, g1 corner min 0.411 (this Z)\ngaps        g1 lip outer face -> sheet cut-out, 20 C, at the flush plane / at the lip root 0.411..0.414 / 0.403..0.406                                  0.40                                 INFO\n              note: lip_out is at the root, so the visible g1 at the front is 0.40 + 1 x tan(1deg) = 0.417\ngaps        g2 at -20 C, 50 ppm (sides / corners)                                          0.246 / 0.207                                                > 0 nominal                          PASS\n              note: WC with glass outline +-0.2/side: 0.046 / 0.007\ngaps        g1 at -20 C, 50 ppm (sides / corners)                                          0.524 / 0.525                                                > 0 nominal                          PASS\n              note: measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.384 / 0.385\ngaps        g2 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)                 0.542 / 0.543                                                > 0 nominal                          PASS\n              note: WC with glass outline +-0.2/side: 0.342 / 0.343\ngaps        g1 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)                 0.214 / 0.165                                                > 0 nominal                          PASS\n              note: measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.074 / 0.025\ngaps        g2 at -20 C, 70 ppm (sides / corners)                                          0.173 / 0.116                                                > 0 nominal                          PASS\n              note: WC with glass outline +-0.2/side: -0.027 / -0.084\ngaps        g1 at -20 C, 70 ppm (sides / corners)                                          0.583 / 0.584                                                > 0 nominal                          PASS\n              note: measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: 0.443 / 0.444\ngaps        g2 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)                 0.614 / 0.615                                                > 0 nominal                          PASS\n              note: WC with glass outline +-0.2/side: 0.414 / 0.415\ngaps        g1 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)                 0.121 / 0.050                                                > 0 nominal                          PASS\n              note: measured at the flush plane; with cut-out +-0.1 and lip position WC 0.14: -0.019 / -0.090\nprint       print window inside the active area (per side l/r/t/b)                         0.30 / 0.30 / 0.30 / 0.30                                    0.30                                 PASS\n              note: AA from the panel DS, window R0.5\nprint       print window inside the CTP cover-lens view area (l/r/t/b)                     0.80 / 0.80 / 0.94 / 0.66                                    > 0 (window hides the CTP print edge PASS\nflush       glass front / lip top / sheet front                                            -14.42 / -14.42 / -14.42                                     one plane                            PASS\n              note: sheet seated on the seat ring at Z_SHEET_BACK; glass set on the lip plane by the jig\nassembly    glass vs frame (overlap / min gap)                                             0.0000 mm3 / 0.348                                           0 / ~0.33 (recess wall at the glass  PASS\n              note: glass modelled without arris\nassembly    bead vs frame: common volume = the 8 pips (by design), bead on the land        6.987 mm3 (pips 6.987) / gap 0.000                           pips only / 0 (contact)              PASS\n              note: bead 4.0 x 1.0 at 0.9..4.9 inside the glass edge; pips dia 1.5 x 0.5 on its centre line\nassembly    bead inner edge -> pocket face at the land (top / bottom beam / left / right)  3.029 / 1.400 / 1.109 / 3.869                                >= 1.0 (A1); params 3.13 / 1.40 / 1. PASS\n              note: the pocket face is drafted 1 deg open to the front, so at the land it is ~0.10 closer than the params' rectangle\nassembly    panel envelope vs frame                                                        0.0000 mm3 / 0.821                                           >= 0.8 (pocket_clr)                  PASS\n              note: LCM 164.9 x 100 outline, Z_CTP_FRONT..Z_PANEL_BACK\nassembly    LOCA vs frame                                                                  0.0000 mm3 / 1.141                                           > 0                                  PASS\nassembly    Formex vs frame (bonded to the shelf front)                                    0.0000 mm3 / 0.000                                           0 / 0                                PASS\nassembly    panel back -> Formex front (back-stop gap)                                     0.80                                                         0.80 (g_bs); WC [0.08, 1.52]         PASS\n              note: from the levels\nassembly    VHB strips vs frame (on the flange front)                                      overlap 0.0000 mm3, min 0.000                                0 / 0                                PASS\n              note: strips run over the F5-F8 slots by design\nassembly    oven sheet vs frame (seat ring / pads at the sheet back, lip in the cut-out)   0.0000 mm3 / 0.000                                           0 / 0                                PASS\nhardware    S4 hardware vs frame (12 parts)                                                overlaps: none                                               none                                 PASS\n              note: studs through the slots, washers / spacers / rivet parts touching their seats\nhardware    S8 hardware vs frame (28 parts)                                                overlaps: none                                               none                                 PASS\n              note: studs through the slots, washers / spacers / rivet parts touching their seats\nhardware    R4 hardware vs frame (16 parts)                                                overlaps: none                                               none                                 PASS\n              note: studs through the slots, washers / spacers / rivet parts touching their seats\nassembly    VHB strip ends -> corner pads (dia 18)                                         1.000                                                        >= 1.0 (tape_margin)                 PASS\n              note: pad dia 18 at its base; the pad face is 17.965 (draft)\nassembly    pip tops -> glass back (nominal; WC from the params)                           0.500 (8 pip tops)                                           > 0 (params WC 0.13)                 PASS\n              note: pips never touch the glass; the bead sets the bond line\nhardware    DIN 9021 M4 washer (12 / 4.3) bearing on the tube tops, stud centred / at the  min 80.5 mm2 -> 6.2 MPa at 500 N                             82 mm2 / 6.1 MPa (params); creep 15  PASS\n              note: slot 5.4 x 7.0 under the washer\nboard       component models overlapping the frame (145)                                   0                                                            0                                    PASS\nboard       closest component model                                                        F3 1.364                                                     > 0                                  PASS\n              note: next: C333 1.64, U3 1.64, R129 1.64, J2 1.84, PS1 1.99\nboard       PCB body                                                                       0.080 / 0.0000 mm3                                           0.08 (copper + mask) / 0             PASS\npanel       DS1 panel parts (moved -0.80 with the panel) vs frame                          min 0.821 (lcm_0 at [20.02, 19.0, -5.8]), overlap 0.0000 mm3 >= 0.8 (pocket) / 0                  PASS\npanel       DS1 panel parts vs Formex                                                      0.805                                                        0.8 (g_bs)                           PASS\ntails       FPC tails vs frame - split model (panel legs moved -0.80, connector legs at J1 1.530 (ctp_tail_7, panel side (moved, Z < -2.1), at [40.72,  >= 1.5                               PASS\n              note: all: tft_tail_5 1.532, tft_fingers_6 3.056, ctp_tail_7 1.530, ctp_fingers_8 4.577\ntails       FPC tails rigidly moved with the panel (bound) vs frame                        1.445 (tft_tail_5 at [156.36, 116.48, 1.44])                 >= 1.5                               INFO\n              note: upper bound of the move: near J10/J11 the tails stay with the PCB; all: tft_tail_5 1.445, tft_fingers_6 2.534, ctp_tail_7 1.530, ctp_fingers_8 3.872\ntails       FPC tails at the v2 position (not moved, bound) vs frame                       1.544 (ctp_tail_7 at [40.72, 128.51, -9.06])                 >= 1.5                               INFO\n              note: lower bound of the move; v2 measured TFT 1.557 / CTP 1.554\ntails       FPC tails vs glass / bead                                                      1.565 / 5.635                                                > 0 (info: >= 1.5 asked to the frame PASS\nelectrical  lead protrusion -> Formex back (closest)                                       PS1 3.27 below Z 0 -> gap 1.335                              > 0                                  PASS\n              note: next: HS1 1.74, Q1 2.10, L40 2.73, L1 2.73, F3 2.73\nelectrical  Z 0 contact faces vs B.Cu pads                                                 1.206 at J4.1 (rib)                                          >= 1.0                               PASS\n              note: by kind: rib 1.21 J4.1, wall 3.39 R1.1\nelectrical  3D frame -> model of the nearest pad (J4.1)                                    2.198                                                        >= 1.0                               PASS\n              note: leads / solder fillets in the model\nelectrical  mains creepage -> panel metal via the frame (back-stop case, v2 formula)       7.95 (copper->contact 1.21 at J4.1 + path 6.74)              >= 6.4                               PASS\n              note: nominal: the panel hangs on the glass and touches no frame face -> no surface path at all\nelectrical  mains clearance -> panel metal                                                 6.70 (v2 formula, R1.2); any path >= 5.80 nominal / 5.00 bac >= 4.0                               PASS\n              note: the panel back lies 5.8 (nominal) / 5.0 (bond failed) below the PCB back\nelectrical  frame volume above Z 0 inside the board outline + 1                            0.0000 mm3 (inside outline 0.0000)                           0                                    PASS\n              note: plan gap of frame material above Z 0 to the board edge 2.671 at [169.72, 128.65]\ntool        dia-12 socket F1-F8, Z_TUBE_TOP-0.5 .. +45, vs every board body                min >= 5.20 at F1 (PCB (lower bound: bbox gap / sampled))    no overlap (warn < 1.0)              PASS\n              note: F1 5.2; F2 7.0; F3 31.1; F4 30.8; F5 8.0; F6 5.3; F7 12.9; F8 11.9\ntool        dia-12 washer + socket F1-F8, tube top .. +45, vs frame                        min 0.005 at F1, overlap 0.0000                              no overlap                           PASS\nrivet       R4 blind side envelope (dia 12 x 10 beyond the M5 washer) vs frame             min 1.200, overlap 0.0000                                    no overlap                           PASS\n              note: envelope ASSUMED (tri-fold / bulb)\nrivet       R4 grip = sheet + frame stack at F1 (measured) + M5 washer                     8.20 (stack 6.00)                                            8.2 (concept 11.4)                   PASS"
+}

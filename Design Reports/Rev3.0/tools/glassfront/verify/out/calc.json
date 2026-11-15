@@ -1,0 +1,338 @@
+{
+ "sections": {
+  "mid-top (x 80)": {
+   "A_mm2": 108.35,
+   "zc": -8.884,
+   "I_mm4": 1189.7,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.884
+  },
+  "mid-top through F5 (x 103.85)": {
+   "A_mm2": 106.75,
+   "zc": -8.39,
+   "I_mm4": 1052.9,
+   "faces": 2,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.39
+  },
+  "mid-side left (y 60)": {
+   "A_mm2": 103.55,
+   "zc": -8.871,
+   "I_mm4": 1186.8,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.871
+  },
+  "mid-side right (y 60)": {
+   "A_mm2": 110.45,
+   "zc": -8.889,
+   "I_mm4": 1191.0,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.889
+  },
+  "mid-bottom over the tail pocket (x 80), beam + land plate + flange": {
+   "A_mm2": 103.23,
+   "zc": -8.493,
+   "I_mm4": 1877.7,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 12.543
+  },
+  "mid-bottom (x 80) incl. the free shelf strip": {
+   "A_mm2": 109.62,
+   "zc": -8.194,
+   "I_mm4": 2039.8,
+   "faces": 2,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 12.244
+  },
+  "near the top-left corner (x 23, past the corner arc and the side shelf)": {
+   "A_mm2": 108.88,
+   "zc": -8.857,
+   "I_mm4": 1205.9,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.857
+  },
+  "bottom beside the tail pocket, corner cell (x 25)": {
+   "A_mm2": 196.33,
+   "zc": -8.475,
+   "I_mm4": 1753.2,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.475
+  },
+  "corner apex: diagonal plane through F1 and the glass corner (incl. pad, tube, rib)": {
+   "A_mm2": 166.59,
+   "zc": -8.395,
+   "I_mm4": 2033.7,
+   "faces": 2,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.395
+  }
+ },
+ "concept_ring_section": {
+  "A": 104.575,
+  "zc": -8.819,
+  "I": 1221.666,
+  "J": 216.115,
+  "c": 8.819
+ },
+ "grillage": {
+  "glass_t": 3.0,
+  "config": "S4/R4: 4 corner studs + VHB (concept 5.4 recommended row)",
+  "rows": [
+   {
+    "run": "concept (I 1222)",
+    "load_point": "window centre",
+    "w_5N_um": 13.9,
+    "w_50N_mm": 0.1387,
+    "lip_line_50N_mm": 0.0451,
+    "glass_250N_MPa": 64.1,
+    "ring_250N_MPa": 2.2,
+    "stud_250N_N": -14.0
+   },
+   {
+    "run": "concept (I 1222)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0665,
+    "lip_line_50N_mm": 0.0665,
+    "glass_250N_MPa": 39.3,
+    "ring_250N_MPa": 11.0,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "concept (I 1222)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0662,
+    "lip_line_50N_mm": 0.0662,
+    "glass_250N_MPa": 40.4,
+    "ring_250N_MPa": 11.3,
+    "stud_250N_N": -2.0
+   },
+   {
+    "run": "concept (I 1222)",
+    "load_point": "chin centre (over tail pocket)",
+    "w_5N_um": 9.2,
+    "w_50N_mm": 0.0922,
+    "lip_line_50N_mm": 0.0597,
+    "glass_250N_MPa": 56.5,
+    "ring_250N_MPa": 4.5,
+    "stud_250N_N": -9.0
+   },
+   {
+    "run": "concept (I 1222)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0665,
+    "lip_line_50N_mm": 0.0665,
+    "glass_250N_MPa": 39.4,
+    "ring_250N_MPa": 11.0,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)",
+    "load_point": "window centre",
+    "w_5N_um": 13.9,
+    "w_50N_mm": 0.1391,
+    "lip_line_50N_mm": 0.0454,
+    "glass_250N_MPa": 64.1,
+    "ring_250N_MPa": 2.3,
+    "stud_250N_N": -14.0
+   },
+   {
+    "run": "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0675,
+    "lip_line_50N_mm": 0.0675,
+    "glass_250N_MPa": 42.1,
+    "ring_250N_MPa": 11.9,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0672,
+    "lip_line_50N_mm": 0.0672,
+    "glass_250N_MPa": 43.2,
+    "ring_250N_MPa": 12.1,
+    "stud_250N_N": -3.0
+   },
+   {
+    "run": "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)",
+    "load_point": "chin centre (over tail pocket)",
+    "w_5N_um": 9.3,
+    "w_50N_mm": 0.0926,
+    "lip_line_50N_mm": 0.0603,
+    "glass_250N_MPa": 56.4,
+    "ring_250N_MPa": 4.7,
+    "stud_250N_N": -9.0
+   },
+   {
+    "run": "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.8,
+    "w_50N_mm": 0.0675,
+    "lip_line_50N_mm": 0.0675,
+    "glass_250N_MPa": 42.2,
+    "ring_250N_MPa": 11.9,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured mid-top (x 80) (I 1190)",
+    "load_point": "window centre",
+    "w_5N_um": 13.9,
+    "w_50N_mm": 0.1388,
+    "lip_line_50N_mm": 0.0452,
+    "glass_250N_MPa": 64.1,
+    "ring_250N_MPa": 2.2,
+    "stud_250N_N": -14.0
+   },
+   {
+    "run": "measured mid-top (x 80) (I 1190)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0667,
+    "lip_line_50N_mm": 0.0667,
+    "glass_250N_MPa": 39.8,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured mid-top (x 80) (I 1190)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0664,
+    "lip_line_50N_mm": 0.0664,
+    "glass_250N_MPa": 40.9,
+    "ring_250N_MPa": 11.5,
+    "stud_250N_N": -2.0
+   },
+   {
+    "run": "measured mid-top (x 80) (I 1190)",
+    "load_point": "chin centre (over tail pocket)",
+    "w_5N_um": 9.2,
+    "w_50N_mm": 0.0922,
+    "lip_line_50N_mm": 0.0598,
+    "glass_250N_MPa": 56.5,
+    "ring_250N_MPa": 4.5,
+    "stud_250N_N": -9.0
+   },
+   {
+    "run": "measured mid-top (x 80) (I 1190)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0667,
+    "lip_line_50N_mm": 0.0667,
+    "glass_250N_MPa": 39.9,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured mid-side left (y 60) (I 1187)",
+    "load_point": "window centre",
+    "w_5N_um": 13.9,
+    "w_50N_mm": 0.1388,
+    "lip_line_50N_mm": 0.0452,
+    "glass_250N_MPa": 64.1,
+    "ring_250N_MPa": 2.2,
+    "stud_250N_N": -14.0
+   },
+   {
+    "run": "measured mid-side left (y 60) (I 1187)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0667,
+    "lip_line_50N_mm": 0.0667,
+    "glass_250N_MPa": 39.9,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   },
+   {
+    "run": "measured mid-side left (y 60) (I 1187)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0664,
+    "lip_line_50N_mm": 0.0664,
+    "glass_250N_MPa": 40.9,
+    "ring_250N_MPa": 11.5,
+    "stud_250N_N": -2.0
+   },
+   {
+    "run": "measured mid-side left (y 60) (I 1187)",
+    "load_point": "chin centre (over tail pocket)",
+    "w_5N_um": 9.2,
+    "w_50N_mm": 0.0923,
+    "lip_line_50N_mm": 0.0598,
+    "glass_250N_MPa": 56.5,
+    "ring_250N_MPa": 4.5,
+    "stud_250N_N": -9.0
+   },
+   {
+    "run": "measured mid-side left (y 60) (I 1187)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.7,
+    "w_50N_mm": 0.0667,
+    "lip_line_50N_mm": 0.0667,
+    "glass_250N_MPa": 39.9,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   }
+  ],
+  "c_used": {
+   "concept (I 1222)": 8.818548888357638,
+   "measured min of mid-top / F5 slot / mid-side / near corner (I 1053)": 8.871,
+   "measured mid-top (x 80) (I 1190)": 8.884,
+   "measured mid-side left (y 60) (I 1187)": 8.871
+  },
+  "note": "only I (and the outer-fibre distance c) of the ring replaced; J, the corner links, VHB and E as the concept"
+ },
+ "bead": {
+  "area_mm2": 2486.7,
+  "concept_mm2": 2510.0,
+  "glass_R": 6.25,
+  "pip_area_inside_mm2": 14.14,
+  "land_face_area_step_mm2": 5404.0
+ },
+ "volume": {
+  "volume_cm3": 82.188,
+  "mass_g": 111.8,
+  "density_g_cm3": 1.36,
+  "concept_estimate": "~70 cm3 / ~95 g",
+  "v2": "55.06 cm3 / 74.9 g"
+ },
+ "seconds": 23.6
+}

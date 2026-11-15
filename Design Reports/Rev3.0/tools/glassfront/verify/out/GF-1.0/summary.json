@@ -1,0 +1,1070 @@
+{
+ "about": "Independent verification of the GF-1.0 glass-front frame STEP (CadQuery / OCP / VTK), tools/glassfront/verify",
+ "inputs": {
+  "frame": {
+   "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+   "bytes": 1475753,
+   "mtime": "2026-11-15 14:21:18",
+   "sha256": "e238b9b34cf5bd45e9a2dd2c6e6d89c5bca08ec573ebee415492dad9147d408f",
+   "declared_unit": "cm",
+   "solids": 1,
+   "valid": true,
+   "volume_mm3": 84014.915,
+   "faces": 787,
+   "edges": 1992,
+   "bbox_model": [
+    -7.89,
+    215.59,
+    -175.0,
+    10.83,
+    -14.42,
+    4.05
+   ],
+   "bbox_abs": {
+    "x": [
+     -7.89,
+     215.59
+    ],
+    "y_down": [
+     -10.83,
+     175.0
+    ],
+    "z": [
+     -14.42,
+     4.05
+    ]
+   },
+   "size": [
+    223.48,
+    185.83,
+    18.47
+   ],
+   "read_s": 2.2
+  },
+  "params": {
+   "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_params.json",
+   "bytes": 44529,
+   "mtime": "2026-11-15 13:02:27",
+   "sha256": "4cc566267e20aee17f9d43b8b6043462828b5b514cf1a2bb653ab3ce3c27833d"
+  },
+  "params_revision": "GF-1.0 (concept 2026-11-15 + lead amendments A1-A8; slot 5.4 x 7.0 and F5-F8 without moulded pads are deviations, see concept.md sec. 11)",
+  "v2_step": {
+   "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_Frame\\Rev3.0_Frame_v2.step",
+   "bytes": 1440817,
+   "mtime": "2026-11-13 21:26:31",
+   "sha256": "20c1e6165a8616d437857a1e0ea7c58eb95833027e38332440d18d0a4d713158",
+   "declared_unit": "cm",
+   "solids": 1,
+   "valid": true,
+   "volume_mm3": 55052.544,
+   "faces": 732,
+   "edges": 1946,
+   "bbox_model": [
+    3.27,
+    201.67,
+    -167.7,
+    -2.25,
+    -11.82,
+    4.05
+   ],
+   "bbox_abs": {
+    "x": [
+     3.27,
+     201.67
+    ],
+    "y_down": [
+     2.25,
+     167.7
+    ],
+    "z": [
+     -11.82,
+     4.05
+    ]
+   },
+   "size": [
+    198.4,
+    165.45,
+    15.87
+   ],
+   "read_s": 1.7
+  },
+  "board_step": {
+   "file": "C:\\Users\\lenovo\\AppData\\Local\\Temp\\gf_verify\\board_full.step",
+   "bytes": 9968700,
+   "mtime": "2026-11-15 15:54:09",
+   "sha256": "cc971953477a826ac62f4cd7aa635ce52a8649bf85ffc62c8ad96b93ffc59834"
+  },
+  "board_geom": {
+   "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\frame\\out\\board_geom.json",
+   "bytes": 838936,
+   "mtime": "2026-11-13 16:49:34",
+   "sha256": "c63e79230858c1f464cce561d933ebff662d46a278ae36d910c1aed5562b658c"
+  },
+  "glass_t": 3.0,
+  "panel_dz_applied_to_DS1": -0.8
+ },
+ "step_changed_since_previous_run": false,
+ "previous_run_step": {
+  "file": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+  "bytes": 1475753,
+  "mtime": "2026-11-15 14:21:18",
+  "sha256": "e238b9b34cf5bd45e9a2dd2c6e6d89c5bca08ec573ebee415492dad9147d408f",
+  "declared_unit": "cm",
+  "solids": 1,
+  "valid": true,
+  "volume_mm3": 84014.915,
+  "faces": 787,
+  "edges": 1992,
+  "bbox_model": [
+   -7.89,
+   215.59,
+   -175.0,
+   10.83,
+   -14.42,
+   4.05
+  ],
+  "bbox_abs": {
+   "x": [
+    -7.89,
+    215.59
+   ],
+   "y_down": [
+    -10.83,
+    175.0
+   ],
+   "z": [
+    -14.42,
+    4.05
+   ]
+  },
+  "size": [
+   223.48,
+   185.83,
+   18.47
+  ],
+  "read_s": 2.2
+ },
+ "step_changed_during_this_run": false,
+ "table": [
+  {
+   "id": "A",
+   "check": "body (8 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "body: volume",
+   "measured": 84.0149,
+   "required": "~70 (concept estimate)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "Z levels (12 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "Z levels: extra level Z -9.420 (+Z, 9 faces)",
+   "measured": -9.42,
+   "required": "PCB pilot floors = Z_LAND + pilot_floor (blind pilots, v2 rule, 1.0 above the front face)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "Z levels: extra level Z -5.420 (+Z, 2 faces)",
+   "measured": -5.42,
+   "required": "corner-cell rib tops = Z_LAND + cell_rib_h (v2 rule 'rib top 5.0 above the front face')",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "Z levels: extra level Z -0.500 (+Z, 9 faces)",
+   "measured": -0.5,
+   "required": "pilot mouth relief floors = Z_PCB - cbore_h (v2)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "plan / profiles (96 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "plan / profiles: clearance-pocket face at the land (Z_LAND)",
+   "measured": -7.9284,
+   "required": -8.03,
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (top edge, x 80.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (top edge, x 130.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (bottom edge, x 80.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (bottom edge, x 130.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (left edge, y 60.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (left edge, y 105.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (right edge, y 60.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (right edge, y 105.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: other checks",
+   "measured": "10 pass",
+   "required": "tol 0.01 / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the top (sharp-corner extrapolation)",
+   "measured": 0.9825,
+   "required": 0.9651,
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "lip: visible g1 at the flush plane (cut-out edge s 1.80 - lip outer at the top)",
+   "measured": 0.4175,
+   "required": 0.4,
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip-top flat width (2A/P of the lip-top face)",
+   "measured": 0.3929,
+   "required": "0.37 (concept: R0.3 both edges)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "lip: edge radius: recess wall -> land",
+   "measured": 0.5,
+   "required": "not specified",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "plan rects (63 checks)",
+   "measured": "max |diff| 0.0009",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "pips (32 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "fasteners (120 checks)",
+   "measured": "max |diff| 0.0076",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "fasteners: F1 DIN 9021 M4 washer bearing on the tube top (stud centred / at either slot end)",
+   "measured": 80.6693,
+   "required": 82.0,
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "fasteners: F5 tube rib",
+   "measured": "none",
+   "required": "one 1.5 rib (concept 4.4)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "fasteners: F6 tube rib",
+   "measured": "none",
+   "required": "one 1.5 rib (concept 4.4)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "fasteners: F7 tube rib",
+   "measured": "none",
+   "required": "one 1.5 rib (concept 4.4)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "fasteners: F8 tube rib",
+   "measured": "none",
+   "required": "one 1.5 rib (concept 4.4)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "A",
+   "check": "PCB bosses (90 checks)",
+   "measured": "max |diff| 0.0087",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "support ribs (79 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "A",
+   "check": "tape band (1 checks)",
+   "measured": "max |diff| 0.0000",
+   "required": "tol 0.01 mm / 0.05 deg",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "slivers (2A/P < 0.3 or area < 0.5): design faces / fillet blend patches",
+   "measured": "0 / 66 (max blend 0.443 mm2)",
+   "required": "0 design faces",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "draft along Z (every face)",
+   "measured": "0 flagged; cones {0.5: 34, 1.0: 79}; drafted planes {0.5: 16, 1.0: 160}",
+   "required": ">= 0.25 deg everywhere (1 / 0.5 deg rules)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "undercut: vertical rays, 0.25 mm grid (664242 rays)",
+   "measured": "0 columns with > 1 material interval",
+   "required": "0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "undercut: face visibility along the pull (mesh points, exact outward side)",
+   "measured": "0 occluded faces; A 103 / B 684 / split 0",
+   "required": "0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "parting: faces in front of the flange-front plane formed from +Z; flange edge widest at the front",
+   "measured": "0; yes",
+   "required": "0; yes",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "thin walls < 1.0 (12 plan + 5 vertical sections)",
+   "measured": "lip 5 segments (min 1.000, by design); other 0",
+   "required": "only the lip",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "thin gaps < 1.0 (knife-edge steel): slots / V-notches",
+   "measured": "0 / 5: tubes + tube ribs V-notch / sharp re-entrant corner w0.30 at [np.float64(9.84), np.float64(76.67)]; tubes + tube ribs V-notch / sharp re-entrant corner w0.30 at [np.float64(9.84), np.float64(87.51)]",
+   "required": "0 slots",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "acute corners < 60 deg in the plan sections: steel knife edges / sharp plastic edges",
+   "measured": "0 / 0",
+   "required": "0 knife edges",
+   "verdict": "PASS"
+  },
+  {
+   "id": "B",
+   "check": "thick sections: inscribed sphere > 5.0 (2 x wall)",
+   "measured": "max 6.01; 9 spots: 6.0 at [np.float64(170.71), np.float64(122.4), np.float64(-3.62)] (PCB boss H6); 6.0 at [np.float64(1.11), np.float64(171.2), np.float64(-10.62)] (fastener F4 (pad + flange + tube)); 6.0 at [np.float64(204.71), np.float64(171.2), np.float64(-10.62)] (fastener F3 (pad + flange + tube)); 6.0 at [np.float64(1.31), np.float64(5.4), np.float64(-10.62)] (fastener F1 (pad + flange + tube)); 6.0 at [np.float64(204.91), np.float64(5.4), np.float64(-10.62)] (fastener F2 (pad + flange + tube)); 5.2 at [np.float64(103.71), np.float64(171.6), np.float64(-10.02)] (fastener F7 (no pad + flange + tube)); 5.2 at [np.float64(1.31), np.float64(88.6), np.float64(-10.02)] (fastener F8 (no pad + flange + tube)); 5.2 at [np.float64(204.91), np.float64(88.6), np.float64(-10.02)] (fastener F6 (no pad + flange + tube)); 5.2 at [np.float64(102.91), np.float64(7.2), np.float64(-10.02)] (fastener F5 (no pad + flange + tube))",
+   "required": "none > 5.0",
+   "verdict": "FAIL"
+  },
+  {
+   "id": "B",
+   "check": "(reference) v2 thick sections, same method",
+   "measured": "max 4.87; 0 spots",
+   "required": "-",
+   "verdict": "INFO"
+  },
+  {
+   "id": "C",
+   "check": "carried-over slab Z >= -5.0 vs v2: GF-only / v2-only volume",
+   "measured": "4009.0 / 4601.4 mm3 in 27 regions",
+   "required": "explained by the params",
+   "verdict": "INFO"
+  },
+  {
+   "id": "C",
+   "check": "  tail pocket bottom 147.70 / R1.5",
+   "measured": "GF-only 2418.6 / v2-only 3340.5 mm3 (2 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  pocket wall moved 0.55 outwards",
+   "measured": "GF-only 0.0 / v2-only 490.3 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  pocket wall moved 0.55 outwards with pocket_clr 0.80",
+   "measured": "GF-only 1188.8 / v2-only 130.5 mm3 (14 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  corner cell",
+   "measured": "GF-only 380.5 / v2-only 0.0 mm3 (2 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH3",
+   "measured": "GF-only 0.0 / v2-only 91.9 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH1",
+   "measured": "GF-only 0.0 / v2-only 91.8 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH2",
+   "measured": "GF-only 0.0 / v2-only 91.8 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH5",
+   "measured": "GF-only 0.0 / v2-only 91.2 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH9",
+   "measured": "GF-only 0.0 / v2-only 91.2 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH4",
+   "measured": "GF-only 0.0 / v2-only 91.2 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  v2 stud tube FH10",
+   "measured": "GF-only 0.0 / v2-only 91.0 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "PASS"
+  },
+  {
+   "id": "C",
+   "check": "  corner-cell region",
+   "measured": "GF-only 21.1 / v2-only 0.0 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "FAIL"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g2 glass -> lip inner face at the flush plane, 20 C (all round)",
+   "measured": "0.393..0.395 (corners 0.393..0.395)",
+   "required": "0.40",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: corner radii (STEP, Z -14.10): lip inner / lip outer vs params glass R6.0 + g2, cut-out R7.8 - g1",
+   "measured": "inner 6.394..6.394, outer 7.388..7.388 (concentric with the glass corners, centre offset <= 0.0000)",
+   "required": "6.3944 / 7.3881 at this Z (6.4 at the top, 7.4 at the root, 1 deg draft)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g1 lip outer face -> sheet cut-out, 20 C, at the flush plane / at the lip root",
+   "measured": "0.411..0.414 / 0.403..0.406",
+   "required": "0.40",
+   "verdict": "INFO"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g2 at -20 C, 50 ppm (sides / corners)",
+   "measured": "0.246 / 0.207",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g1 at -20 C, 50 ppm (sides / corners)",
+   "measured": "0.524 / 0.525",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g2 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)",
+   "measured": "0.542 / 0.543",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g1 at +70 C frame/glass, +50 C sheet, 50 ppm (sides / corners)",
+   "measured": "0.214 / 0.165",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g2 at -20 C, 70 ppm (sides / corners)",
+   "measured": "0.173 / 0.116",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g1 at -20 C, 70 ppm (sides / corners)",
+   "measured": "0.583 / 0.584",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g2 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)",
+   "measured": "0.614 / 0.615",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "gaps: g1 at +70 C frame/glass, +50 C sheet, 70 ppm (sides / corners)",
+   "measured": "0.121 / 0.050",
+   "required": "> 0 nominal",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "print: print window inside the active area (per side l/r/t/b)",
+   "measured": "0.30 / 0.30 / 0.30 / 0.30",
+   "required": "0.30",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "print: print window inside the CTP cover-lens view area (l/r/t/b)",
+   "measured": "0.80 / 0.80 / 0.94 / 0.66",
+   "required": "> 0 (window hides the CTP print edge)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "flush: glass front / lip top / sheet front",
+   "measured": "-14.42 / -14.42 / -14.42",
+   "required": "one plane",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: glass vs frame (overlap / min gap)",
+   "measured": "0.0000 mm3 / 0.348",
+   "required": "0 / ~0.33 (recess wall at the glass back)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: bead vs frame: common volume = the 8 pips (by design), bead on the land",
+   "measured": "6.987 mm3 (pips 6.987) / gap 0.000",
+   "required": "pips only / 0 (contact)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: bead inner edge -> pocket face at the land (top / bottom beam / left / right)",
+   "measured": "3.029 / 1.400 / 1.109 / 3.869",
+   "required": ">= 1.0 (A1); params 3.13 / 1.40 / 1.21 / 3.97",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: panel envelope vs frame",
+   "measured": "0.0000 mm3 / 0.821",
+   "required": ">= 0.8 (pocket_clr)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: LOCA vs frame",
+   "measured": "0.0000 mm3 / 1.141",
+   "required": "> 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: Formex vs frame (bonded to the shelf front)",
+   "measured": "0.0000 mm3 / 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: panel back -> Formex front (back-stop gap)",
+   "measured": "0.80",
+   "required": "0.80 (g_bs); WC [0.08, 1.52]",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: VHB strips vs frame (on the flange front)",
+   "measured": "overlap 0.0000 mm3, min 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: oven sheet vs frame (seat ring / pads at the sheet back, lip in the cut-out)",
+   "measured": "0.0000 mm3 / 0.000",
+   "required": "0 / 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "hardware: S4 hardware vs frame (12 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "hardware: S8 hardware vs frame (28 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "hardware: R4 hardware vs frame (16 parts)",
+   "measured": "overlaps: none",
+   "required": "none",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: VHB strip ends -> corner pads (dia 18)",
+   "measured": "1.000",
+   "required": ">= 1.0 (tape_margin)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "assembly: pip tops -> glass back (nominal; WC from the params)",
+   "measured": "0.500 (8 pip tops)",
+   "required": "> 0 (params WC 0.13)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "hardware: DIN 9021 M4 washer (12 / 4.3) bearing on the tube tops, stud centred / at the slot ends +-1.5",
+   "measured": "min 80.5 mm2 -> 6.2 MPa at 500 N",
+   "required": "82 mm2 / 6.1 MPa (params); creep 15 MPa",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "board: component models overlapping the frame (145)",
+   "measured": "0",
+   "required": "0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "board: closest component model",
+   "measured": "F3 1.364",
+   "required": "> 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "board: PCB body",
+   "measured": "0.080 / 0.0000 mm3",
+   "required": "0.08 (copper + mask) / 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "panel: DS1 panel parts (moved -0.80 with the panel) vs frame",
+   "measured": "min 0.821 (lcm_0 at [20.02, 19.0, -5.8]), overlap 0.0000 mm3",
+   "required": ">= 0.8 (pocket) / 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "panel: DS1 panel parts vs Formex",
+   "measured": "0.805",
+   "required": "0.8 (g_bs)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "tails: FPC tails vs frame - split model (panel legs moved -0.80, connector legs at J10/J11 unmoved)",
+   "measured": "1.530 (ctp_tail_7, panel side (moved, Z < -2.1), at [40.72, 128.51, -9.86])",
+   "required": ">= 1.5",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "tails: FPC tails rigidly moved with the panel (bound) vs frame",
+   "measured": "1.445 (tft_tail_5 at [156.36, 116.48, 1.44])",
+   "required": ">= 1.5",
+   "verdict": "INFO"
+  },
+  {
+   "id": "D",
+   "check": "tails: FPC tails at the v2 position (not moved, bound) vs frame",
+   "measured": "1.544 (ctp_tail_7 at [40.72, 128.51, -9.06])",
+   "required": ">= 1.5",
+   "verdict": "INFO"
+  },
+  {
+   "id": "D",
+   "check": "tails: FPC tails vs glass / bead",
+   "measured": "1.565 / 5.635",
+   "required": "> 0 (info: >= 1.5 asked to the frame only)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: lead protrusion -> Formex back (closest)",
+   "measured": "PS1 3.27 below Z 0 -> gap 1.335",
+   "required": "> 0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: Z 0 contact faces vs B.Cu pads",
+   "measured": "1.206 at J4.1 (rib)",
+   "required": ">= 1.0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: 3D frame -> model of the nearest pad (J4.1)",
+   "measured": "2.198",
+   "required": ">= 1.0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: mains creepage -> panel metal via the frame (back-stop case, v2 formula)",
+   "measured": "7.95 (copper->contact 1.21 at J4.1 + path 6.74)",
+   "required": ">= 6.4",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: mains clearance -> panel metal",
+   "measured": "6.70 (v2 formula, R1.2); any path >= 5.80 nominal / 5.00 back-stop",
+   "required": ">= 4.0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "electrical: frame volume above Z 0 inside the board outline + 1",
+   "measured": "0.0000 mm3 (inside outline 0.0000)",
+   "required": "0",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "tool: dia-12 socket F1-F8, Z_TUBE_TOP-0.5 .. +45, vs every board body",
+   "measured": "min >= 5.20 at F1 (PCB (lower bound: bbox gap / sampled))",
+   "required": "no overlap (warn < 1.0)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "tool: dia-12 washer + socket F1-F8, tube top .. +45, vs frame",
+   "measured": "min 0.005 at F1, overlap 0.0000",
+   "required": "no overlap",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "rivet: R4 blind side envelope (dia 12 x 10 beyond the M5 washer) vs frame",
+   "measured": "min 1.200, overlap 0.0000",
+   "required": "no overlap",
+   "verdict": "PASS"
+  },
+  {
+   "id": "D",
+   "check": "rivet: R4 grip = sheet + frame stack at F1 (measured) + M5 washer",
+   "measured": "8.20 (stack 6.00)",
+   "required": "8.2 (concept 11.4)",
+   "verdict": "PASS"
+  },
+  {
+   "id": "E",
+   "check": "ring I, mid-top (x 80)",
+   "measured": "1190 mm4 (0.97 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "ring I, mid-side left (y 60)",
+   "measured": "1187 mm4 (0.97 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "ring I, mid-bottom over the tail pocket (x 80), beam + land plate + flange",
+   "measured": "1878 mm4 (1.54 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "ring I, near the top-left corner (x 23, past the corner arc and the side shelf)",
+   "measured": "1206 mm4 (0.99 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "ring I, mid-top through F5 (x 103.85)",
+   "measured": "1086 mm4 (0.89 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "ring I, corner apex: diagonal plane through F1 and the glass corner (incl. pad, tube, rib)",
+   "measured": "2099 mm4 (1.72 x concept)",
+   "required": "concept 1222 (doc 1174)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "50 N / 250 N at window centre (measured I)",
+   "measured": "w 0.1390 mm, lip line 0.0454, glass 64.1 MPa, ring 2.3 MPa",
+   "required": "concept w 0.1387, lip 0.0451, glass 64.1, ring 2.2",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "50 N / 250 N at glass top edge, mid (measured I)",
+   "measured": "w 0.0673 mm, lip line 0.0673, glass 41.5 MPa, ring 11.7 MPa",
+   "required": "concept w 0.0665, lip 0.0665, glass 39.3, ring 11.0",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "50 N / 250 N at glass side edge, mid (measured I)",
+   "measured": "w 0.0670 mm, lip line 0.0670, glass 42.6 MPa, ring 12.0 MPa",
+   "required": "concept w 0.0662, lip 0.0662, glass 40.4, ring 11.3",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "50 N / 250 N at chin centre (over tail pocket) (measured I)",
+   "measured": "w 0.0925 mm, lip line 0.0601, glass 56.5 MPa, ring 4.6 MPa",
+   "required": "concept w 0.0922, lip 0.0597, glass 56.5, ring 4.5",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "50 N / 250 N at glass bottom edge, mid (measured I)",
+   "measured": "w 0.0673 mm, lip line 0.0673, glass 41.6 MPa, ring 11.7 MPa",
+   "required": "concept w 0.0665, lip 0.0665, glass 39.4, ring 11.0",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "bead area",
+   "measured": "2488.4 mm2",
+   "required": "2510 (concept)",
+   "verdict": "INFO"
+  },
+  {
+   "id": "E",
+   "check": "volume / mass",
+   "measured": "84.015 cm3 / 114.3 g",
+   "required": "~70 cm3 / ~95 g (concept)",
+   "verdict": "INFO"
+  }
+ ],
+ "fails": [
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (top edge, x 80.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (top edge, x 130.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (bottom edge, x 80.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (bottom edge, x 130.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (left edge, y 60.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (left edge, y 105.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (right edge, y 60.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "A",
+   "check": "lip: lip width at the root (Z_SHEET_BACK) (right edge, y 105.0)",
+   "measured": 1.0175,
+   "required": 1.0,
+   "verdict": "FAIL"
+  },
+  {
+   "id": "B",
+   "check": "thick sections: inscribed sphere > 5.0 (2 x wall)",
+   "measured": "max 6.01; 9 spots: 6.0 at [np.float64(170.71), np.float64(122.4), np.float64(-3.62)] (PCB boss H6); 6.0 at [np.float64(1.11), np.float64(171.2), np.float64(-10.62)] (fastener F4 (pad + flange + tube)); 6.0 at [np.float64(204.71), np.float64(171.2), np.float64(-10.62)] (fastener F3 (pad + flange + tube)); 6.0 at [np.float64(1.31), np.float64(5.4), np.float64(-10.62)] (fastener F1 (pad + flange + tube)); 6.0 at [np.float64(204.91), np.float64(5.4), np.float64(-10.62)] (fastener F2 (pad + flange + tube)); 5.2 at [np.float64(103.71), np.float64(171.6), np.float64(-10.02)] (fastener F7 (no pad + flange + tube)); 5.2 at [np.float64(1.31), np.float64(88.6), np.float64(-10.02)] (fastener F8 (no pad + flange + tube)); 5.2 at [np.float64(204.91), np.float64(88.6), np.float64(-10.02)] (fastener F6 (no pad + flange + tube)); 5.2 at [np.float64(102.91), np.float64(7.2), np.float64(-10.02)] (fastener F5 (no pad + flange + tube))",
+   "required": "none > 5.0",
+   "verdict": "FAIL"
+  },
+  {
+   "id": "C",
+   "check": "  corner-cell region",
+   "measured": "GF-only 21.1 / v2-only 0.0 mm3 (1 regions)",
+   "required": "params",
+   "verdict": "FAIL"
+  }
+ ],
+ "counts": {
+  "PASS": 74,
+  "FAIL": 10,
+  "INFO": 32
+ },
+ "images": {
+  "Frame_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Frame_front.png",
+  "Frame_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Frame_back.png",
+  "Frame_iso_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Frame_iso_front.png",
+  "Frame_iso_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Frame_iso_back.png",
+  "Assembly_iso_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Assembly_iso_front.png",
+  "Assembly_iso_back": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Assembly_iso_back.png",
+  "Assembly_front": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Assembly_front.png",
+  "Assembly_side": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Assembly_side.png",
+  "Section_top_x80": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Section_top_x80.png",
+  "Section_side_left_y60": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Section_side_left_y60.png",
+  "Section_chin_x103.85": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Section_chin_x103.85.png",
+  "Section_F1_slot_axis": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Section_F1_slot_axis.png",
+  "Section_F8_tube_y82.085": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Section_F8_tube_y82.085.png",
+  "Plan_lip_Z-14.1": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Plan_lip_Z-14.1.png",
+  "Plan_corner_cells_Z-6.0": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Plan_corner_cells_Z-6.0.png",
+  "thickness_map": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\renders\\verify\\Thickness_map.png"
+ },
+ "timings_s": {
+  "A spec": 16.9,
+  "B mould": 639.0,
+  "B v2 thick (reference)": 18.4,
+  "C carry-over": 263.4,
+  "D fit": 221.9,
+  "E calc": 8.5,
+  "renders": 6.0,
+  "sections": 28.9
+ },
+ "total_s": 1206.2,
+ "errors": {},
+ "partial_run": null
+}
