@@ -656,6 +656,10 @@ def owner_group(o1, o2, mid, zr=None):
         return "shelf back"
     if has("Clearance pocket"):
         return "shelf front (pocket)"
+    if has("Divider rib"):                                   # GF-2.0 (stage 4, 68)
+        return "divider rib (GF-2.0)"
+    if has("Floor over the flange plate"):                   # GF-2.0 (stage 4, 68)
+        return "floors over the flange (GF-2.0)"
     if has("Tail pocket"):
         return "tail pocket"
     if has("Tail wall block"):

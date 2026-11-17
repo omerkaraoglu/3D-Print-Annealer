@@ -1,108 +1,146 @@
-Glass-front frame fit check - STEP Rev3.0_GlassFront_Frame.step (2026-11-15 17:29:54, 1747323 bytes, sha256 47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82)
+Glass-front frame fit check - STEP Rev3.0_GlassFront_Frame.step (2026-11-16 11:53:36, 1585816 bytes, sha256 d734683ac0c0058a863c4d079b511767ff84a41912745e2ebf592eb1e4e333d6)
 
-group       check                                                                          measured                                                     required                             verdict
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-gaps        g2 glass -> lip inner face, 20 C, 0.32 behind the flush plane: sides / corners 0.394..0.395 / 0.395..0.498                                  0.40 sides, >= 0.40 corners          PASS
-              note: at the flush plane add 0.32 x tan(1 deg) = 0.006
-gaps        g1 lip outer face -> cut-out, 20 C, 0.32 behind the flush plane: sides / corne 0.412..0.418 / 0.418..0.517                                  0.4175 sides at the flush plane, >=  INFO
-gaps        corner radii (STEP, Z -14.10): lip inner / lip outer; params glass R6.25, cut- inner 6.3944..6.3944, outer 7.3881..7.3881, centres on R_fra 6.3944 / 7.3881 at this Z (lip_in R6 PASS
-              note: glass / cut-out corners NOT concentric with the lip (GF-1.1): the corner gaps open towards the diagonal
-gaps        g1 lip outer face -> sheet cut-out, 20 C, at the flush plane / at the lip root 0.412..0.517 / 0.404..0.509                                  0.4175 / 0.40 (as designed)          INFO
-              note: lip_out is at the root, so the visible g1 at the front is 0.40 + 1 x tan(1deg) = 0.417 on the straight edges
-gaps        g2 at 20 C: sides / corner min / corner diagonal (nominal); worst tolerance ca 0.394 / 0.395 / 0.497; WC 0.131                              > 0 nominal (WC info)                PASS
-              note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass profile +0.2 (offset o 0.194/0.195; glass +0.2/side and R -0.2 ( 0.191/0.131; glass nominal size, R -0.2 0.394/0.394; glass +0.2/side, R nominal ( 0.194/0.194)
-gaps        g2 at -20 C, 50 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.246 / 0.245 / 0.313; WC -0.055                             > 0 nominal (WC info)                PASS
-              note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass profile +0.2 (offset o 0.045/0.045; glass +0.2/side and R -0.2 ( 0.042/-0.055; glass nominal size, R -0.2 0.246/0.227; glass +0.2/side, R nominal ( 0.045/0.026)
-gaps        g2 at +70 C frame/glass, +50 C sheet, 50 ppm: sides / corner min / corner diag 0.542 / 0.544 / 0.727; WC 0.339                              > 0 nominal (WC info)                PASS
-              note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass profile +0.2 (offset o 0.342/0.344; glass +0.2/side and R -0.2 ( 0.339/0.339; glass nominal size, R -0.2 0.542/0.544; glass +0.2/side, R nominal ( 0.342/0.344)
-gaps        g2 at -20 C, 70 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.173 / 0.171 / 0.223; WC -0.146                             > 0 nominal (WC info)                PASS
-              note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass profile +0.2 (offset o -0.027/-0.029; glass +0.2/side and R -0.2 ( -0.031/-0.146; glass nominal size, R -0.2 0.173/0.136; glass +0.2/side, R nominal ( -0.027/-0.064)
-gaps        g2 at +70 C frame/glass, +50 C sheet, 70 ppm: sides / corner min / corner diag 0.614 / 0.616 / 0.840; WC 0.411                              > 0 nominal (WC info)                PASS
-              note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass profile +0.2 (offset o 0.414/0.417; glass +0.2/side and R -0.2 ( 0.411/0.412; glass nominal size, R -0.2 0.614/0.616; glass +0.2/side, R nominal ( 0.414/0.417)
-gaps        g1 at 20 C: sides / corner min / corner diagonal (nominal); worst tolerance ca 0.412 / 0.418 / 0.516; WC 0.272                              > 0 nominal (WC info)                PASS
-              note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.272/0.278; cut-out -0.1/side and R +0.1 0.272/0.273; cut-out -0.1/side, R nominal 0.272/0.276)
-gaps        g1 at -20 C, 50 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.524 / 0.531 / 0.690; WC 0.384                              > 0 nominal (WC info)                PASS
-              note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.384/0.391; cut-out -0.1/side and R +0.1 0.384/0.386; cut-out -0.1/side, R nominal 0.384/0.388)
-gaps        g1 at +70 C frame/glass, +50 C sheet, 50 ppm: sides / corner min / corner diag 0.214 / 0.219 / 0.271; WC 0.045                              > 0 nominal (WC info)                PASS
-              note: WC case: cut-out -0.1/side and R +0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.074/0.079; cut-out -0.1/side and R +0.1 0.074/0.045; cut-out -0.1/side, R nominal 0.074/0.076)
-gaps        g1 at -20 C, 70 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.583 / 0.590 / 0.781; WC 0.443                              > 0 nominal (WC info)                PASS
-              note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.443/0.450; cut-out -0.1/side and R +0.1 0.443/0.445; cut-out -0.1/side, R nominal 0.443/0.448)
-gaps        g1 at +70 C frame/glass, +50 C sheet, 70 ppm: sides / corner min / corner diag 0.121 / 0.125 / 0.157; WC -0.070                             > 0 nominal (WC info)                PASS
-              note: WC case: cut-out -0.1/side and R +0.1, lip +0.04 (cut-out profile -0.1, lip +0 -0.018/-0.014; cut-out -0.1/side and R +0.1 -0.018/-0.070; cut-out -0.1/side, R nominal -0.018/-0.032)
-print       print window inside the active area (per side l/r/t/b)                         0.30 / 0.30 / 0.30 / 0.30                                    0.30                                 PASS
-              note: AA from the panel DS, window R0.5
-print       print window inside the CTP cover-lens view area (l/r/t/b)                     0.80 / 0.80 / 0.94 / 0.66                                    > 0 (window hides the CTP print edge PASS
-flush       glass front / lip top / sheet front                                            -14.42 / -14.42 / -14.42                                     one plane                            PASS
-              note: sheet seated on the seat ring at Z_SHEET_BACK; glass set on the lip plane by the jig
-assembly    glass vs frame (overlap / min gap)                                             0.0000 mm3 / 0.348                                           0 / ~0.33 (recess wall at the glass  PASS
-              note: glass modelled without arris
-assembly    bead vs frame: common volume = the 8 pips (by design), bead on the land        6.987 mm3 (pips 6.987) / gap 0.000                           pips only / 0 (contact)              PASS
-              note: bead 4.0 x 1.0 at 0.9..4.9 inside the glass edge; pips dia 1.5 x 0.5 on its centre line
-assembly    bead inner edge -> pocket face at the land (top / bottom beam / left / right)  3.029 / 1.400 / 1.109 / 3.869                                >= 1.0 (A1); params 3.13 / 1.40 / 1. PASS
-              note: the pocket face is drafted 1 deg open to the front, so at the land it is ~0.10 closer than the params' rectangle
-assembly    panel envelope vs frame                                                        0.0000 mm3 / 0.821                                           >= 0.8 (pocket_clr)                  PASS
-              note: LCM 164.9 x 100 outline, Z_CTP_FRONT..Z_PANEL_BACK
-assembly    LOCA vs frame                                                                  0.0000 mm3 / 1.141                                           > 0                                  PASS
-assembly    Formex vs frame (bonded to the shelf front)                                    0.0000 mm3 / 0.000                                           0 / 0                                PASS
-assembly    panel back -> Formex front (back-stop gap)                                     0.80                                                         0.80 (g_bs); WC [0.08, 1.52]         PASS
-              note: from the levels
-assembly    VHB strips vs frame (on the flange front)                                      overlap 0.0000 mm3, min 0.000                                0 / 0                                PASS
-              note: strips run over the F5-F8 slots by design
-assembly    oven sheet vs frame (seat ring / pads at the sheet back, lip in the cut-out)   0.0000 mm3 / 0.000                                           0 / 0                                PASS
-hardware    S4 hardware vs frame (16 parts)                                                overlaps: none                                               none                                 PASS
-              note: studs through the slots, washers / spacers / rivet parts touching their seats
-hardware    S8 hardware vs frame (36 parts)                                                overlaps: none                                               none                                 PASS
-              note: studs through the slots, washers / spacers / rivet parts touching their seats
-hardware    R4 hardware vs frame (16 parts)                                                overlaps: none                                               none                                 PASS
-              note: studs through the slots, washers / spacers / rivet parts touching their seats
-assembly    VHB strip ends -> corner pads (dia 18)                                         1.000                                                        >= 1.0 (tape_margin)                 PASS
-              note: pad dia 18 at its base; the pad face is 17.965 (draft)
-assembly    S4: VHB strip area over the F5-F8 slot / counterbore openings (no flange front 54.39 mm2 each, 217.6 of 7903 mm2 tape (2.8 %)               INFO (GF-1.0: slot only)             INFO
-              note: the 7.4 x 9.0 stadium at its opening (1 deg draft) under each strip
-assembly    pip tops -> glass back (nominal; WC from the params)                           0.500 (8 pip tops)                                           > 0 (params WC 0.13)                 PASS
-              note: pips never touch the glass; the bead sets the bond line
-hardware    DIN 9021 M4 washer (12/4.3) on the cored tube tops: centred / worst stud posit 80.7 / 65.8 mm2 (F5 along + (slot end)) -> 6.2 / 7.6 MPa at  >= 80 (params, centred); creep limit PASS
-              note: off-centre the washer overhangs the coring groove (r 6.2-7.5); at a realistic ~0.6 along the slot (tolerances + expansion) 76.8 mm2 (6.5 MPa)
-hardware    S8 shim DIN 988 6x12x1.0 on the flange front round the F5-F8 counterbore: cent 58.7 / 57.8 mm2 (F5 end + across)                            > 0, ring all round                  PASS
-              note: worst = stud at the slot extreme and the shim a further 0.35 off on its bore (flange dia 5.3); with the dia-5.7 flange the shim bore leaves 0.15 radial for weld flash
-stud seat   F1-F4 CD weld stud flange 5.7 x 1.4: min to counterbore wall / floor round / f 0.122 (F4 end - across) / 0.096 (F2 end + across) / 0.200    > 0 (no contact)                     PASS
-              note: shank dia 4 against the slot wall: offset 0.705 from the slot centre line; overlap with the frame 0.00000 mm3
-stud seat   F5-F8 CD weld stud flange 5.7 x 1.4: min to counterbore wall / floor round / f 0.117 (F5 along + (slot end)) / 0.325 (F6 along - (slot end) > 0 (no contact)                     PASS
-              note: shank dia 4 against the slot wall: offset 0.709 from the slot centre line; overlap with the frame 0.00000 mm3
-rivet       R4 rivet dia 4.8 in the F1-F4 slots at 7 positions: overlap with the frame     0.00000 mm3 max                                              0                                    PASS
-              note: offset up to 0.305 from the slot centre line
-rivet       R4 rivet head dia 10: pad face under it (sheet clamped against the pad) centre 23.7 / 23.7 mm2 (centred); rim over the counterbore 0 % cent INFO (GF-1.0: 57.3)                  INFO
-              note: inside the counterbore (7.4 x 9.0) the 1.0 sheet is unsupported under the head: the setting load bends it into the counterbore
-rivet       DIN 9021 M5 backing washer (15/5.3) on the cored tube top: seat area / on the  seat 87.4..88.3 mm2, outer skin 0.0..16.6 mm2 (centred 0.0)  seat carries it; bridging claimed    INFO
-              note: washer OD r 7.5 = groove outer radius at the top: centred it only reaches the groove edge (no bridge); offset it bridges on one side
-board       component models overlapping the frame (145)                                   0                                                            0                                    PASS
-board       closest component model                                                        F3 1.364                                                     > 0                                  PASS
-              note: next: C333 1.64, U3 1.64, R129 1.64, J2 1.84, PS1 1.99
-board       PCB body                                                                       0.080 / 0.0000 mm3                                           0.08 (copper + mask) / 0             PASS
-panel       DS1 panel parts (moved -0.80 with the panel) vs frame                          min 0.821 (lcm_0 at [20.02, 19.0, -5.8]), overlap 0.0000 mm3 >= 0.8 (pocket) / 0                  PASS
-panel       DS1 panel parts vs Formex                                                      0.805                                                        0.8 (g_bs)                           PASS
-tails       FPC tails vs frame - split model (panel legs moved -0.80, connector legs at J1 1.763 (tft_tail_5, panel side (moved, Z < -2.1), at [84.02,  >= 1.5                               PASS
-              note: all: tft_tail_5 1.763, tft_fingers_6 3.056, ctp_tail_7 1.830, ctp_fingers_8 4.577
-tails       FPC tails rigidly moved with the panel (bound) vs frame                        1.445 (tft_tail_5 at [156.36, 116.48, 1.44])                 >= 1.5                               INFO
-              note: upper bound of the move: near J10/J11 the tails stay with the PCB; all: tft_tail_5 1.445, tft_fingers_6 2.534, ctp_tail_7 1.830, ctp_fingers_8 3.872
-tails       FPC tails at the v2 position (not moved, bound) vs frame                       1.777 (tft_tail_5 at [84.02, 146.06, -2.61])                 >= 1.5                               INFO
-              note: lower bound of the move; v2 measured TFT 1.557 / CTP 1.554
-tails       FPC tails vs glass / bead                                                      1.565 / 5.635                                                > 0 (info: >= 1.5 asked to the frame PASS
-electrical  lead protrusion -> Formex back (closest)                                       PS1 3.27 below Z 0 -> gap 1.335                              > 0                                  PASS
-              note: next: HS1 1.74, Q1 2.10, L40 2.73, L1 2.73, F3 2.73
-electrical  Z 0 contact faces vs B.Cu pads                                                 1.206 at J4.1 (rib)                                          >= 1.0                               PASS
-              note: by kind: rib 1.21 J4.1, wall 3.39 R1.1
-electrical  3D frame -> model of the nearest pad (J4.1)                                    2.198                                                        >= 1.0                               PASS
-              note: leads / solder fillets in the model
-electrical  mains creepage -> panel metal via the frame (back-stop case, v2 formula)       7.95 (copper->contact 1.21 at J4.1 + path 6.74)              >= 6.4                               PASS
-              note: nominal: the panel hangs on the glass and touches no frame face -> no surface path at all
-electrical  mains clearance -> panel metal                                                 6.70 (v2 formula, R1.2); any path >= 5.80 nominal / 5.00 bac >= 4.0                               PASS
-              note: the panel back lies 5.8 (nominal) / 5.0 (bond failed) below the PCB back
-electrical  frame volume above Z 0 inside the board outline + 1                            0.0000 mm3 (inside outline 0.0000)                           0                                    PASS
-              note: plan gap of frame material above Z 0 to the board edge 2.671 at [169.72, 128.65]
-tool        dia-12 socket F1-F8, Z_TUBE_TOP-0.5 .. +45, vs every board body                min >= 5.20 at F1 (PCB (lower bound: bbox gap / sampled))    no overlap (warn < 1.0)              PASS
-              note: F1 5.2; F2 7.0; F3 31.1; F4 30.8; F5 8.0; F6 5.3; F7 12.9; F8 11.9
-tool        dia-12 washer + socket F1-F8, tube top .. +45, vs frame                        min 0.005 at F1, overlap 0.0000                              no overlap                           PASS
-rivet       R4 blind side envelope (dia 12 x 10 beyond the M5 washer) vs frame             min 1.200, overlap 0.0000                                    no overlap                           PASS
-              note: envelope ASSUMED (tri-fold / bulb)
-rivet       R4 grip = sheet + frame stack at F1 (measured) + M5 washer                     8.20 (stack 6.00)                                            8.2 (concept 11.4)                   PASS
+group           check                                                                          measured                                                     required                             verdict
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+gaps            g2 glass -> lip inner face, 20 C, 0.32 behind the flush plane: sides / corners 0.394..0.395 / 0.395..0.498                                  0.40 sides, >= 0.40 corners          PASS
+                  note: at the flush plane add 0.32 x tan(1 deg) = 0.006
+gaps            g1 lip outer face -> cut-out, 20 C, 0.32 behind the flush plane: sides / corne 0.412..0.418 / 0.418..0.517                                  0.4175 sides at the flush plane, >=  INFO
+gaps            corner radii (STEP, Z -14.10): lip inner / lip outer; params glass R6.25, cut- inner 6.3944..6.3944, outer 7.3881..7.3881, centres on R_fra 6.3944 / 7.3881 at this Z (lip_in R6 PASS
+                  note: glass / cut-out corners NOT concentric with the lip (GF-1.1): the corner gaps open towards the diagonal
+gaps            g1 lip outer face -> sheet cut-out, 20 C, at the flush plane / at the lip root 0.412..0.517 / 0.404..0.509                                  0.4175 / 0.40 (as designed)          INFO
+                  note: lip_out is at the root, so the visible g1 at the front is 0.40 + 1 x tan(1deg) = 0.417 on the straight edges
+gaps            g2 at 20 C: sides / corner min / corner diagonal (nominal); worst tolerance ca 0.394 / 0.395 / 0.497; WC 0.131                              > 0 nominal (WC info)                PASS
+                  note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass +0.1/side, R nominal ( 0.294/0.295; glass profile +0.2 (offset o 0.194/0.195; glass +0.2/side and R -0.2 ( 0.191/0.131; glass nominal size, R -0.2 0.394/0.394; glass +0.2/side, R nominal ( 0.194/0.194)
+gaps            g2 at -20 C, 50 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.237 / 0.237 / 0.319; WC -0.050                             > 0 nominal (WC info)                PASS
+                  note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass +0.1/side, R nominal ( 0.137/0.137; glass profile +0.2 (offset o 0.037/0.037; glass +0.2/side and R -0.2 ( 0.033/-0.050; glass nominal size, R -0.2 0.237/0.227; glass +0.2/side, R nominal ( 0.037/0.027)
+gaps            g2 at +70 C frame/glass, +50 C sheet, 50 ppm: sides / corner min / corner diag 0.521 / 0.521 / 0.720; WC 0.318                              > 0 nominal (WC info)                PASS
+                  note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass +0.1/side, R nominal ( 0.421/0.421; glass profile +0.2 (offset o 0.321/0.321; glass +0.2/side and R -0.2 ( 0.318/0.318; glass nominal size, R -0.2 0.521/0.521; glass +0.2/side, R nominal ( 0.321/0.321)
+gaps            g2 at -20 C, 70 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.161 / 0.160 / 0.232; WC -0.139                             > 0 nominal (WC info)                PASS
+                  note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass +0.1/side, R nominal ( 0.061/0.058; glass profile +0.2 (offset o -0.040/-0.041; glass +0.2/side and R -0.2 ( -0.043/-0.139; glass nominal size, R -0.2 0.161/0.138; glass +0.2/side, R nominal ( -0.040/-0.062)
+gaps            g2 at +70 C frame/glass, +50 C sheet, 70 ppm: sides / corner min / corner diag 0.582 / 0.583 / 0.828; WC 0.379                              > 0 nominal (WC info)                PASS
+                  note: WC case: glass +0.2/side and R -0.2 (size + radius tolerances) (glass +0.1/side, R nominal ( 0.483/0.483; glass profile +0.2 (offset o 0.383/0.383; glass +0.2/side and R -0.2 ( 0.379/0.379; glass nominal size, R -0.2 0.582/0.583; glass +0.2/side, R nominal ( 0.383/0.383)
+gaps            g1 at 20 C: sides / corner min / corner diagonal (nominal); worst tolerance ca 0.412 / 0.418 / 0.516; WC 0.272                              > 0 nominal (WC info)                PASS
+                  note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.272/0.278; cut-out -0.1/side and R +0.1 0.272/0.273; cut-out -0.1/side, R nominal 0.272/0.275)
+gaps            g1 at -20 C, 50 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.508 / 0.514 / 0.684; WC 0.368                              > 0 nominal (WC info)                PASS
+                  note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.368/0.374; cut-out -0.1/side and R +0.1 0.368/0.369; cut-out -0.1/side, R nominal 0.368/0.372)
+gaps            g1 at +70 C frame/glass, +50 C sheet, 50 ppm: sides / corner min / corner diag 0.203 / 0.208 / 0.279; WC 0.047                              > 0 nominal (WC info)                PASS
+                  note: WC case: cut-out -0.1/side and R +0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.063/0.068; cut-out -0.1/side and R +0.1 0.063/0.047; cut-out -0.1/side, R nominal 0.063/0.066)
+gaps            g1 at -20 C, 70 ppm: sides / corner min / corner diagonal (nominal); worst tol 0.559 / 0.565 / 0.773; WC 0.419                              > 0 nominal (WC info)                PASS
+                  note: WC case: cut-out profile -0.1, lip +0.04 (cut-out profile -0.1, lip +0 0.419/0.425; cut-out -0.1/side and R +0.1 0.419/0.420; cut-out -0.1/side, R nominal 0.419/0.422)
+gaps            g1 at +70 C frame/glass, +50 C sheet, 70 ppm: sides / corner min / corner diag 0.106 / 0.110 / 0.169; WC -0.066                             > 0 nominal (WC info)                PASS
+                  note: WC case: cut-out -0.1/side and R +0.1, lip +0.04 (cut-out profile -0.1, lip +0 -0.034/-0.030; cut-out -0.1/side and R +0.1 -0.034/-0.066; cut-out -0.1/side, R nominal -0.034/-0.036)
+print           print window inside the active area (per side l/r/t/b)                         0.30 / 0.30 / 0.30 / 0.30                                    0.30                                 PASS
+                  note: AA from the panel DS, window R0.5
+print           print window inside the CTP cover-lens view area (l/r/t/b)                     0.80 / 0.80 / 0.94 / 0.66                                    > 0 (window hides the CTP print edge PASS
+print           border window edge -> glass edge (l/r/t/b), equal on all four sides            19.00 / 19.00 / 19.00 / 19.00                                19.00 (params border)                PASS
+                  note: glass 191.48 x 123.32
+print           glass centre = window centre = params glass_centre                             (103.850, 66.830) / (103.850, 66.830)                        (103.85, 66.83)                      PASS
+flush           glass front / lip top / sheet front                                            -14.42 / -14.42 / -14.42                                     one plane                            PASS
+                  note: sheet seated on the seat ring at Z_SHEET_BACK; glass set on the lip plane by the jig
+assembly        glass vs frame (overlap / min gap)                                             0.0000 mm3 / 0.348                                           0 / ~0.33 (recess wall at the glass  PASS
+                  note: glass modelled without arris
+assembly        bead vs frame: common volume = the 8 pips (by design), bead on the land        6.987 mm3 (pips 6.987) / gap 0.000                           pips only / 0 (contact)              PASS
+                  note: bead 4.0 x 1.0 at 0.9..4.9 inside the glass edge; pips dia 1.5 x 0.5 on its centre line
+assembly        bead inner edge -> where the land ends at Z_LAND + 0.01 (top / bottom over the 8.029 / 1.070 / 1.070 / 3.689 / 6.109 / 8.869                >= 1.0 (A1, bead_pocket_min); params PASS
+                  note: GF-1.1 method: the first frame face at Z_LAND + 0.01 inward of the bead. Over the bridge that is the 0.3 x 45 land break (the flat land ends 0.3 before the pocket face; at Z_LAND + 0.01 the break reads 0.01 more than on the land plane, see the land-plane row); params lands 'bottom over the tail span' bead_to_pocket 1.36 is to the pocket-face plane
+assembly        bead inner edge -> bridge pocket face plane at Z_LAND (break excluded), x 60 / 1.360 / 1.360                                                >= 1.0 (A1)                          PASS
+                  note: params lands 'bottom over the tail span' bead_to_pocket 1.36
+assembly        bead inner edge -> land-break edge ON the land plane (break face probed behind 1.060 / 1.060                                                >= 1.0 (A1, bead_pocket_min, to the  PASS
+                  note: margin +0.060; break edge on the land plane y [122.53, 122.53], break face slope dy/dz [-0.9827, -0.9827] (45 deg = -1); bead inner edge y 123.590
+assembly        panel envelope vs frame                                                        0.0000 mm3 / 0.821                                           >= 0.8 (pocket_clr)                  PASS
+                  note: LCM 164.9 x 100 outline, Z_CTP_FRONT..Z_PANEL_BACK
+assembly        LOCA vs frame                                                                  0.0000 mm3 / 1.141                                           > 0                                  PASS
+assembly        Formex vs frame (bonded to the shelf front)                                    0.0000 mm3 / 0.000                                           0 / 0                                PASS
+assembly        panel back -> Formex front (back-stop gap)                                     0.80                                                         0.80 (g_bs); WC [0.08, 1.52]         PASS
+                  note: from the levels
+assembly        VHB strips vs frame (on the flange front)                                      overlap 0.0000 mm3, min 0.000                                0 / 0                                PASS
+                  note: GF-2.0: no F5-F8 slots under the strips
+assembly        oven sheet vs frame (seat ring / pads at the sheet back, lip in the cut-out)   0.0000 mm3 / 0.000                                           0 / 0                                PASS
+hardware        S4 hardware vs frame (16 parts)                                                overlaps: none                                               none                                 PASS
+                  note: S4 with the weld-stud envelope dia 5.8 x 1.4; R4 with the dia-14 head
+hardware        R4 hardware vs frame (16 parts)                                                overlaps: none                                               none                                 PASS
+                  note: S4 with the weld-stud envelope dia 5.8 x 1.4; R4 with the dia-14 head
+assembly        VHB strip ends -> corner pads (dia 18)                                         1.000                                                        >= 1.0 (tape_margin)                 PASS
+                  note: pad dia 18 at its base; the pad face is 17.965 (draft)
+assembly        VHB strips: area / area on the flange-front face (fully supported)             7651.2 / 7651.2 mm2                                          params strips 7651.2; equal          PASS
+                  note: strips 193.48 / 125.32 long, s 3.9..15.9
+tails           GF-2.0 route: my route generator vs the params polylines (max deviation TFT /  0.0054 / 0.0057; 67.646 / 49.996 vs 67.65 / 50.00            < 0.01 (same route)                  PASS
+                  note: U-loop R 3.75 / 3.65, loop bottom (outer) 145.830 / 136.700 (params 145.830 / 136.700)
+tails           GF-2.0 tails (built here) vs frame: overlap                                    TFT 0.00000 / CTP 0.00000 mm3                                0                                    PASS
+tails           TFT tail vs frame outside the bend zone (U-loop, pocket walls / bottom wall, r 1.890 (tail-pocket side walls x 38.9 / 167.7 (+ corners))    >= 1.5 (loop_clr, params tail_cleara PASS
+                  note: tail-pocket side walls x 38.9 / 167.7 (+ corners) 1.890; pocket bottom face y 147.7 / bottom wall 2.028; slot ends / shelf end y 119.0 / shelf / ribs 2.249; trough top Z 4.05 2.543; land-plate back (bridge floor, Z -7.92) 2.606; step face (step-wall back, + root round) 2.671; divider rib (sides, top, roots) 2.895; land Z -10.42 (bead face) 2.960; other 2.997; floor root rounds 3.904; flange plate = pocket floor (Z -9.92) 4.671
+tails           TFT tail vs the bend zone (nose / pocket face / break): nominal; panel at its  1.718 (bridge nose R1.5); 1.459                              >= 0.45 at the RSS position (params  PASS
+                  note: panel position contributors [0.2, 0.1, 0.2, 0.05, 0.05] mm (RSS 0.308, WC 0.60)
+tails           TFT tail vs the bend zone at the worst case (panel +0.60, exit Z +-0.3, tail 0 1.014 (bridge nose R1.5)                                     > 0.0 (no forced contact)            PASS
+                  note: panel position only (WC +0.60): 1.220; with print-to-edge +-0.1 (panel +0.50, exit / tail worst): 1.098
+tails           TFT tail vs the bend zone at the full worst case: the concept's intent >= 0.45 1.014 (bridge nose R1.5)                                     >= 0.45 (concept_gf2 2.1 budget clea PASS
+                  note: margin +0.564; worst exit side -0.3, tail 0.35; panel position only 1.220 (margin +0.770)
+tails           CTP tail vs frame outside the bend zone (U-loop, pocket walls / bottom wall, r 1.781 (tail-pocket side walls x 38.9 / 167.7 (+ corners))    >= 1.5 (loop_clr, params tail_cleara PASS
+                  note: tail-pocket side walls x 38.9 / 167.7 (+ corners) 1.781; slot ends / shelf end y 119.0 / shelf / ribs 1.830; land Z -10.42 (bead face) 1.918; land-plate back (bridge floor, Z -7.92) 2.449; divider rib (sides, top, roots) 2.608; step face (step-wall back, + root round) 2.672; other 3.924; flange plate = pocket floor (Z -9.92) 4.673; trough top Z 4.05 8.432; floor root rounds 8.750; pocket bottom face y 147.7 / bottom wall 11.155
+tails           CTP tail vs the bend zone (nose / pocket face / break): nominal; panel at its  1.164 (bridge nose R1.5); 0.871                              >= 0.45 at the RSS position (params  PASS
+                  note: panel position contributors [0.2, 0.1, 0.2, 0.05, 0.05] mm (RSS 0.308, WC 0.60)
+tails           CTP tail vs the bend zone at the worst case (panel +0.60, exit Z +-0.3, tail 0 0.459 (bridge nose R1.5)                                     > 0.0 (no forced contact)            PASS
+                  note: panel position only (WC +0.60): 0.597; with print-to-edge +-0.1 (panel +0.50, exit / tail worst): 0.554
+tails           CTP tail vs the bend zone at the full worst case: the concept's intent >= 0.45 0.459 (bridge nose R1.5)                                     >= 0.45 (concept_gf2 2.1 budget clea PASS
+                  note: margin +0.009; worst exit side -0.3, tail 0.35; panel position only 0.597 (margin +0.147)
+tails           TFT tail vs frame, minimum over every route case (tolerances and the assumptio 1.014 (bend-zone WC: panel edge +0.60, exit Z -0.3, tail 0.3 > 0 (no forced contact)              PASS
+                  note: nominal (params polylines) 1.718; panel edge +0.35 (towards the  1.425; panel edge -0.35 (away from th 1.890; exit Z +0.3 (towards the PCB) 1.883; exit Z -0.3 (towards the glass 1.564; straight l0 1.0 instead of 0.5 1.302; inner bend radius 1.8 (centre  1.583; tail length +0.5 1.717; tail length -0.5 1.717; bend-zone RSS: panel edge +0.3 1.459; bend-zone WC: panel edge +0.60 1.014; alternative print-to-edge +-0. 1.098; bend-zone WC: panel edge +0.60 1.370; alternative print-to-edge +-0. 1.447; bend-zone WC, panel position o 1.220
+tails           CTP tail vs frame, minimum over every route case (tolerances and the assumptio 0.459 (bend-zone WC: panel edge +0.60, exit Z -0.3, tail 0.3 > 0 (no forced contact)              PASS
+                  note: nominal (params polylines) 1.164; panel edge +0.35 (towards the  0.832; panel edge -0.35 (away from th 1.498; exit Z +0.3 (towards the PCB) 1.264; exit Z -0.3 (towards the glass 1.081; straight l0 1.0 instead of 0.5 0.690; inner bend radius 1.8 (centre  0.965; tail length +0.5 1.163; tail length -0.5 1.163; bend-zone RSS: panel edge +0.3 0.871; bend-zone WC: panel edge +0.60 0.459; alternative print-to-edge +-0. 0.554; bend-zone WC: panel edge +0.60 0.672; alternative print-to-edge +-0. 0.763; bend-zone WC, panel position o 0.597
+tails           TFT tail vs glass print / glass / LOCA / bead / Formex / panel (beyond the 0.5 2.870 / 2.870 / 2.570 / 3.695 / 2.842 / 0.500                > 0                                  PASS
+                  note: panel envelope (params) beyond the straight 0.500; oven sheet 8.171; VHB 7.171
+tails           CTP tail vs glass print / glass / LOCA / bead / Formex / panel (beyond the 0.5 1.570 / 1.570 / 1.270 / 2.927 / 2.842 / 0.500                > 0                                  PASS
+                  note: panel envelope (params) beyond the straight 0.500; oven sheet 8.172; VHB 7.173
+tails           TFT tail vs PCB body (model, no copper / mask) / closest board model           0.699 at [145.4, 119.0, 1.55] / J10 0.000 (overlap 1.215 mm3 > 0 / no overlap                     INFO
+                  note: PCB model body top Z 1.550 (copper + mask missing: physical top ~1.635) -> physical clearance ~0.614; overlaps with the connector model at the tail end: see 'connector entry'
+tails           CTP tail vs PCB body (model, no copper / mask) / closest board model           0.499 at [58.27, 119.0, 1.55] / J11 0.000 (overlap 1.948 mm3 > 0 / no overlap                     INFO
+                  note: PCB model body top Z 1.550 (copper + mask missing: physical top ~1.635) -> physical clearance ~0.414; overlaps with the connector model at the tail end: see 'connector entry'
+connector entry J10 (TFT tail end): overlap of the tail with the connector model / DS1's own b 1.2148 mm3 (bbox [[145.4, 165.9, 110.875, 114.875, 2.535, 2. explained (inside the insertion open INFO
+                  note: model opening at the tail centre Z 2.40: dy 0.2: [np.float64(2.145), np.float64(2.545)]; dy 0.6: [np.float64(2.145), np.float64(2.545)]; dy 1.0: [np.float64(2.145), np.float64(2.545)]; dy 1.5: [np.float64(2.145), np.float64(2.545)]; dy 2.0: [np.float64(2.145), np.float64(2.545)]; dy 2.5: [np.float64(2.145), np.float64(2.545)]; dy 3.0: [np.float64(2.145), np.float64(2.545)]; dy 3.5: [np.float64(2.145), np.float64(2.545)]; tail Z 2.25..2.55, inserted to y 110.875 from the entry face y 114.875
+connector entry J11 (CTP tail end): overlap of the tail with the connector model / DS1's own b 1.9475 mm3 (bbox [[58.27, 61.77, 111.45, 114.45, 2.05, 2.35] explained (inside the insertion open INFO
+                  note: model opening at the tail centre Z 2.20: dy 0.2: [np.float64(1.945), np.float64(2.185)]; dy 0.6: [np.float64(1.945), np.float64(2.185)]; dy 1.0: [np.float64(1.945), np.float64(2.185)]; dy 1.5: [np.float64(1.945), np.float64(2.185)]; dy 2.0: [np.float64(1.945), np.float64(2.185)]; dy 2.5: [np.float64(1.945), np.float64(2.185)]; dy 3.0: material; dy 3.5: material; tail Z 2.05..2.35, inserted to y 111.450 from the entry face y 114.450
+assembly        pip tops -> glass back (nominal; WC from the params)                           0.500 (8 pip tops)                                           > 0 (params WC 0.13)                 PASS
+                  note: pips never touch the glass; the bead sets the bond line
+hardware        DIN 9021 M4 washer (12/4.3) on the cored tube tops: centred / worst stud posit 80.7 / 65.8 mm2 (F1 along + (slot end)) -> 6.2 / 7.6 MPa at  >= 80 (params, centred); creep limit PASS
+                  note: within +-0.3: 80.0 mm2 (params washer_M4_min_tol0.3 80.0); at 0.6 along the slot 76.8 mm2 (6.5 MPa)
+stud seat       F1-F4 weld stud dia 5.8 x 1.4 (GF-2.0 envelope), centred and +-0.3: min to cou 0.477 (F4 +0.3 across) / 0.267 (F4 +0.3 across) / 0.200; sha > 0 (no contact)                     PASS
+                  note: overlap with the frame 0.00000 mm3
+stud seat       F1-F4 weld stud dia 5.8 x 1.4 (GF-2.0 envelope), slot limits (7 positions, GF- 0.072 (F3 end + across) / 0.051 (F3 end + across) / 0.200; s > 0 (no contact)                     PASS
+                  note: overlap with the frame 0.00000 mm3
+stud seat       F1-F4 weld stud dia 5.7 x 1.4 (clean flange, GF-1.1 run), centred and +-0.3: m 0.527 (F4 +0.3 across) / 0.303 (F4 +0.3 across) / 0.200; sha > 0 (no contact)                     PASS
+                  note: overlap with the frame 0.00000 mm3
+stud seat       F1-F4 weld stud dia 5.7 x 1.4 (clean flange, GF-1.1 run), slot limits (7 posit 0.122 (F3 end + across) / 0.096 (F3 end + across) / 0.200; s > 0 (no contact)                     PASS
+                  note: overlap with the frame 0.00000 mm3
+rivet           R4 rivet dia 4.8 in the F1-F4 slots (centred, +-0.3, slot limits): overlap wit 0.00000 mm3 max                                              0                                    PASS
+                  note: slot-limit offset up to 0.305 from the slot centre line
+rivet           R4 head dia 14: pad face under it, centred / worst within +-0.3 (sheet clamped 99.1 / 99.1 mm2 (F1 +0.3 along); dia-10 head (GF-1.1 run) 23 params R4: 99.1                      PASS
+                  note: inside the 7.4 x 9.0 counterbore the 1.0 sheet is unsupported under the head
+rivet           R4 head dia 14: edge -> sheet cut-out (centred / min within +-0.3)             9.138 / 8.843                                                params 9.14 (> 0: head off the cut-o PASS
+rivet           DIN 9021 M5 backing washer (15/5.3) on the cored tube top: seat area / on the  seat 87.4..88.3 mm2, outer skin 0.0..16.6 mm2 (centred seat  params 88.34 centred                 INFO
+                  note: washer OD r 7.5 = groove outer radius at the top: centred it only reaches the groove edge (no bridge)
+board           component models overlapping the frame (145)                                   0                                                            0                                    PASS
+board           closest component model                                                        F3 1.364                                                     > 0                                  PASS
+                  note: next: C333 1.64, U3 1.64, R129 1.64, J2 1.84, PS1 1.99
+board           PCB body                                                                       0.080 / 0.0000 mm3                                           0.08 (copper + mask) / 0             PASS
+panel           DS1 panel parts (moved -0.80 with the panel) vs frame                          min 0.821 (lcm_0 at [20.02, 19.0, -5.8]), overlap 0.0000 mm3 >= 0.8 (pocket) / 0                  PASS
+panel           DS1 panel parts vs Formex                                                      0.805                                                        0.8 (g_bs)                           PASS
+tails           (reference) DS1 model's own tail bodies, GF-1.1 route, moved with the panel: v min 0.000, overlap 254.25 mm3                                not used (the route changed)         INFO
+                  note: tft_tail_5 0.000 / 170.68 mm3; tft_fingers_6 2.534 / 0.00 mm3; ctp_tail_7 0.000 / 83.57 mm3; ctp_fingers_8 3.872 / 0.00 mm3
+electrical      lead protrusion -> Formex back (closest)                                       PS1 3.27 below Z 0 -> gap 1.335                              > 0                                  PASS
+                  note: next: HS1 1.74, Q1 2.10, L40 2.73, L1 2.73, F3 2.73
+electrical      Z 0 contact faces vs B.Cu pads                                                 1.206 at J4.1 (rib)                                          >= 1.0                               PASS
+                  note: by kind: rib 1.21 J4.1, wall 3.39 R1.1
+electrical      3D frame -> model of the nearest pad (J4.1)                                    2.198                                                        >= 1.0                               PASS
+                  note: leads / solder fillets in the model
+electrical      mains creepage -> panel metal via the frame (back-stop case, v2 formula)       7.95 (copper->contact 1.21 at J4.1 + path 6.74)              >= 6.4                               PASS
+                  note: nominal: the panel hangs on the glass and touches no frame face -> no surface path at all
+electrical      mains clearance -> panel metal                                                 6.70 (v2 formula, R1.2); any path >= 5.80 nominal / 5.00 bac >= 4.0                               PASS
+                  note: the panel back lies 5.8 (nominal) / 5.0 (bond failed) below the PCB back
+electrical      frame volume above Z 0 inside the board outline + 1                            0.0000 mm3 (inside outline 0.0000)                           0                                    PASS
+                  note: plan gap of frame material above Z 0 to the board edge 2.671 at [169.72, 128.65]
+tool            dia-12 socket F1/F2/F3/F4, Z_TUBE_TOP-0.5 .. +45, vs every board body          min >= 9.18 at F4 (PCB (lower bound: bbox gap / sampled))    no overlap (warn < 1.0)              PASS
+                  note: F1 12.2; F2 14.0; F3 11.5; F4 9.2
+tool            dia-12 washer + socket F1/F2/F3/F4, tube top .. +45, vs frame                  min 0.005 at F1, overlap 0.0000                              no overlap                           PASS
+rivet           R4 blind side envelope (dia 12 x 10 beyond the M5 washer) vs frame             min 1.200, overlap 0.0000                                    no overlap                           PASS
+                  note: envelope ASSUMED (tri-fold / bulb)
+rivet           R4 grip = sheet + frame stack at F1 (measured) + M5 washer                     8.20 (stack 6.00)                                            8.2 (concept 11.4)                   PASS

@@ -255,3 +255,108 @@ g2 corners 0.49 / sides 0.39, g1 corners 0.51 / sides 0.41; nothing above Z 0 in
    Z −4.6…−2.1.
 5. Shelf back ↔ bottom pocket wall (v2 3 / 4): y 119.80, x 29.27…38.75 and 167.85…175.67, Z −2.1.
 6. Pilot and relief floors (blind holes), as v2.
+
+GF-2.0: the same six; item 3 is now the loop x 5.71…201.99, y 2.77…130.89 (R8.9), item 4 the bend-gap slot's front
+corners (same place as GF-1.1's tail-pocket corners).
+
+## Stage 4 (2026-11-16): GF-1.1 → GF-2.0 (equal borders, tails bent back, S8 dropped)
+
+Specification: `../concept/concept_gf2.md` + `concept_gf2_params.json` with the lead's decisions 1-6 (border 18.5 on
+all four sides as ONE driving value, `g_bend` 3.00 / nose R1.5 / 0.3 break, S4 + R4 only, divider rib, tail-pocket floor
+= bridge + flange plate). Same document, same guard, same runner. The GF-1.1 release set was first copied to
+`Mechanical/Rev3.0_GlassFront/archive/GF-1.1/` (README.txt there); the GF-1.1 renders moved to `renders/GF-1.1/`.
+Dumps of this stage: `%TEMP%\rev3_glassfront\gf20\` (scans: `%TEMP%\rev3_glassfront\scan_gf20_*.json`).
+
+| script | does |
+|---|---|
+| 66_gf20_drop_s8_f5_f8 | S8 dropped: F5-F8 curves deleted from the tube / slot / coring / counterbore sketches, features re-profiled and renamed F1-F4, 'Fastener counterbores F5-F8' and the F5-F8 tube blend rule deleted, coring / counterbore floor rounds re-created on F1-F4; S8 components and sockets F5-F8 deleted; f5..f8, tube_sw_r, cb_floor_mid, spacer_* parameters deleted. Save v15 |
+| 67_gf20_params_border_bridge | border 18.5, `glass_y1 = pw_y1 + border` (derived), g_bend / bend_y1 / bend_nose_R / land_break / tail_* / div_* / flange_y1_bottom, `fl_y1 = flange_y1_bottom`, logo_h 15; 'Tail pocket' split at bend_y1 = the bend-gap slot; new cut 'Tail pocket over the bridge' (from Z_LANDPLATE_BACK); 'Outer wall block' sketch redefined lower (superseded by 73) |
+| 68_gf20_bottom_late_block | late block before 'Fastener tubes F1-F4 sketch': 'Floor over the flange plate (cells + tail pocket)' (cut from Z_PCB down, 3 profiles, front edge on the step-wall back face), 'Cell ribs over the flange plate', divider rib (bridge low / high + over the flange plate), 'Bridge nose R bend_nose_R', 'Bridge land break land_break', rule fillet 'Root fillets R0.5 - floors over the bridge and the flange plate (rule)' (all edges of the late-block features + 'Tail pocket over the bridge') |
+| 69_gf20_divider_rib_profiles | the low divider-rib extrude takes both sketch profiles (no shared tapered edge between low and high part) |
+| 70_gf20_tails | component 'Tails GF-2.0 (bent-back route)': TFT / CTP tail solids swept from `tail_route.*.centreline_yZ`, 0.30 thick, developed outline per v segment (checked against the DS1 tails by diag_gf20_old_tail_widths); the DS1 tail / finger bodies hidden and renamed 'GF-1.1 reference - ...' |
+| 71_gf20_flex_test | flex: glass 2.0 / 4.0 / 1.1, t_sheet 0.8 / 1.5, t_opt 1.0, border 17.5 / 20.5, border 20.5 + g_bend 5.1, default |
+| 72_gf20_snap_fix | Z_FLOOR_LOW = min(Z_FLANGE_BACK; Z_LANDPLATE_BACK - 2 fillet_root) + hidden plane, rib sketches re-based on it (first flex: R2 failed at the snap) |
+| 73_gf20_rules_wallfront | GF-1.1 rule W restored, R1 'outer wall to the flange plate' re-made; 'Outer wall block' starts at Z_WALL_FRONT = min(Z_LAND; Z_FLANGE_BACK - 0.5) |
+| 74_gf20_rule_w_all_edges | R1 and W replaced by ONE rule at W's position: all concave edges of ['Land plate + step wall (back)', 'Outer wall block'] (R1 was empty at the snap) |
+| 75_gf20_disc_front | the land plate + step wall solid starts at Z_DISC_FRONT = Z_FLANGE_FRONT + 0.5 (no geometry change) so the parting-plane face stays a flange face and the pad / seat-ring roots stay sharp |
+| 76_gf20_scan | runs 20_scan (draft / undercut, slivers, thin strips, root census) with a TAG |
+| 77_gf20_coring_taper_fix | coring-groove side-two taper restored to -draft (lost when 66 set the profile) |
+| 78_gf20_fit_parts_gaps | frame vs every part (all variants + tails), part pairs, flush, pips, g2 / g1 by rays (sides and 45 deg corners, several Z), bead area, VHB strips vs pads |
+| 79_gf20_fit_tails | tails vs frame faces classed by location (nose, pocket face, bridge floor, step, flange floor, divider rib, side walls, bottom face, shelf end), also with the panel edge +-0.35; tails vs glass / print / bead / bond / Formex / board bodies / panel |
+| 80_gf20_fit_board | resumable: every visible board body vs the frame and the parts |
+| 81_gf20_fasteners | F1-F4: stud flange envelope dia 5.8 x 1.4 + shank centred / +-0.3 (8 directions) / at the shank limit, rivet shank, M4 / M5 washer bearing, R4 pad face under the K14 head, head edge to the cut-out (temporary BReps) |
+| 82_gf20_scratch_export_measure | scratch frame STEP + as-modelled numbers (volume, pads, positions, levels) |
+| 83_gf20_renders | GROUP frame / gf20 / asm / asm_nopcb: Fusion_FrameGF_*, Fusion_GF20_*, Fusion_Assembly_* (44 hides / shows the board for the no-PCB pair) |
+| 84_gf20_save_export | final save + frame STEP / STL, glass STEP, assembly STEP (S4), .f3d; lists what went into the assembly STEP |
+| 85_gf20_docinfo | read-only docinfo for the reports |
+| gf20_params_update.py | master params GF-1.1 → GF-2.0 (`--stage design`, then `--stage measured`); change_log lists every change, the GF-1.1 log is kept under previous_revisions |
+| gf20_thickness_check.py | the verification toolchain's thick-section / thin-wall check on a frame STEP with the GF-2.0 params (+ `--thin-min 1.2`, GF-2.0 probe sections) |
+| build_gf20_reports.py | Frame + Assembly report JSONs for GF-2.0 (complete; the GF-1.1 errata file is archived only) |
+| diag_gf20_views / _section_map / _old_tail_widths | diagnostic renders (grey), ASCII section maps by point containment, DS1 tail widths |
+
+### Construction of the bottom edge (why it is built this way)
+
+* The bend-gap slot is the GF-1.1 'Tail pocket' cut restricted (split sketch) to y tr_y0 … bend_y1: its front face is
+  the unchanged shelf end, its back face between Z_LAND and the land-plate back is the bridge pocket face (1 deg).
+* Everything behind the bridge is cut in a LATE BLOCK after the GF-1.1 root fillets: before it the frame keeps a
+  GF-1.1-like topology at every glass_t (all cell / bridge floors at Z_LANDPLATE_BACK), so the GF-1.1 edge-set fillets
+  keep their edges. The late cut lowers the floors beyond the step-wall back to Z_FLOOR_LOW; it removes the GF-1.1 cell
+  ribs there, which are re-made from Z_FLOOR_LOW in the same planes; one rule fillet rounds every new root.
+* Z_FLOOR_LOW is never closer than 2 x fillet_root to the land-plate back: at the level snap (glass 1.1) a flat floor
+  would make the new fillets continue the GF-1.1 ones through a drafted cut end (General modeling error). Only the
+  glass-1.1 variant changes (floor -8.92 instead of -7.92, flange 1.6 there).
+* Every cut / join in the block removes / adds material at every glass_t (a cut that removes nothing errors).
+* Outlines drawn on another plane than their GF-1.1 reference are offset by dZ tan(draft) so the faces stay the
+  same planes (no ledge, no V between adjacent features).
+* The flange bottom edge (`fl_y1 = flange_y1_bottom`) is the bottom-wall outer face (150.20 at Z_LAND) continued to the
+  flange front (150.235): one flush face.
+
+### Pitfalls met (stage 4)
+
+* Setting `ExtrudeFeature.profile` on a TWO-SIDED extrude reset its side-two taper to 0 deg (coring grooves undrafted,
+  found by the scan): re-apply `setTwoSidesExtent` afterwards (77).
+* A BETWEEN rule fillet ignores edges whose faces are both in set 1; a feature listed in both sets counts as set 1 (72
+  lost the step-wall roots). Three pairwise root sets cannot be one BETWEEN rule: use ALL EDGES of a feature list (74).
+* A rule that finds no edge in one parameter state fails there ('No fillet edge found'); at the level snap the flange
+  back merges with the land-plate back and the merged face belongs to 'Land plate + step wall (back)'.
+* A feature whose start face is coplanar with the flange front takes over the parting-plane face in rule / owner terms
+  (the all-edges rule then rounded the pad and seat-ring roots): start such solids inside the plate (75).
+* After a script that times out on the MCP side (flex test, exports), the next call can return 'Server unavailable'
+  without running anything: check the log and call again.
+* STEP export takes a component (`L.comp()`), not a body.
+
+### How to change `border` or `g_bend` later
+
+1. Set the user parameter: `border` (glass outline, all four sides) or `g_bend` (bridge pocket face,
+   bend_y1 = panel_y1 + g_bend at Z_LAND). Everything else follows: glass, lip, seat ring, cut-out, tape strips, F1-F4,
+   pips, logo zone, flange (bottom = max(glass + 21; bottom wall)), bridge, bead, sheet, studs, rivets.
+2. Run 71 (its cases already include border 17.5 / 20.5 and g_bend 5.1), 76, 78-81, 82 + gf20_thickness_check.py,
+   then 84, 85, gf20_params_update.py (values) and build_gf20_reports.py.
+3. The tail solids (70) do NOT follow g_bend (fixed concept route): for another bend re-sweep them from a new route.
+4. Keep the bottom bead_to_pocket >= 1.0: glass_y1 - 4.9 - bend_y1 (1.09 at 18.5 / 3.0); 18.5 holds up to g_bend 3.09.
+   (Superseded by stage 5: the verification measures the bead to the EDGE OF THE 0.3 LAND BREAK, i.e.
+   glass_y1 - 4.9 - bend_y1 - land_break >= 1.0.)
+
+## Stage 5 (2026-11-16): GF-2.0 → GF-2.1 (border 19.0, g_bend 3.23)
+
+Owner decision after the independent GF-2.0 verification (115 PASS / 1 FAIL): CTP tail → bridge nose 0.239 at the
+full worst case (intent >= 0.45) and bead inner edge 0.80 from the land-break edge (rule >= 1.0). Same document; the
+change is parameters only (timeline and topology unchanged: 204 items, 889 faces).
+
+| script | does |
+|---|---|
+| gf21_archive_gf20.py | copies the GF-2.0 release set (f3d v18, STEP / STL, reports, the verification's errata, params sha 7439b098..., drawings/, the design document) to `Mechanical/Rev3.0_GlassFront/archive/GF-2.0/` + README.txt with every sha256, byte-compared; GF-2.0 renders to `renders/GF-2.0/` |
+| 86_gf21_bend_zone_probe | derivation probe (parameters set temporarily, restored): tail → frame with the tail at nominal / +0.308 (RSS) / +0.60 (WC) / approx. full WC, bead → break edge by rays; CASES, OUTNAME globals. At 18.5 / 3.00 it reproduces the verification (0.946 / 0.654 / 0.382; full WC 0.257 vs 0.239) |
+| gf21_params_update.py | master GF-2.0 → GF-2.1 (`--stage design`, `--stage measured`), byte-exact writer check (indent 1, CRLF), backup `%TEMP%\rev3_glassfront\gf21\params_GF-2.0.json`; fastener d_* values re-derived by the concept 4a rules (board_geom.json read only; reproduces the GF-2.0 table) |
+| 87_gf21_params | border 19.0, g_bend 3.23, `logo_cy = ( pw_y1 + 1 mm + glass_y1 - 2.5 mm ) / 2`, value comments |
+| 71, 76, 78-85 | re-run with the module globals DUMP = "gf21" (dumps to `%TEMP%\rev3_glassfront\gf21\`), PREFIX = "GF21" (renders Fusion_GF21_*), DEFAULTS = the GF-2.1 values (71, 84), SAVE_MSG (84). 79 now classes frame faces by their own geometry (FACE_CLASSES, default True) |
+| build_gf21_reports.py | Frame + Assembly reports for GF-2.1, written so that the GF-2.0 errata points are already correct |
+
+Split: g_bend 3.23 is the smallest 0.01 step with CTP → nose >= 0.45 at the full worst case (0.239 + ~0.93-0.95 per mm);
+bottom land 19.0 - 9.51 - 3.23 = 6.26; bead → break edge 1.06 (land plane), 1.36 to the pocket face.
+
+Result (Fusion version 19 = GF-2.1): 84.129 cm³ / 114.4 g, 889 faces, 1 body; flex 10/10; scan as GF-2.0 (8 floor flags
+by design, 0 design slivers); max inscribed sphere 4.53 (bosses); walls < 1.2 only the lip and the H6 tail wall 1.1;
+CTP → nose 1.165 nominal / 0.872 RSS / 0.597 panel WC / ~0.48 (probe, ~0.46 calibrated) full WC; TFT 1.718; frame STEP
+1 585 816 bytes, sha256 d734683ac0c0058a863c4d079b511767ff84a41912745e2ebf592eb1e4e333d6. The GF-2.0 errata JSON was
+removed from the live folder (kept in archive/GF-2.0/); GF-2.0 renders in renders/GF-2.0/, live renders Fusion_GF21_*.

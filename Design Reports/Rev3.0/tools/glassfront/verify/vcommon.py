@@ -1,4 +1,9 @@
-"""Glass-front frame (GF-1.0) - independent verification toolchain, shared helpers.
+"""Glass-front frame (GF-1.0 / GF-1.1 / GF-2.0 / GF-2.1) - independent verification toolchain, shared helpers.
+
+GF-2.0 (2026-11-16): the params loader reads the GF-2.0 keys (g_bend, bend_nose_R, land_break, tail_*, div_*,
+flange_y1_bottom, plan_rectangles bend_gap_slot / bridge / divider_rib, tail_route); fasteners are whatever the
+params list (F1-F4 at GF-2.0). GF-2.1 (same keys, border 19.0 / g_bend 3.23): the previous release (PREV_TAG,
+archive) is the second carry-over reference and the row-by-row comparison.
 
 Nothing of the frame is modelled here. The frame is READ from its STEP; the specification is READ from the frozen
 parameter file; the board from a kicad-cli STEP export (made from a COPY of the .kicad_pcb into a temp folder) and
@@ -49,6 +54,12 @@ ROOT = os.path.normpath(os.path.join(HERE, r"..\..\..\..\.."))
 GF_DIR = os.path.join(ROOT, r"Mechanical\Rev3.0_GlassFront")
 GF_STEP = os.path.join(GF_DIR, "Rev3.0_GlassFront_Frame.step")
 GF_PARAMS = os.path.join(GF_DIR, "Rev3.0_GlassFront_params.json")
+GF11_STEP = os.path.join(GF_DIR, r"archive\GF-1.1\Rev3.0_GlassFront_Frame.step")
+GF11_PARAMS = os.path.join(GF_DIR, r"archive\GF-1.1\Rev3.0_GlassFront_params.json")
+# previous release (carry-over reference and row-by-row comparison): GF-2.0 for the GF-2.1 run
+PREV_TAG = "GF-2.0"
+PREV_STEP = os.path.join(GF_DIR, r"archive\GF-2.0\Rev3.0_GlassFront_Frame.step")
+PREV_PARAMS = os.path.join(GF_DIR, r"archive\GF-2.0\Rev3.0_GlassFront_params.json")
 V2_STEP = os.path.join(ROOT, r"Mechanical\Rev3.0_Frame\Rev3.0_Frame_v2.step")
 V2_PARAMS = os.path.join(ROOT, r"Mechanical\Rev3.0_Frame\Rev3.0_Frame_v2_params.json")
 BOARD_GEOM = os.path.join(ROOT, r"Design Reports\Rev3.0\tools\frame\out\board_geom.json")
@@ -156,11 +167,28 @@ class GF:
         self.h6 = {p["name"]: p["value"] for p in raw.get("corner_cell_H6", [])}
         self.change_log = raw.get("change_log")
 
+        # ---- GF-2.0 additions (optional)
+        self.gf2 = "g_bend" in d
+        for k, dflt in (("g_bend", None), ("bend_nose_R", None), ("land_break", None), ("tail_R_in_min", None),
+                        ("tail_straight_l0", None), ("tail_t", None), ("div_x", None), ("div_t", None),
+                        ("flange_y1_bottom", None), ("border", None), ("bead_pocket_min", 1.0)):
+            v = d.get(k, dflt)
+            setattr(self, k, None if v is None else float(v))
+        self.SLOT = self._r("bend_gap_slot") if "bend_gap_slot" in self.rect else None
+        self.BRIDGE = self._r("bridge") if "bridge" in self.rect else None
+        self.DIVIDER = self._r("divider_rib") if "divider_rib" in self.rect else None
+        self.tail_route = raw.get("tail_route")
+        tg = {p["name"]: p["value"] for p in raw.get("tape_and_gasket", [])}
+        self.tape_s = tuple(tg.get("tape_s", (3.9, 15.9)))
+        self.strip_lengths = tg.get("strip_lengths", {"top_bottom": 183.48, "sides": 145.83})
+
     def cb_floor_z(self, n):
         """Z of the counterbore floor at fastener n (None without counterbores)"""
         if not self.cb:
             return None
         k = "cb_floor_F1-F4" if n in ("F1", "F2", "F3", "F4") else "cb_floor_F5-F8"
+        if k not in self.cb:
+            return None
         return self.L["Z_SHEET_BACK"] + float(self.cb[k])
 
     def cb_open_z(self, n):
@@ -177,8 +205,15 @@ class GF:
         f = self.fast[n]
         return f["x_abs"], f["y_abs_down"]
 
-    def stud_names(self, variant="S8"):
-        return ["F1", "F2", "F3", "F4"] if variant in ("S4", "R4") else ["F%d" % i for i in range(1, 9)]
+    def stud_names(self, variant="S4"):
+        """fasteners used by a variant: S4 / R4 = F1-F4; at GF-2.0 the params list only F1-F4 (S8 withdrawn)"""
+        if variant in ("S4", "R4"):
+            return [n for n in ("F1", "F2", "F3", "F4") if n in self.fast]
+        return sorted(self.fast)
+
+    @property
+    def variants(self):
+        return ("S4", "R4") if self.gf2 else ("S4", "S8", "R4")
 
 
 # =====================================================================================================
@@ -853,14 +888,30 @@ class Context:
         self.render = "--no-render" not in argv
         os.makedirs(self.outdir, exist_ok=True)
         os.makedirs(self.imgdir, exist_ok=True)
+        self.gf11_path = opt("--gf11", GF11_STEP)
+        self.prev_path = opt("--prev", PREV_STEP)
         self.G = GF(self.params_path)
-        self._frame = self._v2 = self._items = None
+        self._frame = self._v2 = self._items = self._gf11 = self._prev = None
+
+    @property
+    def prev(self):
+        """the previous release frame (archive, PREV_TAG) - carry-over reference for the change list"""
+        if self._prev is None:
+            self._prev, self.prev_info = load_solid(self.prev_path)
+        return self._prev
 
     @property
     def frame(self):
         if self._frame is None:
             self._frame, self.frame_info = load_solid(self.frame_path)
         return self._frame
+
+    @property
+    def gf11(self):
+        """the GF-1.1 release frame (archive) - second carry-over reference"""
+        if self._gf11 is None:
+            self._gf11, self.gf11_info = load_solid(self.gf11_path)
+        return self._gf11
 
     @property
     def v2(self):

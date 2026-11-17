@@ -71,6 +71,53 @@ def mesh_intervals(obb, pts, X, Y, za, zb):
     return [(u[i], u[i + 1]) for i in range(0, len(u), 2)]
 
 
+def is_divider_rib(G, reg):
+    """GF-2.0 divider rib (params divider_rib: x div_x +- div_t/2 at Z_LANDPLATE_BACK, 1 deg, R0.5 roots, y 122.0 .. into the
+    bottom wall): a GF-only region inside x div_x +- (div_t/2 + root 0.5 + draft), y 121.5 .. 150.3"""
+    if not G.gf2 or reg["kind"] != "GF only":
+        return False
+    x0, x1, y0, y1 = reg["bbox_abs"]
+    half = G.div_t / 2 + 0.5 + 0.25
+    return x0 >= G.div_x - half - STEP and x1 <= G.div_x + half + STEP and y0 >= G.BRIDGE[2] - 0.5 and y1 <= G.TAIL[3] + 2.6
+
+
+def explain_gf11(G, reg):
+    """GF-2.0 vs the GF-1.1 release at Z >= -5.0: the change list allows only the divider rib in this slab (the bridge, nose,
+    slot, flange plate and bottom-wall front all lie in front of Z -5.0; the shelf, ribs, bosses, cells, tail walls and the
+    bottom wall above -5.0 are unchanged)"""
+    if is_divider_rib(G, reg):
+        return "GF-2.0 divider rib x %.2f, %.1f thick (params divider_rib, change_log item 4)" % (G.div_x, G.div_t)
+    x0, x1, y0, y1 = reg["bbox_abs"]
+    z0, z1 = reg["z_range"]
+    tx0, tx1 = G.TAIL[0], G.TAIL[1]
+    if reg["kind"] == "GF only" and y0 > 118.5 and y1 < 119.8 and (abs((x0 + x1) / 2 - tx0) < 0.8 or abs((x0 + x1) / 2 - tx1) < 0.8) \
+            and z0 is not None and z0 >= G.L["Z_SEAT"] - 0.05 and z1 <= G.L["Z_SHELF_BACK"] + 0.05:
+        listed = [r for r in G.raw.get("cad_rules", []) if "inside corners shelf end" in r and "R0.5" in r]
+        if listed:
+            return ("GF-2.0 R0.5 vertical rounds in the inside corners shelf end x tail-pocket side walls (params cad_rules, change_log "
+                    "2026-11-16): x %.1f, Z %.2f..%.2f" % (tx0 if (x0 + x1) / 2 < 100 else tx1, z0, z1))
+        return ("UNEXPLAINED by the GF-2.0 change list: R0.5 vertical round added in the inside corner shelf end (y 119.0) x tail-pocket "
+                "side wall (x %.1f), Z %.2f..%.2f; GF-1.1 has a sharp corner here" % (tx0 if (x0 + x1) / 2 < 100 else tx1, z0, z1))
+    return "UNEXPLAINED by the GF-2.0 change list"
+
+
+def explain_prev(G, reg):
+    """GF-2.1 vs the previous release (GF-2.0) at Z >= -5.0: the change list (border 19.0, g_bend 3.23) moves the bridge
+    pocket face 0.23 back (y 122.00 -> bend_gap_slot.y1); in this slab only the divider rib follows it (its front face is
+    coplanar with the pocket face). Everything else in the slab (shelf, ribs, bosses, cells, tail walls, bottom wall above
+    -5.0) is unchanged; the glass, lip, flange, F1-F4 tubes and the bridge lie in front of Z -5.0."""
+    Gp = C.GF(C.PREV_PARAMS)
+    x0, x1, y0, y1 = reg["bbox_abs"]
+    half = G.div_t / 2 + 0.5 + 0.25
+    y_old, y_new = Gp.BRIDGE[2], G.BRIDGE[2]
+    if x0 >= G.div_x - half - STEP and x1 <= G.div_x + half + STEP and y0 >= min(y_old, y_new) - 0.6 and y1 <= max(y_old, y_new) + 0.6:
+        side = "reference only (vacated)" if reg["kind"] == "v2 only" else "added"
+        if (y_new > y_old and reg["kind"] == "v2 only") or (y_new < y_old and reg["kind"] == "GF only"):
+            return ("divider rib front face moved with the bridge pocket face y %.2f -> %.2f (g_bend %.2f -> %.2f, change_log): strip %s"
+                    % (y_old, y_new, Gp.g_bend, G.g_bend, side))
+    return "UNEXPLAINED by the %s change list" % G.revision.split(" ")[0]
+
+
 def explain(G, reg, studs):
     x0, x1, y0, y1 = reg["bbox_abs"]
     z0, z1 = reg["z_range"]
@@ -79,6 +126,9 @@ def explain(G, reg, studs):
     px0, px1, py0, py1, _ = G.POCKET
     inside_studs = [n for n, (sx, sy) in studs.items() if x0 - 1 < sx < x1 + 1 and y0 - 1 < sy < y1 + 1]
     fill = reg["columns"] * STEP * STEP / max((x1 - x0) * (y1 - y0), 1e-9)
+    # 0. GF-2.0 divider rib (new feature, also not in v2)
+    if is_divider_rib(G, reg):
+        return "GF-2.0 divider rib x %.2f, %.1f thick (params divider_rib)" % (G.div_x, G.div_t)
     # 1. tail pocket / bottom beam (v2 151.2 / R5 -> GF 147.70 / R1.5); the v2 beam region also holds FH6-FH8
     if x0 < tx1 + 3 and x1 > tx0 - 3 and y1 > ty1 - 2.5 and (x1 - x0) > 20:
         s = "tail pocket bottom 147.70 / R1.5 (v2 151.2 / R5): bottom beam and side-wall ends moved 3.5 (params v2_superseded tr_y1, trough_r)"
@@ -122,13 +172,16 @@ def explain(G, reg, studs):
     return "UNEXPLAINED by the params"
 
 
-def run(ctx, log=C.log):
+def run(ctx, log=C.log, ref="v2"):
+    """ref 'v2' (frame v2 STEP, explanations from the params as GF-1.1), 'gf11' (the archived GF-1.1 release frame; only the
+    GF-2.0 change list explains a difference) or 'prev' (the previous release C.PREV_TAG; only the current change list explains
+    a difference). Keys 'v2_*' below mean 'the reference' in every case."""
     import vtk
     from scipy import ndimage
     t0 = time.time()
     G = ctx.G
     zs = G.L["Z_FORMEX_FRONT"]
-    gf, v2 = ctx.frame, ctx.v2
+    gf, v2 = ctx.frame, {"v2": lambda: ctx.v2, "gf11": lambda: ctx.gf11, "prev": lambda: ctx.prev}[ref]()
     _, og = __import__("mould_check").vtk_mesh(gf)
     _, ov = __import__("mould_check").vtk_mesh(v2)
     # plan extent of material above zs in either part
@@ -201,7 +254,15 @@ def run(ctx, log=C.log):
     cell = STEP * STEP
     regions = []
     studs = v2_studs()
-    for kind, arr in (("GF only", dg), ("v2 only", dv)):
+    arrays = [("GF only", dg), ("v2 only", dv)]
+    if G.gf2:
+        # GF-2.0: the divider rib is labelled on its own (otherwise it merges with the bottom-wall region vs v2 and takes its
+        # explanation): columns inside the rib footprint (x div_x +- (div_t/2 + root + draft), y bridge face .. bottom-wall face)
+        XX, YY = np.meshgrid(X, Y)
+        half = G.div_t / 2 + 0.5 + 0.25
+        rib = (np.abs(XX - G.div_x) <= half) & (-YY >= G.BRIDGE[2] - 0.5) & (-YY <= G.TAIL[3] - 0.6)
+        arrays = [("GF only", np.where(rib, 0.0, dg)), ("GF only", np.where(rib, dg, 0.0)), ("v2 only", dv)]
+    for kind, arr in arrays:
         lab, n = ndimage.label(arr > 0, structure=np.ones((3, 3)))
         for k, sl in enumerate(ndimage.find_objects(lab), start=1):
             m = lab[sl] == k
@@ -215,7 +276,7 @@ def run(ctx, log=C.log):
                    "bbox_abs": [round(xa, 2), round(xb, 2), round(-Yb, 2), round(-Ya, 2)],
                    "z_range": [None if zl is None else round(float(zl), 3), None if zh is None else round(float(zh), 3)],
                    "max_length_mm": round(float(arr[sl][m].max()), 3)}
-            reg["explained_by"] = explain(G, reg, studs)
+            reg["explained_by"] = explain(G, reg, studs) if ref == "v2" else (explain_gf11(G, reg) if ref == "gf11" else explain_prev(G, reg))
             regions.append(reg)
     regions.sort(key=lambda r: -r["volume_mm3"])
     tiny = [r for r in regions if r["volume_mm3"] < 0.05]
@@ -232,7 +293,9 @@ def run(ctx, log=C.log):
            "tiny_examples": tiny[:10],
            "by_explanation": {k: {kk: round(vv, 2) if isinstance(vv, float) else vv for kk, vv in v.items()} for k, v in by.items()},
            "unexplained_mm3": round(sum(r["volume_mm3"] for r in big if r["explained_by"].startswith(("UNEXPLAINED", "corner-cell"))), 3),
-           "method": "vertical rays, mesh pass + exact OCC pass on differing columns (OCC booleans fail on these two models)"}
+           "method": "vertical rays, mesh pass + exact OCC pass on differing columns (OCC booleans fail on these two models)",
+           "reference": ref if ref != "prev" else C.PREV_TAG,
+           "reference_step": C.file_id({"v2": ctx.v2_path, "gf11": ctx.gf11_path, "prev": ctx.prev_path}[ref])}
     # slab volumes (exact, OCC common with a box)
     for tag, s in (("gf", gf), ("v2", v2)):
         sl = C.common_shape(s, C.box(-50, 260, -220, 50, zs, 20))
@@ -266,8 +329,9 @@ def run(ctx, log=C.log):
 
 if __name__ == "__main__":
     ctx = C.Context(sys.argv[1:])
-    r = run(ctx)
-    C.dump(r, ctx.out("carry_only.json"))
+    ref = sys.argv[sys.argv.index("--ref") + 1] if "--ref" in sys.argv else "v2"
+    r = run(ctx, ref=ref)
+    C.dump(r, os.path.join(C.TMP, "carry_only_%s.json" % ref))
     for s in r["regions"]:
         print(s)
     print(r["by_explanation"])

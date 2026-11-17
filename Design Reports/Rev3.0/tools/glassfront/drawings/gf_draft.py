@@ -34,8 +34,13 @@ def char_w(fs):
     return 0.585 * fs * MM_PER_PT
 
 
+ALL_SHEETS = []              # every Sheet made in this process (make_all indexes them and scans their texts)
+
+
 class Sheet:
     def __init__(self, W=420.0, H=297.0, margin=10.0):
+        ALL_SHEETS.append(self)
+        self.dwg, self.title, self.rev = None, None, None
         self.W, self.H, self.m = W, H, margin
         self.fig = plt.figure(figsize=(W / 25.4, H / 25.4))
         self.ax = self.fig.add_axes([0, 0, 1, 1])
@@ -242,6 +247,7 @@ class Sheet:
 
     def title_block(self, fields, w=180.0, h=36.0):
         """ISO 7200-like title block at the lower-right corner; fields: dict"""
+        self.dwg, self.title, self.rev = fields.get("dwg"), fields.get("title"), fields.get("rev")
         x1, y0 = self.W - self.m, self.m
         x0, y1 = x1 - w, y0 + h
         self.L([x0, x1, x1, x0, x0], [y0, y0, y1, y1, y0], w=THICK, geom=False)
@@ -260,7 +266,9 @@ class Sheet:
         self.T(x0 + 2, y1 - 5.0, fields.get("title", ""), fs=9.5, weight="bold", va="baseline")
         yy = y1 - 9.6
         for key, fs, col in (("subtitle", 6.6, "k"), ("source", 5.6, "0.25"), ("project", 5.8, "k")):
-            for ln in self.wrap(fields.get(key, ""), w - 4, fs)[:2]:
+            lines = self.wrap(fields.get(key, ""), w - 4, fs)
+            assert len(lines) <= 2, ("title-block %s longer than two lines" % key, fields.get(key))
+            for ln in lines:
                 self.T(x0 + 2, yy, ln, fs=fs, color=col)
                 yy -= fs * MM_PER_PT * 1.3
         if fields.get("change"):
@@ -318,12 +326,42 @@ class Sheet:
         self.boxes = boxes
         return issues
 
+    def all_text(self):
+        """every string drawn on the sheet (also the unchecked ones), in drawing order"""
+        return [t.get_text() for t in self.ax.texts if t.get_text().strip()]
+
     def save(self, pdf=None, png=None, dpi=200, pdf_image_dpi=300):
         if pdf:
             self.fig.savefig(pdf, dpi=pdf_image_dpi)     # dpi only affects embedded raster images
         if png:
             self.fig.savefig(png, dpi=dpi)
         plt.close(self.fig)
+
+
+def clip_poly(pts, x0, x1, y0, y1):
+    """Sutherland-Hodgman clip of a closed polygon (any shape) by the axis-aligned box x0..x1, y0..y1 (the box is
+    convex, so the result is exact; a concave subject may keep zero-width edges on the box boundary)"""
+    def clip(P, inside, inter):
+        out = []
+        for i in range(len(P)):
+            a, b = P[i - 1], P[i]
+            ia, ib = inside(a), inside(b)
+            if ib:
+                if not ia:
+                    out.append(inter(a, b))
+                out.append(b)
+            elif ia:
+                out.append(inter(a, b))
+        return out
+    ix = lambda x: (lambda a, b: (x, a[1] + (b[1] - a[1]) * (x - a[0]) / (b[0] - a[0])))
+    iy = lambda y: (lambda a, b: (a[0] + (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]), y))
+    P = [tuple(p) for p in pts]
+    for inside, inter in ((lambda p: p[0] >= x0, ix(x0)), (lambda p: p[0] <= x1, ix(x1)),
+                          (lambda p: p[1] >= y0, iy(y0)), (lambda p: p[1] <= y1, iy(y1))):
+        if not P:
+            break
+        P = clip(P, inside, inter)
+    return P
 
 
 def _segs_hit_box(segs, x0, y0, x1, y1):

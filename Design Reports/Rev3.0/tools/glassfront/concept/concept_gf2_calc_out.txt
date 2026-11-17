@@ -1,0 +1,520 @@
+
+==============================================================================================================
+1. INPUTS (GF-1.1 master GF-1.1)
+==============================================================================================================
+  levels glass 3.0 [G]: Z_SHELF_BACK -2.10, Z_SEAT -4.60, Z_FORMEX_FRONT -5.00, Z_PANEL_BACK -5.80, Z_CTP_FRONT -11.12, Z_GLASS_BACK -11.42, Z_GLASS_FRONT -14.42, Z_SHEET_BACK -13.42, Z_FLANGE_FRONT -12.42, Z_FLANGE_BACK -9.92, Z_LAND -10.42, Z_PIP_TOP -10.92, Z_LANDPLATE_BACK -7.92, Z_STEPWALL_BACK -7.92, Z_TUBE_TOP -7.42, Z_TAIL_TFT_EXIT -8.40, Z_TAIL_CTP_EXIT -9.70, Z_LOOP_FRONT -9.85
+  panel outline [G/M] x 20.02-184.92 y 19.00-119.00; print window [G] x 27.11-180.59 y 24.17-109.49
+  measured [M]: frame STEP sha256 47742d2f5ad0..., board STEP board_full.step
+  PCB bottom edge between the ears [M]: y 119.000 at x 45 / 60 / 103.85 / 140 / 160 (all [119.0]); PCB Z [0.08, 1.55] (STEP, no copper)
+  board parts reaching in front of the PCB back in the bottom zone (y > 100, x 30-175) [M]: J20 (x [21.95, 30.55], y [97.46, 107.62], Z [-1.865, 20.735])
+  GF-1.1 frame at x 103.85 [M]: at Z -3 boundaries at y [116.428, 118.972, 147.83, 150.07] (shelf 116.43-118.97, beam 147.83-150.07); at Z -10 first frame face at y 147.707 (tail-pocket bottom face)
+
+==============================================================================================================
+2. FPC TAILS: data, GF-1.1 route check, GF-2.0 bent-back route
+==============================================================================================================
+  TFT tail: developed length 67.65 (SAT sheet 16: 67.65 beyond the bottom edge [DS]); exit at the panel edge y 119.00 [M], width x 84.02-122.62 (38.60) [M: section y 119.2 / model segs], envelope x 84.02-165.90 [M]; exit centre Z -8.40 [E: panel model, 2.6 above the panel back]; thickness 0.30 [E: CTP drawing 0.3+-0.05, used for both]; return leg Z 2.40 (PCB top 1.6 + entry height [E]); J10 (155.65, 112.0), entry face y 114.875, insertion 4.0
+  CTP tail: developed length 50.00 (Fannal CT0476: 50 +-0.5 [DS]); exit at the panel edge y 119.00 [M], width x 40.72-75.82 (35.10) [M: section y 119.2 / model segs], envelope x 40.72-75.82 [M]; exit centre Z -9.70 [E: panel model, 3.9 above the panel back]; thickness 0.30 [E: CTP drawing 0.3+-0.05, used for both]; return leg Z 2.20 (PCB top 1.6 + entry height [E]); J11 (60.02, 112.4), entry face y 114.45, insertion 3.0
+  TFT tail outline [E]: v 0-7 x 84.02-122.62 (bonded width), v 7-31 x 84.02-165.90 (L-shaped wide part), v 31-67.65 x 145.40-165.90; CTP: v 0-9.5 x 40.72-75.82, 9.5-34 x 50.92-70.62, 34-50 x 58.27-61.77 (steel stiffener on the finger end, back side)
+  gap between the two tails (CTP x1 75.82 -> TFT x0 84.02): 8.20; with 1.5 clearance each side a support could be 5.20 wide (x 77.32-82.52)
+  check of the length model [C vs M]: TFT at the v2 stand-off r 5.00, loop bottom (outer surface) 146.059; DS1 STEP bbox y max 146.059 (diff -0.000) -> model ok
+     GF-1.1 route (panel back -5.80): flat leg 21.28 at Z -8.40, U radius 5.40, loop bottom 145.68 (outer 145.83)
+  check of the length model [C vs M]: CTP at the v2 stand-off r 5.55, loop bottom (outer surface) 137.207; DS1 STEP bbox y max 137.207 (diff +0.000) -> model ok
+     GF-1.1 route (panel back -5.80): flat leg 11.88 at Z -9.70, U radius 5.95, loop bottom 136.83 (outer 136.98)
+
+  bend assumptions: straight 0.50 beyond the edge face [A], inner radius >= 1.50 [A] (centreline 1.65), tail 0.30 [E], clearance to the pocket face 0.45 worst case [A], panel edge position 0.25 [A] -> bend gap g_bend = 0.50 + 1.50 + 0.30 + 0.45 + 0.25 = 3.00
+  why R_in 1.5: IPC-2223 static (bend-to-install) single-sided flex >= 6 x total thickness (3-6 x in some sources, 12 x double-sided); the 0.30 in the model is the ZIF finger thickness (with stiffener) - the bending body of a single-sided display FPC is typically 0.10-0.15 [A], so R_in 1.5 = 10-15 x that and 5 x the conservative 0.30. CTP spec (Fannal) qualifies the tail for 'tail bending 90 deg, 10 times left & right' and 'tail peeling 500 g/cm at 90 deg' [DS]. A double-sided 0.30 tail would need 12 x 0.3 = 3.6 (then g_bend 5.1).
+  -> bridge inner (pocket) face over the tail span at y 122.00 (panel edge 119.00 + 3.00); nose R1.5 on its back-inner edge
+  front legs of both tails at Z_leg = Z_TAIL_TFT_EXIT + 2 x 1.65 = -5.10 (behind the bridge; the frame has no feature at this Z)
+  TFT GF-2.0 route [C]: straight 0.50, arc R1.65 (centre line) 90.0 deg, vertical straight 0.00, arc R1.65 back, S ends at y 122.80 Z -5.10 (tail v 5.68); front leg 19.13 at Z -5.10; U-loop R 3.75 (GF-1.1 5.40) centre y 141.93; loop bottom 145.68, outer 145.83 (GF-1.1 145.83) ; loop on tail v 24.8-36.6
+  CTP GF-2.0 route [C]: straight 0.50, arc R1.65 (centre line) 90.0 deg, vertical straight 1.30, arc R1.65 back, S ends at y 122.80 Z -5.10 (tail v 6.98); front leg 10.10 at Z -5.10; U-loop R 3.65 (GF-1.1 5.95) centre y 132.90; loop bottom 136.55, outer 136.70 (GF-1.1 136.98) ; loop on tail v 17.1-28.6
+  TFT S-bend lies on v 0.5-5.68 (< 7.0, the narrow bonded-width part, x 84.02-122.62); CTP S-bend on v 0.5-6.98 (< 9.5, the 35.1-wide first segment)
+
+  clearances of the GF-2.0 route (surface to surface) [C], border 18.5, nominal and worst case:
+  tail  glass  to                                            nominal where (y, Z)
+  TFT   1.1    frame (bridge nose / pocket face / floor / wall)     1.51 (120.87, -7.67)
+  TFT   2.0    frame (bridge nose / pocket face / floor / wall)     1.51 (120.87, -7.67)
+  TFT   3.0    frame (bridge nose / pocket face / floor / wall)     1.51 (120.87, -7.67)
+  TFT   4.0    frame (bridge nose / pocket face / floor / wall)     1.51 (120.87, -7.67)
+  TFT   3.0    glass back (at the exit)                         2.87 (119.00, -8.40)
+  TFT   3.0    panel edge face above the exit + back corner     0.45 (119.00, -8.40)
+  TFT   3.0    Formex                                           2.84 (121.28, -6.12)
+  TFT   3.0    shelf end (y 118.97)                             2.59 (121.36, -5.94)
+  TFT   3.0    PCB (return leg over its edge, unchanged)        0.65 (118.99, 2.40)
+  CTP   1.1    frame (bridge nose / pocket face / floor / wall)     0.93 (121.06, -8.59)
+  CTP   2.0    frame (bridge nose / pocket face / floor / wall)     0.93 (121.06, -8.59)
+  CTP   3.0    frame (bridge nose / pocket face / floor / wall)     0.93 (121.06, -8.59)
+  CTP   4.0    frame (bridge nose / pocket face / floor / wall)     0.93 (121.06, -8.59)
+  CTP   3.0    glass back (at the exit)                         1.57 (119.00, -9.70)
+  CTP   3.0    panel edge face above the exit + back corner     0.45 (119.00, -9.70)
+  CTP   3.0    Formex                                           2.84 (121.28, -6.12)
+  CTP   3.0    shelf end (y 118.97)                             2.59 (121.36, -5.94)
+  CTP   3.0    PCB (return leg over its edge, unchanged)        0.45 (118.99, 2.20)
+
+  tolerance cases (glass 3.0, border 18.5) [C]:
+  TFT  nominal                                to the bridge  1.51 | to the glass back  2.87 | loop bottom  145.83 -> pocket bottom face 1.87 | U R 3.75
+  TFT  panel edge +0.25 (towards the bridge)  to the bridge  1.30 | to the glass back  2.87 | loop bottom  145.96 -> pocket bottom face 1.74 | U R 3.75
+  TFT  panel edge +0.35 (WC)                  to the bridge  1.22 | to the glass back  2.87 | loop bottom  146.01 -> pocket bottom face 1.69 | U R 3.75
+  TFT  exit Z +0.30 (further back)            to the bridge  1.68 | to the glass back  3.17 | loop bottom  145.92 -> pocket bottom face 1.78 | U R 3.60
+  TFT  exit Z -0.30 (towards the glass)       to the bridge  1.35 | to the glass back  2.57 | loop bottom  145.68 -> pocket bottom face 2.02 | U R 3.75
+  TFT  length +0.5                            to the bridge  1.51 | to the glass back  2.87 | loop bottom  146.08 -> pocket bottom face 1.62 | U R 3.75
+  TFT  length -0.5                            to the bridge  1.51 | to the glass back  2.87 | loop bottom  145.58 -> pocket bottom face 2.12 | U R 3.75
+  TFT  straight 1.0 instead of 0.5            to the bridge  1.10 | to the glass back  2.87 | loop bottom  145.83 -> pocket bottom face 1.87 | U R 3.75
+  TFT  R_in 1.8 (6 x 0.30)                    to the bridge  1.38 | to the glass back  2.87 | loop bottom  145.94 -> pocket bottom face 1.76 | U R 3.75
+  CTP  nominal                                to the bridge  0.93 | to the glass back  1.57 | loop bottom  136.70 -> pocket bottom face 11.00 | U R 3.65
+  CTP  panel edge +0.25 (towards the bridge)  to the bridge  0.69 | to the glass back  1.57 | loop bottom  136.82 -> pocket bottom face 10.88 | U R 3.65
+  CTP  panel edge +0.35 (WC)                  to the bridge  0.60 | to the glass back  1.57 | loop bottom  136.87 -> pocket bottom face 10.83 | U R 3.65
+  CTP  exit Z +0.30 (further back)            to the bridge  1.03 | to the glass back  1.87 | loop bottom  136.85 -> pocket bottom face 10.85 | U R 3.65
+  CTP  exit Z -0.30 (towards the glass)       to the bridge  0.84 | to the glass back  1.27 | loop bottom  136.55 -> pocket bottom face 11.15 | U R 3.65
+  CTP  length +0.5                            to the bridge  0.93 | to the glass back  1.57 | loop bottom  136.95 -> pocket bottom face 10.75 | U R 3.65
+  CTP  length -0.5                            to the bridge  0.93 | to the glass back  1.57 | loop bottom  136.45 -> pocket bottom face 11.25 | U R 3.65
+  CTP  straight 1.0 instead of 0.5            to the bridge  0.46 | to the glass back  1.57 | loop bottom  136.70 -> pocket bottom face 11.00 | U R 3.65
+  CTP  R_in 1.8 (6 x 0.30)                    to the bridge  0.73 | to the glass back  1.57 | loop bottom  136.83 -> pocket bottom face 10.87 | U R 3.65
+  TFT envelope x 84.02-165.90 vs tail-pocket side walls 38.9 / 167.7: 45.12 / 1.80 (unchanged from GF-1.1)
+  CTP envelope x 40.72-75.82 vs tail-pocket side walls 38.9 / 167.7: 1.82 / 91.88 (unchanged from GF-1.1)
+  TFT loop corner (165.90, 145.83) in plan vs the R1.5 pocket corner: side wall 1.80, bottom face 1.87, corner arc 1.84 (>= 1.5)
+  taut-tail case: the tail can only lie on the R1.5 nose -> centreline radius 1.65 >= R_in + t/2 1.65; on the pocket face it is straight.
+  PCB back-side parts near the route: none [M] (only J20, x 21.9-30.6, y 97.5-107.6, reaches Z -1.87; far from the tails)
+
+==============================================================================================================
+3. BORDER BUDGET AT THE BOTTOM: window edge -> panel edge (bezel) + bend gap + land = border
+==============================================================================================================
+  bottom bezel (window bottom 109.49 -> panel bottom 119.00) = 9.51 [G/M]; other sides window -> panel: top 5.17, abs left 7.09, abs right 4.33
+  full GF-1.1 bead needs a land of bead_edge 0.9 + bead_w 4.0 + bead_pocket_min 1.0 = 5.90
+  smallest equal border with the full bead: 9.51 + 3.00 + 5.90 = 18.41 -> rounded up to 0.5: 18.5 (reserve 0.09 = largest g_bend 3.09 that still fits)
+
+  border  bot. land bead (0.9/1.0) bead area (4.0 elsewhere) mm2  vs 2486.7   glass        verdict
+  14.0    1.49      -0.41          1548                           -37.7       181.48 x 113.32  IMPOSSIBLE: no bead fits
+  15.0    2.49      0.59           1676                           -32.6       183.48 x 115.32  not sound (bead < 2.0)
+  16.0    3.49      1.59           1879                           -24.4       185.48 x 117.32  not sound (bead < 2.0)
+  16.5    3.99      2.09           1982                           -20.3       186.48 x 118.32  marginal (bead < 3.0)
+  17.0    4.49      2.59           2086                           -16.1       187.48 x 119.32  marginal (bead < 3.0)
+  17.5    4.99      3.09           2191                           -11.9       188.48 x 120.32  sound with a narrower bottom bead
+  18.0    5.49      3.59           2297                           -7.6        189.48 x 121.32  sound with a narrower bottom bead
+  18.5    5.99      4.09           2387                           -4.0        190.48 x 122.32  full bead (GF-1.1 margins)
+  19.0    6.49      4.59           2403                           -3.4        191.48 x 123.32  full bead (GF-1.1 margins)
+  (bead area scaled from the concept formula to the modelled GF-1.1 value 2486.7 / 2510; at 14.0 even a zero-margin bead would be 1.49 wide)
+  border 14.0: land 1.49 after the bend gap; needed 5.90. Even with g_bend 1.60 (straight 0.3, R_in 1.0, no clearance) the land is 2.89 -> a 4.0 bead needs border >= 17.01; a sealed bottom at 14.0 would need g_bend <= -1.41, i.e. a tail bent at the edge face with no radius.
+
+==============================================================================================================
+4. GF-2.0 PLAN GEOMETRY
+==============================================================================================================
+  border 18.5 on all four sides -> GLASS x 8.61-199.09 y 5.67-127.99 (190.48 x 122.32), centre (103.850, 66.830) = window centre (GF-1.1: 181.48 x 143.83, centre 103.85 / 82.085)
+  lip_in    x     8.21-  199.49 y     5.27-  128.39 ( 191.28 x  123.12)
+  lip_out   x     7.21-  200.49 y     4.27-  129.39 ( 193.28 x  125.12)
+  seat      x     5.71-  201.99 y     2.77-  130.89 ( 196.28 x  128.12)
+  cut       x     6.81-  200.89 y     3.87-  129.79 ( 194.08 x  125.92)
+  tape_in   x     4.71-  202.99 y     1.77-  131.89 ( 198.28 x  130.12)
+  tape_out  x    -7.29-  214.99 y   -10.23-  143.89 ( 222.28 x  154.12)
+  FL        x    -2.39-  210.09 y    -5.33-  138.99 ( 212.48 x  144.32)
+  FLANGE    x   -12.39-  220.09 y   -15.33-  150.20 ( 232.48 x  165.53)
+  flange bottom edge: glass + 21 would be y 148.99; the frame's bottom wall (tail pocket closed) ends at y 150.20 -> flange to 150.20 (20.41 below the cut-out; sides 19.20)
+  lands (pocket face -> glass edge) and bead (0.9-4.9 inside the edge) to the pocket face:
+    abs left (front-view right)                              10.61 -> bead to pocket  5.71 OK
+    abs right (front-view left)                              13.37 -> bead to pocket  8.47 OK
+    top                                                      12.53 -> bead to pocket  7.63 OK
+    bottom over the tail span (to the bridge pocket face)     5.99 -> bead to pocket  1.09 OK
+    bottom outside the tail span (x < 38.9, x > 167.7)        8.19 -> bead to pocket  3.29 OK
+  (border 14.0: glass 181.48 x 113.32, y1 123.49, cut-out 185.08 x 116.92, flange 223.48 x 161.03; bottom land 1.49)
+  (border 17.5: glass 188.48 x 120.32, y1 126.99, cut-out 192.08 x 123.92, flange 230.48 x 164.53; bottom land 4.99)
+  pips P1-P8 (same rule as GF-1.1): P1 (56.23, 8.57), P2 (56.23, 125.09), P3 (151.47, 8.57), P4 (151.47, 125.09), P5 (11.51, 36.25), P6 (196.19, 36.25), P7 (11.51, 97.41), P8 (196.19, 97.41)
+  logo zone: centre (103.85, 118.74), <= 100 x 15.0 (>= 1.0 from the window, >= 2.5 from the glass edge); at border 14.0 it would be <= 100 x 10.5
+  VHB strips: s 3.9-15.9, top/bottom 192.48 long, sides 124.32 long, area 7603 mm2 (GF-1.1 7903); bottom strip at y 131.89-143.89 on the flange plate in front of the tail pocket
+  flange below the bottom strip: y 143.89-150.20 (6.31) - too narrow for a second 12 mm strip; none needed (section 5)
+  print window unchanged x 27.11-180.59 y 24.17-109.49; visible module (cut-out) 194.08 x 125.92 (GF-1.1 185.08 x 147.43); overall flange 232.48 x 165.53 (GF-1.1 223.48 x 185.83)
+
+==============================================================================================================
+4a. FASTENERS F1-F8 at the GF-2.0 glass (rules as concept 4a)
+==============================================================================================================
+              x        y     axis     r_c  outline  ear hole   J20/J2    tails boss gap cut edge  fl rim
+  F1      -2.39    -5.33    34.19   128.4    33.32  H1 37.82     32.0    131.0     24.8    16.14    1.00  OK
+  F2     210.09    -5.33   145.81   128.4    36.24  H4 40.74    186.5    131.4     27.7    16.14    1.00  OK
+  F3     210.09   138.99  -145.81   128.4    31.71  H5 36.21    181.1     42.4     23.2    16.14    1.00  OK
+  F4      -2.39   138.99   -34.19   128.4    30.27  H8 34.77     28.8     41.3     21.8    16.14    1.00  OK
+  F5     103.85    -5.33    90.00    72.2    17.84  H2 22.34     83.9    124.3      9.3     9.20    1.00  OK
+  F6     210.09    66.83   180.00   106.2    26.09  H4 42.05    180.9     67.2     29.0     9.20    1.00  OK
+  F7     103.85   138.99   -90.00    72.2    19.99  H6 72.75     78.0      0.0     59.8     9.20    2.21  CONFLICT
+  F8      -2.39    66.83     0.00   106.2    22.39  H9 40.81     19.8     66.5     27.8     9.20    1.00  OK
+  rules: outline >= 6.5 and ear hole >= 11.0 (socket), tube R9 clear of the PCB bosses (R4), >= 8.0 to the cut-out, tube R9 + 1.5 clear of the tail pocket / loops, tube edge >= 1.0 inside the flange edge
+  F7 at (103.85, 138.99) lies 8.7 inside the tail pocket (x 38.9-167.7, y 119.0-147.7), over the TFT loop (x 84.0-165.9, to y 145.8) -> cannot stay.
+  nearest legal F7 on the centre line: below the bottom wall, tube edge 1.5 from it -> (103.85, 160.70), 32.71 below the glass edge; needs a flange tab to y 170.70 (+20.50) and a stud 30.9 below the cut-out edge
+  corner fasteners in front view (u, v) about the glass centre: F1 (+106.24, +72.16), F2 (-106.24, +72.16), F3 (-106.24, -72.16), F4 (+106.24, -72.16) -> symmetric (|u| 106.24, |v| 72.16 on all four); R4 head edge to the cut-out corner arc 9.14
+
+==============================================================================================================
+5. PUSH ON THE GLASS - grillage port (panel, LOCA, PCB stiffness NOT counted; frame E 3500; VHB E 1 MPa)
+==============================================================================================================
+
+5.0 validation of the port against concept_calc_out.txt (GF-1.0/1.1 geometry, one ring section, land_min 6.11)
+  ring section GF-1.1 (glass 3.0): I 1222 mm4, J 216, centroid -8.82 (concept: I 1222, J 216, -8.82)
+  S4     w@50N: 0.139 0.067 0.066 0.092 0.067 | concept: 0.139 0.067 0.066 0.092 0.067 | glass@250N 64.1 39.3 40.4 56.5 39.4 MPa
+  S8     w@50N: 0.193 0.127 0.113 0.153 0.127 | concept: 0.193 0.127 0.113 0.153 0.127 | glass@250N 66.0 46.5 43.2 62.3 46.5 MPa
+  studs  w@50N: 0.436 0.581 0.391 0.478 0.581 | concept: 0.436 0.581 0.391 0.478 0.581 | glass@250N 76.3 100.7 93.0 88.2 100.8 MPa
+  -> port reproduces the concept within 0.001 mm at every load point (asserted)
+  S8 gasket 0.10 N/mm lift, GF-1.1: 39 um (concept 39)
+
+5.1 GF-2.0 ring sections (glass 3.0) [C]
+  glass 1.1: I top 825 / left 815 / right 829; bottom: bridge only 54 (no pocket wall, no shelf: the bend gap cuts them), bridge + flange plate + bottom wall (channel) 1580; GF-1.1 ring 789; J bottom 158 / 227
+  glass 2.0: I top 991 / left 986 / right 993; bottom: bridge only 72 (no pocket wall, no shelf: the bend gap cuts them), bridge + flange plate + bottom wall (channel) 1831; GF-1.1 ring 971; J bottom 151 / 225
+  glass 3.0: I top 1232 / left 1229 / right 1233; bottom: bridge only 124 (no pocket wall, no shelf: the bend gap cuts them), bridge + flange plate + bottom wall (channel) 2160; GF-1.1 ring 1222; J bottom 157 / 236
+  glass 4.0: I top 1533 / left 1530 / right 1534; bottom: bridge only 209 (no pocket wall, no shelf: the bend gap cuts them), bridge + flange plate + bottom wall (channel) 2545; GF-1.1 ring 1524; J bottom 162 / 246
+
+5.2 GF-2.0 push cases (border 18.5)
+  divider rib option: x 79.92 (2.5 thick; 2.85 to the CTP tail edge 75.82 and 2.85 to the TFT tail edge 84.02), T-section I 790 mm4 (glass 3.0); F7 moved to a tab below the bottom wall at (79.92, 160.70)
+  F7a option at (28.40, 138.99): board outline 10.77, H7 15.27, tail pocket 10.50, 30.8 from F3/F4; sits in the corner cell (cross rib y 139, cell walls -> rework)
+  F7b option at (178.20, 138.99): board outline 11.02, H6 15.52, tail pocket 10.50, 31.9 from F3/F4; sits in the corner cell (cross rib y 139, cell walls -> rework)
+  F7 tab option: tab x 93.85-113.85 down to y 170.70, stud at (103.85, 160.70)
+
+  glass 1.1 | bottom section: channel | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           123   1.226        0.144   411.7 MPa    8.2 MPa     -22 N
+    glass top edge, mid                      13   0.126        0.126    72.5 MPa   20.9 MPa      -3 N
+    glass side edge, mid                     12   0.120        0.120    73.1 MPa   21.6 MPa      -1 N
+    bottom border over the bend gap          31   0.311        0.152   302.6 MPa   17.8 MPa      -7 N
+    glass bottom edge, mid                   11   0.112        0.112    60.9 MPa   19.0 MPa      -3 N
+    bottom edge over CTP tail (x 58)         10   0.103        0.103    60.5 MPa   20.3 MPa       0 N
+
+  glass 1.1 | bottom section: channel | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           194   1.941        0.793   435.4 MPa   33.7 MPa      85 N
+    glass top edge, mid                      29   0.295        0.295   195.2 MPa   14.0 MPa     206 N
+    glass side edge, mid                     24   0.239        0.239   166.1 MPa   20.2 MPa     176 N
+    bottom border over the bend gap         147   1.470        1.402   303.9 MPa   70.7 MPa      92 N
+    glass bottom edge, mid                  151   1.511        1.511    82.7 MPa   80.7 MPa     103 N
+    bottom edge over CTP tail (x 58)         99   0.986        1.145    66.9 MPa   65.3 MPa     150 N
+
+  glass 1.1 | bottom section: channel | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           194   1.937        0.748   438.9 MPa   31.8 MPa      86 N
+    glass top edge, mid                      30   0.296        0.296   196.2 MPa   14.1 MPa     205 N
+    glass side edge, mid                     24   0.238        0.238   165.6 MPa   20.3 MPa     176 N
+    bottom border over the bend gap         113   1.130        0.928   367.5 MPa   49.6 MPa      70 N
+    glass bottom edge, mid                   85   0.850        0.850   370.2 MPa   51.1 MPa      97 N
+    bottom edge over CTP tail (x 58)         56   0.562        0.616   299.4 MPa   44.5 MPa      95 N
+
+  glass 2.0 | bottom section: channel | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            32   0.320        0.067   137.1 MPa    3.8 MPa     -16 N
+    glass top edge, mid                       8   0.085        0.085    38.8 MPa   15.5 MPa      -3 N
+    glass side edge, mid                      8   0.084        0.084    40.6 MPa   16.1 MPa      -1 N
+    bottom border over the bend gap          12   0.122        0.084   112.1 MPa   11.0 MPa      -6 N
+    glass bottom edge, mid                    8   0.077        0.077    31.3 MPa   14.9 MPa      -3 N
+    bottom edge over CTP tail (x 58)          7   0.073        0.073    30.9 MPa   16.0 MPa       5 N
+
+  glass 2.0 | bottom section: channel | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            59   0.589        0.479   138.3 MPa   21.4 MPa      94 N
+    glass top edge, mid                      17   0.172        0.172   102.1 MPa    8.3 MPa     200 N
+    glass side edge, mid                     14   0.144        0.144    87.4 MPa   12.9 MPa     168 N
+    bottom border over the bend gap          82   0.823        0.858   130.7 MPa   45.3 MPa      89 N
+    glass bottom edge, mid                   94   0.938        0.938    96.1 MPa   53.9 MPa      99 N
+    bottom edge over CTP tail (x 58)         63   0.629        0.715    81.6 MPa   45.8 MPa     145 N
+
+  glass 2.0 | bottom section: channel | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            53   0.530        0.300   144.5 MPa   14.7 MPa      96 N
+    glass top edge, mid                      17   0.172        0.172   103.0 MPa    8.3 MPa     200 N
+    glass side edge, mid                     14   0.142        0.142    86.8 MPa   13.0 MPa     168 N
+    bottom border over the bend gap          44   0.437        0.403   261.6 MPa   25.6 MPa     104 N
+    glass bottom edge, mid                   39   0.393        0.399   302.6 MPa   30.5 MPa     124 N
+    bottom edge over CTP tail (x 58)         26   0.264        0.273   248.9 MPa   28.0 MPa     102 N
+
+  glass 3.0 | bottom section: channel | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            12   0.122        0.040    62.9 MPa    2.3 MPa     -12 N
+    glass top edge, mid                       7   0.066        0.066    39.1 MPa   11.0 MPa      -4 N
+    glass side edge, mid                      6   0.065        0.065    41.5 MPa   11.6 MPa       1 N
+    bottom border over the bend gap           7   0.069        0.060    50.1 MPa    7.7 MPa      -6 N
+    glass bottom edge, mid                    6   0.062        0.062    29.4 MPa   11.5 MPa      -4 N
+    bottom edge over CTP tail (x 58)          6   0.058        0.058    31.4 MPa   12.3 MPa      14 N
+
+  glass 3.0 | bottom section: channel | S4/R4 + divider rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            12   0.122        0.040    63.2 MPa    2.4 MPa     -11 N
+    glass top edge, mid                       7   0.066        0.066    39.1 MPa   11.0 MPa      -4 N
+    glass side edge, mid                      6   0.065        0.065    41.5 MPa   11.6 MPa       1 N
+    bottom border over the bend gap           7   0.066        0.056    50.2 MPa    7.7 MPa      -6 N
+    glass bottom edge, mid                    6   0.057        0.057    29.3 MPa   11.5 MPa      -4 N
+    bottom edge over CTP tail (x 58)          5   0.053        0.053    31.2 MPa   12.3 MPa      13 N
+
+  glass 3.0 | bottom section: channel | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            26   0.258        0.258    67.6 MPa   11.7 MPa      92 N
+    glass top edge, mid                      13   0.131        0.131    48.2 MPa    6.7 MPa     180 N
+    glass side edge, mid                     11   0.105        0.105    40.1 MPa    9.6 MPa     144 N
+    bottom border over the bend gap          43   0.428        0.454    83.1 MPa   25.1 MPa      88 N
+    glass bottom edge, mid                   50   0.497        0.497    79.2 MPa   31.1 MPa      98 N
+    bottom edge over CTP tail (x 58)         35   0.349        0.385    71.3 MPa   28.0 MPa     141 N
+
+  glass 3.0 | bottom section: channel | S8 with F7 on a tab below the bottom wall
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            24   0.245        0.225    68.1 MPa    9.8 MPa      91 N
+    glass top edge, mid                      13   0.131        0.131    48.2 MPa    7.0 MPa     180 N
+    glass side edge, mid                     10   0.104        0.104    40.0 MPa    9.6 MPa     143 N
+    bottom border over the bend gap          37   0.367        0.383    78.5 MPa   21.0 MPa      73 N
+    glass bottom edge, mid                   41   0.414        0.414    67.2 MPa   26.4 MPa      80 N
+    bottom edge over CTP tail (x 58)         30   0.303        0.327    66.9 MPa   26.2 MPa     128 N
+
+  glass 3.0 | bottom section: channel | S8 with F7a/F7b beside the tail pocket
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            20   0.198        0.138    63.0 MPa    8.3 MPa      87 N
+    glass top edge, mid                      13   0.129        0.129    48.1 MPa    6.6 MPa     179 N
+    glass side edge, mid                     10   0.100        0.100    39.1 MPa    9.8 MPa     140 N
+    bottom border over the bend gap          23   0.229        0.236    67.7 MPa   19.0 MPa     113 N
+    glass bottom edge, mid                   26   0.258        0.258    62.0 MPa   24.4 MPa     124 N
+    bottom edge over CTP tail (x 58)         16   0.165        0.184    49.3 MPa   19.3 MPa     142 N
+
+  glass 3.0 | bottom section: channel | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            21   0.211        0.142    67.7 MPa    7.9 MPa      91 N
+    glass top edge, mid                      13   0.131        0.131    48.6 MPa    6.7 MPa     180 N
+    glass side edge, mid                     10   0.102        0.102    39.6 MPa    9.7 MPa     142 N
+    bottom border over the bend gap          20   0.205        0.202   152.5 MPa   15.0 MPa     110 N
+    glass bottom edge, mid                   20   0.203        0.207   172.4 MPa   19.5 MPa     126 N
+    bottom edge over CTP tail (x 58)         14   0.142        0.143   145.1 MPa   18.2 MPa     106 N
+
+  glass 3.0 | bottom section: channel | S8 with F7 on the fastener line (bound, not buildable)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            18   0.176        0.085    64.5 MPa    4.4 MPa      84 N
+    glass top edge, mid                      13   0.128        0.128    48.0 MPa    6.6 MPa     179 N
+    glass side edge, mid                     10   0.100        0.100    39.4 MPa    9.6 MPa     141 N
+    bottom border over the bend gap          13   0.132        0.122    63.2 MPa    5.7 MPa     153 N
+    glass bottom edge, mid                   12   0.124        0.124    46.0 MPa    8.0 MPa     172 N
+    bottom edge over CTP tail (x 58)         14   0.141        0.141    51.8 MPa   20.4 MPa     129 N
+
+  glass 3.0 | bottom section: channel | reference: 4 corner studs only
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            43   0.427        0.377    79.2 MPa   14.2 MPa      63 N
+    glass top edge, mid                      63   0.627        0.627   102.3 MPa   28.8 MPa     115 N
+    glass side edge, mid                     30   0.297        0.297    87.5 MPa   24.6 MPa     119 N
+    bottom border over the bend gap          49   0.486        0.504    86.4 MPa   26.4 MPa     107 N
+    glass bottom edge, mid                   54   0.541        0.541    82.0 MPa   32.2 MPa     115 N
+    bottom edge over CTP tail (x 58)         39   0.386        0.424    74.3 MPa   29.2 MPa     166 N
+
+  glass 4.0 | bottom section: channel | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                             6   0.065        0.030    35.6 MPa    1.7 MPa      -8 N
+    glass top edge, mid                       5   0.054        0.054    34.8 MPa    7.7 MPa      -3 N
+    glass side edge, mid                      5   0.050        0.050    36.9 MPa    8.2 MPa      11 N
+    bottom border over the bend gap           5   0.050        0.048    30.3 MPa    5.7 MPa      -3 N
+    glass bottom edge, mid                    5   0.052        0.052    28.4 MPa    8.7 MPa      -2 N
+    bottom edge over CTP tail (x 58)          5   0.047        0.047    29.8 MPa    9.2 MPa      23 N
+
+  glass 4.0 | bottom section: channel | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            14   0.144        0.149    41.5 MPa    6.7 MPa      81 N
+    glass top edge, mid                      11   0.106        0.106    25.4 MPa    5.6 MPa     153 N
+    glass side edge, mid                      8   0.081        0.081    32.5 MPa    7.2 MPa     116 N
+    bottom border over the bend gap          24   0.240        0.256    55.8 MPa   14.5 MPa      89 N
+    glass bottom edge, mid                   28   0.280        0.280    60.1 MPa   18.5 MPa      98 N
+    bottom edge over CTP tail (x 58)         21   0.206        0.222    56.3 MPa   17.4 MPa     140 N
+
+  glass 4.0 | bottom section: channel | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            11   0.115        0.084    42.1 MPa    4.8 MPa      79 N
+    glass top edge, mid                      11   0.106        0.106    25.4 MPa    5.6 MPa     152 N
+    glass side edge, mid                      8   0.078        0.078    32.6 MPa    7.3 MPa     114 N
+    bottom border over the bend gap          12   0.119        0.120    88.6 MPa    9.7 MPa     106 N
+    glass bottom edge, mid                   12   0.123        0.125    99.1 MPa   13.1 MPa     120 N
+    bottom edge over CTP tail (x 58)          9   0.090        0.090    85.4 MPa   12.3 MPa     103 N
+
+  glass 1.1 | bottom section: bridge  | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           125   1.253        0.165   412.2 MPa    6.9 MPa     -20 N
+    glass top edge, mid                      13   0.126        0.126    72.4 MPa   20.9 MPa      -3 N
+    glass side edge, mid                     12   0.121        0.121    73.4 MPa   21.5 MPa      -0 N
+    bottom border over the bend gap          40   0.395        0.230   315.9 MPa   25.7 MPa      -7 N
+    glass bottom edge, mid                   19   0.193        0.193   163.3 MPa   40.9 MPa      -3 N
+    bottom edge over CTP tail (x 58)         18   0.183        0.183   163.9 MPa   41.0 MPa      -1 N
+
+  glass 1.1 | bottom section: bridge  | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           349   3.491        3.864   453.4 MPa   52.8 MPa     112 N
+    glass top edge, mid                      33   0.328        0.557   193.0 MPa   14.5 MPa     210 N
+    glass side edge, mid                     29   0.295        0.657   175.5 MPa   19.6 MPa     179 N
+    bottom border over the bend gap         680   6.802        7.219   582.1 MPa  132.3 MPa      88 N
+    glass bottom edge, mid                  788   7.876        7.876   588.5 MPa  163.5 MPa      99 N
+    bottom edge over CTP tail (x 58)        526   5.256        5.856   529.9 MPa  147.2 MPa     143 N
+
+  glass 1.1 | bottom section: bridge  | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                           252   2.521        1.544   453.5 MPa   29.7 MPa     100 N
+    glass top edge, mid                      31   0.312        0.312   195.6 MPa   14.3 MPa     208 N
+    glass side edge, mid                     26   0.262        0.262   170.9 MPa   20.0 MPa     178 N
+    bottom border over the bend gap         229   2.295        2.196   552.1 MPa   64.3 MPa     144 N
+    glass bottom edge, mid                  201   2.012        2.140   594.1 MPa   85.1 MPa     165 N
+    bottom edge over CTP tail (x 58)        138   1.376        1.376   499.4 MPa   88.1 MPa     134 N
+
+  glass 3.0 | bottom section: bridge  | S4/R4: 4 corner studs + VHB
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            12   0.124        0.041    62.9 MPa    1.9 MPa     -12 N
+    glass top edge, mid                       7   0.066        0.066    39.1 MPa   11.0 MPa      -4 N
+    glass side edge, mid                      6   0.065        0.065    41.4 MPa   11.6 MPa       0 N
+    bottom border over the bend gap           8   0.077        0.070    56.1 MPa    4.9 MPa      -6 N
+    glass bottom edge, mid                    8   0.075        0.075    82.1 MPa    9.7 MPa      -4 N
+    bottom edge over CTP tail (x 58)          7   0.074        0.074    84.7 MPa   10.0 MPa       3 N
+
+  glass 3.0 | bottom section: bridge  | S4/R4 + divider rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            12   0.123        0.040    63.2 MPa    1.9 MPa     -12 N
+    glass top edge, mid                       7   0.066        0.066    39.2 MPa   11.0 MPa      -4 N
+    glass side edge, mid                      6   0.065        0.065    41.4 MPa   11.6 MPa       0 N
+    bottom border over the bend gap           7   0.073        0.066    55.8 MPa    5.2 MPa      -6 N
+    glass bottom edge, mid                    7   0.071        0.071    84.7 MPa   10.0 MPa      -4 N
+    bottom edge over CTP tail (x 58)          7   0.069        0.069    87.2 MPa   10.3 MPa       3 N
+
+  glass 3.0 | bottom section: bridge  | S8 with F7 dropped (7 studs)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            32   0.320        0.378    75.0 MPa    5.3 MPa     100 N
+    glass top edge, mid                      13   0.135        0.135    48.5 MPa    6.7 MPa     182 N
+    glass side edge, mid                     11   0.109        0.109    40.9 MPa    9.6 MPa     146 N
+    bottom border over the bend gap          63   0.627        0.674   120.1 MPa   13.6 MPa      84 N
+    glass bottom edge, mid                   74   0.742        0.742   166.1 MPa   19.6 MPa      94 N
+    bottom edge over CTP tail (x 58)         53   0.535        0.574   166.6 MPa   19.7 MPa     135 N
+
+  glass 3.0 | bottom section: bridge  | S8 with F7 on a tab below the bottom wall
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            29   0.289        0.305    73.3 MPa    5.0 MPa      98 N
+    glass top edge, mid                      13   0.134        0.134    48.5 MPa    7.0 MPa     182 N
+    glass side edge, mid                     11   0.108        0.108    40.7 MPa    9.6 MPa     145 N
+    bottom border over the bend gap          50   0.497        0.525   104.0 MPa   10.5 MPa      64 N
+    glass bottom edge, mid                   57   0.570        0.570   137.4 MPa   16.2 MPa      71 N
+    bottom edge over CTP tail (x 58)         44   0.444        0.462   155.7 MPa   18.4 MPa     118 N
+
+  glass 3.0 | bottom section: bridge  | S8 with F7a/F7b beside the tail pocket
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            22   0.221        0.187    65.5 MPa    4.3 MPa      91 N
+    glass top edge, mid                      13   0.131        0.131    48.2 MPa    6.6 MPa     180 N
+    glass side edge, mid                     10   0.101        0.101    39.2 MPa    9.8 MPa     140 N
+    bottom border over the bend gap          32   0.318        0.337    99.9 MPa   11.3 MPa     121 N
+    glass bottom edge, mid                   37   0.373        0.373   144.3 MPa   17.1 MPa     132 N
+    bottom edge over CTP tail (x 58)         23   0.226        0.248   134.5 MPa   15.9 MPa     165 N
+
+  glass 3.0 | bottom section: bridge  | S8: divider rib + F7 on a tab at the rib
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            23   0.230        0.178    76.9 MPa    4.4 MPa      94 N
+    glass top edge, mid                      13   0.133        0.133    48.8 MPa    6.7 MPa     181 N
+    glass side edge, mid                     10   0.104        0.104    40.1 MPa    9.6 MPa     144 N
+    bottom border over the bend gap          26   0.256        0.266   159.2 MPa   11.1 MPa     122 N
+    glass bottom edge, mid                   27   0.268        0.278   176.2 MPa   16.7 MPa     138 N
+    bottom edge over CTP tail (x 58)         19   0.192        0.192   150.1 MPa   15.9 MPa     117 N
+
+  glass 3.0 | bottom section: bridge  | S8 with F7 on the fastener line (bound, not buildable)
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            18   0.183        0.091    65.0 MPa    3.9 MPa      89 N
+    glass top edge, mid                      13   0.129        0.129    48.0 MPa    6.6 MPa     179 N
+    glass side edge, mid                     10   0.102        0.102    40.0 MPa    9.5 MPa     143 N
+    bottom border over the bend gap          14   0.143        0.132    68.1 MPa    2.9 MPa     167 N
+    glass bottom edge, mid                   13   0.135        0.135    53.3 MPa    4.5 MPa     187 N
+    bottom edge over CTP tail (x 58)         22   0.215        0.215   136.4 MPa   16.1 MPa     136 N
+
+  glass 3.0 | bottom section: bridge  | reference: 4 corner studs only
+    load point                          w@5N um   w@50N lip line@50N  glass@250N  ring@250N  stud@250N
+    window centre                            53   0.526        0.501    89.6 MPa   13.1 MPa      63 N
+    glass top edge, mid                      65   0.652        0.652   105.1 MPa   29.6 MPa     115 N
+    glass side edge, mid                     31   0.312        0.312    88.7 MPa   24.9 MPa     119 N
+    bottom border over the bend gap          72   0.722        0.761   126.2 MPa   14.4 MPa     107 N
+    glass bottom edge, mid                   82   0.821        0.821   171.7 MPa   20.3 MPa     116 N
+    bottom edge over CTP tail (x 58)         60   0.599        0.643   174.1 MPa   20.6 MPa     165 N
+
+  bottom edge mid at 50 N, glass 3.0 [C]: GF-1.1 S4 0.067 / S8 0.127 / studs only 0.581 (concept)
+  GF-2.0 channel  S4/R4: 4 corner studs + VHB                             0.062 mm, glass 29 MPa at 250 N (SF 4.1 on 120)
+  GF-2.0 channel  S4/R4 + divider rib                                     0.057 mm, glass 29 MPa at 250 N (SF 4.1 on 120)
+  GF-2.0 channel  S8 with F7 dropped (7 studs)                            0.497 mm, glass 79 MPa at 250 N (SF 1.5 on 120)
+  GF-2.0 channel  S8 with F7 on a tab below the bottom wall               0.414 mm, glass 67 MPa at 250 N (SF 1.8 on 120)
+  GF-2.0 channel  S8 with F7a/F7b beside the tail pocket                  0.258 mm, glass 62 MPa at 250 N (SF 1.9 on 120)
+  GF-2.0 channel  S8: divider rib + F7 on a tab at the rib                0.203 mm, glass 172 MPa at 250 N (SF 0.7 on 120)
+  GF-2.0 channel  S8 with F7 on the fastener line (bound, not buildable)  0.124 mm, glass 46 MPa at 250 N (SF 2.6 on 120)
+  GF-2.0 channel  reference: 4 corner studs only                          0.541 mm, glass 82 MPa at 250 N (SF 1.5 on 120)
+  GF-2.0 bridge   S4/R4: 4 corner studs + VHB                             0.075 mm, glass 82 MPa at 250 N (SF 1.5 on 120)
+  GF-2.0 bridge   S4/R4 + divider rib                                     0.071 mm, glass 85 MPa at 250 N (SF 1.4 on 120)
+  GF-2.0 bridge   S8 with F7 dropped (7 studs)                            0.742 mm, glass 166 MPa at 250 N (SF 0.7 on 120)
+  GF-2.0 bridge   S8 with F7 on a tab below the bottom wall               0.570 mm, glass 137 MPa at 250 N (SF 0.9 on 120)
+  GF-2.0 bridge   S8 with F7a/F7b beside the tail pocket                  0.373 mm, glass 144 MPa at 250 N (SF 0.8 on 120)
+  GF-2.0 bridge   S8: divider rib + F7 on a tab at the rib                0.268 mm, glass 176 MPa at 250 N (SF 0.7 on 120)
+  GF-2.0 bridge   S8 with F7 on the fastener line (bound, not buildable)  0.135 mm, glass 53 MPa at 250 N (SF 2.3 on 120)
+  GF-2.0 bridge   reference: 4 corner studs only                          0.821 mm, glass 172 MPa at 250 N (SF 0.7 on 120)
+
+  S8 foam gasket preload: lift of the lip line between studs (glass 3.0 / 1.1) [C]
+    glass 3.0 7 studs (F7 dropped)             q 0.10 N/mm: max  164 um, bottom edge  164 um (GF-1.1 8 studs: 39 um)
+    glass 3.0 7 studs (F7 dropped)             q 0.36 N/mm: max  589 um, bottom edge  589 um (GF-1.1 8 studs: 141 um)
+    glass 3.0 8 studs, F7 on a tab             q 0.10 N/mm: max  133 um, bottom edge  133 um (GF-1.1 8 studs: 39 um)
+    glass 3.0 8 studs, F7 on a tab             q 0.36 N/mm: max  480 um, bottom edge  480 um (GF-1.1 8 studs: 141 um)
+    glass 3.0 9 studs, F7a/F7b beside the pocket q 0.10 N/mm: max   68 um, bottom edge   68 um (GF-1.1 8 studs: 39 um)
+    glass 3.0 9 studs, F7a/F7b beside the pocket q 0.36 N/mm: max  244 um, bottom edge  244 um (GF-1.1 8 studs: 141 um)
+    glass 3.0 8 studs, divider rib + F7 at the rib q 0.10 N/mm: max   70 um, bottom edge   70 um (GF-1.1 8 studs: 39 um)
+    glass 3.0 8 studs, divider rib + F7 at the rib q 0.36 N/mm: max  251 um, bottom edge  251 um (GF-1.1 8 studs: 141 um)
+    glass 3.0 8 studs (F7 on the line, bound)  q 0.10 N/mm: max   41 um, bottom edge   39 um (GF-1.1 8 studs: 39 um)
+    glass 3.0 8 studs (F7 on the line, bound)  q 0.36 N/mm: max  147 um, bottom edge  139 um (GF-1.1 8 studs: 141 um)
+    glass 1.1 7 studs (F7 dropped)             q 0.10 N/mm: max  457 um, bottom edge  457 um (GF-1.1 8 studs: 73 um)
+    glass 1.1 7 studs (F7 dropped)             q 0.36 N/mm: max 1645 um, bottom edge 1645 um (GF-1.1 8 studs: 263 um)
+    glass 1.1 8 studs, F7 on a tab             q 0.10 N/mm: max  306 um, bottom edge  306 um (GF-1.1 8 studs: 73 um)
+    glass 1.1 8 studs, F7 on a tab             q 0.36 N/mm: max 1102 um, bottom edge 1102 um (GF-1.1 8 studs: 263 um)
+    glass 1.1 9 studs, F7a/F7b beside the pocket q 0.10 N/mm: max  129 um, bottom edge  129 um (GF-1.1 8 studs: 73 um)
+    glass 1.1 9 studs, F7a/F7b beside the pocket q 0.36 N/mm: max  466 um, bottom edge  466 um (GF-1.1 8 studs: 263 um)
+    glass 1.1 8 studs, divider rib + F7 at the rib q 0.10 N/mm: max  233 um, bottom edge  233 um (GF-1.1 8 studs: 73 um)
+    glass 1.1 8 studs, divider rib + F7 at the rib q 0.36 N/mm: max  840 um, bottom edge  840 um (GF-1.1 8 studs: 263 um)
+    glass 1.1 8 studs (F7 on the line, bound)  q 0.10 N/mm: max   74 um, bottom edge   66 um (GF-1.1 8 studs: 73 um)
+    glass 1.1 8 studs (F7 on the line, bound)  q 0.36 N/mm: max  265 um, bottom edge  237 um (GF-1.1 8 studs: 263 um)
+
+==============================================================================================================
+6. GLASS STRENGTH AND IMPACT (port of concept sec. 8), THERMAL GAPS, JOINTS
+==============================================================================================================
+  1.1 chemically strengthened (aluminosi (char. 250): glass 64 g; 250 N centre 377.7 MPa (no panel credit); 0.5 J window centre mass-ratio 234.5 MPa SF 1.07 (GF-1.1 1.13); bottom border: free strip 4.09 over the bend gap, k local 28861 / global 161 N/mm, 0.5 J 310.3 MPa SF 0.81 with the whole border as free radius, 177.6 MPa SF 1.41 with the strip only (GF-1.1 chin SF 1.06)
+  2.0 chemically strengthened soda-lime  (char. 250): glass 116 g; 250 N centre 114.2 MPa (no panel credit); 0.5 J window centre mass-ratio 138.0 MPa SF 1.81 (GF-1.1 1.91); bottom border: free strip 4.09 over the bend gap, k local 173468 / global 411 N/mm, 0.5 J 150.2 MPa SF 1.66 with the whole border as free radius, 81.2 MPa SF 3.08 with the strip only (GF-1.1 chin SF 1.91)
+  3.0 thermally tempered (CS if the supp (char. 120): glass 174 g; 250 N centre 50.8 MPa (no panel credit); 0.5 J window centre mass-ratio 99.0 MPa SF 1.21 (GF-1.1 1.27); bottom border: free strip 4.09 over the bend gap, k local 585454 / global 723 N/mm, 0.5 J 86.8 MPa SF 1.38 with the whole border as free radius, 43.4 MPa SF 2.76 with the strip only (GF-1.1 chin SF 1.39)
+  4.0 thermally tempered                 (char. 120): glass 233 g; 250 N centre 28.6 MPa (no panel credit); 0.5 J window centre mass-ratio 76.2 MPa SF 1.57 (GF-1.1 1.62); bottom border: free strip 4.09 over the bend gap, k local 1387743 / global 994 N/mm, 0.5 J 56.0 MPa SF 2.14 with the whole border as free radius, 25.9 MPa SF 4.64 with the strip only (GF-1.1 chin SF 1.95)
+  the GF-1.1 'chin over the tail pocket' case (128.8 x 28.7 of glass with nothing behind) is gone: the only glass with nothing bonded behind it is the 4.09-wide strip over the bend gap (panel edge -> bead inner edge), locally ~49 x stiffer than the chin span.
+
+  gaps over temperature, nominal per side (frame expands about the glass centre) [C]:
+    frame flow 30   -20 C                 : g2 0.320 | g1 0.445   (same formula for GF-1.1: g2 0.324 | g1 0.453; change -0.004 / -0.008)
+    frame flow 30   +70 frame / +50 sheet : g2 0.464 | g1 0.290   (same formula for GF-1.1: g2 0.476 | g1 0.295; change -0.011 / -0.005)
+    frame design 50 -20 C                 : g2 0.244 | g1 0.495   (same formula for GF-1.1: g2 0.251 | g1 0.511; change -0.007 / -0.016)
+    frame design 50 +70 frame / +50 sheet : g2 0.525 | g1 0.193   (same formula for GF-1.1: g2 0.547 | g1 0.203; change -0.022 / -0.010)
+    frame bound 70  -20 C                 : g2 0.168 | g1 0.545   (same formula for GF-1.1: g2 0.179 | g1 0.570; change -0.011 / -0.025)
+    frame bound 70  +70 frame / +50 sheet : g2 0.587 | g1 0.097   (same formula for GF-1.1: g2 0.619 | g1 0.111; change -0.033 / -0.014)
+  -> the glass is 9.0 wider (half-width 95.24 vs 90.74): the x-direction gaps breathe 5 % more; with the design-doc worst cases (g2 -0.027 cold with +-0.2 glass, g1 -0.018 hot, 70 ppm) shifted by the changes above: g2 about -0.038, g1 about -0.032 (touch, harmless, same nature as GF-1.1)
+  bead corner radius from the centre 109.2 (GF-1.1 111.7) -> thermal shear 0.224 / 0.333 mm at 50 / 70 ppm, +70 C (GF-1.1 0.229 / 0.341)
+  tape outer corner 135.2 (GF-1.1 138.1) -> 0.289 / 0.425 mm (29 / 42 % of the 1.0 gap)
+  stud radial move at r 128.4: 0.244 / 0.372 mm (50 / 70 ppm) vs 1.15 float along the slot
+  bead area (concept formula) 2410 -> scaled to the GF-1.1 modelled shape 2387 mm2 (GF-1.1 2486.7, -4.0 %); dead load glass 3.0 + panel 3.67 N -> 1.54 kPa; 250 N pull 0.105 MPa mean (GF-1.1 0.100)
+  glass mass 3.0: 174 g (GF-1.1 196 g)
+
+==============================================================================================================
+7. PROPOSED GF-2.0 NUMBERS (concept_gf2_params.json) AND FIGURES
+==============================================================================================================
+  wrote concept_gf2_params.json (35 rows)
+  border                                       14.0                                     -> 18.5
+  glass_y1                                     154.0                                    -> 127.99
+  plan_rectangles.glass                        [13.11, 194.59, 10.17, 154.0]            -> [8.61, 199.09, 5.67, 127.99]
+  plan_rectangles.lip_in                       [12.71, 194.99, 9.77, 154.4]             -> [8.21, 199.49, 5.27, 128.39]
+  plan_rectangles.lip_out                      [11.71, 195.99, 8.77, 155.4]             -> [7.21, 200.49, 4.27, 129.39]
+  plan_rectangles.seat_ring_out                [10.21, 197.49, 7.27, 156.9]             -> [5.71, 201.99, 2.77, 130.89]
+  plan_rectangles.cut                          [11.31, 196.39, 8.37, 155.8]             -> [6.81, 200.89, 3.87, 129.79]
+  plan_rectangles.tape_in                      [9.21, 198.49, 6.27, 157.9]              -> [4.71, 202.99, 1.77, 131.89]
+  plan_rectangles.tape_out                     [-2.79, 210.49, -5.73, 169.9]            -> [-7.29, 214.99, -10.23, 143.89]
+  plan_rectangles.fastener_line                [2.11, 205.59, -0.83, 165.0]             -> [-2.39, 210.09, -5.33, 138.99]
+  plan_rectangles.flange                       [-7.89, 215.59, -10.83, 175.0]           -> [-12.39, 220.09, -15.33, 150.2]
+  flange_y1_bottom                             null                                     -> 150.2
+  glass_centre (= cut-out = fastener-pattern c [103.85, 82.085]                         -> [103.85, 66.83]
+  chin_border                                  44.51                                    -> null
+  borders_top_left_right                       14.0                                     -> 18.5
+  lands (pocket face -> glass edge)            {"abs left": 6.11, "abs right": 8.87, "t -> {"abs left": 10.61, "abs right": 13.37, "top": 12.53, "bottom over the tail span (to the bridge pocket face)":
+  bead_to_pocket                               {"abs left": 1.21, "abs right": 3.97, "t -> {"abs left": 5.71, "abs right": 8.47, "top": 7.63, "bottom over the tail span (to the bridge pocket face)": 1.
+  g_bend                                       null                                     -> 3.0
+  bend_gap_y1 (bridge pocket face)             null                                     -> 122.0
+  bend_nose_R                                  null                                     -> 1.5
+  tail_R_in_min                                null                                     -> 1.5
+  tail_straight_l0                             null                                     -> 0.5
+  Z_TAIL_LEG                                   null                                     -> "Z_TAIL_TFT_EXIT + 2 x (tail_R_in_min + 0.15) = -5.10 at every glass_t"
+  Z_LOOP_FRONT                                 "Z_TAIL_CTP_EXIT - 0.15 (-9.85)"         -> "Z_TAIL_CTP_EXIT - 0.15 (-9.85) at the exit only; front legs at Z_TAIL_LEG - 0.15 (-5.25)"
+  tail_pocket                                  {"x": [38.9, 167.7], "y": [119.0, 147.7] -> {"x": [38.9, 167.7], "y": [119.0, 147.7], "floor": "bridge: land plate (y 122.00-128.39), step wall, flange pl
+  bottom wall (beam)                           "y 147.7-150.2, from the land (Z -10.42) -> "y 147.7-150.2, from Z_FLANGE_FRONT to Z_TROUGH_TOP = the frame's bottom outer wall, flush with the flange edg
+  fasteners F1-F6, F8                          {"F1": [2.11, -0.83], "F2": [205.59, -0. -> {"F1": [-2.39, -5.33], "F2": [210.09, -5.33], "F3": [210.09, 138.99], "F4": [-2.39, 138.99], "F5": [103.85, -5
+  F7                                           [103.85, 165.0]                          -> "not at (103.85, 138.99) any more: the tube would sit in the tail pocket over the TFT loop. S8 (if kept): F7 -
+  divider_rib                                  null                                     -> {"x_centre": 79.92, "t": 2.5, "y": [122.0, 147.7], "Z": "floor (land-plate / flange back) -> Z_PCB for y < 129
+  S8 variant                                   "8 studs F1-F8, foam gasket"             -> "7 + F7' at the rib (8 studs) - NOT recommended at GF-2.0; S4 recommended, R4 alternative"
+  pips                                         [[58.48, 13.07], [58.48, 151.1], [149.22 -> [[56.23, 8.57], [56.23, 125.09], [151.47, 8.57], [151.47, 125.09], [11.51, 36.25], [196.19, 36.25], [11.51, 97
+  logo_zone                                    {"centre": [103.85, 131.745], "w": 100,  -> {"centre": [103.85, 118.74], "w": 100.0, "h": 15.0}
+  tape strip lengths                           {"top_bottom": 183.48, "sides": 145.83}  -> {"top_bottom": 192.48, "sides": 124.32}
+  bead_area                                    2486.7                                   -> 2387.0
+  sheet cut_out                                [11.31, 196.39, 8.37, 155.8]             -> [6.81, 200.89, 3.87, 129.79]
+  wrote concept_gf2_section_bottom.png, concept_gf2_bend_zoom.png, concept_gf2_plan_bottom.png

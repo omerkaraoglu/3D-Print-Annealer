@@ -1,7 +1,9 @@
-"""Jig drawings for a local machinist (aluminium plate): J2 flush plate and J1 optical-bonding alignment fixture.
-A3 sheets (PDF + PNG) and DXFs. Product positions come from the master; jig values from drafting_choices.json.
+"""Jig drawings for a local machinist (aluminium plate): J2 flush plate (GF-2.0: 2 sheets, the second one for the
+FPC tail handling) and J1 optical-bonding alignment fixture. A3 sheets (PDF + PNG) and DXFs. Product positions come
+from the master; jig values from drafting_choices.json.
 
-  <venv>/Scripts/python.exe make_jigs.py   -> Mechanical/Rev3.0_GlassFront/drawings/GF_Jig_J2.*, GF_Jig_J1.*
+  <venv>/Scripts/python.exe make_jigs.py   -> Mechanical/Rev3.0_GlassFront/drawings/GF_Jig_J2.pdf (2 pages),
+                                              GF_Jig_J2_p1.png, GF_Jig_J2_p2.png, GF_Jig_J2.dxf, GF_Jig_J1.*
 """
 import datetime
 import math
@@ -13,11 +15,12 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from gf_common import (Params, Choices, Rect, OUT_DIR, n, n2, tr, new_dxf, dxf_poly, dxf_rect, dxf_text,
-                       bulge_to_points)
+                       bulge_to_points, rev_note, master_ref, prev_rev)
 from gf_geom import Geom
-from gf_draft import Sheet, View, THICK, THIN, XTHIN, MM_PER_PT, lw
+from gf_draft import Sheet, View, THICK, THIN, XTHIN, MM_PER_PT, lw, clip_poly
 
 C_REF, C_PIN, C_STOP, C_VAC = "#3b6fb6", "#c0392b", "#2e8b57", "#7b4fa0"
+C_TAIL, C_CTP, C_TFT, C_DIM = "#b35c00", "#6a5fb0", "#d35400", "#8a1c1c"
 
 
 def stops_uv(G, C):
@@ -29,14 +32,48 @@ def stops_uv(G, C):
 
 
 # ================================================================================================================ J2
+def j2_tail_geom(P, C, G):
+    """GF-2.0 tail handling in J2 (front view u, v; heights d above the plate = flush plane): tail holder post TH,
+    guide card, tail spans, all from the master + drafting_choices (j2_tail_holder, j2_tail_card)"""
+    th = C("j2_tail_holder")
+    cd = C("j2_tail_card")
+    fv = G.fv
+    yv = G.tail_vertical_y()                                   # abs y of the vertical legs' centre line
+    t = P.d("tail_t")
+    y_in = yv - t / 2.0                                        # tail face on the panel side
+    y_out = yv + t / 2.0                                       # tail face on the bridge side
+    sl = P.rect("bend_gap_slot")
+    panel_y1 = P.val("carried_over_from_v2", "panel_y1")
+    tails = {}
+    for nm in ("CTP", "TFT"):
+        _, tr_ = G.tail_route(nm)
+        od = tr_["outline_developed"]
+        x0 = min(s[2] for s in od)
+        x1 = max(s[3] for s in od)
+        tails[nm] = dict(exit=tr_["x_exit"], x_all=(x0, x1), end=(od[-1][2], od[-1][3]), L=tr_["L"],
+                         Z_exit=tr_["Z_exit"], R_c=tr_["R_centre"], straight=tr_["straight"])
+    sx_c = 0.5 * (sl.x0 + sl.x1)                               # slot centre (abs x)
+    card = dict(t=cd["t"], w=cd["w"], x=(sx_c - cd["w"] / 2.0, sx_c + cd["w"] / 2.0), y=(y_in - cd["t"], y_in),
+                top=cd["top"], bottom=cd["bottom"], tab_w=cd["tab_w"], tab_min=cd["tab_min"])
+    fl = G.flange
+    post_uv = (0.0, fl.y0 - th["post_offset"])
+    Zg = P.level("Z_GLASS_FRONT")
+    d_back = P.level("Z_TROUGH_TOP") - Zg                      # frame back (bottom-wall top) above the plate
+    tips = {nm: (T["Z_exit"] - Zg) + T["R_c"] + (T["L"] - T["straight"] - math.pi / 2.0 * T["R_c"])
+            for nm, T in tails.items()}                        # tail end height when folded straight up
+    return dict(th=th, card=card, tails=tails, y_vert=yv, y_in=y_in, y_out=y_out, slot=sl, panel_y1=panel_y1,
+                post_uv=post_uv, post_d=th["post_d"], d_back=d_back, tips=tips, card_uv_v=fv.uv(0, y_in - cd["t"] / 2)[1],
+                clear_face=sl.y1 - y_out, clear_shelf=(y_in - cd["t"]) - panel_y1)
+
+
 def j2_dxf(path, P, C, G):
     pl = C("j2_plate")
     gw, gd_, gi, gp = C("j2_groove")
     M = lambda u, v: (-u, v)                       # plate view: seen from above, glass face down -> mirrored
     MR = lambda r: Rect(-r.x1, -r.x0, r.y0, r.y1, r.R, r.name)
     doc, msp = new_dxf([("PLATE", 7, "CONTINUOUS"), ("PIN_HOLES", 1, "CONTINUOUS"), ("STOP_HOLES", 3, "CONTINUOUS"),
-                        ("GROOVE_OPT", 200, "DASHED"), ("FLAT_ZONE", 6, "DASHDOT"), ("REF", 5, "DASHED"),
-                        ("TEXT", 7, "CONTINUOUS")])
+                        ("TAIL_HOLDER", 4, "CONTINUOUS"), ("GROOVE_OPT", 200, "DASHED"), ("FLAT_ZONE", 6, "DASHDOT"),
+                        ("REF", 5, "DASHED"), ("TEXT", 7, "CONTINUOUS")])
     dxf_rect(msp, Rect(-pl[0] / 2, pl[0] / 2, -pl[1] / 2, pl[1] / 2, 5.0), "PLATE")
     for k in ("F1", "F2", "F3", "F4"):
         f = G.F[k]
@@ -45,19 +82,22 @@ def j2_dxf(path, P, C, G):
     for k, (u, v) in stops_uv(G, C).items():
         msp.add_circle(M(u, v), C("j2_stop_d") / 2.0, dxfattribs={"layer": "STOP_HOLES"})
         dxf_text(msp, k, M(u, v)[0] + 3, M(u, v)[1] + 3, 2.5)
+    T = j2_tail_geom(P, C, G)
+    msp.add_circle(M(*T["post_uv"]), T["post_d"] / 2.0, dxfattribs={"layer": "TAIL_HOLDER"})
+    dxf_text(msp, "TH (tail-holder post hole)", M(*T["post_uv"])[0] + 8, M(*T["post_uv"])[1] - 1, 2.5)
     gr = MR(G.glass.offset(-gi))
     gr.R = max(gr.R, gw)
     dxf_rect(msp, gr.offset(gw / 2.0), "GROOVE_OPT")
     dxf_rect(msp, gr.offset(-gw / 2.0), "GROOVE_OPT")
     dxf_rect(msp, MR(G.lip_out.offset(3.0)), "FLAT_ZONE")
-    for r in (G.glass, G.lip_out, G.flange):
+    for r in (G.glass, G.lip_out, G.flange, G.slot_bg):
         dxf_rect(msp, MR(r), "REF")
-    dxf_text(msp, "GF JIG J2 FLUSH PLATE - working face seen from ABOVE (glass lies face 1 down: left/right mirrored "
-             "to the front view). Origin = glass centre. mm.", -pl[0] / 2, -pl[1] / 2 - 8, 3.0)
+    dxf_text(msp, "GF JIG J2 FLUSH PLATE %s - working face seen from ABOVE (glass lies face 1 down: left/right mirrored "
+             "to the front view). Origin = glass centre. mm." % P.revision, -pl[0] / 2, -pl[1] / 2 - 8, 3.0)
     doc.saveas(path)
 
 
-def j2_sheet(path_base, P, C, G):
+def j2_sheet(P, C, G):
     sh = Sheet()
     sh.frame()
     pl = C("j2_plate")
@@ -71,6 +111,7 @@ def j2_sheet(path_base, P, C, G):
     rule = {"en": P.val("jig_and_mounting_shims", "shim_rule") + "; " + C("shim_rule")["en_extra"],
             "tr": C("shim_rule")["tr"]}
     sizes = " / ".join("%.2f" % x for x in shim_sizes)
+    T = j2_tail_geom(P, C, G)
     V = View(sh, 100.0, 176.0, 0.5, mirror=True)       # x = -u
     plate = Rect(-pl[0] / 2, pl[0] / 2, -pl[1] / 2, pl[1] / 2, 5.0)
     V.rrect(plate, ec="k", w=THICK)
@@ -78,6 +119,7 @@ def j2_sheet(path_base, P, C, G):
     V.rrect(fz, ec="#b0308f", w=THIN, ls=(0, (8, 1.5, 1.5, 1.5)), geom=False)
     for r, st in ((G.flange, (0, (6, 2))), (G.lip_out, (0, (2, 1.5))), (G.glass, (0, (4, 1.5)))):
         V.rrect(r, ec=C_REF, w=XTHIN, ls=st, geom=False)
+    V.rrect(G.slot_bg, ec=C_TAIL, w=XTHIN, geom=False, fc="#f7e2c8")
     gr = G.glass.offset(-gi)
     gr.R = max(gr.R, gw)
     V.rrect(gr, ec=C_VAC, w=THIN, ls=(0, (3, 1.5)), geom=False)
@@ -96,6 +138,12 @@ def j2_sheet(path_base, P, C, G):
             sh.T(x + 2.6, y + 1.2, k, fs=6.5, color=C_STOP, weight="bold")
         else:
             sh.T(x, y - 4.2, k, fs=6.5, color=C_STOP, weight="bold", ha="center")
+    # tail-holder post hole TH (GF-2.0)
+    xt, yt_ = V.P(*T["post_uv"])
+    sh.circle(xt, yt_, T["post_d"] / 2.0 * 0.5, ec=C_TAIL, w=THIN, fc="#f7e2c8")
+    sh.T(xt + 4.0, yt_ - 1.0, "TH (sheet 2)", fs=6.5, color=C_TAIL, weight="bold", va="center")
+    xs_, ys_ = V.P(G.slot_bg.x1, G.slot_bg.y1)        # plate view is mirrored: front-view x1 = left end on paper
+    sh.T(xs_ + 0.8, ys_ + 1.2, "bend-gap slot (frame, ref.)", fs=5.8, color=C_TAIL)
     # dims (paper), positions to the datum
     F1, F2, F4 = G.F["F1"], G.F["F2"], G.F["F4"]
     top = V.P(0, plate.y1)[1]
@@ -122,7 +170,7 @@ def j2_sheet(path_base, P, C, G):
     sh.T(x0 + 1.2, y0 + 1.2, "datum = glass centre", fs=6.0)
     sh.T(16.0, 279.0, "J2 FLUSH PLATE - working face seen from ABOVE   1 : 2", fs=8.5, weight="bold")
     sh.T(16.0, 274.5, "Glass lies face 1 (front) DOWN, so left / right are mirrored to the front view; the pattern is "
-                      "symmetric. Chin towards the operator (bottom).", fs=6.2)
+                      "symmetric. Tail side (bend-gap slot, tail holder TH) towards the operator (bottom).", fs=6.2)
     # legend
     yl = 99.0
     for col, ls, t in ((C_REF, (0, (4, 1.5)), "glass / lip outer / flange outlines (reference, frame lowered "
@@ -143,6 +191,9 @@ def j2_sheet(path_base, P, C, G):
     for k, (u, v) in S.items():
         rows.append([k, n(-u), n(v), "hole dia %s H7 x %s; stop pin ISO 2338 %s h8 x %s, %s proud, removable" % (
             n(st_d), n(pdt[2], 0), n(st_d, 0), n(pdt[3], 0), n(st_h)), "±%s" % n(tolp)])
+    rows.append(["TH", n(-T["post_uv"][0] + 0.0), n(T["post_uv"][1]),
+                 "hole dia %s H7 x %s for the removable tail-holder post (sheet 2)" % (
+                     n(T["post_d"], 0), n(T["th"]["post_hole_depth"], 0)), "±0.5"])
     sh.T(16.0, 86.0, "HOLES (plate coordinates: x = -u, y = v, from the datum)", fs=7, weight="bold")
     y = sh.table(16.0, 85.0, [0, 16, 34, 52, 172], rows, fs=6.2, widths=185)
     # section B-B (schematic, 3:1): through a corner fastener, unrolled; plate at the bottom, depth d upwards
@@ -160,14 +211,15 @@ def j2_sheet(path_base, P, C, G):
     land = G.glass.y1 - G.pocket.y1
     sF = G.fast_off
     rp = G.pad_d / 2.0
-    hw = G.slot_w / 2.0
-    sL, sR = -land - 1.5, sF + rp + 1.0
+    sL, sR = -min(land, 9.0) - 1.5, sF + rp + 1.0          # GF-2.0: the 12.5 top land drawn cut at 9 (break)
     poly = lambda pts, **kw: sh.poly([Sx(*p) for p in pts], **kw)
     poly([(sL - 1, 0), (sR + 1, 0), (sR + 1, -3.0), (sL - 1, -3.0)], fc="#dfe3e8", ec="k", w=THICK, hatch="////")
     ps = -(G.glass.y1 - G.panel.y1)
     poly([(sL, 0), (0, 0), (0, gt), (sL, gt)], fc="#cfe8f3", ec="k", w=THIN)
-    poly([(sL, gt), (ps, gt), (ps, d_ctp), (sL, d_ctp)], fc="#f6e7b4", ec="0.4", w=XTHIN, geom=False)
-    poly([(sL, d_ctp), (ps, d_ctp), (ps, d_sw + 1.0), (sL, d_sw + 1.0)], fc="#e3e3e3", ec="0.4", w=XTHIN, geom=False)
+    if ps > sL:
+        poly([(sL, gt), (ps, gt), (ps, d_ctp), (sL, d_ctp)], fc="#f6e7b4", ec="0.4", w=XTHIN, geom=False)
+        poly([(sL, d_ctp), (ps, d_ctp), (ps, d_sw + 1.0), (sL, d_sw + 1.0)], fc="#e3e3e3", ec="0.4", w=XTHIN,
+             geom=False)
     poly([(-(G.bead_edge + G.bead_w), gt), (-G.bead_edge, gt), (-G.bead_edge, d_land),
           (-(G.bead_edge + G.bead_w), d_land)], fc="#3a3a3a", ec="k", w=XTHIN, geom=False)
     # frame: lip, step wall, land plate, flange with the corner pad and the tube, cut by the slot (section along
@@ -175,9 +227,10 @@ def j2_sheet(path_base, P, C, G):
     cb, co = G.fastener_cuts()
     hl, cl = G.slot_l / 2.0, cb["cb_l"] / 2.0
     d_cb = d_sb + cb["cb_floor_F1-F4"]
+    s_lp = max(-land, sL)
     fr = [(g2, 0), (s_lip1, 0), (s_lip1, d_sb), (sF - cl, d_sb), (sF - cl, d_cb), (sF - hl, d_cb),
-          (sF - hl, d_tube), (sF - rp, d_tube), (sF - rp, d_fb), (s_ring, d_fb), (s_ring, d_sw), (-land, d_sw),
-          (-land, d_land), (g2, d_land)]
+          (sF - hl, d_tube), (sF - rp, d_tube), (sF - rp, d_fb), (s_ring, d_fb), (s_ring, d_sw), (s_lp, d_sw),
+          (s_lp, d_land), (g2, d_land)]
     poly(fr, fc="#a7acb3", ec="k", w=THIN, hatch="\\\\\\\\")
     poly([(sF + cl, d_sb), (sF + rp, d_sb), (sF + rp, d_ff), (sR, d_ff), (sR, d_fb), (sF + rp, d_fb),
           (sF + rp, d_tube), (sF + hl, d_tube), (sF + hl, d_cb), (sF + cl, d_cb)], fc="#a7acb3", ec="k", w=THIN,
@@ -218,7 +271,8 @@ def j2_sheet(path_base, P, C, G):
     J2_en = [
         "AUTHORITATIVE for J2: this sheet supersedes the jig text in concept sec. 6 - pins dia %s in the %s x %s radial "
         "slots (not dia 6 holes), a GRADED set of PTFE glass-centring shims %s (not a single 0.40 or 0.30), glass "
-        "stops removable (a fixed stop stands where the lip lands)." % (n(pin_d), n(G.slot_w), n(G.slot_l), sizes),
+        "stops removable (a fixed stop stands where the lip lands); %s: tail handling on sheet 2." % (
+            n(pin_d), n(G.slot_w), n(G.slot_l), sizes, P.revision),
         "Material: %s, %s thick (free, >= 15); outline free (flange + >= 25 per side), corners free." % (
             C("j2_plate_material"), n(pl[2], 0)),
         "WORKING FACE = FLUSH PLANE: the glass front AND the frame lip top rest on it. Flatness %s over the FLAT "
@@ -231,18 +285,20 @@ def j2_sheet(path_base, P, C, G):
         "3 stop holes S1-S3: dia %s H7 x %s for removable stop pins (%s proud). Place the glass against S1-S3, then "
         "PULL the pins before the frame comes down (the lip lands where the stops stand)." % (
             n(st_d), n(pdt[2], 0), n(st_h)),
+        "Hole TH: dia %s H7 x %s for the removable tail-holder post, %s beyond the flange bottom edge (sheet 2)." % (
+            n(T["post_d"], 0), n(T["th"]["post_hole_depth"], 0), n(T["th"]["post_offset"])),
         "Positions of pins and stop holes ±%s to the datum (glass centre); everything else free, ISO 2768-m." %
         n(tolp),
         "Use: glass + panel face down against S1-S3 (vacuum on if fitted), pull the stops, stand 8 PTFE shims "
-        "%s x %s against the glass edges (2 per side), from the set %s (%d of each size): %s. Lower the frame on "
-        "the pins until the lip lands on the plate, %s kg ring weight on the flange back, cure, check g2 against the "
-        "acceptance limits on GF-D20." % (n(shim["w"], 0), n(shim["h"], 0), sizes, shim["per_size"],
-                                         rule["en"].upper(), n(C("j2_weight"), 0)),
+        "%s x %s against the glass edges (2 per side), from the set %s (%d of each size): %s. Fold the tails and "
+        "thread the frame per sheet 2, lower it on the pins until the lip lands on the plate, %s kg ring weight on "
+        "the flange back, cure, check g2 against the acceptance limits on GF-D20." % (
+            n(shim["w"], 0), n(shim["h"], 0), sizes, shim["per_size"], rule["en"].upper(), n(C("j2_weight"), 0)),
     ]
     J2_tr = [
         "Bu resim J2 için GEÇERLİ olandır; konsept §6 metninin yerine geçer: Ø6 delik değil, %s x %s radyal yuvalarda "
-        "Ø%s pim; kademeli PTFE şim takımı %s; sökülebilir cam dayamaları." % (n(G.slot_w), n(G.slot_l), n(pin_d),
-                                                                           sizes),
+        "Ø%s pim; kademeli PTFE şim takımı %s; sökülebilir cam dayamaları; FPC kuyrukları: sayfa 2." % (
+            n(G.slot_w), n(G.slot_l), n(pin_d), sizes),
         "Malzeme: %s, kalınlık %s (serbest, >= 15); dış ölçüler ve köşeler serbest." % (
             C("j2_plate_material").replace("cast tooling plate", "döküm kalıp plakası").replace(
                 "stress-relieved", "gerilim giderilmiş").replace("or", "veya"), n(pl[2], 0)),
@@ -252,27 +308,301 @@ def j2_sheet(path_base, P, C, G):
             n(pin_d), n(pin_h), n(pdt[0]), n(pdt[1]), n(pin_p)),
         "3 dayama deliği S1-S3: Ø%s H7 x %s, sökülebilir dayama pimleri (%s mm dışarıda)." % (
             n(st_d), n(pdt[2], 0), n(st_h)),
+        "TH deliği: Ø%s H7 x %s, sökülebilir kuyruk tutucu direği için (sayfa 2)." % (
+            n(T["post_d"], 0), n(T["th"]["post_hole_depth"], 0)),
         "Pim ve delik konumları referansa göre ±%s mm; diğer ölçüler serbest, ISO 2768-m." % n(tolp),
         "Kullanım: cam kenarlarına 8 PTFE şim %s x %s (her kenarda 2), %s takımından (her ölçüden %d adet): %s." % (
             n(shim["w"], 0), n(shim["h"], 0), sizes, shim["per_size"], rule["tr"].replace("i", "İ").upper()),
     ]
     ye = sh.notes(212.0, 185.0, 98.0, J2_en, fs=6.0, head="NOTES", head_fs=7.2, gap=0.45)
     yt = sh.notes(313.0, 185.0, 96.0, [tr(t) for t in J2_tr], fs=6.0, head="NOTLAR (Türkçe)", head_fs=7.2, gap=0.45)
+    fp_old = P.change("plan_rectangles.fastener_line")[0]          # previous revision's pin pattern (history)
     sh.title_block({
-        "title": "JIG J2 - FLUSH PLATE (glass + panel -> frame)",
+        "title": "JIG J2 - FLUSH PLATE (glass + panel -> frame), sheet 1/2",
         "subtitle": "aluminium plate for a local machinist  /  yapıştırma fikstürü J2 (alüminyum plaka)",
-        "source": "product positions from Rev3.0_GlassFront_params.json %s; jig values: drafting_choices.json" %
-                  P.revision,
-        "project": "files: GF_Jig_J2.dxf (plate view, mm) + this sheet",
-        "change": "%s round 3: graded PTFE glass-centring shims %s with the size rule (replaces the single 0.30); "
-                  "this sheet is authoritative for J2 (supersedes the concept sec. 6 jig text)." % (P.revision,
-                                                                                                    sizes),
+        "source": "product positions from %s; jig values: drafting_choices.json" % master_ref(P),
+        "project": "files: GF_Jig_J2.pdf (2 sheets) / _p1.png / _p2.png + GF_Jig_J2.dxf (plate view, mm)",
+        "change": "%s. Pins at F1-F4 %s x %s (%s %s x %s), stops S1-S3 moved with the glass; hole TH for the tail "
+                  "holder (sheet 2)." % (rev_note(P), n2(abs(F1["u"] - F2["u"])), n2(abs(F1["v"] - F4["v"])),
+                                         prev_rev(P), n2(fp_old[1] - fp_old[0]), n2(fp_old[3] - fp_old[2])),
         "dwg": "GF-D30", "rev": P.revision, "scale": "1:2, 3:1", "date": datetime.date.today().isoformat(),
         "drawn": "make_jigs.py",
     }, h=42.0)
     issues = sh.check_layout()
-    sh.save(path_base + ".pdf", path_base + ".png", dpi=200)
-    return issues, J2_en, J2_tr, [round(ye, 1), round(yt, 1), round(y, 1)]
+    return sh, issues, J2_en, J2_tr, [round(ye, 1), round(yt, 1), round(y, 1)]
+
+
+def bottom_profile(P, G):
+    """schematic frame profile at the bottom edge over the tail span (abs y, depth d above the flush plane), from
+    the master levels and plan values (drafts and the R0.5 roots left out): lip, seat ring, flange plate, bottom
+    wall, tail-pocket floor, step wall, land plate with the R nose and the 45 deg land break"""
+    Zg = P.level("Z_GLASS_FRONT")
+    D = lambda nm: P.level(nm) - Zg
+    d_sb, d_ff, d_land, d_lpb = D("Z_SHEET_BACK"), D("Z_FLANGE_FRONT"), D("Z_LAND"), D("Z_LANDPLATE_BACK")
+    d_floor, d_top = D("Z_FLOOR_LOW"), D("Z_TROUGH_TOP")
+    y_face = P.rect("bend_gap_slot").y1
+    y_li, y_lo, y_so = P.rect("lip_in").y1, P.rect("lip_out").y1, P.rect("seat_ring_out").y1
+    y_tp = P.rect("tail_pocket").y1
+    wall = P.val("carried_over_from_v2", "wall")
+    y_out = P.d("flange_y1_bottom")
+    R = P.d("bend_nose_R")
+    b = P.d("land_break")
+    nose = [(y_face + R - R * math.cos(a), d_lpb - R + R * math.sin(a))
+            for a in [math.radians(90.0 * i / 16) for i in range(17)]]       # from (y_face, d_lpb - R) to the top
+    pts = [(y_face + b, d_land), (y_li, d_land), (y_li, 0.0), (y_lo, 0.0), (y_lo, d_sb), (y_so, d_sb), (y_so, d_ff),
+           (y_out, d_ff), (y_tp + wall, d_top), (y_tp, d_top), (y_tp, d_floor), (y_so, d_floor), (y_so, d_lpb)]
+    pts += nose[::-1]
+    pts += [(y_face, d_land + b)]
+    shelf_y0 = P.val("carried_over_from_v2", "panel_y1") - P.val("carried_over_from_v2", "seat_w")
+    shelf = [(shelf_y0, D("Z_SEAT")), (P.val("carried_over_from_v2", "panel_y1"), D("Z_SEAT")),
+             (P.val("carried_over_from_v2", "panel_y1"), D("Z_SHELF_BACK")), (shelf_y0, D("Z_SHELF_BACK"))]
+    return pts, shelf, dict(d_land=d_land, d_lpb=d_lpb, d_floor=d_floor, d_top=d_top, y_face=y_face, R=R, b=b,
+                            d_sb=d_sb, d_ff=d_ff)
+
+
+def j2_sheet2(P, C, G):
+    """GF-D30 sheet 2: tail handling (GF-2.0) - section T-T through the bend gap in J2, plan detail of the tail
+    holder TH and the guide card, the sequence"""
+    sh = Sheet()
+    sh.frame()
+    T = j2_tail_geom(P, C, G)
+    Zg = P.level("Z_GLASS_FRONT")
+    D = lambda nm: P.level(nm) - Zg
+    gt = P.d("glass_t")
+    g = P.rect("glass")
+    py1 = T["panel_y1"]
+    # ---------------------------------------------------------------- section T-T 5:1 (abs y right, d up)
+    k = 5.0
+    ys0, ys1, dd0, dd1 = 114.0, 133.5, -3.0, 25.0
+    X0, Y0 = 92.0, 128.0
+    S = lambda y, d: (X0 + k * (y - ys0), Y0 + k * d)
+    poly = lambda pts, **kw: sh.poly([S(*p) for p in pts], **kw)
+    sh.T(16.0, 279.0, "SECTION T-T  tail handling in J2 at abs x %s (schematic, frame at its final position)  5 : 1" %
+         n(G.fv.xc), fs=8.0, weight="bold")
+    sh.T(16.0, 274.5, "Plate at the bottom, glass face 1 down; heights d above the plate; tails as the master "
+                      "tail_route (both projected), held vertical by the guide card until the frame is down.", fs=6.0)
+    poly([(ys0, 0), (ys1, 0), (ys1, dd0), (ys0, dd0)], fc="#dfe3e8", ec="k", w=THICK, hatch="////")
+    poly([(ys0, 0), (g.y1, 0), (g.y1, gt), (ys0, gt)], fc="#cfe8f3", ec="k", w=THIN)
+    sh.L([S(ys0, gt)[0], S(g.y1 - 0.5, gt)[0]], [S(0, gt)[1] + 0.35] * 2, w=0.6, c="k", geom=False)
+    d_gb, d_ctp, d_pb = D("Z_GLASS_BACK"), D("Z_CTP_FRONT"), D("Z_PANEL_BACK")
+    poly([(ys0, d_gb), (py1, d_gb), (py1, d_ctp), (ys0, d_ctp)], fc="#f6c342", ec="none", w=XTHIN, geom=False)
+    poly([(ys0, d_ctp), (py1, d_ctp), (py1, d_pb), (ys0, d_pb)], fc="#f4c79a", ec="0.3", w=THIN)
+    fm = P.rect("formex")
+    poly([(ys0, D("Z_FORMEX_FRONT")), (fm.y1, D("Z_FORMEX_FRONT")), (fm.y1, D("Z_SEAT")), (ys0, D("Z_SEAT"))],
+         fc="#c9c3e6", ec="0.4", w=XTHIN, geom=False)
+    prof, shelf, pv = bottom_profile(P, G)
+    poly(clip_poly(prof, ys0, ys1, dd0, dd1), fc="#a7acb3", ec="k", w=THIN, hatch="\\\\\\\\")   # cut at the window
+    poly(shelf, fc="#a7acb3", ec="k", w=THIN, hatch="\\\\\\\\")
+    bi, bo = g.y1 - G.bead_edge - G.bead_w, g.y1 - G.bead_edge
+    poly([(bi, d_gb), (bo, d_gb), (bo, pv["d_land"]), (bi, pv["d_land"])], fc="#3a3a3a", ec="k", w=XTHIN)
+    for s in (ys0, ys1):
+        sh.L([S(s, dd0)[0]] * 2, [S(s, dd0)[1], S(s, dd1)[1]], w=XTHIN, c="0.3", geom=False, dashes=(1, 1.5))
+    # tails (master centre lines up to the vertical leg, then straight up to the top of the window)
+    yv = T["y_vert"]
+    for nm, col in (("CTP", C_CTP), ("TFT", C_TFT)):
+        pts, _ = G.tail_route(nm)
+        out = []
+        for (y, Z) in pts:
+            out.append((y, Z - Zg))
+            if abs(y - yv) < 1e-3 and abs(Z - (P.level("Z_TAIL_TFT_EXIT") + T["tails"][nm]["R_c"])) < 1e-3:
+                break
+        out.append((yv, dd1 - 0.4))
+        q = [S(*p) for p in out]
+        sh.L([p[0] for p in q], [p[1] for p in q], w=P.d("tail_t") * k, c=col, geom=False)
+    # guide card + Kapton tabs
+    cy0, cy1 = T["card"]["y"]
+    poly([(cy0, T["card"]["bottom"]), (cy1, T["card"]["bottom"]), (cy1, dd1 - 0.4), (cy0, dd1 - 0.4)],
+         fc="#4a90c2", ec="#1f5f8b", w=XTHIN, geom=False)
+    tab_d = T["card"]["tab_min"]
+    # break symbol at the top of the window (tails and card continue to the clip)
+    xa, xb = S(cy0 - 1.2, 0)[0], S(yv + 1.2, 0)[0]
+    yb = S(0, dd1 - 0.4)[1]
+    sh.L([xa, xa + 1.5, xa + 3.0, xb - 1.5, xb], [yb, yb + 1.0, yb - 1.0, yb + 1.0, yb], w=XTHIN, geom=False)
+    # labels (leaders to the left / right of the section)
+    xl = S(ys0, 0)[0] - 3.0
+    xr = S(ys1, 0)[0] + 3.0
+    L_ = [((g.y1 - 6.0, gt / 2.0), -1.6, "glass %s, face 1 on the plate" % n(gt), "r"),
+          ((py1 - 3.0, (d_ctp + d_pb) / 2.0), 6.0, "panel (CTP + LCM), bonded in J1", "l"),
+          ((py1 - 1.0, (D("Z_FORMEX_FRONT") + D("Z_SEAT")) / 2.0), 9.6, "Formex", "l"),
+          ((py1 - 1.0, (D("Z_SEAT") + D("Z_SHELF_BACK")) / 2.0), 12.4, "shelf end = slot front face", "l"),
+          ((yv, 16.0), 16.0, "tails vertical on the slot line (CTP blue-violet, TFT orange)", "l"),
+          ((0.5 * (cy0 + cy1), 20.5), 20.5, "guide card %s (PET), panel side of the tails" % n(T["card"]["t"]), "l"),
+          ((bi + 3.4, d_gb + 0.15), 1.5, "bead %s x %s (fresh)" % (n(G.bead_w), n(pv["d_land"] - d_gb)), "r"),
+          ((pv["y_face"] + 0.12, pv["d_land"] + 0.12), 5.4, "land break %s x 45 deg (no snag)" % n(pv["b"]), "r"),
+          ((pv["y_face"] + pv["R"] * (1 - math.cos(math.radians(50))),
+            pv["d_lpb"] - pv["R"] + pv["R"] * math.sin(math.radians(50))), 7.2,
+           "bridge nose R%s (the tails are folded over it after the cure)" % n(pv["R"]), "r"),
+          ((0.5 * (pv["y_face"] + bi), (d_gb + pv["d_land"]) / 2.0), 3.6,
+           "bead inner edge %s behind the bridge face" % n(bi - pv["y_face"]), "r"),
+          ((ys1 - 1.5, 12.5), 12.5, "tail pocket (open to the back); its floor and bottom wall: GF-D50 G-G", "r")]
+    for (y, d), dy, t, side in L_:
+        px, py = S(y, d)
+        if side == "l":
+            sh.leader(px, py, xl, S(0, dy)[1], t, fs=5.9, head="dot", ha="right")
+        else:
+            sh.leader(px, py, xr, S(0, dy)[1], t, fs=5.9, head="dot")
+    # dimensions: g_bend (panel edge = shelf end -> bridge face), tail -> face, bead -> face
+    yd = S(0, 23.0)[1]
+    sh.dim_h(*S(py1, D("Z_SHELF_BACK")), *S(pv["y_face"], pv["d_land"] + 1.0), yd, None, c=C_DIM)
+    sh.T(S(pv["y_face"], 0)[0] + 3.0, yd - 0.9, "%s = g_bend: panel edge -> bridge pocket face" % n(G.g_bend),
+         fs=6.0, va="center", color=C_DIM)
+    yd2 = S(0, 11.0)[1]
+    sh.dim_h(*S(T["y_out"], 11.0), *S(pv["y_face"], 11.0), yd2, None, arrows="out", c=C_DIM, ext=False)
+    sh.T(S(pv["y_face"], 0)[0] + 6.0, yd2 - 0.9, "%s tail -> face" % n(T["clear_face"], 2), fs=6.0, va="center",
+         color=C_DIM)
+    dm3 = (d_gb + pv["d_land"]) / 2.0
+    yd3 = S(0, dm3)[1]
+    sh.dim_h(*S(pv["y_face"], dm3), *S(bi, dm3), yd3, None, arrows="out", c=C_DIM, ext=False)
+
+    # ---------------------------------------------------------------- plan detail 1:1 (plate view from above)
+    k1 = 1.0
+    PX0, PY0 = 338.0, 262.0                                           # paper position of the datum u = 0, v = 0 ...
+    vref = G.fv.uv(0, py1)[1]                                         # ... shifted: v of the panel edge at PY0
+    Pp = lambda u, v: (PX0 - k1 * u, PY0 + k1 * (v - vref))           # x = -u (mirrored), y = v
+    sh.T(270.0, 279.0, "PLAN DETAIL - tail side of J2 seen from ABOVE (mirrored)  1 : 1", fs=8.0, weight="bold")
+    fv = G.fv
+
+    def rect_abs(x0, x1, y0, y1, **kw):
+        (u0, v0), (u1, v1) = fv.uv(x0, y0), fv.uv(x1, y1)
+        pts = [Pp(u0, v0), Pp(u1, v0), Pp(u1, v1), Pp(u0, v1)]
+        return sh.poly(pts, **kw)
+
+    def line_abs(pts, **kw):
+        q = [Pp(*fv.uv(x, y)) for x, y in pts]
+        sh.L([p[0] for p in q], [p[1] for p in q], **kw)
+    sl = T["slot"]
+    wx0, wx1 = sl.x0 - 3.0, sl.x1 + 3.0                               # detail window (abs x), lines clipped to it
+    line_abs([(wx0, g.y1), (wx1, g.y1)], w=XTHIN, c=C_REF, geom=False, dashes=(4, 1.5))
+    sh.T(Pp(*fv.uv(wx0, g.y1))[0] - 1.5, Pp(*fv.uv(wx0, g.y1))[1], "glass bottom edge", fs=5.6, color=C_REF,
+         va="center", ha="right")
+    line_abs([(wx0, py1), (wx1, py1)], w=THIN, c="0.3", geom=False)
+    sh.T(Pp(*fv.uv(wx0, py1))[0] - 1.5, Pp(*fv.uv(wx0, py1))[1] + 0.4, "panel bottom edge", fs=5.6, color="0.3",
+         va="bottom", ha="right")
+    rect_abs(sl.x0, sl.x1, sl.y0, sl.y1, fc="none", ec=C_TAIL, w=XTHIN, geom=False, ls=(0, (3, 1.5)))
+    fl = P.rect("flange")
+    line_abs([(wx0, fl.y1), (wx1, fl.y1)], w=XTHIN, c=C_REF, geom=False, dashes=(6, 2))
+    sh.T(Pp(*fv.uv(wx0, fl.y1))[0] - 1.5, Pp(*fv.uv(wx0, fl.y1))[1], "flange bottom edge (frame lowered)", fs=5.6,
+         color=C_REF, va="center", ha="right")
+    for nm, col in (("CTP", C_CTP), ("TFT", C_TFT)):
+        x0_, x1_ = T["tails"][nm]["x_all"]
+        line_abs([(x0_, yv), (x1_, yv)], w=0.9, c=col, geom=False)
+        ex = T["tails"][nm]["exit"]
+        line_abs([(ex[0], py1), (ex[0], yv)], w=XTHIN, c=col, geom=False)
+        line_abs([(ex[1], py1), (ex[1], yv)], w=XTHIN, c=col, geom=False)
+    rect_abs(T["card"]["x"][0], T["card"]["x"][1], cy0, cy1, fc="#4a90c2", ec="#1f5f8b", w=XTHIN, geom=False)
+    pu, pv_ = T["post_uv"]
+    xp, yp = Pp(pu, pv_)
+    sh.circle(xp, yp, T["post_d"] / 2.0 * k1, ec=C_TAIL, w=THIN, fc="#f7e2c8")
+    xc, yc = Pp(*fv.uv(0.5 * (T["card"]["x"][0] + T["card"]["x"][1]), 0.5 * (cy0 + cy1)))
+    sh.L([xp, xc], [yp + T["post_d"] / 2.0, yc - 1.6], w=0.7, c=C_TAIL, geom=False, dashes=(8, 1.5, 1.5, 1.5))
+    sh.poly([(xc - 3.0, yc - 1.6), (xc + 3.0, yc - 1.6), (xc + 3.0, yc + 1.6), (xc - 3.0, yc + 1.6)], fc="#f7e2c8",
+            ec=C_TAIL, w=THIN, geom=False)
+    # plan labels (outside the tail band)
+    sh.T(xp + T["post_d"] / 2.0 + 2.0, yp + 1.4, "post TH dia %s (hole TH, sheet 1)," % n(T["post_d"], 0), fs=5.8,
+         va="center", color=C_TAIL)
+    sh.T(xp + T["post_d"] / 2.0 + 2.0, yp - 1.6, "%s beyond the flange edge" % n(T["th"]["post_offset"]), fs=5.8,
+         va="center", color=C_TAIL)
+    sh.T(xc - 4.5, yc - 9.0, "swing arm + clip (PTFE jaws) on the card top,", fs=5.8, color=C_TAIL, ha="right",
+         bg="white")
+    sh.T(xc - 4.5, yc - 11.8, "%s-%s above the plate; swings away to thread" % (
+        n(T["th"]["clip_height"][0], 0), n(T["th"]["clip_height"][1], 0)), fs=5.8, color=C_TAIL, ha="right",
+        bg="white")
+    for nm, col in (("CTP", C_CTP), ("TFT", C_TFT)):
+        x0_, x1_ = T["tails"][nm]["x_all"]
+        xa_, ya_ = Pp(*fv.uv(0.5 * (x0_ + x1_), yv))
+        sh.T(xa_, ya_ + 4.6, "%s tail x %s-%s" % (nm, n(x0_, 2), n(x1_, 2)), fs=5.8, color=col, ha="center",
+             weight="bold")
+    xa_, ya_ = Pp(*fv.uv(sl.x0, sl.y1))
+    sh.T(xa_ - 1.5, ya_ - 0.4, "bend-gap slot %s x %s (frame)" % (n(sl.y1 - sl.y0), n(sl.x1 - sl.x0)), fs=5.6,
+         color=C_TAIL, va="top", ha="right")
+    xa_, ya_ = Pp(*fv.uv(T["tails"]["CTP"]["x_all"][0], sl.y1))
+    sh.T(xa_, ya_ - 1.4, "guide card %s x %s on the panel side of the tails" % (n(T["card"]["t"]),
+                                                                              n(T["card"]["w"], 0)),
+         fs=5.8, color="#1f5f8b", va="top")
+    # ---------------------------------------------------------------- sequence + parts
+    tw = C("j2_tail_card")
+    seq = [
+        "BEFORE J2: panel bonded to the glass in J1 (GF-D31), tails flat and untouched since; bead dispensed on the "
+        "frame land (GF-D20); the frame stays bead UP until step 5.",
+        "Glass + panel face 1 down against S1-S3, pull the stops, set the 8 PTFE centring shims (sheet 1).",
+        "FOLD: hold the GF-D21 gauge against the panel edge (end pads outside the tail span) and fold each tail up "
+        "over its R%s edge: about %s free straight, inner radius >= %s, tail vertical; remove the gauge. Never crease, "
+        "never pull." % (n(P.d("bend_nose_R")), n(P.d("tail_straight_l0")), n(P.d("tail_R_in_min"))),
+        "CARD: stand the guide card (%s x %s, top %s above the plate) on the PANEL side of both tails, its bottom "
+        "%s above the plate (above both bends); tack each tail to it with %s mm Kapton tabs, all >= %s above the "
+        "plate (above the frame back, %s); clip the card top in TH: tails vertical on the slot line, %s out from the "
+        "panel edge." % (n(tw["t"]), n(tw["w"], 0), n(tw["top"], 0), n(tw["bottom"], 0), n(tw["tab_w"], 0),
+                         n(tw["tab_min"], 0), n(T["d_back"], 2), n(T["y_vert"] - py1, 2)),
+        "THREAD: open the clip and swing the arm away, hold the card top by hand; hold the frame bead DOWN over the "
+        "pins and lower it until the card top passes the %s x %s bend-gap slot from the front (the stiff card finds "
+        "the slot); swing the arm back and clip the card top above the frame." % (n(sl.y1 - sl.y0),
+                                                                              n(sl.x1 - sl.x0)),
+        "LOWER the frame on the 4 pins: card and tails slide through the slot, the tails %s from the bridge face, "
+        "the bead a further %s behind it - nothing touches the bead. Watch through the open tail pocket. Lip on the "
+        "plate, ring weight on the flange." % (n(T["clear_face"], 2), n(bi - pv["y_face"])),
+        "Open the clip, peel the Kapton tabs from behind, pull the card out upward, remove the post; check g2 "
+        "(GF-D20); cure in the jig.",
+        "AFTER THE CURE: fold each tail over the R%s bridge nose into its compartment (seen from the back: CTP "
+        "left of the divider rib, TFT right), never tighter than the nose; PCB and connectors (GF-D20)." % (
+            n(P.d("bend_nose_R"))),
+        "STOP if a tail or the card touches the land edge or the bead: lift the frame straight up, clean the land, "
+        "re-dispense (GF-D20), start again at step 4.",
+    ]
+    seq_tr = [
+        "J2 ÖNCESİ: panel J1'de (GF-D31) cama yapıştırılmış, kuyruklar düz ve dokunulmamış; çerçeve yapıştırma "
+        "yüzeyine kordon sürülmüş (GF-D20); çerçeve 5. adıma kadar kordon YUKARIDA durur.",
+        "Cam + panel 1. yüzü aşağıda S1-S3'e dayalı; dayama pimlerini çekin, 8 PTFE şimi yerleştirin (sayfa 1).",
+        "KATLAMA: GF-D21 mastarını panel kenarına dayayın (uç pabuçlar kuyruk bölgesinin dışında), her kuyruğu "
+        "R%s kenarı üzerinden yukarı katlayın: yaklaşık %s düz kısım, iç radyus >= %s, kuyruk dik; mastarı alın. "
+        "Kırmayın, çekmeyin." % (n(P.d("bend_nose_R")), n(P.d("tail_straight_l0")), n(P.d("tail_R_in_min"))),
+        "KART: kılavuz kartı (%s x %s) iki kuyruğun PANEL tarafına, alt kenarı plakadan %s yukarıda olacak şekilde "
+        "dikin; her kuyruğu plakadan en az %s yukarıda %s mm Kapton bantlarla karta tutturun; kart üstünü TH "
+        "kıskacına takın: kuyruklar yuva hattında dik." % (n(tw["t"]), n(tw["w"], 0), n(tw["bottom"], 0),
+                                                         n(tw["tab_min"], 0), n(tw["tab_w"], 0)),
+        "GEÇİRME: kıskacı açın, kolu çevirin, kart üstünü elle tutun; çerçeveyi kordon AŞAĞIDA pimlerin üzerinde "
+        "tutup kart üstü %s x %s büküm yuvasından önden geçene kadar indirin; kolu geri çevirip kart üstünü "
+        "çerçevenin üstünde kıskaca takın." % (n(sl.y1 - sl.y0), n(sl.x1 - sl.x0)),
+        "İNDİRME: çerçeveyi 4 pim üzerinde indirin; kart ve kuyruklar yuvadan kayar, kuyruklar köprü yüzünden %s, "
+        "kordon bunun %s gerisinde - kordona hiçbir şey değmez. Dudak plakaya oturur, flanşa halka ağırlık." % (
+            n(T["clear_face"], 2), n(bi - pv["y_face"])),
+        "Kıskacı açın, Kapton bantları arkadan sökün, kartı yukarı çekin, direği alın; g2 kontrolü (GF-D20); "
+        "fikstürde kürleme.",
+        "KÜRDEN SONRA: her kuyruğu R%s köprü burnu üzerinden kendi bölmesine katlayın (arkadan bakışta CTP ayırıcı "
+        "kaburganın solunda, TFT sağında); burundan daha dar bükmeyin. Sonra PCB ve konnektörler." % (
+            n(P.d("bend_nose_R"))),
+        "DUR: kuyruk veya kart yapıştırma kenarına ya da kordona değerse çerçeveyi dik kaldırın, temizleyin, "
+        "kordonu yeniden sürün, 4. adımdan başlayın.",
+    ]
+    ye = sh.notes(16.0, 106.0, 205.0, seq, fs=5.9, head="SEQUENCE - J2 with the tails (%s)" % P.revision,
+                  head_fs=7.2, gap=0.4)
+    yt = sh.notes(272.0, 205.0, 134.0, [tr(x) for x in seq_tr], fs=5.7, head="SIRA (Türkçe)", head_fs=7.2, gap=0.35)
+    rows = [["item", "description (free unless stated)", "qty"],
+            ["TH post", "steel rod dia %s g6, about %s long, in hole TH (sheet 1); swing arm with a spring clip, "
+                        "PTFE-faced jaws, clip height %s-%s above the plate" % (
+                            n(T["post_d"], 0), n(T["th"]["post_h"], 0), n(T["th"]["clip_height"][0], 0),
+                            n(T["th"]["clip_height"][1], 0)), "1"],
+            ["guide card", "PET (or PEEK) %s x %s x %s high (top %s above the plate), edges deburred" % (
+                n(tw["t"]), n(tw["w"], 0), n(tw["top"] - tw["bottom"], 0), n(tw["top"], 0)), "2"],
+            ["Kapton tabs", "polyimide tape %s wide, low-residue silicone adhesive, never on the ZIF contacts" % (
+                n(tw["tab_w"], 0)), "4 / module"],
+            ["fold gauge", "GF-D21 tail fold gauge (used as the fold former in step 3)", "1"]]
+    sh.T(272.0, yt - 3.0, "TAIL-HANDLING PARTS (drafting_choices.json)", fs=7.0, weight="bold")
+    yp_ = sh.table_wrapped(272.0, yt - 4.5, [22, 98, 14], rows, fs=5.7)
+    sh.title_block({
+        "title": "JIG J2 - TAIL HANDLING, sheet 2/2",
+        "subtitle": "fold, hold and thread the FPC tails through the bend-gap slot  /  FPC kuyruklarının yuvadan "
+                    "geçirilmesi",
+        "source": "product values from %s (tail_route, g_bend, bend_nose_R, land_break, levels); jig values: "
+                  "drafting_choices.json" % master_ref(P),
+        "project": "files: GF_Jig_J2.pdf (2 sheets) / _p1.png / _p2.png + GF_Jig_J2.dxf",
+        "change": "%s. Section T-T at g_bend %s: tails %s from the bridge face, bead %s behind it; tail holder TH, "
+                  "guide card and threading sequence as before (concept_gf2.md 5.3 / risk 3)." % (
+                      rev_note(P), n2(G.g_bend), n(T["clear_face"], 2), n(bi - pv["y_face"])),
+        "dwg": "GF-D30", "rev": P.revision, "scale": "5:1, 1:1", "date": datetime.date.today().isoformat(),
+        "drawn": "make_jigs.py",
+    }, h=42.0)
+    issues = sh.check_layout()
+    return sh, issues, seq, seq_tr, [round(ye, 1), round(yt, 1), round(yp_, 1)], T
 
 
 # ================================================================================================================ J1
@@ -352,14 +682,17 @@ def j1_sheet(path_base, P, C, G, J):
         sh.poly([(x + du * 0.5 - dv * 1.2, y + dv * 0.5 + du * 1.2), (x + du * L - dv * 1.2, y + dv * L + du * 1.2),
                  (x + du * L + dv * 1.2, y + dv * L - du * 1.2), (x + du * 0.5 + dv * 1.2, y + dv * 0.5 - du * 1.2)],
                 fc="#ffd27f", ec="k", w=XTHIN, geom=False)
-        sh.T(x + du * (L + 1.5), y + dv * (L + 1.5), "micrometer " + name, fs=6.0,
-             ha="right" if du < 0 else ("center" if du == 0 else "left"), va="center" if du else "bottom")
+        if dv:          # Y1 / Y2: label beyond the micrometer end
+            sh.T(x, y + dv * (L + 1.5), "micrometer " + name, fs=6.0, ha="center", va="bottom")
+        else:           # X: label below the bar end, clear of the centre line (GF-2.0: carrier centred on it)
+            sh.T(x + du * L, V.P(0, 0)[1] - 3.0, "micrometer " + name, fs=6.0, ha="center", va="top",
+                 bg="white")
     for (u, v), (du, dv) in (((car.x1, car.c[1]), (1, 0)), ((-40.0, car.y0), (0, -1)), ((40.0, car.y0), (0, -1))):
         x, y = V.P(u, v)
         sh.L([x, x + du * 6.0], [y, y + dv * 6.0], w=THIN, c="0.3", geom=False)
         sh.circle(x + du * 6.0, y + dv * 6.0, 1.0, ec="0.3", w=XTHIN, geom=False)
     x, y = V.P(car.x1, car.c[1])
-    sh.T(x + 8.5, y, "spring", fs=5.8, va="center", color="0.3")
+    sh.T(x + 1.0, V.P(0, 0)[1] + 1.8, "spring", fs=5.8, va="bottom", color="0.3")   # clear of the centre line
     # microscopes over two diagonal window corners
     for (u, v) in ((G.window.x0, G.window.y1), (G.window.x1, G.window.y0)):
         x, y = V.P(u, v)
@@ -398,7 +731,7 @@ def j1_sheet(path_base, P, C, G, J):
          fs=6.0)
     # section (schematic, 2:1, not every part to scale): top edge
     k2 = 2.0
-    xs0, yb0 = 330.0, 216.0
+    xs0, yb0 = 308.0, 216.0          # GF-2.0: guide pins 28.8 from the glass edge -> section shifted left
     Sx = lambda s, h: (xs0 + k2 * s, yb0 + k2 * h)
     poly = lambda pts, **kw: sh.poly([Sx(*p) for p in pts], **kw)
     t_opt = P.d("t_opt")
@@ -515,11 +848,14 @@ def j1_sheet(path_base, P, C, G, J):
                                                     n(t_opt, 2)),
         "Top plate glass face parallel to the base within %s over the panel area; guides %s g6 pins / H7 bushings, "
         "no play that tilts the plate." % (n(C("j1_parallel")), n(J["guide_d"], 0)),
-        "Top plate: opening = print window + %s per side, centred %s above the datum (window edge visible "
-        "everywhere, UV tack through it); vacuum groove loop %s inside the glass edge (black border only)." % (
-            n(C("j1_opening_margin")), n(op.c[1]), n(C("j1_groove_inset"))),
+        "Top plate: opening = print window + %s per side, %s (window edge visible everywhere, UV tack through it); "
+        "vacuum groove loop %s inside the glass edge (black border only)." % (
+            n(C("j1_opening_margin")),
+            "centred on the datum (%s: window centre = glass centre)" % P.revision if abs(op.c[1]) < 1e-6 and
+            abs(op.c[0]) < 1e-6 else "centred %s above the datum" % n(op.c[1]), n(C("j1_groove_inset"))),
         "Micrometers: %s. Carrier: panel pocket POM-lined, FPC slot at the tail exit, test connector for the lit "
-        "border pattern (GUI: outer %d px black in normal use)." % (C("j1_micrometer"), gui_px),
+        "border pattern (GUI: outer %d px black in normal use). The tails stay FLAT in J1; they are folded only in "
+        "J2 (GF-D30 sheet 2)." % (C("j1_micrometer"), gui_px),
         "LOCA volume = panel outline %s x %s x %s = %s mL (R1: dispense ~5 %% more, dog-bone pattern)." % (
             n(G.panel.w), n(G.panel.h, 0), n(t_opt, 2), n(G.panel.w * G.panel.h * t_opt / 1000.0, 2)),
         "Free (machinist's choice): plate sizes, thicknesses, carrier size, stop-screw type, handles, feet; "
@@ -536,9 +872,10 @@ def j1_sheet(path_base, P, C, G, J):
         "Üst plaka cam yüzeyi tabana paralel: %s mm; kılavuz pimleri Ø%s g6, burçlar H7." % (
             n(C("j1_parallel")), n(J["guide_d"], 0)),
         "Ölçüsü verilmeyen her şey serbest; genel tolerans ISO 2768-m. Cam ve panele değen yüzeyler POM.",
+        "FPC kuyrukları J1'de DÜZ kalır; yalnız J2'de katlanır (GF-D30 sayfa 2).",
     ]
-    ye = sh.notes(212.0, 141.0, 98.0, J1_en, fs=5.8, head="NOTES", head_fs=7.2, gap=0.4)
-    yt_ = sh.notes(313.0, 141.0, 96.0, [tr(x) for x in J1_tr], fs=5.8, head="NOTLAR (Türkçe)", head_fs=7.2, gap=0.4)
+    ye = sh.notes(212.0, 152.0, 98.0, J1_en, fs=5.8, head="NOTES", head_fs=7.2, gap=0.4)
+    yt_ = sh.notes(313.0, 152.0, 96.0, [tr(x) for x in J1_tr], fs=5.8, head="NOTLAR (Türkçe)", head_fs=7.2, gap=0.4)
     # bottom-left: what is aligned to what (table)
     rows = [["what", "aligned to", "how", "tolerance"],
             ["print window edge (glass face 2)", "lit 1-px AA border", "micrometers X / Y1 / Y2, 2 microscopes",
@@ -552,11 +889,11 @@ def j1_sheet(path_base, P, C, G, J):
     sh.title_block({
         "title": "JIG J1 - OPTICAL-BONDING ALIGNMENT FIXTURE",
         "subtitle": "panel -> glass, LOCA, active alignment  /  optik yapıştırma hizalama fikstürü J1",
-        "source": "product positions from Rev3.0_GlassFront_params.json %s; jig values: drafting_choices.json" %
-                  P.revision,
+        "source": "product positions from %s; jig values: drafting_choices.json" % master_ref(P),
         "project": "files: GF_Jig_J1.dxf (plan = front view, mm) + this sheet",
-        "change": "%s: glass corner R%s in the references; this sheet is authoritative for J1 (supersedes the "
-                  "concept sec. 6 jig text)." % (P.revision, n(G.glass.R)),
+        "change": "%s. Glass %s x %s: stops S1-S3 moved with the outline (S1-S2 %s, S3 %s), opening on the datum; "
+                  "plates and guide pins unchanged." % (rev_note(P), n2(G.glass.w), n2(G.glass.h),
+                                          n(abs(S_["S1"][0] - S_["S2"][0])), n(abs(S_["S3"][0]))),
         "dwg": "GF-D31", "rev": P.revision, "scale": "1:2, 2:1, %s:1" % n(kz, 0),
         "date": datetime.date.today().isoformat(), "drawn": "make_jigs.py",
     }, h=42.0)
@@ -571,9 +908,26 @@ def run(out_dir=OUT_DIR):
     G = Geom(P)
     b2 = os.path.join(out_dir, "GF_Jig_J2")
     j2_dxf(b2 + ".dxf", P, C, G)
-    iss, en, trn, yl = j2_sheet(b2, P, C, G)
-    res["J2"] = {"files": [b2 + ".dxf", b2 + ".pdf", b2 + ".png"], "layout_issues": iss, "notes_en": en,
-                 "notes_tr": trn, "lowest_y": yl}
+    sh1, iss, en, trn, yl = j2_sheet(P, C, G)
+    sh2, iss2, seq, seq_tr, yl2, T = j2_sheet2(P, C, G)
+    from matplotlib.backends.backend_pdf import PdfPages
+    import matplotlib.pyplot as plt
+    with PdfPages(b2 + ".pdf") as pdf:
+        pdf.savefig(sh1.fig, dpi=300)
+        pdf.savefig(sh2.fig, dpi=300)
+    sh1.fig.savefig(b2 + "_p1.png", dpi=200)
+    sh2.fig.savefig(b2 + "_p2.png", dpi=200)
+    plt.close(sh1.fig)
+    plt.close(sh2.fig)
+    res["J2"] = {"files": [b2 + ".dxf", b2 + ".pdf", b2 + "_p1.png", b2 + "_p2.png"], "layout_issues": iss + iss2,
+                 "notes_en": en, "notes_tr": trn, "sequence_en": seq, "sequence_tr": seq_tr,
+                 "lowest_y": yl + yl2,
+                 "tail_handling": {"y_vertical_leg_abs": T["y_vert"], "card_y_abs": list(T["card"]["y"]),
+                                   "card_x_abs": list(T["card"]["x"]), "post_uv": list(T["post_uv"]),
+                                   "tail_to_bridge_face": round(T["clear_face"], 4),
+                                   "card_to_shelf_end": round(T["clear_shelf"], 4),
+                                   "tail_end_heights_above_plate": {k: round(v, 2) for k, v in T["tips"].items()},
+                                   "frame_back_above_plate": round(T["d_back"], 3)}}
     P2, C2 = Params(), Choices()
     G2 = Geom(P2)
     J = j1_geom(P2, C2, G2)
@@ -582,8 +936,8 @@ def run(out_dir=OUT_DIR):
     iss, en, trn, yl = j1_sheet(b1, P2, C2, G2, J)
     res["J1"] = {"files": [b1 + ".dxf", b1 + ".pdf", b1 + ".png"], "layout_issues": iss, "notes_en": en,
                  "notes_tr": trn, "lowest_y": yl}
-    res["J2"]["params_used"], res["J2"]["choices_used"] = sorted(P.used.keys()), C.used
-    res["J1"]["params_used"], res["J1"]["choices_used"] = sorted(P2.used.keys()), C2.used
+    res["J2"]["params_used"], res["J2"]["choices_used"] = dict(sorted(P.used.items())), C.used
+    res["J1"]["params_used"], res["J1"]["choices_used"] = dict(sorted(P2.used.items())), C2.used
     return res
 
 

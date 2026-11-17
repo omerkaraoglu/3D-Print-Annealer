@@ -1,0 +1,19 @@
+{
+ "changed": {},
+ "removed": {},
+ "added": {
+  "change_log.post_verification_addendum_2026-11-16.changes[0].point": 1,
+  "change_log.post_verification_addendum_2026-11-16.changes[1].point": 1,
+  "change_log.post_verification_addendum_2026-11-16.changes[2].point": 2,
+  "change_log.post_verification_addendum_2026-11-16.changes[3].point": 3,
+  "change_log.post_verification_addendum_2026-11-16.changes[4].point": 4,
+  "fold_test.exact_feeler_for_the_limit_mm": 0.67,
+  "fold_test.feeler_mm": 0.7,
+  "fold_test.gauge_slot_mm": 3.0,
+  "fold_test.tail_outer_surface_limit_from_panel_edge_mm": 2.3
+ },
+ "count_before": 1559,
+ "count_after": 1568,
+ "params_sha256_before": "662d8380d7173d0444ab92292de2bee863c050fdef0f8c02fa95aab06b6805c4",
+ "params_sha256_after": "7439b098325a09f4e31bd242b7db6372c30ae9c2bf0aa7c53e3b7003608b6082"
+}

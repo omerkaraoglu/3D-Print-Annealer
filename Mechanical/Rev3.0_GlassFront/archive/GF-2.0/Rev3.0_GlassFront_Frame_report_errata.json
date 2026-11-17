@@ -1,0 +1,159 @@
+{
+ "about": "Errata to Rev3.0_GlassFront_Frame_report.json and Rev3.0_GlassFront_Assembly_report.json (GF-2.0, Fusion document version 18): statements corrected by the independent verification 2026-11-16 (tools/glassfront/verify). The reports themselves are not edited.",
+ "frame_step_sha256": "7831768c26066dc08cd968fe16808ef4c9ae2b45bcdbc0f7efd7cb4c79ea82ad",
+ "params_sha256_quoted_in_the_reports": "2d1810472802036c9c06342707f0b19ae6a734b0ab81b19512e19de73aeea496",
+ "params_sha256_before_corrections": "2d1810472802036c9c06342707f0b19ae6a734b0ab81b19512e19de73aeea496",
+ "params_sha256_after_corrections": "662d8380d7173d0444ab92292de2bee863c050fdef0f8c02fa95aab06b6805c4",
+ "params_change": "change_log.post_verification_corrections_2026-11-16 (notes, criteria, check results; logo-zone centre; no frame-driving value changed); then change_log.post_verification_addendum_2026-11-16",
+ "items": [
+  {
+   "report": "Frame_report",
+   "where": "sharp_inside_corners[5]",
+   "report_value": "GF-2.0: the tail-pocket corners at the shelf end (bend-gap slot front face x side walls, y 119.1) as GF-1.1",
+   "verified": "the two inside corners shelf end (y 119.0) x tail-pocket side walls (x 38.9 / 167.7) carry R0.5 vertical rounds between Z_SEAT and Z_SHELF_BACK in the GF-2.0 STEP (GF-1.1: sharp); 0.29 mm3; now listed in cad_rules",
+   "source": "verify/out/cadcheck.json (carryover_vs_GF11.regions)"
+  },
+  {
+   "report": "Frame_report",
+   "where": "moulding_notes.slot_shut_off",
+   "report_value": "the bend-gap slot is the only through-opening at the bottom: 3.0 x 128.8; A (recess core) / B (tail-pocket core) shut-off on its outline at Z_LAND; along the bridge edge the 0.3 break moves the shut-off line 0.3 up the slot face (formed by the A core)",
+   "verified": "parting on the bridge side at the break top (y 122.005, Z -10.12) and on the front side at the shelf corner (y 119.00, Z -4.60): the shut-off rises 5.52 over 3.00; buildable as an A ledge 3.0 x 0.3 plus a telescopic face along y 119.0 (>= 3 deg), steel B 91 / A 135 deg; see cad_rules",
+   "source": "verify/out/cadcheck.json (mould.bridge.shut_off)"
+  },
+  {
+   "report": "Assembly_report",
+   "where": "checks.3_flush_and_gaps.pips_to_glass[*].to_glass_mm",
+   "report_value": 0.52,
+   "verified": 0.5,
+   "note": "Z_PIP_TOP -10.92 to Z_GLASS_BACK -11.42",
+   "source": "verify/out/fitcheck.json (row 'pip tops -> glass back')"
+  },
+  {
+   "report": "Frame/Assembly reports, params as_modelled_GF-2.0",
+   "where": "tail_clearances_mm.*.PCB",
+   "report_value": 0.0,
+   "verified": {
+    "TFT": {
+     "to_PCB_body_model": 0.699,
+     "to_component_seating_plane": 0.614
+    },
+    "CTP": {
+     "to_PCB_body_model": 0.499,
+     "to_component_seating_plane": 0.414
+    }
+   },
+   "note": "0.0 is the overlap of the tail end with the J10 / J11 models (1.215 / 1.948 mm3), a model artefact that also exists at GF-1.1 with the DS1 model's own tail bodies ({'tft_tail_5': 0.822, 'tft_fingers_6': 2.112} / {'ctp_tail_7': 1.9145, 'ctp_fingers_8': 1.5285} mm3)",
+   "source": "verify/out/fitcheck.json (tails.cases.nominal, connector_entry)"
+  },
+  {
+   "report": "Assembly_report (and params as_modelled_GF-2.0.tail_clearances_mm.*.frame_by_class)",
+   "where": "checks.5_tails.per_tail.*.frame_by_class",
+   "report_value": {
+    "TFT": {
+     "other": 5.6621,
+     "flange plate (pocket floor)": 5.1702,
+     "bridge pocket face / land break": 2.4003,
+     "pocket bottom face / bottom wall": 2.0282,
+     "pocket side walls": 1.89,
+     "divider rib (incl. root fillets)": 2.7949,
+     "slot front face / shelf end / support ribs": 2.2493,
+     "step face (step-wall back)": 4.1799,
+     "bridge floor (land-plate back)": 2.6712,
+     "bridge nose (R1.5)": 1.524
+    },
+    "CTP": {
+     "other": 3.8352,
+     "flange plate (pocket floor)": 3.5899,
+     "bridge pocket face / land break": 1.4508,
+     "pocket side walls": 1.6466,
+     "divider rib (incl. root fillets)": 2.5184,
+     "slot front face / shelf end / support ribs": 2.5674,
+     "step face (step-wall back)": 4.1809,
+     "bridge nose (R1.5)": 0.9458,
+     "bridge floor (land-plate back)": 2.6722
+    }
+   },
+   "verified": {
+    "TFT": {
+     "flange plate = pocket floor (Z -9.92)": 4.6713,
+     "land-plate back (bridge floor, Z -7.92)": 2.3845,
+     "divider rib (sides, top, roots)": 2.7948,
+     "slot ends / shelf end y 119.0 / shelf / ribs": 2.2493,
+     "tail-pocket side walls x 38.9 / 167.7 (+ corners)": 1.89,
+     "step face y 130.89 (+ root round)": 2.6712,
+     "pocket bottom face y 147.7 / bottom wall": 2.028,
+     "floor root rounds": 3.9042,
+     "bridge nose R1.5": 1.5239,
+     "bridge pocket face y 122.0 (+ rib front)": 1.8513,
+     "land break 0.3 x 45": 2.4002,
+     "trough top Z 4.05": 2.5433,
+     "land Z -10.42 (bead face)": 2.8164,
+     "other": 2.9972
+    },
+    "CTP": {
+     "flange plate = pocket floor (Z -9.92)": 4.6723,
+     "land-plate back (bridge floor, Z -7.92)": 2.2188,
+     "divider rib (sides, top, roots)": 2.5184,
+     "slot ends / shelf end y 119.0 / shelf / ribs": 1.7038,
+     "tail-pocket side walls x 38.9 / 167.7 (+ corners)": 1.6465,
+     "step face y 130.89 (+ root round)": 2.6722,
+     "pocket bottom face y 147.7 / bottom wall": 11.1553,
+     "floor root rounds": 8.3819,
+     "bridge nose R1.5": 0.9457,
+     "bridge pocket face y 122.0 (+ rib front)": 1.0549,
+     "land break 0.3 x 45": 1.4506,
+     "trough top Z 4.05": 8.4325,
+     "land Z -10.42 (bead face)": 1.8696,
+     "other": 3.5898
+    }
+   },
+   "note": "the overall minima agree (TFT 1.524, CTP 0.946, both to the R1.5 nose). The grouping differs: the report's 'bridge pocket face / land break' value is measured to the break top edge (y 122.005, Z -10.12), i.e. the break alone - the flat pocket face is closer (TFT 1.851, CTP 1.055); its 'flange plate (pocket floor)' TFT 5.17 is measured to pip P4 on the land (Z -10.42), the flange plate itself is 4.67; its 'bridge floor (land-plate back)' 2.671 / 2.672 equals the step face y 130.89 here, the land-plate back is 2.385 / 2.219. Under the GF-2.0 criteria (tail_clearance_criteria) every class outside the bend zone is >= 1.5 nominal",
+   "source": "verify/out/fitcheck.json (tails.cases['nominal (params polylines)'].*.frame_by_class)"
+  },
+  {
+   "report": "params as_modelled_GF-2.0.fasteners (quoted by the reports)",
+   "where": "flange_env_min_extreme",
+   "report_value": {
+    "params as_modelled_GF-2.0.fasteners.flange_env_min_extreme": 0.0544,
+    "Assembly_report checks.7_fasteners.F.F1.stud_extreme['+along (to glass)'].flange_env_d_mm": 0.0559
+   },
+   "verified": {
+    "wall": [
+     0.072,
+     "F3 end + across"
+    ],
+    "floor_round": [
+     0.0511,
+     "F3 end + across"
+    ],
+    "floor": [
+     0.2,
+     "F1 centred"
+    ],
+    "shank_to_frame": [
+     0.0001,
+     "F3 end + across"
+    ]
+   },
+   "note": "envelope dia 5.8 x 1.4 with the shank at the slot limits (7 positions per stud): the extreme is at F3, end + across (floor round), not at F1 along; all > 0, no overlap",
+   "source": "verify/out/fitcheck.json (stud_seat)"
+  }
+ ],
+ "written_by": "tools/glassfront/verify/params_gf20_post_verification_fix.py",
+ "date": "2026-11-16",
+ "params_sha256_after_addendum": "7439b098325a09f4e31bd242b7db6372c30ae9c2bf0aa7c53e3b7003608b6082",
+ "params_sha256_history": [
+  {
+   "sha256": "2d1810472802036c9c06342707f0b19ae6a734b0ab81b19512e19de73aeea496",
+   "what": "GF-2.0 as written by the Fusion stage (quoted by the reports)"
+  },
+  {
+   "sha256": "662d8380d7173d0444ab92292de2bee863c050fdef0f8c02fa95aab06b6805c4",
+   "what": "after change_log.post_verification_corrections_2026-11-16"
+  },
+  {
+   "sha256": "7439b098325a09f4e31bd242b7db6372c30ae9c2bf0aa7c53e3b7003608b6082",
+   "what": "after change_log.post_verification_addendum_2026-11-16 (notes, open_findings 2 fix numbers, to_be_reverified, fold_test)"
+  }
+ ]
+}

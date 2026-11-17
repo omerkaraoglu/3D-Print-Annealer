@@ -1,0 +1,2381 @@
+{
+ "sections": {
+  "mid-top (x 80)": {
+   "A_mm2": 119.6,
+   "zc": -8.911,
+   "I_mm4": 1196.4,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.911
+  },
+  "mid-top (x 103.85, no F5 at GF-2.0)": {
+   "A_mm2": 119.6,
+   "zc": -8.911,
+   "I_mm4": 1196.4,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.911
+  },
+  "mid-side left (y 60)": {
+   "A_mm2": 114.8,
+   "zc": -8.9,
+   "I_mm4": 1193.6,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.9
+  },
+  "mid-side right (y 60)": {
+   "A_mm2": 121.7,
+   "zc": -8.915,
+   "I_mm4": 1197.7,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.915
+  },
+  "near the top-left corner (x 23, past the corner arc and the side shelf)": {
+   "A_mm2": 120.13,
+   "zc": -8.886,
+   "I_mm4": 1212.8,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.886
+  },
+  "bottom bridge CTP compartment x 60: channel (bridge + flange plate + bottom wall)": {
+   "A_mm2": 109.96,
+   "zc": -8.585,
+   "I_mm4": 1902.4,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 12.635
+  },
+  "bottom bridge CTP compartment x 60: bridge only (cut at the bottom-wall inner face y 147.7)": {
+   "A_mm2": 72.39,
+   "zc": -10.691,
+   "I_mm4": 118.6,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    -7.92
+   ],
+   "c_mm": 3.729
+  },
+  "bottom bridge TFT compartment x 103.85: channel (bridge + flange plate + bottom wall)": {
+   "A_mm2": 109.96,
+   "zc": -8.585,
+   "I_mm4": 1902.4,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 12.635
+  },
+  "bottom bridge TFT compartment x 103.85: bridge only (cut at the bottom-wall inner face y 147.7)": {
+   "A_mm2": 72.39,
+   "zc": -10.691,
+   "I_mm4": 118.6,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    -7.92
+   ],
+   "c_mm": 3.729
+  },
+  "bottom bridge TFT wide part x 150: channel (bridge + flange plate + bottom wall)": {
+   "A_mm2": 109.96,
+   "zc": -8.585,
+   "I_mm4": 1902.4,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 12.635
+  },
+  "bottom bridge TFT wide part x 150: bridge only (cut at the bottom-wall inner face y 147.7)": {
+   "A_mm2": 72.39,
+   "zc": -10.691,
+   "I_mm4": 118.6,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    -7.92
+   ],
+   "c_mm": 3.729
+  },
+  "bottom at the divider rib x 79.92: channel incl. the rib": {
+   "A_mm2": 424.09,
+   "zc": -4.477,
+   "I_mm4": 8894.6,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    4.05
+   ],
+   "c_mm": 9.943
+  },
+  "bottom outside the tail span x 24 (corner cell, land 8.19)": {
+   "A_mm2": 142.42,
+   "zc": -8.245,
+   "I_mm4": 1709.2,
+   "faces": 1,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.245
+  },
+  "corner apex: diagonal plane through F1 and the glass corner (incl. pad, tube, rib)": {
+   "A_mm2": 225.46,
+   "zc": -8.033,
+   "I_mm4": 2658.8,
+   "faces": 2,
+   "z_range": [
+    -14.42,
+    0.0
+   ],
+   "c_mm": 8.033
+  }
+ },
+ "port_validation": {
+  "I_GF11_concept": 1221.7,
+  "w50_mm": [
+   0.1387,
+   0.0665,
+   0.0662,
+   0.0922,
+   0.0665
+  ],
+  "concept_w50_mm": [
+   0.139,
+   0.067,
+   0.066,
+   0.092,
+   0.067
+  ],
+  "ok": true
+ },
+ "concept_sections_3.0": {
+  "channel": {
+   "top": {
+    "A": 120.625,
+    "zc": -8.865,
+    "I": 1231.744,
+    "J": 249.552,
+    "c": 8.865
+   },
+   "left": {
+    "A": 115.825,
+    "zc": -8.853,
+    "I": 1228.78,
+    "J": 239.552,
+    "c": 8.853
+   },
+   "right": {
+    "A": 122.725,
+    "zc": -8.871,
+    "I": 1233.03,
+    "J": 253.927,
+    "c": 8.871
+   },
+   "bottom": {
+    "A": 113.925,
+    "zc": -8.329,
+    "I": 2159.912,
+    "J": 235.594,
+    "c": 12.379
+   }
+  },
+  "bridge_bottom": {
+   "A": 75.975,
+   "zc": -10.695,
+   "I": 124.403,
+   "J": 156.531,
+   "c": 3.725
+  }
+ },
+ "measured_over_concept_I": {
+  "top": 0.971,
+  "left": 0.971,
+  "right": 0.971,
+  "channel": 0.881,
+  "bridge": 0.953
+ },
+ "grillage": {
+  "config": "S4/R4: 4 corner studs + VHB, F1 (-2.39, -5.33), F2 (210.09, -5.33), F3 (210.09, 138.99), F4 (-2.39, 138.99)",
+  "rows": [
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 122.6,
+    "w_50N_mm": 1.2264,
+    "lip_line_50N_mm": 0.144,
+    "bottom_edge_50N_mm": 0.1385,
+    "glass_250N_MPa": 411.7,
+    "glass_SF_250N": 0.61,
+    "ring_250N_MPa": 8.2,
+    "stud_250N_N": -22.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 12.6,
+    "w_50N_mm": 0.1257,
+    "lip_line_50N_mm": 0.1257,
+    "bottom_edge_50N_mm": 0.0125,
+    "glass_250N_MPa": 72.5,
+    "glass_SF_250N": 3.45,
+    "ring_250N_MPa": 20.9,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 12.0,
+    "w_50N_mm": 0.1197,
+    "lip_line_50N_mm": 0.1197,
+    "bottom_edge_50N_mm": 0.0209,
+    "glass_250N_MPa": 73.1,
+    "glass_SF_250N": 3.42,
+    "ring_250N_MPa": 21.6,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 31.1,
+    "w_50N_mm": 0.3115,
+    "lip_line_50N_mm": 0.1523,
+    "bottom_edge_50N_mm": 0.1523,
+    "glass_250N_MPa": 302.6,
+    "glass_SF_250N": 0.83,
+    "ring_250N_MPa": 17.8,
+    "stud_250N_N": -7.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 11.2,
+    "w_50N_mm": 0.1121,
+    "lip_line_50N_mm": 0.1121,
+    "bottom_edge_50N_mm": 0.1121,
+    "glass_250N_MPa": 60.9,
+    "glass_SF_250N": 4.11,
+    "ring_250N_MPa": 19.0,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 10.3,
+    "w_50N_mm": 0.1031,
+    "lip_line_50N_mm": 0.1031,
+    "bottom_edge_50N_mm": 0.1031,
+    "glass_250N_MPa": 60.5,
+    "glass_SF_250N": 4.13,
+    "ring_250N_MPa": 20.3,
+    "stud_250N_N": 0.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 122.8,
+    "w_50N_mm": 1.2281,
+    "lip_line_50N_mm": 0.1444,
+    "bottom_edge_50N_mm": 0.14,
+    "glass_250N_MPa": 411.7,
+    "glass_SF_250N": 0.61,
+    "ring_250N_MPa": 8.4,
+    "stud_250N_N": -23.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 12.6,
+    "w_50N_mm": 0.1264,
+    "lip_line_50N_mm": 0.1264,
+    "bottom_edge_50N_mm": 0.0126,
+    "glass_250N_MPa": 73.1,
+    "glass_SF_250N": 3.42,
+    "ring_250N_MPa": 21.3,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 12.0,
+    "w_50N_mm": 0.1204,
+    "lip_line_50N_mm": 0.1204,
+    "bottom_edge_50N_mm": 0.0211,
+    "glass_250N_MPa": 73.7,
+    "glass_SF_250N": 3.39,
+    "ring_250N_MPa": 22.0,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 31.5,
+    "w_50N_mm": 0.3148,
+    "lip_line_50N_mm": 0.1552,
+    "bottom_edge_50N_mm": 0.1552,
+    "glass_250N_MPa": 303.4,
+    "glass_SF_250N": 0.82,
+    "ring_250N_MPa": 19.1,
+    "stud_250N_N": -7.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 11.5,
+    "w_50N_mm": 0.1147,
+    "lip_line_50N_mm": 0.1147,
+    "bottom_edge_50N_mm": 0.1147,
+    "glass_250N_MPa": 63.0,
+    "glass_SF_250N": 3.97,
+    "ring_250N_MPa": 20.8,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 10.6,
+    "w_50N_mm": 0.1063,
+    "lip_line_50N_mm": 0.1063,
+    "bottom_edge_50N_mm": 0.1063,
+    "glass_250N_MPa": 63.0,
+    "glass_SF_250N": 3.97,
+    "ring_250N_MPa": 22.0,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 32.0,
+    "w_50N_mm": 0.3204,
+    "lip_line_50N_mm": 0.067,
+    "bottom_edge_50N_mm": 0.0649,
+    "glass_250N_MPa": 137.1,
+    "glass_SF_250N": 1.82,
+    "ring_250N_MPa": 3.8,
+    "stud_250N_N": -16.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0848,
+    "lip_line_50N_mm": 0.0848,
+    "bottom_edge_50N_mm": 0.0097,
+    "glass_250N_MPa": 38.8,
+    "glass_SF_250N": 6.44,
+    "ring_250N_MPa": 15.5,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 8.4,
+    "w_50N_mm": 0.0844,
+    "lip_line_50N_mm": 0.0844,
+    "bottom_edge_50N_mm": 0.015,
+    "glass_250N_MPa": 40.6,
+    "glass_SF_250N": 6.15,
+    "ring_250N_MPa": 16.1,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 12.2,
+    "w_50N_mm": 0.1217,
+    "lip_line_50N_mm": 0.0835,
+    "bottom_edge_50N_mm": 0.0835,
+    "glass_250N_MPa": 112.1,
+    "glass_SF_250N": 2.23,
+    "ring_250N_MPa": 11.0,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 7.7,
+    "w_50N_mm": 0.0772,
+    "lip_line_50N_mm": 0.0772,
+    "bottom_edge_50N_mm": 0.0772,
+    "glass_250N_MPa": 31.3,
+    "glass_SF_250N": 7.99,
+    "ring_250N_MPa": 14.9,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 7.3,
+    "w_50N_mm": 0.0734,
+    "lip_line_50N_mm": 0.0734,
+    "bottom_edge_50N_mm": 0.0734,
+    "glass_250N_MPa": 30.9,
+    "glass_SF_250N": 8.09,
+    "ring_250N_MPa": 16.0,
+    "stud_250N_N": 5.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 32.1,
+    "w_50N_mm": 0.3209,
+    "lip_line_50N_mm": 0.0671,
+    "bottom_edge_50N_mm": 0.0654,
+    "glass_250N_MPa": 137.1,
+    "glass_SF_250N": 1.82,
+    "ring_250N_MPa": 3.9,
+    "stud_250N_N": -16.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0852,
+    "lip_line_50N_mm": 0.0852,
+    "bottom_edge_50N_mm": 0.0098,
+    "glass_250N_MPa": 39.5,
+    "glass_SF_250N": 6.33,
+    "ring_250N_MPa": 15.8,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0848,
+    "lip_line_50N_mm": 0.0848,
+    "bottom_edge_50N_mm": 0.0151,
+    "glass_250N_MPa": 41.3,
+    "glass_SF_250N": 6.06,
+    "ring_250N_MPa": 16.4,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 12.3,
+    "w_50N_mm": 0.123,
+    "lip_line_50N_mm": 0.0849,
+    "bottom_edge_50N_mm": 0.0849,
+    "glass_250N_MPa": 112.1,
+    "glass_SF_250N": 2.23,
+    "ring_250N_MPa": 11.8,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 7.9,
+    "w_50N_mm": 0.0787,
+    "lip_line_50N_mm": 0.0787,
+    "bottom_edge_50N_mm": 0.0787,
+    "glass_250N_MPa": 32.4,
+    "glass_SF_250N": 7.71,
+    "ring_250N_MPa": 16.2,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 7.5,
+    "w_50N_mm": 0.0753,
+    "lip_line_50N_mm": 0.0753,
+    "bottom_edge_50N_mm": 0.0753,
+    "glass_250N_MPa": 32.1,
+    "glass_SF_250N": 7.78,
+    "ring_250N_MPa": 17.3,
+    "stud_250N_N": 4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 12.2,
+    "w_50N_mm": 0.122,
+    "lip_line_50N_mm": 0.0396,
+    "bottom_edge_50N_mm": 0.0387,
+    "glass_250N_MPa": 62.9,
+    "glass_SF_250N": 1.91,
+    "ring_250N_MPa": 2.3,
+    "stud_250N_N": -12.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0658,
+    "lip_line_50N_mm": 0.0658,
+    "bottom_edge_50N_mm": 0.0076,
+    "glass_250N_MPa": 39.1,
+    "glass_SF_250N": 3.07,
+    "ring_250N_MPa": 11.0,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.0646,
+    "lip_line_50N_mm": 0.0646,
+    "bottom_edge_50N_mm": 0.0131,
+    "glass_250N_MPa": 41.5,
+    "glass_SF_250N": 2.89,
+    "ring_250N_MPa": 11.6,
+    "stud_250N_N": 1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 6.9,
+    "w_50N_mm": 0.0692,
+    "lip_line_50N_mm": 0.0597,
+    "bottom_edge_50N_mm": 0.0597,
+    "glass_250N_MPa": 50.1,
+    "glass_SF_250N": 2.4,
+    "ring_250N_MPa": 7.7,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.2,
+    "w_50N_mm": 0.0619,
+    "lip_line_50N_mm": 0.0619,
+    "bottom_edge_50N_mm": 0.0619,
+    "glass_250N_MPa": 29.4,
+    "glass_SF_250N": 4.08,
+    "ring_250N_MPa": 11.5,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 5.8,
+    "w_50N_mm": 0.0579,
+    "lip_line_50N_mm": 0.0579,
+    "bottom_edge_50N_mm": 0.0579,
+    "glass_250N_MPa": 31.4,
+    "glass_SF_250N": 3.82,
+    "ring_250N_MPa": 12.3,
+    "stud_250N_N": 14.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 12.2,
+    "w_50N_mm": 0.1222,
+    "lip_line_50N_mm": 0.0397,
+    "bottom_edge_50N_mm": 0.039,
+    "glass_250N_MPa": 62.9,
+    "glass_SF_250N": 1.91,
+    "ring_250N_MPa": 2.4,
+    "stud_250N_N": -12.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.066,
+    "lip_line_50N_mm": 0.066,
+    "bottom_edge_50N_mm": 0.0077,
+    "glass_250N_MPa": 39.6,
+    "glass_SF_250N": 3.03,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.0649,
+    "lip_line_50N_mm": 0.0649,
+    "bottom_edge_50N_mm": 0.0132,
+    "glass_250N_MPa": 42.0,
+    "glass_SF_250N": 2.86,
+    "ring_250N_MPa": 11.9,
+    "stud_250N_N": 1.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 7.0,
+    "w_50N_mm": 0.0698,
+    "lip_line_50N_mm": 0.0605,
+    "bottom_edge_50N_mm": 0.0605,
+    "glass_250N_MPa": 49.9,
+    "glass_SF_250N": 2.41,
+    "ring_250N_MPa": 8.3,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 6.3,
+    "w_50N_mm": 0.0628,
+    "lip_line_50N_mm": 0.0628,
+    "bottom_edge_50N_mm": 0.0628,
+    "glass_250N_MPa": 31.4,
+    "glass_SF_250N": 3.82,
+    "ring_250N_MPa": 12.6,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 5.9,
+    "w_50N_mm": 0.0591,
+    "lip_line_50N_mm": 0.0591,
+    "bottom_edge_50N_mm": 0.0591,
+    "glass_250N_MPa": 33.5,
+    "glass_SF_250N": 3.58,
+    "ring_250N_MPa": 13.4,
+    "stud_250N_N": 12.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.0649,
+    "lip_line_50N_mm": 0.0297,
+    "bottom_edge_50N_mm": 0.0292,
+    "glass_250N_MPa": 35.6,
+    "glass_SF_250N": 3.37,
+    "ring_250N_MPa": 1.7,
+    "stud_250N_N": -8.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.0538,
+    "lip_line_50N_mm": 0.0538,
+    "bottom_edge_50N_mm": 0.0071,
+    "glass_250N_MPa": 34.8,
+    "glass_SF_250N": 3.45,
+    "ring_250N_MPa": 7.7,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 5.0,
+    "w_50N_mm": 0.0504,
+    "lip_line_50N_mm": 0.0504,
+    "bottom_edge_50N_mm": 0.0133,
+    "glass_250N_MPa": 36.9,
+    "glass_SF_250N": 3.25,
+    "ring_250N_MPa": 8.2,
+    "stud_250N_N": 11.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 5.0,
+    "w_50N_mm": 0.0503,
+    "lip_line_50N_mm": 0.0482,
+    "bottom_edge_50N_mm": 0.0482,
+    "glass_250N_MPa": 30.3,
+    "glass_SF_250N": 3.97,
+    "ring_250N_MPa": 5.7,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 5.2,
+    "w_50N_mm": 0.0518,
+    "lip_line_50N_mm": 0.0518,
+    "bottom_edge_50N_mm": 0.0518,
+    "glass_250N_MPa": 28.4,
+    "glass_SF_250N": 4.23,
+    "ring_250N_MPa": 8.7,
+    "stud_250N_N": -2.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 4.7,
+    "w_50N_mm": 0.0472,
+    "lip_line_50N_mm": 0.0472,
+    "bottom_edge_50N_mm": 0.0472,
+    "glass_250N_MPa": 29.8,
+    "glass_SF_250N": 4.03,
+    "ring_250N_MPa": 9.2,
+    "stud_250N_N": 23.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.0651,
+    "lip_line_50N_mm": 0.0298,
+    "bottom_edge_50N_mm": 0.0294,
+    "glass_250N_MPa": 35.6,
+    "glass_SF_250N": 3.37,
+    "ring_250N_MPa": 1.8,
+    "stud_250N_N": -8.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.054,
+    "lip_line_50N_mm": 0.054,
+    "bottom_edge_50N_mm": 0.0071,
+    "glass_250N_MPa": 35.2,
+    "glass_SF_250N": 3.41,
+    "ring_250N_MPa": 7.8,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 5.0,
+    "w_50N_mm": 0.0505,
+    "lip_line_50N_mm": 0.0505,
+    "bottom_edge_50N_mm": 0.0133,
+    "glass_250N_MPa": 37.3,
+    "glass_SF_250N": 3.22,
+    "ring_250N_MPa": 8.3,
+    "stud_250N_N": 11.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 5.1,
+    "w_50N_mm": 0.0507,
+    "lip_line_50N_mm": 0.0487,
+    "bottom_edge_50N_mm": 0.0487,
+    "glass_250N_MPa": 30.7,
+    "glass_SF_250N": 3.91,
+    "ring_250N_MPa": 5.9,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 5.2,
+    "w_50N_mm": 0.0524,
+    "lip_line_50N_mm": 0.0524,
+    "bottom_edge_50N_mm": 0.0524,
+    "glass_250N_MPa": 30.0,
+    "glass_SF_250N": 4.01,
+    "ring_250N_MPa": 9.2,
+    "stud_250N_N": -2.0
+   },
+   {
+    "bottom": "channel",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 4.8,
+    "w_50N_mm": 0.0479,
+    "lip_line_50N_mm": 0.0479,
+    "bottom_edge_50N_mm": 0.0479,
+    "glass_250N_MPa": 31.4,
+    "glass_SF_250N": 3.82,
+    "ring_250N_MPa": 9.7,
+    "stud_250N_N": 22.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 125.3,
+    "w_50N_mm": 1.2529,
+    "lip_line_50N_mm": 0.1652,
+    "bottom_edge_50N_mm": 0.1652,
+    "glass_250N_MPa": 412.2,
+    "glass_SF_250N": 0.61,
+    "ring_250N_MPa": 6.9,
+    "stud_250N_N": -20.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 12.6,
+    "w_50N_mm": 0.1259,
+    "lip_line_50N_mm": 0.1259,
+    "bottom_edge_50N_mm": 0.0142,
+    "glass_250N_MPa": 72.4,
+    "glass_SF_250N": 3.45,
+    "ring_250N_MPa": 20.9,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 12.1,
+    "w_50N_mm": 0.1206,
+    "lip_line_50N_mm": 0.1206,
+    "bottom_edge_50N_mm": 0.0274,
+    "glass_250N_MPa": 73.4,
+    "glass_SF_250N": 3.4,
+    "ring_250N_MPa": 21.5,
+    "stud_250N_N": -0.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 39.5,
+    "w_50N_mm": 0.3953,
+    "lip_line_50N_mm": 0.2298,
+    "bottom_edge_50N_mm": 0.2298,
+    "glass_250N_MPa": 315.9,
+    "glass_SF_250N": 0.79,
+    "ring_250N_MPa": 25.7,
+    "stud_250N_N": -7.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 19.3,
+    "w_50N_mm": 0.1927,
+    "lip_line_50N_mm": 0.1927,
+    "bottom_edge_50N_mm": 0.1927,
+    "glass_250N_MPa": 163.3,
+    "glass_SF_250N": 1.53,
+    "ring_250N_MPa": 40.9,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 18.3,
+    "w_50N_mm": 0.183,
+    "lip_line_50N_mm": 0.183,
+    "bottom_edge_50N_mm": 0.183,
+    "glass_250N_MPa": 163.9,
+    "glass_SF_250N": 1.53,
+    "ring_250N_MPa": 41.0,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 125.3,
+    "w_50N_mm": 1.2533,
+    "lip_line_50N_mm": 0.1653,
+    "bottom_edge_50N_mm": 0.1653,
+    "glass_250N_MPa": 412.2,
+    "glass_SF_250N": 0.61,
+    "ring_250N_MPa": 6.9,
+    "stud_250N_N": -20.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 12.7,
+    "w_50N_mm": 0.1266,
+    "lip_line_50N_mm": 0.1266,
+    "bottom_edge_50N_mm": 0.0142,
+    "glass_250N_MPa": 73.0,
+    "glass_SF_250N": 3.43,
+    "ring_250N_MPa": 21.3,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 12.1,
+    "w_50N_mm": 0.1212,
+    "lip_line_50N_mm": 0.1212,
+    "bottom_edge_50N_mm": 0.0274,
+    "glass_250N_MPa": 74.0,
+    "glass_SF_250N": 3.38,
+    "ring_250N_MPa": 21.9,
+    "stud_250N_N": -0.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 39.6,
+    "w_50N_mm": 0.3959,
+    "lip_line_50N_mm": 0.2306,
+    "bottom_edge_50N_mm": 0.2306,
+    "glass_250N_MPa": 315.7,
+    "glass_SF_250N": 0.79,
+    "ring_250N_MPa": 26.1,
+    "stud_250N_N": -7.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 19.4,
+    "w_50N_mm": 0.1936,
+    "lip_line_50N_mm": 0.1936,
+    "bottom_edge_50N_mm": 0.1936,
+    "glass_250N_MPa": 165.1,
+    "glass_SF_250N": 1.51,
+    "ring_250N_MPa": 41.7,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 1.1,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 18.4,
+    "w_50N_mm": 0.1839,
+    "lip_line_50N_mm": 0.1839,
+    "bottom_edge_50N_mm": 0.1839,
+    "glass_250N_MPa": 165.7,
+    "glass_SF_250N": 1.51,
+    "ring_250N_MPa": 41.8,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 32.5,
+    "w_50N_mm": 0.3252,
+    "lip_line_50N_mm": 0.0716,
+    "bottom_edge_50N_mm": 0.0716,
+    "glass_250N_MPa": 137.1,
+    "glass_SF_250N": 1.82,
+    "ring_250N_MPa": 3.1,
+    "stud_250N_N": -16.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0849,
+    "lip_line_50N_mm": 0.0849,
+    "bottom_edge_50N_mm": 0.0104,
+    "glass_250N_MPa": 38.8,
+    "glass_SF_250N": 6.44,
+    "ring_250N_MPa": 15.5,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0846,
+    "lip_line_50N_mm": 0.0846,
+    "bottom_edge_50N_mm": 0.0177,
+    "glass_250N_MPa": 40.6,
+    "glass_SF_250N": 6.15,
+    "ring_250N_MPa": 16.2,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 14.4,
+    "w_50N_mm": 0.144,
+    "lip_line_50N_mm": 0.1096,
+    "bottom_edge_50N_mm": 0.1096,
+    "glass_250N_MPa": 106.7,
+    "glass_SF_250N": 2.34,
+    "ring_250N_MPa": 10.4,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 11.1,
+    "w_50N_mm": 0.1107,
+    "lip_line_50N_mm": 0.1107,
+    "bottom_edge_50N_mm": 0.1107,
+    "glass_250N_MPa": 123.6,
+    "glass_SF_250N": 2.02,
+    "ring_250N_MPa": 20.2,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 10.9,
+    "w_50N_mm": 0.1086,
+    "lip_line_50N_mm": 0.1086,
+    "bottom_edge_50N_mm": 0.1086,
+    "glass_250N_MPa": 125.3,
+    "glass_SF_250N": 2.0,
+    "ring_250N_MPa": 20.4,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 32.5,
+    "w_50N_mm": 0.3254,
+    "lip_line_50N_mm": 0.0717,
+    "bottom_edge_50N_mm": 0.0717,
+    "glass_250N_MPa": 137.1,
+    "glass_SF_250N": 1.82,
+    "ring_250N_MPa": 3.1,
+    "stud_250N_N": -16.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.0853,
+    "lip_line_50N_mm": 0.0853,
+    "bottom_edge_50N_mm": 0.0104,
+    "glass_250N_MPa": 39.5,
+    "glass_SF_250N": 6.32,
+    "ring_250N_MPa": 15.8,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 8.5,
+    "w_50N_mm": 0.085,
+    "lip_line_50N_mm": 0.085,
+    "bottom_edge_50N_mm": 0.0177,
+    "glass_250N_MPa": 41.3,
+    "glass_SF_250N": 6.06,
+    "ring_250N_MPa": 16.4,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 14.4,
+    "w_50N_mm": 0.1441,
+    "lip_line_50N_mm": 0.1098,
+    "bottom_edge_50N_mm": 0.1098,
+    "glass_250N_MPa": 106.6,
+    "glass_SF_250N": 2.34,
+    "ring_250N_MPa": 10.5,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 11.1,
+    "w_50N_mm": 0.111,
+    "lip_line_50N_mm": 0.111,
+    "bottom_edge_50N_mm": 0.111,
+    "glass_250N_MPa": 125.1,
+    "glass_SF_250N": 2.0,
+    "ring_250N_MPa": 20.4,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 2.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 10.9,
+    "w_50N_mm": 0.1089,
+    "lip_line_50N_mm": 0.1089,
+    "bottom_edge_50N_mm": 0.1089,
+    "glass_250N_MPa": 126.7,
+    "glass_SF_250N": 1.97,
+    "ring_250N_MPa": 20.7,
+    "stud_250N_N": -1.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 12.4,
+    "w_50N_mm": 0.1236,
+    "lip_line_50N_mm": 0.0413,
+    "bottom_edge_50N_mm": 0.0413,
+    "glass_250N_MPa": 62.9,
+    "glass_SF_250N": 1.91,
+    "ring_250N_MPa": 1.9,
+    "stud_250N_N": -12.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0659,
+    "lip_line_50N_mm": 0.0659,
+    "bottom_edge_50N_mm": 0.008,
+    "glass_250N_MPa": 39.1,
+    "glass_SF_250N": 3.07,
+    "ring_250N_MPa": 11.0,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.0648,
+    "lip_line_50N_mm": 0.0648,
+    "bottom_edge_50N_mm": 0.0145,
+    "glass_250N_MPa": 41.4,
+    "glass_SF_250N": 2.9,
+    "ring_250N_MPa": 11.6,
+    "stud_250N_N": 0.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 7.7,
+    "w_50N_mm": 0.0772,
+    "lip_line_50N_mm": 0.0698,
+    "bottom_edge_50N_mm": 0.0698,
+    "glass_250N_MPa": 56.1,
+    "glass_SF_250N": 2.14,
+    "ring_250N_MPa": 4.9,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 7.5,
+    "w_50N_mm": 0.0755,
+    "lip_line_50N_mm": 0.0755,
+    "bottom_edge_50N_mm": 0.0755,
+    "glass_250N_MPa": 82.1,
+    "glass_SF_250N": 1.46,
+    "ring_250N_MPa": 9.7,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 7.4,
+    "w_50N_mm": 0.0736,
+    "lip_line_50N_mm": 0.0736,
+    "bottom_edge_50N_mm": 0.0736,
+    "glass_250N_MPa": 84.7,
+    "glass_SF_250N": 1.42,
+    "ring_250N_MPa": 10.0,
+    "stud_250N_N": 3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 12.4,
+    "w_50N_mm": 0.1236,
+    "lip_line_50N_mm": 0.0414,
+    "bottom_edge_50N_mm": 0.0414,
+    "glass_250N_MPa": 62.9,
+    "glass_SF_250N": 1.91,
+    "ring_250N_MPa": 1.9,
+    "stud_250N_N": -12.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0661,
+    "lip_line_50N_mm": 0.0661,
+    "bottom_edge_50N_mm": 0.008,
+    "glass_250N_MPa": 39.6,
+    "glass_SF_250N": 3.03,
+    "ring_250N_MPa": 11.2,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 6.5,
+    "w_50N_mm": 0.065,
+    "lip_line_50N_mm": 0.065,
+    "bottom_edge_50N_mm": 0.0145,
+    "glass_250N_MPa": 42.0,
+    "glass_SF_250N": 2.86,
+    "ring_250N_MPa": 11.8,
+    "stud_250N_N": 0.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 7.7,
+    "w_50N_mm": 0.0772,
+    "lip_line_50N_mm": 0.0698,
+    "bottom_edge_50N_mm": 0.0698,
+    "glass_250N_MPa": 56.2,
+    "glass_SF_250N": 2.13,
+    "ring_250N_MPa": 4.9,
+    "stud_250N_N": -6.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 7.6,
+    "w_50N_mm": 0.0755,
+    "lip_line_50N_mm": 0.0755,
+    "bottom_edge_50N_mm": 0.0755,
+    "glass_250N_MPa": 82.7,
+    "glass_SF_250N": 1.45,
+    "ring_250N_MPa": 9.8,
+    "stud_250N_N": -4.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 3.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 7.4,
+    "w_50N_mm": 0.0737,
+    "lip_line_50N_mm": 0.0737,
+    "bottom_edge_50N_mm": 0.0737,
+    "glass_250N_MPa": 85.3,
+    "glass_SF_250N": 1.41,
+    "ring_250N_MPa": 10.1,
+    "stud_250N_N": 3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "window centre",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0657,
+    "lip_line_50N_mm": 0.0307,
+    "bottom_edge_50N_mm": 0.0307,
+    "glass_250N_MPa": 35.6,
+    "glass_SF_250N": 3.38,
+    "ring_250N_MPa": 1.3,
+    "stud_250N_N": -8.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.0539,
+    "lip_line_50N_mm": 0.0539,
+    "bottom_edge_50N_mm": 0.0074,
+    "glass_250N_MPa": 34.8,
+    "glass_SF_250N": 3.45,
+    "ring_250N_MPa": 7.7,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 5.0,
+    "w_50N_mm": 0.0505,
+    "lip_line_50N_mm": 0.0505,
+    "bottom_edge_50N_mm": 0.014,
+    "glass_250N_MPa": 36.9,
+    "glass_SF_250N": 3.25,
+    "ring_250N_MPa": 8.2,
+    "stud_250N_N": 11.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.054,
+    "lip_line_50N_mm": 0.0529,
+    "bottom_edge_50N_mm": 0.0529,
+    "glass_250N_MPa": 36.4,
+    "glass_SF_250N": 3.3,
+    "ring_250N_MPa": 2.8,
+    "stud_250N_N": -5.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 5.8,
+    "w_50N_mm": 0.058,
+    "lip_line_50N_mm": 0.058,
+    "bottom_edge_50N_mm": 0.058,
+    "glass_250N_MPa": 56.5,
+    "glass_SF_250N": 2.12,
+    "ring_250N_MPa": 5.4,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "concept rectangles",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 5.5,
+    "w_50N_mm": 0.0546,
+    "lip_line_50N_mm": 0.0546,
+    "bottom_edge_50N_mm": 0.0546,
+    "glass_250N_MPa": 58.5,
+    "glass_SF_250N": 2.05,
+    "ring_250N_MPa": 5.6,
+    "stud_250N_N": 16.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "window centre",
+    "w_5N_um": 6.6,
+    "w_50N_mm": 0.0658,
+    "lip_line_50N_mm": 0.0307,
+    "bottom_edge_50N_mm": 0.0307,
+    "glass_250N_MPa": 35.6,
+    "glass_SF_250N": 3.38,
+    "ring_250N_MPa": 1.3,
+    "stud_250N_N": -8.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass top edge, mid",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.054,
+    "lip_line_50N_mm": 0.054,
+    "bottom_edge_50N_mm": 0.0074,
+    "glass_250N_MPa": 35.2,
+    "glass_SF_250N": 3.41,
+    "ring_250N_MPa": 7.8,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass side edge, mid",
+    "w_5N_um": 5.1,
+    "w_50N_mm": 0.0506,
+    "lip_line_50N_mm": 0.0506,
+    "bottom_edge_50N_mm": 0.014,
+    "glass_250N_MPa": 37.3,
+    "glass_SF_250N": 3.22,
+    "ring_250N_MPa": 8.3,
+    "stud_250N_N": 11.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom border over the bend gap",
+    "w_5N_um": 5.4,
+    "w_50N_mm": 0.0541,
+    "lip_line_50N_mm": 0.0529,
+    "bottom_edge_50N_mm": 0.0529,
+    "glass_250N_MPa": 36.5,
+    "glass_SF_250N": 3.29,
+    "ring_250N_MPa": 2.9,
+    "stud_250N_N": -5.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "glass bottom edge, mid",
+    "w_5N_um": 5.8,
+    "w_50N_mm": 0.058,
+    "lip_line_50N_mm": 0.058,
+    "bottom_edge_50N_mm": 0.058,
+    "glass_250N_MPa": 56.8,
+    "glass_SF_250N": 2.11,
+    "ring_250N_MPa": 5.5,
+    "stud_250N_N": -3.0
+   },
+   {
+    "bottom": "bridge",
+    "glass_t": 4.0,
+    "I_source": "measured I (3.0 STEP; scaled at other t)",
+    "load_point": "bottom edge over the CTP tail (x 58)",
+    "w_5N_um": 5.5,
+    "w_50N_mm": 0.0546,
+    "lip_line_50N_mm": 0.0546,
+    "bottom_edge_50N_mm": 0.0546,
+    "glass_250N_MPa": 58.8,
+    "glass_SF_250N": 2.04,
+    "ring_250N_MPa": 5.6,
+    "stud_250N_N": 16.0
+   }
+  ],
+  "note": "one ring section per edge; J and the corner links as the concept; glass characteristic strength per glass_t from the params (1.1/2.0 CS 250 MPa, 3.0/4.0 tempered 120 MPa); no panel / LOCA / PCB credit"
+ },
+ "concept_estimates_in_params": {
+  "status": "checked 2026-11-16 with the section I measured on the STEP (tools/glassfront/verify/calc_gf.py) - still the concept grillage, not FEA",
+  "S4/R4 channel": {
+   "window centre": 0.122,
+   "glass top edge, mid": 0.0658,
+   "glass side edge, mid": 0.0646,
+   "bottom border over the bend gap": 0.0692,
+   "glass bottom edge, mid": 0.0619,
+   "bottom edge over CTP tail (x 58)": 0.0579
+  },
+  "S4/R4 + divider rib": {
+   "window centre": 0.1216,
+   "glass top edge, mid": 0.0658,
+   "glass side edge, mid": 0.0646,
+   "bottom border over the bend gap": 0.0658,
+   "glass bottom edge, mid": 0.0573,
+   "bottom edge over CTP tail (x 58)": 0.0535
+  },
+  "verified_2026-11-16_measured_I": {
+   "S4/R4 channel": {
+    "window centre": 0.1222,
+    "glass top edge, mid": 0.066,
+    "glass side edge, mid": 0.0649,
+    "bottom border over the bend gap": 0.0698,
+    "glass bottom edge, mid": 0.0628,
+    "bottom edge over CTP tail (x 58)": 0.0591
+   },
+   "S4/R4 bridge-only bound": {
+    "window centre": 0.1236,
+    "glass top edge, mid": 0.0661,
+    "glass side edge, mid": 0.065,
+    "bottom border over the bend gap": 0.0772,
+    "glass bottom edge, mid": 0.0755,
+    "bottom edge over CTP tail (x 58)": 0.0737
+   },
+   "measured_I_mm4": {
+    "top": 1196.4,
+    "sides": 1193.6,
+    "bottom channel": 1902.4,
+    "bottom bridge only": 118.6
+   }
+  }
+ },
+ "GF11_values": {
+  "push_50N_window_centre_mm": {
+   "1.1": 1.4074,
+   "2.0": 0.3679,
+   "3.0": 0.1387,
+   "4.0": 0.0722
+  },
+  "push_50N_lip_line_max_mm": {
+   "1.1": 0.193,
+   "2.0": 0.093,
+   "3.0": 0.0665,
+   "4.0": 0.0542
+  },
+  "impact_0p5J_SF_centre": {
+   "1.1": 1.1252,
+   "2.0": 1.9068,
+   "3.0": 1.2656,
+   "4.0": 1.624
+  },
+  "impact_0p5J_SF_chin": {
+   "1.1": 1.0612,
+   "2.0": 1.9145,
+   "3.0": 1.3895,
+   "4.0": 1.9525
+  }
+ },
+ "impact_0p5J": {
+  "channel 1.1": {
+   "glass_mass_g": 64.0,
+   "char_MPa": 250.0,
+   "window_centre": {
+    "F_N": 92.2,
+    "sigma_MPa": 234.3,
+    "SF": 1.07,
+    "SF_all_0p5J": 0.51
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 308.8,
+    "SF": 0.81
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 176.8,
+    "SF": 1.41
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 28861.0,
+   "k_global": 159.0
+  },
+  "channel 2.0": {
+   "glass_mass_g": 116.3,
+   "char_MPa": 250.0,
+   "window_centre": {
+    "F_N": 193.5,
+    "sigma_MPa": 137.9,
+    "SF": 1.81,
+    "SF_all_0p5J": 0.91
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 149.5,
+    "SF": 1.67
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 80.8,
+    "SF": 3.09
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 173468.0,
+   "k_global": 406.0
+  },
+  "channel 3.0": {
+   "glass_mass_g": 174.5,
+   "char_MPa": 120.0,
+   "window_centre": {
+    "F_N": 333.8,
+    "sigma_MPa": 98.9,
+    "SF": 1.21,
+    "SF_all_0p5J": 0.65
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 86.4,
+    "SF": 1.39
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 43.2,
+    "SF": 2.78
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 585454.0,
+   "k_global": 716.0
+  },
+  "channel 4.0": {
+   "glass_mass_g": 232.7,
+   "char_MPa": 120.0,
+   "window_centre": {
+    "F_N": 481.8,
+    "sigma_MPa": 76.1,
+    "SF": 1.58,
+    "SF_all_0p5J": 0.88
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 55.8,
+    "SF": 2.15
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 25.8,
+    "SF": 4.65
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 1387743.0,
+   "k_global": 987.0
+  },
+  "bridge 1.1": {
+   "glass_mass_g": 64.0,
+   "char_MPa": 250.0,
+   "window_centre": {
+    "F_N": 91.3,
+    "sigma_MPa": 232.1,
+    "SF": 1.08,
+    "SF_all_0p5J": 0.52
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 278.5,
+    "SF": 0.9
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 160.7,
+    "SF": 1.56
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 28861.0,
+   "k_global": 126.0
+  },
+  "bridge 2.0": {
+   "glass_mass_g": 116.3,
+   "char_MPa": 250.0,
+   "window_centre": {
+    "F_N": 192.2,
+    "sigma_MPa": 136.9,
+    "SF": 1.83,
+    "SF_all_0p5J": 0.92
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 138.7,
+    "SF": 1.8
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 75.3,
+    "SF": 3.32
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 173468.0,
+   "k_global": 347.0
+  },
+  "bridge 3.0": {
+   "glass_mass_g": 174.5,
+   "char_MPa": 120.0,
+   "window_centre": {
+    "F_N": 332.0,
+    "sigma_MPa": 98.4,
+    "SF": 1.22,
+    "SF_all_0p5J": 0.65
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 82.3,
+    "SF": 1.46
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 41.3,
+    "SF": 2.91
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 585454.0,
+   "k_global": 647.0
+  },
+  "bridge 4.0": {
+   "glass_mass_g": 232.7,
+   "char_MPa": 120.0,
+   "window_centre": {
+    "F_N": 479.1,
+    "sigma_MPa": 75.7,
+    "SF": 1.58,
+    "SF_all_0p5J": 0.88
+   },
+   "bend_gap_strip_whole_border_free": {
+    "sigma_MPa": 54.1,
+    "SF": 2.22
+   },
+   "bend_gap_strip_only": {
+    "sigma_MPa": 25.0,
+    "SF": 4.79
+   },
+   "strip_width_mm": 4.09,
+   "k_local": 1387743.0,
+   "k_global": 925.0
+  }
+ },
+ "bead": {
+  "area_mm2": 2386.6,
+  "params_bead_area": 2386.6,
+  "GF11_area_mm2": 2486.7,
+  "pip_area_inside_mm2": 14.14,
+  "land_face_area_step_mm2": 5876.0,
+  "glass_mass_3.0_g": 174.5,
+  "dead_load_glass_panel_N": 3.674,
+  "dead_load_kPa": 1.539,
+  "pull_250N_MPa": 0.1048,
+  "r_bead_corner_mm": 109.18,
+  "GF11_r_bead_corner_mm": 111.7,
+  "shear": [
+   {
+    "case": "design 50 ppm/K, +70 C",
+    "d_mm": 0.224,
+    "eq_ext_t0.73": 0.046,
+    "eq_ext_t1.0": 0.025,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   },
+   {
+    "case": "bound 70 ppm/K, +70 C",
+    "d_mm": 0.333,
+    "eq_ext_t0.73": 0.099,
+    "eq_ext_t1.0": 0.054,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   },
+   {
+    "case": "design 50 ppm/K, -20 C",
+    "d_mm": 0.179,
+    "eq_ext_t0.73": 0.03,
+    "eq_ext_t1.0": 0.016,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   },
+   {
+    "case": "bound 70 ppm/K, -20 C",
+    "d_mm": 0.266,
+    "eq_ext_t0.73": 0.065,
+    "eq_ext_t1.0": 0.035,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   },
+   {
+    "case": "design + 0.1 % moisture, +70 C",
+    "d_mm": 0.333,
+    "eq_ext_t0.73": 0.099,
+    "eq_ext_t1.0": 0.054,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   },
+   {
+    "case": "bound + 0.3 % moisture, +70 C",
+    "d_mm": 0.661,
+    "eq_ext_t0.73": 0.349,
+    "eq_ext_t1.0": 0.198,
+    "class50_t0.73_allow": 0.816,
+    "class25_t0.73_allow": 0.547,
+    "class50_t1.0_allow": 1.118,
+    "class25_t1.0_allow": 0.75,
+    "ok_class50_t0.73": true,
+    "ok_class25_t1.0": true
+   }
+  ]
+ },
+ "gaps_table": {
+  "g2": {
+   "20 C": {
+    "nominal": {
+     "sides_min": 0.394,
+     "corners_min": 0.395,
+     "diagonal": 0.497
+    },
+    "glass +0.1/side, R nominal (requested +-0.1, R +0.2/-0)": {
+     "sides_min": 0.294,
+     "corners_min": 0.295,
+     "diagonal": 0.356
+    },
+    "glass profile +0.2 (offset outline)": {
+     "sides_min": 0.194,
+     "corners_min": 0.195,
+     "diagonal": 0.297
+    },
+    "glass +0.2/side and R -0.2 (size + radius tolerances)": {
+     "sides_min": 0.191,
+     "corners_min": 0.131,
+     "diagonal": 0.132
+    },
+    "glass nominal size, R -0.2": {
+     "sides_min": 0.394,
+     "corners_min": 0.394,
+     "diagonal": 0.414
+    },
+    "glass +0.2/side, R nominal (R +0.2/-0 callout)": {
+     "sides_min": 0.194,
+     "corners_min": 0.194,
+     "diagonal": 0.214
+    }
+   },
+   "-20 C, 50 ppm": {
+    "nominal": {
+     "sides_min": 0.238,
+     "corners_min": 0.238,
+     "diagonal": 0.32
+    },
+    "glass +0.1/side, R nominal (requested +-0.1, R +0.2/-0)": {
+     "sides_min": 0.138,
+     "corners_min": 0.137,
+     "diagonal": 0.178
+    },
+    "glass profile +0.2 (offset outline)": {
+     "sides_min": 0.038,
+     "corners_min": 0.038,
+     "diagonal": 0.12
+    },
+    "glass +0.2/side and R -0.2 (size + radius tolerances)": {
+     "sides_min": 0.034,
+     "corners_min": -0.049,
+     "diagonal": -0.046
+    },
+    "glass nominal size, R -0.2": {
+     "sides_min": 0.238,
+     "corners_min": 0.228,
+     "diagonal": 0.237
+    },
+    "glass +0.2/side, R nominal (R +0.2/-0 callout)": {
+     "sides_min": 0.038,
+     "corners_min": 0.028,
+     "diagonal": 0.037
+    }
+   },
+   "+70 C frame/glass, +50 C sheet, 50 ppm": {
+    "nominal": {
+     "sides_min": 0.52,
+     "corners_min": 0.52,
+     "diagonal": 0.718
+    },
+    "glass +0.1/side, R nominal (requested +-0.1, R +0.2/-0)": {
+     "sides_min": 0.42,
+     "corners_min": 0.42,
+     "diagonal": 0.577
+    },
+    "glass profile +0.2 (offset outline)": {
+     "sides_min": 0.32,
+     "corners_min": 0.32,
+     "diagonal": 0.519
+    },
+    "glass +0.2/side and R -0.2 (size + radius tolerances)": {
+     "sides_min": 0.316,
+     "corners_min": 0.316,
+     "diagonal": 0.354
+    },
+    "glass nominal size, R -0.2": {
+     "sides_min": 0.52,
+     "corners_min": 0.52,
+     "diagonal": 0.636
+    },
+    "glass +0.2/side, R nominal (R +0.2/-0 callout)": {
+     "sides_min": 0.32,
+     "corners_min": 0.32,
+     "diagonal": 0.436
+    }
+   },
+   "-20 C, 70 ppm": {
+    "nominal": {
+     "sides_min": 0.162,
+     "corners_min": 0.161,
+     "diagonal": 0.233
+    },
+    "glass +0.1/side, R nominal (requested +-0.1, R +0.2/-0)": {
+     "sides_min": 0.062,
+     "corners_min": 0.059,
+     "diagonal": 0.092
+    },
+    "glass profile +0.2 (offset outline)": {
+     "sides_min": -0.038,
+     "corners_min": -0.04,
+     "diagonal": 0.033
+    },
+    "glass +0.2/side and R -0.2 (size + radius tolerances)": {
+     "sides_min": -0.042,
+     "corners_min": -0.138,
+     "diagonal": -0.133
+    },
+    "glass nominal size, R -0.2": {
+     "sides_min": 0.162,
+     "corners_min": 0.14,
+     "diagonal": 0.151
+    },
+    "glass +0.2/side, R nominal (R +0.2/-0 callout)": {
+     "sides_min": -0.038,
+     "corners_min": -0.06,
+     "diagonal": -0.05
+    }
+   },
+   "+70 C frame/glass, +50 C sheet, 70 ppm": {
+    "nominal": {
+     "sides_min": 0.581,
+     "corners_min": 0.581,
+     "diagonal": 0.826
+    },
+    "glass +0.1/side, R nominal (requested +-0.1, R +0.2/-0)": {
+     "sides_min": 0.481,
+     "corners_min": 0.481,
+     "diagonal": 0.685
+    },
+    "glass profile +0.2 (offset outline)": {
+     "sides_min": 0.382,
+     "corners_min": 0.382,
+     "diagonal": 0.627
+    },
+    "glass +0.2/side and R -0.2 (size + radius tolerances)": {
+     "sides_min": 0.378,
+     "corners_min": 0.378,
+     "diagonal": 0.462
+    },
+    "glass nominal size, R -0.2": {
+     "sides_min": 0.581,
+     "corners_min": 0.581,
+     "diagonal": 0.744
+    },
+    "glass +0.2/side, R nominal (R +0.2/-0 callout)": {
+     "sides_min": 0.382,
+     "corners_min": 0.382,
+     "diagonal": 0.544
+    }
+   }
+  },
+  "g1": {
+   "20 C": {
+    "nominal": {
+     "sides_min": 0.412,
+     "corners_min": 0.418,
+     "diagonal": 0.516
+    },
+    "cut-out profile -0.1, lip +0.04": {
+     "sides_min": 0.272,
+     "corners_min": 0.278,
+     "diagonal": 0.376
+    },
+    "cut-out -0.1/side and R +0.1, lip +0.04": {
+     "sides_min": 0.272,
+     "corners_min": 0.273,
+     "diagonal": 0.293
+    },
+    "cut-out -0.1/side, R nominal (R +0/-0.2 callout), lip +0.04": {
+     "sides_min": 0.272,
+     "corners_min": 0.275,
+     "diagonal": 0.335
+    }
+   },
+   "-20 C, 50 ppm": {
+    "nominal": {
+     "sides_min": 0.508,
+     "corners_min": 0.513,
+     "diagonal": 0.683
+    },
+    "cut-out profile -0.1, lip +0.04": {
+     "sides_min": 0.367,
+     "corners_min": 0.373,
+     "diagonal": 0.543
+    },
+    "cut-out -0.1/side and R +0.1, lip +0.04": {
+     "sides_min": 0.367,
+     "corners_min": 0.369,
+     "diagonal": 0.46
+    },
+    "cut-out -0.1/side, R nominal (R +0/-0.2 callout), lip +0.04": {
+     "sides_min": 0.367,
+     "corners_min": 0.371,
+     "diagonal": 0.502
+    }
+   },
+   "+70 C frame/glass, +50 C sheet, 50 ppm": {
+    "nominal": {
+     "sides_min": 0.204,
+     "corners_min": 0.209,
+     "diagonal": 0.281
+    },
+    "cut-out profile -0.1, lip +0.04": {
+     "sides_min": 0.064,
+     "corners_min": 0.07,
+     "diagonal": 0.141
+    },
+    "cut-out -0.1/side and R +0.1, lip +0.04": {
+     "sides_min": 0.064,
+     "corners_min": 0.048,
+     "diagonal": 0.058
+    },
+    "cut-out -0.1/side, R nominal (R +0/-0.2 callout), lip +0.04": {
+     "sides_min": 0.064,
+     "corners_min": 0.067,
+     "diagonal": 0.1
+    }
+   },
+   "-20 C, 70 ppm": {
+    "nominal": {
+     "sides_min": 0.558,
+     "corners_min": 0.564,
+     "diagonal": 0.771
+    },
+    "cut-out profile -0.1, lip +0.04": {
+     "sides_min": 0.418,
+     "corners_min": 0.423,
+     "diagonal": 0.631
+    },
+    "cut-out -0.1/side and R +0.1, lip +0.04": {
+     "sides_min": 0.418,
+     "corners_min": 0.419,
+     "diagonal": 0.548
+    },
+    "cut-out -0.1/side, R nominal (R +0/-0.2 callout), lip +0.04": {
+     "sides_min": 0.418,
+     "corners_min": 0.421,
+     "diagonal": 0.589
+    }
+   },
+   "+70 C frame/glass, +50 C sheet, 70 ppm": {
+    "nominal": {
+     "sides_min": 0.107,
+     "corners_min": 0.112,
+     "diagonal": 0.171
+    },
+    "cut-out profile -0.1, lip +0.04": {
+     "sides_min": -0.033,
+     "corners_min": -0.028,
+     "diagonal": 0.031
+    },
+    "cut-out -0.1/side and R +0.1, lip +0.04": {
+     "sides_min": -0.033,
+     "corners_min": -0.064,
+     "diagonal": -0.051
+    },
+    "cut-out -0.1/side, R nominal (R +0/-0.2 callout), lip +0.04": {
+     "sides_min": -0.033,
+     "corners_min": -0.034,
+     "diagonal": -0.01
+    }
+   }
+  }
+ },
+ "gaps_formula": {
+  "50 ppm/K, -20 C": {
+   "GF-2.0 g2 / g1": [
+    0.2438,
+    0.4951
+   ],
+   "GF-1.1 g2 / g1": [
+    0.2512,
+    0.5114
+   ],
+   "change g2 / g1": [
+    -0.0074,
+    -0.0163
+   ]
+  },
+  "50 ppm/K, +70 C frame / +50 C sheet": {
+   "GF-2.0 g2 / g1": [
+    0.5254,
+    0.1932
+   ],
+   "GF-1.1 g2 / g1": [
+    0.5474,
+    0.2028
+   ],
+   "change g2 / g1": [
+    -0.022,
+    -0.0096
+   ]
+  },
+  "70 ppm/K, -20 C": {
+   "GF-2.0 g2 / g1": [
+    0.1676,
+    0.5451
+   ],
+   "GF-1.1 g2 / g1": [
+    0.1786,
+    0.5701
+   ],
+   "change g2 / g1": [
+    -0.011,
+    -0.025
+   ]
+  },
+  "70 ppm/K, +70 C frame / +50 C sheet": {
+   "GF-2.0 g2 / g1": [
+    0.5865,
+    0.0966
+   ],
+   "GF-1.1 g2 / g1": [
+    0.6193,
+    0.1107
+   ],
+   "change g2 / g1": [
+    -0.0328,
+    -0.0141
+   ]
+  }
+ },
+ "tape_fasteners": {
+  "tape_area_mm2": 7603.2,
+  "GF11_tape_area_mm2": 7903.0,
+  "module_mass_g": {
+   "glass_3.0": 174.5,
+   "panel [A]": 200.0,
+   "frame (STEP x 1.36)": 113.5,
+   "PCB etc. [A]": 290.0
+  },
+  "module_dead_load_N": 7.63,
+  "tape_dead_load_kPa": 1.004,
+  "tape_250N_kPa": 32.9,
+  "r_tape_corner_mm": 135.2,
+  "tape_thermal_shear_pct_50_70": [
+   28.9,
+   42.5
+  ],
+  "stud_r_from_glass_centre": 128.43,
+  "stud_radial_move_mm_50_70": [
+   0.244,
+   0.372
+  ],
+  "stud_float_along_slot_mm": 1.2,
+  "stud_reaction_250N_max_N": 12.0,
+  "washer_M4_500N_MPa": [
+   6.2,
+   7.6
+  ]
+ },
+ "bend_gap_stack": {
+  "TFT": {
+   "nominal_min_to_bridge_mm": 1.5239,
+   "at_panel_edge_+0.35": 1.2366,
+   "sensitivity_per_mm_panel_shift": 0.821,
+   "exit_Z_+-0.3_loss": 0.159,
+   "panel_position_contributors_mm": {
+    "panel outline vs AA (DS, concept 0.2)": 0.2,
+    "J1: AA aligned to the print window (concept 0.1)": 0.1,
+    "print window vs glass edge (params drawing_tolerances.print 'print-to-edge +-0.2')": 0.2,
+    "J2: glass centred in the recess (graded shims, design doc 9.3)": 0.05,
+    "frame: bridge face (B core) vs recess wall (A core), core shift [A]": 0.05
+   },
+   "panel_position_WC": 0.6,
+   "panel_position_RSS": 0.308,
+   "concept_panel_position_WC_RSS": [
+    0.35,
+    0.25
+   ],
+   "tail_thickness_tol": 0.05,
+   "clearance_WC_all_contributors": 0.822,
+   "clearance_RSS": 1.221,
+   "clearance_concept_budget (panel 0.35 WC + tail 0.05)": 1.187,
+   "worst_tolerance_case_fit": 0.8236
+  },
+  "CTP": {
+   "nominal_min_to_bridge_mm": 0.9457,
+   "at_panel_edge_+0.35": 0.6152,
+   "sensitivity_per_mm_panel_shift": 0.944,
+   "exit_Z_+-0.3_loss": 0.0877,
+   "panel_position_contributors_mm": {
+    "panel outline vs AA (DS, concept 0.2)": 0.2,
+    "J1: AA aligned to the print window (concept 0.1)": 0.1,
+    "print window vs glass edge (params drawing_tolerances.print 'print-to-edge +-0.2')": 0.2,
+    "J2: glass centred in the recess (graded shims, design doc 9.3)": 0.05,
+    "frame: bridge face (B core) vs recess wall (A core), core shift [A]": 0.05
+   },
+   "panel_position_WC": 0.6,
+   "panel_position_RSS": 0.308,
+   "concept_panel_position_WC_RSS": [
+    0.35,
+    0.25
+   ],
+   "tail_thickness_tol": 0.05,
+   "clearance_WC_all_contributors": 0.241,
+   "clearance_RSS": 0.638,
+   "clearance_concept_budget (panel 0.35 WC + tail 0.05)": 0.565,
+   "worst_tolerance_case_fit": 0.2388
+  }
+ },
+ "bend_zone_criterion": {
+  "criterion": {
+   "min_at_RSS": 0.45,
+   "min_at_WC": 0.0,
+   "rss": 0.308,
+   "wc": 0.6,
+   "exit_Z_tol": 0.3,
+   "tail_t_tol": 0.05,
+   "features": [
+    "bridge nose R1.5",
+    "bridge pocket face y 122.0 (+ rib front)",
+    "land break 0.3 x 45"
+   ],
+   "alt_print_tol_wc": 0.5
+  },
+  "measured_3D": {
+   "TFT": {
+    "nominal": 1.5239,
+    "RSS": 1.2706,
+    "WC": 0.8236,
+    "WC_panel_only": 1.037,
+    "WC_print_0.1": 0.9057,
+    "feature": "bridge nose R1.5",
+    "panel_position_RSS": 0.308,
+    "panel_position_WC": 0.6
+   },
+   "CTP": {
+    "nominal": 0.9457,
+    "RSS": 0.6545,
+    "WC": 0.2388,
+    "WC_panel_only": 0.3822,
+    "WC_print_0.1": 0.3344,
+    "feature": "bridge nose R1.5",
+    "panel_position_RSS": 0.308,
+    "panel_position_WC": 0.6
+   }
+  },
+  "g_bend_budget": {
+   "formula": "l0 0.50 + R_in 1.50 + t 0.30 + clearance 0.45 + panel position RSS 0.308",
+   "sum": 3.058,
+   "modelled_g_bend": 3.0,
+   "limit_for_border": 3.09,
+   "border": 18.5,
+   "bezel": 9.51,
+   "land_min": 5.9,
+   "reserve_to_limit": 0.032,
+   "concept_position_term": 0.25
+  },
+  "g_bend_needed_for_concept_0.45_at_WC": {
+   "TFT": {
+    "slope_per_mm": 0.8,
+    "g_bend_for_0.45_at_WC_all_contributors": 3.0,
+    "g_bend_for_0.45_at_WC_panel_position_only": 3.0
+   },
+   "CTP": {
+    "slope_per_mm": 0.933,
+    "g_bend_for_0.45_at_WC_all_contributors": 3.226,
+    "g_bend_for_0.45_at_WC_panel_position_only": 3.073
+   }
+  }
+ },
+ "volume": {
+  "volume_cm3": 83.481,
+  "mass_g": 113.5,
+  "density_g_cm3": 1.36,
+  "params_as_modelled": 83.4819,
+  "GF11": "82.188 cm3 / 111.8 g",
+  "v2": "55.06 cm3 / 74.9 g"
+ },
+ "seconds": 6.4
+}

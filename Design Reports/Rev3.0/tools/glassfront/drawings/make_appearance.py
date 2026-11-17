@@ -1,6 +1,7 @@
 """Appearance sheet for the owner: to-scale colour front view of the glass front in the oven sheet.
-Three panels: S4 (hidden weld studs), R4 (four rivets, true head size and position), 4:1 zoom of one corner
-(+ the same corner on black-painted steel). Every outline comes from the master; colours are indicative.
+Two panels: S4 (hidden weld studs), R4 (four rivets, true head size and position), GF-2.0 equal borders; 3.5:1
+zoom of one corner (+ the same corner on black-painted steel). Every outline comes from the master; colours are
+indicative.
 
   <venv>/Scripts/python.exe make_appearance.py   -> Mechanical/Rev3.0_GlassFront/drawings/GF_Appearance.{png,pdf}
 """
@@ -20,8 +21,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, Rectangle, PathPatch
 from matplotlib.path import Path
 
-from gf_common import Params, Choices, Rect, OUT_DIR, n, n2
-from gf_geom import Geom
+from gf_common import Params, Choices, Rect, OUT_DIR, n, n2, rev_note, master_ref
+from gf_geom import Geom, gap_temperatures
 from gf_draft import Sheet, View, THIN, XTHIN, MM_PER_PT, lw
 
 STEEL_LIGHT = np.array([0.72, 0.735, 0.75])
@@ -203,7 +204,7 @@ def panel(sh, P, C, G, ox, oy, sc, margin, steel, rivets, title, rivet_d=None, s
 
 
 def zoom(sh, P, C, G, x0p, y0p, k, size, steel, title, seed=3):
-    """4:1 zoom of the front-view top-left corner of the cut-out"""
+    """k:1 zoom of the front-view top-left corner of the cut-out"""
     c = G.cut
     u0, v1 = c.x0 - 4.0, c.y1 + 4.0
     u1, v0 = u0 + size, v1 - size
@@ -276,14 +277,19 @@ def make(out_dir=OUT_DIR):
         n2(abs(F1["u"] - F2["u"])), n2(abs(F1["v"] - F4["v"]))), fs=6.5)
     sh.T(b2[0], yb - 13.0, "heads dia %s '%s', %s-%s proud of the steel (not flush); head edge %s from the cut-out "
                            "corner arc" % (("%g" % rd), rk, n(proud[0]), n(proud[1]), n(head_edge)), fs=6.2)
-    sh.T(b2[0], yb - 17.0, "borders: %s top / left / right, chin %s (logo zone %s x %s max)" % (
-        n(w.x0 - g.x0), n2(w.y0 - g.y0), n(G.logo.w), n(G.logo.h)), fs=6.2)
+    bds = (g.y1 - w.y1, w.x0 - g.x0, g.x1 - w.x1, w.y0 - g.y0)
+    assert max(bds) - min(bds) < 1e-6, bds                      # GF-2.0: one border on all four sides
+    sh.T(b2[0], yb - 17.0, "border %s on all four sides (window centred in the glass); logo zone %s x %s max in "
+                           "the bottom border," % (n(bds[0]), n(G.logo.w), n(G.logo.h)), fs=6.2)
+    sh.T(b2[0], yb - 21.0, "%s from the window and %s from the glass edge (master logo_zone)" % (
+        n(G.window.y0 - G.logo.y1), n(G.logo.y0 - G.glass.y0)), fs=6.2)
     # zooms (right column)
-    k = 4.0
-    size = 21.0                       # zoom window (mm of product); 4:1 -> 84 mm on paper
-    zx = ox2 + pw / 2.0 + 7.0
+    k = 3.5                           # the GF-2.x panels are wide -> 3.5:1 keeps the zoom inside the frame
+    size = 20.0                       # zoom window (mm of product); 3.5:1 -> 70 mm on paper (GF-2.1: panels 1 mm wider)
+    zx = ox2 + pw / 2.0 + 7.0         # 7 mm right of panel 2: room for its 'image' dimension
+    assert zx + size * k <= sh.W - sh.m - 2.0, ("zoom column runs into the frame line", zx, size * k)
     zy = ytop - size * k
-    Vz, bz, win = zoom(sh, P, C, G, zx, zy, k, size, "brushed", "3  corner 4 : 1 (light steel)", seed=3)
+    Vz, bz, win = zoom(sh, P, C, G, zx, zy, k, size, "brushed", "3  corner %s : 1 (light steel)" % n(k), seed=3)
     # labels inside the zoom: points on the left edge bands, horizontal leaders to texts on the glass border
     cl = "#ffbf5e"
     c0 = G.cut
@@ -303,16 +309,19 @@ def make(out_dir=OUT_DIR):
     Vz2, bz2, _ = zoom(sh, P, C, G, zx, zy - size * k - 22.0, k, size, "black",
                        "4  same corner on black-painted steel", seed=4)
     # notes
-    g2n = P.item("gaps", "g2_glass_lip")["note"]
-    g1n = P.item("gaps", "g1_lip_sheet")["note"]
+    gt_ = gap_temperatures(P)                     # GF-2.0 verified values (master gaps notes, 2026-11-16)
     rss = P.get("checks")["flush_glass_vs_sheet_RSS"]
     notes = [
         "True proportions from the master file (panels %s, zooms %s:1 when printed on A3 at 100 %%). Colours, gloss "
-        "and the UI are indicative." % ("1 : 1.5", n(k, 0)),
+        "and the UI are indicative." % ("1 : 1.5", n(k)),
         "Gaps at 20 C: %s / %s lip / %s at the sides, about %s / %s at the corners (%s corner radii). They breathe "
-        "with temperature: glass-lip %s; lip-steel %s." % (
+        "with temperature (nominal sides, 50 / 70 ppm, master values verified at %s): glass-lip -20 C %s / %s, "
+        "+70 C %s / %s; lip-steel hot (frame +70 C, sheet +50 C) %s / %s, -20 C %s / %s. At the tolerance limits "
+        "with 70 ppm they can just touch (glass-lip cold, lip-steel hot) - harmless." % (
             n(G.g1), n(G.lip_w), n(G.g2), n(round(G.corner_gap(G.lip_out, G.cut), 2), 2),
-            n(round(G.corner_gap(G.glass, G.lip_in), 2), 2), P.revision, g2n, g1n),
+            n(round(G.corner_gap(G.glass, G.lip_in), 2), 2), P.revision, P.revision,
+            n2(gt_["g2_cold_50"]), n2(gt_["g2_cold_70"]), n2(gt_["g2_hot_50"]), n2(gt_["g2_hot_70"]),
+            n2(gt_["g1_hot_50"]), n2(gt_["g1_hot_70"]), n2(gt_["g1_cold_50"]), n2(gt_["g1_cold_70"])),
         "All front faces in one plane within ±%s (RSS) - but the lip (matte black PA) and the glass (glossy black) "
         "read as two different blacks: a thin dark frame line round the glass." % n(round(rss, 2)),
         "Window = active area - %s per side; the GUI keeps the outer %d px black, so a %s mm black band shows "
@@ -320,25 +329,27 @@ def make(out_dir=OUT_DIR):
         "reflectance, R1 sec. 3.5)." % (n(P.d("print_inset")), inner[1], n(inner[1] * inner[2][0] - P.d("print_inset"),
                                                                             2)),
         "R4: four black large-flange heads dia %s ('%s', low: modelled %s high with an R%s edge) on the steel, %s-%s "
-        "proud, not flush; S4 / S8 show no fastener (CD stud welds can leave a faint witness mark on %s sheet - check "
+        "proud, not flush; S4 shows no fastener (CD stud welds can leave a faint witness mark on %s sheet - check "
         "the coupon)." % (("%g" % rd), rk, n(rh), n(rer), n(proud[0]), n(proud[1]), n(P.d("t_sheet"))),
+        "%s: the border is %s on all four sides - the window sits in the middle of the glass and of the cut-out "
+        "(%s x %s visible module, %s x %s glass); the logo zone (dashed) is in the bottom border." % (
+            P.revision, n(bds[0]), n2(c.w), n2(c.h), n2(g.w), n2(g.h)),
     ]
     yN = sh.notes(14.0, 88.0, 218.0, notes, fs=6.2, head="WHAT THE USER SEES - honest notes", head_fs=7.5, gap=0.5)
     sh.title_block({
         "title": "APPEARANCE - GLASS FRONT IN THE OVEN SHEET",
         "subtitle": "for the owner: S4 hidden studs vs R4 rivets, corner detail; colour front view, to scale",
-        "source": "outlines and rivet head from Rev3.0_GlassFront_params.json %s" % P.revision,
+        "source": "outlines and rivet head from %s" % master_ref(P),
         "project": "files: GF_Appearance.png (300 dpi) + GF_Appearance.pdf",
-        "change": "%s round 3: R4 rivets drawn as large-flange heads dia %s '%s' (were dia 10.1); corner radii glass "
-                  "R%s, cut-out R%s (corner gaps about %s)." % (
-            P.revision, ("%g" % rd), rk, n(G.glass.R), n(G.cut.R), n(round(G.corner_gap(G.lip_out, G.cut), 2), 2)),
-        "dwg": "GF-D40", "rev": P.revision, "scale": "1:1.5, 4:1", "date": datetime.date.today().isoformat(),
+        "change": "%s. Front views S4 / R4 with the equal border, visible module %s x %s; corner zoom %s:1." % (
+            rev_note(P), n2(c.w), n2(c.h), n(k)),
+        "dwg": "GF-D40", "rev": P.revision, "scale": "1:1.5, %s:1" % n(k), "date": datetime.date.today().isoformat(),
         "drawn": "make_appearance.py",
     }, w=160.0, h=40.0)
     issues = sh.check_layout()
     base = os.path.join(out_dir, "GF_Appearance")
     sh.save(base + ".pdf", base + ".png", dpi=300)
-    return {"files": [base + ".png", base + ".pdf"], "layout_issues": issues, "params_used": sorted(P.used.keys()),
+    return {"files": [base + ".png", base + ".pdf"], "layout_issues": issues, "params_used": dict(sorted(P.used.items())),
             "choices_used": C.used, "notes": notes, "lowest_y": round(yN, 1)}
 
 

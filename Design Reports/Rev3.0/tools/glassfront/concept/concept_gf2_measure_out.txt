@@ -1,0 +1,27 @@
+frame STEP read 2.8 s, sha256 47742d2f5ad0..., volume 82187.7 mm3
+  frame section x 30.00: 1 loops, y extent 116.40 .. 175.00
+  frame section x 60.00: 2 loops, y extent 116.40 .. 175.00
+  frame section x 80.00: 2 loops, y extent 116.40 .. 175.00
+  frame section x 103.85: 3 loops, y extent 116.40 .. 175.00
+  frame section x 140.00: 2 loops, y extent 116.40 .. 175.00
+  frame section x 175.00: 1 loops, y extent 116.40 .. 175.00
+  x 60.0: y crossings at Z -10 [147.707, 174.957], at Z -3 [116.428, 118.972, 147.83, 150.07], at Z +1 [147.9, 150.0]
+  x 103.85: y crossings at Z -10 [147.707, 157.545, 158.755, 161.479, 168.521, 171.245, 172.455, 174.958], at Z -3 [116.428, 118.972, 147.83, 150.07], at Z +1 [147.9, 150.0]
+  x 140.0: y crossings at Z -10 [147.707, 174.957], at Z -3 [116.428, 118.972, 147.83, 150.07], at Z +1 [147.9, 150.0]
+  plan sections (bottom zone) at Z ['-11.0', '-9.0', '-6.0', '-1.0', '2.0']
+board STEP C:\Users\lenovo\AppData\Local\Temp\gf_verify\board_full.step read 3.5 s, 155 items
+  PCB bbox [{'x': [10.7, 194.3], 'y': [9.7, 128.3], 'z': [0.08, 1.55]}]
+  PCB bottom edge (y max at x): {'45.0': 119.0, '60.0': 119.0, '103.85': 119.0, '140.0': 119.0, '160.0': 119.0} Z [0.08, 1.55]
+  DS1 tft_tail_5 bbox x [84.02, 165.9] y [110.865, 146.059] z [-8.555, 1.745]; exit (y 119.2) x [84.02, 165.9] Z [-8.555, 1.745]
+  DS1 tft_fingers_6 bbox x [145.65, 165.65] y [110.865, 114.385] z [1.425, 1.765]
+  DS1 ctp_tail_7 bbox x [40.72, 75.82] y [111.44, 137.207] z [-9.855, 1.545]; exit (y 119.2) x [40.72, 75.82] Z [-9.855, 1.545]
+  DS1 ctp_fingers_8 bbox x [58.77, 61.27] y [111.44, 114.46] z [1.225, 1.565]
+  DS1 panel part lcm_0        x [20.02, 184.92] y [19.0, 119.0] z [-9.145, -5.805]
+  DS1 panel part pu_tape_1    x [20.02, 184.92] y [19.0, 119.0] z [-9.545, -9.145]
+  DS1 panel part sensor_2     x [20.02, 184.92] y [19.0, 119.0] z [-10.42, -9.545]
+  DS1 panel part cover_print_3 x [20.02, 184.92] y [19.0, 119.0] z [-11.12, -10.42]
+  DS1 panel part cover_va_4   x [26.31, 181.39] y [23.23, 110.15] z [-11.12, -10.42]
+  components with y > 100 in x 30..175: 54; reaching in front of the PCB back (Z < 0): 1
+    J20    z [-1.865, 20.735] y [97.46, 107.62] x [21.95, 30.55]
+  J10 bbox x [142.85, 168.45] y [108.325, 114.875] z [1.635, 3.635]
+  J11 bbox x [55.52, 64.52] y [109.825, 114.45] z [1.635, 2.835]

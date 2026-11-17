@@ -1,7 +1,7 @@
-"""Oven front-sheet cut-out, variants S4 / S8 / R4: DXF (1:1 mm, FRONT view, origin = cut-out centre) and an A3
-drawing sheet (PDF + PNG) with plan 1:2, hole table, section A-A 5:1, notes EN + TR.
+"""Oven front-sheet cut-out, variants S4 / R4 (GF-2.0: S8 withdrawn): DXF (1:1 mm, FRONT view, origin = cut-out
+centre) and an A3 drawing sheet (PDF + PNG) with plan 1:2, hole table, section A-A 5:1, notes EN + TR.
 
-  <venv>/Scripts/python.exe make_sheet.py            -> Mechanical/Rev3.0_GlassFront/drawings/GF_Sheet_{S4,S8,R4}.*
+  <venv>/Scripts/python.exe make_sheet.py            -> Mechanical/Rev3.0_GlassFront/drawings/GF_Sheet_{S4,R4}.*
 """
 import datetime
 import math
@@ -13,12 +13,13 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from gf_common import (Params, Choices, Rect, OUT_DIR, n, n2, tr, new_dxf, dxf_poly, dxf_rect, dxf_text,
-                       dxf_cross, stadium_pts)
+                       dxf_cross, stadium_pts, rev_note, master_ref, prev_rev)
 from gf_geom import Geom
 from gf_draft import Sheet, View, THICK, THIN, XTHIN, MM_PER_PT
 
-VARIANTS = ("S4", "S8", "R4")
-DWG_NO = {"S4": "GF-D01", "S8": "GF-D02", "R4": "GF-D03"}
+VARIANTS = ("S4", "R4")                      # GF-2.0: S8 (GF-D02) withdrawn (master sheet_variants.S8_withdrawn)
+DWG_NO = {"S4": "GF-D01", "R4": "GF-D03"}
+WITHDRAWN = {"GF-D02": "S8"}
 LAYERS = [("CUTOUT", 1, "CONTINUOUS"), ("HOLES", 7, "CONTINUOUS"), ("STUD_MARKS", 6, "CONTINUOUS"),
           ("GLASS_REF", 5, "DASHED"), ("LIP_REF", 8, "CONTINUOUS"), ("FLANGE_REF", 8, "PHANTOM"),
           ("TAPE_REF", 3, "CONTINUOUS"), ("TEXT", 7, "CONTINUOUS")]
@@ -40,14 +41,14 @@ def variant_data(P, C, G, var):
     S = P.raw["sheet_variants"]
     P._use("sheet_variants." + var, S[var])
     vtext = S[var]["value"]
-    fl = ["F1", "F2", "F3", "F4"] if var in ("S4", "R4") else ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8"]
+    fl = P.fast_names()                                 # GF-2.0: F1-F4 only
     for f in fl:                                        # cross-check with the 'used_by' field of the master
         assert var in G.F[f]["used_by"], (var, f, G.F[f]["used_by"])
     stud = P.text("fasteners.hardware", "stud")
     stud_d = P.num("fasteners.hardware", r"M(\d+) x (\d+)", 1, name="stud")
     stud_l = P.num("fasteners.hardware", r"M(\d+) x (\d+)", 2, name="stud")
     d = dict(var=var, text=vtext, note=S[var]["note"], fast=fl, stud=stud, stud_d=stud_d, stud_l=stud_l)
-    if var in ("S4", "S8"):
+    if var == "S4":
         # GF-1.1 round 3 (lead decision C5): weld-stud envelope after welding + axis position, from the stud note
         d["env_d"] = P.num("fasteners.hardware", r"must lie within dia ([\d.]+) x ([\d.]+) high", 1, name="stud")
         d["env_h"] = P.num("fasteners.hardware", r"must lie within dia ([\d.]+) x ([\d.]+) high", 2, name="stud")
@@ -82,48 +83,18 @@ def variant_data(P, C, G, var):
         d["head_edge_to_cut"] = P.num("sheet_variants.R4.note", r"dia-[\d.]+ head edge ([\d.]+) from the cut-out "
                                                                  r"corner arc")
         d["pad_face"] = P.num("sheet_variants.R4.note", r"pad face under the head ([\d.]+) mm2")
-    if var == "S8":
-        d["gasket"] = P.text("tape_and_gasket", "foam_gasket_S8")
-        rx = r"DIN 988 ([\d.]+) x ([\d.]+) x ([\d.]+)"
-        d["spacer"] = P.text("fasteners.hardware", "spacer_S8")
-        d["spacer_id"] = P.num("fasteners.hardware", rx, 1, name="spacer_S8")
-        d["washer_d"] = P.num("fasteners.hardware", rx, 2, name="spacer_S8")
-        d["washer_t"] = P.num("fasteners.hardware", rx, 3, name="spacer_S8")
-        d["shim_bore"] = P.num("fasteners.hardware", r"\(bore ([\d.]+):", name="spacer_S8")
-        d["shim_txt"] = re.search(r"DIN 988 [\d.]+ x [\d.]+ x [\d.]+", d["spacer"]).group(0)    # as written
-    else:
-        d["tape"] = P.text("tape_and_gasket", "tape")
+    d["tape"] = P.text("tape_and_gasket", "tape")
     return d
 
 
 def change_note(P, G, vd):
-    _, _, _, cRt = P.onesided("drawing_tolerances.sheet", "cut_out_corner_R")
-    t = "%s round 3: cut-out corner R%s %s one-sided (gauge note)" % (P.revision, n(G.cut.R), cRt)
-    if vd["var"] == "R4":
-        t += "; large-flange rivet dia %s, head dia %s '%s' (%s), head edge %s to the corner arc" % (
-            n(vd["rivet_d"]), ("%g" % vd["head_d"]), vd["head_k"], vd["head_std"].replace(" type", ""),
-            n(vd["head_edge_to_cut"]))
-    else:
-        t += "; weld studs: flange within dia %s x %s, axis ±%s to the cut-out (template ±%s = means), " \
-             "perpendicularity [P]" % (n(vd["env_d"]), n(vd["env_h"]), n(vd["axis_tol"]), n(vd["templ_tol"]))
-    if vd["var"] == "S8":
-        t += "; shim %s" % vd["shim_txt"]
-    return t + "."
-
-
-def gasket_pieces_S8(G, washer_d):
-    """S8 gasket on the tape band: eight straight pieces between the eight spacers (master GF-1.1), ending
-    tape_margin before the corner pads and before the mid-side spacer washers"""
-    gap = washer_d / 2.0 + G.tape_margin
-    pieces = []
-    for k, s in G.strips.items():
-        if k in ("top", "bottom"):
-            pieces.append(Rect(s.x0, -gap, s.y0, s.y1, 0, k + "_a"))
-            pieces.append(Rect(gap, s.x1, s.y0, s.y1, 0, k + "_b"))
-        else:
-            pieces.append(Rect(s.x0, s.x1, s.y0, -gap, 0, k + "_a"))
-            pieces.append(Rect(s.x0, s.x1, gap, s.y1, 0, k + "_b"))
-    return pieces
+    """GF-2.0 revision note + what changed on this sheet (old cut-out size from the master change_log)"""
+    old = P.change("plan_rectangles.cut")[0]
+    F1 = G.F["F1"]
+    return "%s. Cut-out %s x %s (%s %s x %s), centred on the glass; %s at u ±%s / v ±%s; %s." % (
+        rev_note(P), n2(G.cut.w), n2(G.cut.h), prev_rev(P), n2(old[1] - old[0]), n2(old[3] - old[2]),
+        "holes F1-F4" if vd["var"] == "R4" else "studs F1-F4", n(abs(F1["u"])), n(abs(F1["v"])),
+        "GF-D02 (S8) withdrawn")
 
 
 # ============================================================================================================== DXF
@@ -147,16 +118,10 @@ def write_dxf(path, P, C, G, vd):
     dxf_rect(msp, G.flange, "FLANGE_REF")
     for f in ("F1", "F2", "F3", "F4"):
         msp.add_circle((G.F[f]["u"], G.F[f]["v"]), G.pad_d / 2.0, dxfattribs={"layer": "FLANGE_REF"})
-    if vd["var"] == "S8":
-        for r in gasket_pieces_S8(G, vd["washer_d"]):
-            dxf_rect(msp, r, "TAPE_REF")
-        for f in ("F5", "F6", "F7", "F8"):
-            msp.add_circle((G.F[f]["u"], G.F[f]["v"]), vd["washer_d"] / 2.0, dxfattribs={"layer": "TAPE_REF"})
-    else:
-        for r in G.strips.values():
-            dxf_rect(msp, r, "TAPE_REF")
-        for k, pts in G.dabs.items():
-            dxf_poly(msp, [(x, y, 0.0) for x, y in pts], "TAPE_REF")
+    for r in G.strips.values():
+        dxf_rect(msp, r, "TAPE_REF")
+    for k, pts in G.dabs.items():
+        dxf_poly(msp, [(x, y, 0.0) for x, y in pts], "TAPE_REF")
     # texts
     fl = G.flange
     dxf_text(msp, "GF SHEET CUT-OUT %s - %s - FRONT VIEW (cosmetic face), origin = cut-out centre, mm" %
@@ -184,16 +149,10 @@ def plan_view(sh, P, C, G, vd, ox, oy, sc):
     V.rrect(g, ec="0.55", w=XTHIN, ls=(0, (6, 1.5, 1, 1.5)), geom=False)
     for f in ("F1", "F2", "F3", "F4"):
         V.circle(G.F[f]["u"], G.F[f]["v"], G.pad_d / 2.0, ec="0.65", w=XTHIN, geom=False, ls=(0, (2, 1.5)))
-    if vd["var"] == "S8":
-        for r in gasket_pieces_S8(G, vd["washer_d"]):
-            V.rrect(r, fc="#d9eedf", ec=C_TAPE, w=XTHIN, geom=False)
-        for f in ("F5", "F6", "F7", "F8"):
-            V.circle(G.F[f]["u"], G.F[f]["v"], vd["washer_d"] / 2.0, ec=C_TAPE, w=XTHIN, geom=False)
-    else:
-        for r in G.strips.values():
-            V.rrect(r, fc="#d9eedf", ec=C_TAPE, w=XTHIN, geom=False)
-        for pts in G.dabs.values():
-            V.poly(pts, fc="#f0a030", ec="none", geom=False)
+    for r in G.strips.values():
+        V.rrect(r, fc="#d9eedf", ec=C_TAPE, w=XTHIN, geom=False)
+    for pts in G.dabs.values():
+        V.poly(pts, fc="#f0a030", ec="none", geom=False)
     for r in (G.seat_out, G.lip_out, G.lip_in):
         V.rrect(r, ec=C_LIP, w=XTHIN, geom=False)
     V.rrect(G.glass, ec=C_REF, w=XTHIN, ls=(0, (4, 1.5)), geom=False)
@@ -225,16 +184,9 @@ def plan_view(sh, P, C, G, vd, ox, oy, sc):
     V.centreline((0, g.y0 - 4), (0, g.y1 + 4))
     x0, y0 = V.P(0, 0)
     sh.T(x0 + 1.5, y0 - 3.6, "DATUM 0,0 = cut-out centre", fs=6.2)
-    # v2 window centre (relation to the v2 sheet layout)
-    v2 = G.v2_window()
-    v2u, v2v = v2["centre_uv_from_VA"]
-    xv, yv = V.P(v2u, v2v)
-    sh.circle(xv, yv, 1.3, ec=C_V2, w=THIN, geom=False)
-    sh.L([xv - 2.4, xv + 2.4], [yv, yv], w=XTHIN, c=C_V2, geom=False)
-    sh.L([xv, xv], [yv - 2.4, yv + 2.4], w=XTHIN, c=C_V2, geom=False)
-    sh.dim_v(xv, yv, x0, y0, x0 - 6.0, None, c=C_V2)
-    sh.T(xv + 3.2, yv + 0.8, "v2 window centre (v2 datum)", fs=6.0, color=C_V2)
-    sh.T(xv + 3.2, yv - 2.0, "%s above this datum" % n(v2v), fs=6.0, color=C_V2)
+    # GF-2.0: the v2 window centre (v2 datum) lies only a fraction of a mm above this datum -> stated in note 9,
+    # not drawn (a 1:2 dimension of that size would be illegible)
+    sh.T(x0 + 1.5, y0 - 6.6, "= glass centre = window centre", fs=6.2)
     # dimensions: cut-out
     c = G.cut
     tol = P.val("drawing_tolerances.sheet", "cut_out_tol")
@@ -268,7 +220,7 @@ def plan_view(sh, P, C, G, vd, ox, oy, sc):
     # reference labels: short horizontal leaders to the right
     right = V.P(g.x1, 0)[0]
     lx = right + 8.0
-    tape_lab = "VHB strip, back (ref.)" if vd["var"] != "S8" else "foam gasket, back (ref.)"
+    tape_lab = "VHB strip, back (ref.)"
     labs = [((G.glass.x1, 50.0), "glass (ref.)", C_REF),
             ((G.window.x1, 35.0), "print window (ref.)", C_REF),
             ((G.lip_out.x1, 20.0), "lip + seat ring (ref.)", "0.35"),
@@ -277,9 +229,8 @@ def plan_view(sh, P, C, G, vd, ox, oy, sc):
     f4 = G.F["F4"]
     labs.append(((f4["u"] + G.pad_d / 2.0 * 0.7071, f4["v"] + G.pad_d / 2.0 * 0.7071), "corner pad dia %s (ref.)" %
                  n(G.pad_d), "0.35"))
-    if vd["var"] != "S8":
-        dk = G.dabs["F4_v"]
-        labs.append(((sum(p[0] for p in dk) / len(dk), sum(p[1] for p in dk) / len(dk)), "corner dab", "#c87800"))
+    dk = G.dabs["F4_v"]
+    labs.append(((sum(p[0] for p in dk) / len(dk), sum(p[1] for p in dk) / len(dk)), "corner dab", "#c87800"))
     for i, ((u, v), t, col) in enumerate(labs):
         px, py = V.P(u, v)
         ty = py if i < 5 else (oy - 22.0 - (i - 5) * 6.5)
@@ -338,9 +289,7 @@ def section_view(sh, P, C, G, vd, xs0, yd0, k):
     inl = lambda s, d, t, fs=6.0: sh.T(*S(s, d), t, fs=fs, ha="center", va="center", allow_geom=True, bg="white")
     inl(s_L / 2.0 + 0.6, gt / 2.0, "GLASS %s, black print on face 2" % n(gt))
     inl((s_cut + s_R) / 2.0, d_sb / 2.0, "STEEL SHEET t %s  -  THIS PART" % n(d_sb), fs=6.2)
-    inl((s_t0 + s_t1) / 2.0, (d_sb + d_ff) / 2.0,
-        ("VHB 12 x 1.1 -> %s  (gap t_gap)" % n(d_ff - d_sb)) if vd["var"] != "S8" else
-        "foam gasket 1.5 -> %s  (gap)" % n(d_ff - d_sb))
+    inl((s_t0 + s_t1) / 2.0, (d_sb + d_ff) / 2.0, "VHB 12 x 1.1 -> %s  (gap t_gap)" % n(d_ff - d_sb))
     inl((s_ring + s_R) / 2.0, (d_ff + d_fb) / 2.0, "FLANGE (frame, PA6-GF30)")
     inl((s_land + s_lip0) / 2.0 - 0.6, (d_land + d_sw) / 2.0, "LAND (frame)")
     # flush plane
@@ -359,8 +308,7 @@ def section_view(sh, P, C, G, vd, xs0, yd0, k):
     y0 = S(0, 0)[1]
     yd1, yd2, yd3 = y0 + 8.0, y0 + 15.0, y0 + 22.0
     sh.dim_h(*S(0, 0), *S(s_t0, 0), yd1, n(s_t0), fs=6.3, text_at=(S(0, 0)[0] - 6.0, yd1 - 2.6), ha="right")
-    sh.dim_h(*S(s_t0, 0), *S(s_t1, 0), yd1, ("tape %s" if vd["var"] != "S8" else "gasket band %s") %
-             n(s_t1 - s_t0), fs=6.3)
+    sh.dim_h(*S(s_t0, 0), *S(s_t1, 0), yd1, "tape %s" % n(s_t1 - s_t0), fs=6.3)
     sh.dim_h(*S(0, 0), *S(s_cut, 0), yd2, None)
     sh.T(S(0, 0)[0] - 6.0, yd2 - 0.9, "%s glass edge to cut edge" % n(s_cut), fs=6.3, ha="right", va="center")
     sh.dim_h(*S(s_cut, 0), *S(s_ring, 0), yd2, None, arrows="out")
@@ -449,13 +397,12 @@ def notes_text(P, C, G, vd):
                       n(vd["templ_tol"])))
     en += [
         "Flatness round the cut-out %s. Back face in the %s zone (TAPE_REF) flat, clean, free of silicone and release "
-        "agent%s." % (n(flat), "VHB" if vd["var"] != "S8" else "gasket",
-                      "; VHB on powder coat needs 3M Primer 94 (confirm with the coater)" if vd["var"] != "S8" else ""),
+        "agent; VHB on powder coat needs 3M Primer 94 (confirm with the coater)." % (n(flat), "VHB"),
         "Reference layers GLASS_REF, LIP_REF, FLANGE_REF, TAPE_REF are not cut.%s" % (
             " STUD_MARKS are positions on the BACK face - never laser-mark the front." if vd["var"] != "R4" else ""),
-        "Datum = cut-out centre; pattern symmetric about both axes. The datum is %s below the v2 window centre "
-        "(datum of Rev3.0_FrontSheet_Pattern_v2.dxf, window %s x %s R%s, superseded)." % (
-            n(dv2), n2(v2["w"]), n2(v2["h"]), n(v2["R"])),
+        "Datum = cut-out centre = glass centre = print-window centre; pattern symmetric about both axes. The datum is "
+        "%s below the v2 window centre (datum of Rev3.0_FrontSheet_Pattern_v2.dxf, window %s x %s R%s, superseded)."
+        % (n(dv2, 2), n2(v2["w"]), n2(v2["h"]), n(v2["R"])),
         "Untoleranced dimensions %s. Dimensions in mm. Do not scale the drawing; use the DXF." % gtol,
     ]
     trn = [
@@ -494,7 +441,7 @@ def notes_text(P, C, G, vd):
                                                  n(vd["axis_tol"]), n(vd["perp"]), n(vd["templ_tol"])))
     trn += [
         "Pencere çevresi düzlemsellik %s mm. Arka yüzde %s bölgesi (TAPE_REF) düz, temiz, silikon ve kalıp "
-        "ayırıcıdan arınmış olacaktır." % (n(flat), "bant" if vd["var"] != "S8" else "conta"),
+        "ayırıcıdan arınmış olacaktır." % (n(flat), "bant"),
         "Referans katmanları kesilmez%s." % ("; saplama işaretleri (STUD_MARKS) ARKA yüz konumlarıdır, ön yüze "
                                               "markalama yapılmaz" if vd["var"] != "R4" else ""),
         "Toleransı belirtilmemiş ölçüler %s. Ölçüler mm. Resimden ölçü almayın; DXF dosyasını kullanın." % gtol,
@@ -537,20 +484,15 @@ def make_variant(var, out_dir=OUT_DIR):
     # the R4 note's dia-10 comparison is design history -> not printed
     vtxt = vd["text"].replace("+-", "±")
     assert "template +-" not in vd["text"] or "recommended" in vd["text"], vd["text"]
-    vnote = vd["note"].split("; pad face")[0]
+    vnote = vd["note"].split("; pad face")[0].replace(" (GF-2.0)", ", GF-2.0")
     var_txt = "VARIANT %s: %s (%s)." % (var, vtxt, vnote)
     for ln in sh.wrap(var_txt, 192.0, 6.6):
         y -= 3.2
         sh.T(16.0, y, ln, fs=6.6, weight="bold")
-    if var == "S8":
-        extra = ("Gasket (frame side, ref.): %s; drawn ending %s before each shim and corner pad. Shims at F5-F8: "
-                 "%s on the stud between sheet and flange (hard stop where no pad is moulded; bore %s clears the "
-                 "weld flange)." % (vd["gasket"], n(G.tape_margin), vd["shim_txt"], n(vd["shim_bore"])))
-    else:
-        sl = G.strip_len
-        extra = ("Tape (frame side, ref.): %s; strips top/bottom %s, sides %s long, ending %s before the corner "
-                 "pads; corner dabs of bead adhesive close the 8 strip-end gaps." % (
-                     vd["tape"], n2(sl["top_bottom"]), n2(sl["sides"]), n(G.tape_margin)))
+    sl = G.strip_len
+    extra = ("Tape (frame side, ref.): %s; strips top/bottom %s, sides %s long, ending %s before the corner "
+             "pads; corner dabs of bead adhesive close the 8 strip-end gaps." % (
+                 vd["tape"], n2(sl["top_bottom"]), n2(sl["sides"]), n(G.tape_margin)))
     for ln in sh.wrap(extra, 192.0, 6.2):
         y -= 3.0
         sh.T(16.0, y, ln, fs=6.2)
@@ -567,7 +509,7 @@ def make_variant(var, out_dir=OUT_DIR):
                     n2(G.seat_out.h)), "%s / %s / %s" % (n(G.lip_in.R), n(G.lip_out.R), n(G.seat_out.R))],
                 ["FLANGE_REF", "frame flange / corner pads", "%s x %s / dia %s" % (n2(G.flange.w), n2(G.flange.h),
                                                                                 n(G.pad_d)), n(G.flange.R)],
-                ["TAPE_REF", "tape band (back face)" if var != "S8" else "gasket band (back face)",
+                ["TAPE_REF", "tape band (back face)",
                  "%s ... %s outside the glass edge" % (n(G.tape_in.y1 - G.glass.y1), n(G.tape_out.y1 - G.glass.y1)),
                  "-"]]
     y = sh.table(16.0, y - 0.5, [0, 22, 66, 148], ref_rows, fs=6.3, widths=192)
@@ -587,7 +529,7 @@ def make_variant(var, out_dir=OUT_DIR):
     sh.title_block({
         "title": "OVEN FRONT SHEET - CUT-OUT %s" % var,
         "subtitle": "Rev3.0 OVEN CONTROLLER, glass-front module GF  /  fırın ön sacı pencere kesimi",
-        "source": "all dimensions from Rev3.0_GlassFront_params.json %s (%s)" % (P.revision, P.status),
+        "source": "all dimensions from %s; border and g_bend gated by the real-panel fold test GF-D21" % master_ref(P),
         "project": "files: GF_Sheet_%s.dxf (1:1, front view, origin = cut-out centre) + this sheet" % var,
         "change": change_note(P, G, vd),
         "dwg": DWG_NO[var], "rev": P.revision, "scale": "1:2, 5:1", "date": today,
@@ -596,7 +538,7 @@ def make_variant(var, out_dir=OUT_DIR):
     issues = sh.check_layout()
     sh.save(base + ".pdf", base + ".png", dpi=200)
     return {"variant": var, "files": [base + ".dxf", base + ".pdf", base + ".png"], "dxf": dxf_info,
-            "layout_issues": issues, "params_used": sorted(P.used.keys()), "choices_used": C.used,
+            "layout_issues": issues, "params_used": dict(sorted(P.used.items())), "choices_used": C.used,
             "notes_en": en, "notes_tr": trn,
             "hole_table": [dict(zip(rows[0], r)) for r in rows[1:]],
             "lowest_note_y": [round(ye, 1), round(yt, 1), round(y, 1)]}

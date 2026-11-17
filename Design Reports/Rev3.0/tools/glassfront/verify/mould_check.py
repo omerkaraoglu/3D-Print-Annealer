@@ -130,18 +130,22 @@ def sampled_draft(face, n=7):
 
 def draft(shape, G):
     counts, flagged, cones, planes = {}, [], {}, {}
-    for f in shape.Faces():
+    per_face = []           # (face index, draft deg or None = horizontal / blend, class) for the draft map
+    for fi_, f in enumerate(shape.Faces()):
         gt = f.geomType()
         c = f.Center()
         bb = f.BoundingBox()
         base = {"type": gt, "area": round(f.Area(), 3), "at_abs": [round(c.x, 2), round(-c.y, 2), round(c.z, 2)],
                 "z": [round(bb.zmin, 3), round(bb.zmax, 3)]}
+        nflag = len(flagged)
+        dval = None
         if gt == "PLANE":
             nz = abs(f.normalAt().z)
             if nz > 0.9999:
                 k = "plane horizontal"
             else:
                 a = math.degrees(math.asin(min(1.0, nz)))
+                dval = a
                 planes[round(a, 2)] = planes.get(round(a, 2), 0) + 1
                 k = "plane drafted"
                 if a < DRAFT_MIN:
@@ -155,34 +159,40 @@ def draft(shape, G):
                 who = identify(G, cx, -cy)
                 if gt == "CYLINDER":
                     k = "cylinder axis Z"
+                    dval = 0.0
                     flagged.append(dict(base, why="cylinder parallel to the pull (no draft)", r=round(r, 3),
                                         axis_abs=[round(cx, 3), round(-cy, 3)], feature=who))
                 else:
                     k = "cone axis Z"
+                    dval = abs(semi)
                     cones[round(abs(semi), 2)] = cones.get(round(abs(semi), 2), 0) + 1
                     if abs(semi) < DRAFT_MIN:
                         flagged.append(dict(base, why="cone < %.2f deg" % DRAFT_MIN, semi_deg=round(semi, 3),
                                             axis_abs=[round(cx, 3), round(-cy, 3)], feature=who))
             else:
                 a = sampled_draft(f)
+                dval = a
                 k = "%s, axis not Z (fillet / round)" % gt.lower()
                 if a < DRAFT_MIN:
                     flagged.append(dict(base, why="%s (axis not Z), sampled draft %.2f deg" % (gt.lower(), a)))
         else:
             a = sampled_draft(f)
+            dval = a
             k = gt.lower()
             if a < DRAFT_MIN and gt in ("SPHERE", "TORUS") and blend_class(f).startswith("fillet blend"):
                 k = gt.lower() + " fillet blend (normals pass through vertical; not a draft error)"
+                dval = None
             elif a < DRAFT_MIN:
                 flagged.append(dict(base, why="%s, sampled draft %.2f deg" % (gt.lower(), a), draft_deg=round(a, 3)))
         counts[k] = counts.get(k, 0) + 1
+        per_face.append((fi_, None if dval is None else round(float(dval), 3), k, len(flagged) > nflag))
     by_why = {}
     for fl in flagged:
         key = fl["why"] + (" - " + fl["feature"] if fl.get("feature") else "")
         by_why[key] = by_why.get(key, 0) + 1
     return {"counts": counts, "cone_semi_angles_deg": dict(sorted(cones.items())),
             "drafted_plane_angles_deg": dict(sorted(planes.items())), "flagged": flagged, "flagged_summary": by_why,
-            "draft_min_deg": DRAFT_MIN, "ok": not flagged}
+            "draft_min_deg": DRAFT_MIN, "ok": not flagged, "per_face": per_face}
 
 
 # --------------------------------------------------------------------------------------- 3. undercut (rays)
@@ -272,6 +282,7 @@ def visibility(shape, G, max_per_face=60, off=0.02):
     pts = vtk.vtkPoints()
     rows = []
     split_faces = []
+    face_side = []
     sideA = sideB = both = 0
     zff = G.L["Z_FLANGE_FRONT"]
     parting_viol = []
@@ -341,6 +352,7 @@ def visibility(shape, G, max_per_face=60, off=0.02):
         c = f.Center()
         side = "A (-Z)" if nA and not nB else ("B (+Z)" if nB and not nA else "A+B (split)")
         bb = f.BoundingBox()
+        face_side.append((fi, side, nA, nB, len(occl)))
         if side == "A (-Z)":
             sideA += 1
         elif side == "B (+Z)":
@@ -360,7 +372,7 @@ def visibility(shape, G, max_per_face=60, off=0.02):
                                  "centre_abs": [round(c.x, 2), round(-c.y, 2), round(c.z, 2)]})
     # the flange outer edge faces: lie at the flange outline, between flange front and back -> must be B-side
     return {"faces_A": sideA, "faces_B": sideB, "faces_split": both, "split_faces": split_faces, "occluded_faces": rows,
-            "parting_violations": parting_viol, "offset_mm": off, "ok": not rows and not parting_viol}
+            "parting_violations": parting_viol, "offset_mm": off, "ok": not rows and not parting_viol, "face_side": face_side}
 
 
 def flange_edge_side(shape, G, P):
@@ -447,6 +459,8 @@ def classify_thin(G, plane, row):
     z = plane["z"]
     if z < G.L["Z_SHEET_BACK"] and 0.3 < s < 1.5 and row["class"].startswith("wall"):
         return "the lip (1.0 by design)"
+    if G.h6 and z > -1.0 and 167.5 < x < 169.5 and 122 < y < 130 and row["class"].startswith("wall"):
+        return "H6 tail wall (%.1f at Z_PCB by design, corner_cell_H6.h6_wall_min)" % float(G.h6.get("h6_wall_min", 1.1))
     return ""
 
 
@@ -500,9 +514,16 @@ def thin_probe(shape, G):
               ("cells / pocket wall", -5.2), ("shelf + walls", -3.0), ("ribs below the PCB", -0.5), ("tail walls", 2.0)]
     if G.cb:      # GF-1.1 counterbores
         planes += [("F1-F4 counterbores in the pads", L["Z_SHEET_BACK"] + 0.8),
-                   ("F1-F4 counterbore floor rounds", G.cb_floor_z("F1") - 0.15),
-                   ("F5-F8 counterbores", L["Z_FLANGE_FRONT"] + 0.5),
-                   ("F5-F8 counterbore floor rounds", G.cb_floor_z("F5") - 0.15)]
+                   ("F1-F4 counterbore floor rounds", G.cb_floor_z("F1") - 0.15)]
+        if G.cb_floor_z("F5") is not None:
+            planes += [("F5-F8 counterbores", L["Z_FLANGE_FRONT"] + 0.5),
+                       ("F5-F8 counterbore floor rounds", G.cb_floor_z("F5") - 0.15)]
+    if G.gf2:     # GF-2.0 bridge, slot, rib, floor
+        planes += [("bridge: land break / slot at the land", L["Z_LAND"] + 0.15),
+                   ("bridge: pocket face above the break", L["Z_LAND"] + 0.6),
+                   ("bridge: nose + rib roots", L["Z_LANDPLATE_BACK"] - 0.4),
+                   ("tail-pocket floor + rib + cell walls", L.get("Z_FLOOR_LOW", L["Z_FLANGE_BACK"]) + 0.3),
+                   ("rib + tail walls + bottom wall above the PCB plane", 1.0)]
     if G.core:    # GF-1.1 coring grooves
         zf = L["Z_TUBE_TOP"] - float(G.core["core_depth"])
         planes += [("groove floor rounds", zf + 0.2), ("grooves, mid depth", zf + 1.6), ("grooves near the tube top", L["Z_TUBE_TOP"] - 0.1)]
@@ -519,10 +540,20 @@ def thin_probe(shape, G):
         res.append(ev)
     # vertical sections: horizontal coordinate h and Z (rasterised as (h, z))
     gx0, gx1, gy0, gy1 = G.GLASS[:4]
-    vs = [("mid-top x 80", "x", 80.0, (-12, 26)), ("mid-side y 60", "y", 60.0, (-9, 30)),
-          ("chin x 103.85 (bottom)", "x", 103.85, (110, 177)), ("right side y 100", "y", 100.0, (178, 216)),
-          ("F5 slot axis x 103.85 (top)", "x", 103.85, (-12, 26)), ("F8 slot axis y 82.085 (left)", "y", 82.085, (-9, 30)),
-          ("F5 across the slot y 0.0 (top)", "y", 0.0, (90, 118)), ("H6 cell x 168.3", "x", 168.3, (115, 152))]
+    if G.gf2:
+        vs = [("mid-top x 80", "x", 80.0, (-18, 26)), ("mid-side y 60", "y", 60.0, (-14, 30)),
+              ("bridge, CTP compartment x 60 (bottom)", "x", 60.0, (110, 152)),
+              ("divider rib x 79.92 (bottom)", "x", G.div_x, (110, 152)),
+              ("bridge, TFT compartment x 103.85 (bottom)", "x", G.GC[0], (110, 152)),
+              ("bridge, TFT wide part x 150 (bottom)", "x", 150.0, (110, 152)),
+              ("bottom outside the tail span x 24 (H7 cell)", "x", 24.0, (110, 152)),
+              ("right side y 100", "y", 100.0, (178, 222)), ("mid-side left y 66.83 (old F8 line)", "y", G.GC[1], (-14, 30)),
+              ("H6 cell x 168.3", "x", 168.3, (115, 152)), ("across the rib y 135", "y", 135.0, (70, 90))]
+    else:
+        vs = [("mid-top x 80", "x", 80.0, (-12, 26)), ("mid-side y 60", "y", 60.0, (-9, 30)),
+              ("chin x 103.85 (bottom)", "x", 103.85, (110, 177)), ("right side y 100", "y", 100.0, (178, 216)),
+              ("F5 slot axis x 103.85 (top)", "x", 103.85, (-12, 26)), ("F8 slot axis y 82.085 (left)", "y", 82.085, (-9, 30)),
+              ("F5 across the slot y 0.0 (top)", "y", 0.0, (90, 118)), ("H6 cell x 168.3", "x", 168.3, (115, 152))]
     for name, axis, val, lim in vs:
         sec = C.plane_section(shape, axis, -val if axis == "y" else val)
         if sec is None:
@@ -561,9 +592,14 @@ def thin_probe(shape, G):
     undesigned = [r for r in thin_walls if not r.get("what")] + thin_gaps
     knives = [dict(c, plane=p["name"], z=p["z"]) for p in res for c in p.get("acute_corners", []) if c["inside_the_angle"] == "air"]
     sharp = [dict(c, plane=p["name"], z=p["z"]) for p in res for c in p.get("acute_corners", []) if c["inside_the_angle"] == "material"]
+    w12 = [dict(r, plane=p["name"], z=p["z"]) for p in res for r in p.get("walls_lt_1p2", [])]
     return {"min_mm": THIN_MIN, "raster_mm": RES, "planes": res, "thin_walls": thin_walls, "thin_gaps": thin_gaps,
             "not_by_design": undesigned, "steel_knife_edges": knives, "sharp_plastic_edges": sharp,
-            "acute_limit_deg": 60.0, "ok": not undesigned and not knives}
+            "acute_limit_deg": 60.0, "ok": not undesigned and not knives,
+            "walls_lt_1p2": w12, "list_limit_mm": THIN_LIST}
+
+
+THIN_LIST = 1.2            # GF-2.0 brief: list every wall < 1.2 with its location (INFO; the criterion stays < 1.0)
 
 
 def _thin_eval(G, plane, loops, coord):
@@ -576,10 +612,17 @@ def _thin_eval(G, plane, loops, coord):
         w = classify_thin(G, plane, r)
         if w:
             r["what"] = w
+    tw12, edt12 = narrow(mat, THIN_LIST / 2)
+    w12, _ = components(tw12, edt12, x0, y0, "wall", coord)
+    w12 = [r for r in w12 if r["class"].startswith("wall")]
+    for r in w12:
+        w = classify_thin(G, plane, r)
+        if w:
+            r["what"] = w
     return dict(plane, material_mm2=round(mat.sum() * RES * RES, 1), thin_walls=walls, thin_gaps=gaps,
                 slots_or_walls=[g for g in walls + gaps if not g["class"].startswith("V-notch")],
                 v_notches=[g for g in walls + gaps if g["class"].startswith("V-notch")],
-                ignored_specks={"wall": ws, "gap": gs})
+                walls_lt_1p2=w12, ignored_specks={"wall": ws, "gap": gs})
 
 
 # --------------------------------------------------------------------------------------- 5. thick sections
@@ -678,7 +721,7 @@ def thick_sections(shape, G, imgdir, vox=THICK_VOX, limit=THICK_LIMIT):
                          vox, limit, "spots over the limit" if spots else "largest local values, none over the limit"),
                      fontsize=12)
         ax.set_aspect("equal")
-        path = os.path.join(imgdir, "Thickness_map.png")
+        path = os.path.join(imgdir, "Thickness_map_%s.png" % str(G.revision).split(" ")[0])
         fig.savefig(path, dpi=110, bbox_inches="tight")
         plt.close(fig)
     return {"voxel_mm": vox, "limit_dia_mm": limit, "voxel_volume_mm3": round(float(vfrac), 1),
@@ -697,12 +740,219 @@ def name_spot(G, p):
         if math.hypot(x - hx, y - hy) < 5:
             return "PCB boss " + n
     gx0, gx1, gy0, gy1 = G.GLASS[:4]
+    if G.gf2 and G.TAIL[0] < x < G.TAIL[1]:
+        if abs(x - G.div_x) < 3 and y > G.BRIDGE[2]:
+            return "divider rib (y %.1f)" % y
+        if G.BRIDGE[2] <= y <= G.BRIDGE[3] + 0.6:
+            return "bridge: land plate / step wall / flange plate (y %.1f)" % y
+        if y > G.TAIL[3] - 0.6:
+            return "bottom wall (y %.1f)" % y
+        if y > G.BRIDGE[3]:
+            return "tail-pocket floor = flange plate (y %.1f)" % y
     s = max(gx0 - x, x - gx1, gy0 - y, y - gy1)
     if -1 < s < 4:
         return "step wall / flange / land-plate junction (s %.1f)" % s
     if y > 119 and (x < 40 or x > 167):
         return "corner cell region"
     return "s %.1f" % s
+
+
+# --------------------------------------------------------------------------------------- 5b. sharp inside corners
+def sharp_inside_edges(shape, G, min_angle=5.0, eps=0.02):
+    """every edge between two faces: at its midpoint, the outward normals n1, n2 and the in-face direction d1 of face 1 away
+    from the edge (the sign of e x n1 chosen so that p + eps d1 lies on face 1). Concave (inside corner) when d1 . n2 > 0;
+    sharp when the normals differ by more than min_angle deg (a tangent fillet edge has n1 = n2). Grouped by feature."""
+    from OCP.BRep import BRep_Tool
+    from OCP.TopExp import TopExp
+    from OCP.TopTools import TopTools_IndexedDataMapOfShapeListOfShape
+    from OCP.TopAbs import TopAbs_EDGE, TopAbs_FACE
+    from OCP.BRepAdaptor import BRepAdaptor_Curve
+    from OCP.TopoDS import TopoDS
+    from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
+    from OCP.gp import gp_Pnt
+    from OCP.BRepExtrema import BRepExtrema_DistShapeShape
+    mp = TopTools_IndexedDataMapOfShapeListOfShape()
+    TopExp.MapShapesAndAncestors_s(shape.wrapped, TopAbs_EDGE, TopAbs_FACE, mp)
+    out = []
+    n_conc = 0
+    for i in range(1, mp.Extent() + 1):
+        e = TopoDS.Edge_s(mp.FindKey(i))
+        fl = mp.FindFromIndex(i)
+        if fl.Size() != 2:
+            continue
+        it = iter([cq.Face(TopoDS.Face_s(f)) for f in fl])
+        f1, f2 = next(it), next(it)
+        if f1.isSame(f2):
+            continue                                   # seam edge
+        c = BRepAdaptor_Curve(e)
+        tm = 0.5 * (c.FirstParameter() + c.LastParameter())
+        p = c.Value(tm)
+        from OCP.gp import gp_Vec as _V
+        v = _V(); pp = p
+        c.D1(tm, pp, v)
+        if v.Magnitude() < 1e-9:
+            continue
+        ev = np.array([v.X(), v.Y(), v.Z()]); ev /= np.linalg.norm(ev)
+        P0 = np.array([p.X(), p.Y(), p.Z()])
+        try:
+            n1 = f1.normalAt(cq.Vector(*P0)); n2 = f2.normalAt(cq.Vector(*P0))
+        except Exception:
+            continue
+        n1 = np.array([n1.x, n1.y, n1.z]); n2 = np.array([n2.x, n2.y, n2.z])
+        ang = math.degrees(math.acos(max(-1.0, min(1.0, float(n1 @ n2)))))
+        if ang < min_angle:
+            continue
+        d1 = np.cross(ev, n1); d1 /= np.linalg.norm(d1)
+        def dface(q):
+            vx = BRepBuilderAPI_MakeVertex(gp_Pnt(*q)).Vertex()
+            dd = BRepExtrema_DistShapeShape(vx, f1.wrapped); dd.Perform()
+            return dd.Value()
+        if dface(P0 + eps * d1) > dface(P0 - eps * d1):
+            d1 = -d1
+        if float(d1 @ n2) <= 1e-3:
+            continue                                   # convex edge
+        n_conc += 1
+        x, y, z = P0[0], -P0[1], P0[2]
+        L = BRepAdaptor_Curve(e)
+        out.append({"at_abs": [round(x, 2), round(y, 2), round(z, 2)], "angle_between_normals_deg": round(ang, 1),
+                    "faces": [f1.geomType(), f2.geomType()], "length_mm": round(cq.Edge(e).Length(), 3), "what": _name_edge(G, x, y, z)})
+    groups = {}
+    for r in out:
+        g = groups.setdefault(r["what"], {"edges": 0, "length_mm": 0.0, "example": r["at_abs"]})
+        g["edges"] += 1
+        g["length_mm"] = round(g["length_mm"] + r["length_mm"], 2)
+    return {"sharp_concave_edges": len(out), "groups": groups, "edges": out, "min_angle_deg": min_angle,
+            "method": "edge midpoint normals + in-face direction (BRepExtrema), concave if d1.n2 > 0, sharp if the normals differ > %.0f deg" % min_angle}
+
+
+def _name_edge(G, x, y, z):
+    L = G.L
+    for n, (px, py) in G.pips.items():
+        if math.hypot(x - px, y - py) < 1.0:
+            return "pip roots on the land"
+    for n in G.fast:
+        fx, fy = G.fxy(n)
+        r = math.hypot(x - fx, y - fy)
+        if r < 10.5:
+            if abs(z - L["Z_FLANGE_FRONT"]) < 0.02:
+                return "corner-pad roots on the flange front (F1-F4)"
+            if G.cb and abs(z - G.cb_floor_z(n)) < 0.35:
+                return "counterbore floor / slot edge (F1-F4)"
+            return "fastener %s (tube / groove / slot)" % n
+    for n, (hx, hy) in G.HOLES.items():
+        if math.hypot(x - hx, y - hy) < 4.5:
+            return "PCB boss %s (pilot / relief floors)" % n
+    if abs(z - L["Z_FLANGE_FRONT"]) < 0.02:
+        return "seat-ring / step-wall root on the flange front"
+    if abs(z - L["Z_SHELF_BACK"]) < 0.02 or abs(z - L["Z_SEAT"]) < 0.02:
+        return "shelf roots (Z_SEAT / Z_SHELF_BACK)"
+    if abs(z - L["Z_LAND"]) < 0.02:
+        return "land roots (Z_LAND)"
+    if G.gf2 and G.TAIL[0] - 1 < x < G.TAIL[1] + 1 and y > 118.5:
+        return "tail pocket / bend-gap slot / bridge (y %.1f, Z %.1f)" % (y, z)
+    return "other (x %.0f, y %.0f, Z %.1f)" % (x, y, z)
+
+
+# --------------------------------------------------------------------------------------- 6. GF-2.0 bridge / bend-gap slot
+def bridge_mould(shape, G, vis, P):
+    """GF-2.0: which tool half forms each face of the bend-gap slot and the bridge (from the visibility test), the A/B
+    shut-off the slot needs (measured end points, steel angles of three shut-off options), and the bridge's material
+    paths (section areas, member thicknesses)."""
+    from OCP.BRepAdaptor import BRepAdaptor_Surface
+    L = G.L
+    T1 = math.tan(math.radians(1.0))
+    side = {fi: (s, a, b, o) for fi, s, a, b, o in vis.get("face_side", [])}
+    zl, zlb, zs = L["Z_LAND"], L["Z_LANDPLATE_BACK"], L["Z_SEAT"]
+    y_pf, brk, nR = G.BRIDGE[2], float(G.land_break), float(G.bend_nose_R)
+    x0s, x1s = G.SLOT[0], G.SLOT[1]
+    faces = []
+    for i, f in enumerate(shape.Faces()):
+        bb = f.BoundingBox()
+        ya0, ya1 = -bb.ymax, -bb.ymin
+        if bb.xmax < x0s - 1.0 or bb.xmin > x1s + 1.0 or ya1 < 118.6 or ya0 > 124.2 or bb.zmin > 0.6 or bb.zmax < zl - 0.01:
+            continue
+        gt = f.geomType()
+        c = f.Center()
+        n = f.normalAt() if gt == "PLANE" else None
+        what = "other"
+        if gt == "CYLINDER" and abs(BRepAdaptor_Surface(f.wrapped).Cylinder().Radius() - nR) < 0.01:
+            what = "nose R%.1f" % nR
+        elif gt == "PLANE" and 0.6 < abs(n.z) < 0.8:
+            what = "land break 0.3 x 45"
+        elif gt == "PLANE" and n.y > 0.99 and abs(ya0 - y_pf) < 0.25:
+            what = "bridge pocket face (+ rib front)"
+        elif gt == "PLANE" and n.y < -0.99 and ya1 < 119.2:
+            what = "shelf end = slot front face"
+        elif gt == "PLANE" and abs(n.x) > 0.99:
+            what = "slot end / tail-pocket side wall / rib side"
+        elif gt == "PLANE" and abs(n.z) > 0.999:
+            what = "horizontal (%s, Z %.2f)" % ("+Z" if n.z > 0 else "-Z", c.z)
+        elif gt in ("CYLINDER", "BSPLINE", "TORUS", "SPHERE", "CONE"):
+            what = "round / blend (%s)" % gt.lower()
+        s, nA, nB, occ = side.get(i, ("?", 0, 0, 0))
+        faces.append({"face": i, "what": what, "type": gt, "side": s, "A_pts": nA, "B_pts": nB, "occluded_pts": occ,
+                      "area": round(f.Area(), 3), "centre_abs": [round(c.x, 2), round(-c.y, 2), round(c.z, 2)],
+                      "bbox_abs": [round(bb.xmin, 2), round(bb.xmax, 2), round(ya0, 3), round(ya1, 3), round(bb.zmin, 3), round(bb.zmax, 3)]})
+    by_what = {}
+    for r in faces:
+        k = r["what"].split(" (")[0] if r["what"].startswith(("horizontal", "round")) else r["what"]
+        d = by_what.setdefault(k, {"faces": 0, "sides": {}, "occluded_pts": 0})
+        d["faces"] += 1
+        d["sides"][r["side"]] = d["sides"].get(r["side"], 0) + 1
+        d["occluded_pts"] += r["occluded_pts"]
+    # shut-off end points measured in the y-Z section (x 60 and x 130)
+    shut = []
+    for x in (60.0, 130.0):
+        iv = P.y_intervals(x, zl + brk + 0.002)
+        y_pb = next((a for a, b in iv if 120.5 < a < 124.0), None)            # chamfer top = A/B parting on the bridge side
+        iv = P.y_intervals(x, zs + 0.01)
+        y_pf_front = next((b for a, b in iv if 117.0 < b < 120.0), None)      # shelf corner = A/B parting on the front side
+        if y_pb is None or y_pf_front is None:
+            continue
+        z_pb = zl + brk
+        run_, rise = y_pb - y_pf_front, zs - z_pb
+        # straight shut-off PF-PB: B steel wedge at PB between the pocket face (up, 1 deg) and the shut-off line
+        a_face = math.degrees(math.atan2(1.0, T1))                       # direction of the pocket face going +Z (from +y axis)
+        a_shut = math.degrees(math.atan2(rise, -run_))                    # direction PB -> PF
+        b_wedge_straight = a_shut - a_face
+        a_chamfer = math.degrees(math.atan2(-brk, brk))                   # chamfer going down from PB to the land (-45 deg)
+        shut.append({"x": x, "PB_chamfer_top_yZ": [round(y_pb, 4), round(z_pb, 4)], "PF_shelf_corner_yZ": [round(y_pf_front, 4), zs],
+                     "rise_mm": round(rise, 3), "run_mm": round(run_, 3),
+                     "max_shutoff_angle_from_pull_deg": round(math.degrees(math.atan2(run_, rise)), 1),
+                     "option_straight_PF_PB": {"B_steel_wedge_at_PB_deg": round(b_wedge_straight, 1),
+                                               "A_steel_at_PB_deg": round(360 + a_chamfer - a_shut, 1)},
+                     "option_stepped (flat at the chamfer top, then along y %.2f up to Z_SEAT)" % y_pf_front: {
+                         "B_steel_at_PB_deg": round(180.0 - a_face, 1), "A_steel_at_PB_deg": round(180.0 + a_chamfer, 1),
+                         "A_ledge_mm": [round(run_, 3), round(brk, 3)], "telescopic_shutoff_height_mm": round(rise, 3)},
+                     "option_flat_at_Z_LAND (GF-2.0 release cad_rules wording)": "the 45 deg break faces -Z: it would be an undercut for the B core "
+                                                                   "and the B steel would end in a 45 deg knife edge along the slot"})
+    # material paths of the bridge (section at x 60, 130 and the rib)
+    secs = {}
+    for x in (60.0, 130.0, float(G.div_x)):
+        sec = C.plane_section(shape, "x", x)
+        tot = br = 0.0
+        if sec is not None:
+            for f in sec.Faces():
+                bb = f.BoundingBox()
+                if -bb.ymax < 119.5 or -bb.ymin > 152:
+                    continue
+                tot += f.Area()
+                cut = C.common_shape(f, C.box(x - 1, x + 1, -(G.TAIL[3] - 0.01), -(G.BRIDGE[2] - 0.5), -20, 10))
+                br += sum(ff.Area() for ff in cut.Faces())
+        secs["x %.2f" % x] = {"section_y_gt_119.5_mm2": round(tot, 2), "bridge_plus_flange_plate_to_y_147.7_mm2": round(br, 2)}
+    members = {}
+    for lab, x, y in (("land plate (bridge)", 60.0, 125.6), ("flange plate (pocket floor)", 60.0, 140.0), ("bottom wall", 60.0, 149.0)):
+        iv = P.z_intervals(x, y)
+        members[lab] = round(iv[0][1] - iv[0][0], 3) if iv else None
+    iv = P.y_intervals(60.0, -11.0)
+    members["step wall + land plate at Z -11.0 (y extent)"] = [(round(a, 3), round(b, 3)) for a, b in iv if b > 120][:2]
+    occl_bridge = sum(r["occluded_pts"] for r in faces)
+    return {"faces": faces, "by_feature": by_what, "shut_off": shut, "sections": secs, "member_thickness_mm": members,
+            "occluded_points_in_zone": occl_bridge,
+            "feed_note": "the bend-gap slot cuts the bridge off the shelf / pocket wall over 128.8: the land plate is fed only from the "
+                         "step wall + flange plate along its whole length (one 2.5 body), from the corner regions at its ends and "
+                         "through the divider rib; no member on these paths is thinner than the 2.5 wall (measured above). Gate "
+                         "position and fill are not known here (fill / warp simulation not done)."}
 
 
 def run(ctx, log=C.log):
@@ -734,6 +984,19 @@ def run(ctx, log=C.log):
     log("[B] thick sections (voxel EDT)")
     res["thick"] = thick_sections(fr, G, ctx.imgdir if ctx.render else None)
     log("    max sphere dia %.2f, spots > %.1f: %d" % (res["thick"]["max_sphere_dia"], THICK_LIMIT, len(res["thick"]["spots_over_limit"])))
+    log("[B] sharp inside corners (concave edges without a round)")
+    res["sharp_inside"] = sharp_inside_edges(fr, G)
+    log("    %d sharp concave edges" % res["sharp_inside"]["sharp_concave_edges"])
+    if G.gf2:
+        log("[B] GF-2.0 bridge / bend-gap slot: tool halves, shut-off, material paths")
+        res["bridge"] = bridge_mould(fr, G, res["visibility"], P)
+        log("    zone faces %d; by feature %s" % (len(res["bridge"]["faces"]), {k: v["sides"] for k, v in res["bridge"]["by_feature"].items()}))
+    if ctx.render:
+        try:
+            import render_gf
+            res["draft_map_png"] = render_gf.draft_map(ctx, res["draft"]["per_face"])
+        except Exception as e:      # the map is an image only; the draft verdict does not depend on it
+            res["draft_map_png"] = "failed: %r" % (e,)
     res["seconds"] = round(time.time() - t0, 1)
     return res
 

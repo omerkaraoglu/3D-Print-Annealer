@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import vcommon as C
 
 
-def condensed(spec, mould, carry, fit, calc, G):
+def condensed(spec, mould, carry, fit, calc, G, carry_prev=None):
     """one row per check family: (id, check, measured, required, verdict)"""
     R = []
     def add(i, chk, meas, req, v):
@@ -101,31 +101,146 @@ def condensed(spec, mould, carry, fit, calc, G):
     if mould.get("thick_v2"):
         add("B", "(reference) v2 thick sections, same method", "max %.2f; %d spots" % (mould["thick_v2"]["max_sphere_dia"],
             len(mould["thick_v2"]["spots_over_limit"])), "-", "INFO")
+    w12 = t.get("walls_lt_1p2")
+    if w12 is not None:
+        add("B", "walls < %.1f listed (19+ plan / 11 vertical sections; INFO, the criterion stays < 1.0)" % t.get("list_limit_mm", 1.2),
+            "%d: %s" % (len(w12), "; ".join("%s %.2f at %s%s" % (w["plane"], w["width_max"], [round(float(v), 2) for v in w["at"]], " (%s)" % w["what"] if w.get("what") else "")
+                                           for w in sorted(w12, key=lambda q: q["width_max"])[:14])), "list", "INFO")
+    si = mould.get("sharp_inside")
+    if si:
+        new = [k for k in si["groups"] if k.startswith("tail pocket")]
+        add("B", "sharp inside corners (concave edges > %.0f deg without a round), by feature" % si["min_angle_deg"],
+            "%d: %s" % (si["sharp_concave_edges"], "; ".join("%s %d (%.0f mm)" % (k, v["edges"], v["length_mm"])
+                                                              for k, v in sorted(si["groups"].items(), key=lambda kv: -kv[1]["edges"])
+                                                              if not k.startswith("other (")) +
+                        "; other %d (fillet-to-fillet creases at rib ends, the H6 jog)" % sum(v["edges"] for k, v in si["groups"].items() if k.startswith("other ("))),
+            "none in the bridge / slot / rib / tail pocket (GF-2.0: 160, GF-1.1: 162 by the same scan)", "PASS" if not new else "FAIL")
+    br = mould.get("bridge")
+    if br:
+        bf = br["by_feature"]
+        def sides(k):
+            return bf.get(k, {}).get("sides", {})
+        ok = br["occluded_points_in_zone"] == 0 and set(sides("nose R%.1f" % G.bend_nose_R)) <= {"B (+Z)"} and set(sides("land break 0.3 x 45")) <= {"A (-Z)"}
+        add("B", "bridge / bend-gap slot: tool half of every face in the slot zone; undercut points",
+            "; ".join("%s %s" % (k, v["sides"]) for k, v in bf.items()) + "; occluded points %d" % br["occluded_points_in_zone"],
+            "nose B only, break A only, 0 occluded", "PASS" if ok else "FAIL")
+        so = br["shut_off"][0] if br["shut_off"] else None
+        if so:
+            k_st = next(k for k in so if k.startswith("option_stepped"))
+            add("B", "bend-gap slot A/B shut-off (x %.0f): parting on the bridge side at the break top, on the front side at the shelf corner" % so["x"],
+                "PB %s, PF %s: rise %.2f over %.2f; straight shut-off -> B steel wedge %.1f deg; stepped -> B %.1f / A %.1f deg, telescopic %.2f high" % (
+                    so["PB_chamfer_top_yZ"], so["PF_shelf_corner_yZ"], so["rise_mm"], so["run_mm"], so["option_straight_PF_PB"]["B_steel_wedge_at_PB_deg"],
+                    so[k_st]["B_steel_at_PB_deg"], so[k_st]["A_steel_at_PB_deg"], so[k_st]["telescopic_shutoff_height_mm"]),
+                "params cad_rules shut-off rule (the 'shut-off A/B' entry)", "INFO")
     # ---- C
-    add("C", "carried-over slab Z >= -5.0 vs v2: GF-only / v2-only volume", "%.1f / %.1f mm3 in %d regions" % (
-        carry["gf_only_mm3"], carry["v2_only_mm3"], len(carry["regions"])), "explained by the params", "INFO")
-    for k, vv in carry["by_explanation"].items():
-        add("C", "  " + k, "GF-only %.1f / v2-only %.1f mm3 (%d regions)" % (vv["GF only"], vv["v2 only"], vv["regions"]),
-            "params", "FAIL" if k.startswith(("UNEXPLAINED", "corner-cell")) else "PASS")
+    for tag, cr, ref in (("v2", carry, "v2"), ("%s release" % C.PREV_TAG, carry_prev, C.PREV_TAG)):
+        if not cr:
+            continue
+        add("C", "carried-over slab Z >= -5.0 vs %s: GF-only / %s-only volume" % (tag, ref), "%.1f / %.1f mm3 in %d regions" % (
+            cr["gf_only_mm3"], cr["v2_only_mm3"], len(cr["regions"])), "explained by the params" if ref == "v2" else "explained by the change list", "INFO")
+        for k, vv in cr["by_explanation"].items():
+            add("C", "  %s%s" % ("" if ref == "v2" else "[vs %s] " % ref, k), "GF-only %.1f / %s-only %.1f mm3 (%d regions)" % (vv["GF only"], ref, vv["v2 only"], vv["regions"]),
+                "params" if ref == "v2" else "change list", "FAIL" if k.startswith(("UNEXPLAINED", "corner-cell")) else "PASS")
     # ---- D
     for r in fit["rows"]:
         add("D", "%s: %s" % (r["group"], r["check"]), r["measured"], r["required"], r["verdict"])
     # ---- E
     secs = calc["sections"]
-    Ic = calc["concept_ring_section"]["I"]
-    for k in ("mid-top (x 80)", "mid-side left (y 60)", "mid-bottom over the tail pocket (x 80), beam + land plate + flange",
-              "near the top-left corner (x 23, past the corner arc and the side shelf)", "mid-top through F5 (x 103.85)",
-              "corner apex: diagonal plane through F1 and the glass corner (incl. pad, tube, rib)"):
-        add("E", "ring I, " + k, "%.0f mm4 (%.2f x concept)" % (secs[k]["I_mm4"], secs[k]["I_mm4"] / Ic), "concept %.0f (doc 1174)" % Ic, "INFO")
+    pv = calc["port_validation"]
+    add("E", "grillage port (copy) reproduces the GF-1.1 concept, S4, glass 3.0, 5 load points", "%s mm" % pv["w50_mm"],
+        "%s (+-0.0015)" % pv["concept_w50_mm"], "PASS" if pv["ok"] else "FAIL")
+    cs = calc["concept_sections_3.0"]
+    for k, v in secs.items():
+        if v.get("I_mm4") is None:
+            continue
+        ref = cs["channel"]["top"]["I"] if "top" in k else cs["channel"]["left"]["I"] if "left" in k else cs["channel"]["right"]["I"] if "right" in k else \
+            cs["channel"]["bottom"]["I"] if "channel" in k else cs["bridge_bottom"]["I"] if "bridge only" in k else None
+        add("E", "ring I, " + k, "%.0f mm4%s" % (v["I_mm4"], " (%.2f x concept)" % (v["I_mm4"] / ref) if ref else ""),
+            "concept %.0f" % ref if ref else "GF-1.1 range 1053-2034", "INFO")
     rows = calc["grillage"]["rows"]
-    base = [r for r in rows if r["run"].startswith("concept")]
-    meas = [r for r in rows if r["run"].startswith("measured min")]
-    for b, m in zip(base, meas):
-        add("E", "50 N / 250 N at %s (measured I)" % b["load_point"], "w %.4f mm, lip line %.4f, glass %.1f MPa, ring %.1f MPa" % (
-            m["w_50N_mm"], m["lip_line_50N_mm"], m["glass_250N_MPa"], m["ring_250N_MPa"]),
-            "concept w %.4f, lip %.4f, glass %.1f, ring %.1f" % (b["w_50N_mm"], b["lip_line_50N_mm"], b["glass_250N_MPa"], b["ring_250N_MPa"]), "INFO")
-    add("E", "bead area", "%.1f mm2" % calc["bead"]["area_mm2"], "2510 (concept)", "INFO")
-    add("E", "volume / mass", "%.3f cm3 / %.1f g" % (calc["volume"]["volume_cm3"], calc["volume"]["mass_g"]), "~70 cm3 / ~95 g (concept)", "INFO")
+    def pick(bottom, tg, src, lp):
+        return next(r for r in rows if r["bottom"] == bottom and r["glass_t"] == tg and r["I_source"].startswith(src) and r["load_point"] == lp)
+    lps = [r["load_point"] for r in rows if r["bottom"] == "channel" and r["glass_t"] == 3.0 and r["I_source"].startswith("measured")]
+    PR = calc.get("previous_release") or {}
+    pt = PR.get("tag", "previous")
+    for lp in lps:
+        m, b = pick("channel", 3.0, "measured", lp), pick("bridge", 3.0, "measured", lp)
+        c = pick("channel", 3.0, "concept", lp)
+        add("E", "50 N / 250 N at %s, glass 3.0 (measured I; channel / bridge-only bound)" % lp,
+            "w %.4f / %.4f mm, lip line %.4f / %.4f, glass %.1f / %.1f MPa (SF %.2f / %.2f), ring %.1f / %.1f MPa, stud %.0f N" % (
+                m["w_50N_mm"], b["w_50N_mm"], m["lip_line_50N_mm"], b["lip_line_50N_mm"], m["glass_250N_MPa"], b["glass_250N_MPa"],
+                m["glass_SF_250N"], b["glass_SF_250N"], m["ring_250N_MPa"], b["ring_250N_MPa"], m["stud_250N_N"]),
+            "concept rectangles w %.4f, glass %.1f" % (c["w_50N_mm"], c["glass_250N_MPa"]), "INFO")
+    for tg in (1.1, 2.0, 3.0, 4.0):
+        mc, mb = pick("channel", tg, "measured", "window centre"), pick("bridge", tg, "measured", "window centre")
+        ec, eb = pick("channel", tg, "measured", "glass bottom edge, mid"), pick("bridge", tg, "measured", "glass bottom edge, mid")
+        w11 = PR.get("push_50N_window_centre_mm", {}).get("%.1f" % tg)
+        l11 = PR.get("push_50N_lip_line_max_mm", {}).get("%.1f" % tg)
+        s11 = PR.get("glass_250N_max_MPa", {}).get("%.1f" % tg)
+        add("E", "glass %.1f, 50 N: window centre / bottom edge mid (channel / bridge only); 250 N glass max" % tg,
+            "%.4f / %.4f | %.4f / %.4f mm; %.0f / %.0f MPa (SF %.2f / %.2f)" % (mc["w_50N_mm"], mb["w_50N_mm"], ec["w_50N_mm"], eb["w_50N_mm"],
+                                                                          max(r["glass_250N_MPa"] for r in rows if r["glass_t"] == tg and r["bottom"] == "channel" and r["I_source"].startswith("measured")),
+                                                                          max(r["glass_250N_MPa"] for r in rows if r["glass_t"] == tg and r["bottom"] == "bridge" and r["I_source"].startswith("measured")),
+                                                                          min(r["glass_SF_250N"] for r in rows if r["glass_t"] == tg and r["bottom"] == "channel" and r["I_source"].startswith("measured")),
+                                                                          min(r["glass_SF_250N"] for r in rows if r["glass_t"] == tg and r["bottom"] == "bridge" and r["I_source"].startswith("measured"))),
+            "%s: centre %s, lip line max %s, glass 250 N max %s MPa (channel)" % (pt, w11, l11, s11), "INFO")
+    worst_edge = max(r["lip_line_50N_mm"] for r in rows if r["I_source"].startswith("measured") and r["load_point"] != "window centre" and r["glass_t"] >= 2.0)
+    worst_edge11 = max(r["lip_line_50N_mm"] for r in rows if r["I_source"].startswith("measured") and r["load_point"] != "window centre")
+    add("E", "50 N on an edge / the border: lip-line deflection, glass 2.0-4.0 (1.1), both bottom bounds",
+        "max %.4f mm (%.4f at 1.1)" % (worst_edge, worst_edge11), "<= 0.15 (flushness inspection limit, concept_gf2 4.2)",
+        "PASS" if worst_edge <= 0.15 else "FAIL")
+    for k, v in calc["impact_0p5J"].items():
+        if not k.startswith("channel"):
+            continue
+        vb = calc["impact_0p5J"]["bridge" + k[len("channel"):]]
+        add("E", "0.5 J impact SF, glass %s: window centre / bend-gap strip (whole border free; strip only), channel | bridge bound" % k.split()[-1],
+            "%.2f / %.2f; %.2f | %.2f / %.2f; %.2f" % (v["window_centre"]["SF"], v["bend_gap_strip_whole_border_free"]["SF"], v["bend_gap_strip_only"]["SF"],
+                                                     vb["window_centre"]["SF"], vb["bend_gap_strip_whole_border_free"]["SF"], vb["bend_gap_strip_only"]["SF"]),
+            "estimate; %s centre %s, strip (whole border free) %s" % (pt, PR.get("impact_SF_centre", {}).get(k.split()[-1]),
+                                                                       PR.get("impact_SF_strip_whole_border", {}).get(k.split()[-1])), "INFO")
+    bd = calc["bead"]
+    add("E", "bead area (0.9..4.9 band, R_glass corners) / dead load / 250 N pull", "%.1f mm2 / %.2f kPa / %.3f MPa" % (bd["area_mm2"], bd["dead_load_kPa"], bd["pull_250N_MPa"]),
+        "params %s; %s %s / %s / %s" % (bd["params_bead_area"], pt, PR.get("bead_area_mm2"), PR.get("bead_dead_load_kPa"), PR.get("bead_pull_250N_MPa")),
+        "PASS" if abs(bd["area_mm2"] - float(bd["params_bead_area"])) < 0.5 else "FAIL")
+    sh = {s["case"]: s for s in bd["shear"]}
+    wcase = sh["bound + 0.3 % moisture, +70 C"]
+    add("E", "bead shear at the corner (r %.1f): bound 70 ppm/K +70 C + 0.3 %% moisture vs d_allow class 50 at the thinnest line 0.73" % bd["r_bead_corner_mm"],
+        "d %.3f vs %.3f (ext. %.1f %%); thermal only (70 ppm) %.3f; class 25 at t 1.0: %.3f" % (
+            wcase["d_mm"], wcase["class50_t0.73_allow"], 100 * wcase["eq_ext_t0.73"], sh["bound 70 ppm/K, +70 C"]["d_mm"], wcase["class25_t1.0_allow"]),
+        "d <= t sqrt(2e + e^2) (class 50, design doc 7.7)", "PASS" if wcase["ok_class50_t0.73"] else "FAIL")
+    tf = calc["tape_fasteners"]
+    add("E", "VHB: area / module dead load / 250 N / thermal shear 50-70 ppm", "%.1f mm2 / %.2f kPa / %.1f kPa / %s %%" % (
+        tf["tape_area_mm2"], tf["tape_dead_load_kPa"], tf["tape_250N_kPa"], tf["tape_thermal_shear_pct_50_70"]),
+        "%s %s / %s / %s / %s; 3M slow shear <= 300 %%" % (pt, PR.get("tape_area_mm2"), PR.get("tape_dead_load_kPa"), PR.get("tape_250N_kPa"),
+                                                          PR.get("tape_thermal_shear_pct_50_70")), "INFO")
+    add("E", "studs: radial thermal move vs float along the slot; reaction at 250 N; M4 washer at 500 N",
+        "%s mm vs %.2f; %.0f N; %s MPa" % (tf["stud_radial_move_mm_50_70"], tf["stud_float_along_slot_mm"], tf["stud_reaction_250N_max_N"], tf["washer_M4_500N_MPa"]),
+        "move < float; washer < 15 MPa", "PASS" if max(tf["stud_radial_move_mm_50_70"]) < tf["stud_float_along_slot_mm"] and
+        (tf["washer_M4_500N_MPa"] is None or max(tf["washer_M4_500N_MPa"]) < 15) else "FAIL")
+    bzc = calc.get("bend_zone_criterion") or {}
+    if bzc.get("measured_3D"):
+        c_ = bzc["criterion"]
+        for n, v in bzc["measured_3D"].items():
+            add("E", "bend zone (nose / pocket face / break), %s tail: nominal / panel at its RSS position / worst case (3D, fit check)" % n,
+                "%.3f / %.3f / %.3f (panel position only %.3f; with print-to-edge +-0.1 %.3f)" % (v["nominal"], v["RSS"], v["WC"], v["WC_panel_only"], v["WC_print_0.1"]),
+                ">= %.2f at RSS (+%.3f), > %.1f at WC (+%.2f, exit +-%.1f, tail +%.2f)" % (c_["min_at_RSS"], c_["rss"], c_["min_at_WC"], c_["wc"], c_["exit_Z_tol"], c_["tail_t_tol"]),
+                "PASS" if v["RSS"] >= c_["min_at_RSS"] - 1e-4 and v["WC"] > c_["min_at_WC"] else "FAIL")
+        gb = bzc["g_bend_budget"]
+        add("E", "g_bend budget (RSS position term incl. print-to-edge): %s; border limit with the A1 land measured to the break edge" % gb["formula"],
+            "%.3f (modelled g_bend %.2f, %+.3f); limit for border %.1f: %.3f (land %.2f) -> reserve of the budget %.3f, of the modelled g_bend %.3f" % (
+                gb["sum"], gb["modelled_g_bend"], gb["modelled_g_bend_vs_budget"], gb["border"], gb["limit_for_border"], gb["land_min"],
+                gb["reserve_to_limit"], gb["modelled_g_bend_vs_limit"]),
+            "budget <= modelled g_bend <= limit", "PASS" if gb["sum"] <= gb["modelled_g_bend"] + 1e-9 and gb["modelled_g_bend"] <= gb["limit_for_border"] + 1e-9 else "FAIL")
+        nd = bzc.get("g_bend_needed_for_concept_0.45_at_WC") or {}
+        if nd:
+            wcc = bzc["measured_3D"]["CTP"]["WC"]
+            add("E", "the concept's intent >= 0.45 at the full worst case (GF-2.0 open finding 1; CTP governs)",
+                "CTP WC %.3f (margin %+.3f; panel position only %.3f, print +-0.1 %.3f); g_bend at which WC = 0.45: %.3f (all contributors) / %.3f (panel only)" % (
+                    wcc, wcc - 0.45, bzc["measured_3D"]["CTP"]["WC_panel_only"], bzc["measured_3D"]["CTP"]["WC_print_0.1"],
+                    nd["CTP"]["g_bend_for_0.45_at_WC_all_contributors"], nd["CTP"]["g_bend_for_0.45_at_WC_panel_position_only"]),
+                ">= 0.45", "PASS" if wcc >= 0.45 - 1e-4 else "FAIL")
+    add("E", "volume / mass", "%.3f cm3 / %.1f g" % (calc["volume"]["volume_cm3"], calc["volume"]["mass_g"]),
+        "params %s cm3; %s" % (calc["volume"]["params_as_modelled"], calc["volume"].get("prev")), "INFO")
     return R
 
 
@@ -169,8 +284,10 @@ def main(argv):
     mould = timed("B mould", lambda: mould_check.run(ctx)) if want("B") else old_cad.get("mould")
     if mould is not None and want("B"):
         mould["thick_v2"] = timed("B v2 thick (reference)", lambda: {k: v for k, v in mould_check.thick_sections(ctx.v2, ctx.G, None).items() if k != "map_png"})
-    carry = timed("C carry-over", lambda: carryover.run(ctx)) if want("C") else old_cad.get("carryover")
-    C.dump({"step": fid, "spec": spec, "mould": mould, "carryover": carry}, ctx.out("cadcheck.json"))
+    carry = timed("C carry-over vs v2", lambda: carryover.run(ctx, ref="v2")) if want("C") else old_cad.get("carryover")
+    carry_prev = (timed("C carry-over vs %s" % C.PREV_TAG, lambda: carryover.run(ctx, ref="prev")) if want("C") else old_cad.get("carryover_vs_prev")) \
+        if ctx.G.gf2 else None
+    C.dump({"step": fid, "spec": spec, "mould": mould, "carryover": carry, "carryover_vs_prev": carry_prev}, ctx.out("cadcheck.json"))
     if want("D"):
         fit = timed("D fit", lambda: fit_check.run(ctx))
         if fit is not None:
@@ -181,7 +298,7 @@ def main(argv):
     else:
         fit = json.load(open(ctx.out("fitcheck.json"))) if os.path.exists(ctx.out("fitcheck.json")) else None
     if want("E"):
-        calc = timed("E calc", lambda: calc_gf.run(ctx))
+        calc = timed("E calc", lambda: calc_gf.run(ctx, fit=fit))
         if calc is not None:
             C.dump(calc, ctx.out("calc.json"))
             open(ctx.out("calc.md"), "w", encoding="utf8").write(calc_gf.markdown(calc, fid))
@@ -192,16 +309,18 @@ def main(argv):
         r_ = timed("renders", lambda: render_gf.run(ctx))
         if r_:
             imgs.update(r_)
-        sec = timed("sections", lambda: sections_gf.run(ctx))
+        sec = timed("sections", lambda: sections_gf.run(ctx, fit=fit))
         if sec:
             imgs.update(sec["images"])
             if spec is not None:
                 spec["section_dims_measured"] = sec["dims_measured"]
         if mould:
             imgs["thickness_map"] = mould["thick"]["map_png"]
-        C.dump({"step": fid, "spec": spec, "mould": mould, "carryover": carry}, ctx.out("cadcheck.json"))
+            if mould.get("draft_map_png"):
+                imgs["draft_map"] = mould["draft_map_png"]
+        C.dump({"step": fid, "spec": spec, "mould": mould, "carryover": carry, "carryover_vs_prev": carry_prev}, ctx.out("cadcheck.json"))
     try:
-        rows = condensed(spec, mould, carry, fit, calc, ctx.G)
+        rows = condensed(spec, mould, carry, fit, calc, ctx.G, carry_prev)
     except Exception:
         errors["condensed table"] = traceback.format_exc()
         rows = []
@@ -210,7 +329,7 @@ def main(argv):
     for a in argv:
         if a.startswith("--compare="):
             prev_dir = a.split("=", 1)[1]
-    prev_dir = prev_dir or os.path.join(ctx.outdir, "GF-1.0")
+    prev_dir = prev_dir or os.path.join(ctx.outdir, C.PREV_TAG if ctx.G.gf2 else "GF-1.0")
     diff = []
     if os.path.exists(os.path.join(prev_dir, "summary.json")):
         old = {(r["id"], r["check"]): r for r in json.load(open(os.path.join(prev_dir, "summary.json")))["table"]}
@@ -232,7 +351,7 @@ def main(argv):
     summary = {"about": "Independent verification of the %s glass-front frame STEP (CadQuery / OCP / VTK), tools/glassfront/verify" % (
                    str(ctx.G.revision).split(" ")[0]),
                "inputs": {"frame": fid, "params": C.file_id(ctx.params_path), "params_revision": ctx.G.revision,
-                          "v2_step": getattr(ctx, "v2_info", None),
+                          "v2_step": getattr(ctx, "v2_info", None), "prev_step": getattr(ctx, "prev_info", None), "prev_tag": C.PREV_TAG,
                           "board_step": C.file_id(ctx.board_path) if getattr(ctx, "board_path", None) else None,
                           "board_geom": C.file_id(C.BOARD_GEOM),
                           "glass_t": ctx.G.glass_t, "panel_dz_applied_to_DS1": round(ctx.panel_dz, 3)},
@@ -240,6 +359,9 @@ def main(argv):
                "previous_run_step": prev,
                "step_changed_during_this_run": fid_end["sha256"] != fid["sha256"],
                "table": rows, "fails": [r for r in rows if r["verdict"] == "FAIL"],
+               "remaining_fails_in_words": ["%s %s: measured %s; required %s" % (r["id"], r["check"], r["measured"], r["required"])
+                                            for r in rows if r["verdict"] == "FAIL"],
+               "open_findings": ctx.G.raw.get("open_findings"),
                "counts": {v: sum(1 for r in rows if r["verdict"] == v) for v in ("PASS", "FAIL", "INFO")},
                "changes_vs_previous_revision": {"compared_with": prev_dir, "rows": diff},
                "images": imgs, "timings_s": times, "total_s": round(time.time() - t0, 1), "errors": errors,

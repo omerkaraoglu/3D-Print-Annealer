@@ -1,0 +1,1979 @@
+{
+ "about": "Rev3.0 glass-front carrier frame ('Frame GF'), revision GF-2.0, built in Fusion 360 (stage 4). Written complete for GF-2.0 by Design Reports/Rev3.0/tools/glassfront/fusion/build_gf20_reports.py (no errata file; the GF-1.1 report and errata are in Mechanical/Rev3.0_GlassFront/archive/GF-1.1/).",
+ "master_revision": "GF-2.0 (2026-11-16: equal 18.5 border on all four sides, FPC tails bent back at the panel edge behind a bridge, S8 dropped (S4 / R4 only); concept Design Reports/Rev3.0/tools/glassfront/concept/concept_gf2.md; see change_log)",
+ "master_params": {
+  "file": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json",
+  "sha256": "2d1810472802036c9c06342707f0b19ae6a734b0ab81b19512e19de73aeea496"
+ },
+ "concept": "Design Reports/Rev3.0/tools/glassfront/concept/concept_gf2.md",
+ "document": {
+  "name": "Rev3.0 GlassFront",
+  "dataFile_id": "urn:adsk.wipprod:dm.lineage:XyXacwE-SnqsV-hz5pHg3w",
+  "version": 18,
+  "versions_GF-2.0": [
+   {
+    "version": 18,
+    "comment": "GF-2.0 FINAL (scripts 66-84): equal border 18.5, tails bent back behind the bridge (g_bend 3.0, nose R1.5, break 0.3), floors over the flange plate, divider rib, S4 / R4 only (S8 + F5-F8 removed); assembly with the GF-2.0 tail solids; flex 10/10; frame STEP / STL, glass STEP, assembly STEP, .f3d exported from this version"
+   },
+   {
+    "version": 17,
+    "comment": "GF-2.0 step 3 (scripts 70, 77): FPC tail solids on the bent-back route (component Tails GF-2.0), GF-1.1 DS1 tails hidden as reference; coring-groove taper restored (side two -draft); checks 76-82 run"
+   },
+   {
+    "version": 16,
+    "comment": "GF-2.0 step 2 (scripts 67-75): equal border 18.5 (glass_y1 derived), bend-gap slot + bridge (g_bend 3.0, nose R1.5, land break 0.3), floors over the flange plate, divider rib, flange bottom flush with the bottom wall; flex test 10/10 healthy; assembly not yet updated"
+   },
+   {
+    "version": 15,
+    "comment": "GF-2.0 step 1 (script 66): S8 dropped - F5-F8 tubes, slots, counterbores, coring, tube blend and S8 hardware removed; F1-F4 unchanged; frame otherwise GF-1.1"
+   }
+  ],
+  "guard": "Rev3.0 GlassFront",
+  "timeline_count": 204,
+  "timeline_unhealthy": [],
+  "user_parameters": 288,
+  "only_document_modified": true
+ },
+ "exports": {
+  "step": {
+   "file": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.step",
+   "bytes": 1586957,
+   "mtime": "2026-11-16 02:01:36 +0300",
+   "sha256": "7831768c26066dc08cd968fe16808ef4c9ae2b45bcdbc0f7efd7cb4c79ea82ad"
+  },
+  "stl": {
+   "file": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.stl",
+   "bytes": 5456484,
+   "mtime": "2026-11-16 02:01:37 +0300",
+   "sha256": "cc36686a73bd7336c1075bee5e44fa129f8953dafd69b3b82d66b71bf77ce6b3"
+  },
+  "exported_from_version": 18,
+  "note": "the frame is not changed after this export; the STEP goes to independent verification as exported"
+ },
+ "body": {
+  "volume_cm3": 83.4819,
+  "mass_g_at_1.36": 113.54,
+  "faces": 889,
+  "edges": 2155,
+  "lumps": 1,
+  "shells": 1,
+  "is_solid": true,
+  "bbox_abs": {
+   "x": [
+    -12.39,
+    220.09
+   ],
+   "y_down": [
+    -15.33,
+    150.235
+   ],
+   "z": [
+    -14.42,
+    4.05
+   ]
+  },
+  "name": "Frame GF",
+  "material_density_g_cm3": 1.36,
+  "material": "PA6-GF30 black",
+  "appearance": "Plastic - Matte (Black)"
+ },
+ "levels_glass_3.0": {
+  "Z_GLASS_FRONT": -14.42,
+  "Z_SHEET_BACK": -13.42,
+  "Z_FLANGE_FRONT": -12.42,
+  "Z_FLANGE_BACK": -9.92,
+  "Z_LAND": -10.42,
+  "Z_PIP_TOP": -10.92,
+  "Z_LANDPLATE_BACK": -7.92,
+  "Z_STEPWALL_BACK": -7.92,
+  "Z_TUBE_TOP": -7.42,
+  "Z_TRIB_TOP": -7.92,
+  "Z_CELL_RIB_TOP": -5.42,
+  "Z_TROUGH_TOP": 4.05
+ },
+ "driving_and_key_parameters": {
+  "border": {
+   "expression": "18.5 mm",
+   "value_mm": 18.5,
+   "comment": "GF-2.0: print-window edge -> glass edge on ALL FOUR sides (owner; was 14.0 top/left/right + chin 44.51); the one driving value, may be retuned after the real-panel test"
+  },
+  "glass_y1": {
+   "expression": "pw_y1 + border",
+   "value_mm": 127.99,
+   "comment": "GF-2.0: glass bottom edge abs y = pw_y1 + border (127.99), DERIVED (was the driving 154.0 = chin)"
+  },
+  "g_bend": {
+   "expression": "3.0 mm",
+   "value_mm": 3.0,
+   "comment": "GF-2.0: DRIVING bend gap: panel bottom edge -> bridge pocket face over the tail span = straight 0.5 + R_in 1.5 + tail 0.30 + clearance 0.45 + panel position 0.25 (concept_gf2 2.1); 3.09 is the most the 18.5 border holds with the full bead"
+  },
+  "bend_y1": {
+   "expression": "panel_y1 + g_bend",
+   "value_mm": 122.0,
+   "comment": "GF-2.0: bridge pocket face (back face of the bend-gap slot) abs y at Z_LAND over the tail span (122.00), 1 deg widening to the back"
+  },
+  "bend_nose_R": {
+   "expression": "1.5 mm",
+   "value_mm": 1.5,
+   "comment": "GF-2.0: nose round on the bridge back-inner edge (land-plate back x pocket face) >= tail_R_in_min, so a taut tail is never bent tighter"
+  },
+  "land_break": {
+   "expression": "0.3 mm",
+   "value_mm": 0.3,
+   "comment": "GF-2.0: 45 deg break on the land front-inner edge (land x pocket face) over the tail span: cannot snag a tail when the frame is lowered in J2"
+  },
+  "tail_R_in_min": {
+   "expression": "1.5 mm",
+   "value_mm": 1.5,
+   "comment": "GF-2.0: minimum inner bend radius of both FPC tails, static (ASSUMPTION to confirm on a real panel)"
+  },
+  "tail_straight_l0": {
+   "expression": "0.5 mm",
+   "value_mm": 0.5,
+   "comment": "GF-2.0: tail straight beyond the panel edge face before the first bend (ASSUMPTION)"
+  },
+  "tail_t": {
+   "expression": "0.3 mm",
+   "value_mm": 0.3,
+   "comment": "GF-2.0: FPC tail thickness used for the route and the tail solids (estimate 0.3 +-0.05)"
+  },
+  "Z_TAIL_LEG": {
+   "expression": "Z_TAIL_TFT_EXIT + 2 * ( tail_R_in_min + tail_t / 2 )",
+   "value_mm": -5.1,
+   "comment": "GF-2.0: nominal front-leg centre of both tails after the two 90 deg bends (-5.10, every glass_t; reference, no frame feature at it)"
+  },
+  "div_x": {
+   "expression": "79.92 mm",
+   "value_mm": 79.92,
+   "comment": "GF-2.0: divider rib centre x = middle of the 8.20 gap between the tail exits (CTP x1 75.82, TFT x0 84.02, measured on DS1)"
+  },
+  "div_t": {
+   "expression": "wall",
+   "value_mm": 2.5,
+   "comment": "GF-2.0: divider rib thickness at the bridge floor (Z_LANDPLATE_BACK), 1 deg both sides"
+  },
+  "flange_y1_bottom": {
+   "expression": "max(glass_y1 + flange_beyond_glass; outer_y1 + ( Z_LAND - Z_FLANGE_FRONT ) * tan(draft))",
+   "value_mm": 150.2349,
+   "comment": "GF-2.0: flange bottom edge abs y at the flange front = the bottom-wall outer face (tr_y1 + wall = 150.20 at Z_LAND, 1 deg) continued to the parting plane (150.235 at glass 3.0): flush; glass + 21 = 148.99 would cut the wall; max() keeps glass + 21 for larger borders"
+  },
+  "fl_y1": {
+   "expression": "flange_y1_bottom",
+   "value_mm": 150.2349,
+   "comment": "GF-2.0: flange outline bottom (150.235 at the flange front, glass 3.0) = flange_y1_bottom"
+  },
+  "Z_FLOOR_LOW": {
+   "expression": "min(Z_FLANGE_BACK; Z_LANDPLATE_BACK - 2 * fillet_root)",
+   "value_mm": -9.92,
+   "comment": "GF-2.0: floor behind the bridge (cells + tail pocket beyond the step-wall back) = the flange back, but at least 2 x fillet_root below the land-plate back so the floor always steps (one topology at every glass_t); differs from Z_FLANGE_BACK only at the level snap (glass 1.1: -8.92, flange 1.6 there)"
+  },
+  "Z_WALL_FRONT": {
+   "expression": "min(Z_LAND; Z_FLANGE_BACK - 0.5 mm)",
+   "value_mm": -10.42,
+   "comment": "GF-2.0: front of the outer wall block = Z_LAND (GF-1.1), but at least 0.5 into the flange plate where the flange back lies in front of the land (glass 4.0): the walls below the board edge stand on the flange plate"
+  },
+  "Z_DISC_FRONT": {
+   "expression": "Z_FLANGE_FRONT + 0.5 mm",
+   "value_mm": -11.92,
+   "comment": "GF-2.0: front of the 'Land plate + step wall (back)' solid, 0.5 inside the full flange plate (so the parting-plane face belongs to the flange plate; no geometry change)"
+  },
+  "s_disc_front": {
+   "expression": "s_ring_b - ( Z_DISC_FRONT - Z_FLANGE_FRONT ) * tan(draft)",
+   "value_mm": 2.9349,
+   "comment": "GF-2.0: step-wall back outline (s) drawn on the Z_DISC_FRONT plane = the same 1 deg face as s_ring_b on the flange front"
+  },
+  "logo_h": {
+   "expression": "15 mm",
+   "value_mm": 15.0,
+   "comment": "GF-2.0: logo zone max height in the 18.5 bottom border (>= 1.0 from the window, >= 2.5 from the edge)"
+  },
+  "logo_cy": {
+   "expression": "( pw_y1 + glass_y1 ) / 2",
+   "value_mm": 118.74,
+   "comment": "GF-2.0: logo zone centre y in the bottom border (118.74)"
+  },
+  "gc_y": {
+   "expression": "( glass_y0 + glass_y1 ) / 2",
+   "value_mm": 66.83,
+   "comment": "glass centre y (66.83 = print-window centre at GF-2.0)"
+  },
+  "f_y1": {
+   "expression": "glass_y1 + fast_off",
+   "value_mm": 138.99,
+   "comment": "bottom fastener line y (138.99)"
+  }
+ },
+ "pips": {
+  "P1": [
+   56.23,
+   8.57
+  ],
+  "P2": [
+   56.23,
+   125.09
+  ],
+  "P3": [
+   151.47,
+   8.57
+  ],
+  "P4": [
+   151.47,
+   125.09
+  ],
+  "P5": [
+   11.51,
+   36.25
+  ],
+  "P6": [
+   196.19,
+   36.25
+  ],
+  "P7": [
+   11.51,
+   97.41
+  ],
+  "P8": [
+   196.19,
+   97.41
+  ]
+ },
+ "pad_hard_stop_faces_mm2": {
+  "F1": 198.63,
+  "F2": 198.63,
+  "F3": 198.63,
+  "F4": 198.63
+ },
+ "features_GF-2.0": [
+  {
+   "script": "66",
+   "what": "S8 dropped: F5-F8 tubes, slots, counterbores, coring, tube blend deleted; sketches / features renamed F1-F4; coring and counterbore floor rounds re-created on F1-F4"
+  },
+  {
+   "script": "67",
+   "what": "border 18.5 (glass_y1 = pw_y1 + border), g_bend / bend_y1 and the GF-2.0 parameters; 'Tail pocket' = bend-gap slot (front piece of the split sketch); new cut 'Tail pocket over the bridge' (floor = land-plate back); flange bottom = flange_y1_bottom (flush with the bottom wall)"
+  },
+  {
+   "script": "68 / 69",
+   "what": "late block before the tubes: 'Floor over the flange plate (cells + tail pocket)' cut to Z_FLOOR_LOW, 'Cell ribs over the flange plate', divider rib (bridge low / high, over the flange plate), 'Bridge nose R bend_nose_R', 'Bridge land break land_break', rule fillet 'Root fillets R0.5 - floors over the bridge and the flange plate (rule)'"
+  },
+  {
+   "script": "72-75",
+   "what": "level snap robustness: Z_FLOOR_LOW (floor always >= 1.0 below the land-plate back), rule W = all concave edges of ['Land plate + step wall (back)', 'Outer wall block'] (covers the outer wall on the flange plate), 'Outer wall block' starts at Z_WALL_FRONT, land plate + step wall solid starts at Z_DISC_FRONT (no geometry change)"
+  },
+  {
+   "script": "77",
+   "what": "coring-groove side-two taper restored (-draft) after the profile change of 66"
+  }
+ ],
+ "scans": {
+  "tag": "gf20_final",
+  "face_count": 889,
+  "classification_counts": {
+   "cylinder_other": 281,
+   "torus": 83,
+   "cone": 117,
+   "planar_drafted": 186,
+   "flat_perp_Z": 106,
+   "other_7": 42,
+   "other_3": 74
+  },
+  "draft_flags": [
+   {
+    "why": "horizontal face facing -Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     -2.39,
+     138.99,
+     -11.82
+    ],
+    "area_mm2": 14.9921
+   },
+   {
+    "why": "horizontal face facing -Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     -2.39,
+     -5.33,
+     -11.82
+    ],
+    "area_mm2": 14.9921
+   },
+   {
+    "why": "horizontal face facing -Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     210.09,
+     -5.33,
+     -11.82
+    ],
+    "area_mm2": 14.9921
+   },
+   {
+    "why": "horizontal face facing -Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     210.09,
+     138.99,
+     -11.82
+    ],
+    "area_mm2": 14.9921
+   },
+   {
+    "why": "horizontal face facing +Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     -2.39,
+     138.99,
+     -10.72
+    ],
+    "area_mm2": 17.1573
+   },
+   {
+    "why": "horizontal face facing +Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     -2.39,
+     -5.33,
+     -10.72
+    ],
+    "area_mm2": 17.1573
+   },
+   {
+    "why": "horizontal face facing +Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     210.09,
+     -5.33,
+     -10.72
+    ],
+    "area_mm2": 17.1573
+   },
+   {
+    "why": "horizontal face facing +Z at an unexpected level",
+    "type": "flat_perp_Z",
+    "centroid_abs": [
+     210.09,
+     138.99,
+     -10.72
+    ],
+    "area_mm2": 17.1573
+   }
+  ],
+  "draft_flags_note": "only the 4 counterbore floors (Z -11.82) and the 4 coring-groove floors (Z -10.72) at F1-F4: horizontal floors at levels not in the scan's list, by design as GF-1.1 (16 there with F5-F8). No undrafted face, no A-side face above Z_SEAT",
+  "draft_values_planar_deg": [
+   0.5,
+   1.0,
+   44.5
+  ],
+  "cone_half_angles_deg": [
+   0.5,
+   1.0
+  ],
+  "slivers_total": 83,
+  "slivers_by_type": {
+   "cylinder_other": 2,
+   "other_3": 73,
+   "torus": 8
+  },
+  "design_face_slivers": [],
+  "fillet_blend_slivers_max_area_mm2": 0.4433,
+  "thin_strips_lt_1mm": [
+   {
+    "face": 6,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     -0.681,
+     141.506,
+     -11.82
+    ]
+   },
+   {
+    "face": 6,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     -4.099,
+     136.474,
+     -11.82
+    ]
+   },
+   {
+    "face": 13,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     -4.099,
+     -2.814,
+     -11.82
+    ]
+   },
+   {
+    "face": 13,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     -0.681,
+     -7.846,
+     -11.82
+    ]
+   },
+   {
+    "face": 20,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     208.381,
+     -7.846,
+     -11.82
+    ]
+   },
+   {
+    "face": 20,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     211.799,
+     -2.814,
+     -11.82
+    ]
+   },
+   {
+    "face": 27,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     211.799,
+     136.474,
+     -11.82
+    ]
+   },
+   {
+    "face": 27,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     208.381,
+     141.506,
+     -11.82
+    ]
+   },
+   {
+    "face": 85,
+    "width_mm": 0.5088,
+    "overlap_mm": 178.48,
+    "mid_abs_approx": [
+     103.85,
+     4.278,
+     -13.871
+    ]
+   },
+   {
+    "face": 87,
+    "width_mm": 0.5088,
+    "overlap_mm": 110.32,
+    "mid_abs_approx": [
+     7.218,
+     66.83,
+     -13.871
+    ]
+   },
+   {
+    "face": 88,
+    "width_mm": 0.3929,
+    "overlap_mm": 178.48,
+    "mid_abs_approx": [
+     103.85,
+     4.779,
+     -14.42
+    ]
+   },
+   {
+    "face": 88,
+    "width_mm": 0.3929,
+    "overlap_mm": 110.32,
+    "mid_abs_approx": [
+     7.719,
+     66.83,
+     -14.42
+    ]
+   },
+   {
+    "face": 88,
+    "width_mm": 0.3929,
+    "overlap_mm": 178.48,
+    "mid_abs_approx": [
+     103.85,
+     128.881,
+     -14.42
+    ]
+   },
+   {
+    "face": 88,
+    "width_mm": 0.3929,
+    "overlap_mm": 110.32,
+    "mid_abs_approx": [
+     199.981,
+     66.83,
+     -14.42
+    ]
+   },
+   {
+    "face": 110,
+    "width_mm": 0.5088,
+    "overlap_mm": 178.48,
+    "mid_abs_approx": [
+     103.85,
+     129.382,
+     -13.871
+    ]
+   },
+   {
+    "face": 316,
+    "width_mm": 0.7263,
+    "overlap_mm": 38.743,
+    "mid_abs_approx": [
+     81.032,
+     122.012,
+     -9.757
+    ]
+   },
+   {
+    "face": 316,
+    "width_mm": 0.7263,
+    "overlap_mm": 85.503,
+    "mid_abs_approx": [
+     113.878,
+     122.012,
+     -9.757
+    ]
+   },
+   {
+    "face": 317,
+    "width_mm": 0.4205,
+    "overlap_mm": 127.788,
+    "mid_abs_approx": [
+     103.3,
+     122.153,
+     -10.27
+    ]
+   },
+   {
+    "face": 872,
+    "width_mm": 0.5088,
+    "overlap_mm": 110.32,
+    "mid_abs_approx": [
+     200.482,
+     66.83,
+     -13.871
+    ]
+   }
+  ],
+  "thin_strip_note": "faces narrower than 1.0 between parallel edges (not wall thicknesses): counterbore floor rings 0.67 and lip top flats 0.39 / 0.51 (GF-1.1), the bridge pocket face between the 0.3 break and the R1.5 nose 0.73 and the break face 0.42 (GF-2.0, by design)",
+  "unfilleted_concave_roots": [
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     196.94,
+     97.41,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     12.26,
+     97.41,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     12.26,
+     36.25,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     152.22,
+     125.09,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     56.98,
+     125.09,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     152.22,
+     8.57,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     56.98,
+     8.57,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     196.94,
+     36.25,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "shelf back",
+    "mid_abs": [
+     171.758,
+     119.8,
+     -2.1
+    ],
+    "z": [
+     -2.1,
+     -2.1
+    ],
+    "len_mm": 7.825,
+    "owners": [
+     "Above-shelf space",
+     "Above-shelf space"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.796,
+     109.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     176.596,
+     123.8,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     191.396,
+     109.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     175.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     94.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     191.396,
+     30.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.596,
+     123.8,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.796,
+     30.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.318,
+     109.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     176.118,
+     123.8,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     190.918,
+     109.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     175.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     94.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     190.918,
+     30.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.118,
+     123.8,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.318,
+     30.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "shelf back",
+    "mid_abs": [
+     34.012,
+     119.8,
+     -2.1
+    ],
+    "z": [
+     -2.1,
+     -2.1
+    ],
+    "len_mm": 9.485,
+    "owners": [
+     "Above-shelf space",
+     "Above-shelf space"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     6.61,
+     138.99,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Flange plate",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     6.61,
+     -5.33,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Flange plate",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     219.09,
+     -5.33,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Flange plate",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     219.09,
+     138.99,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Flange plate",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     5.71,
+     66.83,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 110.32,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     8.317,
+     128.283,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     103.85,
+     130.89,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 178.48,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     199.383,
+     128.283,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     201.99,
+     66.83,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 110.32,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     199.383,
+     5.377,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     103.85,
+     2.77,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 178.48,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     8.317,
+     5.377,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Flange plate",
+     "Seat ring (step wall front)"
+    ]
+   }
+  ]
+ },
+ "thickness_and_thin_walls": {
+  "method": "verification toolchain (tools/glassfront/verify mould_check, read-only) via gf20_thickness_check.py on the exported frame STEP: voxel 0.2, 3D EDT, limit 5.0; thin probe with THIN_MIN 1.2 (brief) on the toolchain's planes + GF-2.0 probes (Z -9.0, Z -8.3, x 79.92, x 60, y 138)",
+  "max_inscribed_sphere_mm": 4.53,
+  "spots_over_5.0": [],
+  "top_local_maxima": [
+   {
+    "max_sphere_dia": 4.53,
+    "at_abs": [
+     172.61,
+     121.43,
+     -3.42
+    ],
+    "what": "PCB boss H6"
+   },
+   {
+    "max_sphere_dia": 4.53,
+    "at_abs": [
+     27.81,
+     121.23,
+     -3.22
+    ],
+    "what": "PCB boss H7"
+   },
+   {
+    "max_sphere_dia": 4.53,
+    "at_abs": [
+     187.21,
+     111.03,
+     -3.22
+    ],
+    "what": "PCB boss H5"
+   },
+   {
+    "max_sphere_dia": 4.53,
+    "at_abs": [
+     17.81,
+     111.03,
+     -3.22
+    ],
+    "what": "PCB boss H8"
+   },
+   {
+    "max_sphere_dia": 4.47,
+    "at_abs": [
+     28.01,
+     16.83,
+     -3.22
+    ],
+    "what": "PCB boss H1"
+   },
+   {
+    "max_sphere_dia": 4.35,
+    "at_abs": [
+     177.21,
+     121.23,
+     -3.22
+    ],
+    "what": "PCB boss H6"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     90.81,
+     16.63,
+     -3.42
+    ],
+    "what": "PCB boss H2"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     17.61,
+     27.83,
+     -3.22
+    ],
+    "what": "PCB boss H9"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     176.21,
+     16.63,
+     -3.42
+    ],
+    "what": "PCB boss H3"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     17.61,
+     106.83,
+     -3.22
+    ],
+    "what": "PCB boss H8"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     171.81,
+     16.63,
+     -3.42
+    ],
+    "what": "PCB boss H3"
+   },
+   {
+    "max_sphere_dia": 4.33,
+    "at_abs": [
+     32.21,
+     16.63,
+     -3.42
+    ],
+    "what": "PCB boss H1"
+   }
+  ],
+  "thin_walls_lt_1.2": [
+   {
+    "plane": "lip",
+    "class": "wall thinner than 1.2",
+    "width_max_mm": 1.063,
+    "at": [
+     104.7,
+     66.84
+    ],
+    "length_mm": 230.28,
+    "what": "the 1.0 lip (by design; ring over the whole lip)"
+   },
+   {
+    "plane": "ribs below the PCB",
+    "class": "wall thinner than 1.2",
+    "width_max_mm": 1.1,
+    "at": [
+     168.41,
+     125.56
+    ],
+    "length_mm": 2.69,
+    "what": "H6 tail wall beside the jogged cell wall, 1.1 at Z_PCB (GF-1.1 h6_wall_min, by design)"
+   }
+  ],
+  "thin_gaps": [],
+  "steel_knife_edges": [],
+  "frame_step": "C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.step"
+ },
+ "flex_test": {
+  "cases": [
+   {
+    "case": "glass_t 2.0",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 81.1308,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.217
+     ],
+     "z": [
+      -13.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "2.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -11.42,
+     "Z_FLANGE_BACK": -8.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -6.42,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2175,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "glass_t 4.0",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 85.8252,
+    "faces": 885,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.252
+     ],
+     "z": [
+      -15.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "4.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -13.42,
+     "Z_FLANGE_BACK": -10.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -8.42,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2524,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "glass_t 1.1 (snap)",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 77.6972,
+    "faces": 852,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.202
+     ],
+     "z": [
+      -12.52,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "1.1 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -10.52,
+     "Z_FLANGE_BACK": -7.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -5.42,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2017,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_sheet 0.8",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 83.8221,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.238
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "0.8 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -12.62,
+     "Z_FLANGE_BACK": -10.12,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -7.62,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2384,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_sheet 1.5",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 82.629,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.226
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.5 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -11.92,
+     "Z_FLANGE_BACK": -9.42,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -6.92,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2262,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_opt 1.0",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 84.7705,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.235
+     ],
+     "z": [
+      -15.12,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "1.0 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -13.12,
+     "Z_FLANGE_BACK": -10.62,
+     "Z_LAND": -11.12,
+     "Z_LANDPLATE_BACK": -8.62,
+     "Z_TUBE_TOP": -8.12,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2349,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "border 17.5",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 82.0387,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -11.39,
+      219.09
+     ],
+     "y_down": [
+      -14.33,
+      150.235
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "17.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -12.42,
+     "Z_FLANGE_BACK": -9.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -7.42,
+     "glass_y1": 126.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2349,
+     "f_y1": 137.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "border 20.5",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 86.8531,
+    "faces": 891,
+    "bbox_abs": {
+     "x": [
+      -14.39,
+      222.09
+     ],
+     "y_down": [
+      -17.33,
+      150.99
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "20.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -12.42,
+     "Z_FLANGE_BACK": -9.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -7.42,
+     "glass_y1": 129.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.99,
+     "f_y1": 140.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "border 20.5 + g_bend 5.1",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 86.1369,
+    "faces": 891,
+    "bbox_abs": {
+     "x": [
+      -14.39,
+      222.09
+     ],
+     "y_down": [
+      -17.33,
+      150.99
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "20.5 mm",
+     "g_bend": "5.1 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -12.42,
+     "Z_FLANGE_BACK": -9.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -7.42,
+     "glass_y1": 129.99,
+     "bend_y1": 124.1,
+     "fl_y1": 150.99,
+     "f_y1": 140.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "default",
+    "healthy": true,
+    "timeline_unhealthy": [],
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 83.4819,
+    "faces": 889,
+    "bbox_abs": {
+     "x": [
+      -12.39,
+      220.09
+     ],
+     "y_down": [
+      -15.33,
+      150.235
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "params": {
+     "glass_t": "3.0 mm",
+     "t_sheet": "1.0 mm",
+     "t_opt": "0.3 mm",
+     "border": "18.5 mm",
+     "g_bend": "3.0 mm"
+    },
+    "levels": {
+     "Z_FLANGE_FRONT": -12.42,
+     "Z_FLANGE_BACK": -9.92,
+     "Z_LAND": -10.42,
+     "Z_LANDPLATE_BACK": -7.92,
+     "Z_TUBE_TOP": -7.42,
+     "glass_y1": 127.99,
+     "bend_y1": 122.0,
+     "fl_y1": 150.2349,
+     "f_y1": 138.99
+    },
+    "unfilleted_concave_roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   }
+  ],
+  "note": "every case recomputes the whole design (all components); every parameter returned to its default and the default state recomputed last (script 71, TAG final)"
+ },
+ "deviations_from_concept": [
+  {
+   "item": "flange bottom edge",
+   "concept": "flange_y1_bottom 150.20",
+   "model": "150.235 at the flange front (parting plane) = 150.20 at Z_LAND",
+   "reason": "the bottom wall's outer face (tr_y1 + wall = 150.20 at Z_LAND, 1 deg, unchanged from GF-1.1) is continued to the flange front so wall and flange edge are ONE flush face; 150.20 at the flange front would leave a 0.035 step or thin the wall"
+  },
+  {
+   "item": "floors behind the bridge at glass 1.1 (flex variant)",
+   "concept": "flat at 1.1 (5.3)",
+   "model": "Z_FLOOR_LOW = min(Z_FLANGE_BACK; Z_LANDPLATE_BACK - 1.0): at glass 1.1 the tail pocket / cell floors over the flange are at Z -8.92 (flange 1.6 there) instead of flat -7.92 (2.6); glass 2.0 / 3.0 / 4.0 unchanged",
+   "reason": "one topology at every glass_t: with a flat floor the late-block cut ends the GF-1.1 cell fillets in-line and the rule fillet fails at the level snap (flex test 71 frame_v1)"
+  },
+  {
+   "item": "bridge pocket face draft",
+   "concept": "y 122.00 'Z_LAND .. -9.42 flat'",
+   "model": "y 122.00 at Z_LAND, 1 deg widening to the back (122.017 at -9.42)",
+   "reason": "slot faces 1 deg (concept 5.3 moulding note 3)"
+  },
+  {
+   "item": "divider rib ends",
+   "concept": "y 122.0 .. 147.7",
+   "model": "front face coplanar with the bridge pocket face, back end buried 0.5 into the bottom wall; low part to Z_PCB in front of the tail-wall step (129.0 at Z_PCB), high part to Z_TROUGH_TOP",
+   "reason": "concept 'floor -> Z 0 for y < 129, -> +4.05 beyond'"
+  },
+  {
+   "item": "cell ribs over the flange plate",
+   "concept": "cells: front = land plate + step wall + flange plate",
+   "model": "the GF-1.1 cell ribs (boss-to-beam, across) are cut by the lowered floor and re-made from Z_FLOOR_LOW to Z_CELL_RIB_TOP in the same planes",
+   "reason": "ribs must stand on the lowered floor"
+  }
+ ],
+ "moulding_notes": {
+  "bridge_feed": "the 128.8 mm bridge (land plate 2.5 + step wall + flange plate) is tied to the bottom wall by the flange plate along its full length and by the divider rib (2.5) in the middle; fill/warp simulation still required (the land's inner edge carries the bond line)",
+  "slot_shut_off": "the bend-gap slot is the only through-opening at the bottom: 3.0 x 128.8; A (recess core) / B (tail-pocket core) shut-off on its outline at Z_LAND; along the bridge edge the 0.3 break moves the shut-off line 0.3 up the slot face (formed by the A core)",
+  "nose": "R1.5 on the B side (pocket core), 1.0 of flat pocket face left above the 0.3 break; the divider rib's front face is coplanar with the pocket face and interrupts the nose (R0.5 roots blend into it)",
+  "thin_land_edge": "bead inner edge 1.09 from the pocket face, 0.79 from the break edge (bead squeeze-out risk, concept risk 4)"
+ },
+ "sharp_inside_corners": [
+  "8 pip roots (land Z -10.42)",
+  "4 corner-pad roots on the flange front, F1-F4 (tape margin)",
+  "seat-ring root on the flange front (tape margin)",
+  "shelf back <-> bottom pocket wall, 2 segments (v2 corners 3 / 4)",
+  "pilot and relief floors (blind holes), as v2",
+  "GF-2.0: the tail-pocket corners at the shelf end (bend-gap slot front face x side walls, y 119.1) as GF-1.1"
+ ],
+ "scripts_GF-2.0": [
+  "66_gf20_drop_s8_f5_f8.py",
+  "67_gf20_params_border_bridge.py",
+  "68_gf20_bottom_late_block.py",
+  "69_gf20_divider_rib_profiles.py",
+  "70_gf20_tails.py",
+  "71_gf20_flex_test.py",
+  "72_gf20_snap_fix.py",
+  "73_gf20_rules_wallfront.py",
+  "74_gf20_rule_w_all_edges.py",
+  "75_gf20_disc_front.py",
+  "76_gf20_scan.py",
+  "77_gf20_coring_taper_fix.py",
+  "78_gf20_fit_parts_gaps.py",
+  "79_gf20_fit_tails.py",
+  "80_gf20_fit_board.py",
+  "81_gf20_fasteners.py",
+  "82_gf20_scratch_export_measure.py",
+  "83_gf20_renders.py",
+  "84_gf20_save_export.py",
+  "85_gf20_docinfo.py",
+  "gf20_params_update.py",
+  "gf20_thickness_check.py",
+  "build_gf20_reports.py",
+  "diag_gf20_*.py"
+ ],
+ "renders": [
+  "Fusion_FrameGF_back.png",
+  "Fusion_FrameGF_closeup_bridge_tail_pocket_front.png",
+  "Fusion_FrameGF_closeup_corner_F1_back_tube_rib.png",
+  "Fusion_FrameGF_closeup_corner_F1_lip_seat_ring_pad_slot.png",
+  "Fusion_FrameGF_closeup_land_pip_P1.png",
+  "Fusion_FrameGF_closeup_tail_pocket_back.png",
+  "Fusion_FrameGF_front.png",
+  "Fusion_FrameGF_iso_back.png",
+  "Fusion_FrameGF_iso_front.png",
+  "Fusion_FrameGF_section_left_edge_y66.83.png",
+  "Fusion_FrameGF_section_right_edge_y60.png",
+  "Fusion_GF20_assembly_front_R4.png",
+  "Fusion_GF20_assembly_front_S4.png",
+  "Fusion_GF20_back.png",
+  "Fusion_GF20_bottom_edge_bridge_nose_closeup.png",
+  "Fusion_GF20_bottom_edge_bridge_tails_back.png",
+  "Fusion_GF20_bottom_edge_bridge_tails_front.png",
+  "Fusion_GF20_front.png",
+  "Fusion_GF20_section_x103.85_TFT_tail.png",
+  "Fusion_GF20_section_x150.0_TFT_wide_part.png",
+  "Fusion_GF20_section_x60.0_CTP_tail.png",
+  "Fusion_GF20_section_x79.92_divider_rib.png"
+ ]
+}

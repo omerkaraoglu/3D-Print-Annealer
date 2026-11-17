@@ -11,11 +11,20 @@ sys.path.insert(0, r"C:\Users\lenovo\Documents\Projects\3D Printer Filament Drye
 import gflib as L
 importlib.reload(L)
 
+# GF-2.0 (stage 4, script 66): the S8 components 'Weld studs S8 F5-F8 (hidden)' and 'Washers, nuts, spacers S8 F5-F8
+# (hidden)' were deleted (S8 dropped); 'Tails GF-2.0 (bent-back route)' added by script 70.
 PART_COMPS = ["Glass", "Optical bond", "Formex sheet", "Bead", "VHB tape strips", "Oven sheet", "Weld studs S4 F1-F4",
-              "Washers + nyloc nuts S4 F1-F4", "Rivets R4 F1-F4 (hidden)", "Weld studs S8 F5-F8 (hidden)",
-              "Washers, nuts, spacers S8 F5-F8 (hidden)", L.CHECK_COMP]
-VARIANT = {"Rivets R4 F1-F4 (hidden)": "R4", "Weld studs S8 F5-F8 (hidden)": "S8",
-           "Washers, nuts, spacers S8 F5-F8 (hidden)": "S8", L.CHECK_COMP: "check", "Oven sheet R4 (rivet holes)": "R4"}
+              "Washers + nyloc nuts S4 F1-F4", "Rivets R4 F1-F4 (hidden)", L.CHECK_COMP]
+TAIL_COMP = "Tails GF-2.0 (bent-back route)"
+VARIANT = {"Rivets R4 F1-F4 (hidden)": "R4", L.CHECK_COMP: "check", "Oven sheet R4 (rivet holes)": "R4"}
+
+
+def tails():
+    """[(body name, body proxy)] of the GF-2.0 tail solids (empty before script 70)"""
+    o = L.occ_by_comp(TAIL_COMP, False)
+    if o is None:
+        return []
+    return [(o.bRepBodies.item(i).name, o.bRepBodies.item(i)) for i in range(o.bRepBodies.count)]
 
 
 def frame():

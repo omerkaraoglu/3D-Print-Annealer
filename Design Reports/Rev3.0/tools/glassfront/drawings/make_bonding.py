@@ -1,5 +1,6 @@
-"""Bonding and assembly aids: frame-front plan 1:1 (land, bead path, pips, tape strips, corner dabs, F1-F8 slots with
-their axes, Formex sheet carried over from v2 as reference) - A3 sheet (PDF + PNG) and a DXF (front view).
+"""Bonding and assembly aids: frame-front plan 1:1 (land, bead path, pips, tape strips, corner dabs, F1-F4 slots with
+their axes, the GF-2.0 bend-gap slot, Formex sheet carried over from v2 as reference) - A3 sheet (PDF + PNG) and a DXF
+(front view).
 
   <venv>/Scripts/python.exe make_bonding.py   -> Mechanical/Rev3.0_GlassFront/drawings/GF_BondingAids.{dxf,pdf,png}
 """
@@ -13,15 +14,17 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from gf_common import (Params, Choices, Rect, OUT_DIR, n, n2, tr, new_dxf, dxf_poly, dxf_rect, dxf_text,
-                       stadium_pts, bulge_to_points)
-from gf_geom import Geom
+                       stadium_pts, bulge_to_points, rev_note, master_ref,
+                       s8_withdrawn_rev)
+from gf_geom import Geom, gap_temperatures
 from gf_draft import Sheet, View, THICK, THIN, XTHIN, MM_PER_PT, lw
 
 LAYERS = [("FLANGE_REF", 8, "CONTINUOUS"), ("SLOTS", 1, "CONTINUOUS"), ("COUNTERBORES", 1, "DASHED"),
           ("SLOT_AXES", 1, "CENTER"),
           ("LAND", 7, "CONTINUOUS"), ("BEAD", 250, "CONTINUOUS"), ("BEAD_CL", 250, "DASHED"),
           ("PIPS", 6, "CONTINUOUS"), ("TAPE", 3, "CONTINUOUS"), ("DABS", 30, "CONTINUOUS"),
-          ("GLASS_REF", 5, "DASHED"), ("FORMEX_REF", 200, "DASHDOT"), ("TEXT", 7, "CONTINUOUS")]
+          ("GLASS_REF", 5, "DASHED"), ("FORMEX_REF", 200, "DASHDOT"), ("BEND_SLOT", 1, "CONTINUOUS"),
+          ("TEXT", 7, "CONTINUOUS")]
 C_BEAD, C_TAPE, C_DAB, C_PIP, C_SLOT, C_FMX, C_REF = "#555555", "#2e8b57", "#e08a00", "#b0308f", "#c0392b", \
     "#7b4fa0", "#3b6fb6"
 
@@ -74,6 +77,7 @@ def write_dxf(path, P, C, G):
     dxf_rect(msp, G.window, "GLASS_REF")
     fm, _ = G.formex()
     dxf_rect(msp, fm, "FORMEX_REF")
+    dxf_rect(msp, G.slot_bg, "BEND_SLOT")                 # GF-2.0: the only through-opening at the bottom
     g = G.flange
     dxf_text(msp, "GF BONDING AIDS - %s - FRAME FRONT PLAN = FRONT VIEW (u right, v up), origin = glass centre, mm" %
              P.revision, g.x0, g.y0 - 8.0, 3.0)
@@ -83,9 +87,12 @@ def write_dxf(path, P, C, G):
         dxf_text(msp, t, u, v, 1.8)
     for k, w_, b0, b1, bp in side_rows(G):
         if k.startswith("front-view right"):
-            dxf_text(msp, "LAND %s (abs left)" % n(w_), G.pocket.x1 + 0.5, 0.0, 1.8)
+            dxf_text(msp, "LAND %s (abs left)" % n(w_), G.pocket.x1 + 0.5, 4.0, 1.8)    # clear of MIRROR-REF
         elif k.startswith("front-view left"):
-            dxf_text(msp, "LAND %s (abs right)" % n(w_), G.glass.x0 + 0.5, 0.0, 1.8)
+            dxf_text(msp, "LAND %s (abs right)" % n(w_), G.glass.x0 + 0.5, 4.0, 1.8)
+    sl = G.slot_bg
+    dxf_text(msp, "BEND_SLOT = bend-gap slot %s x %s, through (tails pass here); land %s to the bridge face" % (
+        n(sl.w), n(sl.h), n(G.lands()["bottom over the tail span"])), sl.x0, sl.y1 + 1.6, 1.8)
     doc.saveas(path)
 
 
@@ -102,6 +109,7 @@ def plan(sh, P, C, G, ox, oy):
     # land (between the recess wall = lip inner face and the pocket faces)
     V.rrect(G.lip_in, ec="k", w=THIN, fc="#f4f1e6", geom=False)
     V.poly(G.land_inner, ec="k", w=THIN, fc="white", geom=False)
+    V.rrect(G.slot_bg, ec="k", w=THIN, fc="#5f6670", geom=False, hatch="////")      # through-opening (GF-2.0)
     for r in (G.lip_out, G.seat_out):
         V.rrect(r, ec="0.4", w=XTHIN, geom=False)
     # bead band
@@ -169,18 +177,29 @@ def plan(sh, P, C, G, ox, oy):
     # land / bead labels per side (inside the pocket, short leaders)
     rows = {k: (w_, b0, b1, bp) for k, w_, b0, b1, bp in side_rows(G)}
     pk = G.pocket
-    lab = [("front-view right (abs left)", (pk.x1, 12.0), (pk.x1 - 3.0, 12.0), "right"),
-           ("front-view left (abs right)", (pk.x0, 12.0), (pk.x0 + 3.0, 12.0), "left"),
-           ("top", (-35.0, pk.y1), (-35.0, pk.y1 - 4.0), "left"),
-           ("bottom (over the tail-pocket beam)", (-35.0, G.tail_pocket.y0), (-35.0, G.tail_pocket.y0 + 4.0),
-            "left")]
-    for k, p, t, ha in lab:
+    sl = G.slot_bg
+    lab = [("front-view right (abs left)", (pk.x1, 12.0), (pk.x1 - 3.0, 12.0), "right", ""),
+           ("front-view left (abs right)", (pk.x0, 12.0), (pk.x0 + 3.0, 12.0), "left", ""),
+           ("top", (-35.0, pk.y1), (-35.0, pk.y1 - 4.0), "left", ""),
+           ("bottom over the tail span", (-32.0, sl.y0), (-32.0, sl.y1 + 2.7), "left", ""),
+           ("bottom outside the tail span", (-72.0, pk.y0), (-72.0, pk.y0 + 6.5), "left", "")]
+    for k, p, t, ha, extra in lab:
         w_, b0, b1, bp = rows[k]
         px, py = V.P(*p)
         tx, ty = V.P(*t)
         sh.L([px, tx], [py, ty], w=XTHIN, geom=False)
-        sh.T(tx + (-0.5 if ha == "right" else 0.5), ty, "land %s, bead -> pocket %s" % (n(w_), n(bp)), fs=6.3,
-             ha=ha, va="center")
+        if k == "bottom over the tail span":       # to the bridge pocket face (bend-gap slot edge)
+            txt = "land %s, bead -> face %s, -> break edge %s" % (
+                n(w_), n(bp), n2(G.break_edge_notes()["land_plane"]))
+        else:
+            txt = "land %s, bead -> pocket %s%s" % (n(w_), n(bp), extra)
+        sh.T(tx + (-0.5 if ha == "right" else 0.5), ty, txt, fs=6.3, ha=ha, va="center", bg="white")
+    # the bend-gap slot (through-opening; the tails pass here)
+    px, py = V.P(30.0, (sl.y0 + sl.y1) / 2.0)
+    tx, ty = V.P(30.0, sl.y1 + 6.7)
+    sh.L([px, tx], [py, ty], w=XTHIN, geom=False)
+    sh.T(tx + 0.5, ty, "BEND-GAP SLOT %s x %s (through)" % (n(sl.h), n(sl.w)), fs=6.3, va="center",
+         weight="bold")
     # labels outside
     return V
 
@@ -201,12 +220,13 @@ def make(out_dir=OUT_DIR):
     sh.T(16.0, 279.0, "FRAME FRONT PLAN - bonding and assembly aids   1 : 1  (print A3 at 100 %)", fs=8.5,
          weight="bold")
     sh.T(16.0, 274.5, "Front view = frame front facing you (land up for dispensing). Grey band = bead after "
-                      "squeeze; magenta = pips; green = VHB strips; orange = corner dabs; red = slots F1-F8.", fs=6.3)
+                      "squeeze; magenta = pips; green = VHB strips; orange = corner dabs; red = slots F1-F4; hatched "
+                      "= bend-gap slot.", fs=6.3)
     # ---------------------------------------------------------------- right column: tables
     x = 262.0
-    y = 268.0
+    y = 276.0                       # GF-2.0 correction pass: the column needs the room up to the sheet title
     cb_, _ = G.fastener_cuts()
-    sh.T(x, y, "FASTENERS F1-F8 (slot %s x %s, counterbore %s x %s, axis to the glass centre)" % (
+    sh.T(x, y, "FASTENERS F1-F4 (slot %s x %s, counterbore %s x %s, axis to the glass centre)" % (
         n(G.slot_w), n(G.slot_l), n(cb_["cb_w"]), n(cb_["cb_l"])), fs=7, weight="bold")
     rows = [["F", "u", "v", "axis deg", "variants", "front pad"]]
     for k, f in G.F.items():
@@ -237,30 +257,52 @@ def make(out_dir=OUT_DIR):
     y -= 6.0
     sh.T(x, y, "LAND AND BEAD PER SIDE (front view)", fs=7, weight="bold")
     lrow = [["side", "land", "bead from-to", "bead->pocket"]]
+    pk_note = P.item("plan_rectangles", "pocket")["note"]
+    m_pk = re.search(r"Where the land ends \(Z_LAND \+ ([\d.]+)\) the bead-to-pocket margins are .*?abs left ([\d.]+), "
+                     r"abs right ([\d.]+), top ([\d.]+), bottom outside the tail span ([\d.]+); the smallest is over "
+                     r"the bridge: ([\d.]+) to the edge of the ([\d.]+) x 45 land break \(([\d.]+) to the pocket-face "
+                     r"plane", pk_note)
+    assert m_pk, ("master pocket note: at-land margins not found", pk_note)
+    pkv = [float(m_pk.group(i)) for i in range(1, 9)]
+    P._use("plan_rectangles.pocket.note ~ at-land margins", pkv)
+    z_end, brk_edge, face_plane = pkv[0], pkv[5], pkv[7]
+    # master land notes: bead -> break edge MEASURED where the land ends (Z_LAND + 0.01, pocket note) and on the LAND
+    # PLANE (= A1, the rule value quoted here: 1.36 - 0.30); each compared with its geometry (gf_geom.break_edge_notes)
+    be = G.break_edge_notes()
+    assert be["ok"], ("master land notes vs land / break geometry", be)
+    b_lp, margin = be["land_plane"], round(be["land_plane"] - G.bead_pocket_min, 3)
+    assert margin >= 0.0, ("bead -> break edge below the A1 rule", be)
     for k, w_, b0, b1, bp in side_rows(G):
-        lrow.append([k, n(w_), "%s - %s" % (n(b0), n(b1)), n(bp)])
-    y = sh.table(x, y - 1.0, [0, 66, 84, 116], lrow, fs=6.0, widths=146)
+        cell = n(bp) if k != "bottom over the tail span" else "%s (%s to break)" % (n(bp), n2(b_lp))
+        lrow.append([k, n(w_), "%s - %s" % (n(b0), n(b1)), cell])
+    y = sh.table(x, y - 1.0, [0, 66, 84, 112], lrow, fs=6.0, widths=146)
     dr = (P.level("Z_SEAT") - P.level("Z_LAND")) * math.tan(math.radians(P.val("carried_over_from_v2", "draft")))
-    # master pocket note (GF-1.1 round 3): pocket defined at Z_SEAT, 0.10 larger per side at the land; minimum
-    # bead -> pocket at the land per side; the bottom value is to the tail-pocket face, defined at the land
-    pk_rx = r"0\.10 larger per side at the land.*minimum bead-to-pocket is ([\d.]+) \(abs left; right ([\d.]+), " \
-            r"top ([\d.]+); the bottom ([\d.]+) is to the tail-pocket bottom face, which is defined at the land"
-    pk_m = [P.num("plan_rectangles", pk_rx, i, name="pocket") for i in (1, 2, 3, 4)]
+    # The clearance pocket is defined at Z_SEAT (0.10 larger per side at the land), the bridge pocket face at Z_LAND.
+    # The master pocket note states the margins where the land ends; they are read from it and checked against the
+    # lands table + draft (and the break geometry) - a mismatch stops the run.
     at_land = {}
     for k, w_, b0, b1, bp in side_rows(G):
-        at_land[k] = bp if k.startswith("bottom") else bp - dr
-    calc = [at_land["front-view right (abs left)"], at_land["front-view left (abs right)"], at_land["top"],
-            at_land["bottom (over the tail-pocket beam)"]]
-    for a, b in zip(calc, pk_m):
-        assert abs(round(a, 2) - b) < 0.006, ("bead -> pocket at the land differs from the master pocket note",
-                                               calc, pk_m)
-    for ln in sh.wrap("Land and bead -> pocket are master values at Z_SEAT, where the clearance pocket is defined (%s "
-                      "deg draft). At the land the pocket is %s larger per side, so on the two sides and the top both "
-                      "are %s smaller there (bead -> pocket %s / %s / %s, min %s >= %s). The bottom %s is to the "
-                      "tail-pocket face, which is defined at the land (master pocket note)." % (
-                          n(P.val("carried_over_from_v2", "draft")), "%.2f" % dr, "%.2f" % dr,
-                          n(pk_m[0]), n(pk_m[1]), n(pk_m[2]), n(min(pk_m[:3])), n(G.bead_pocket_min), n(pk_m[3])),
-                      146.0, 5.6):
+        at_land[k] = bp if k == "bottom over the tail span" else bp - dr
+    flat_l = be["flat_land"]
+    rows_b = {k: (w_, bp) for k, w_, b0, b1, bp in side_rows(G)}
+    assert abs(rows_b["bottom over the tail span"][0] - G.land_break - flat_l) < 1e-6
+    assert abs(rows_b["bottom over the tail span"][1] - G.land_break - be["land_plane"]) < 0.006
+    assert abs(be["measured"] - brk_edge) < 1e-9 and abs(be["face_plane"] - face_plane) < 1e-9
+    calc_m = [at_land["front-view right (abs left)"], at_land["front-view left (abs right)"], at_land["top"],
+              at_land["bottom outside the tail span"],
+              rows_b["bottom over the tail span"][1] - (G.land_break - z_end), rows_b["bottom over the tail span"][1]]
+    for a_, b_ in zip(calc_m, [pkv[1], pkv[2], pkv[3], pkv[4], brk_edge, face_plane]):
+        assert abs(round(a_, 2) - b_) < 0.006, ("at-land margins differ from the master pocket note", calc_m, pkv)
+    assert abs(pkv[6] - G.land_break) < 1e-9
+    for ln in sh.wrap("Land and bead -> pocket at Z_SEAT, where the clearance pocket is defined (%s deg draft); "
+                      "where the land ends (Z_LAND + %s) the margins are %s / %s / %s (sides, top) and %s (bottom "
+                      "outside the tail span) - master pocket note. Over the tail span the land %s ends at the bridge "
+                      "pocket face (defined at the land) with a %s x 45 deg break: bead -> break edge %s on the land "
+                      "plane (%s where the land ends), -> face plane %s; A1 bead_pocket_min %s met with %s (verified, "
+                      "master). Squeeze-out check: note 5." % (
+                          n(P.val("carried_over_from_v2", "draft")), n(z_end), n2(pkv[1]), n2(pkv[2]), n2(pkv[3]),
+                          n2(pkv[4]), n(rows_b["bottom over the tail span"][0]), n(G.land_break), n2(b_lp),
+                          n2(brk_edge), n2(face_plane), n(G.bead_pocket_min), n2(margin)), 146.0, 5.6):
         y -= 2.6
         sh.T(x, y, ln, fs=5.6, color="0.3")
     # dispense + tape notes
@@ -290,9 +332,15 @@ def make(out_dir=OUT_DIR):
                                                                       n2(sl["top_bottom"]), n2(sl["sides"]),
                                                                       n(G.tape_margin)),
         "Corner dabs (orange): %s; applied after the liner is removed, just before mounting." % dab,
-        "F1-F4 have the dia %s front pads (hard stops on the sheet); F5-F8 are flat (S8 adds a %s shim as the "
-        "hard stop)." % (n(G.pad_d), re.search(r"(DIN 988 [\d.]+ x [\d.]+ x [\d.]+) shim",
-                                               P.text("fasteners.hardware", "spacer_S8")).group(1)),
+        "BOTTOM LAND over the tail span: %s from the bridge pocket face to the glass edge, %s x 45 deg break on its "
+        "inner edge; the bead inner edge is %s from the break edge (land plane; >= %s, margin only %s) and %s from "
+        "the pocket-face plane. REQUIRED CHECK on the first article and on every bonding batch at the bridge: no "
+        "adhesive may reach the break edge or the bend-gap slot over the whole %s - reject otherwise. Dispense on "
+        "the centre line only." % (
+            n(rows_b["bottom over the tail span"][0]), n(G.land_break), n2(b_lp), n(G.bead_pocket_min), n2(margin),
+            n2(face_plane), n(G.slot_bg.w)),
+        "F1-F4 have the dia %s front pads (hard stops on the sheet); there are no mid-side fasteners (S8 "
+        "withdrawn at %s)." % (n(G.pad_d), s8_withdrawn_rev(P)),
         "Formex sheet (purple, reference only; master plan_rectangles 'formex', %s): panel outline - %s per side, "
         "R%s, %s thick (Z %s to %s), PSA on the shelf front face before the panel goes in." % (
             fmx_i["status"], n(fmx_i["inset"]), n(fmx_i["R"]), n(round(fmx_i["z"][1] - fmx_i["z"][0], 3)),
@@ -312,11 +360,18 @@ def make(out_dir=OUT_DIR):
         "Formex (PSA) onto the shelf front face of the frame, before the panel goes in.",
         "Prime the land, dispense the bead (this sheet). Prime the strips zone on the flange (VHB primer).",
         "J2 (GF-D30): glass + panel face-down on the plate; pull the 3 stop pins; set 8 PTFE centring shims "
-        "against the glass edges (graded set %s: %s); lower the frame on the 4 pins until the lip top lands on the "
-        "plate; weight on the flange." % (fmt(js), rule["en"]),
+        "against the glass edges (graded set %s: %s); fold both tails up at the panel edge (%s straight, R%s) and "
+        "hold them vertical on the guide card in the tail holder TH; lower the frame on the 4 pins - the tails "
+        "pass the %s bend-gap slot without touching the bead - until the lip top lands on the plate; weight on the "
+        "flange (GF-D30 sheet 2)." % (fmt(js), rule["en"], n(P.d("tail_straight_l0")), n(P.d("tail_R_in_min")),
+                                      n(G.g_bend)),
         "Cure: %s." % C("cure"),
-        "Check: %s." % C("j2_checks"),
-        "Apply the four VHB strips (this sheet), liner on. PCB on the 9 bosses, tails into J10 / J11 (as v2).",
+        "Check: %s; REQUIRED: no adhesive on the land-break edge or in the bend-gap slot (see note 5)." %
+        C("j2_checks"),
+        "After the cure (card and TH already removed, GF-D30 sheet 2): fold each tail over the R%s bridge nose into "
+        "its compartment (seen from the back: CTP left of the divider rib, TFT right), never tighter than the nose. "
+        "Apply the four VHB strips (this sheet), liner on. PCB on the 9 bosses, tails into J10 / J11." % (
+            n(G.nose_R)),
         "Mounting: %s." % C("mount_procedure").format(shims="graded set %s, %d of each: %s" % (
             fmt(ms), ms_n, rule["en"])),
         "Inspection: %s." % C("flush_check"),
@@ -327,8 +382,8 @@ def make(out_dir=OUT_DIR):
     ga = C("gap_acceptance")
     # bottom-left, under the plan (left of the title block)
     xg, yg = 16.0, 49.0
-    sh.T(xg, yg, "GAP ACCEPTANCE  (finished module, feeler gauge, %d °C, every side and corner)" % ga["temp_C"],
-         fs=7.0, weight="bold")
+    sh.T(xg, yg, "GAP ACCEPTANCE  (finished module, feeler gauge, %d °C, every side and corner; rule unchanged at "
+                 "%s)" % (ga["temp_C"], P.revision), fs=7.0, weight="bold")
     rows = [["gap", "when", "sides", "corners"],
             ["g2  glass edge - lip inner face (nominal %.2f)" % G.g2, "step 6, after the J2 cure",
              "%.2f - %.2f" % tuple(ga["g2_sides"]), ga["corners"]["en"]],
@@ -351,26 +406,32 @@ def make(out_dir=OUT_DIR):
            "is below %.2f (2 x %.2f + 0.10); above that, centre by eye and check against the limits." % (
                G.g2, g2a[0], g2a[1], n(o_t), g2b[0], g2b[1], n(o_f), G.g1, g1a[0], g1a[1], n(c_t), n(l_t),
                2 * smax + 0.10, smax))
+    gtv = gap_temperatures(P)          # verified values (master gaps notes); raises if missing
+    der += (" Over temperature (master, verified at %s; nominal sides, 50 / 70 ppm): g2 -20 °C %s / %s, +70 °C %s / "
+            "%s; g1 hot (frame +70, sheet +50 °C) %s / %s, -20 °C %s / %s. At the tolerance limits with 70 ppm g2 can "
+            "touch cold (%s) and g1 hot (%s) - harmless (master gaps notes)." % (
+                P.revision, n2(gtv["g2_cold_50"]), n2(gtv["g2_cold_70"]), n2(gtv["g2_hot_50"]),
+                n2(gtv["g2_hot_70"]), n2(gtv["g1_hot_50"]), n2(gtv["g1_hot_70"]), n2(gtv["g1_cold_50"]),
+                n2(gtv["g1_cold_70"]), n2(gtv["g2_touch_wc"]), n2(gtv["g1_touch_wc"])))
     for ln in sh.wrap(der, 236.0, 5.6):
         yg -= 2.6
         sh.T(xg, yg, ln, fs=5.6, color="0.3")
     today = datetime.date.today().isoformat()
     sh.title_block({
         "title": "BONDING AND ASSEMBLY AIDS - GF",
-        "subtitle": "frame front plan: land, bead, pips, VHB strips, corner dabs, F1-F8, Formex (ref.)",
-        "source": "all dimensions (Formex included) from Rev3.0_GlassFront_params.json %s" % P.revision,
+        "subtitle": "frame front plan: land, bead, pips, VHB strips, corner dabs, F1-F4, bend-gap slot, Formex",
+        "source": "all dimensions (Formex included) from %s" % master_ref(P),
         "project": "in-house use; files: GF_BondingAids.dxf (front view) + this sheet",
-        "change": "%s round 3: Formex from the master; pocket footnote per the master (Z_SEAT, %s at the land); "
-                  "S8 shim DIN 988 %s; graded J2 / mounting shims; gap acceptance limits." % (
-                      P.revision, "%.2f" % dr,
-                      re.search(r"DIN 988 ([\d.]+ x [\d.]+ x [\d.]+) shim",
-                                P.text("fasteners.hardware", "spacer_S8")).group(1)),
+        "change": "%s. Bead path %s, strips %s / %s; bottom land %s + %s break: bead %s to the break edge (A1 met); "
+                  "squeeze-out check at the bridge required." % (
+                      rev_note(P), n(per, 1), n2(sl["top_bottom"]), n2(sl["sides"]),
+                      n(rows_b["bottom over the tail span"][0]), n(G.land_break), n2(b_lp)),
         "dwg": "GF-D20", "rev": P.revision, "scale": "1:1", "date": today, "drawn": "make_bonding.py",
     }, w=146.0, h=40.0)
     issues = sh.check_layout()
     sh.save(base + ".pdf", base + ".png", dpi=200)
     return {"files": [base + ".dxf", base + ".pdf", base + ".png"], "layout_issues": issues,
-            "params_used": sorted(P.used.keys()), "choices_used": C.used, "notes": notes, "lowest_y": round(y, 1),
+            "params_used": dict(sorted(P.used.items())), "choices_used": C.used, "notes": notes, "lowest_y": round(y, 1),
             "bead_path_mm": round(per, 2), "bead_volume_ml": round(vol, 3)}
 
 

@@ -1,5 +1,5 @@
 {
- "about": "Values used on the GF drawings that are NOT defined in the frozen master Rev3.0_GlassFront_params.json (GF-1.1): reference data quoted from the research reports R1/R2 and the concept, jig design values, inspection limits and drafting choices. Each item is a judgement call for the lead to confirm; drawings_report.json lists which drawing uses which item. Product geometry (glass, cut-out, lip, holes, strips, pips, fasteners) is never taken from here.",
+ "about": "Values used on the GF drawings that are NOT defined in the frozen master Rev3.0_GlassFront_params.json (GF-2.0; first written for GF-1.1): reference data quoted from the research reports R1/R2 and the concept, jig design values, inspection limits and drafting choices. Each item is a judgement call for the lead to confirm; drawings_report.json lists which drawing uses which item. Product geometry (glass, cut-out, lip, holes, strips, pips, fasteners) is never taken from here.",
  "items": [
   {
    "name": "qty_glass",
@@ -23,7 +23,7 @@
    "name": "stud_perpendicularity_deg",
    "value": 1.0,
    "unit": "deg",
-   "source": "PROPOSAL (GF-D01 / GF-D02, round 3): no source states one. 16 x tan 1 deg = 0.28 at the tip of the M4 x 16 stud; with the +-0.3 axis position that is 0.58 < 0.70 radial clearance of the M4 stud across the 5.4 slot. 2 deg (0.56 at the tip) would use the whole clearance."
+   "source": "PROPOSAL (GF-D01, round 3): no source states one. 16 x tan 1 deg = 0.28 at the tip of the M4 x 16 stud; with the +-0.3 axis position that is 0.58 < 0.70 radial clearance of the M4 stud across the 5.4 slot. 2 deg (0.56 at the tip) would use the whole clearance."
   },
   {
    "name": "display_px",
@@ -38,7 +38,7 @@
    "name": "section_u",
    "value": -25.0,
    "unit": "mm",
-   "source": "drafting: typical edge section A-A on the top edge at u = -25, clear of F1/F5 and the pips"
+   "source": "drafting: typical edge section A-A on the top edge at u = -25, clear of F1 and the pips"
   },
   {
    "name": "ink_black",
@@ -159,7 +159,7 @@
    "name": "j2_stop_u",
    "value": 60.0,
    "unit": "mm",
-   "source": "judgement: two stops on the top edge at u = +-60, one on the side edge at v = 0"
+   "source": "judgement: two stops on the top edge at u = +-60, one on the side edge at v = 0 (they follow the glass outline of the master)"
   },
   {
    "name": "j2_shim",
@@ -410,8 +410,95 @@
   },
   {
    "name": "frame_lip_texture",
-   "value": "lip top and lip outer face: plain mould finish, black (material colour, no paint); texture VDI 3400 Ref 24 as a priced option (owner decision D9)",
-   "source": "concept sec. 4.6; design document sec. 2 / D9"
+   "value": "lip top and lip outer face: plain mould finish, black (material colour, no paint); texture VDI 3400 Ref 24 as a priced option (the owner's decision on the lip finish, design document section 4)",
+   "source": "concept sec. 4.6; design document section 4 (the owner's decision on the lip finish)"
+  },
+  {
+   "name": "j2_tail_holder",
+   "value": {
+    "post_d": 12.0,
+    "post_hole_depth": 15.0,
+    "post_offset": 15.0,
+    "post_h": 160.0,
+    "clip_height": [
+     100.0,
+     140.0
+    ]
+   },
+   "unit": "mm (post dia g6 in a H7 hole, hole depth, post centre beyond the flange bottom edge, post height, clip height range above the plate)",
+   "source": "GF-2.0 judgement (concept_gf2.md 5.3 'a removable post with a clip or a Kapton tab', risk 3 'J2 tail holder'): removable steel post at u 0 on the tail side of the plate, swing arm with a spring clip (PTFE-faced jaws) that holds the top of the tail guide card over the bend-gap slot line; the arm swings away while the frame is threaded on and back once the card is through the slot"
+  },
+  {
+   "name": "j2_tail_card",
+   "value": {
+    "t": 0.25,
+    "w": 120.0,
+    "top": 100.0,
+    "bottom": 9.0,
+    "tab_w": 6.0,
+    "tab_min": 25.0
+   },
+   "unit": "mm (card thickness, width, card top and bottom above the plate, Kapton tab width, lowest tab height above the plate)",
+   "source": "GF-2.0 judgement: PET (or PEEK) guide card on the PANEL side of the vertical tails (so the 0.70 tail -> bridge face clearance is not used up), bottom above both bends and above the panel back, top above the TFT tail end; tails tacked to it with polyimide (Kapton) tape tabs only above the frame back (>= 25 above the plate) so the tabs can be peeled from behind once the frame is down; the stiff card finds the 3.0 slot when the frame is threaded on"
+  },
+  {
+   "name": "tg_gauge",
+   "value": {
+    "depth": 15.0,
+    "pad_len": 12.0,
+    "material": "POM-C (acetal), machined, black or natural",
+    "tol_g": [
+     0.02,
+     0.0
+    ],
+    "tol_R": 0.05,
+    "tol_h": 0.05,
+    "flat": 0.02,
+    "ra_nose": 0.8
+   },
+   "unit": "mm (gauge depth away from the panel, end-pad length, material, slot +/-, nose R +-, height +-, base flatness, nose Ra um)",
+   "source": "GF-2.0 judgement for GF-D21 (concept_gf2.md 2.4 item 6: 'fold both tails over a 3.0 mm gauge block held against the panel edge (with an R1.5 edge)'): end pads touch the panel edge face outside the tail span so the gauge forms the 3.0 bend-gap slot with the panel edge; its height = the land-plate back above the CTP front (bridge nose height); POM so the tails cannot be scratched; tolerance +0.02/0 so a passing tail never passes only because the gauge is small"
+  },
+  {
+   "name": "tg_test",
+   "value": {
+    "cycles": 3,
+    "hold_min": 5,
+    "mag": 10,
+    "exit_z_tol": 0.3
+   },
+   "unit": "fold / unfold cycles, minutes held folded, inspection magnification x, exit-height band (mm) inside which the route is insensitive",
+   "source": "GF-2.0 judgement (GF-D21 test steps): 3 gentle cycles and 5 min held folded before the lift / bond inspection at 10x; exit height band +-0.3 = concept_gf2.md 2.3 tolerance case 'exit Z +-0.3' (clearance change < 0.2) - beyond it the clearances are to be re-checked"
+  },
+  {
+   "name": "frame_bend_face_tol",
+   "value": 0.05,
+   "unit": "mm",
+   "source": "PROPOSAL (GF-D50, GF-2.0): bridge pocket face y 122.00 +-0.05 to datum B. +0.05 keeps bead -> face >= 1.04 (master bead_pocket_min 1.0 against the nominal 1.09); -0.05 takes 0.05 of the 0.45 tail clearance in g_bend"
+  },
+  {
+   "name": "frame_nose_R_tol",
+   "value": [
+    0.2,
+    0.0
+   ],
+   "unit": "mm (+, -)",
+   "source": "PROPOSAL (GF-D50, GF-2.0): nose R1.5 +0.2/0 - never smaller (master bend_nose_R note: a pulled tail must never be bent tighter than tail_R_in_min); larger only shortens the 1.0 flat of the pocket face"
+  },
+  {
+   "name": "frame_land_break_tol",
+   "value": [
+    0.05,
+    0.1
+   ],
+   "unit": "mm (+, -)",
+   "source": "PROPOSAL [P] (GF-D50, GF-2.1): land break 0.3 +0.05 / -0.10 x 45 deg. The bead -> break-edge margin is only 0.060 (1.06 on the land plane against A1 bead_pocket_min 1.0, master open_findings.margins_note_GF-2.1): a 0.05 larger break leaves 1.01, a +-0.1 band would let the bead come to 0.96; a smaller break only adds margin. For the owner's decision"
+  },
+  {
+   "name": "frame_rib_pos_tol",
+   "value": 0.2,
+   "unit": "mm",
+   "source": "PROPOSAL (GF-D50, GF-2.0): divider rib position +-0.2 (2.85 to each tail edge, master div_x note); thickness and heights per TG5"
   }
  ]
 }

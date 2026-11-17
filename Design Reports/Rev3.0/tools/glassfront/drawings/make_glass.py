@@ -19,7 +19,7 @@ from matplotlib.path import Path
 from matplotlib.patches import PathPatch
 
 from gf_common import (Params, Choices, Rect, OUT_DIR, BRAND_DIR, n, n2, tr, new_dxf, dxf_poly, dxf_rect,
-                       dxf_text, bulge_to_points)
+                       dxf_text, bulge_to_points, rev_note, master_ref, prev_rev)
 from gf_geom import Geom
 from gf_draft import Sheet, View, THICK, THIN, XTHIN, MM_PER_PT, lw
 
@@ -56,7 +56,9 @@ def glass_data(P, C, G):
     d["rim"] = C("print_rim_max")
     d["ink_strength"] = (P.num("print", r"(\d+) -> about (\d+) MPa", 1, name="ink"),
                          P.num("print", r"(\d+) -> about (\d+) MPa", 2, name="ink"))
-    d["R_old"], d["R_new"] = P.change("plan_rectangles.glass.R")
+    d["glass_old"], d["glass_new"] = P.change("plan_rectangles.glass")     # previous -> current outline (abs)
+    d["border"] = P.d("border")
+    d["logo_glass_min"] = P.num("logo_zone", r">= ([\d.]+) from the glass edge", name="logo_h")
     d["edge_txt"] = P.text("drawing_tolerances.glass", "edge")
     d["edge_note"] = P.item("drawing_tolerances.glass", "edge")["note"]
     d["arris"] = (P.num("drawing_tolerances.glass", r"arris ([\d.]+)-([\d.]+)", 1, name="edge"),
@@ -71,6 +73,9 @@ def glass_data(P, C, G):
     d["logo_h_note"] = P.item("logo_zone", "logo_h")["note"]
     d["stroke_min"] = P.num("logo_zone", r"strokes >= ([\d.]+)", name="logo_h")
     d["logo_gap"] = P.num("logo_zone", r">= ([\d.]+) from the window", name="logo_h")
+    # the zone must meet the master's own logo_h rule (logo_centre corrected 2026-11-16)
+    assert G.window.y0 - G.logo.y1 >= d["logo_gap"] - 1e-6 and \
+        G.logo.y0 - G.glass.y0 >= d["logo_glass_min"] - 1e-6, ("logo zone violates the logo_h rule", G.logo)
     d["qty"] = C("qty_glass")
     d["ovens"] = C("qty_ovens")
     d["spare_pct"] = int(round(100.0 * (d["qty"] - d["ovens"]) / d["ovens"]))
@@ -102,8 +107,9 @@ def write_dxf(path, P, C, G, gd):
     dxf_text(msp, "PRINT_BLACK = black ink area (outer boundary %s inside the outline, window removed; solid hatch "
              "for film output). Mirror for the printing screen (see GF_Glass_Print_1to1.pdf)." %
              n(gd["setback_nom"]), g.x0, g.y0 - 12.0, 2.2)
-    dxf_text(msp, "LOGO_ZONE = reserved %s x %s (artwork not released). BEAD_ZONE_REF = adhesive bond band "
-             "(reference)." % (n(G.logo.w), n(G.logo.h)), g.x0, g.y0 - 15.5, 2.2)
+    dxf_text(msp, "LOGO_ZONE = reserved %s x %s max, %s from the window, %s from the glass edge (artwork not "
+             "released). BEAD_ZONE_REF = adhesive bond band (reference)." % (
+                 n(G.logo.w), n(G.logo.h), n(G.window.y0 - G.logo.y1), n(G.logo.y0 - g.y0)), g.x0, g.y0 - 15.5, 2.2)
     for a, b in f_mark(g.x0 + 12.0, g.y1 + 5.0, F_MARK_H):
         msp.add_line(a, b, dxfattribs={"layer": "TEXT"})
     dxf_text(msp, "TOP - orientation mark reads correctly from the FRONT", g.x0 + 20.0, g.y1 + 7.0, 2.5)
@@ -133,22 +139,27 @@ def plan(sh, P, C, G, gd, ox, oy):
     V.centreline((g.x0 - 5, 0), (g.x1 + 5, 0))
     V.centreline((0, g.y0 - 2), (0, g.y1 + 5))
     x0, y0 = V.P(0, 0)
-    sh.T(x0 + 1.5, y0 + 1.2, "glass centre (datum)", fs=6.0, allow_geom=True)
     wc = w.c
     xw, yw = V.P(*wc)
     sh.circle(xw, yw, 1.0, ec="k", w=XTHIN, geom=False)
-    sh.dim_v(x0, y0, xw, yw, x0 - 8.0, None)
-    sh.T(x0 - 9.5, (y0 + yw) / 2, "%s" % n(wc[1]), fs=6.5, ha="right", va="center", rot=90)
-    sh.T(xw + 1.8, yw + 1.2, "window centre", fs=6.0)
+    if abs(wc[0]) < 1e-6 and abs(wc[1]) < 1e-6:
+        # GF-2.0: equal borders -> the window centre IS the glass centre (master plan_points)
+        sh.T(x0 + 1.8, y0 + 1.2, "glass centre = window centre (datum)", fs=6.0, allow_geom=True)
+    else:
+        sh.T(x0 + 1.5, y0 + 1.2, "glass centre (datum)", fs=6.0, allow_geom=True)
+        sh.dim_v(x0, y0, xw, yw, x0 - 8.0, None)
+        sh.T(x0 - 9.5, (y0 + yw) / 2, "%s" % n(wc[1]), fs=6.5, ha="right", va="center", rot=90)
+        sh.T(xw + 1.8, yw + 1.2, "window centre", fs=6.0)
     # labels inside
     sh.T(*V.P(w.x0 + 6.0, w.y1 - 8.0), "WINDOW (clear, no ink)  %s x %s ±%s, R%s" % (
         n2(w.w), n2(w.h), n(gd["win_tol"]), n(w.R)), fs=7, ha="left")
-    sh.T(*V.P(w.x0 + 6.0, (w.y0 + G.panel.y0) / 2.0), "BLACK PRINT on face 2 (seen through the glass)", fs=6.5,
+    sh.T(*V.P(w.x0 + 6.0, (w.y1 + g.y1) / 2.0), "BLACK PRINT on face 2 (seen through the glass)", fs=6.5,
          ha="left", va="center")
-    sh.T(*V.P(G.logo.x0 + 3.0, G.logo.c[1] + 2.5), "LOGO ZONE (reserved)", fs=6.3, ha="left", color="#1f77b4",
-         va="center")
-    sh.T(*V.P(G.logo.x0 + 3.0, G.logo.c[1] - 2.0), "artwork not released", fs=6.0, ha="left", color="#1f77b4",
-         va="center")
+    sh.T(*V.P(G.logo.x0 + 3.0, G.logo.c[1] + 4.3), "LOGO ZONE (reserved, max)", fs=6.3, ha="left",
+         color="#1f77b4", va="center")
+    sh.T(*V.P(G.logo.x0 + 3.0, G.logo.c[1] + 1.3), "%s from the window, %s from the glass edge; artwork: note 11" % (
+        n(w.y0 - G.logo.y1), n(G.logo.y0 - g.y0)), fs=6.0, ha="left", color="#1f77b4", va="center",
+         bg="#c8c8c8")                  # print-grey box: the vertical centre line does not run through the text
     # top chain: border | window | border; overall
     top = V.P(0, g.y1)[1]
     xa, xb = V.P(g.x0, 0)[0], V.P(g.x1, 0)[0]
@@ -159,12 +170,12 @@ def plan(sh, P, C, G, gd, ox, oy):
     sh.dim_h(xwb, ywt, xb, yg, top + 7.0, "%s ±%s" % (n(g.x1 - w.x1), n(gd["p2e"])), fs=7)
     sh.dim_h(xa, yg, xb, yg, top + 14.0, "%s ±%s  (±%s fallback, note 3)" % (
         n2(g.w), n(gd["outline_tol"]), n(gd["outline_fallback"])), fs=7.5)
-    # left chain: top border | window | chin; overall
+    # left chain: top border | window | bottom border (GF-2.0: all four borders equal); overall
     left = V.P(g.x0, 0)[0]
     yb, ywb = V.P(0, g.y0)[1], V.P(0, w.y0)[1]
     sh.dim_v(left, yg, xwa, ywt, left - 7.0, "%s ±%s" % (n(g.y1 - w.y1), n(gd["p2e"])), fs=7)
     sh.dim_v(xwa, ywt, xwa, ywb, left - 7.0, "%s ±%s" % (n2(w.h), n(gd["win_tol"])), fs=7)
-    sh.dim_v(xwa, ywb, left, yb, left - 7.0, "%s ±%s (chin)" % (n2(w.y0 - g.y0), n(gd["p2e"])), fs=7)
+    sh.dim_v(xwa, ywb, left, yb, left - 7.0, "%s ±%s" % (n(w.y0 - g.y0), n(gd["p2e"])), fs=7)
     sh.dim_v(left, yb, left, yg, left - 14.0, "%s ±%s  (±%s fallback, note 3)" % (
         n2(g.h), n(gd["outline_tol"]), n(gd["outline_fallback"])), fs=7.5)
     # radii
@@ -174,12 +185,14 @@ def plan(sh, P, C, G, gd, ox, oy):
     sh.radius(cx, cy, w.R, 45, "4x R%s (window)" % n(w.R), L=6.0, fs=6.5, inside=True)
     # logo zone dims
     lz = G.logo
-    yl = V.P(0, lz.y0)[1] - 5.0
+    yl = V.P(0, g.y0)[1] - 4.5                      # below the glass edge (the zone is only 2.5 above it)
     sh.dim_h(*V.P(lz.x0, lz.y0), *V.P(lz.x1, lz.y0), yl, "%s max" % n(lz.w), fs=6.5,
              text_at=(V.P(-lz.w / 4.0, 0)[0], yl + 0.6))
     sh.dim_v(*V.P(lz.x1, lz.y0), *V.P(lz.x1, lz.y1), V.P(lz.x1, 0)[0] + 5.0, "%s max" % n(lz.h), fs=6.5,
              side="right")
     sh.dim_v(*V.P(lz.x0, lz.c[1]), *V.P(lz.x0, g.y0), V.P(lz.x0, 0)[0] - 6.0, n(lz.c[1] - g.y0), fs=6.5)
+    sh.T(V.P(lz.x0, 0)[0] - 8.0, V.P(0, lz.c[1])[1] + 0.8, "zone centre", fs=5.6, ha="right", va="bottom",
+         color="0.3")
     # orientation mark
     fx, fy = 15.0, top + 9.0
     for a_, b_ in f_mark(0, 0, 7.0):
@@ -273,8 +286,9 @@ def notes_text(P, C, G, gd):
     inkt = C("ink_tests")
     en = [
         "VIEW: this drawing and GF_Glass.dxf show the glass seen from the FRONT (face 1, user side). The PRINT is on "
-        "FACE 2 (back, bonded face). GF_Glass_Print_1to1.pdf is the print seen from face 2 (mirrored). The chin "
-        "(%s border) is at the BOTTOM." % n2(w.y0 - g.y0),
+        "FACE 2 (back, bonded face). GF_Glass_Print_1to1.pdf is the print seen from face 2 (mirrored). All four "
+        "borders are %s (%s); the logo zone is at the BOTTOM, the orientation mark F at the top left." % (
+            n(gd["border"]), P.revision),
         "Glass: %s; thickness and strengthening per the option table (default %s). One thickness lot "
         "per batch." % (C("glass_standards")["base"], n(gd["glass_t"])),
         "Outline %s x %s: ±%s on length and width requested (CNC-ground edge); ±%s acceptable if ±%s cannot be "
@@ -289,19 +303,19 @@ def notes_text(P, C, G, gd):
         "Flatness <= %s over the %s x %s optical bond zone, <= %s over the pane (free on a surface plate, feeler)."
         % (n(gd["flat"]), n(gd["flat_zone"][0], 0), n(gd["flat_zone"][1], 0), n(gd["flat_pane"])),
         "Print order: %s. Black: %s." % (gd["layers_txt"], inkb),
-        "Window %s x %s ±%s, R%s; window to the glass edges ±%s (borders %s / %s / %s, chin %s). The window is "
-        "aligned to the display at bonding, not to the glass edges." % (
+        "Window %s x %s ±%s, R%s; window to the glass edges ±%s (borders %s / %s / %s / %s, equal on all four "
+        "sides). The window is aligned to the display at bonding, not to the glass edges." % (
             n2(w.w), n2(w.h), n(gd["win_tol"]), n(w.R), n(gd["p2e"]), n(w.x0 - g.x0), n(g.x1 - w.x1),
-            n(g.y1 - w.y1), n2(w.y0 - g.y0)),
+            n(g.y1 - w.y1), n(w.y0 - g.y0)),
         "Ink: %s. Tests: %s. Supply %d printed coupons per ink lot." % (gd["ink_txt"], inkt, gd["samples"][1]),
         "PRINT RIM AT THE ARRIS: the %s-%s x 45 deg arris on face 2 cannot carry ink. An unprinted rim up to %s wide, "
         "measured from the outline, is allowed at the arris; the black must be continuous on the flat face up to the "
         "arris line. Supplier to confirm print-to-edge capability (setback %s-%s on the flat face) on the first "
         "samples." % (n(gd["arris"][0]), n(gd["arris"][1]), n(gd["rim"]), n(gd["setback"][0]),
                       n(gd["setback"][1])),
-        "Logo (layer 1, colour): reserved zone %s x %s max, strokes >= %s, >= %s from the window; artwork will be "
-        "released separately - quote one extra screen." % (n(G.logo.w), n(G.logo.h), n(gd["stroke_min"]),
-                                                           n(gd["logo_gap"])),
+        "Logo (layer 1, colour): zone %s x %s max in the bottom border, %s from the window and %s from the glass "
+        "edge (master logo_zone); strokes >= %s. Artwork to follow - quote one extra screen." % (
+            n(G.logo.w), n(G.logo.h), n(w.y0 - G.logo.y1), n(G.logo.y0 - g.y0), n(gd["stroke_min"])),
         "Face 2 is a bond surface (LOCA and silicone bead): no silicone, release agent, tape or protective film on "
         "face 2. A protective film on face 1 is allowed (removed before bonding).",
         "Cosmetics (%s): window: %s; border: %s; edge: %s." % (cos["view"], cos["window_A"], cos["border_B"],
@@ -313,8 +327,8 @@ def notes_text(P, C, G, gd):
     ]
     trn = [
         "GÖRÜNÜŞ: Resim ve DXF camı ÖN yüzden (1. yüz, kullanıcı tarafı) gösterir. BASKI 2. YÜZE (iç yüz, "
-        "yapıştırılan yüz) yapılır; GF_Glass_Print_1to1.pdf baskıyı 2. yüzden (ayna/ters) gösterir. Çene (%s) ALTTA."
-        % n2(w.y0 - g.y0),
+        "yapıştırılan yüz) yapılır; GF_Glass_Print_1to1.pdf baskıyı 2. yüzden (ayna/ters) gösterir. Dört kenar "
+        "boşluğu eşit, %s mm; logo bölgesi ALTTA." % n(gd["border"]),
         "Ölçü %s x %s: boy ve en ±%s mm istenir (CNC taşlanmış kenar); ±%s verilemiyorsa ±%s mm kabul edilir - "
         "teklifte hangisini verdiğinizi belirtiniz (sektör toleransı ±1 mm KABUL EDİLMEZ). Delik ve çentik yok. "
         "Tüm kenar işlemleri temperden önce." % (n2(g.w), n2(g.h), n(gd["outline_tol"]), n(gd["outline_tol"]),
@@ -331,8 +345,11 @@ def notes_text(P, C, G, gd):
         "Baskı (serigrafi, 2. yüz): önce logo rengi, sonra pencere hariç her yer siyah (RAL 9005 / Pantone Black 6 C, "
         "OD >= 4), toplam %s-%s µm; cam kenarına kadar (kenardan geri çekme %s-%s mm)." % (
             n(gd["ink_t"][0], 0), n(gd["ink_t"][1], 0), n(gd["setback"][0]), n(gd["setback"][1])),
-        "Pencere %s x %s ±%s mm, R%s; pencere-kenar toleransı ±%s mm." % (
-            n2(w.w), n2(w.h), n(gd["win_tol"]), n(w.R), n(gd["p2e"])),
+        "Pencere %s x %s ±%s mm, R%s; pencere-kenar toleransı ±%s mm (dört kenarda %s mm)." % (
+            n2(w.w), n2(w.h), n(gd["win_tol"]), n(w.R), n(gd["p2e"]), n(gd["border"])),
+        "Logo (1. katman, renkli): ayrılmış bölge en fazla %s x %s mm, alt kenar boşluğunda; pencereden %s mm, cam "
+        "kenarından %s mm; çizgi >= %s. Logo çizimi ayrıca verilecek - bir ek elek fiyatlayınız." % (
+            n(G.logo.w), n(G.logo.h), n(w.y0 - G.logo.y1), n(G.logo.y0 - g.y0), n(gd["stroke_min"])),
         "PAH ÜZERİNDE BASKI: 2. yüzdeki %s-%s mm x 45° pah boya tutmaz; pahta, cam kenarından ölçülen en fazla %s mm "
         "baskısız şerit kabul edilir. Siyah, düz yüzeyde pah çizgisine kadar kesintisiz olmalıdır. Kenara kadar baskı "
         "yeteneğini (düz yüzeyde %s-%s mm geri çekme) ilk numunelerde teyit ediniz." % (
@@ -364,24 +381,25 @@ def make_sheet(P, C, G, gd, base):
         ly -= 2.9
     # edge detail 10:1
     sh.T(262.0, 279.0, "EDGE PROFILE  10 : 1", fs=8.5, weight="bold")
-    edge_detail(sh, P, gd, xs0=330.0, yf=262.0, k=10.0)
+    edge_detail(sh, P, gd, xs0=338.0, yf=268.0, k=10.0)
     # thickness options
     sh.T(16.0, 93.0, "THICKNESS / STRENGTHENING OPTIONS (not yet decided - quote all)  -  Kalınlık seçenekleri "
                      "(henüz karar verilmedi - hepsine fiyat veriniz)", fs=7.0, weight="bold")
     yt = thickness_table(sh, P, C, gd, 16.0, 91.0)
     # notes
     en, trn = notes_text(P, C, G, gd)
-    ye = sh.notes(232.0, 218.0, 87.0, en, fs=5.7, head="NOTES", head_fs=7.2, gap=0.4)
-    yr = sh.notes(322.0, 218.0, 88.0, trn, fs=5.7, head="NOTLAR (Türkçe)", head_fs=7.2, gap=0.4)
+    ye = sh.notes(232.0, 224.0, 87.0, en, fs=5.7, head="NOTES", head_fs=7.2, gap=0.4)
+    yr = sh.notes(322.0, 224.0, 88.0, trn, fs=5.7, head="NOTLAR (Türkçe)", head_fs=7.2, gap=0.4)
     today = datetime.date.today().isoformat()
     sh.title_block({
         "title": "COVER GLASS, PRINTED - GF",
         "subtitle": "Rev3.0 OVEN CONTROLLER glass front  /  serigrafi baskılı temperli ön cam, %d adet" % gd["qty"],
-        "source": "all dimensions from Rev3.0_GlassFront_params.json %s (%s)" % (P.revision, P.status),
+        "source": "all dimensions from %s; border and g_bend gated by the real-panel fold test GF-D21" % master_ref(P),
         "project": "files: GF_Glass.dxf (front view) + GF_Glass_Print_1to1.pdf (artwork, face 2 view) + this sheet",
-        "change": "%s round 3: corner R%s %s one-sided with the corner-template wording; outline ±%s requested "
-                  "(±%s fallback, to be stated in the quotation)." % (
-                      P.revision, n(G.glass.R), gd["R_tol_txt"], n(gd["outline_tol"]), n(gd["outline_fallback"])),
+        "change": "%s. Glass %s x %s (%s %s x %s), window unchanged, centred; logo zone %s x %s max, centre y %s." % (
+            rev_note(P), n2(G.glass.w), n2(G.glass.h), prev_rev(P), n2(gd["glass_old"][1] - gd["glass_old"][0]),
+            n2(gd["glass_old"][3] - gd["glass_old"][2]), n(G.logo.w), n(G.logo.h),
+            n2(P.val("logo_zone", "logo_centre")[1])),
         "dwg": "GF-D10", "rev": P.revision, "scale": "1:1, 10:1", "date": today, "drawn": "make_glass.py",
     }, h=42.0)
     issues = sh.check_layout()
@@ -431,9 +449,10 @@ def make_artwork(P, C, G, gd, path_pdf, path_png):
     ax.text(70, 14.0, "100 mm - check after printing at 100 %", fontsize=6, ha="center", color="0.3")
     txt = [
         "GF-D11 PRINT ARTWORK 1:1 - %s - seen from the PRINTED face (face 2): MIRRORED, reads correctly from the "
-        "front" % P.revision,
+        "front; %s" % (P.revision, master_ref(P)),
         "BLACK = ink (layer 2, black, printed after the logo colour). Magenta = glass outline (cut line, not "
-        "printed). Cyan dashed = logo zone (layer 1, artwork not released).",
+        "printed). Cyan dashed = logo zone (layer 1, %s x %s max, artwork not released)." % (n(G.logo.w),
+                                                                                          n(G.logo.h)),
         "Window %s x %s R%s; black outer edge %s inside the outline (setback %s-%s); glass %s x %s R%s." % (
             n2(G.window.w), n2(G.window.h), n(G.window.R), n(gd["setback_nom"]), n(gd["setback"][0]),
             n(gd["setback"][1]), n2(g.w), n2(g.h), n(g.R)),
@@ -441,18 +460,33 @@ def make_artwork(P, C, G, gd, path_pdf, path_png):
     ]
     for i, t in enumerate(txt):
         ax.text(10, H - 8 - i * 4.2, tr(t) if i == 3 else t, fontsize=6.5, color="0.2")
-    ax.text(cx + g.x1 - 2, cy + g.y1 + 5, "orientation mark (mirrored F) = front-view TOP-LEFT", fontsize=5.5,
-            color="#0050a0", ha="right")
+    # label to the left of the mirrored F (the F's bars point to -x on this page)
+    ax.text(cx - (g.x0 + 12.0) - 0.6 * F_MARK_H - 2.5, cy + g.y1 + 5 + 0.5 * F_MARK_H,
+            "orientation mark (mirrored F) = front-view TOP-LEFT", fontsize=5.5, color="#0050a0", ha="right",
+            va="center")
     extra = ["Print rim: on the %s-%s x 45 deg arris of face 2 an unprinted rim up to %s from the outline" % (
                  n(gd["arris"][0]), n(gd["arris"][1]), n(gd["rim"])),
              "is allowed; confirm print-to-edge capability on the first samples.",
-             "%s: corner R%s -> R%s; the black outer edge follows the glass outline (%s inside)." % (
-                 P.revision, n(gd["R_old"]), n(gd["R_new"]), n(gd["setback_nom"]))]
+             "%s: glass %s x %s (%s %s x %s), equal %s border; logo zone %s x %s max; the black outer" % (
+                 P.revision, n2(g.w), n2(g.h), prev_rev(P), n2(gd["glass_old"][1] - gd["glass_old"][0]),
+                 n2(gd["glass_old"][3] - gd["glass_old"][2]), n(gd["border"]), n(G.logo.w), n(G.logo.h)),
+             "edge follows the glass outline (%s inside); window and its position to the AA unchanged." %
+             n(gd["setback_nom"])]
     for i, t in enumerate(extra):
         ax.text(132, 24.0 - i * 3.6, t, fontsize=5.6, color="0.2")
     fig.savefig(path_pdf)
     fig.savefig(path_png, dpi=150)
     plt.close(fig)
+    # register the artwork page with the sheet index, so make_all scans its texts as well (it is no Sheet)
+    import gf_draft
+
+    class _Art:
+        dwg, title, rev, issues = "GF-D11", "PRINT ARTWORK 1:1 (face 2, mirrored)", P.revision, []
+
+        @staticmethod
+        def all_text():
+            return [t.get_text() for t in ax.texts if t.get_text().strip()]
+    gf_draft.ALL_SHEETS.append(_Art)
     return {"page_mm": [W, H], "glass_centre_on_page": [cx, cy], "mirrored": True}
 
 
@@ -488,7 +522,7 @@ def run(out_dir=OUT_DIR):
     art = make_artwork(P, C, G, gd, os.path.join(out_dir, "GF_Glass_Print_1to1.pdf"),
                        os.path.join(prev, "GF_Glass_Print_1to1_preview.png"))
     return {"files": [base + ".dxf", base + ".pdf", base + ".png", os.path.join(out_dir, "GF_Glass_Print_1to1.pdf")],
-            "layout_issues": issues, "params_used": sorted(P.used.keys()), "choices_used": C.used,
+            "layout_issues": issues, "params_used": dict(sorted(P.used.items())), "choices_used": C.used,
             "notes_en": en, "notes_tr": trn, "artwork": art, "brand_logo_folder": brand_inventory(),
             "lowest_y": ylow, "print_outer": [gd["outer_print"].x0, gd["outer_print"].x1, gd["outer_print"].y0,
                                               gd["outer_print"].y1, gd["outer_print"].R]}

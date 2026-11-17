@@ -1,4 +1,4 @@
-# Glass-front frame GF-1.0 / GF-1.1 - independent verification toolchain (CadQuery / OCP / VTK)
+# Glass-front frame GF-1.0 / GF-1.1 / GF-2.0 / GF-2.1 - independent verification toolchain (CadQuery / OCP / VTK)
 
 Checks the injection-moulded glass-front frame that is delivered as a STEP (modelled in Fusion 360 by another
 agent) against the frozen specification `Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json`. Nothing of
@@ -136,6 +136,116 @@ still runs. New checks:
 - run_verify compares every condensed row with an archived run (`out/GF-1.0/summary.json`, or `--compare=<dir>`)
   and lists the changes in `summary.json` -> `changes_vs_previous_revision` (changed rows, new rows, rows no longer
   produced). GF-1.0 outputs and images are kept in `out/GF-1.0/` and `renders/verify/GF-1.0/`.
+
+## GF-2.0 (round 3, 2026-11-16)
+
+GF-1.1 outputs are archived in `out/GF-1.1/` and `renders/verify/GF-1.1/`; `summary.json` -> `changes_vs_previous_revision`
+compares with `out/GF-1.1/summary.json`. Every dimension is read from the GF-2.0 params (no chin, F1-F4 only, S4 / R4).
+- `vcommon.py`: GF-2.0 keys (g_bend, bend_nose_R, land_break, tail_*, div_*, flange_y1_bottom, bend_gap_slot / bridge /
+  divider_rib rectangles, tail_route, tape strip data); `GF11_STEP` (archive) as the second carry-over reference.
+- `tails_gf2.py` (new): the tails are built HERE from `tail_route.*.centreline_yZ` + `outline_developed` (thickness tail_t);
+  my own route generator reproduces the polylines (< 0.006) and makes the tolerance cases (panel edge +-0.35, exit Z +-0.3,
+  straight 1.0, R_in 1.8, length +-0.5). The CAD agent's tail bodies are not used; the DS1 model's own tails (GF-1.1 route)
+  are reported only for reference. Frame faces near the tails are classified (nose, break, pocket face, land-plate back,
+  rib, side walls, bottom wall, floor, step, shelf end ...) and the clearance is given per class.
+- A `spec_check.py`: bottom stations x 60 / 130 (bridge) and x 24 / 183 (outside the tail span); flange edge per side
+  (bottom = flange_y1_bottom); `gf2_bottom()`: pocket face y at Z_LAND + draft + direction, 0.3 x 45 break (width, height,
+  angle), R1.5 nose (circle fit, tangency), land plate / flange plate / bottom wall levels, bottom wall faces (flush with the
+  flange edge), slot open front to back (765 vertical rays) and its ends, shelf end, divider rib (faces, thickness, drafts,
+  front face coplanar, tops, step at 129, continuity), flange bottom edge, nothing at F5-F8. Tail-pocket corners / x limits
+  measured above the new floor and corrected by the draft. Tube-rib width across the rib (probe width x cos of the measured
+  rib angle; the rib runs to the glass corner, 10.8 deg off the slot axis at GF-2.0).
+- B `mould_check.py`: bridge planes and sections (x 60, 79.92, 103.85, 150, 24, y 135 across the rib), walls < 1.2 listed,
+  per-face draft values -> `Draft_map_GF-2.0.png`, per-face tool half; `bridge_mould()`: tool half of every face in the
+  slot zone, the A/B shut-off end points measured in the section and the steel angles of three shut-off options, section
+  areas / member thicknesses of the bridge.
+- B also: `sharp_inside_edges()` - every concave edge whose face normals differ by > 5 deg (no tangent round), grouped by
+  feature (GF-2.0 160, GF-1.1 162 by the same scan; none in the bridge / slot / rib / tail pocket).
+- C `carryover.py --ref v2|gf11`: v2 as before (+ divider rib, labelled on its own), and the archived GF-1.1 frame (only the
+  GF-2.0 change list explains a difference).
+- The reported run: full run 2026-11-16 03:00 (A-E, renders, sections; 111 PASS / 3 FAIL / 56 INFO), then `--only C,R`
+  (rib labelling vs v2, plan figure), then - after `params_gf20_post_verification_fix.py` (params sha256 2d181047... ->
+  662d8380...) - `--only C,D,E` on the same STEP sha256 7831768c...: 115 PASS / 1 FAIL / 56 INFO (the remaining FAIL is the
+  bead inner edge 0.80 from the land-break edge over the bridge, params `open_findings.2_bead_to_land_break`);
+  `summary.json` -> `partial_run` / `partial_run_of`. A and B were not re-run: they read no value the correction changed.
+  Then `params_gf20_post_verification_addendum.py` (params sha256 662d8380... -> 7439b098...; notes, open finding 2 fix
+  numbers, drawings item done, new `fold_test` block - no numeric value changed, 4 added in `fold_test`) and `--only D`
+  (the fit check quotes `open_findings.2_bead_to_land_break.fixes` in the bead row; nothing else reads a changed entry).
+- D `fit_check.py`: tape from the params, S4 with the weld-stud envelope dia 5.8 x 1.4 (+ the clean 5.7 x 1.4 of the GF-1.1
+  run) at centred / +-0.3 / slot-limit positions, R4 with the dia-14 x 1.6 R1.4 head, tails study (all classes, glass print,
+  LOCA, bead, Formex, panel, sheet, VHB, PCB body, every board model; 10 route cases), connector entry (J10 / J11 model
+  opening vs the tail end; the DS1 model's own fingers at the unmoved GF-1.1 position), bead-to-pocket at the land (GF-1.1
+  method) and to the pocket-face plane, equal border / centre rows, tape fully on the flange front.
+- E `calc_gf.py` + `grillage_port.py`: the concept grillage COPIED (concept_calc.py is never imported or executed any more;
+  the GF-1.1 calc executed part of it) and validated against the GF-1.1 concept numbers; measured ring sections per edge
+  (bridge-only and channel bounds); glass 1.1-4.0; 0.5 J impact; bead shear with d_allow = t sqrt(2e + e^2); gap tables
+  from the fit check; tape and fastener loads; bend-gap tolerance stack against the measured tail clearances.
+- Images: `Frame_*`, `Assembly_*` (with the GF-2.0 tails), `Bridge_tails_closeup_iso_back/low`, `Section_top_edge_x80`,
+  `Section_side_edge_left_y60`, `Section_bridge_CTP_tail_x60`, `Section_divider_rib_x79.92`, `Section_bridge_TFT_tail_x103.85`,
+  `Section_bridge_TFT_wide_part_x150`, `Section_corner_F1_slot_axis`, `Plan_lip_glass_cutout_Z-14.10`,
+  `Plan_frame_and_bottom_zone_tails`, `Plan_corner_cells_Z-6.0`, `Plan_counterbores_F1_F4_stud_envelope`,
+  `Connector_entry_J10_J11_tail_ends`, `Thickness_map_GF-2.0`, `Draft_map_GF-2.0`.
+
+## GF-2.0 post-verification corrections (2026-11-16, lead decisions on the verification findings)
+
+- `params_gf20_post_verification_fix.py` (new; run once, refuses a second run): corrects the master params after the
+  verification - notes, criteria and check results only (revision stays GF-2.0, frame STEP unchanged); the only changed
+  geometry value is the logo-zone centre y 118.74 -> 117.99 (print artwork, not in the frame). It adds the blocks
+  `tail_clearance_criteria` and `open_findings`, rewrites the shut-off rule (`cad_rules`, still exactly one "shut-off A/B"),
+  lists the R0.5 shelf-end rounds in `cad_rules`, and adds `change_log.post_verification_corrections_2026-11-16`. It checks
+  first that its writer reproduces the master byte for byte (JSON indent 1, ASCII, CRLF), keeps the original in
+  `out/params_before_post_verification_fix.json`, writes every numeric leaf before / after to `out/params_fix_numeric_diff.json`
+  and the corrections to the CAD reports to `Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame_report_errata.json`.
+  The bend-zone clearances it records are computed in 3D with the same functions as the fit check (`tails_gf2`).
+- Tail criteria (params `tail_clearance_criteria`, read by `tails_gf2.bend_zone_criterion`): `loop_clr` 1.5 applies to the
+  loops and the tail-pocket walls, rib, bottom wall, flange plate, land-plate back and slot ends (nominal route). The bend
+  zone (R1.5 nose, pocket face y 122.0, land break) has its own criterion: >= 0.45 with the panel at its RSS position
+  (0.31: AA->outline 0.2, J1 0.1, print-to-edge 0.2, J2 0.05, core shift 0.05) and > 0 at the worst case (panel +0.60,
+  exit Z +-0.3, tail 0.35). New route cases in `variant_routes`: RSS, two WC, two "print-to-edge +-0.1" WC, panel-only WC
+  (thickness and inner radius follow the case: centre radius = tail_R_in_min + t/2).
+- Fit rows: "outside the bend zone >= loop_clr", "bend zone nominal / RSS", "bend zone worst case > 0" (with the
+  open-finding note), "minimum over every route case > 0"; the bead row (0.80 < 1.0) stays FAIL and quotes
+  `open_findings.2_bead_to_land_break`. Calc section 7 gives the bend-zone table and the corrected g_bend budget
+  (0.5 + 1.5 + 0.30 + 0.45 + 0.31 = 3.06 vs the border-18.5 limit 3.09). The carry-over vs GF-1.1 explains the R0.5
+  rounds from the new `cad_rules` entry. `summary.json` lists the remaining FAILs in words and the params `open_findings`.
+- `params_gf20_post_verification_addendum.py` (new, same method; run after the fix, refuses a second run): bead -> break edge
+  0.80 measured (Z_LAND + 0.01; 0.79 on the land plane itself) in the land_break and lands notes, open finding 2 quotes the
+  common border-19.0 fix (g_bend 3.23, land 6.26, bead to break 1.06), the drawings item of `to_be_reverified_at_GF-2.0`
+  marked done, new block `fold_test` (GF-D21: slot 3.00, feeler 0.70 = tail outer surface within 2.30 of the panel edge;
+  exact feeler for the 3.09 limit 0.67). Backup `out/params_before_post_verification_addendum.json`, diff
+  `out/params_addendum_numeric_diff.json`; the errata file gets the new sha (`params_sha256_after_addendum`, history).
+
+## GF-2.1 (border 19.0, g_bend 3.23; 2026-11-16)
+
+GF-2.0 outputs are archived in `out/GF-2.0/` and `renders/verify/GF-2.0/` (with the GF-2.0 params-fix backups and diffs);
+`summary.json` -> `changes_vs_previous_revision` compares with `out/GF-2.0/summary.json`. Toolchain changes:
+- `vcommon.py`: `PREV_TAG` / `PREV_STEP` / `PREV_PARAMS` (the previous release in the archive, GF-2.0), `Context.prev`.
+- C `carryover.py --ref prev`: GF-2.1 vs the GF-2.0 release; `explain_prev` allows only the divider-rib front face following
+  the bridge pocket face (y 122.00 -> 122.23) in the slab Z >= -5.0 (measured 2.9 mm3, nothing else).
+- `tails_gf2.py`: frame-face classes keyed by revision-neutral labels (`K_*`, `BEND_KEYS`); the y limits come from the params
+  (bend_gap_slot.y1, bridge.y1, tail_pocket.y1).
+- D `fit_check.py`: new row 'bead inner edge -> land-break edge ON the land plane' (break face probed 0.01..0.15 behind the
+  land, extrapolated to Z_LAND - A1 as it is defined); new rows 'the concept's intent >= 0.45 at the full worst case' (PASS /
+  FAIL with the margin); tape area expected from the params strips (no typed value).
+- E `calc_gf.py`: previous-release columns read from `out/GF-2.0/calc.json` (no typed GF-1.1 values); g_bend budget limit
+  with the A1 land measured to the break edge: land = bead_edge + bead_w + bead_pocket_min + land_break = 6.20 (GF-2.0 used
+  5.9 to the pocket face, which hid the GF-2.0 bead FAIL in the budget); g_bend at exactly 0.45 reported both ways.
+- `run_verify.py`: carry-over vs the previous release; E rows: budget PASS if budget <= g_bend <= limit, the concept's intent
+  judged PASS / FAIL.
+- `params_gf21_verification_update.py` (new; refuses a second run, byte-exact writer check, backup
+  `out/params_before_GF21_verification_update.json`, diff `out/params_GF21_verification_numeric_diff.json`): rewrites
+  open_findings, tail_clearance_criteria, fold_test, the push / impact estimates, the g2 / g1 temperature notes, the bead
+  adhesive note, the bead -> break-edge notes (land_break, lands, pocket; wording the drawings toolchain parses) and marks
+  to_be_reverified_at_GF-2.1; no geometry value changes (asserted).
+- `params_gf21_addendum.py` (new, same discipline; backup `out/params_before_GF21_addendum.json`, diff
+  `out/params_GF21_addendum_numeric_diff.json`): cad_rules shut-off rule at the GF-2.1 figures (from cadcheck.json),
+  pip-to-glass 0.50 (the Fusion 0.52 named as to the glass substrate), open_findings margins note.
+- `params_gf21_addendum2.py` (new, same discipline; backup `out/params_before_GF21_addendum2.json`, diff
+  `out/params_GF21_addendum2_numeric_diff.json`): text only - statements about the state of the drawings, the design
+  document and the fold test reworded so they stay true whatever later work does (no numeric value changes, asserted).
+- The reported run: full run on frame STEP sha256 d734683a... with params 91ed2723... (120 PASS / 0 FAIL / 54 INFO), then the
+  params update (-> 6bb527b0...), the addendum (-> a019e9ae...), the second addendum (-> bec9e8fc...) and a FULL run on the
+  final master (summary.json cites bec9e8fc..., partial_run null).
 
 ## Known limits
 - The fit uses simple solids from the params (no glass arris, no adhesive fillets, tape at its compressed 1.0).

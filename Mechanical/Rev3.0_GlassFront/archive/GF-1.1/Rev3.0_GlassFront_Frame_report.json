@@ -1,0 +1,7864 @@
+{
+ "about": "Rev3.0 GlassFront carrier frame 'Frame GF', native parametric Fusion 360 part, stage 1 (frame) + stage 2 Part A (cell-corner fix) + stage 3 GF-1.1 (counterbores, boss coring, H6 cell, tail pocket, corner radii, F5-F8 blend). Built by Design Reports/Rev3.0/tools/glassfront/fusion/NN_*.py from the master Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json (GF-1.0). Units mm / deg; plan coordinates abs KiCad (x, y down); model X = x, Y = -y, Z = 0 at the PCB back, -Z to the oven front.",
+ "master_revision": "GF-1.1 (2026-11-15: GF-1.0 + stage-3 batch items 1-8 from the Fusion fit findings F1 / F2 and the CadQuery verification; see change_log)",
+ "document": {
+  "document": "Rev3.0 GlassFront",
+  "dataFile_id": "urn:adsk.wipprod:dm.lineage:XyXacwE-SnqsV-hz5pHg3w",
+  "version": 13,
+  "version_note": "frame geometry last changed in v13 (GF-1.1 lead round 2, counterbore 7.4 x 9.0); v10 first GF-1.1 build, v11 / v12 parameter comment only",
+  "project": "Oven",
+  "folder": "Rev3.0 OVEN CONTROLLER",
+  "component": "Frame GF",
+  "body": "Frame GF",
+  "attribute_guard": "gf/doc = Rev3.0 GlassFront",
+  "timeline_count": 85,
+  "timeline_count_frame_items": 85,
+  "timeline_count_document": 188,
+  "versions": {
+   "4": "stage 1 final",
+   "5": "Part A cell corners",
+   "6": "Part B layers + fasteners",
+   "7": "board STEP imported + positioned",
+   "8": "studs split from washers + nuts (36b)",
+   "9": "stage 2 final",
+   "10": "GF-1.1 geometry (stage 3, 48-56) - saved by 59, all exports taken from it",
+   "11": "GF-1.1: comment of user parameter cb_floor corrected (61, documentation only)",
+   "12": "identical to v11: the MCP executed the top-level wrapper of 61 twice (second save without changes)",
+   "13": "GF-1.1 lead round 2: counterbore cb_w 7.4 x cb_l 9.0 (62); saved by 59 (MSG round 2), every export (frame STEP / STL, assembly STEP, glass STEP, .f3d) taken from it"
+  },
+  "timeline_unhealthy": [],
+  "isModified": false
+ },
+ "exports": {
+  "step": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.step (component 'Frame GF', 1 solid, 922 faces; exported from v13 by 59 = 25 verbatim)",
+  "step_file": {
+   "bytes": 1747323,
+   "mtime": "2026-11-15 17:29:54 +03:00",
+   "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82"
+  },
+  "stl": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.stl (binary, high refinement, from v13)",
+  "stl_file": {
+   "bytes": 6235684,
+   "mtime": "2026-11-15 17:29:55 +03:00"
+  },
+  "renders": "Mechanical/Rev3.0_GlassFront/renders/Fusion_FrameGF_*.png (regenerated for GF-1.1 by 45) and Fusion_GF11_*.png (58); GF11_thickness_map_verify_toolchain.png (verification thickness map of the exported STEP)"
+ },
+ "user_parameters": [
+  {
+   "name": "wall",
+   "expression": "2.5 mm",
+   "value": 2.5,
+   "unit": "mm",
+   "comment": "nominal wall, PA6-GF30 (v1 frame.py WALL) [v2]"
+  },
+  {
+   "name": "rib",
+   "expression": "1.5 mm",
+   "value": 1.5,
+   "unit": "mm",
+   "comment": "rib thickness at the root = 0.6 x wall (v1 RIB_T) [v2]"
+  },
+  {
+   "name": "draft",
+   "expression": "1 deg",
+   "value": 1.0,
+   "unit": "deg",
+   "comment": "draft on every face along the pull Z (v1 DRAFT) [v2]"
+  },
+  {
+   "name": "draft_loc",
+   "expression": "0.5 deg",
+   "value": 0.5,
+   "unit": "deg",
+   "comment": "draft of pilots and fastener slots (v1 DRAFT_LOC) [v2]"
+  },
+  {
+   "name": "fillet_root",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "root fillets at bosses, ribs, walls/plates (v1 FILLET_IN) [v2]"
+  },
+  {
+   "name": "frame_r",
+   "expression": "5 mm",
+   "value": 5.0,
+   "unit": "mm",
+   "comment": "outer wall block corner radius (v1 FRAME_R) [v2]"
+  },
+  {
+   "name": "lip_top_r",
+   "expression": "0.3 mm",
+   "value": 0.3,
+   "unit": "mm",
+   "comment": "GF: lip top edges R0.3 both sides (concept 4.4, flat 0.37)"
+  },
+  {
+   "name": "lip_root_r",
+   "expression": "0.2 mm",
+   "value": 0.2,
+   "unit": "mm",
+   "comment": "GF: lip root fillet R0.2 (lip outer face to seat ring top)"
+  },
+  {
+   "name": "level_snap",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "GF cad_rules level snap: plate backs closer than this are snapped together"
+  },
+  {
+   "name": "glass_t",
+   "expression": "3.0 mm",
+   "value": 3.0,
+   "unit": "mm",
+   "comment": "glass thickness, DRIVING; valid 1.1 / 2.0 / 3.0 / 4.0 (master JSON)"
+  },
+  {
+   "name": "t_opt",
+   "expression": "0.3 mm",
+   "value": 0.3,
+   "unit": "mm",
+   "comment": "optical bond glass -> CTP lens (LOCA 0.30 +-0.03)"
+  },
+  {
+   "name": "t_bond",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "glass -> land bond line, elastic bead, nominal (flush jig)"
+  },
+  {
+   "name": "t_sheet",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "oven front sheet, steel 0.8..1.5; lip height above the seat ring"
+  },
+  {
+   "name": "t_gap",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "flange front -> sheet back between the hard stops (VHB / foam)"
+  },
+  {
+   "name": "g_bs",
+   "expression": "0.8 mm",
+   "value": 0.8,
+   "unit": "mm",
+   "comment": "panel back -> Formex air gap, nominal (back-stop)"
+  },
+  {
+   "name": "print_inset",
+   "expression": "0.3 mm",
+   "value": 0.3,
+   "unit": "mm",
+   "comment": "print window = AA inset by this per side"
+  },
+  {
+   "name": "border",
+   "expression": "14.0 mm",
+   "value": 14.0,
+   "unit": "mm",
+   "comment": "print-window edge -> glass edge, top / left / right"
+  },
+  {
+   "name": "glass_y1",
+   "expression": "154.0 mm",
+   "value": 154.0,
+   "unit": "mm",
+   "comment": "glass bottom edge, abs y (chin)"
+  },
+  {
+   "name": "R_glass",
+   "expression": "6.25 mm",
+   "value": 6.25,
+   "unit": "mm",
+   "comment": "GF-1.1: glass corner radius (item 5; frame outlines use R_frame 6.0)"
+  },
+  {
+   "name": "g2",
+   "expression": "0.4 mm",
+   "value": 0.4,
+   "unit": "mm",
+   "comment": "gap glass edge -> lip inner face at 20 C (at the lip top)"
+  },
+  {
+   "name": "lip_w",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "lip width (root)"
+  },
+  {
+   "name": "g1",
+   "expression": "0.4 mm",
+   "value": 0.4,
+   "unit": "mm",
+   "comment": "gap lip outer face -> sheet cut-out edge at 20 C"
+  },
+  {
+   "name": "seat_ring_w",
+   "expression": "1.5 mm",
+   "value": 1.5,
+   "unit": "mm",
+   "comment": "sheet-seat ring width outside the lip"
+  },
+  {
+   "name": "pocket_clr",
+   "expression": "0.8 mm",
+   "value": 0.8,
+   "unit": "mm",
+   "comment": "panel outline -> clearance pocket wall per side (v2 0.25 superseded)"
+  },
+  {
+   "name": "bead_w",
+   "expression": "4.0 mm",
+   "value": 4.0,
+   "unit": "mm",
+   "comment": "glass -> frame bead width after squeeze (reference, not modelled)"
+  },
+  {
+   "name": "bead_edge",
+   "expression": "0.9 mm",
+   "value": 0.9,
+   "unit": "mm",
+   "comment": "bead outer edge inside the glass edge"
+  },
+  {
+   "name": "bead_pocket_min",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "min bead inner edge -> pocket face (reference)"
+  },
+  {
+   "name": "fast_off",
+   "expression": "11.0 mm",
+   "value": 11.0,
+   "unit": "mm",
+   "comment": "fastener centre outside the glass edge (x and y at corners, normal at mid-sides)"
+  },
+  {
+   "name": "flange_beyond_glass",
+   "expression": "21.0 mm",
+   "value": 21.0,
+   "unit": "mm",
+   "comment": "flange outline = glass + this"
+  },
+  {
+   "name": "flange_R",
+   "expression": "10.0 mm",
+   "value": 10.0,
+   "unit": "mm",
+   "comment": "flange outer corner radius (centre = corner fastener)"
+  },
+  {
+   "name": "flange_t",
+   "expression": "2.5 mm",
+   "value": 2.5,
+   "unit": "mm",
+   "comment": "flange thickness = wall"
+  },
+  {
+   "name": "slot_w",
+   "expression": "5.4 mm",
+   "value": 5.4,
+   "unit": "mm",
+   "comment": "fastener stadium slot width at the flange front, 0.5 deg draft"
+  },
+  {
+   "name": "slot_l",
+   "expression": "7.0 mm",
+   "value": 7.0,
+   "unit": "mm",
+   "comment": "fastener stadium slot length, long axis towards the glass centre"
+  },
+  {
+   "name": "pad_d",
+   "expression": "18.0 mm",
+   "value": 18.0,
+   "unit": "mm",
+   "comment": "F1-F4 front pad dia (top at Z_SHEET_BACK)"
+  },
+  {
+   "name": "tube_top_d",
+   "expression": "pad_d",
+   "value": 18.0,
+   "unit": "mm",
+   "comment": "fastener tube dia at its top (= pad_d), 1 deg draft"
+  },
+  {
+   "name": "tube_h",
+   "expression": "2.5 mm",
+   "value": 2.5,
+   "unit": "mm",
+   "comment": "fastener tube height above the flange back"
+  },
+  {
+   "name": "pip_d",
+   "expression": "1.5 mm",
+   "value": 1.5,
+   "unit": "mm",
+   "comment": "stand-off pip dia at the base, 1 deg draft"
+  },
+  {
+   "name": "pip_h",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "stand-off pip height above the land"
+  },
+  {
+   "name": "tape_w",
+   "expression": "12.0 mm",
+   "value": 12.0,
+   "unit": "mm",
+   "comment": "VHB strip width (reference)"
+  },
+  {
+   "name": "tape_margin",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "min flat flange face beyond each tape edge (reference)"
+  },
+  {
+   "name": "trough_R",
+   "expression": "1.5 mm",
+   "value": 1.5,
+   "unit": "mm",
+   "comment": "tail-pocket bottom inner corner radius (v2 trough_r 5.0 superseded)"
+  },
+  {
+   "name": "sheet_t",
+   "expression": "0.4 mm",
+   "value": 0.4,
+   "unit": "mm",
+   "comment": "Formex insulating sheet (v1 SHEET_T) [v2]"
+  },
+  {
+   "name": "panel_t",
+   "expression": "5.32 mm",
+   "value": 5.32,
+   "unit": "mm",
+   "comment": "SAT070AT40D21 LCM 3.34 + CTP 1.98 (v1 PANEL_T) [v2]"
+  },
+  {
+   "name": "shelf_t",
+   "expression": "wall",
+   "value": 2.5,
+   "unit": "mm",
+   "comment": "shelf (Formex seat) thickness = wall [v2]"
+  },
+  {
+   "name": "loop_z_top",
+   "expression": "2.55 mm",
+   "value": 2.55,
+   "unit": "mm",
+   "comment": "top of the FPC U-loop return legs (panel model) [v2]"
+  },
+  {
+   "name": "loop_clr",
+   "expression": "1.5 mm",
+   "value": 1.5,
+   "unit": "mm",
+   "comment": "clearance round the loop envelopes [v2]"
+  },
+  {
+   "name": "cell_rib_h",
+   "expression": "5 mm",
+   "value": 5.0,
+   "unit": "mm",
+   "comment": "corner-cell rib top above the land (v2: above Z_FRONT) [v2]"
+  },
+  {
+   "name": "seat_w",
+   "expression": "2.6 mm",
+   "value": 2.6,
+   "unit": "mm",
+   "comment": "shelf reach inside the panel outline (v1 SEAT_W) [v2]"
+  },
+  {
+   "name": "rib_bury",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "support / cell / tube ribs run this far into the wall they meet [v2]"
+  },
+  {
+   "name": "rib_overshoot",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "support-rib free ends run this far past the cut that trims them flush [v2.1]"
+  },
+  {
+   "name": "Z_PCB",
+   "expression": "0 mm",
+   "value": 0.0,
+   "unit": "mm",
+   "comment": "PCB back = boss / support-rib / wall tops [v2]"
+  },
+  {
+   "name": "Z_TROUGH_TOP",
+   "expression": "loop_z_top + loop_clr",
+   "value": 4.05,
+   "unit": "mm",
+   "comment": "tail-pocket walls / bottom beam top, outside the board only [v2]"
+  },
+  {
+   "name": "Z_SEAT",
+   "expression": "-4.6 mm",
+   "value": -4.6,
+   "unit": "mm",
+   "comment": "shelf front = Formex back (Formex PSA-bonded) [v2 level]"
+  },
+  {
+   "name": "Z_SHELF_BACK",
+   "expression": "Z_SEAT + shelf_t",
+   "value": -2.1,
+   "unit": "mm",
+   "comment": "shelf back [v2]"
+  },
+  {
+   "name": "Z_FORMEX_FRONT",
+   "expression": "Z_SEAT - sheet_t",
+   "value": -5.0,
+   "unit": "mm",
+   "comment": "Formex front (= v2 panel back)"
+  },
+  {
+   "name": "Z_PANEL_BACK",
+   "expression": "Z_FORMEX_FRONT - g_bs",
+   "value": -5.8,
+   "unit": "mm",
+   "comment": "panel back, nominal (floats with the tolerances)"
+  },
+  {
+   "name": "Z_CTP_FRONT",
+   "expression": "Z_PANEL_BACK - panel_t",
+   "value": -11.12,
+   "unit": "mm",
+   "comment": "CTP cover-lens front"
+  },
+  {
+   "name": "Z_GLASS_BACK",
+   "expression": "Z_CTP_FRONT - t_opt",
+   "value": -11.42,
+   "unit": "mm",
+   "comment": "glass printed face"
+  },
+  {
+   "name": "Z_GLASS_FRONT",
+   "expression": "Z_GLASS_BACK - glass_t",
+   "value": -14.42,
+   "unit": "mm",
+   "comment": "FLUSH PLANE = lip top = sheet front"
+  },
+  {
+   "name": "Z_SHEET_BACK",
+   "expression": "Z_GLASS_FRONT + t_sheet",
+   "value": -13.42,
+   "unit": "mm",
+   "comment": "sheet back = seat-ring top = corner-pad tops"
+  },
+  {
+   "name": "Z_FLANGE_FRONT",
+   "expression": "Z_SHEET_BACK + t_gap",
+   "value": -12.42,
+   "unit": "mm",
+   "comment": "flange front face (tape / gasket on it); parting line on the flange outline"
+  },
+  {
+   "name": "Z_LAND",
+   "expression": "Z_GLASS_BACK + t_bond",
+   "value": -10.42,
+   "unit": "mm",
+   "comment": "glass land = recess floor (bead, pips)"
+  },
+  {
+   "name": "Z_PIP_TOP",
+   "expression": "Z_LAND - pip_h",
+   "value": -10.92,
+   "unit": "mm",
+   "comment": "stand-off pip tops"
+  },
+  {
+   "name": "Z_FLANGE_BACK_RAW",
+   "expression": "Z_FLANGE_FRONT + flange_t",
+   "value": -9.92,
+   "unit": "mm",
+   "comment": "flange back before the level snap"
+  },
+  {
+   "name": "Z_LANDPLATE_BACK_RAW",
+   "expression": "Z_LAND + wall",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "land-plate back before the level snap"
+  },
+  {
+   "name": "Z_STEPWALL_BACK",
+   "expression": "max(Z_FLANGE_BACK_RAW; Z_LANDPLATE_BACK_RAW)",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "back of the step wall = max of the two plate backs"
+  },
+  {
+   "name": "snap_keep",
+   "expression": "min(1; floor(abs(Z_FLANGE_BACK_RAW - Z_LANDPLATE_BACK_RAW) / level_snap))",
+   "value": 1.0,
+   "unit": "",
+   "comment": "level snap: 0 = the plate backs differ by < level_snap -> both snapped to Z_STEPWALL_BACK; 1 = no snap"
+  },
+  {
+   "name": "Z_FLANGE_BACK",
+   "expression": "Z_STEPWALL_BACK + snap_keep * ( Z_FLANGE_BACK_RAW - Z_STEPWALL_BACK )",
+   "value": -9.92,
+   "unit": "mm",
+   "comment": "flange back = Z_FLANGE_FRONT + flange_t; = Z_STEPWALL_BACK if within level_snap of the land-plate back"
+  },
+  {
+   "name": "Z_LANDPLATE_BACK",
+   "expression": "Z_STEPWALL_BACK + snap_keep * ( Z_LANDPLATE_BACK_RAW - Z_STEPWALL_BACK )",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "land-plate back (corner-cell floors, PCB-boss bases) = Z_LAND + wall, snapped as the flange back"
+  },
+  {
+   "name": "Z_TUBE_TOP",
+   "expression": "Z_FLANGE_BACK + tube_h",
+   "value": -7.42,
+   "unit": "mm",
+   "comment": "fastener tube top = washer / rivet seat"
+  },
+  {
+   "name": "Z_CELL_RIB_TOP",
+   "expression": "Z_LAND + cell_rib_h",
+   "value": -5.42,
+   "unit": "mm",
+   "comment": "corner-cell rib tops (v2 rule: cell_rib_h above the front face)"
+  },
+  {
+   "name": "Z_TAIL_TFT_EXIT",
+   "expression": "Z_PANEL_BACK - 2.6 mm",
+   "value": -8.4,
+   "unit": "mm",
+   "comment": "TFT tail centre at the panel edge (reference, estimated)"
+  },
+  {
+   "name": "Z_TAIL_CTP_EXIT",
+   "expression": "Z_PANEL_BACK - 3.9 mm",
+   "value": -9.7,
+   "unit": "mm",
+   "comment": "CTP tail centre at the panel edge (reference, estimated)"
+  },
+  {
+   "name": "Z_LOOP_FRONT",
+   "expression": "Z_TAIL_CTP_EXIT - 0.15 mm",
+   "value": -9.85,
+   "unit": "mm",
+   "comment": "front-most point of the tail loops (reference)"
+  },
+  {
+   "name": "panel_x0",
+   "expression": "20.02 mm",
+   "value": 20.02,
+   "unit": "mm",
+   "comment": "panel outline left (DS1 Dwgs.User) [v2]"
+  },
+  {
+   "name": "panel_x1",
+   "expression": "184.92 mm",
+   "value": 184.92,
+   "unit": "mm",
+   "comment": "panel outline right [v2]"
+  },
+  {
+   "name": "panel_y0",
+   "expression": "19.00 mm",
+   "value": 19.0,
+   "unit": "mm",
+   "comment": "panel outline top [v2]"
+  },
+  {
+   "name": "panel_y1",
+   "expression": "119.00 mm",
+   "value": 119.0,
+   "unit": "mm",
+   "comment": "panel outline bottom [v2]"
+  },
+  {
+   "name": "va_x0",
+   "expression": "26.31 mm",
+   "value": 26.31,
+   "unit": "mm",
+   "comment": "CTP cover view area left [v2] (reference)"
+  },
+  {
+   "name": "va_x1",
+   "expression": "181.39 mm",
+   "value": 181.39,
+   "unit": "mm",
+   "comment": "CTP cover view area right [v2] (reference)"
+  },
+  {
+   "name": "va_y0",
+   "expression": "23.23 mm",
+   "value": 23.23,
+   "unit": "mm",
+   "comment": "CTP cover view area top [v2] (reference)"
+  },
+  {
+   "name": "va_y1",
+   "expression": "110.15 mm",
+   "value": 110.15,
+   "unit": "mm",
+   "comment": "CTP cover view area bottom [v2] (reference)"
+  },
+  {
+   "name": "aa_x0",
+   "expression": "26.81 mm",
+   "value": 26.81,
+   "unit": "mm",
+   "comment": "display active area left (DS)"
+  },
+  {
+   "name": "aa_x1",
+   "expression": "180.89 mm",
+   "value": 180.89,
+   "unit": "mm",
+   "comment": "display active area right (DS)"
+  },
+  {
+   "name": "aa_y0",
+   "expression": "23.87 mm",
+   "value": 23.87,
+   "unit": "mm",
+   "comment": "display active area top (DS)"
+  },
+  {
+   "name": "aa_y1",
+   "expression": "109.79 mm",
+   "value": 109.79,
+   "unit": "mm",
+   "comment": "display active area bottom (DS)"
+  },
+  {
+   "name": "pw_x0",
+   "expression": "aa_x0 + print_inset",
+   "value": 27.11,
+   "unit": "mm",
+   "comment": "print window left (27.11)"
+  },
+  {
+   "name": "pw_x1",
+   "expression": "aa_x1 - print_inset",
+   "value": 180.59,
+   "unit": "mm",
+   "comment": "print window right (180.59)"
+  },
+  {
+   "name": "pw_y0",
+   "expression": "aa_y0 + print_inset",
+   "value": 24.17,
+   "unit": "mm",
+   "comment": "print window top (24.17)"
+  },
+  {
+   "name": "pw_y1",
+   "expression": "aa_y1 - print_inset",
+   "value": 109.49,
+   "unit": "mm",
+   "comment": "print window bottom (109.49)"
+  },
+  {
+   "name": "pw_r",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "print window corner radius (reference for the glass)"
+  },
+  {
+   "name": "glass_x0",
+   "expression": "pw_x0 - border",
+   "value": 13.11,
+   "unit": "mm",
+   "comment": "glass left (13.11)"
+  },
+  {
+   "name": "glass_x1",
+   "expression": "pw_x1 + border",
+   "value": 194.59,
+   "unit": "mm",
+   "comment": "glass right (194.59)"
+  },
+  {
+   "name": "glass_y0",
+   "expression": "pw_y0 - border",
+   "value": 10.17,
+   "unit": "mm",
+   "comment": "glass top (10.17)"
+  },
+  {
+   "name": "gc_x",
+   "expression": "( glass_x0 + glass_x1 ) / 2",
+   "value": 103.85,
+   "unit": "mm",
+   "comment": "glass centre x = cut-out centre = fastener-pattern centre (103.85)"
+  },
+  {
+   "name": "gc_y",
+   "expression": "( glass_y0 + glass_y1 ) / 2",
+   "value": 82.085,
+   "unit": "mm",
+   "comment": "glass centre y (82.085)"
+  },
+  {
+   "name": "s_lip_in",
+   "expression": "g2",
+   "value": 0.4,
+   "unit": "mm",
+   "comment": "s of the lip inner face = recess wall AT THE LIP TOP (lip_in R6.4)"
+  },
+  {
+   "name": "s_lip_out",
+   "expression": "g2 + lip_w",
+   "value": 1.4,
+   "unit": "mm",
+   "comment": "s of the lip outer face AT THE LIP ROOT (lip_out R7.4)"
+  },
+  {
+   "name": "s_cut",
+   "expression": "s_lip_out + g1",
+   "value": 1.8,
+   "unit": "mm",
+   "comment": "s of the sheet cut-out edge (reference; cut R7.8)"
+  },
+  {
+   "name": "s_ring",
+   "expression": "s_lip_out + seat_ring_w",
+   "value": 2.9,
+   "unit": "mm",
+   "comment": "s of the seat-ring / step-wall outer face AT THE FLANGE FRONT (R8.9)"
+  },
+  {
+   "name": "s_ring_b",
+   "expression": "s_ring + ( Z_FLANGE_BACK - Z_FLANGE_FRONT ) * tan(draft)",
+   "value": 2.943638,
+   "unit": "mm",
+   "comment": "step-wall back outline drawn on the flange-front plane so that it is s_ring AT THE FLANGE BACK"
+  },
+  {
+   "name": "s_tape_in",
+   "expression": "s_ring + tape_margin",
+   "value": 3.9,
+   "unit": "mm",
+   "comment": "tape strips inner edge (reference, 3.9)"
+  },
+  {
+   "name": "s_tape_out",
+   "expression": "s_tape_in + tape_w",
+   "value": 15.9,
+   "unit": "mm",
+   "comment": "tape strips outer edge (reference, 15.9)"
+  },
+  {
+   "name": "pip_in",
+   "expression": "bead_edge + bead_w / 2",
+   "value": 2.9,
+   "unit": "mm",
+   "comment": "pip / bead centre line inside the glass edge (2.9)"
+  },
+  {
+   "name": "f_x0",
+   "expression": "glass_x0 - fast_off",
+   "value": 2.11,
+   "unit": "mm",
+   "comment": "left fastener line x (2.11)"
+  },
+  {
+   "name": "f_x1",
+   "expression": "glass_x1 + fast_off",
+   "value": 205.59,
+   "unit": "mm",
+   "comment": "right fastener line x (205.59)"
+  },
+  {
+   "name": "f_y0",
+   "expression": "glass_y0 - fast_off",
+   "value": -0.83,
+   "unit": "mm",
+   "comment": "top fastener line y (-0.83)"
+  },
+  {
+   "name": "f_y1",
+   "expression": "glass_y1 + fast_off",
+   "value": 165.0,
+   "unit": "mm",
+   "comment": "bottom fastener line y (165.00)"
+  },
+  {
+   "name": "fl_x0",
+   "expression": "glass_x0 - flange_beyond_glass",
+   "value": -7.89,
+   "unit": "mm",
+   "comment": "flange outline left (-7.89)"
+  },
+  {
+   "name": "fl_x1",
+   "expression": "glass_x1 + flange_beyond_glass",
+   "value": 215.59,
+   "unit": "mm",
+   "comment": "flange outline right (215.59)"
+  },
+  {
+   "name": "fl_y0",
+   "expression": "glass_y0 - flange_beyond_glass",
+   "value": -10.83,
+   "unit": "mm",
+   "comment": "flange outline top (-10.83)"
+  },
+  {
+   "name": "fl_y1",
+   "expression": "glass_y1 + flange_beyond_glass",
+   "value": 175.0,
+   "unit": "mm",
+   "comment": "flange outline bottom (175.00)"
+  },
+  {
+   "name": "trib_d0",
+   "expression": "tube_top_d / 2 - rib_bury",
+   "value": 8.5,
+   "unit": "mm",
+   "comment": "tube rib F1-F4: start along its axis from the fastener centre (buried in the tube)"
+  },
+  {
+   "name": "trib_d1",
+   "expression": "( fast_off + R_frame ) * sqrt(2) - ( R_frame + s_ring ) + rib_bury",
+   "value": 15.641631,
+   "unit": "mm",
+   "comment": "tube rib F1-F4: end along its 45 deg axis (buried rib_bury into the step wall at the corner arc)"
+  },
+  {
+   "name": "pocket_x0",
+   "expression": "panel_x0 - pocket_clr",
+   "value": 19.22,
+   "unit": "mm",
+   "comment": "clearance pocket left at Z_SEAT (19.22)"
+  },
+  {
+   "name": "pocket_x1",
+   "expression": "panel_x1 + pocket_clr",
+   "value": 185.72,
+   "unit": "mm",
+   "comment": "clearance pocket right at Z_SEAT (185.72)"
+  },
+  {
+   "name": "pocket_y0",
+   "expression": "panel_y0 - pocket_clr",
+   "value": 18.2,
+   "unit": "mm",
+   "comment": "clearance pocket top at Z_SEAT (18.20)"
+  },
+  {
+   "name": "pocket_y1",
+   "expression": "panel_y1 + pocket_clr",
+   "value": 119.8,
+   "unit": "mm",
+   "comment": "clearance pocket bottom at Z_SEAT (119.80)"
+  },
+  {
+   "name": "pocket_r",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "clearance pocket corner radius"
+  },
+  {
+   "name": "win_x0",
+   "expression": "panel_x0 + seat_w",
+   "value": 22.62,
+   "unit": "mm",
+   "comment": "window inside the shelf, left, at Z_SEAT [v2]"
+  },
+  {
+   "name": "win_x1",
+   "expression": "panel_x1 - seat_w",
+   "value": 182.32,
+   "unit": "mm",
+   "comment": "window right [v2]"
+  },
+  {
+   "name": "win_y0",
+   "expression": "panel_y0 + seat_w",
+   "value": 21.6,
+   "unit": "mm",
+   "comment": "window top [v2]"
+  },
+  {
+   "name": "win_y1",
+   "expression": "panel_y1 - seat_w",
+   "value": 116.4,
+   "unit": "mm",
+   "comment": "window bottom [v2]"
+  },
+  {
+   "name": "win_r",
+   "expression": "1 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "window corner radius [v2]"
+  },
+  {
+   "name": "loop_ctp_x0",
+   "expression": "40.7 mm",
+   "value": 40.7,
+   "unit": "mm",
+   "comment": "CTP U-loop envelope left (panel model) [v2]"
+  },
+  {
+   "name": "loop_ctp_x1",
+   "expression": "75.8 mm",
+   "value": 75.8,
+   "unit": "mm",
+   "comment": "CTP U-loop envelope right [v2]"
+  },
+  {
+   "name": "loop_ctp_y1",
+   "expression": "137.4 mm",
+   "value": 137.4,
+   "unit": "mm",
+   "comment": "CTP U-loop envelope bottom [v2]"
+  },
+  {
+   "name": "loop_tft_x0",
+   "expression": "84.0 mm",
+   "value": 84.0,
+   "unit": "mm",
+   "comment": "TFT U-loop envelope left [v2]"
+  },
+  {
+   "name": "loop_tft_x1",
+   "expression": "165.9 mm",
+   "value": 165.9,
+   "unit": "mm",
+   "comment": "TFT U-loop envelope right [v2]"
+  },
+  {
+   "name": "loop_tft_y1",
+   "expression": "146.2 mm",
+   "value": 146.2,
+   "unit": "mm",
+   "comment": "TFT U-loop envelope bottom [v2]"
+  },
+  {
+   "name": "tr_x0",
+   "expression": "loop_ctp_x0 - loop_clr",
+   "value": 39.2,
+   "unit": "mm",
+   "comment": "tail pocket left at Z_LAND (39.2) [v2]"
+  },
+  {
+   "name": "tr_x1",
+   "expression": "loop_tft_x1 + loop_clr",
+   "value": 167.4,
+   "unit": "mm",
+   "comment": "tail pocket right at Z_LAND (167.4) [v2]"
+  },
+  {
+   "name": "tr_y1",
+   "expression": "loop_tft_y1 + trough_R",
+   "value": 147.7,
+   "unit": "mm",
+   "comment": "tail pocket bottom face at Z_LAND (147.70; R1.5 keeps 1.5 to the TFT loop corner)"
+  },
+  {
+   "name": "tr_y0",
+   "expression": "panel_y1 + ( Z_SEAT - Z_LAND ) * tan(draft)",
+   "value": 119.101588,
+   "unit": "mm",
+   "comment": "tail-pocket top line at Z_LAND, so the shelf ends flush with the panel bottom edge at Z_SEAT"
+  },
+  {
+   "name": "tail_wall_step_y",
+   "expression": "129.0 mm",
+   "value": 129.0,
+   "unit": "mm",
+   "comment": "tail-pocket side walls stay at Z_PCB for y < this (at Z_PCB) [v2.1]"
+  },
+  {
+   "name": "outer_x0",
+   "expression": "pocket_x0 - wall",
+   "value": 16.72,
+   "unit": "mm",
+   "comment": "outer wall block left at Z_LAND (wall 2.5 outside the pocket)"
+  },
+  {
+   "name": "outer_x1",
+   "expression": "pocket_x1 + wall",
+   "value": 188.22,
+   "unit": "mm",
+   "comment": "outer wall block right at Z_LAND"
+  },
+  {
+   "name": "outer_y0",
+   "expression": "pocket_y0 - wall",
+   "value": 15.7,
+   "unit": "mm",
+   "comment": "outer wall block top at Z_LAND"
+  },
+  {
+   "name": "outer_y1",
+   "expression": "tr_y1 + wall",
+   "value": 150.2,
+   "unit": "mm",
+   "comment": "outer wall block bottom at Z_LAND (bottom beam)"
+  },
+  {
+   "name": "cell_r",
+   "expression": "2 mm",
+   "value": 2.0,
+   "unit": "mm",
+   "comment": "corner-cell corner radius [v2]"
+  },
+  {
+   "name": "crib_y",
+   "expression": "139 mm",
+   "value": 139.0,
+   "unit": "mm",
+   "comment": "corner-cell cross rib position, abs y [v2]"
+  },
+  {
+   "name": "boss_od",
+   "expression": "8.0 mm",
+   "value": 8.0,
+   "unit": "mm",
+   "comment": "PCB screw boss dia at Z_PCB [v2]"
+  },
+  {
+   "name": "pilot_d",
+   "expression": "2.4 mm",
+   "value": 2.4,
+   "unit": "mm",
+   "comment": "pilot for ST2.9 / PT K30 at Z_PCB [v2]"
+  },
+  {
+   "name": "pilot_floor",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "blind pilot ends this far behind the front face (GF: the land) [v2]"
+  },
+  {
+   "name": "cbore_d",
+   "expression": "3.2 mm",
+   "value": 3.2,
+   "unit": "mm",
+   "comment": "mouth relief dia [v2]"
+  },
+  {
+   "name": "cbore_h",
+   "expression": "0.5 mm",
+   "value": 0.5,
+   "unit": "mm",
+   "comment": "mouth relief depth [v2]"
+  },
+  {
+   "name": "h1_x",
+   "expression": "30 mm",
+   "value": 30.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H1 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h1_y",
+   "expression": "14.2 mm",
+   "value": 14.2,
+   "unit": "mm",
+   "comment": "PCB ear hole H1 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h2_x",
+   "expression": "93 mm",
+   "value": 93.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H2 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h2_y",
+   "expression": "14.2 mm",
+   "value": 14.2,
+   "unit": "mm",
+   "comment": "PCB ear hole H2 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h3_x",
+   "expression": "174 mm",
+   "value": 174.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H3 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h3_y",
+   "expression": "14.2 mm",
+   "value": 14.2,
+   "unit": "mm",
+   "comment": "PCB ear hole H3 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h4_x",
+   "expression": "189.8 mm",
+   "value": 189.8,
+   "unit": "mm",
+   "comment": "PCB ear hole H4 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h4_y",
+   "expression": "30 mm",
+   "value": 30.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H4 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h5_x",
+   "expression": "189.8 mm",
+   "value": 189.8,
+   "unit": "mm",
+   "comment": "PCB ear hole H5 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h5_y",
+   "expression": "109 mm",
+   "value": 109.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H5 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h6_x",
+   "expression": "175 mm",
+   "value": 175.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H6 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h6_y",
+   "expression": "123.8 mm",
+   "value": 123.8,
+   "unit": "mm",
+   "comment": "PCB ear hole H6 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h7_x",
+   "expression": "30 mm",
+   "value": 30.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H7 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h7_y",
+   "expression": "123.8 mm",
+   "value": 123.8,
+   "unit": "mm",
+   "comment": "PCB ear hole H7 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h8_x",
+   "expression": "15.2 mm",
+   "value": 15.2,
+   "unit": "mm",
+   "comment": "PCB ear hole H8 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h8_y",
+   "expression": "109 mm",
+   "value": 109.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H8 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "h9_x",
+   "expression": "15.2 mm",
+   "value": 15.2,
+   "unit": "mm",
+   "comment": "PCB ear hole H9 x abs (KiCad, NPTH 3.2) [v2]"
+  },
+  {
+   "name": "h9_y",
+   "expression": "30 mm",
+   "value": 30.0,
+   "unit": "mm",
+   "comment": "PCB ear hole H9 y abs (KiCad, y down) [v2]"
+  },
+  {
+   "name": "f1_x",
+   "expression": "f_x0",
+   "value": 2.11,
+   "unit": "mm",
+   "comment": "fastener F1 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f1_y",
+   "expression": "f_y0",
+   "value": -0.83,
+   "unit": "mm",
+   "comment": "fastener F1 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f1_ux",
+   "expression": "( gc_x - f1_x ) / sqrt(( gc_x - f1_x ) ^ 2 + ( gc_y - f1_y ) ^ 2)",
+   "value": 0.775176,
+   "unit": "",
+   "comment": "F1 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f1_uy",
+   "expression": "( gc_y - f1_y ) / sqrt(( gc_x - f1_x ) ^ 2 + ( gc_y - f1_y ) ^ 2)",
+   "value": 0.631745,
+   "unit": "",
+   "comment": "F1 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f2_x",
+   "expression": "f_x1",
+   "value": 205.59,
+   "unit": "mm",
+   "comment": "fastener F2 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f2_y",
+   "expression": "f_y0",
+   "value": -0.83,
+   "unit": "mm",
+   "comment": "fastener F2 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f2_ux",
+   "expression": "( gc_x - f2_x ) / sqrt(( gc_x - f2_x ) ^ 2 + ( gc_y - f2_y ) ^ 2)",
+   "value": -0.775176,
+   "unit": "",
+   "comment": "F2 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f2_uy",
+   "expression": "( gc_y - f2_y ) / sqrt(( gc_x - f2_x ) ^ 2 + ( gc_y - f2_y ) ^ 2)",
+   "value": 0.631745,
+   "unit": "",
+   "comment": "F2 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f3_x",
+   "expression": "f_x1",
+   "value": 205.59,
+   "unit": "mm",
+   "comment": "fastener F3 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f3_y",
+   "expression": "f_y1",
+   "value": 165.0,
+   "unit": "mm",
+   "comment": "fastener F3 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f3_ux",
+   "expression": "( gc_x - f3_x ) / sqrt(( gc_x - f3_x ) ^ 2 + ( gc_y - f3_y ) ^ 2)",
+   "value": -0.775176,
+   "unit": "",
+   "comment": "F3 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f3_uy",
+   "expression": "( gc_y - f3_y ) / sqrt(( gc_x - f3_x ) ^ 2 + ( gc_y - f3_y ) ^ 2)",
+   "value": -0.631745,
+   "unit": "",
+   "comment": "F3 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f4_x",
+   "expression": "f_x0",
+   "value": 2.11,
+   "unit": "mm",
+   "comment": "fastener F4 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f4_y",
+   "expression": "f_y1",
+   "value": 165.0,
+   "unit": "mm",
+   "comment": "fastener F4 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f4_ux",
+   "expression": "( gc_x - f4_x ) / sqrt(( gc_x - f4_x ) ^ 2 + ( gc_y - f4_y ) ^ 2)",
+   "value": 0.775176,
+   "unit": "",
+   "comment": "F4 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f4_uy",
+   "expression": "( gc_y - f4_y ) / sqrt(( gc_x - f4_x ) ^ 2 + ( gc_y - f4_y ) ^ 2)",
+   "value": -0.631745,
+   "unit": "",
+   "comment": "F4 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f5_x",
+   "expression": "gc_x",
+   "value": 103.85,
+   "unit": "mm",
+   "comment": "fastener F5 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f5_y",
+   "expression": "f_y0",
+   "value": -0.83,
+   "unit": "mm",
+   "comment": "fastener F5 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f5_ux",
+   "expression": "( gc_x - f5_x ) / sqrt(( gc_x - f5_x ) ^ 2 + ( gc_y - f5_y ) ^ 2)",
+   "value": 0.0,
+   "unit": "",
+   "comment": "F5 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f5_uy",
+   "expression": "( gc_y - f5_y ) / sqrt(( gc_x - f5_x ) ^ 2 + ( gc_y - f5_y ) ^ 2)",
+   "value": 1.0,
+   "unit": "",
+   "comment": "F5 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f6_x",
+   "expression": "f_x1",
+   "value": 205.59,
+   "unit": "mm",
+   "comment": "fastener F6 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f6_y",
+   "expression": "gc_y",
+   "value": 82.085,
+   "unit": "mm",
+   "comment": "fastener F6 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f6_ux",
+   "expression": "( gc_x - f6_x ) / sqrt(( gc_x - f6_x ) ^ 2 + ( gc_y - f6_y ) ^ 2)",
+   "value": -1.0,
+   "unit": "",
+   "comment": "F6 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f6_uy",
+   "expression": "( gc_y - f6_y ) / sqrt(( gc_x - f6_x ) ^ 2 + ( gc_y - f6_y ) ^ 2)",
+   "value": 0.0,
+   "unit": "",
+   "comment": "F6 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f7_x",
+   "expression": "gc_x",
+   "value": 103.85,
+   "unit": "mm",
+   "comment": "fastener F7 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f7_y",
+   "expression": "f_y1",
+   "value": 165.0,
+   "unit": "mm",
+   "comment": "fastener F7 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f7_ux",
+   "expression": "( gc_x - f7_x ) / sqrt(( gc_x - f7_x ) ^ 2 + ( gc_y - f7_y ) ^ 2)",
+   "value": 0.0,
+   "unit": "",
+   "comment": "F7 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f7_uy",
+   "expression": "( gc_y - f7_y ) / sqrt(( gc_x - f7_x ) ^ 2 + ( gc_y - f7_y ) ^ 2)",
+   "value": -1.0,
+   "unit": "",
+   "comment": "F7 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "f8_x",
+   "expression": "f_x0",
+   "value": 2.11,
+   "unit": "mm",
+   "comment": "fastener F8 x abs (master JSON fasteners)"
+  },
+  {
+   "name": "f8_y",
+   "expression": "gc_y",
+   "value": 82.085,
+   "unit": "mm",
+   "comment": "fastener F8 y abs (KiCad, y down)"
+  },
+  {
+   "name": "f8_ux",
+   "expression": "( gc_x - f8_x ) / sqrt(( gc_x - f8_x ) ^ 2 + ( gc_y - f8_y ) ^ 2)",
+   "value": 1.0,
+   "unit": "",
+   "comment": "F8 slot axis unit vector x (towards the glass centre)"
+  },
+  {
+   "name": "f8_uy",
+   "expression": "( gc_y - f8_y ) / sqrt(( gc_x - f8_x ) ^ 2 + ( gc_y - f8_y ) ^ 2)",
+   "value": 0.0,
+   "unit": "",
+   "comment": "F8 slot axis unit vector y (abs, y down)"
+  },
+  {
+   "name": "pip1_x",
+   "expression": "glass_x0 + ( glass_x1 - glass_x0 ) / 4",
+   "value": 58.48,
+   "unit": "mm",
+   "comment": "stand-off pip P1 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip1_y",
+   "expression": "glass_y0 + pip_in",
+   "value": 13.07,
+   "unit": "mm",
+   "comment": "stand-off pip P1 y abs"
+  },
+  {
+   "name": "pip2_x",
+   "expression": "glass_x0 + ( glass_x1 - glass_x0 ) / 4",
+   "value": 58.48,
+   "unit": "mm",
+   "comment": "stand-off pip P2 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip2_y",
+   "expression": "glass_y1 - pip_in",
+   "value": 151.1,
+   "unit": "mm",
+   "comment": "stand-off pip P2 y abs"
+  },
+  {
+   "name": "pip3_x",
+   "expression": "glass_x0 + 3 * ( glass_x1 - glass_x0 ) / 4",
+   "value": 149.22,
+   "unit": "mm",
+   "comment": "stand-off pip P3 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip3_y",
+   "expression": "glass_y0 + pip_in",
+   "value": 13.07,
+   "unit": "mm",
+   "comment": "stand-off pip P3 y abs"
+  },
+  {
+   "name": "pip4_x",
+   "expression": "glass_x0 + 3 * ( glass_x1 - glass_x0 ) / 4",
+   "value": 149.22,
+   "unit": "mm",
+   "comment": "stand-off pip P4 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip4_y",
+   "expression": "glass_y1 - pip_in",
+   "value": 151.1,
+   "unit": "mm",
+   "comment": "stand-off pip P4 y abs"
+  },
+  {
+   "name": "pip5_x",
+   "expression": "glass_x0 + pip_in",
+   "value": 16.01,
+   "unit": "mm",
+   "comment": "stand-off pip P5 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip5_y",
+   "expression": "glass_y0 + ( glass_y1 - glass_y0 ) / 4",
+   "value": 46.1275,
+   "unit": "mm",
+   "comment": "stand-off pip P5 y abs"
+  },
+  {
+   "name": "pip6_x",
+   "expression": "glass_x1 - pip_in",
+   "value": 191.69,
+   "unit": "mm",
+   "comment": "stand-off pip P6 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip6_y",
+   "expression": "glass_y0 + ( glass_y1 - glass_y0 ) / 4",
+   "value": 46.1275,
+   "unit": "mm",
+   "comment": "stand-off pip P6 y abs"
+  },
+  {
+   "name": "pip7_x",
+   "expression": "glass_x0 + pip_in",
+   "value": 16.01,
+   "unit": "mm",
+   "comment": "stand-off pip P7 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip7_y",
+   "expression": "glass_y0 + 3 * ( glass_y1 - glass_y0 ) / 4",
+   "value": 118.0425,
+   "unit": "mm",
+   "comment": "stand-off pip P7 y abs"
+  },
+  {
+   "name": "pip8_x",
+   "expression": "glass_x1 - pip_in",
+   "value": 191.69,
+   "unit": "mm",
+   "comment": "stand-off pip P8 x abs (bead centre line, quarter points)"
+  },
+  {
+   "name": "pip8_y",
+   "expression": "glass_y0 + 3 * ( glass_y1 - glass_y0 ) / 4",
+   "value": 118.0425,
+   "unit": "mm",
+   "comment": "stand-off pip P8 y abs"
+  },
+  {
+   "name": "rib1_a",
+   "expression": "27.270000 mm",
+   "value": 27.27,
+   "unit": "mm",
+   "comment": "PCB support rib 1 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib2_a",
+   "expression": "48.541429 mm",
+   "value": 48.541429,
+   "unit": "mm",
+   "comment": "PCB support rib 2 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib3_a",
+   "expression": "65.562857 mm",
+   "value": 65.562857,
+   "unit": "mm",
+   "comment": "PCB support rib 3 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib4_a",
+   "expression": "91.084286 mm",
+   "value": 91.084286,
+   "unit": "mm",
+   "comment": "PCB support rib 4 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib5_a",
+   "expression": "110.105714 mm",
+   "value": 110.105714,
+   "unit": "mm",
+   "comment": "PCB support rib 5 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib6_a",
+   "expression": "133.627143 mm",
+   "value": 133.627143,
+   "unit": "mm",
+   "comment": "PCB support rib 6 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib7_a",
+   "expression": "154.898571 mm",
+   "value": 154.898571,
+   "unit": "mm",
+   "comment": "PCB support rib 7 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib8_a",
+   "expression": "176.170000 mm",
+   "value": 176.17,
+   "unit": "mm",
+   "comment": "PCB support rib 8 (T side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib9_a",
+   "expression": "27.270000 mm",
+   "value": 27.27,
+   "unit": "mm",
+   "comment": "PCB support rib 9 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib10_a",
+   "expression": "48.541429 mm",
+   "value": 48.541429,
+   "unit": "mm",
+   "comment": "PCB support rib 10 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib11_a",
+   "expression": "69.812857 mm",
+   "value": 69.812857,
+   "unit": "mm",
+   "comment": "PCB support rib 11 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib12_a",
+   "expression": "91.084286 mm",
+   "value": 91.084286,
+   "unit": "mm",
+   "comment": "PCB support rib 12 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib13_a",
+   "expression": "112.355714 mm",
+   "value": 112.355714,
+   "unit": "mm",
+   "comment": "PCB support rib 13 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib14_a",
+   "expression": "133.627143 mm",
+   "value": 133.627143,
+   "unit": "mm",
+   "comment": "PCB support rib 14 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib15_a",
+   "expression": "154.898571 mm",
+   "value": 154.898571,
+   "unit": "mm",
+   "comment": "PCB support rib 15 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib16_a",
+   "expression": "176.170000 mm",
+   "value": 176.17,
+   "unit": "mm",
+   "comment": "PCB support rib 16 (B side): v1 position of its left edge [v2]"
+  },
+  {
+   "name": "rib17_a",
+   "expression": "26.250000 mm",
+   "value": 26.25,
+   "unit": "mm",
+   "comment": "PCB support rib 17 (L side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib18_a",
+   "expression": "47.250000 mm",
+   "value": 47.25,
+   "unit": "mm",
+   "comment": "PCB support rib 18 (L side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib19_a",
+   "expression": "68.250000 mm",
+   "value": 68.25,
+   "unit": "mm",
+   "comment": "PCB support rib 19 (L side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib20_a",
+   "expression": "89.250000 mm",
+   "value": 89.25,
+   "unit": "mm",
+   "comment": "PCB support rib 20 (L side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib21_a",
+   "expression": "110.250000 mm",
+   "value": 110.25,
+   "unit": "mm",
+   "comment": "PCB support rib 21 (L side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib22_a",
+   "expression": "26.250000 mm",
+   "value": 26.25,
+   "unit": "mm",
+   "comment": "PCB support rib 22 (R side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib23_a",
+   "expression": "47.250000 mm",
+   "value": 47.25,
+   "unit": "mm",
+   "comment": "PCB support rib 23 (R side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib24_a",
+   "expression": "68.250000 mm",
+   "value": 68.25,
+   "unit": "mm",
+   "comment": "PCB support rib 24 (R side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib25_a",
+   "expression": "89.250000 mm",
+   "value": 89.25,
+   "unit": "mm",
+   "comment": "PCB support rib 25 (R side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "rib26_a",
+   "expression": "110.250000 mm",
+   "value": 110.25,
+   "unit": "mm",
+   "comment": "PCB support rib 26 (R side): v1 position of its top edge [v2]"
+  },
+  {
+   "name": "trib_h_min",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "GF: minimum tube-rib height above the flange back (only governs when the step wall does not stand above the flange back, i.e. at the level snap)"
+  },
+  {
+   "name": "Z_TRIB_TOP",
+   "expression": "max(min(Z_TUBE_TOP; Z_STEPWALL_BACK); Z_FLANGE_BACK + trib_h_min)",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "GF: tube-rib top = tube top, but never above the step-wall back (no stub above the plate), and at least trib_h_min above the flange back"
+  },
+  {
+   "name": "cell_r_h7",
+   "expression": "1.0 mm",
+   "value": 1.0,
+   "unit": "mm",
+   "comment": "stage 2 Part A: H7 cell corner radius at the boss (boss meets a full top wall; was cell_r)"
+  },
+  {
+   "name": "R_frame",
+   "expression": "6.0 mm",
+   "value": 6.0,
+   "unit": "mm",
+   "comment": "GF-1.1: reference radius of the frame outlines = GF-1.0 R_glass 6.0 (lip_in R6.4, lip_out R7.4, seat ring R8.9 = R_frame + s)"
+  },
+  {
+   "name": "tail_side_add",
+   "expression": "0.3 mm",
+   "value": 0.3,
+   "unit": "mm",
+   "comment": "GF-1.1: tail pocket side walls moved out by this (x tr_x0 - / tr_x1 + ), walls and cells stay"
+  },
+  {
+   "name": "h6_wall_min",
+   "expression": "1.1 mm",
+   "value": 1.1,
+   "unit": "mm",
+   "comment": "GF-1.1: tail wall left beside the H6 cell jog, at Z_PCB (the thinnest place)"
+  },
+  {
+   "name": "h6_corner_r",
+   "expression": "2.5 mm",
+   "value": 2.5,
+   "unit": "mm",
+   "comment": "GF-1.1: H6 cell corner arc at the boss (tangent point inside the boss at every Z)"
+  },
+  {
+   "name": "h6_jog_y",
+   "expression": "h6_y + 2.8 mm",
+   "value": 126.6,
+   "unit": "mm",
+   "comment": "GF-1.1: H6 cell jog: lower end of the jogged wall (abs y)"
+  },
+  {
+   "name": "h6_jog_len",
+   "expression": "1.6 mm",
+   "value": 1.6,
+   "unit": "mm",
+   "comment": "GF-1.1: H6 cell jog: length (y) of the slant back to the cell wall"
+  },
+  {
+   "name": "tube_sw_r",
+   "expression": "min(1.2 mm; max(0.5 mm; 0.75 * ( Z_STEPWALL_BACK - Z_FLANGE_BACK )))",
+   "value": 1.2,
+   "unit": "mm",
+   "comment": "GF-1.1: F5-F8 tube to step-wall blend (item 6): 1.2 at glass 3.0 / 4.0, 0.75 at 2.0 (junction 1.0 high), 0.5 at the level snap (no junction)"
+  },
+  {
+   "name": "cb_w",
+   "expression": "7.4 mm",
+   "value": 7.4,
+   "unit": "mm",
+   "comment": "GF-1.1 (lead round 2): counterbore width at its opening = slot_w + 2 x 1.0 (was 7.2)"
+  },
+  {
+   "name": "cb_l",
+   "expression": "9.0 mm",
+   "value": 9.0,
+   "unit": "mm",
+   "comment": "GF-1.1 (lead round 2): counterbore length at its opening = slot_l + 2 x 1.0 (was 8.8)"
+  },
+  {
+   "name": "cb_floor",
+   "expression": "1.6 mm",
+   "value": 1.6,
+   "unit": "mm",
+   "comment": "GF-1.1: counterbore floor above Z_SHEET_BACK at F1-F4, in the pad face (1.4 flange + 0.2; Z -11.82 at glass 3.0); F5-F8 use cb_floor_mid"
+  },
+  {
+   "name": "cb_floor_mid",
+   "expression": "2.0 mm",
+   "value": 2.0,
+   "unit": "mm",
+   "comment": "GF-1.1: F5-F8 counterbore floor above Z_SHEET_BACK (1.0 into the flange front, 0.6 over a 1.4 flange)"
+  },
+  {
+   "name": "cb_r",
+   "expression": "0.3 mm",
+   "value": 0.3,
+   "unit": "mm",
+   "comment": "GF-1.1: counterbore floor edge round"
+  },
+  {
+   "name": "core_r_in",
+   "expression": "6.2 mm",
+   "value": 6.2,
+   "unit": "mm",
+   "comment": "GF-1.1: coring groove inner radius at the tube top (washer seat dia 12.4)"
+  },
+  {
+   "name": "core_r_out",
+   "expression": "7.5 mm",
+   "value": 7.5,
+   "unit": "mm",
+   "comment": "GF-1.1: coring groove outer radius at the tube top (0.1 clear of the R0.5 tube / step-wall fillet at glass 4.0; skin 1.5)"
+  },
+  {
+   "name": "core_depth",
+   "expression": "3.3 mm",
+   "value": 3.3,
+   "unit": "mm",
+   "comment": "GF-1.1: coring groove depth below Z_TUBE_TOP (floor 2.7 above the pad face at glass 3.0)"
+  },
+  {
+   "name": "core_floor_r",
+   "expression": "0.4 mm",
+   "value": 0.4,
+   "unit": "mm",
+   "comment": "GF-1.1: coring groove floor rounds (groove 1.185 wide at the floor, flat 0.385)"
+  }
+ ],
+ "derived_levels": [
+  {
+   "name": "Z_TROUGH_TOP",
+   "fusion_expression": "loop_z_top + loop_clr",
+   "master_expression": "4.05 (v2)",
+   "fusion_value_mm": 4.05,
+   "master_value_glass_3.0": 4.05
+  },
+  {
+   "name": "Z_PCB",
+   "fusion_expression": "0 mm",
+   "master_expression": "0 (v2)",
+   "fusion_value_mm": 0.0,
+   "master_value_glass_3.0": 0.0
+  },
+  {
+   "name": "Z_SHELF_BACK",
+   "fusion_expression": "Z_SEAT + shelf_t",
+   "master_expression": "-2.10 (v2)",
+   "fusion_value_mm": -2.1,
+   "master_value_glass_3.0": -2.1
+  },
+  {
+   "name": "Z_SEAT",
+   "fusion_expression": "-4.6 mm",
+   "master_expression": "-4.60 (v2)",
+   "fusion_value_mm": -4.6,
+   "master_value_glass_3.0": -4.6
+  },
+  {
+   "name": "Z_FORMEX_FRONT",
+   "fusion_expression": "Z_SEAT - sheet_t",
+   "master_expression": "Z_SEAT - 0.40",
+   "fusion_value_mm": -5.0,
+   "master_value_glass_3.0": -5.0
+  },
+  {
+   "name": "Z_PANEL_BACK",
+   "fusion_expression": "Z_FORMEX_FRONT - g_bs",
+   "master_expression": "Z_FORMEX_FRONT - g_bs",
+   "fusion_value_mm": -5.8,
+   "master_value_glass_3.0": -5.8
+  },
+  {
+   "name": "Z_CTP_FRONT",
+   "fusion_expression": "Z_PANEL_BACK - panel_t",
+   "master_expression": "Z_PANEL_BACK - panel_t",
+   "fusion_value_mm": -11.12,
+   "master_value_glass_3.0": -11.12
+  },
+  {
+   "name": "Z_GLASS_BACK",
+   "fusion_expression": "Z_CTP_FRONT - t_opt",
+   "master_expression": "Z_CTP_FRONT - t_opt",
+   "fusion_value_mm": -11.42,
+   "master_value_glass_3.0": -11.42
+  },
+  {
+   "name": "Z_GLASS_FRONT",
+   "fusion_expression": "Z_GLASS_BACK - glass_t",
+   "master_expression": "Z_GLASS_BACK - glass_t",
+   "fusion_value_mm": -14.42,
+   "master_value_glass_3.0": -14.42
+  },
+  {
+   "name": "Z_SHEET_BACK",
+   "fusion_expression": "Z_GLASS_FRONT + t_sheet",
+   "master_expression": "Z_GLASS_FRONT + t_sheet",
+   "fusion_value_mm": -13.42,
+   "master_value_glass_3.0": -13.42
+  },
+  {
+   "name": "Z_FLANGE_FRONT",
+   "fusion_expression": "Z_SHEET_BACK + t_gap",
+   "master_expression": "Z_SHEET_BACK + t_gap",
+   "fusion_value_mm": -12.42,
+   "master_value_glass_3.0": -12.42
+  },
+  {
+   "name": "Z_FLANGE_BACK",
+   "fusion_expression": "Z_STEPWALL_BACK + snap_keep * ( Z_FLANGE_BACK_RAW - Z_STEPWALL_BACK )",
+   "master_expression": "Z_FLANGE_FRONT + flange_t; = Z_STEPWALL_BACK if within 0.5 of Z_LANDPLATE_BACK (level snap)",
+   "fusion_value_mm": -9.92,
+   "master_value_glass_3.0": -9.92
+  },
+  {
+   "name": "Z_LAND",
+   "fusion_expression": "Z_GLASS_BACK + t_bond",
+   "master_expression": "Z_GLASS_BACK + t_bond",
+   "fusion_value_mm": -10.42,
+   "master_value_glass_3.0": -10.42
+  },
+  {
+   "name": "Z_PIP_TOP",
+   "fusion_expression": "Z_LAND - pip_h",
+   "master_expression": "Z_LAND - pip_h",
+   "fusion_value_mm": -10.92,
+   "master_value_glass_3.0": -10.92
+  },
+  {
+   "name": "Z_LANDPLATE_BACK",
+   "fusion_expression": "Z_STEPWALL_BACK + snap_keep * ( Z_LANDPLATE_BACK_RAW - Z_STEPWALL_BACK )",
+   "master_expression": "Z_LAND + wall",
+   "fusion_value_mm": -7.92,
+   "master_value_glass_3.0": -7.92
+  },
+  {
+   "name": "Z_STEPWALL_BACK",
+   "fusion_expression": "max(Z_FLANGE_BACK_RAW; Z_LANDPLATE_BACK_RAW)",
+   "master_expression": "max(Z_FLANGE_BACK, Z_LANDPLATE_BACK); snap both to it if they differ < 0.5",
+   "fusion_value_mm": -7.92,
+   "master_value_glass_3.0": -7.92
+  },
+  {
+   "name": "Z_TUBE_TOP",
+   "fusion_expression": "Z_FLANGE_BACK + tube_h",
+   "master_expression": "Z_FLANGE_BACK + tube_h",
+   "fusion_value_mm": -7.42,
+   "master_value_glass_3.0": -7.42
+  },
+  {
+   "name": "Z_TAIL_TFT_EXIT",
+   "fusion_expression": "Z_PANEL_BACK - 2.6 mm",
+   "master_expression": "Z_PANEL_BACK - 2.6",
+   "fusion_value_mm": -8.4,
+   "master_value_glass_3.0": -8.4
+  },
+  {
+   "name": "Z_TAIL_CTP_EXIT",
+   "fusion_expression": "Z_PANEL_BACK - 3.9 mm",
+   "master_expression": "Z_PANEL_BACK - 3.9",
+   "fusion_value_mm": -9.7,
+   "master_value_glass_3.0": -9.7
+  },
+  {
+   "name": "Z_LOOP_FRONT",
+   "fusion_expression": "Z_TAIL_CTP_EXIT - 0.15 mm",
+   "master_expression": "Z_TAIL_CTP_EXIT - 0.15",
+   "fusion_value_mm": -9.85,
+   "master_value_glass_3.0": -9.85
+  }
+ ],
+ "derived_helpers": [
+  {
+   "name": "Z_FLANGE_BACK_RAW",
+   "expression": "Z_FLANGE_FRONT + flange_t",
+   "value": -9.92,
+   "unit": "mm",
+   "comment": "flange back before the level snap"
+  },
+  {
+   "name": "Z_LANDPLATE_BACK_RAW",
+   "expression": "Z_LAND + wall",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "land-plate back before the level snap"
+  },
+  {
+   "name": "snap_keep",
+   "expression": "min(1; floor(abs(Z_FLANGE_BACK_RAW - Z_LANDPLATE_BACK_RAW) / level_snap))",
+   "value": 1.0,
+   "unit": "",
+   "comment": "level snap: 0 = the plate backs differ by < level_snap -> both snapped to Z_STEPWALL_BACK; 1 = no snap"
+  },
+  {
+   "name": "Z_TRIB_TOP",
+   "expression": "max(min(Z_TUBE_TOP; Z_STEPWALL_BACK); Z_FLANGE_BACK + trib_h_min)",
+   "value": -7.92,
+   "unit": "mm",
+   "comment": "GF: tube-rib top = tube top, but never above the step-wall back (no stub above the plate), and at least trib_h_min above the flange back"
+  },
+  {
+   "name": "Z_CELL_RIB_TOP",
+   "expression": "Z_LAND + cell_rib_h",
+   "value": -5.42,
+   "unit": "mm",
+   "comment": "corner-cell rib tops (v2 rule: cell_rib_h above the front face)"
+  }
+ ],
+ "features": [
+  {
+   "i": 0,
+   "name": " Frame GF:1",
+   "type": "Occurrence"
+  },
+  {
+   "i": 1,
+   "name": "Z_GLASS_FRONT plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 2,
+   "name": "Z_SHEET_BACK plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 3,
+   "name": "Z_FLANGE_FRONT plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 4,
+   "name": "Z_FLANGE_BACK plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 5,
+   "name": "Z_LAND plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 6,
+   "name": "Z_LANDPLATE_BACK plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 7,
+   "name": "Z_TUBE_TOP plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 8,
+   "name": "Z_SEAT plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 9,
+   "name": "Z_SHELF_BACK plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 10,
+   "name": "Z_PCB plane",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 11,
+   "name": "REF Z_GLASS_FRONT",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 12,
+   "name": "REF Z_GLASS_BACK",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 13,
+   "name": "REF Z_CTP_FRONT",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 14,
+   "name": "REF Z_PANEL_BACK",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 15,
+   "name": "REF Z_FORMEX_FRONT",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 16,
+   "name": "REF Z_SHEET_BACK",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 17,
+   "name": "REF Z_FLANGE_FRONT",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 18,
+   "name": "REF Z_LAND",
+   "type": "ConstructionPlane"
+  },
+  {
+   "i": 20,
+   "name": "Flange plate",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 22,
+   "name": "Land plate + step wall (back)",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 24,
+   "name": "Seat ring (step wall front)",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 26,
+   "name": "Lip",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 28,
+   "name": "Corner pads F1-F4",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 30,
+   "name": "Outer wall block",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 32,
+   "name": "Tail wall block",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 34,
+   "name": "Corner cells",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 36,
+   "name": "PCB bosses H1-H9",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 38,
+   "name": "Cell ribs boss to beam",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 40,
+   "name": "Cell ribs across",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 42,
+   "name": "Glass recess",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 44,
+   "name": "Clearance pocket",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 46,
+   "name": "Above-shelf space",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 48,
+   "name": "PCB support ribs (26)",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 50,
+   "name": "Window",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 52,
+   "name": "Tail pocket",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 54,
+   "name": "Pips P1-P8",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 56,
+   "name": "PCB pilots H1-H9",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 58,
+   "name": "PCB pilot reliefs",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 59,
+   "name": "Root fillets R0.5 - PCB bosses on the walls",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 60,
+   "name": "Root fillets R0.5 - corner cells + cell ribs + cell bosses",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 61,
+   "name": "Root fillets R0.5 - PCB support rib sides",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 62,
+   "name": "Root fillets R0.5 - shelf back (not into the tail pocket)",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 63,
+   "name": "Root fillets R0.5 - wall + step wall to plates (rule)",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 64,
+   "name": "Root fillets R0.5 - shelf front (pocket)",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 65,
+   "name": "Root fillets R0.5 - tail walls to wall top",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 67,
+   "name": "Fastener tubes F1-F8",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 69,
+   "name": "Tube ribs F1-F4",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 70,
+   "name": "Root fillets R0.5 - fastener tubes + tube ribs (rule)",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 71,
+   "name": "Root fillets R0.5 - land to recess wall",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 72,
+   "name": "Root fillets lip_root_r - lip root",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 73,
+   "name": "Lip top edges R0.3",
+   "type": "FilletFeature"
+  },
+  {
+   "i": 75,
+   "name": "Fastener slots F1-F8 (back)",
+   "type": "ExtrudeFeature"
+  },
+  {
+   "i": 76,
+   "name": "Fastener slots F1-F4 (through the pads)",
+   "type": "ExtrudeFeature"
+  }
+ ],
+ "body": {
+  "volume_cm3": 82.1879,
+  "mass_g_at_1.36": 111.78,
+  "faces": 922,
+  "edges": 2207,
+  "lumps": 1,
+  "shells": 1,
+  "is_solid": true,
+  "bbox_abs": {
+   "x": [
+    -7.89,
+    215.59
+   ],
+   "y_down": [
+    -10.83,
+    175.0
+   ],
+   "z": [
+    -14.42,
+    4.05
+   ]
+  },
+  "name": "Frame GF",
+  "material_density_g_cm3": 1.36,
+  "appearance": "Plastic - Matte (Black)"
+ },
+ "dimension_check": [
+  {
+   "name": "lip (left side, y 60): outer / inner face",
+   "z": -13.92,
+   "found": [
+    11.7187,
+    12.7187
+   ],
+   "expected": [
+    11.7187,
+    12.7187
+   ],
+   "max_dev": 0.0
+  },
+  {
+   "name": "seat ring + step wall (y 60): outer face / recess wall",
+   "z": -13.12,
+   "found": [
+    10.2222,
+    12.7327
+   ],
+   "expected": [
+    10.2222,
+    12.7327
+   ],
+   "max_dev": 0.0
+  },
+  {
+   "name": "flange front zone (y 60): flange edge / recess wall",
+   "z": -12.12,
+   "found": [
+    -7.8847,
+    12.7501
+   ],
+   "expected": [
+    -7.8848,
+    12.7501
+   ],
+   "max_dev": 0.0001
+  },
+  {
+   "name": "land plate zone (y 60): flange edge / clearance pocket face",
+   "z": -10.12,
+   "found": [
+    -7.8499,
+    19.1237
+   ],
+   "expected": [
+    -7.8499,
+    19.1236
+   ],
+   "max_dev": 0.0001
+  },
+  {
+   "name": "step wall back zone (y 60): step-wall B face / pocket face",
+   "z": -8.92,
+   "found": [
+    10.2275,
+    19.1446
+   ],
+   "expected": [
+    10.2275,
+    19.1446
+   ],
+   "max_dev": 0.0
+  },
+  {
+   "name": "F8 slot length at the flange front (along x)",
+   "z": -12.41,
+   "found": [
+    -1.39,
+    5.61
+   ],
+   "expected": [
+    -1.3899,
+    5.6099
+   ],
+   "max_dev": 0.0001
+  },
+  {
+   "name": "F8 slot width at the flange front (along y)",
+   "z": -12.41,
+   "found": [
+    79.385,
+    84.785
+   ],
+   "expected": [
+    79.3851,
+    84.7849
+   ],
+   "max_dev": 0.0001
+  },
+  {
+   "name": "F1 slot length along its radial axis (t from -6)",
+   "z": -12.41,
+   "found": [
+    -0.6031,
+    4.8231
+   ],
+   "expected": [
+    -0.6031,
+    4.8231
+   ],
+   "max_dev": 0.0
+  },
+  {
+   "name": "tail pocket bottom face at the land (x 103.85; the top side opens into the clearance pocket)",
+   "z": -10.37,
+   "found": [
+    147.7009
+   ],
+   "expected": [
+    147.7009
+   ],
+   "max_dev": 0.0
+  }
+ ],
+ "flat_face_levels_mm2": {
+  "-14.420 -Z": 253.8,
+  "-13.420 -Z": 1730.03,
+  "-10.420 -Z": 5420.72,
+  "-9.920 +Z": 10853.48,
+  "-7.920 +Z": 4826.4,
+  "-7.420 +Z": 1776.32,
+  "+0.000 +Z": 1553.86,
+  "-4.600 -Z": 1475.57,
+  "-2.100 +Z": 1276.88,
+  "-5.420 +Z": 94.43,
+  "-0.500 +Z": 31.59,
+  "-9.420 +Z": 35.37,
+  "-10.920 -Z": 13.84,
+  "+4.050 +Z": 341.36,
+  "-12.420 -Z": 12344.69
+ },
+ "scans": {
+  "face_count": 922,
+  "classification_counts": {
+   "cylinder_other": 242,
+   "torus": 105,
+   "cone": 145,
+   "planar_drafted": 194,
+   "flat_perp_Z": 116,
+   "other_7": 62,
+   "other_3": 58
+  },
+  "draft_flags": [
+   {
+    "i": 6,
+    "type": "flat_perp_Z",
+    "area": 14.7512,
+    "two_a_over_p": 0.6616,
+    "centroid_abs": [
+     2.11,
+     82.085,
+     -11.42
+    ],
+    "z": [
+     -11.42,
+     -11.42
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 13,
+    "type": "flat_perp_Z",
+    "area": 14.7512,
+    "two_a_over_p": 0.6616,
+    "centroid_abs": [
+     103.85,
+     -0.83,
+     -11.42
+    ],
+    "z": [
+     -11.42,
+     -11.42
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 20,
+    "type": "flat_perp_Z",
+    "area": 14.7512,
+    "two_a_over_p": 0.6616,
+    "centroid_abs": [
+     103.85,
+     165.0,
+     -11.42
+    ],
+    "z": [
+     -11.42,
+     -11.42
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 27,
+    "type": "flat_perp_Z",
+    "area": 14.7512,
+    "two_a_over_p": 0.6616,
+    "centroid_abs": [
+     205.59,
+     82.085,
+     -11.42
+    ],
+    "z": [
+     -11.42,
+     -11.42
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 34,
+    "type": "flat_perp_Z",
+    "area": 14.9921,
+    "two_a_over_p": 0.672,
+    "centroid_abs": [
+     205.59,
+     -0.83,
+     -11.82
+    ],
+    "z": [
+     -11.82,
+     -11.82
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 41,
+    "type": "flat_perp_Z",
+    "area": 14.9921,
+    "two_a_over_p": 0.672,
+    "centroid_abs": [
+     2.11,
+     -0.83,
+     -11.82
+    ],
+    "z": [
+     -11.82,
+     -11.82
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 48,
+    "type": "flat_perp_Z",
+    "area": 14.9921,
+    "two_a_over_p": 0.672,
+    "centroid_abs": [
+     205.59,
+     165.0,
+     -11.82
+    ],
+    "z": [
+     -11.82,
+     -11.82
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 55,
+    "type": "flat_perp_Z",
+    "area": 14.9921,
+    "two_a_over_p": 0.672,
+    "centroid_abs": [
+     2.11,
+     165.0,
+     -11.82
+    ],
+    "z": [
+     -11.82,
+     -11.82
+    ],
+    "side": "A",
+    "why": "horizontal face facing -Z at an unexpected level"
+   },
+   {
+    "i": 89,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     2.11,
+     82.085,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 94,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     205.59,
+     82.085,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 99,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     2.11,
+     -0.83,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 104,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     205.59,
+     165.0,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 109,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     205.59,
+     -0.83,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 114,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     2.11,
+     165.0,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 119,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     103.85,
+     -0.83,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   },
+   {
+    "i": 124,
+    "type": "flat_perp_Z",
+    "area": 17.1573,
+    "two_a_over_p": 0.3986,
+    "centroid_abs": [
+     103.85,
+     165.0,
+     -10.72
+    ],
+    "z": [
+     -10.72,
+     -10.72
+    ],
+    "side": "B",
+    "why": "horizontal face facing +Z at an unexpected level"
+   }
+  ],
+  "draft_values_planar_deg": [
+   0.5,
+   1.0
+  ],
+  "cone_half_angles_deg": [
+   0.5,
+   1.0
+  ],
+  "sliver_rule": "area < 0.5 mm2 or 2A/P < 0.3 mm",
+  "slivers_total": 65,
+  "slivers_by_type": {
+   "other_3": 57,
+   "torus": 8
+  },
+  "slivers_note": "GF-1.1: 57 sphere + 8 torus fillet-blend patches, 0 design-face slivers (planar / cone / cylinder / flat), min 2A/P 0.2889, min area 0.3182 mm2",
+  "design_face_slivers": [],
+  "fillet_blend_slivers_max_area_mm2": 0.4433,
+  "thin_strip_scan_lt_1mm": [
+   {
+    "face": 5,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     2.11,
+     78.409,
+     -12.067
+    ]
+   },
+   {
+    "face": 6,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     2.11,
+     85.125,
+     -11.42
+    ]
+   },
+   {
+    "face": 6,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     2.11,
+     79.045,
+     -11.42
+    ]
+   },
+   {
+    "face": 12,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     107.526,
+     -0.83,
+     -12.067
+    ]
+   },
+   {
+    "face": 13,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     100.81,
+     -0.83,
+     -11.42
+    ]
+   },
+   {
+    "face": 13,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     106.89,
+     -0.83,
+     -11.42
+    ]
+   },
+   {
+    "face": 19,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     100.174,
+     165.0,
+     -12.067
+    ]
+   },
+   {
+    "face": 20,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     106.89,
+     165.0,
+     -11.42
+    ]
+   },
+   {
+    "face": 20,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     100.81,
+     165.0,
+     -11.42
+    ]
+   },
+   {
+    "face": 26,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     205.59,
+     85.761,
+     -12.067
+    ]
+   },
+   {
+    "face": 27,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     205.59,
+     79.045,
+     -11.42
+    ]
+   },
+   {
+    "face": 27,
+    "width_mm": 0.6616,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     205.59,
+     85.125,
+     -11.42
+    ]
+   },
+   {
+    "face": 34,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     203.669,
+     -3.188,
+     -11.82
+    ]
+   },
+   {
+    "face": 34,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     207.511,
+     1.528,
+     -11.82
+    ]
+   },
+   {
+    "face": 41,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     0.189,
+     1.528,
+     -11.82
+    ]
+   },
+   {
+    "face": 41,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     4.031,
+     -3.188,
+     -11.82
+    ]
+   },
+   {
+    "face": 48,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     207.511,
+     162.642,
+     -11.82
+    ]
+   },
+   {
+    "face": 48,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     203.669,
+     167.358,
+     -11.82
+    ]
+   },
+   {
+    "face": 55,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     4.031,
+     167.358,
+     -11.82
+    ]
+   },
+   {
+    "face": 55,
+    "width_mm": 0.672,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     0.189,
+     162.642,
+     -11.82
+    ]
+   },
+   {
+    "face": 56,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     205.59,
+     78.409,
+     -12.067
+    ]
+   },
+   {
+    "face": 58,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     107.526,
+     165.0,
+     -12.067
+    ]
+   },
+   {
+    "face": 60,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     100.174,
+     -0.83,
+     -12.067
+    ]
+   },
+   {
+    "face": 62,
+    "width_mm": 0.7053,
+    "overlap_mm": 1.6,
+    "mid_abs_approx": [
+     2.11,
+     85.761,
+     -12.067
+    ]
+   },
+   {
+    "face": 161,
+    "width_mm": 0.5088,
+    "overlap_mm": 169.48,
+    "mid_abs_approx": [
+     103.85,
+     8.778,
+     -13.871
+    ]
+   },
+   {
+    "face": 163,
+    "width_mm": 0.5088,
+    "overlap_mm": 131.83,
+    "mid_abs_approx": [
+     11.718,
+     82.085,
+     -13.871
+    ]
+   },
+   {
+    "face": 164,
+    "width_mm": 0.3929,
+    "overlap_mm": 169.48,
+    "mid_abs_approx": [
+     103.85,
+     9.279,
+     -14.42
+    ]
+   },
+   {
+    "face": 164,
+    "width_mm": 0.3929,
+    "overlap_mm": 131.83,
+    "mid_abs_approx": [
+     12.219,
+     82.085,
+     -14.42
+    ]
+   },
+   {
+    "face": 164,
+    "width_mm": 0.3929,
+    "overlap_mm": 169.48,
+    "mid_abs_approx": [
+     103.85,
+     154.891,
+     -14.42
+    ]
+   },
+   {
+    "face": 164,
+    "width_mm": 0.3929,
+    "overlap_mm": 131.83,
+    "mid_abs_approx": [
+     195.481,
+     82.085,
+     -14.42
+    ]
+   },
+   {
+    "face": 186,
+    "width_mm": 0.5088,
+    "overlap_mm": 169.48,
+    "mid_abs_approx": [
+     103.85,
+     155.392,
+     -13.871
+    ]
+   },
+   {
+    "face": 904,
+    "width_mm": 0.5088,
+    "overlap_mm": 131.83,
+    "mid_abs_approx": [
+     195.982,
+     82.085,
+     -13.871
+    ]
+   }
+  ],
+  "thin_strip_note": "8 lip-top strips as before (R0.3 / R0.2 lip rounds) + 24 counterbore faces: F5-F8 straight walls 0.705 x 1.6 (2A/P 0.49), F5-F8 floor ledges 0.662, F1-F4 floor ledges 0.672 (the 1.0 counterbore step minus the R0.3 round; 0.562 / 0.572 at 7.2 x 8.8); all above the 0.3 sliver rule",
+  "thin_wall_probe": {
+   "source": "verification toolchain (verify/mould_check.py via gf11_thickness_check.py) on the exported frame STEP",
+   "planes": [
+    {
+     "kind": "plan",
+     "name": "lip",
+     "z": -13.92,
+     "material_mm2": 646.1,
+     "thin_walls": [
+      {
+       "at": [
+        14.2,
+        11.31
+       ],
+       "coord": "x, y_abs",
+       "width_max": 0.99,
+       "length": 2.26,
+       "area_mm2": 0.895,
+       "fill_ratio": 0.4,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      },
+      {
+       "at": [
+        103.84,
+        9.28
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 170.75,
+       "area_mm2": 170.008,
+       "fill_ratio": 1.0,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        194.15,
+        12.06
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 3.01,
+       "area_mm2": 1.73,
+       "fill_ratio": 0.58,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      },
+      {
+       "at": [
+        12.22,
+        82.1
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 133.35,
+       "area_mm2": 132.61,
+       "fill_ratio": 0.99,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        195.52,
+        82.08
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 132.7,
+       "area_mm2": 131.96,
+       "fill_ratio": 0.99,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        193.5,
+        152.76
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 4.95,
+       "area_mm2": 3.78,
+       "fill_ratio": 0.76,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        14.93,
+        153.49
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 2.97,
+       "area_mm2": 1.688,
+       "fill_ratio": 0.57,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      },
+      {
+       "at": [
+        103.84,
+        154.93
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 170.15,
+       "area_mm2": 169.41,
+       "fill_ratio": 1.0,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      }
+     ],
+     "thin_gaps": [],
+     "slots_or_walls": [
+      {
+       "at": [
+        103.84,
+        9.28
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 170.75,
+       "area_mm2": 170.008,
+       "fill_ratio": 1.0,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        12.22,
+        82.1
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 133.35,
+       "area_mm2": 132.61,
+       "fill_ratio": 0.99,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        195.52,
+        82.08
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 132.7,
+       "area_mm2": 131.96,
+       "fill_ratio": 0.99,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        193.5,
+        152.76
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 4.95,
+       "area_mm2": 3.78,
+       "fill_ratio": 0.76,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      },
+      {
+       "at": [
+        103.84,
+        154.93
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 170.15,
+       "area_mm2": 169.41,
+       "fill_ratio": 1.0,
+       "class": "wall thinner than 1.0",
+       "what": "the lip (1.0 by design)"
+      }
+     ],
+     "v_notches": [
+      {
+       "at": [
+        14.2,
+        11.31
+       ],
+       "coord": "x, y_abs",
+       "width_max": 0.99,
+       "length": 2.26,
+       "area_mm2": 0.895,
+       "fill_ratio": 0.4,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      },
+      {
+       "at": [
+        194.15,
+        12.06
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 3.01,
+       "area_mm2": 1.73,
+       "fill_ratio": 0.58,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      },
+      {
+       "at": [
+        14.93,
+        153.49
+       ],
+       "coord": "x, y_abs",
+       "width_max": 1.0,
+       "length": 2.97,
+       "area_mm2": 1.688,
+       "fill_ratio": 0.57,
+       "class": "V-notch / sharp convex corner (wedge to 0)"
+      }
+     ],
+     "ignored_specks": {
+      "wall": 79,
+      "gap": 8
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "seat ring + pads",
+     "z": -12.92,
+     "material_mm2": 2453.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 22,
+      "gap": 40
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "flange + step wall",
+     "z": -11.407,
+     "material_mm2": 14858.6,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 4,
+      "gap": 29
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "pips",
+     "z": -10.67,
+     "material_mm2": 13838.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 9,
+      "gap": 70
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "land plate + flange",
+     "z": -10.17,
+     "material_mm2": 19464.0,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 12,
+      "gap": 87
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "tubes + tube ribs",
+     "z": -8.92,
+     "material_mm2": 8045.8,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 57,
+      "gap": 311
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "tubes above the land plate",
+     "z": -7.67,
+     "material_mm2": 2739.5,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 103,
+      "gap": 431
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "corner cells",
+     "z": -6.0,
+     "material_mm2": 2029.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 57,
+      "gap": 341
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "cells / pocket wall",
+     "z": -5.2,
+     "material_mm2": 1916.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 63,
+      "gap": 265
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "shelf + walls",
+     "z": -3.0,
+     "material_mm2": 3538.1,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 37,
+      "gap": 207
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "ribs below the PCB",
+     "z": -0.487,
+     "material_mm2": 1911.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 115,
+      "gap": 461
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "plan",
+     "name": "tail walls",
+     "z": 2.0,
+     "material_mm2": 347.9,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 6,
+      "gap": 4
+     },
+     "acute_corners": []
+    },
+    {
+     "kind": "vertical",
+     "name": "mid-top x 80",
+     "z": null,
+     "material_mm2": 110.5,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 11,
+      "gap": 23
+     }
+    },
+    {
+     "kind": "vertical",
+     "name": "mid-side y 60",
+     "z": null,
+     "material_mm2": 105.9,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 11,
+      "gap": 21
+     }
+    },
+    {
+     "kind": "vertical",
+     "name": "chin x 103.85 (bottom)",
+     "z": null,
+     "material_mm2": 110.2,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 27,
+      "gap": 28
+     }
+    },
+    {
+     "kind": "vertical",
+     "name": "right side y 100",
+     "z": null,
+     "material_mm2": 112.5,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 11,
+      "gap": 23
+     }
+    },
+    {
+     "kind": "vertical",
+     "name": "F1 slot axis (t from F1 towards the glass centre)",
+     "z": null,
+     "material_mm2": 169.5,
+     "thin_walls": [],
+     "thin_gaps": [],
+     "slots_or_walls": [],
+     "v_notches": [],
+     "ignored_specks": {
+      "wall": 28,
+      "gap": 59
+     }
+    }
+   ],
+   "verdict": "no wall < 1.0 except the 1.0 lip (by design; the 3 lip-corner 'V-notch' hits are raster artefacts at the lip corner arcs, identical in the GF-1.0 verification run); no thin gap anywhere (GF-1.0: two 0.3 steel wedges at F8, Z -7.67)"
+  },
+  "unfilleted_concave_roots": [
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     192.44,
+     118.042,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     16.76,
+     118.042,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     16.76,
+     46.127,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     149.97,
+     151.1,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     59.23,
+     151.1,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     149.97,
+     13.07,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     59.23,
+     13.07,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "pip roots (sharp)",
+    "mid_abs": [
+     192.44,
+     46.127,
+     -10.42
+    ],
+    "z": [
+     -10.42,
+     -10.42
+    ],
+    "len_mm": 4.712,
+    "owners": [
+     "Glass recess",
+     "Pips P1-P8"
+    ]
+   },
+   {
+    "group": "shelf back",
+    "mid_abs": [
+     171.758,
+     119.8,
+     -2.1
+    ],
+    "z": [
+     -2.1,
+     -2.1
+    ],
+    "len_mm": 7.825,
+    "owners": [
+     "Above-shelf space",
+     "Above-shelf space"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.796,
+     109.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     176.596,
+     123.8,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     191.396,
+     109.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     175.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     94.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     191.396,
+     30.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.596,
+     14.2,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.596,
+     123.8,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.796,
+     30.0,
+     -0.5
+    ],
+    "z": [
+     -0.5,
+     -0.5
+    ],
+    "len_mm": 10.026,
+    "owners": [
+     "PCB pilot reliefs",
+     "PCB pilot reliefs"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.318,
+     109.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     176.118,
+     123.8,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     190.918,
+     109.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     175.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     94.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     190.918,
+     30.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.118,
+     14.2,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     31.118,
+     123.8,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "pilots (excluded)",
+    "mid_abs": [
+     16.318,
+     30.0,
+     -9.42
+    ],
+    "z": [
+     -9.42,
+     -9.42
+    ],
+    "len_mm": 7.023,
+    "owners": [
+     "PCB pilots H1-H9",
+     "PCB pilots H1-H9"
+    ]
+   },
+   {
+    "group": "tail pocket",
+    "mid_abs": [
+     38.777,
+     118.978,
+     -3.35
+    ],
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "len_mm": 2.501,
+    "owners": [
+     "Tail pocket",
+     "Tail pocket"
+    ]
+   },
+   {
+    "group": "tail pocket",
+    "mid_abs": [
+     167.823,
+     118.978,
+     -3.35
+    ],
+    "z": [
+     -4.6,
+     -2.1
+    ],
+    "len_mm": 2.501,
+    "owners": [
+     "Tail pocket",
+     "Tail pocket"
+    ]
+   },
+   {
+    "group": "shelf back",
+    "mid_abs": [
+     34.012,
+     119.8,
+     -2.1
+    ],
+    "z": [
+     -2.1,
+     -2.1
+    ],
+    "len_mm": 9.485,
+    "owners": [
+     "Above-shelf space",
+     "Above-shelf space"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     11.11,
+     165.0,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     11.11,
+     -0.83,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     214.59,
+     -0.83,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "pad roots (sharp, tape margin)",
+    "mid_abs": [
+     214.59,
+     165.0,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 56.549,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Corner pads F1-F4"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     10.21,
+     82.085,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 131.83,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     12.817,
+     154.293,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     103.85,
+     156.9,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 169.48,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     194.883,
+     154.293,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     197.49,
+     82.085,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 131.83,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     194.883,
+     9.877,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     103.85,
+     7.27,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 169.48,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   },
+   {
+    "group": "seat ring root (sharp, tape margin)",
+    "mid_abs": [
+     12.817,
+     9.877,
+     -12.42
+    ],
+    "z": [
+     -12.42,
+     -12.42
+    ],
+    "len_mm": 13.98,
+    "owners": [
+     "Land plate + step wall (back)",
+     "Seat ring (step wall front)"
+    ]
+   }
+  ],
+  "draft_flags_note": "16 new horizontal faces, all intended: counterbore floors F1-F4 at -11.82 and F5-F8 at -11.42 (A side, -Z) and the 8 coring-groove floors at -10.72 (B side, +Z); no other flag",
+  "thickness_verification_method": {
+   "file": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.step",
+   "file_info": {
+    "file": "C:/Users/lenovo/Documents/Projects/3D Printer Filament Dryer/Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Frame.step",
+    "bytes": 1747323,
+    "mtime": "2026-11-15 17:29:54",
+    "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+    "declared_unit": "cm",
+    "solids": 1,
+    "valid": true,
+    "volume_mm3": 82187.698,
+    "faces": 922,
+    "edges": 2285,
+    "bbox_model": [
+     -7.89,
+     215.59,
+     -175.0,
+     10.83,
+     -14.42,
+     4.05
+    ],
+    "bbox_abs": {
+     "x": [
+      -7.89,
+      215.59
+     ],
+     "y_down": [
+      -10.83,
+      175.0
+     ],
+     "z": [
+      -14.42,
+      4.05
+     ]
+    },
+    "size": [
+     223.48,
+     185.83,
+     18.47
+    ],
+    "read_s": 3.1
+   },
+   "method": "voxel 0.2 mm + 3D Euclidean distance transform (verify/mould_check.py thick check, limit 5.0)",
+   "max_sphere_dia_mm": 4.6,
+   "spots_over_5.0": [],
+   "top5": [
+    {
+     "max_sphere_dia": 4.6,
+     "at_abs": [
+      197.11,
+      86.8,
+      -10.22
+     ],
+     "extent_abs": [
+      196.5,
+      197.9,
+      84.8,
+      87.6,
+      -10.8,
+      -9.6
+     ],
+     "voxels": 210,
+     "what": "fastener F6 (no pad + flange + tube)"
+    },
+    {
+     "max_sphere_dia": 4.58,
+     "at_abs": [
+      197.11,
+      77.4,
+      -10.22
+     ],
+     "extent_abs": [
+      196.5,
+      197.9,
+      76.4,
+      79.0,
+      -10.8,
+      -9.6
+     ],
+     "voxels": 200,
+     "what": "fastener F6 (no pad + flange + tube)"
+    },
+    {
+     "max_sphere_dia": 4.53,
+     "at_abs": [
+      187.11,
+      111.2,
+      -3.22
+     ],
+     "extent_abs": [
+      186.7,
+      187.9,
+      110.0,
+      111.8,
+      -4.4,
+      -1.6
+     ],
+     "voxels": 166,
+     "what": "PCB boss H5"
+    },
+    {
+     "max_sphere_dia": 4.53,
+     "at_abs": [
+      27.91,
+      121.2,
+      -3.22
+     ],
+     "extent_abs": [
+      27.3,
+      28.7,
+      120.6,
+      121.6,
+      -4.0,
+      -1.8
+     ],
+     "voxels": 109,
+     "what": "PCB boss H7"
+    },
+    {
+     "max_sphere_dia": 4.53,
+     "at_abs": [
+      177.11,
+      121.2,
+      -3.22
+     ],
+     "extent_abs": [
+      176.5,
+      177.9,
+      120.6,
+      121.6,
+      -4.0,
+      -2.0
+     ],
+     "voxels": 102,
+     "what": "PCB boss H6"
+    }
+   ],
+   "map": "renders/GF11_thickness_map_verify_toolchain.png",
+   "GF-1.0_for_comparison": "6.0 at F1-F4 and H6, 5.2 at F5-F8 (verification agent)"
+  }
+ },
+ "flex_test": [
+  {
+   "case": "glass_t 2.0",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 80.4647,
+   "faces": 919,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "glass_t 4.0",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 83.8592,
+   "faces": 918,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "glass_t 1.1 (snap)",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 80.272,
+   "faces": 854,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "t_sheet 0.8",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 82.3875,
+   "faces": 922,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "t_sheet 1.5",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 81.6746,
+   "faces": 922,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "t_opt 1.0",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 83.4384,
+   "faces": 922,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  },
+  {
+   "case": "default (glass 3.0)",
+   "healthy": true,
+   "bodies": 1,
+   "lumps": 1,
+   "volume_cm3": 82.1879,
+   "faces": 922,
+   "timeline_unhealthy": [],
+   "roots": {
+    "pip roots (sharp)": 8,
+    "shelf back": 2,
+    "pilots (excluded)": 18,
+    "tail pocket": 2,
+    "pad roots (sharp, tape margin)": 4,
+    "seat ring root (sharp, tape margin)": 8
+   }
+  }
+ ],
+ "carried_over_check": {
+  "method": "v2 STEP (Mechanical/Rev3.0_Frame/Rev3.0_Frame_v2.step) imported into a temporary occurrence of this document (script 22), measured, deleted again; plan sections compared offline (XOR areas)",
+  "v2_step_volume_cm3": 55.058,
+  "bosses_and_pilots": {
+   "H1": {
+    "xy_abs": [
+     30.0,
+     14.2
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H2": {
+    "xy_abs": [
+     93.0,
+     14.2
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H3": {
+    "xy_abs": [
+     174.00000000000003,
+     14.2
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H4": {
+    "xy_abs": [
+     189.8,
+     30.0
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H5": {
+    "xy_abs": [
+     189.8,
+     109.0
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H6": {
+    "xy_abs": [
+     175.0,
+     123.80000000000001
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H7": {
+    "xy_abs": [
+     30.0,
+     123.80000000000001
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H8": {
+    "xy_abs": [
+     15.2,
+     109.0
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   },
+   "H9": {
+    "xy_abs": [
+     15.2,
+     30.0
+    ],
+    "gf_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -9.42,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1178
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -7.4287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1297
+     }
+    ],
+    "v2_cones": [
+     {
+      "half_angle_deg": 0.5,
+      "z_top": -0.5,
+      "z_bot": -10.02,
+      "r_top_max": 1.1956,
+      "r_top_min": 1.1956,
+      "r_bot_max": 1.1126
+     },
+     {
+      "half_angle_deg": 0.5,
+      "z_top": 0.0,
+      "z_bot": -0.5,
+      "r_top_max": 1.6,
+      "r_top_min": 1.6,
+      "r_bot_max": 1.5956
+     },
+     {
+      "half_angle_deg": 1.0,
+      "z_top": 0.0,
+      "z_bot": -8.0287,
+      "r_top_max": 4.0,
+      "r_top_min": 4.0,
+      "r_bot_max": 4.1401
+     }
+    ],
+    "gf_pilot_floor_z": [
+     -9.42
+    ],
+    "v2_pilot_floor_z": [
+     -10.02
+    ]
+   }
+  },
+  "bosses_verdict": "identical: boss dia 8.000 at Z 0 / 1 deg, pilot dia 2.391 at Z -0.5 / 0.5 deg, relief dia 3.200 x 0.5 / 0.5 deg at all nine positions; the boss cones end at the land-plate back (Z -7.92) instead of the v2 flange back (-8.52); the blind pilots end 1.0 behind the GF front face under them (the land, Z -10.42): floor Z -9.42 (v2 -10.02), engaged depth 9.42 instead of 10.02",
+  "sections_xor": [
+   {
+    "z": -3.35,
+    "regions": [
+     {
+      "region": "support rib 1 (T)",
+      "box": [
+       26.87,
+       19.15,
+       29.17,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 2 (T)",
+      "box": [
+       48.1414,
+       19.15,
+       50.4414,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 3 (T)",
+      "box": [
+       65.1629,
+       19.15,
+       67.4629,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 4 (T)",
+      "box": [
+       90.6843,
+       19.15,
+       92.9843,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 5 (T)",
+      "box": [
+       109.7057,
+       19.15,
+       112.0057,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 6 (T)",
+      "box": [
+       133.2271,
+       19.15,
+       135.5271,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 7 (T)",
+      "box": [
+       154.4986,
+       19.15,
+       156.7986,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 8 (T)",
+      "box": [
+       175.77,
+       19.15,
+       178.07,
+       21.2
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 9 (B)",
+      "box": [
+       26.87,
+       116.8,
+       29.17,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 10 (B)",
+      "box": [
+       48.1414,
+       116.8,
+       50.4414,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 11 (B)",
+      "box": [
+       69.4129,
+       116.8,
+       71.7129,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 12 (B)",
+      "box": [
+       90.6843,
+       116.8,
+       92.9843,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 13 (B)",
+      "box": [
+       111.9557,
+       116.8,
+       114.2557,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 14 (B)",
+      "box": [
+       133.2271,
+       116.8,
+       135.5271,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 15 (B)",
+      "box": [
+       154.4986,
+       116.8,
+       156.7986,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 16 (B)",
+      "box": [
+       175.77,
+       116.8,
+       178.07,
+       118.6
+      ],
+      "gf_area": 4.14,
+      "v2_area": 4.14,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 17 (L)",
+      "box": [
+       20.17,
+       25.85,
+       22.22,
+       28.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 18 (L)",
+      "box": [
+       20.17,
+       46.85,
+       22.22,
+       49.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 19 (L)",
+      "box": [
+       20.17,
+       67.85,
+       22.22,
+       70.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 20 (L)",
+      "box": [
+       20.17,
+       88.85,
+       22.22,
+       91.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 21 (L)",
+      "box": [
+       20.17,
+       109.85,
+       22.22,
+       112.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 22 (R)",
+      "box": [
+       182.72,
+       25.85,
+       184.77,
+       28.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 23 (R)",
+      "box": [
+       182.72,
+       46.85,
+       184.77,
+       49.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 24 (R)",
+      "box": [
+       182.72,
+       67.85,
+       184.77,
+       70.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 25 (R)",
+      "box": [
+       182.72,
+       88.85,
+       184.77,
+       91.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 26 (R)",
+      "box": [
+       182.72,
+       109.85,
+       184.77,
+       112.15
+      ],
+      "gf_area": 4.715,
+      "v2_area": 4.715,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H1 (dia 4 box)",
+      "box": [
+       28.0,
+       12.2,
+       32.0,
+       16.2
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H2 (dia 4 box)",
+      "box": [
+       91.0,
+       12.2,
+       95.0,
+       16.2
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H3 (dia 4 box)",
+      "box": [
+       172.00000000000003,
+       12.2,
+       176.00000000000003,
+       16.2
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H4 (dia 4 box)",
+      "box": [
+       187.8,
+       28.0,
+       191.8,
+       32.0
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H5 (dia 4 box)",
+      "box": [
+       187.8,
+       107.0,
+       191.8,
+       111.0
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H6 (dia 4 box)",
+      "box": [
+       173.0,
+       121.80000000000001,
+       177.0,
+       125.80000000000001
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H7 (dia 4 box)",
+      "box": [
+       28.0,
+       121.80000000000001,
+       32.0,
+       125.80000000000001
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H8 (dia 4 box)",
+      "box": [
+       13.2,
+       107.0,
+       17.2,
+       111.0
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H9 (dia 4 box)",
+      "box": [
+       13.2,
+       28.0,
+       17.2,
+       32.0
+      ],
+      "gf_area": 11.7184,
+      "v2_area": 11.7184,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge left",
+      "box": [
+       22.120000000000005,
+       23.6,
+       23.120000000000005,
+       114.4
+      ],
+      "gf_area": 43.4206,
+      "v2_area": 43.4206,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge right",
+      "box": [
+       181.82,
+       23.6,
+       182.82,
+       114.4
+      ],
+      "gf_area": 43.4206,
+      "v2_area": 43.4206,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge top",
+      "box": [
+       24.620000000000005,
+       21.1,
+       180.32,
+       22.1
+      ],
+      "gf_area": 74.4557,
+      "v2_area": 74.4557,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge bottom",
+      "box": [
+       24.620000000000005,
+       115.9,
+       180.32,
+       116.9
+      ],
+      "gf_area": 74.4557,
+      "v2_area": 74.4557,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "tail wall left above Z0 (y 129.5..147)",
+      "box": [
+       35.5,
+       129.5,
+       40.5,
+       147.0
+      ],
+      "gf_area": 39.6803,
+      "v2_area": 39.083,
+      "xor_area_mm2": 0.5973
+     },
+     {
+      "region": "tail wall right above Z0 (y 129.5..147)",
+      "box": [
+       166.0,
+       129.5,
+       171.0,
+       147.0
+      ],
+      "gf_area": 39.6803,
+      "v2_area": 39.083,
+      "xor_area_mm2": 0.5973
+     }
+    ]
+   },
+   {
+    "z": -1.0,
+    "regions": [
+     {
+      "region": "support rib 1 (T)",
+      "box": [
+       26.87,
+       19.15,
+       29.17,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 2 (T)",
+      "box": [
+       48.1414,
+       19.15,
+       50.4414,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 3 (T)",
+      "box": [
+       65.1629,
+       19.15,
+       67.4629,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 4 (T)",
+      "box": [
+       90.6843,
+       19.15,
+       92.9843,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 5 (T)",
+      "box": [
+       109.7057,
+       19.15,
+       112.0057,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 6 (T)",
+      "box": [
+       133.2271,
+       19.15,
+       135.5271,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 7 (T)",
+      "box": [
+       154.4986,
+       19.15,
+       156.7986,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 8 (T)",
+      "box": [
+       175.77,
+       19.15,
+       178.07,
+       21.2
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 9 (B)",
+      "box": [
+       26.87,
+       116.8,
+       29.17,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 10 (B)",
+      "box": [
+       48.1414,
+       116.8,
+       50.4414,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 11 (B)",
+      "box": [
+       69.4129,
+       116.8,
+       71.7129,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 12 (B)",
+      "box": [
+       90.6843,
+       116.8,
+       92.9843,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 13 (B)",
+      "box": [
+       111.9557,
+       116.8,
+       114.2557,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 14 (B)",
+      "box": [
+       133.2271,
+       116.8,
+       135.5271,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 15 (B)",
+      "box": [
+       154.4986,
+       116.8,
+       156.7986,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 16 (B)",
+      "box": [
+       175.77,
+       116.8,
+       178.07,
+       118.6
+      ],
+      "gf_area": 2.6309,
+      "v2_area": 2.6309,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 17 (L)",
+      "box": [
+       20.17,
+       25.85,
+       22.22,
+       28.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 18 (L)",
+      "box": [
+       20.17,
+       46.85,
+       22.22,
+       49.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 19 (L)",
+      "box": [
+       20.17,
+       67.85,
+       22.22,
+       70.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 20 (L)",
+      "box": [
+       20.17,
+       88.85,
+       22.22,
+       91.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 21 (L)",
+      "box": [
+       20.17,
+       109.85,
+       22.22,
+       112.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 22 (R)",
+      "box": [
+       182.72,
+       25.85,
+       184.77,
+       28.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 23 (R)",
+      "box": [
+       182.72,
+       46.85,
+       184.77,
+       49.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 24 (R)",
+      "box": [
+       182.72,
+       67.85,
+       184.77,
+       70.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 25 (R)",
+      "box": [
+       182.72,
+       88.85,
+       184.77,
+       91.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "support rib 26 (R)",
+      "box": [
+       182.72,
+       109.85,
+       184.77,
+       112.15
+      ],
+      "gf_area": 2.9963,
+      "v2_area": 2.9971,
+      "xor_area_mm2": 0.0009
+     },
+     {
+      "region": "pilot H1 (dia 4 box)",
+      "box": [
+       28.0,
+       12.2,
+       32.0,
+       16.2
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H2 (dia 4 box)",
+      "box": [
+       91.0,
+       12.2,
+       95.0,
+       16.2
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H3 (dia 4 box)",
+      "box": [
+       172.00000000000003,
+       12.2,
+       176.00000000000003,
+       16.2
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H4 (dia 4 box)",
+      "box": [
+       187.8,
+       28.0,
+       191.8,
+       32.0
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H5 (dia 4 box)",
+      "box": [
+       187.8,
+       107.0,
+       191.8,
+       111.0
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H6 (dia 4 box)",
+      "box": [
+       173.0,
+       121.80000000000001,
+       177.0,
+       125.80000000000001
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H7 (dia 4 box)",
+      "box": [
+       28.0,
+       121.80000000000001,
+       32.0,
+       125.80000000000001
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H8 (dia 4 box)",
+      "box": [
+       13.2,
+       107.0,
+       17.2,
+       111.0
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H9 (dia 4 box)",
+      "box": [
+       13.2,
+       28.0,
+       17.2,
+       32.0
+      ],
+      "gf_area": 11.5656,
+      "v2_area": 11.5656,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge left",
+      "box": [
+       22.120000000000005,
+       23.6,
+       23.120000000000005,
+       114.4
+      ],
+      "gf_area": 3.1951,
+      "v2_area": 3.1951,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge right",
+      "box": [
+       181.82,
+       23.6,
+       182.82,
+       114.4
+      ],
+      "gf_area": 3.1951,
+      "v2_area": 3.1951,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge top",
+      "box": [
+       24.620000000000005,
+       21.1,
+       180.32,
+       22.1
+      ],
+      "gf_area": 5.1121,
+      "v2_area": 5.1121,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge bottom",
+      "box": [
+       24.620000000000005,
+       115.9,
+       180.32,
+       116.9
+      ],
+      "gf_area": 5.1121,
+      "v2_area": 5.1121,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "tail wall left above Z0 (y 129.5..147)",
+      "box": [
+       35.5,
+       129.5,
+       40.5,
+       147.0
+      ],
+      "gf_area": 38.2397,
+      "v2_area": 37.6478,
+      "xor_area_mm2": 0.5919
+     },
+     {
+      "region": "tail wall right above Z0 (y 129.5..147)",
+      "box": [
+       166.0,
+       129.5,
+       171.0,
+       147.0
+      ],
+      "gf_area": 38.2397,
+      "v2_area": 37.6478,
+      "xor_area_mm2": 0.5919
+     }
+    ]
+   },
+   {
+    "z": 2.0,
+    "regions": [
+     {
+      "region": "support rib 1 (T)",
+      "box": [
+       26.87,
+       19.15,
+       29.17,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 2 (T)",
+      "box": [
+       48.1414,
+       19.15,
+       50.4414,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 3 (T)",
+      "box": [
+       65.1629,
+       19.15,
+       67.4629,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 4 (T)",
+      "box": [
+       90.6843,
+       19.15,
+       92.9843,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 5 (T)",
+      "box": [
+       109.7057,
+       19.15,
+       112.0057,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 6 (T)",
+      "box": [
+       133.2271,
+       19.15,
+       135.5271,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 7 (T)",
+      "box": [
+       154.4986,
+       19.15,
+       156.7986,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 8 (T)",
+      "box": [
+       175.77,
+       19.15,
+       178.07,
+       21.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 9 (B)",
+      "box": [
+       26.87,
+       116.8,
+       29.17,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 10 (B)",
+      "box": [
+       48.1414,
+       116.8,
+       50.4414,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 11 (B)",
+      "box": [
+       69.4129,
+       116.8,
+       71.7129,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 12 (B)",
+      "box": [
+       90.6843,
+       116.8,
+       92.9843,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 13 (B)",
+      "box": [
+       111.9557,
+       116.8,
+       114.2557,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 14 (B)",
+      "box": [
+       133.2271,
+       116.8,
+       135.5271,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 15 (B)",
+      "box": [
+       154.4986,
+       116.8,
+       156.7986,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 16 (B)",
+      "box": [
+       175.77,
+       116.8,
+       178.07,
+       118.6
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 17 (L)",
+      "box": [
+       20.17,
+       25.85,
+       22.22,
+       28.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 18 (L)",
+      "box": [
+       20.17,
+       46.85,
+       22.22,
+       49.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 19 (L)",
+      "box": [
+       20.17,
+       67.85,
+       22.22,
+       70.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 20 (L)",
+      "box": [
+       20.17,
+       88.85,
+       22.22,
+       91.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 21 (L)",
+      "box": [
+       20.17,
+       109.85,
+       22.22,
+       112.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 22 (R)",
+      "box": [
+       182.72,
+       25.85,
+       184.77,
+       28.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 23 (R)",
+      "box": [
+       182.72,
+       46.85,
+       184.77,
+       49.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 24 (R)",
+      "box": [
+       182.72,
+       67.85,
+       184.77,
+       70.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 25 (R)",
+      "box": [
+       182.72,
+       88.85,
+       184.77,
+       91.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "support rib 26 (R)",
+      "box": [
+       182.72,
+       109.85,
+       184.77,
+       112.15
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H1 (dia 4 box)",
+      "box": [
+       28.0,
+       12.2,
+       32.0,
+       16.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H2 (dia 4 box)",
+      "box": [
+       91.0,
+       12.2,
+       95.0,
+       16.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H3 (dia 4 box)",
+      "box": [
+       172.00000000000003,
+       12.2,
+       176.00000000000003,
+       16.2
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H4 (dia 4 box)",
+      "box": [
+       187.8,
+       28.0,
+       191.8,
+       32.0
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H5 (dia 4 box)",
+      "box": [
+       187.8,
+       107.0,
+       191.8,
+       111.0
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H6 (dia 4 box)",
+      "box": [
+       173.0,
+       121.80000000000001,
+       177.0,
+       125.80000000000001
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H7 (dia 4 box)",
+      "box": [
+       28.0,
+       121.80000000000001,
+       32.0,
+       125.80000000000001
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H8 (dia 4 box)",
+      "box": [
+       13.2,
+       107.0,
+       17.2,
+       111.0
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "pilot H9 (dia 4 box)",
+      "box": [
+       13.2,
+       28.0,
+       17.2,
+       32.0
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge left",
+      "box": [
+       22.120000000000005,
+       23.6,
+       23.120000000000005,
+       114.4
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge right",
+      "box": [
+       181.82,
+       23.6,
+       182.82,
+       114.4
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge top",
+      "box": [
+       24.620000000000005,
+       21.1,
+       180.32,
+       22.1
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "window edge bottom",
+      "box": [
+       24.620000000000005,
+       115.9,
+       180.32,
+       116.9
+      ],
+      "gf_area": 0.0,
+      "v2_area": 0.0,
+      "xor_area_mm2": 0.0
+     },
+     {
+      "region": "tail wall left above Z0 (y 129.5..147)",
+      "box": [
+       35.5,
+       129.5,
+       40.5,
+       147.0
+      ],
+      "gf_area": 36.2159,
+      "v2_area": 35.8137,
+      "xor_area_mm2": 0.4022
+     },
+     {
+      "region": "tail wall right above Z0 (y 129.5..147)",
+      "box": [
+       166.0,
+       129.5,
+       171.0,
+       147.0
+      ],
+      "gf_area": 36.2159,
+      "v2_area": 35.8137,
+      "xor_area_mm2": 0.4022
+     }
+    ]
+   }
+  ],
+  "sections_verdict": "26 support ribs (free spans, Z -1.0 and -3.35): max XOR 0.0009 mm2 = identical; window edge (shelf inner edge) identical; pilots identical; tail-pocket side walls above Z 0 (Z +2.0, y 129.5..147): XOR 0.40 mm2 per wall over 17.5 mm = the 0.0105 mm shift of the 1 deg drafted faces whose draft reference moved from v2 Z_FRONT (-11.02) to GF Z_LAND (-10.42); x limits at the front face, step at y 129 at Z_PCB and top Z +4.05 unchanged",
+  "flat_levels_gf_mm2": {
+   "-14.420 -Z": 253.8,
+   "-13.420 -Z": 1730.03,
+   "-10.420 -Z": 5420.72,
+   "-9.920 +Z": 10853.48,
+   "-7.920 +Z": 4826.4,
+   "-7.420 +Z": 1776.32,
+   "+0.000 +Z": 1553.86,
+   "-4.600 -Z": 1475.57,
+   "-2.100 +Z": 1276.88,
+   "-5.420 +Z": 94.43,
+   "-0.500 +Z": 31.59,
+   "-9.420 +Z": 35.37,
+   "-10.920 -Z": 13.84,
+   "+4.050 +Z": 341.36,
+   "-12.420 -Z": 12344.69
+  },
+  "flat_levels_v2_mm2": {
+   "+0.000 +Z": 1575.55,
+   "-4.600 -Z": 1252.94,
+   "-8.520 +Z": 8232.27,
+   "-2.100 +Z": 1083.37,
+   "-6.020 +Z": 102.74,
+   "-3.520 +Z": 609.2,
+   "-11.820 -Z": 14.0,
+   "-0.500 +Z": 31.59,
+   "-10.020 +Z": 35.01,
+   "-11.020 -Z": 11440.53,
+   "+4.050 +Z": 362.18
+  },
+  "levels_verdict": "Z 0 (PCB back), -0.5 (relief floors), -2.1 (shelf back), -4.6 (shelf front = Formex seat), +4.05 (tail walls) present in both",
+  "above_Z0_inside_board_outline_plus_1mm": {
+   "volume_above_Z0_mm3": 1432.2898,
+   "lumps": 1,
+   "bbox_abs": [
+    36.391,
+    170.209,
+    128.509,
+    150.018,
+    0.0,
+    4.05
+   ],
+   "points": 117,
+   "points_inside_outline_plus_1mm": 0,
+   "min_distance_to_pcb_outline_mm": 2.663,
+   "volume_inside_outline_plus_1mm_mm3": 0.0,
+   "board_outline_bbox": [
+    10.697,
+    9.697,
+    194.303,
+    128.303
+   ]
+  },
+  "GF-1.1": {
+   "boss_pilot_relief_H1-H9": "identical to stage 2 (cones, radii, Z ranges, pilot floors) - no difference",
+   "changed_by_design": "tail pocket side walls +0.3 (tail walls 0.3 thinner), H6 cell wall jog, counterbores, coring grooves, F5-F8 tube blend; nothing else",
+   "above_Z0": {
+    "volume_above_Z0_mm3": 1386.3759,
+    "lumps": 1,
+    "bbox_abs": [
+     36.391,
+     170.209,
+     128.509,
+     150.018,
+     -0.0,
+     4.05
+    ],
+    "points": 117,
+    "points_inside_outline_plus_1mm": 0,
+    "min_distance_to_pcb_outline_mm": 2.663,
+    "volume_inside_outline_plus_1mm_mm3": 0.0,
+    "board_outline_bbox": [
+     10.697,
+     9.697,
+     194.303,
+     128.303
+    ]
+   }
+  }
+ },
+ "deviations_from_master": [
+  {
+   "item": "lip width reference",
+   "master": "lip_in R6.4 'at the lip top'; lip_w 1.0 'root'; lip_out R7.4",
+   "built": "lip_in at the lip top (Z_GLASS_FRONT), lip_out at the lip root (Z_SHEET_BACK), 1 deg on both faces",
+   "numbers": "lip root width 1.0175 (not 1.000), lip top width 0.965 (concept 'top 0.97'), flat top 0.39 between the R0.3 rounds; g1 to the cut-out 0.400 at the root / 0.417 at the top; g2 0.400 at the lip top, 0.348 at the glass back (recess narrows 1 deg)",
+   "why": "both plan rectangles and lip_w cannot hold at one Z with drafted faces; lip_in and lip_out kept exactly at the JSON offsets, lip_w is the derived quantity"
+  },
+  {
+   "item": "seat-ring / step-wall outer face",
+   "built": "s 2.9 at the flange front (A side, 2.8825 at the ring top) and s 2.9 at the flange back (B side, step wall back part)",
+   "numbers": "ring top width 1.4825 (lip root s 1.4 .. 2.8825)",
+   "why": "draft reference choice, JSON gives no Z"
+  },
+  {
+   "item": "level snap",
+   "master": "Z_FLANGE_BACK snapped to Z_STEPWALL_BACK when |dZ| < 0.5",
+   "built": "fully automatic expression (snap_keep = min(1; floor(|dZ| / level_snap))), applied to Z_FLANGE_BACK and, per the Z_STEPWALL_BACK text ('snap both'), to Z_LANDPLATE_BACK",
+   "numbers": "identical to the master table at glass 1.1 / 2.0 / 3.0 / 4.0 (max dev 0.000 mm); no manual step"
+  },
+  {
+   "item": "PCB pilot depth",
+   "master": "pilot_floor 1.0 'above Z_FRONT' (v2)",
+   "built": "floor 1.0 behind the GF front face under the bosses (the land)",
+   "numbers": "floor Z -9.42 (v2 -10.02)"
+  },
+  {
+   "item": "tube ribs F1-F4 (direction and height not in the JSON)",
+   "built": "45 deg line from the fastener to the glass corner-arc centre (normal to the step-wall corner), 1.5 at the root, from inside the tube (d 8.5) to 0.5 into the step wall (d 15.64); top Z_TRIB_TOP = max(min(Z_TUBE_TOP; Z_STEPWALL_BACK); Z_FLANGE_BACK + trib_h_min) (new parameter trib_h_min 1.0)",
+   "numbers": "rib height 2.0 at glass 3.0 (tube 2.5), 1.0 at 2.0, 2.5 at 4.0, 1.0 free-ended at 1.1",
+   "why": "a rib to the tube top stood 0.5 proud of the step-wall back as a 0.4 mm stub (first build, 07b)"
+  },
+  {
+   "item": "F5-F8 tube rib",
+   "master": "'one 1.5 rib to the step wall' per tube",
+   "built": "no rib at F5-F8",
+   "numbers": "the dia-18 tube edge is at s 2.0, the step wall reaches s 2.9: the tube overlaps and merges with the step wall by 0.9 in plan"
+  },
+  {
+   "item": "outer wall / corner cells follow the moved pocket",
+   "built": "outer wall 2.5 outside the clearance pocket (outer_x0 16.72, v2 17.27); cell top boundary pocket_y1 + wall = 122.30 (v2 121.75)",
+   "numbers": "near-sliver and narrow crescent at the H7 / H6 cells (see known_weaknesses)",
+   "why": "pocket_clr 0.8 with the v2 construction rules (wall kept 2.5)"
+  },
+  {
+   "item": "draft reference of the carried-over walls",
+   "built": "outer wall block, tail-wall block, tail pocket and cells referenced at Z_LAND (the GF front face) instead of v2 Z_FRONT",
+   "numbers": "their 1 deg faces sit 0.0105 mm further out / in at a given Z (XOR 0.40 mm2 per tail wall above Z 0)"
+  },
+  {
+   "item": "pocket lead-in",
+   "built": "v2's 0.8 x 45 deg panel lead-in dropped",
+   "why": "the panel hangs from the glass; the clearance pocket is not a locating pocket (concept 4.4)"
+  },
+  {
+   "item": "mass",
+   "master": "concept estimate ~70 cm3 / 95 g",
+   "numbers": "built 84.00 cm3 / 114.2 g"
+  },
+  {
+   "item": "not modelled (reference parameters only)",
+   "built": "bead, tape strips, sheet cut-out, glass, print window, logo zone (stage 2)"
+  },
+  {
+   "item": "GF-1.1 core_r_out",
+   "master": "brief: groove start r 6.2-7.6",
+   "built": "7.5",
+   "why": "7.6 clips the R0.5 tube-top / step-wall fillet at glass 4.0; 7.5 keeps a 1.5 skin"
+  },
+  {
+   "item": "GF-1.1 core_floor_r",
+   "master": "not given",
+   "built": "R0.4",
+   "why": "groove 1.185 wide at the floor; R0.5 would leave a 0.185 flat (sliver), R0.4 leaves 0.385"
+  },
+  {
+   "item": "GF-1.1 F5-F8 counterbore depth",
+   "master": "brief: >= 0.2 clear of a 1.4 flange (0.6 into the flange)",
+   "built": "1.0 into the flange (0.6 clear)",
+   "why": "0.6 deep leaves a 0.3 x 1.6 straight wall strip above the R0.3 floor round (2A/P < 0.3)"
+  },
+  {
+   "item": "GF-1.1 cb_r",
+   "master": "brief 0.2-0.3",
+   "built": "0.3",
+   "why": "0.2 / 0.25 produce floor-round cylinder strips with 2A/P 0.26-0.29 that the verification counts as design faces"
+  },
+  {
+   "item": "GF-1.1 H6",
+   "master": "brief: replace the solid fill with coring",
+   "built": "cell wall jogged + R2.5 corner arc (the cell itself is the coring); no separate core",
+   "why": "keeps the boss / pilot untouched, tail wall 1.1 at Z_PCB, sphere at H6 4.53"
+  },
+  {
+   "item": "GF-1.1 tube_sw_r",
+   "master": "brief R1.0-1.5",
+   "built": "1.2 at glass 3.0 / 4.0, 0.75 at 2.0, 0.5 at 1.1",
+   "why": "the tube / step-wall junction is only 1.0 high at glass 2.0 and absent at the 1.1 snap"
+  }
+ ],
+ "sharp_inside_corners": [
+  {
+   "corner": "8 pip roots (land / pip, dia 1.5 circles)",
+   "Z": -10.42,
+   "where_abs": [
+    [
+     58.48,
+     13.07
+    ],
+    [
+     58.48,
+     151.1
+    ],
+    [
+     149.22,
+     13.07
+    ],
+    [
+     149.22,
+     151.1
+    ],
+    [
+     16.01,
+     46.1275
+    ],
+    [
+     191.69,
+     46.1275
+    ],
+    [
+     16.01,
+     118.0425
+    ],
+    [
+     191.69,
+     118.0425
+    ]
+   ],
+   "why": "a 0.5 root fillet would consume the 1.5 x 0.5 pip (height tolerance +-0.05 on the top)"
+  },
+  {
+   "corner": "4 corner-pad roots (flange front / pad, dia 18 circles round F1-F4)",
+   "Z": -12.42,
+   "where_abs": [
+    [
+     2.11,
+     -0.83
+    ],
+    [
+     205.59,
+     -0.83
+    ],
+    [
+     205.59,
+     165.0
+    ],
+    [
+     2.11,
+     165.0
+    ]
+   ],
+   "why": "tape strips end tape_margin 1.0 before the pads on a FLAT flange face (master JSON)"
+  },
+  {
+   "corner": "seat-ring root (flange front / seat-ring outer face, closed loop = glass + 2.9, R8.9)",
+   "Z": -12.42,
+   "where_abs": "x 10.21..197.49, y 7.27..156.90",
+   "why": "tape strip inner edge at s 3.9 needs 1.0 flat flange face beyond s 2.9 (tape_margin)"
+  },
+  {
+   "corner": "tail-pocket corner left: shelf end face (y 119.0) / tail-pocket side face",
+   "Z": [
+    -4.6,
+    -2.1
+   ],
+   "where_abs": [
+    39.077,
+    118.978
+   ],
+   "why": "as v2 corner 1 (R0.5 rolls up the tail wall)"
+  },
+  {
+   "corner": "tail-pocket corner right",
+   "Z": [
+    -4.6,
+    -2.1
+   ],
+   "where_abs": [
+    167.523,
+    118.978
+   ],
+   "why": "as v2 corner 2"
+  },
+  {
+   "corner": "shelf back / bottom pocket wall, left segment",
+   "Z": -2.1,
+   "where_abs": "y 119.80, x 29.27..39.06",
+   "why": "as v2 corner 3 (fillet would roll across the shelf end at the tail pocket)"
+  },
+  {
+   "corner": "shelf back / bottom pocket wall, right segment",
+   "Z": -2.1,
+   "where_abs": "y 119.80, x 167.55..175.67",
+   "why": "as v2 corner 4"
+  },
+  {
+   "corner": "9 pilot floors + 9 relief floors (blind holes)",
+   "Z": [
+    -9.42,
+    -0.5
+   ],
+   "where_abs": "H1-H9",
+   "why": "as v2 (hole bottoms, formed by the pilot pins)"
+  }
+ ],
+ "known_weaknesses": [
+  "Seat-ring and pad roots on the flange front are sharp (tape margin); toolmaker may break them <= 0.2.",
+  "Tube ribs are only 1.0 high at glass 2.0 and a free-standing 1.0 rib at 1.1 (the step wall no longer stands above the flange back there).",
+  "Root fillets of the tubes / tube ribs and of the step wall / walls are RULE fillets selected by feature: if those features are edited so that their faces merge with others, the selection follows the feature faces (the flex test shows the same unfilleted-root census in every case).",
+  "Part mass 111.8 g (GF-1.1: 82.188 cm3 at 1.36 g/cm3), about 18 % above the concept estimate (flange 223.5 x 185.8 x 2.5 dominates).",
+  "H6 cell (GF-1.1): the tail wall beside the jog is 1.1 at Z_PCB (thinnest wall outside the lip); the boss crosses the R2.5 corner arc at ~58 deg; that V is rounded R0.5 by the cell root-fillet set (rolling-ball blend face 8.59 mm2, Z -7.44..0, sphere corner at the floor); air 1.53 at the boss equator.",
+  "Counterbore floor ledges are 0.66 (F5-F8) / 0.67 (F1-F4) wide between slot and floor round, the F5-F8 counterbore walls 0.7 high: fine core-pin detail, above the sliver rule.",
+  "Weld flange in the counterbore at the extreme stud position (dia 5.7 x 1.4, modelled, shank against the slot wall / end): F1-F4 0.124 to the wall, 0.098 to the R0.3 floor round, 0.2 to the floor; F5-F8 0.119 / 0.326 / 0.6 (~0.15 at the opening).",
+  "tube_sw_r is 0.75 at glass 2.0 and 0.5 at the 1.1 snap (below the 1.0-1.5 of the brief, geometry-limited)."
+ ],
+ "stage2": {
+  "document": "Rev3.0 GlassFront",
+  "document_id": "urn:adsk.wipprod:dm.lineage:XyXacwE-SnqsV-hz5pHg3w",
+  "structure": "root component 'Rev3.0 GlassFront' > occurrence 'Frame GF:1' (component 'Frame GF', one body 'Frame GF'). Add 'Glass', 'Oven sheet', 'Tape', 'Board' ... as sibling components under the root.",
+  "guard": "every script checks attribute gf/doc == 'Rev3.0 GlassFront' (gflib.check_doc)",
+  "level_parameters": [
+   "glass_t",
+   "t_opt",
+   "t_bond",
+   "t_sheet",
+   "t_gap",
+   "g_bs",
+   "panel_t",
+   "sheet_t",
+   "Z_GLASS_FRONT",
+   "Z_GLASS_BACK",
+   "Z_CTP_FRONT",
+   "Z_PANEL_BACK",
+   "Z_FORMEX_FRONT",
+   "Z_SEAT",
+   "Z_SHEET_BACK",
+   "Z_FLANGE_FRONT",
+   "Z_FLANGE_BACK",
+   "Z_LAND",
+   "Z_PIP_TOP",
+   "Z_TUBE_TOP",
+   "Z_TAIL_TFT_EXIT",
+   "Z_TAIL_CTP_EXIT",
+   "Z_LOOP_FRONT"
+  ],
+  "plan_parameters": [
+   "glass_x0",
+   "glass_x1",
+   "glass_y0",
+   "glass_y1",
+   "R_glass",
+   "gc_x",
+   "gc_y",
+   "border",
+   "pw_x0",
+   "pw_x1",
+   "pw_y0",
+   "pw_y1",
+   "pw_r",
+   "aa_x0..aa_y1",
+   "va_x0..va_y1",
+   "panel_x0..panel_y1",
+   "s_lip_in",
+   "s_lip_out",
+   "s_cut",
+   "s_ring",
+   "s_tape_in",
+   "s_tape_out",
+   "tape_w",
+   "tape_margin",
+   "bead_w",
+   "bead_edge",
+   "pip_in",
+   "f1_x..f8_y",
+   "f1_ux..f8_uy",
+   "slot_w",
+   "slot_l",
+   "pad_d",
+   "tube_top_d"
+  ],
+  "outline_rule": "every glass-related outline = glass rectangle offset by s (expression), corner R_glass + s (gflib.grect): glass s 0, lip inner s_lip_in, lip outer s_lip_out, sheet cut-out s_cut, seat ring s_ring, tape s_tape_in / s_tape_out",
+  "root_planes": [
+   "REF Z_GLASS_FRONT",
+   "REF Z_GLASS_BACK",
+   "REF Z_CTP_FRONT",
+   "REF Z_PANEL_BACK",
+   "REF Z_FORMEX_FRONT",
+   "REF Z_SHEET_BACK",
+   "REF Z_FLANGE_FRONT",
+   "REF Z_LAND"
+  ],
+  "frame_planes": [
+   "Z_GLASS_FRONT plane",
+   "Z_SHEET_BACK plane",
+   "Z_FLANGE_FRONT plane",
+   "Z_FLANGE_BACK plane",
+   "Z_LAND plane",
+   "Z_LANDPLATE_BACK plane",
+   "Z_TUBE_TOP plane",
+   "Z_SEAT plane",
+   "Z_SHELF_BACK plane",
+   "Z_PCB plane"
+  ],
+  "reusable_sketches_in_Frame_GF": [
+   "Glass recess sketch (lip_in at the lip top)",
+   "Lip sketch (lip_out at the lip root)",
+   "Seat ring (step wall front) sketch (s_ring)",
+   "Corner pads F1-F4 sketch",
+   "Fastener slots F1-F8 sketch",
+   "Pips P1-P8 sketch",
+   "Fastener tubes F1-F8 sketch"
+  ],
+  "contact_faces": "glass back rests on the bead over the land (Z_LAND) with t_bond; glass front flush with the lip top (Z_GLASS_FRONT); sheet back on the seat-ring top and pad tops (Z_SHEET_BACK); tape between Z_SHEET_BACK and Z_FLANGE_FRONT; studs through the slots at f1..f8"
+ },
+ "stage2_partA": {
+  "defects (stage 1 known weaknesses 1, 2)": [
+   "H7 cell: flat strip of the cell top wall 0.39 wide between the boss root fillet and the R2 corner arc (face 2.28 mm2, 2A/P 0.295)",
+   "H6 cell: crescent of air 1.0 wide between the boss and the cell's left (tail) wall, 0.55 x 1.37 in the root-fillet band at Z -7.7 (a thin steel blade in the B core)"
+  ],
+  "cause": "cell top wall at pocket_y1 + wall = 122.30 (v2 121.75): moved 0.55 towards the H6 / H7 bosses",
+  "fix_H7": "the cell corner at the boss gets its own radius cell_r_h7 = 1.0 mm (was cell_r 2.0): radial dimension of that one arc in 'Corner cells sketch'; the boss now meets a full top wall: flat beyond the boss root fillet 1.16 (floor) .. 1.32 (Z 0) wide, face 9.71 mm2, 2A/P 1.111; boss to tail wall 2.6 stays a slot (1.6 inside the fillet band). Filling it was rejected: 8 mm solid pilot -> tail pocket.",
+  "fix_H6": "the R2 cell corner (cell_r) is moved down the left wall and blended into the boss: arc tangent to the cell's left wall, centre (XL + cell_r, h6_fill_y), crossing the boss at 90 deg on the cell floor (circle orthogonal to the boss circle: h6_fill_y = h6_y + sqrt(cell_r^2 + r_boss_floor^2 - (h6_x - XL - cell_r)^2) = 127.153 at default, 127.168 at t_opt 1.0); a vertical line x = XL + cell_r inside the boss closes the profile. Done in the 'Corner cells sketch' (same profile, same 1 deg taper, so the arc stays tangent to the wall at every Z). The crescent becomes solid: the boss merges into the tail wall; largest inscribed circle there ~5.4 (pilot -> tail pocket 6.4); for comparison the fastener tube + flange is 5.0 solid.",
+  "unchanged": "bosses, pilots, reliefs, cell ribs, support ribs, pockets, window, tail pocket: 22 carry-over check re-run, all 123 comparison regions identical to stage 1 (XOR differences 0.0000), boss / pilot / relief cones identical at H1-H9",
+  "new_parameters": [
+   {
+    "name": "cell_r_h7",
+    "expression": "1.0 mm",
+    "value": 1.0,
+    "unit": "mm",
+    "comment": "stage 2 Part A: H7 cell corner radius at the boss (boss meets a full top wall; was cell_r)"
+   },
+   {
+    "name": "h6_fill_y",
+    "expression": "h6_y + sqrt(cell_r * cell_r + ( boss_od / 2 + ( Z_PCB - Z_LANDPLATE_BACK ) * tan(draft) ) * ( boss_od / 2 + ( Z_PCB - Z_LANDPLATE_BACK ) * tan(draft) ) - ( h6_x - ( tr_x1 + wall - ( Z_LANDPLATE_BACK - Z_LAND ) * tan(draft) ) - cell_r ) * ( h6_x - ( tr_x1 + wall - ( Z_LANDPLATE_BACK - Z_LAND ) * tan(draft) ) - cell_r ))",
+    "value": 127.153,
+    "unit": "mm",
+    "comment": "stage 2 Part A: abs y of the centre of the H6 cell corner arc (cell_r, tangent to the left wall, crossing the boss at 90 deg on the cell floor)"
+   }
+  ],
+  "timeline": "77 frame items as before: 'Corner cells sketch' edited (H7 radius dim; H6 arc deleted, new arc + vertical line + 2 dims), 'Root fillets R0.5 - corner cells + cell ribs + cell bosses' deleted and re-created at the same position from gflib.EDGE_SETS (79 edges, as stage 1)",
+  "rule_fillets": "unchanged selection: 'wall + step wall to plates (rule)' 45 faces and 'fastener tubes + tube ribs (rule)' 72 faces in the default and the 5 thick-glass / sheet / t_opt flex cases, 29 / 40 at glass 1.1 (snap, same as stage 1's topology); none of their faces lies at the changed cell corners",
+  "scans_after_fix": {
+   "draft_flags": 0,
+   "faces": 787,
+   "volume_cm3": 84.016,
+   "slivers_total": 66,
+   "slivers_by_type": {
+    "other_3": 58,
+    "torus": 8
+   },
+   "design_face_slivers": [],
+   "min_2a_p": 0.2889,
+   "min_area_mm2": 0.3182,
+   "thin_strips_lt_1mm": 8,
+   "thin_wall_probe": [
+    {
+     "z": -14.0,
+     "thin_walls": 8,
+     "thin_gaps": 0
+    },
+    {
+     "z": -13.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -12.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -10.7,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -10.2,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -9.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -7.7,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -6.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -4.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -3.35,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -1.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": -0.6,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    },
+    {
+     "z": 2.0,
+     "thin_walls": 0,
+     "thin_gaps": 0
+    }
+   ],
+   "thin_note": "thin walls only at Z -14.0 = the 1.0 lip (by design, as stage 1); thin gaps: none at any level (stage 1: the H6 crescent at Z -7.7)",
+   "unfilleted_concave_roots": {
+    "pad roots (sharp, tape margin)": 4,
+    "pilots (excluded)": 18,
+    "pip roots (sharp)": 8,
+    "seat ring root (sharp, tape margin)": 8,
+    "shelf back": 2,
+    "tail pocket": 2
+   },
+   "above_Z0": {
+    "volume_above_Z0_mm3": 1432.2898,
+    "lumps": 1,
+    "bbox_abs": [
+     36.391,
+     170.209,
+     128.509,
+     150.018,
+     0.0,
+     4.05
+    ],
+    "points": 117,
+    "points_inside_outline_plus_1mm": 0,
+    "min_distance_to_pcb_outline_mm": 2.663,
+    "volume_inside_outline_plus_1mm_mm3": 0.0,
+    "board_outline_bbox": [
+     10.697,
+     9.697,
+     194.303,
+     128.303
+    ]
+   }
+  },
+  "flex_test_after_fix": [
+   {
+    "case": "glass_t 2.0",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 82.3456,
+    "faces": 787,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "glass_t 4.0",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 85.6755,
+    "faces": 779,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "glass_t 1.1 (snap)",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 82.1685,
+    "faces": 730,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_sheet 0.8",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 84.2133,
+    "faces": 787,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_sheet 1.5",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 83.5177,
+    "faces": 787,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "t_opt 1.0",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 85.282,
+    "faces": 787,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   },
+   {
+    "case": "default (glass 3.0)",
+    "healthy": true,
+    "bodies": 1,
+    "lumps": 1,
+    "volume_cm3": 84.016,
+    "faces": 787,
+    "roots": {
+     "pip roots (sharp)": 8,
+     "shelf back": 2,
+     "pilots (excluded)": 18,
+     "tail pocket": 2,
+     "pad roots (sharp, tape margin)": 4,
+     "seat ring root (sharp, tape margin)": 8
+    }
+   }
+  ],
+  "flex_slivers_after_fix": [
+   {
+    "case": "glass_t 2.0",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 74,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   },
+   {
+    "case": "glass_t 4.0",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 66,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   },
+   {
+    "case": "glass_t 1.1 (snap)",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 58,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 29,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 40,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   },
+   {
+    "case": "t_sheet 0.8",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 66,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   },
+   {
+    "case": "t_sheet 1.5",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 66,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   },
+   {
+    "case": "t_opt 1.0",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 66,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.1681
+   },
+   {
+    "case": "default (glass 3.0)",
+    "design_face_slivers": [],
+    "fillet_blend_slivers": 66,
+    "rule_fillet_faces": {
+     "Root fillets R0.5 - wall + step wall to plates (rule)": 45,
+     "Root fillets R0.5 - fastener tubes + tube ribs (rule)": 72,
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses": 107
+    },
+    "h6_fill_y": 127.153
+   }
+  ]
+ },
+ "features_GF-1.1": [
+  {
+   "timeline": 33,
+   "name": "Corner cells sketch",
+   "change": "H6 cell: jogged wall + R h6_corner_r arc (49)"
+  },
+  {
+   "timeline": 52,
+   "name": "Tail pocket",
+   "change": "sketch dims tr_x0 - / tr_x1 + tail_side_add (49)"
+  },
+  {
+   "timeline": 60,
+   "name": "Root fillets R0.5 - corner cells + cell ribs + cell bosses",
+   "change": "re-created, 81 edges (49)"
+  },
+  {
+   "timeline": 70,
+   "name": "Root fillets tube_sw_r - F5-F8 tube to step wall (rule)",
+   "change": "new (50)"
+  },
+  {
+   "timeline": 181,
+   "name": "Fastener tube coring F1-F8 sketch",
+   "change": "new (52)"
+  },
+  {
+   "timeline": 182,
+   "name": "Fastener tube coring F1-F8",
+   "change": "new, two-sided cut (52, 55)"
+  },
+  {
+   "timeline": 183,
+   "name": "Coring groove floor edges R core_floor_r",
+   "change": "new, 16 edges (52, 56)"
+  },
+  {
+   "timeline": 184,
+   "name": "Fastener counterbores F1-F8 sketch",
+   "change": "new (51b)"
+  },
+  {
+   "timeline": 185,
+   "name": "Fastener counterbores F1-F4 (pads)",
+   "change": "new, cut cb_floor (51b)"
+  },
+  {
+   "timeline": 186,
+   "name": "Fastener counterbores F5-F8",
+   "change": "new, cut cb_floor_mid (51b)"
+  },
+  {
+   "timeline": 187,
+   "name": "Counterbore floor edges R cb_r",
+   "change": "new, 32 edges (51b)"
+  }
+ ],
+ "flat_face_levels_note": "flat_face_levels_mm2 is the stage-1 census; GF-1.1 adds -11.820 -Z (4 x 12.58, counterbore floors F1-F4), -11.420 -Z (4 x 12.35, F5-F8) and -10.720 +Z (8 x 17.16, groove floors) and reduces the pad / flange front / tube top faces accordingly",
+ "dimension_check_note": "stage-1 sections; the lip, seat ring and flange outlines did not change in GF-1.1 (they stay on R_frame 6.0 = the GF-1.0 R_glass)",
+ "flex_test_note": "GF-1.1 with the 7.4 x 9.0 counterbore (90 TAG gf11c after 62): all 7 cases healthy, 1 body / 1 lump, same unfilleted-root census; parameters back at glass 3.0 (82.1879 cm3, 922 faces); no -Z face over a groove at glass 4.0 (55 / 56 probe; groove unchanged in round 2)",
+ "stage3_GF-1.1": {
+  "brief": "GF-1.0 -> GF-1.1 batch, items 1-8 + lead amendment (counterbore 7.2 x 8.8) + lead round 2 (counterbore 7.4 x 9.0, extreme-stud model, H6 V radius if one feature)",
+  "round_2": {
+   "counterbore": "cb_w 7.2 -> 7.4, cb_l 8.8 -> 9.0 (62, parameters only)",
+   "H6_V": "not changed: the V between the boss and the R2.5 arc already carries the R0.5 cell root fillet (it is one of the 81 edges of 'Root fillets R0.5 - corner cells + cell ribs + cell bosses'); a larger radius there means splitting that edge out of the 81-edge feature and re-creating it (two features), so it was left at R0.5",
+   "scripts": [
+    "62_gf11_cb_7p4x9p0.py",
+    "90_flex_test.py (TAG gf11c)",
+    "53_gf11_scratch_export_scan.py (TAG_SUFFIX cb74)",
+    "63_gf11_extreme_stud_tape.py",
+    "57 / 39 / 42 / gf_asm_offline.py re-run",
+    "58 / 45 / 43 (2 sections) renders",
+    "59 (MSG round 2) save + exports",
+    "gf11_params_round2.py"
+   ]
+  },
+  "scripts": [
+   "48_gf11_params_assembly.py",
+   "49_gf11_tail_pocket_h6.py",
+   "50_gf11_tube_stepwall_blend.py",
+   "51_gf11_counterbores.py (superseded by 51b)",
+   "51b_gf11_counterbores_rebuild.py",
+   "52_gf11_tube_coring.py",
+   "53_gf11_scratch_export_scan.py",
+   "54_gf11_flex_fixes.py",
+   "55_gf11_cb_amend_groove_twoside.py",
+   "56_gf11_groove_floor_fillet.py",
+   "57_gf11_fit_worstcase_asmodelled.py",
+   "58_gf11_renders.py",
+   "59_gf11_save_export.py",
+   "60_gf11_boss_pilot_check.py",
+   "61_gf11_comment_fix_save.py",
+   "gf11_thickness_check.py",
+   "gf11_params_update.py",
+   "build_gf11_reports.py"
+  ],
+  "changes": [
+   {
+    "item": "1 + lead amendment: weld-stud counterbore",
+    "built": "stadium 7.4 wide x 9.0 long at the opening (Z_SHEET_BACK), coaxial with each 5.4 x 7.0 slot (slot outline + 1.0 per side, lead round 2; first GF-1.1 build 7.2 x 8.8 = + 0.9), 1 deg draft narrowing with depth (A-half core), floor edge round R0.3; F1-F4 floor 1.6 above Z_SHEET_BACK in the pad face (Z -11.82 at glass 3.0); F5-F8 floor 2.0 above Z_SHEET_BACK = 1.0 into the flange front (Z -11.42); slot 5.4 x 7.0 unchanged below the floors",
+    "parameters": [
+     "cb_w",
+     "cb_l",
+     "cb_floor",
+     "cb_floor_mid",
+     "cb_r"
+    ],
+    "features": [
+     "Fastener counterbores F1-F8 sketch",
+     "Fastener counterbores F1-F4 (pads)",
+     "Fastener counterbores F5-F8",
+     "Counterbore floor edges R cb_r"
+    ],
+    "numbers": {
+     "floor_clearance_over_1.4_flange": {
+      "F1-F4": 0.2,
+      "F5-F8": 0.6
+     },
+     "pad_hard_stop_face_each_F1-F4_mm2": 198.63,
+     "pad_annulus_round_counterbore_mm": {
+      "along_slot": 4.5,
+      "across_slot": 5.3,
+      "required": 3.0
+     },
+     "flange_to_counterbore_wall_worst_position": {
+      "case": "flange dia 5.7 x 1.4 (worst case), ONE stud moved in the model (63) until its shank is 0.002 from the slot wall / slot end (offsets 0.703 across, 1.503 along at F1; 0.707 / 1.507 at F5) and on the end arcs (30 / 60 deg); flange faces measured face to face against the counterbore walls, floor round and floor",
+      "F1 (F1-F4 type, floor 1.6)": {
+       "centred": {
+        "wall": {
+         "d_mm": 0.8272,
+         "p_stud": [
+          0.31,
+          1.379,
+          -12.115
+         ],
+         "p_frame": [
+          -0.213,
+          2.02,
+          -12.115
+         ]
+        },
+        "floor_round": {
+         "d_mm": 0.5639,
+         "p_stud": [
+          0.31,
+          1.379,
+          -12.02
+         ],
+         "p_frame": [
+          -0.024,
+          1.788,
+          -11.82
+         ]
+        },
+        "floor": {
+         "d_mm": 0.2,
+         "p_stud": [
+          1.102,
+          1.836,
+          -12.02
+         ],
+         "p_frame": [
+          1.102,
+          1.836,
+          -11.82
+         ]
+        },
+        "shank_to_frame": 0.7052
+       },
+       "extreme_min": {
+        "to_wall": {
+         "d_mm": 0.124,
+         "p_stud": [
+          5.485,
+          1.92,
+          -12.115
+         ],
+         "p_frame": [
+          5.581,
+          1.998,
+          -12.115
+         ],
+         "position": "along + (slot end)"
+        },
+        "to_floor_round": {
+         "d_mm": 0.0976,
+         "p_stud": [
+          5.485,
+          1.92,
+          -12.02
+         ],
+         "p_frame": [
+          5.55,
+          1.974,
+          -11.972
+         ],
+         "position": "along + (slot end)"
+        },
+        "to_floor": {
+         "d_mm": 0.2,
+         "p_stud": [
+          0.871,
+          1.65,
+          -12.02
+         ],
+         "p_frame": [
+          0.871,
+          1.65,
+          -11.82
+         ],
+         "position": "along + (slot end)"
+        }
+       },
+       "per_position": {
+        "along + (slot end)": {
+         "offset_mm": 1.5032,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        },
+        "along - (slot end)": {
+         "offset_mm": 1.5032,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        },
+        "across + (slot wall)": {
+         "offset_mm": 0.7032,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        },
+        "across - (slot wall)": {
+         "offset_mm": 0.7032,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        },
+        "end arc 30 deg": {
+         "offset_mm": 1.2712,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        },
+        "end arc 60 deg": {
+         "offset_mm": 0.812,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.124,
+         "flange_to_floor_round": 0.0976,
+         "flange_to_floor": 0.2
+        }
+       }
+      },
+      "F5 (F5-F8 type, floor 2.0)": {
+       "centred": {
+        "wall": {
+         "d_mm": 0.8254,
+         "p_stud": [
+          106.7,
+          -0.83,
+          -12.02
+         ],
+         "p_frame": [
+          107.525,
+          -0.83,
+          -12.006
+         ]
+        },
+        "floor_round": {
+         "d_mm": 0.7942,
+         "p_stud": [
+          106.7,
+          -0.83,
+          -12.02
+         ],
+         "p_frame": [
+          107.22,
+          -0.83,
+          -11.42
+         ]
+        },
+        "floor": {
+         "d_mm": 0.6,
+         "p_stud": [
+          101.141,
+          -0.83,
+          -11.42
+         ],
+         "p_frame": [
+          101.141,
+          -0.83,
+          -12.02
+         ]
+        },
+        "shank_to_frame": 0.7087
+       },
+       "extreme_min": {
+        "to_wall": {
+         "d_mm": 0.1188,
+         "p_stud": [
+          103.85,
+          3.527,
+          -12.02
+         ],
+         "p_frame": [
+          103.85,
+          3.646,
+          -12.018
+         ],
+         "position": "along + (slot end)"
+        },
+        "to_floor_round": {
+         "d_mm": 0.3257,
+         "p_stud": [
+          103.85,
+          3.527,
+          -12.02
+         ],
+         "p_frame": [
+          103.85,
+          3.64,
+          -11.715
+         ],
+         "position": "along + (slot end)"
+        },
+        "to_floor": {
+         "d_mm": 0.6,
+         "p_stud": [
+          101.141,
+          -0.83,
+          -11.42
+         ],
+         "p_frame": [
+          101.141,
+          -0.83,
+          -12.02
+         ],
+         "position": "along + (slot end)"
+        }
+       },
+       "per_position": {
+        "along + (slot end)": {
+         "offset_mm": 1.5067,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.1188,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        },
+        "along - (slot end)": {
+         "offset_mm": 1.5067,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.1188,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        },
+        "across + (slot wall)": {
+         "offset_mm": 0.7067,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.1188,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        },
+        "across - (slot wall)": {
+         "offset_mm": 0.7067,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.1188,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        },
+        "end arc 30 deg": {
+         "offset_mm": 1.2754,
+         "shank_to_frame": 0.0021,
+         "flange_to_wall": 0.1189,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        },
+        "end arc 60 deg": {
+         "offset_mm": 0.816,
+         "shank_to_frame": 0.002,
+         "flange_to_wall": 0.1189,
+         "flange_to_floor_round": 0.3257,
+         "flange_to_floor": 0.6
+        }
+       }
+      },
+      "note": "the same minimum at every extreme position (slot and counterbore are offsets of the same stadium segment); ~0.15 at the opening, the minimum sits at the flange top edge where the 1 deg wall draft and the R0.3 floor round close in"
+     }
+    }
+   },
+   {
+    "item": "2: fastener boss coring",
+    "built": "annular groove from the back round every tube F1-F8: r 6.2..7.5 at the tube top, 3.3 deep below Z_TUBE_TOP (floor Z -10.72 at glass 3.0, 2.7 above the pad face / 1.7 above the flange front at F5-F8), 1 deg on both walls (groove widening to the back), floor rounds R0.4; the cut is two-sided (+1.0 above the tube top) so that no blend remnant hangs over the groove at glass 4.0",
+    "parameters": [
+     "core_r_in",
+     "core_r_out",
+     "core_depth",
+     "core_floor_r"
+    ],
+    "features": [
+     "Fastener tube coring F1-F8 sketch",
+     "Fastener tube coring F1-F8",
+     "Coring groove floor edges R core_floor_r"
+    ],
+    "numbers": {
+     "washer_bearing_DIN9021_M4_mm2": 80.71,
+     "rivet_backing_washer_DIN9021_M5_mm2": 88.41,
+     "required": ">= 80",
+     "inner_wall_min_mm": "slot end to groove inner wall 2.7 (r 6.2 - 3.5)",
+     "outer_skin_mm": 1.5,
+     "groove_floor_above_pad_face_mm": 2.7
+    }
+   },
+   {
+    "item": "3: H6 corner cell",
+    "built": "the stage-2 solid fill (h6_fill_y) is gone; the cell wall towards the tail pocket is jogged inwards (x 169.12 at the cell floor) so that the tail wall keeps h6_wall_min 1.1 at Z_PCB, and an R2.5 corner arc tangent to the jogged wall and the cell top wall runs into the boss (boss crosses it at ~58 deg); slant back to the old cell wall from y 126.6 over 1.6; boss and pilot untouched",
+    "parameters": [
+     "h6_wall_min",
+     "h6_corner_r",
+     "h6_jog_y",
+     "h6_jog_len"
+    ],
+    "deleted_parameters": [
+     "h6_fill_y"
+    ],
+    "features": [
+     "Corner cells sketch (edited)",
+     "Root fillets R0.5 - corner cells + cell ribs + cell bosses (re-created, 81 edges)"
+    ],
+    "numbers": {
+     "boss_to_jogged_wall_air_at_boss_equator_mm": 1.533,
+     "air_profile": "air gap boss -> jogged wall / corner arc at the cell floor (analytic plan model, sharp): 1.53 at y 123.8 (boss equator), 3.03 on the straight jogged wall, narrowing to the V where the boss crosses the R2.5 arc (~58 deg); in the model that V is rounded R0.5 by the cell root fillet (rolling-ball blend face 8.59 mm2, Z -7.44..0)",
+     "max_sphere_at_H6_mm": 4.53,
+     "boss_pilot_relief_cones_vs_stage2": "identical at H1-H9 (60_gf11_boss_pilot_check.py)"
+    }
+   },
+   {
+    "item": "4: tail pocket",
+    "built": "side walls moved out by tail_side_add 0.3 (x 38.9 / 167.7 at the land), 1 deg draft and R1.5 corners kept, bottom face 147.7 unchanged (loop_clr not raised: bottom-beam clearance 1.763 >= 1.6)",
+    "parameters": [
+     "tail_side_add"
+    ],
+    "features": [
+     "Tail pocket sketch (2 dims)"
+    ],
+    "numbers": {
+     "tail_wall_at_Z0_beside_cells_mm": 1.84,
+     "tail_wall_at_H6_jog_Z_PCB_mm": 1.1,
+     "trough_top_wall_mm": "~1.69",
+     "bottom_land_and_bead": "unchanged (pocket bottom face not moved)"
+    }
+   },
+   {
+    "item": "5: corner gaps",
+    "built": "glass corner R_glass 6.25 (print layer, bead outlines follow), sheet cut-out corner R_cut 7.55 (S4/S8 and R4 sheet bodies); lip R6.4 / R7.4 and seat ring R8.9 unchanged (frame outlines on the new R_frame = 6.0)",
+    "parameters": [
+     "R_glass",
+     "R_frame",
+     "R_cut"
+    ]
+   },
+   {
+    "item": "6: F5-F8 tube to step-wall blend",
+    "built": "rule fillet tube_sw_r between the fastener tubes and the land plate + step wall: 1.2 at glass 3.0 / 4.0, 0.75 at 2.0 (junction only 1.0 high), 0.5 at the 1.1 snap; inserted before the R0.5 tube rule fillet",
+    "parameters": [
+     "tube_sw_r"
+    ],
+    "features": [
+     "Root fillets tube_sw_r - F5-F8 tube to step wall (rule)"
+    ],
+    "numbers": {
+     "steel_wedge": "none: verification thin probe at Z -7.67 finds no gap (GF-1.0: two 0.3 wedges at F8, x 9.84)"
+    }
+   },
+   {
+    "item": "7: S8 spacer",
+    "built": "DIN 988 6 x 12 x 1.0 shim (spacer_id 6.0 / spacer_od 12) on the stud between sheet and flange at F5-F8; bodies renamed 'Spacer DIN 988 6x12x1.0 Fk'",
+    "parameters": [
+     "spacer_id",
+     "spacer_od"
+    ],
+    "numbers": {
+     "radial_clearance_to_flange_5.5": 0.25,
+     "radial_clearance_to_flange_5.7": 0.15
+    }
+   },
+   {
+    "item": "8: bookkeeping",
+    "built": "params only: lip width 1.0175 root / 0.9825 top, g1 at the front 0.4175"
+   }
+  ],
+  "volume_mass": {
+   "GF-1.0": [
+    84.016,
+    114.26
+   ],
+   "GF-1.1": [
+    82.1879,
+    111.78
+   ],
+   "unit": [
+    "cm3",
+    "g at 1.36"
+   ]
+  },
+  "thickness_iterations": [
+   {
+    "run": "iter1 (after 52)",
+    "note": "groove at r 6.2-7.7, before the amendment"
+   },
+   {
+    "run": "iter3 (after 56, 7.2 x 8.8)",
+    "max": 4.6
+   },
+   {
+    "run": "cb74 scratch (after 62, 7.4 x 9.0)",
+    "max": 4.6
+   },
+   {
+    "run": "final (exported deliverable STEP)",
+    "max": 4.6
+   }
+  ]
+ }
+}

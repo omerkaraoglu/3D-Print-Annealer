@@ -5,8 +5,37 @@ bead-to-pocket, distances to the cut-out) the value is recomputed and compared i
 """
 import json
 import math
+import re
 
 from gf_common import Rect, FrontView, Params, stadium_pts, V2_V1PARAMS, V2_SHEET_DXF
+
+
+def gap_temperatures(P: Params):
+    """GF-2.0 verified gap values over temperature from the master gaps notes (corrected 2026-11-16); every number is
+    parsed - a changed wording raises instead of silently dropping the values"""
+    f = r"(-?[\d.]+)"
+    g2 = "gaps"
+    out = {
+        "g2_20C_sides": P.num(g2, r"sides " + f + r", corner diagonal", name="g2_glass_lip"),
+        "g2_20C_corner": P.num(g2, r"corner diagonal " + f, name="g2_glass_lip"),
+        "g2_cold_50": P.num(g2, r"-20 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\); \+70 C", 1, name="g2_glass_lip"),
+        "g2_cold_70": P.num(g2, r"-20 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\); \+70 C", 2, name="g2_glass_lip"),
+        "g2_hot_50": P.num(g2, r"\+70 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)", 1, name="g2_glass_lip"),
+        "g2_hot_70": P.num(g2, r"\+70 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)", 2, name="g2_glass_lip"),
+        "g2_touch_wc": P.num(g2, r"glass \+0\.2/side, R nominal " + f + r" / " + f, 1, name="g2_glass_lip"),
+        "g1_20C_sides": P.num(g2, r"sides " + f + r", corner diagonal", name="g1_lip_sheet"),
+        "g1_20C_corner": P.num(g2, r"corner diagonal " + f, name="g1_lip_sheet"),
+        "g1_hot_50": P.num(g2, r"\+50 C sheet " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)", 1, name="g1_lip_sheet"),
+        "g1_hot_70": P.num(g2, r"\+50 C sheet " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)", 2, name="g1_lip_sheet"),
+        "g1_cold_50": P.num(g2, r"-20 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)\. Tolerance", 1,
+                            name="g1_lip_sheet"),
+        "g1_cold_70": P.num(g2, r"-20 C " + f + r" \(50 ppm\) / " + f + r" \(70 ppm\)\. Tolerance", 2,
+                            name="g1_lip_sheet"),
+        "g1_touch_wc": P.num(g2, r"\(sides / corner min; negative = the sheet edge touches the lip\): " + f, 1,
+                             name="g1_lip_sheet"),
+    }
+    assert "verified" in P.item(g2, "g2_glass_lip")["note"] and "verified" in P.item(g2, "g1_lip_sheet")["note"]
+    return out
 
 
 class Geom:
@@ -28,6 +57,13 @@ class Geom:
         self.flange = R("flange")
         self.pocket = R("pocket")
         self.tail_pocket = R("tail_pocket")
+        # GF-2.0: bend-gap slot (through-opening over the tail span), bridge and divider rib (plan, front view)
+        self.slot_bg = R("bend_gap_slot")
+        self.bridge = R("bridge")
+        self.rib = R("divider_rib")
+        self.g_bend = P.d("g_bend")
+        self.nose_R = P.d("bend_nose_R")
+        self.land_break = P.d("land_break")
         co = {c["name"]: c["value"] for c in P.raw["carried_over_from_v2"]}
         for k in ("panel_x0", "panel_x1", "panel_y0", "panel_y1"):
             P._use("carried_over_from_v2." + k, co[k])
@@ -62,6 +98,8 @@ class Geom:
             f = P.fast(nme)
             u, v = fv.uv(f["x_abs"], f["y_abs_down"])
             au, av = fv.vec(*f["slot_axis"])
+            ln = math.hypot(au, av)                   # the master axis has 4 decimals (|a| 0.99995 at GF-2.1)
+            au, av = au / ln, av / ln
             self.F[nme] = dict(u=u, v=v, au=au, av=av, deg_abs=f["slot_axis_deg"], used_by=f["used_by"],
                                pad="pad" in f["front_pad"] and "none" not in f["front_pad"],
                                u_master=f["front_view_u"], v_master=f["front_view_v"],
@@ -139,19 +177,88 @@ class Geom:
         return pts
 
     def _land_inner(self):
-        """outline of pocket + tail pocket (union), front view; corners of the union drawn sharp (reference)"""
-        pk, tp = self.pocket, self.tail_pocket
-        # front view: tail pocket is below the pocket (v smaller)
-        return [(pk.x0, pk.y1), (pk.x1, pk.y1), (pk.x1, pk.y0), (tp.x1, pk.y0), (tp.x1, tp.y0), (tp.x0, tp.y0),
-                (tp.x0, pk.y0), (pk.x0, pk.y0)]
+        """outline of the land's inner edge = clearance pocket + bend-gap slot (union), front view (GF-2.0: over the
+        tail span the land ends at the bridge pocket face); corners of the union drawn sharp (reference)"""
+        pk, sl = self.pocket, self.slot_bg
+        # front view: the slot is below the pocket (v smaller)
+        return [(pk.x0, pk.y1), (pk.x1, pk.y1), (pk.x1, pk.y0), (sl.x1, pk.y0), (sl.x1, sl.y0), (sl.x0, sl.y0),
+                (sl.x0, pk.y0), (pk.x0, pk.y0)]
+
+    LAND_KEYS = {"front-view right (abs left)": "abs left (front-view right)",
+                 "front-view left (abs right)": "abs right (front-view left)",
+                 "top": "top",
+                 "bottom over the tail span": "bottom over the tail span (x 38.9 .. 167.7)",
+                 "bottom outside the tail span": "bottom outside the tail span"}
 
     def lands(self):
-        """land widths (pocket face -> glass edge) per front-view side"""
-        g, pk, tp = self.glass, self.pocket, self.tail_pocket
+        """land widths (pocket face -> glass edge) per front-view side; GF-2.0: the bottom has two values, over the
+        tail span (to the bridge pocket face) and outside it (to the clearance-pocket wall)"""
+        g, pk, sl = self.glass, self.pocket, self.slot_bg
         return {"front-view right (abs left)": g.x1 - pk.x1,
                 "front-view left (abs right)": pk.x0 - g.x0,
                 "top": g.y1 - pk.y1,
-                "bottom (over the tail-pocket beam)": tp.y0 - g.y0}
+                "bottom over the tail span": sl.y0 - g.y0,
+                "bottom outside the tail span": pk.y0 - g.y0}
+
+    def bridge_bead_margins(self):
+        """bead inner edge over the bridge: to the land-break edge where the land ends and to the pocket-face plane,
+        read from the corrected master pocket note (2026-11-16) and checked against the land / break geometry"""
+        note = self.P.item("plan_rectangles", "pocket")["note"]
+        m = re.search(r"Where the land ends \(Z_LAND \+ ([\d.]+)\).*?over the bridge: ([\d.]+) to the edge of the "
+                      r"([\d.]+) x 45 land break \(([\d.]+) to the pocket-face plane", note)
+        assert m, ("master pocket note: bridge margins not found", note)
+        z_end, brk, b, face = (float(m.group(i)) for i in (1, 2, 3, 4))
+        land_b = self.lands()["bottom over the tail span"]
+        b2f = land_b - self.bead_edge - self.bead_w
+        assert abs(b - self.land_break) < 1e-9 and abs(round(b2f, 2) - face) < 0.006 and \
+            abs(round(b2f - (self.land_break - z_end), 2) - brk) < 0.006, (b2f, face, brk)
+        self.P._use("plan_rectangles.pocket.note ~ bridge margins", [z_end, brk, face])
+        return {"z_end": z_end, "to_break_edge": brk, "to_face_plane": face, "rule": self.bead_pocket_min}
+
+    def break_edge_notes(self):
+        """bead inner edge -> land-break edge as the master land notes state it (addendum 2026-11-16): the MEASURED
+        value where the land ends (Z_LAND + z, quoted on the drawings) and the LAND-PLANE value (geometry: bead ->
+        face plane minus the break). Each number is compared with the thing it describes; a changed wording or a
+        mismatch stops the run."""
+        P = self.P
+        land_b = self.lands()["bottom over the tail span"]
+        b2f = land_b - self.bead_edge - self.bead_w              # bead -> pocket-face plane, at the land
+        plane = b2f - self.land_break                            # bead -> break edge on the land plane itself
+        it = [x for x in P.raw["lands"] if x["name"] == self.LAND_KEYS["bottom over the tail span"]][0]
+        m1 = re.search(r"leaves ([\d.]+) of flat land, bead inner edge ([\d.]+) from the break edge \(measured where "
+                       r"the land ends, Z_LAND \+ ([\d.]+); ([\d.]+) on the land plane itself\)", it["note"])
+        lb = P.dnote("land_break")
+        m2 = re.search(r"bead inner edge ([\d.]+) from the break edge, measured where the land ends at Z_LAND \+ "
+                       r"([\d.]+) .*?- ([\d.]+) on the land plane itself - and ([\d.]+) from the pocket-face plane", lb)
+        assert m1 and m2, ("master land notes: bead -> break edge wording not found", it["note"], lb)
+        flat, meas1, z1, pl1 = (float(m1.group(i)) for i in (1, 2, 3, 4))
+        meas2, z2, pl2, face2 = (float(m2.group(i)) for i in (1, 2, 3, 4))
+        calc_meas = b2f - (self.land_break - z1)                 # the break face is 45 deg: z deeper = z further
+        bm = self.bridge_bead_margins()                          # pocket note: same measured value
+        chk = {"flat_land": abs(flat - (land_b - self.land_break)) < 1e-6,
+               "measured_lands_note": abs(round(calc_meas, 2) - meas1) < 0.006,
+               "measured_land_break_note": abs(round(calc_meas, 2) - meas2) < 0.006,
+               "measured_pocket_note": abs(bm["to_break_edge"] - meas1) < 1e-9 and abs(bm["z_end"] - z1) < 1e-9,
+               "land_plane_lands_note": abs(round(plane, 2) - pl1) < 0.006,
+               "land_plane_land_break_note": abs(round(plane, 2) - pl2) < 0.006,
+               "face_plane_land_break_note": abs(round(b2f, 2) - face2) < 0.006,
+               "same_probe_level": abs(z1 - z2) < 1e-9}
+        P._use("lands[bottom over the tail span].note + land_break.note ~ bead -> break edge",
+               {"measured": meas1, "z_end": z1, "land_plane": pl1, "face_plane": face2, "flat_land": flat})
+        return {"flat_land": flat, "measured": meas1, "z_end": z1, "land_plane": pl1, "face_plane": face2,
+                "calc_measured": round(calc_meas, 4), "calc_land_plane": round(plane, 4), "calc_face_plane":
+                round(b2f, 4), "checks": chk, "ok": all(chk.values())}
+
+    def tail_route(self, name):
+        """GF-2.0 nominal tail centre line (abs y, Z) from the master tail_route (glass-independent)"""
+        tr_ = self.P.get("tail_route")[name]
+        return [tuple(p) for p in tr_["centreline_yZ"]], tr_
+
+    def tail_vertical_y(self):
+        """abs y of the tails' vertical leg centre line = panel edge + l0 + R_in + t/2 (master driving values)"""
+        P = self.P
+        return P.val("carried_over_from_v2", "panel_y1") + P.d("tail_straight_l0") + P.d("tail_R_in_min") + \
+            P.d("tail_t") / 2.0
 
     def formex(self):
         """Formex sheet from the master (plan_rectangles 'formex', carried over from v2; GF-1.1 round 3),
@@ -196,22 +303,22 @@ class Geom:
         return float(d.max())
 
     def fastener_cuts(self):
-        """GF-1.1 counterbore and tube coring values from the master (frame side)"""
+        """counterbore and tube coring values from the master (frame side); GF-2.0: F1-F4 only"""
         P = self.P
-        cb = {k: P.val("fasteners.counterbore", k) for k in ("cb_w", "cb_l", "cb_floor_F1-F4", "cb_floor_F5-F8",
-                                                               "cb_r", "cb_draft")}
+        cb = {k: P.val("fasteners.counterbore", k) for k in ("cb_w", "cb_l", "cb_floor_F1-F4", "cb_r", "cb_draft")}
         co = {k: P.val("fasteners.tube_coring", k) for k in ("core_r_in", "core_r_out", "core_depth",
                                                                "core_floor_r", "core_draft")}
         return cb, co
 
     def mirror_refs(self):
         """two asymmetric references written as TEXT into every front-view DXF (insert point = transformed abs
-        point): the abs-left glass edge (KiCad x0) must land at u > 0, the chin edge (abs y1) at v < 0"""
+        point): the abs-left glass edge (KiCad x0) must land at u > 0, the bottom glass edge (abs y1, the tail-exit
+        side) at v < 0"""
         g = self.P.rect("glass")
         ul, vl = self.fv.uv(g.x0, self.fv.yc)
         ub, vb = self.fv.uv(self.fv.xc, g.y1)
         return [("MIRROR-REF abs x %.2f (KiCad left glass edge) = front-view RIGHT" % g.x0, ul, vl),
-                ("MIRROR-REF abs y %.2f (chin edge) = front-view BOTTOM" % g.y1, ub, vb)]
+                ("MIRROR-REF abs y %.2f (bottom glass edge, tail side) = front-view BOTTOM" % g.y1, ub, vb)]
 
     # ------------------------------------------------------------------ consistency with the master's own results
     def consistency(self):
@@ -223,9 +330,7 @@ class Geom:
         lands_m = {it["name"]: (it["value"], it["bead_to_pocket"]) for it in P.raw["lands"]}
         P._use("lands", lands_m)
         L = self.lands()
-        mp = {"front-view right (abs left)": "abs left (front-view right)",
-              "front-view left (abs right)": "abs right (front-view left)",
-              "top": "top", "bottom (over the tail-pocket beam)": "bottom (over the tail-pocket bottom beam)"}
+        mp = self.LAND_KEYS
         rows = {}
         okall = True
         for k, v in L.items():
@@ -257,13 +362,40 @@ class Geom:
         wcu = self.fv.uv(*wc)
         res["window_centre"] = {"from_rect": [round(x, 4) for x in self.window.c], "master_point_uv": wcu,
                                 "ok": abs(self.window.c[0] - wcu[0]) < 1e-6 and abs(self.window.c[1] - wcu[1]) < 1e-6}
-        chin = P.pt("chin_border")
-        btlr = P.pt("borders_top_left_right")
+        b4 = P.pt("borders_all_four")
+        bd = P.d("border")
         g, w = self.glass, self.window
-        b = {"top": g.y1 - w.y1, "left": w.x0 - g.x0, "right": g.x1 - w.x1, "bottom (chin)": w.y0 - g.y0}
-        res["borders"] = {"computed": {k: round(v, 4) for k, v in b.items()}, "master": {"t/l/r": btlr, "chin": chin},
-                          "ok": all(abs(b[k] - btlr) < 1e-6 for k in ("top", "left", "right")) and
-                          abs(b["bottom (chin)"] - chin) < 1e-6}
+        b = {"top": g.y1 - w.y1, "left": w.x0 - g.x0, "right": g.x1 - w.x1, "bottom": w.y0 - g.y0}
+        res["borders"] = {"computed": {k: round(v, 4) for k, v in b.items()},
+                          "master": {"borders_all_four": b4, "driving border": bd},
+                          "ok": abs(b4 - bd) < 1e-9 and all(abs(v - b4) < 1e-6 for v in b.values())}
+        # GF-2.0: glass centre = window centre = cut-out centre = fastener-pattern centre
+        gc = P.pt("glass_centre")
+        cc = self.cut.c
+        F = self.F
+        fpc = (sum(f["u"] for f in F.values()) / len(F), sum(f["v"] for f in F.values()) / len(F))
+        res["centres_coincide"] = {"glass_centre_abs": gc, "window_centre_abs": wc,
+                                   "glass_uv": [round(x, 6) for x in g.c], "cut_uv": [round(x, 6) for x in cc],
+                                   "fastener_pattern_uv": [round(x, 6) for x in fpc],
+                                   "ok": all(abs(a) < 1e-6 for a in (g.c[0], g.c[1], cc[0], cc[1], fpc[0], fpc[1],
+                                                                       w.c[0], w.c[1]))}
+        # GF-2.0 bottom zone: border budget bezel + g_bend + land = border, bridge face = panel edge + g_bend,
+        # land break leaves the flat land stated in the master lands note
+        pn = self.panel
+        bezel = w.y0 - pn.y0
+        land_b = L["bottom over the tail span"]
+        be = self.break_edge_notes()          # measured (Z_LAND + 0.01) and land-plane values, each vs its geometry
+        flat = land_b - self.land_break
+        res["bottom_zone"] = {"bezel_window_to_panel": round(bezel, 4), "g_bend": self.g_bend,
+                              "land_over_tail_span": round(land_b, 4), "sum": round(bezel + self.g_bend + land_b, 4),
+                              "border": bd, "bridge_face_minus_panel_edge": round(pn.y0 - self.slot_bg.y0, 4),
+                              "flat_land_after_break": round(flat, 4), "master_flat_land": be["flat_land"],
+                              "bead_to_break_edge_measured": [be["calc_measured"], be["measured"], be["z_end"]],
+                              "bead_to_break_edge_land_plane": [be["calc_land_plane"], be["land_plane"]],
+                              "bead_to_face_plane": [be["calc_face_plane"], be["face_plane"]],
+                              "break_edge_checks": be["checks"],
+                              "ok": abs(bezel + self.g_bend + land_b - bd) < 1e-6 and
+                              abs(pn.y0 - self.slot_bg.y0 - self.g_bend) < 1e-6 and be["ok"]}
         pin = P.d("print_inset")
         res["window_vs_AA"] = {"inset_each_side": [round(w.x0 - self.aa.x0, 4), round(self.aa.x1 - w.x1, 4),
                                                    round(w.y0 - self.aa.y0, 4), round(self.aa.y1 - w.y1, 4)],

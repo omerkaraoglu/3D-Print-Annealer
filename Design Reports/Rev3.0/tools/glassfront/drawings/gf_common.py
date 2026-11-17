@@ -1,4 +1,4 @@
-"""Common helpers for the GlassFront (GF-1.0) supplier drawings.
+"""Common helpers for the GlassFront supplier drawings (GF-1.0 .. GF-2.0).
 
 * Params   - read-only access to Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json; every access is logged,
              so each deliverable can report exactly which master parameters it used.
@@ -118,8 +118,11 @@ class Params:
 
     def __init__(self, path=PARAMS_PATH):
         self.path = path
-        with open(path, encoding="utf-8") as f:
-            self.raw = json.load(f)
+        import hashlib
+        with open(path, "rb") as f:
+            data = f.read()
+        self.sha256 = hashlib.sha256(data).hexdigest()       # cited on every sheet (master_ref)
+        self.raw = json.loads(data.decode("utf-8"))
         self.used = {}
         self._drv = {d["name"]: d for d in self.raw["driving_parameters"]}
         self._rect = {r["name"]: r for r in self.raw["plan_rectangles"]}
@@ -268,9 +271,18 @@ class FrontView:
 
 
 # ------------------------------------------------------------------------------------------------------- formatting
+def _fix(x, nd):
+    """fixed-point text rounded half away from zero on the decimal value (165.565 -> 165.57, not the binary
+    165.5649999 -> 165.56 of '%.2f')"""
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(repr(round(float(x), 9))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP)
+    s = format(d, "f")
+    return "0" if nd == 0 and s in ("-0", "0") else s
+
+
 def n(x, nd=3):
     """compact number: up to nd decimals, trailing zeros removed, at least one decimal"""
-    s = ("%." + str(nd) + "f") % x
+    s = _fix(x, nd)
     if nd == 0:
         return "0" if s == "-0" else s
     s = s.rstrip("0")
@@ -282,7 +294,39 @@ def n(x, nd=3):
 
 
 def n2(x):
-    return "%.2f" % x
+    s = _fix(x, 2)
+    return "0.00" if s == "-0.00" else s
+
+
+def master_ref(P):
+    """short reference to the master for title blocks: file, revision, its date and the file's sha256 (16 hex)"""
+    m = re.search(r"\((\d{4}-\d{2}-\d{2})", P.raw["revision"])
+    return "Rev3.0_GlassFront_params.json %s (%s, sha256 %s)" % (P.revision, m.group(1) if m else "",
+                                                                 P.sha256[:16])
+
+
+def prev_rev(P):
+    """the revision the master's change_log comes from (GF-2.1: 'GF-2.0') - the history label on the sheets"""
+    return P._use("change_log.from", P.raw["change_log"]["from"])
+
+
+def s8_withdrawn_rev(P):
+    """the revision at which S8 was withdrawn, read from the master (sheet_variants.S8_withdrawn: 'WITHDRAWN at ...')"""
+    v = P._use("sheet_variants.S8_withdrawn.value", P.raw["sheet_variants"]["S8_withdrawn"]["value"])
+    return re.search(r"WITHDRAWN at (GF-[\d.]+)", v).group(1)
+
+
+def rev_note(P):
+    """the one-line revision note every title block starts with: border, g_bend and bottom land from the master, the
+    previous values from its change_log (GF-2.1: border 19.0 / g_bend 3.23 / land 6.26 against GF-2.0)"""
+    bd_old = P.change("driving_parameters.border.value")[0]
+    gb_old = P.change("driving_parameters.g_bend.value")[0]
+    lands_old = {r[0]: r[1] for r in P.change("lands")[0]}
+    key = "bottom over the tail span (x 38.9 .. 167.7)"
+    land_new = [it["value"] for it in P.raw["lands"] if it["name"] == key][0]
+    return "%s: border %s all round, g_bend %s, bottom land %s (%s: %s / %s / %s)" % (
+        P.revision, n(P.d("border")), n2(P.d("g_bend")), n2(land_new), prev_rev(P), n(bd_old), n2(gb_old),
+        n2(lands_old[key]))
 
 
 def tr(s):

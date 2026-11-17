@@ -52,8 +52,10 @@ def body(R, ctx):
                       ("bbox y max (abs)", b["y_down"][1], fy1), ("bbox Z min = lip top", b["z"][0], G.L["Z_GLASS_FRONT"]),
                       ("bbox Z max = trough top", b["z"][1], G.L["Z_TROUGH_TOP"])):
         R.add("body", lab, "STEP bbox", m, r)
-    R.add("body", "volume", "STEP", fi["volume_mm3"] / 1000.0, "~70 (concept estimate)", info=True,
-          note="cm3; mass at 1.36 g/cm3 = %.1f g (concept: ~70 cm3 / 95 g, v2 55.06 cm3)" % (fi["volume_mm3"] / 1000 * 1.36))
+    am = G.raw.get("as_modelled_GF-2.0", {})
+    R.add("body", "volume", "STEP", fi["volume_mm3"] / 1000.0, am.get("frame_volume_cm3", "~70 (concept estimate)"), info=True,
+          note="cm3; mass at 1.36 g/cm3 = %.1f g (GF-1.1 82.19 cm3 / 111.8 g; v2 55.06 cm3; params as_modelled_GF-2.0 %s)" % (
+              fi["volume_mm3"] / 1000 * 1.36, am.get("frame_volume_cm3")))
 
 
 # ----------------------------------------------------------------------------------------------- Z levels
@@ -65,7 +67,7 @@ LEVELS = [  # name, level key, normal sign, expected count (None = any), what
     ("land (recess floor, bead face)", "Z_LAND", -1, 1, "land"),
     ("flange back", "Z_FLANGE_BACK", +1, 1, "flange back"),
     ("land-plate back / step-wall back", "Z_LANDPLATE_BACK", +1, None, "land plate, cells"),
-    ("fastener tube tops (washer seat)", "Z_TUBE_TOP", +1, 8, "F1-F8"),
+    ("fastener tube tops (washer seat)", "Z_TUBE_TOP", +1, None, "tubes"),
     ("shelf front = Formex seat", "Z_SEAT", -1, 1, "shelf"),
     ("shelf back", "Z_SHELF_BACK", +1, None, "shelf between ribs"),
     ("PCB plane (boss / rib / wall tops)", "Z_PCB", +1, None, "contact faces"),
@@ -86,8 +88,12 @@ def z_levels(R, ctx):
     found = []
     for name, key, sg, n_exp, what in LEVELS:
         z = G.L[key]
-        if key == "Z_TUBE_TOP" and G.core:
-            n_exp = 16          # GF-1.1: each tube top split by the coring groove into seat + outer skin
+        if key == "Z_TUBE_TOP":
+            n_exp = (2 if G.core else 1) * len(G.fast)    # GF-1.1: each tube top split by the coring groove into seat + outer skin
+        if key == "Z_PIP_TOP":
+            n_exp = len(G.pips)
+        if key == "Z_SHEET_BACK":
+            n_exp = 1 + len([n for n in G.fast if n in ("F1", "F2", "F3", "F4")])
         if key == "Z_FLANGE_BACK" and G.core:
             n_exp = None        # GF-1.1: count reported, judged in the fastener rows (tube-base fillets)
         hit = [(k, fs) for k, fs in groups.items() if k[1] == sg and abs(k[0] - z) < 0.02]
@@ -123,9 +129,10 @@ def z_levels(R, ctx):
              round(L["Z_LAND"] + G.CELL_RIB_H, 3): "corner-cell rib tops = Z_LAND + cell_rib_h (v2 rule 'rib top 5.0 above the front face')"}
     if G.cb:
         known[round(G.cb_floor_z("F1"), 3)] = "F1-F4 counterbore floors = Z_SHEET_BACK + cb_floor_F1-F4 (GF-1.1), 4 expected"
-        known[round(G.cb_floor_z("F5"), 3)] = "F5-F8 counterbore floors = Z_SHEET_BACK + cb_floor_F5-F8 (GF-1.1), 4 expected"
+        if G.cb_floor_z("F5") is not None:
+            known[round(G.cb_floor_z("F5"), 3)] = "F5-F8 counterbore floors = Z_SHEET_BACK + cb_floor_F5-F8 (GF-1.1), 4 expected"
     if G.core:
-        known[round(L["Z_TUBE_TOP"] - float(G.core["core_depth"]), 3)] = "tube coring groove floors = Z_TUBE_TOP - core_depth (GF-1.1), 8 expected"
+        known[round(L["Z_TUBE_TOP"] - float(G.core["core_depth"]), 3)] = "tube coring groove floors = Z_TUBE_TOP - core_depth (GF-1.1), %d expected" % len(G.fast)
     for e in extra:
         e["explained_by"] = known.get(round(e["z"], 3), "NOT in the specification")
         R.add("Z levels", "extra level Z %.3f (%s, %d faces)" % (e["z"], e["normal"], e["faces"]), "STEP", e["z"],
@@ -135,6 +142,9 @@ def z_levels(R, ctx):
 
 # ----------------------------------------------------------------------------------------------- edge profiles
 EDGE_PROBES = {"top": (80.0, 130.0), "bottom": (80.0, 130.0), "left": (60.0, 105.0), "right": (60.0, 105.0)}
+# GF-2.0: x 80 at the bottom is the divider rib -> the bridge is probed in both compartments (CTP x 60, TFT x 130) and the
+# bottom land outside the tail span at x 24 / 183 (clear of the H7 / H6 bosses)
+EDGE_PROBES_GF2 = {"top": (80.0, 130.0), "bottom": (60.0, 130.0, 24.0, 183.0), "left": (60.0, 105.0), "right": (60.0, 105.0)}
 
 
 def _face_line(P, G, edge, along, zs, pick):
@@ -164,10 +174,13 @@ def edge_profiles(R, ctx, P):
     px0, px1, py0, py1 = G.POCKET[:4]
     pocket_s = {"top": gy0 - py0, "bottom": py1 - gy1, "left": gx0 - px0, "right": px1 - gx1}
     tail_s = G.TAIL[3] - gy1
+    fx0, fx1, fy0, fy1 = G.FLANGE[:4]
+    flange_s = {"top": gy0 - fy0, "bottom": fy1 - gy1, "left": gx0 - fx0, "right": fx1 - gx1}
     out = {}
-    for edge, alongs in EDGE_PROBES.items():
+    for edge, alongs in (EDGE_PROBES_GF2 if G.gf2 else EDGE_PROBES).items():
         for along in alongs:
             w = "%s edge, %s %.1f" % (edge, "x" if edge in ("top", "bottom") else "y", along)
+            on_bridge = G.gf2 and edge == "bottom" and G.TAIL[0] < along < G.TAIL[1]
             row = {}
             # recess wall / lip inner face: first interval's start, Z between the lip-top round and the land round
             f_in = _face_line(P, G, edge, along, [zg + 0.35, zg + 0.6, zsb - 0.05, zsb + 0.5, zff + 0.5, zl - 0.6],
@@ -180,8 +193,14 @@ def edge_profiles(R, ctx, P):
                               lambda iv: max(b for a, b in iv) if iv else None)
             f_sw = _face_line(P, G, edge, along, [zfb + 0.6, zfb + 1.2, zlb - 0.05],
                               lambda iv: next((b for a, b in iv if 1.5 < b < 4.0), None))
-            f_pk = _face_line(P, G, edge, along, [zl + 0.05, zl + 1.5, zlb + 0.5, zs - 0.6],
-                              lambda iv: next((a for a, b in iv if -15 < a < -3), None))
+            if on_bridge:     # GF-2.0 bridge pocket face: flat only between the 0.3 break and the R1.5 nose
+                zb = zl + float(G.land_break or 0.0)
+                zn = L["Z_LANDPLATE_BACK"] - float(G.bend_nose_R or 0.0)
+                f_pk = _face_line(P, G, edge, along, list(np.linspace(zb + 0.04, zn - 0.03, 5)),
+                                  lambda iv: next((a for a, b in iv if -15 < a < -3), None))
+            else:
+                f_pk = _face_line(P, G, edge, along, [zl + 0.05, zl + 1.5, zlb + 0.5, zs - 0.6],
+                                  lambda iv: next((a for a, b in iv if -15 < a < -3), None))
             row = {"recess_wall": f_in, "lip_outer": f_out, "seat_ring_outer": f_ring, "flange_edge": f_fl,
                    "stepwall_back": f_sw, "pocket_face": f_pk}
             out[w] = {k: ({"s_at_ref": None} if v is None else
@@ -191,11 +210,17 @@ def edge_profiles(R, ctx, P):
                    ("lip outer face at the lip root", f_out, zsb, G.g2 + G.lip_w, "lip_out rect; lip_w 1.0 at the root"),
                    ("sheet-seat ring outer edge at the flange front", f_ring, zff, G.g2 + G.lip_w + G.seat_ring_w,
                     "seat_ring_out rect (ring base on the flange front)"),
-                   ("flange outer edge at the flange front (parting line)", f_fl, zff, G.flange_beyond_glass, "flange rect"),
+                   ("flange outer edge at the flange front (parting line)", f_fl, zff, flange_s[edge],
+                    "flange rect (bottom: flange_y1_bottom %.3f, the bottom wall's outer face continued)" % fy1 if edge == "bottom"
+                    else "flange rect = glass + flange_beyond_glass"),
                    ("step-wall back face at the flange back", f_sw, zfb, G.g2 + G.lip_w + G.seat_ring_w,
                     "step wall s 0.4..2.9 (concept 4.4)")]
             ps = pocket_s[edge] if not (edge == "bottom" and G.TAIL[0] < along < G.TAIL[1]) else tail_s
-            if edge == "bottom" and G.TAIL[0] < along < G.TAIL[1]:
+            if on_bridge:
+                ps = G.BRIDGE[2] - gy1
+                chk.append(("bridge pocket face at the land (Z_LAND), = panel_y1 + g_bend", f_pk, zl, ps,
+                            "bridge y0 %.2f at Z_LAND (fitted between the break and the nose, extrapolated)" % G.BRIDGE[2]))
+            elif edge == "bottom" and G.TAIL[0] < along < G.TAIL[1]:
                 chk.append(("tail-pocket bottom face at the land (front)", f_pk, zl, ps, "tail_pocket y1 147.70 at the front"))
             else:
                 chk.append(("clearance-pocket face at the shelf (Z_SEAT)", f_pk, zs, ps, "pocket rect = panel + 0.8 (tightest at the shelf)"))
@@ -348,8 +373,10 @@ def plan_rects(R, ctx):
                       tol=0.02, note="centre (%.3f, %.3f) vs (%.3f, %.3f), fit rms %.4f" % (c["cx"], c["cy"], ccx, ccy, c["rms"]))
                 R.add("plan rects", "%s corner %s centre offset" % (name, cn), "Z %.3f" % z,
                       math.hypot(c["cx"] - ccx, c["cy"] - ccy), 0.0, tol=0.02)
-    # tail pocket corners (R1.5 at the bottom, at the front face)
-    zt = L["Z_LAND"] + 0.05
+    # tail pocket corners (R1.5 at the bottom, defined at the land, 1 deg wider to the back). GF-2.0: the pocket has a floor
+    # (flange plate, Z_FLOOR_LOW) -> measured above the floor round at Z -9.0 and corrected by the draft to Z_LAND
+    zt = (L["Z_FLANGE_BACK"] + 0.92) if G.gf2 else L["Z_LAND"] + 0.05
+    dz_land = zt - L["Z_LAND"]
     loops = C.plan_loops(fr, zt)
     tx0, tx1, ty0, ty1, tr = G.TAIL
     for lp in loops:
@@ -359,17 +386,25 @@ def plan_rects(R, ctx):
             sel = P_[(np.abs(d - tr) < 0.6) & (P_[:, 1] > cy + 0.2) & ((P_[:, 0] - cx) * (-1 if cn == "left" else 1) > 0.2)]
             if len(sel) >= 6:
                 fx, fy, fr_, rms = C.fit_circle(sel)
-                exp = tr + T1 * 0.05
-                R.add("plan rects", "tail-pocket bottom corner %s radius" % cn, "Z %.2f" % zt, fr_, tr, tol=0.02,
-                      note="centre (%.3f, %.3f) vs (%.3f, %.3f); trough_R 1.5" % (fx, fy, cx, cy))
+                exp = tr + T1 * dz_land
+                R.add("plan rects", "tail-pocket bottom corner %s radius" % cn, "Z %.2f" % zt, fr_, exp, tol=0.02,
+                      note="centre (%.3f, %.3f) vs (%.3f, %.3f); trough_R %.1f at Z_LAND + %.3f (1 deg, wider to the back)" % (
+                          fx, fy, cx, cy, tr, T1 * dz_land))
+                R.add("plan rects", "tail-pocket bottom corner %s centre offset" % cn, "Z %.2f" % zt, math.hypot(fx - cx, fy - cy), 0.0,
+                      tol=0.02)
                 out["tail corner " + cn] = {"cx": fx, "cy": fy, "R": fr_}
-    # tail pocket x limits at the front
+    # tail pocket x limits (y 140); GF-2.0: the divider rib splits the pocket -> CTP compartment x0, TFT compartment x1
     P = C.Probe(fr)
     iv = P.x_intervals(140.0, zt)
-    gaps = [(b1, a2) for (a1, b1), (a2, b2) in zip(iv[:-1], iv[1:]) if a2 - b1 > 50]
+    gaps = [(b1, a2) for (a1, b1), (a2, b2) in zip(iv[:-1], iv[1:]) if a2 - b1 > 20]
     if gaps:
-        R.add("plan rects", "tail pocket x0 at the front (y 140)", "Z %.2f" % zt, gaps[0][0], tx0, note="v2 tr_x0")
-        R.add("plan rects", "tail pocket x1 at the front (y 140)", "Z %.2f" % zt, gaps[0][1], tx1, note="v2 tr_x1")
+        g0, g1 = min(gaps, key=lambda g: g[0]), max(gaps, key=lambda g: g[1])
+        corr = T1 * dz_land
+        R.add("plan rects", "tail pocket x0 (y 140, corrected to Z_LAND)", "Z %.2f" % zt, g0[0] + corr, tx0,
+              note="measured %.4f at Z %.2f; tail_pocket x0 (GF-1.1 / GF-2.0)" % (g0[0], zt))
+        R.add("plan rects", "tail pocket x1 (y 140, corrected to Z_LAND)", "Z %.2f" % zt, g1[1] - corr, tx1,
+              note="measured %.4f at Z %.2f; tail_pocket x1" % (g1[1], zt))
+        out["tail_pocket_compartments_at_y140"] = [(round(a, 4), round(b, 4)) for a, b in gaps]
     return out
 
 
@@ -424,7 +459,7 @@ def fasteners(R, ctx, ax, P):
     out = []
     tube_tops = C.faces_at_z(fr, L["Z_TUBE_TOP"], +1, tol=0.005)
     pads = C.faces_at_z(fr, L["Z_SHEET_BACK"], -1, tol=0.005)
-    for n in ["F%d" % i for i in range(1, 9)]:
+    for n in sorted(G.fast):
         x, y = G.fxy(n)
         u = G.slot_axis(n)
         hl = (G.slot_l - G.slot_w) / 2
@@ -714,9 +749,14 @@ def tube_rib(ctx, n, P):
     core = pts[1:-1] if len(pts) > 3 else pts
     rr = np.array([p[0] for p in core]); off = np.array([p[2] for p in core])
     slope = np.polyfit(rr, off, 1)[0] if len(core) > 1 else 0.0
-    return {"rib": True, "width": float(np.median([p[1] for p in core])), "r_range": [pts[0][0], pts[-1][0]],
+    w_probe = float(np.median([p[1] for p in core]))
+    # GF-2.0: the probes run across the SLOT axis; the rib runs towards the glass corner (45 deg in plan), 10.8 deg off the
+    # slot axis at GF-2.0 (5.8 at GF-1.1) -> the width across the rib itself is w_probe x cos(angle)
+    return {"rib": True, "width": w_probe * math.cos(math.atan(slope)), "width_across_slot_axis": w_probe,
+            "r_range": [pts[0][0], pts[-1][0]],
             "offset_from_slot_axis_mm": float(np.median(off)), "angle_to_slot_axis_deg": math.degrees(math.atan(slope)),
-            "dir": "offset %.2f mm and %.1f deg from the slot axis" % (float(np.median(off)), math.degrees(math.atan(slope)))}
+            "dir": "offset %.2f mm and %.1f deg from the slot axis; width across the slot axis %.4f, x cos = across the rib" % (
+                float(np.median(off)), math.degrees(math.atan(slope)), w_probe)}
 
 
 def bosses(R, ctx, ax, P):
@@ -818,9 +858,236 @@ def tape_band(R, ctx):
             bb = wi.BoundingBox()
             holes.append(((bb.xmin + bb.xmax) / 2, -(bb.ymin + bb.ymax) / 2, bb.xlen, bb.ylen))
     R.add("tape band", "flange front faces at Z_FLANGE_FRONT", "-", len(fs), 1, tol=0)
-    R.add("tape band", "holes in the flange-front face", "-", len(holes), "4 slots F5-F8 + 4 pads F1-F4 + inner boundary",
-          info=True, note="; ".join("(%.2f, %.2f) %.2fx%.2f" % h for h in holes))
+    if G.gf2:
+        # GF-2.0: no F5-F8 -> the only holes are the 4 corner pads and the seat-ring boundary; none may reach into the
+        # tape band (s tape_s[0] .. tape_s[1] outside the glass edge, straight strips ending tape_margin before the pads)
+        gx0, gx1, gy0, gy1 = G.GLASS[:4]
+        s0, s1 = G.tape_s
+        bad = []
+        for h in holes:
+            x, y, wx, wy = h
+            if wx > 150:          # seat-ring / step-wall boundary
+                continue
+            near_pad = any(math.hypot(x - G.fxy(n)[0], y - G.fxy(n)[1]) < 1.0 for n in G.fast)
+            if not near_pad:
+                bad.append(h)
+        R.add("tape band", "holes in the flange-front face other than the 4 pads and the seat-ring boundary", "-", len(bad), 0, tol=0,
+              note="holes: " + "; ".join("(%.2f, %.2f) %.2fx%.2f" % h for h in holes))
+    else:
+        R.add("tape band", "holes in the flange-front face", "-", len(holes), "4 slots F5-F8 + 4 pads F1-F4 + inner boundary",
+              info=True, note="; ".join("(%.2f, %.2f) %.2fx%.2f" % h for h in holes))
     return {"holes": holes}
+
+
+# ----------------------------------------------------------------------------------------------- GF-2.0 bottom: bridge, slot, rib
+def _fit_line(pts):
+    Z = np.array([p[0] for p in pts]); S = np.array([p[1] for p in pts])
+    b, a = np.polyfit(Z, S, 1)
+    return a, b, float(np.max(np.abs(a + b * Z - S)))
+
+
+def gf2_bottom(R, ctx, P):
+    """GF-2.0 bottom zone: bend-gap slot, bridge (pocket face, 0.3 break, R1.5 nose, land plate, step, flange plate), bottom
+    wall flush with the flange edge, divider rib, flange bottom edge and corners; nothing moulded at F5-F8"""
+    G, fr = ctx.G, ctx.frame
+    L = G.L
+    out = {}
+    zl, zlb, zff, zfb = L["Z_LAND"], L["Z_LANDPLATE_BACK"], L["Z_FLANGE_FRONT"], L["Z_FLANGE_BACK"]
+    zfloor = L.get("Z_FLOOR_LOW", zfb)
+    y_pf = G.BRIDGE[2]
+    brk, nR = float(G.land_break), float(G.bend_nose_R)
+    face_y = lambda z: y_pf + (z - zl) * T1          # bridge pocket face (1 deg, widening to the back)
+    grp = "bridge / slot"
+    stations = (42.0, 60.0, 100.0, 130.0, 160.0)
+    # 1. bridge pocket face y at Z_LAND (fit between the break top and the nose), draft and its direction
+    pf = []
+    for x in stations:
+        pts = []
+        for z in np.linspace(zl + brk + 0.04, zlb - nR - 0.03, 6):
+            iv = P.y_intervals(x, float(z))
+            a = next((a for a, b in iv if 120.5 < a < 124.0), None)
+            if a is not None:
+                pts.append((float(z), a))
+        if len(pts) < 3:
+            R.add(grp, "bridge pocket face found", "x %.1f" % x, "no", "yes", ok=False)
+            continue
+        a, b, res = _fit_line(pts)
+        y0 = a + b * zl
+        pf.append((x, y0, b))
+        R.add(grp, "bridge pocket face y at Z_LAND (= panel_y1 + g_bend %.2f)" % G.g_bend, "x %.1f" % x, y0, y_pf,
+              note="fit over Z %.2f..%.2f, resid %.4f" % (pts[0][0], pts[-1][0], res))
+        R.add(grp, "bridge pocket face draft", "x %.1f" % x, math.degrees(math.atan(abs(b))), 1.0, tol=TOL_DEG)
+        R.add(grp, "bridge pocket face widens to the back (B-side core)", "x %.1f" % x, "yes" if b > 0 else "NO", "yes", ok=b > 0)
+    out["pocket_face"] = pf
+    # 2. land break 0.3 x 45 on the land x pocket face edge
+    for x in (60.0, 130.0):
+        pts = []
+        for z in np.linspace(zl + 0.03, zl + brk - 0.04, 6):
+            iv = P.y_intervals(x, float(z))
+            a = next((a for a, b in iv if 120.5 < a < 124.0), None)
+            if a is not None:
+                pts.append((float(z), a))
+        if len(pts) < 3:
+            R.add(grp, "land break found", "x %.1f" % x, "no", "yes", ok=False)
+            continue
+        a, b, res = _fit_line(pts)
+        ang = math.degrees(math.atan(abs(b)))           # angle of the chamfer from the pull axis
+        y_at_land = a + b * zl
+        # height: where the chamfer line meets the pocket face line y = face_y(z)
+        z_meet = (a - (y_pf - zl * T1)) / (T1 - b)
+        R.add(grp, "land break: width on the land (y at Z_LAND - pocket face)", "x %.1f" % x, y_at_land - y_pf, brk,
+              tol=0.015, note="chamfer y at Z_LAND %.4f; fitted over %d heights, resid %.4f" % (y_at_land, len(pts), res))
+        R.add(grp, "land break: height above the land (meets the pocket face)", "x %.1f" % x, z_meet - zl, brk, tol=0.015)
+        R.add(grp, "land break: angle from the pull axis", "x %.1f" % x, ang, 45.0, tol=1.0,
+              note="45 deg chamfer; the face normal points to the front (-Z): formed by the A half")
+        out.setdefault("break", []).append({"x": x, "y_at_land": y_at_land, "z_meet": z_meet, "angle": ang})
+    # 3. nose R1.5 on the land-plate back x pocket face edge (circle fit on probe points in the y-Z plane)
+    for x in (60.0, 130.0):
+        pts = []
+        for z in np.linspace(zlb - nR + 0.06, zlb - 0.03, 14):
+            iv = P.y_intervals(x, float(z))
+            a = next((a for a, b in iv if 120.5 < a < 126.0), None)
+            if a is not None:
+                pts.append((a, float(z)))
+        if len(pts) < 6:
+            R.add(grp, "nose found", "x %.1f" % x, "no", "yes", ok=False)
+            continue
+        cy, cz, r, rms = C.fit_circle(np.array(pts))
+        ecz = zlb - nR
+        ecy = face_y(ecz) + nR
+        R.add(grp, "nose radius (bend_nose_R)", "x %.1f" % x, r, nR, tol=0.01, note="circle fit on %d probe points, rms %.4f" % (len(pts), rms))
+        R.add(grp, "nose centre vs tangent to the pocket face and the land-plate back", "x %.1f" % x, math.hypot(cy - ecy, cz - ecz), 0.0,
+              tol=0.02, note="centre (y %.4f, Z %.4f) vs (%.4f, %.4f)" % (cy, cz, ecy, ecz))
+        out.setdefault("nose", []).append({"x": x, "R": r, "cy": cy, "cz": cz})
+    # 4. land plate / step / flange plate / bottom wall levels (vertical probes)
+    for lab, x, y, exp in (("land plate on the bridge (Z_LAND .. Z_LANDPLATE_BACK)", 60.0, 125.6, (zl, zlb)),
+                           ("land plate on the bridge (Z_LAND .. Z_LANDPLATE_BACK)", 130.0, 125.6, (zl, zlb)),
+                           ("flange plate = tail-pocket floor (Z_FLANGE_FRONT .. Z_FLOOR_LOW)", 60.0, 140.0, (zff, zfloor)),
+                           ("flange plate = tail-pocket floor (Z_FLANGE_FRONT .. Z_FLOOR_LOW)", 130.0, 140.0, (zff, zfloor)),
+                           ("flange plate under the TFT loop / old F7 position", G.GC[0], G.FLINE[3], (zff, zfloor)),
+                           ("bottom wall, one body from the flange front to the trough top", 60.0, 149.0, (zff, L["Z_TROUGH_TOP"])),
+                           ("bottom wall, one body from the flange front to the trough top", 130.0, 149.0, (zff, L["Z_TROUGH_TOP"]))):
+        iv = P.z_intervals(x, y)
+        ok = len(iv) == 1 and abs(iv[0][0] - exp[0]) < TOL and abs(iv[0][1] - exp[1]) < TOL
+        R.add(grp, lab, "(%.2f, %.2f)" % (x, y), "%s" % [(round(a, 4), round(b, 4)) for a, b in iv],
+              "[(%.2f, %.2f)]" % exp, ok=ok)
+    # 5. bottom wall faces at Z_LAND and the flange front (flush outer face)
+    for x in (60.0, 130.0):
+        pin, pout = [], []
+        for z in (-9.0, -6.0, -3.0, 0.5, 3.5):
+            iv = P.y_intervals(x, z)
+            w = next(((a, b) for a, b in iv if a < 148.9 < b), None)
+            if w:
+                pin.append((z, w[0])); pout.append((z, w[1]))
+        if len(pin) >= 3:
+            ai, bi, ri = _fit_line(pin)
+            ao, bo, ro = _fit_line(pout)
+            R.add(grp, "bottom wall inner face (tail-pocket bottom face) y at Z_LAND", "x %.1f" % x, ai + bi * zl, G.TAIL[3],
+                  note="tail_pocket y1 at Z_LAND; draft %.3f deg" % math.degrees(math.atan(abs(bi))))
+            R.add(grp, "bottom wall outer face y at Z_LAND (concept 150.20)", "x %.1f" % x, ao + bo * zl, G.TAIL[3] + G.WALL,
+                  note="wall %.2f at Z_LAND" % (ao + bo * zl - (ai + bi * zl)))
+            R.add(grp, "bottom wall outer face y at Z_FLANGE_FRONT = flange_y1_bottom (flush)", "x %.1f" % x, ao + bo * zff,
+                  float(G.flange_y1_bottom))
+            R.add(grp, "bottom wall drafts (inner / outer)", "x %.1f" % x, max(math.degrees(math.atan(abs(bi))), math.degrees(math.atan(abs(bo)))),
+                  1.0, tol=TOL_DEG)
+    # 6. bend-gap slot: open front to back over the tail span (vertical rays) and its ends
+    closed = []
+    n_rays = 0
+    for yq in (G.SLOT[2] + 0.2, (G.SLOT[2] + G.SLOT[3]) / 2, G.SLOT[3] - 0.15):
+        for x in np.arange(G.SLOT[0] + 0.7, G.SLOT[1] - 0.69, 0.5):
+            n_rays += 1
+            iv = P.z_intervals(float(x), float(yq))
+            if iv:
+                closed.append((round(float(x), 2), round(yq, 2), [(round(a, 3), round(b, 3)) for a, b in iv]))
+    R.add(grp, "bend-gap slot open front to back (vertical rays at 3 y x 0.5 mm in x)", "%d rays" % n_rays, len(closed), 0, tol=0,
+          note="slot x %.1f..%.1f, y %.2f..%.2f; first blocked rays: %s" % (G.SLOT[0], G.SLOT[1], G.SLOT[2], G.SLOT[3], closed[:4]))
+    for z in (zl + 0.1, -8.0, -6.0):
+        iv = P.x_intervals((G.SLOT[2] + G.SLOT[3]) / 2, z)
+        gaps = [(b1, a2) for (a1, b1), (a2, b2) in zip(iv[:-1], iv[1:]) if a2 - b1 > 50]
+        if gaps:
+            g = gaps[0]
+            corr = T1 * (z - zl)
+            R.add(grp, "bend-gap slot ends x0 / x1 (tail-pocket side walls), corrected to Z_LAND", "y %.2f, Z %.2f" % ((G.SLOT[2] + G.SLOT[3]) / 2, z),
+                  max(abs(g[0] + corr - G.SLOT[0]), abs(g[1] - corr - G.SLOT[1])), 0.0,
+                  note="measured %.4f / %.4f" % (g[0], g[1]))
+    # the slot's front boundary: the shelf end over the tail span (y 119.0 at Z_SEAT)
+    pts = []
+    for z in (-4.5, -3.5, -2.5, -2.15):
+        iv = P.y_intervals(100.0, z)
+        b = next((b for a, b in iv if 117 < b < 120), None)
+        if b is not None:
+            pts.append((z, b))
+    if len(pts) >= 3:
+        a, b, res = _fit_line(pts)
+        R.add(grp, "slot front face = shelf end over the tail span, y at Z_SEAT", "x 100", a + b * L["Z_SEAT"], G.SLOT[2],
+              note="params: 'y 119.0 at Z_SEAT, 119.10 at Z_LAND'; draft %.3f deg; below Z_SEAT the slot is open to the clearance pocket "
+                   "(no frame face between Z_LAND and Z_SEAT at y 119)" % math.degrees(math.atan(abs(b))))
+    # 7. divider rib
+    xr, tr_ = float(G.div_x), float(G.div_t)
+    for yq in (126.0, 135.0, 145.0):
+        p0, p1 = [], []
+        for z in (-7.4, -6.0, -4.0, -2.0, -0.6) + ((1.0, 3.0) if yq > 130 else ()):
+            iv = P.x_intervals(yq, z)
+            w = next(((a, b) for a, b in iv if a < xr < b and b - a < 4), None)
+            if w:
+                p0.append((z, w[0])); p1.append((z, w[1]))
+        if len(p0) >= 3:
+            a0, b0, _ = _fit_line(p0); a1, b1, _ = _fit_line(p1)
+            x0, x1 = a0 + b0 * zlb, a1 + b1 * zlb
+            R.add("divider rib", "rib faces x0 / x1 at Z_LANDPLATE_BACK (div_x +- div_t/2)", "y %.1f" % yq, max(abs(x0 - G.DIVIDER[0]), abs(x1 - G.DIVIDER[1])),
+                  0.0, note="measured %.4f / %.4f vs %.2f / %.2f" % (x0, x1, G.DIVIDER[0], G.DIVIDER[1]))
+            R.add("divider rib", "rib thickness at Z_LANDPLATE_BACK", "y %.1f" % yq, x1 - x0, tr_)
+            R.add("divider rib", "rib centre x", "y %.1f" % yq, (x0 + x1) / 2, xr)
+            R.add("divider rib", "rib drafts (both sides, thinner to the back)", "y %.1f" % yq,
+                  max(math.degrees(math.atan(abs(b0))), math.degrees(math.atan(abs(b1)))), 1.0, tol=TOL_DEG,
+                  note="slopes %.5f / %.5f (x0 grows, x1 shrinks with Z = thinner to the back: %s)" % (b0, b1, b0 > 0 and b1 < 0))
+    # rib front face coplanar with the bridge pocket face
+    pts = []
+    for z in (-7.0, -5.5, -4.0, -1.5, -0.5):
+        iv = P.y_intervals(xr, z)
+        a = next((a for a, b in iv if 120.5 < a < 124.0), None)
+        if a is not None:
+            pts.append((z, a))
+    if len(pts) >= 3:
+        a, b, res = _fit_line(pts)
+        R.add("divider rib", "rib front face y at Z_LAND (coplanar with the bridge pocket face)", "x %.2f" % xr, a + b * zl, y_pf,
+              note="draft %.3f deg; resid %.4f" % (math.degrees(math.atan(abs(b))), res))
+    for lab, yq, ztop in (("rib top in front of the tail-wall step (Z_PCB)", 125.0, L["Z_PCB"]),
+                          ("rib top behind the tail-wall step (Z_TROUGH_TOP)", 135.0, L["Z_TROUGH_TOP"])):
+        iv = P.z_intervals(xr, yq)
+        R.add("divider rib", lab, "(%.2f, %.1f)" % (xr, yq), iv[-1][1] if iv else "none", ztop,
+              note="intervals %s" % [(round(a, 3), round(b, 3)) for a, b in iv])
+    pts = []
+    for z in (0.6, 1.5, 2.5, 3.5):
+        iv = P.y_intervals(xr, z)
+        if iv:
+            pts.append((z, iv[0][0]))
+    if len(pts) >= 3:
+        a, b, res = _fit_line(pts)
+        R.add("divider rib", "rib step y (Z_PCB -> Z_TROUGH_TOP) at Z_PCB = tail_wall_step_y", "x %.2f" % xr, a + b * L["Z_PCB"],
+              G.TAIL_WALL_STEP_Y, tol=0.02, note="as the tail-pocket side walls (v2.1 rule)")
+    iv = P.y_intervals(xr, -5.0)
+    w = next(((a, b) for a, b in iv if a < 140 < b), None)
+    R.add("divider rib", "rib continuous from the bridge face into the bottom wall (Z -5)", "x %.2f" % xr,
+          "y %.3f..%.3f" % w if w else "broken", "%.1f..150.1" % (G.BRIDGE[2] + 0.1), ok=bool(w) and w[0] < G.BRIDGE[2] + 0.3 and w[1] > 149.9)
+    # 8. flange outline: bottom edge at the flange front, R10 bottom corners
+    for x in (40.0, G.GC[0], 170.0):
+        iv = P.y_intervals(x, zff + 0.005)
+        R.add("flange outline", "flange bottom edge y at the flange front (flange_y1_bottom)", "x %.1f" % x,
+              max(b for a, b in iv) - T1 * 0.005, float(G.flange_y1_bottom))
+    # 9. nothing moulded at F5-F8 (GF-2.0 positions on the fastener line; S8 withdrawn)
+    gcx, gcy = G.GC
+    flx0, flx1, fly0, fly1 = G.FLINE[:4]
+    ax = axial(fr)
+    for n, (x, y) in (("F5", (gcx, fly0)), ("F6", (flx1, gcy)), ("F7", (gcx, fly1)), ("F8", (flx0, gcy))):
+        iv = P.z_intervals(x, y)
+        near = [k for k in ax if math.hypot(k["x"] - x, k["y"] - y) < 9.5]
+        ok = len(iv) == 1 and abs(iv[0][0] - zff) < TOL and abs(iv[0][1] - zfloor) < TOL and not near
+        R.add("no F5-F8", "%s position: plain flange (no tube / slot / counterbore / coring)" % n, "(%.2f, %.2f)" % (x, y),
+              "%s; %d axial faces within r 9.5" % ([(round(a, 3), round(b, 3)) for a, b in iv], len(near)),
+              "[(%.2f, %.2f)]; 0" % (zff, zfloor), ok=ok)
+    out["no_F5_F8"] = True
+    return out
 
 
 def run(ctx, log=C.log):
@@ -846,6 +1113,9 @@ def run(ctx, log=C.log):
     res["support_ribs"] = support_ribs(R, ctx)
     res["tape_band"] = tape_band(R, ctx)
     res["h6_cell"] = h6_cell(R, ctx)
+    if ctx.G.gf2:
+        log("[A] GF-2.0 bottom: bridge, slot, nose, break, rib, bottom wall, flange edge, no F5-F8")
+        res["gf2_bottom"] = gf2_bottom(R, ctx, P)
     res["rows"] = R.rows
     res["fails"] = [r for r in R.rows if r["verdict"] == "FAIL"]
     res["counts"] = {v: sum(1 for r in R.rows if r["verdict"] == v) for v in ("PASS", "FAIL", "INFO")}

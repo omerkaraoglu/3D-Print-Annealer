@@ -1,0 +1,6526 @@
+{
+ "generated": "2026-11-15T20:33:10",
+ "master": {
+  "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_params.json",
+  "revision": "GF-1.1",
+  "sha256": "a1d4db202e1ab4e5d02e05f9d1d65c7dbcbdac4b4bb3caac23c07f18cf0c8e47",
+  "unchanged_by_this_run": true
+ },
+ "drafting_choices": {
+  "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Design Reports\\Rev3.0\\tools\\glassfront\\drawings\\drafting_choices.json",
+  "items": [
+   {
+    "name": "qty_glass",
+    "value": 110,
+    "unit": "pcs",
+    "source": "lead brief; R2 sec. 6 (100 ovens + 10 % spares)"
+   },
+   {
+    "name": "min_hole_to_cutout",
+    "value": 8.0,
+    "unit": "mm",
+    "source": "concept sec. 11.4 rule 'to cut-out edge (>= 8)'; R2 sec. 2.4 item 3 (PEM 7.2, design to 8)",
+    "note": "centre of a hole / stud to the cut-out edge"
+   },
+   {
+    "name": "sheet_general_tol",
+    "value": "ISO 2768-mK",
+    "source": "judgement (common sheet-metal practice)"
+   },
+   {
+    "name": "stud_perpendicularity_deg",
+    "value": 1.0,
+    "unit": "deg",
+    "source": "PROPOSAL (GF-D01 / GF-D02, round 3): no source states one. 16 x tan 1 deg = 0.28 at the tip of the M4 x 16 stud; with the +-0.3 axis position that is 0.58 < 0.70 radial clearance of the M4 stud across the 5.4 slot. 2 deg (0.56 at the tip) would use the whole clearance."
+   },
+   {
+    "name": "display_px",
+    "value": [
+     800,
+     480
+    ],
+    "unit": "px",
+    "source": "R1 sec. 3.3 step 7 (1 px = 0.1926 x 0.179 mm); concept sec. 4.3"
+   },
+   {
+    "name": "section_u",
+    "value": -25.0,
+    "unit": "mm",
+    "source": "drafting: typical edge section A-A on the top edge at u = -25, clear of F1/F5 and the pips"
+   },
+   {
+    "name": "ink_black",
+    "value": "RAL 9005 / Pantone Black 6 C, optical density OD >= 4 at 550 nm, no pin-holes visible on a 1000 lx light box",
+    "source": "R2 sec. 1.3; R1 sec. 4.3"
+   },
+   {
+    "name": "ink_tests",
+    "value": "cross-cut ISO 2409 (1 mm grid) GT0-1 dry and after 1 h in boiling water; silicone bead peel coupon >= 90 % cohesive failure (7 d cure, again after 7 d 70 C / 95 % RH); LOCA cure-inhibition coupon (fully cured, tack-free) per ink lot",
+    "source": "R1 sec. 4.3 and 3.3 step 4"
+   },
+   {
+    "name": "glass_standards",
+    "value": {
+     "thermal": "EN 12150-1 (thermally toughened soda-lime safety glass), fragmentation test per EN 12150-1",
+     "chemical_sl": "EN 12337-1 (chemically strengthened soda-lime glass); CS >= 450 MPa, DOL >= 10 um",
+     "chemical_as": "aluminosilicate cover glass (no EN): CS >= 700 MPa, DOL >= 35 um",
+     "base": "float glass EN 572-2, clear (low-iron preferred)"
+    },
+    "source": "R1 sec. 4.6, R2 sec. 1.2 and 1.4 (CS/DOL values); EN 12337-1 named by the drafter"
+   },
+   {
+    "name": "enamel_strength",
+    "value": 75.0,
+    "unit": "MPa",
+    "source": "R1 sec. 4.3: EN 12150-1 minimum bending strength 75 MPa for enamelled toughened glass (120 for float)"
+   },
+   {
+    "name": "glass_cosmetic",
+    "value": {
+     "view": "300-500 mm, 1000 lx, 3 s per face",
+     "window_A": "no visible scratch; points <= 0.10 ignore, 0.10-0.20 max 2 per piece >= 20 apart, > 0.20 reject",
+     "border_B": "seen from the front: no pin-hole, no clear spot, no ink voids; ink edge raggedness at the window <= 0.10; scratch <= 0.05 wide x 5 long max 2",
+     "edge": "no chips > 0.3 seen from the front; shells on the back face <= 0.5 x 0.5"
+    },
+    "source": "judgement (R2 sec. 1.3 asks for cosmetic limits, values by the drafter)"
+   },
+   {
+    "name": "glass_sampling",
+    "value": "outline: every piece (go/no-go gauge); thickness and flatness: 5 per lot; ink tests: per ink lot; fragmentation (thermal only): 1 sacrificial piece per tempering lot",
+    "source": "judgement"
+   },
+   {
+    "name": "bead_dispense_triangle",
+    "value": [
+     3.6,
+     2.4
+    ],
+    "unit": "mm (base x height)",
+    "source": "judgement: triangle area >= bead_w x t_bond so that it squeezes to 4.0 x 1.0"
+   },
+   {
+    "name": "j2_plate",
+    "value": [
+     290.0,
+     250.0,
+     20.0
+    ],
+    "unit": "mm",
+    "source": "judgement (flange + >= 25 per side), free +-1",
+    "note": "free"
+   },
+   {
+    "name": "j2_plate_material",
+    "value": "EN AW-5083 cast tooling plate (or 6082-T651), stress-relieved",
+    "source": "judgement"
+   },
+   {
+    "name": "j2_flatness",
+    "value": 0.02,
+    "unit": "mm",
+    "source": "concept sec. 6 / sec. 5.1 stack ('plate 0.02')"
+   },
+   {
+    "name": "j2_ra",
+    "value": 0.8,
+    "unit": "um",
+    "source": "judgement"
+   },
+   {
+    "name": "j2_pin_d",
+    "value": 5.2,
+    "unit": "mm",
+    "source": "judgement: slot 5.4 -> 0.1 per side across the radial slot",
+    "note": "tolerance 0/-0.02"
+   },
+   {
+    "name": "j2_pin_proud",
+    "value": 6.0,
+    "unit": "mm",
+    "source": "judgement: flange front is t_sheet + t_gap above the plate; pin engages the flange + tube"
+   },
+   {
+    "name": "j2_pin_press",
+    "value": 8.0,
+    "unit": "mm",
+    "source": "judgement"
+   },
+   {
+    "name": "j2_pos_tol",
+    "value": 0.05,
+    "unit": "mm",
+    "source": "judgement (pins and stop holes to the plate datum)"
+   },
+   {
+    "name": "j2_stop_d",
+    "value": 4.0,
+    "unit": "mm",
+    "source": "judgement: ISO 2338 dowel 4 h8, removable (slip fit in 4 H7)"
+   },
+   {
+    "name": "j2_stop_proud",
+    "value": 2.0,
+    "unit": "mm",
+    "source": "judgement"
+   },
+   {
+    "name": "j2_stop_u",
+    "value": 60.0,
+    "unit": "mm",
+    "source": "judgement: two stops on the top edge at u = +-60, one on the side edge at v = 0"
+   },
+   {
+    "name": "j2_shim",
+    "value": {
+     "w": 10.0,
+     "h": 15.0,
+     "per_size": 8
+    },
+    "unit": "mm (w x h), pcs per size",
+    "source": "judgement: PTFE shim body 10 x 15, 8 of each size (2 per side); the thickness sets are in the master (jig_and_mounting_shims, GF-1.1 round 4); the same count is used for the mounting set"
+   },
+   {
+    "name": "shim_rule",
+    "value": {
+     "en_extra": "the same size on all four sides",
+     "tr": "dört kenarın hepsine giren en kalın ölçüyü kullanın; dört kenarda aynı ölçü"
+    },
+    "source": "lead round-3 addition A: the master shim_rule ('use the thickest size that enters on all four sides') + the lead's second clause; TR by the drafter"
+   },
+   {
+    "name": "j2_weight",
+    "value": 5.0,
+    "unit": "kg",
+    "source": "concept sec. 6 step 4 (ring weight on the flange back)"
+   },
+   {
+    "name": "j2_groove",
+    "value": [
+     2.0,
+     1.5,
+     6.0,
+     3.0
+    ],
+    "unit": "mm (width, depth, inset from the glass edge, port dia)",
+    "source": "judgement (optional vacuum groove under the glass border)"
+   },
+   {
+    "name": "j1_base",
+    "value": [
+     320.0,
+     260.0,
+     15.0
+    ],
+    "unit": "mm",
+    "source": "judgement, free +-1",
+    "note": "free"
+   },
+   {
+    "name": "j1_top",
+    "value": [
+     250.0,
+     210.0,
+     12.0
+    ],
+    "unit": "mm",
+    "source": "judgement, free +-1",
+    "note": "free"
+   },
+   {
+    "name": "j1_guide",
+    "value": [
+     12.0,
+     110.0,
+     90.0
+    ],
+    "unit": "mm (pin dia, +-u, +-v)",
+    "source": "judgement: 4 guide pins 12 g6 in the base, bushings 12 H7 in the top plate"
+   },
+   {
+    "name": "j1_carrier_margin",
+    "value": 15.0,
+    "unit": "mm",
+    "source": "judgement: carrier = panel outline + this per side, free"
+   },
+   {
+    "name": "j1_nest_clr",
+    "value": 0.3,
+    "unit": "mm",
+    "source": "judgement: panel pocket in the carrier = panel outline + this per side (POM-lined)"
+   },
+   {
+    "name": "j1_travel",
+    "value": [
+     1.5,
+     1.0
+    ],
+    "unit": "mm, deg",
+    "source": "judgement: XY +-1.5 covers LCM outline-to-AA +-0.2 (concept sec. 9) + print-to-edge +-0.2 + stops"
+   },
+   {
+    "name": "j1_micrometer",
+    "value": "3 x micrometer head 0-13 mm, 0.01 graduation (X; Y1/Y2 give Y and theta), spring return, 2 clamp screws",
+    "source": "R1 sec. 3.3 'XY + theta stage (+-0.01 mm micrometers)'"
+   },
+   {
+    "name": "j1_parallel",
+    "value": 0.02,
+    "unit": "mm",
+    "source": "judgement: top plate glass face parallel to the base over the panel area"
+   },
+   {
+    "name": "j1_opening_margin",
+    "value": 3.0,
+    "unit": "mm",
+    "source": "judgement: top-plate opening = print window + this per side (window edge visible everywhere)"
+   },
+   {
+    "name": "j1_groove_inset",
+    "value": 6.0,
+    "unit": "mm",
+    "source": "judgement: vacuum groove loop on the top plate, inside the glass edge, in the black border"
+   },
+   {
+    "name": "j2_checks",
+    "value": "0.05 feeler must not enter between the lip top and the plate at 8 points; g2 by feeler at 20 C within the gap acceptance limits (this sheet)",
+    "source": "concept sec. 6 step 6; limits from gap_acceptance (lead round-3 addition D)"
+   },
+   {
+    "name": "gap_acceptance",
+    "value": {
+     "temp_C": 20,
+     "g2_sides": [
+      0.2,
+      0.6
+     ],
+     "g1_sides": [
+      0.3,
+      0.55
+     ],
+     "corners": {
+      "en": "not smaller than the adjacent sides, at most 0.80",
+      "tr": "komşu kenarlardan küçük değil, en fazla 0,80"
+     },
+     "corner_max": 0.8
+    },
+    "unit": "mm",
+    "source": "lead round-3 addition D (replaces the old corner limits g2 0.40-0.60 / g1 0.35-0.65 and the side limits g2 0.30-0.50 / g1 0.25-0.55). Drafter's worst-case stack, part centred, per side: g2 0.40 +- (glass/2 + lip/2) = 0.30-0.50 with glass +-0.1 (0.25-0.55 with +-0.2), lip outline +-0.1 on size [P]; g1 0.40 +- (cut-out/2 + lip/2) = 0.30-0.50 with cut-out +-0.1. Shim-rule centring adds up to (total - 2 x 0.30)/2 per side when the total clearance exceeds 0.65"
+   },
+   {
+    "name": "mount_procedure",
+    "value": "IPA-wipe the sheet back (VHB primer on powder coat if required), remove the liner, apply the corner dabs, lower the module from behind (lip into the cut-out, studs through the slots), centre with 8 PTFE shims in g1 ({shims}), press about 1 kN (about 100 kPa on the tape) for 30 s, washers + nyloc nuts crosswise, remove the shims; keep a pressure frame on >= 20 min",
+    "source": "concept sec. 6 'Mounting' and sec. 11.5 (spring-back); shims: master jig_and_mounting_shims.sheet_mounting_shims + shim_rule (round 4), replacing the single 0.30"
+   },
+   {
+    "name": "flush_check",
+    "value": "dial gauge on a bridge, 12 points round the cut-out: glass and lip vs steel within +-0.15; g1 by feeler at 20 C within the gap acceptance limits (this sheet); recheck the 4 mid-edges after 24 h",
+    "source": "concept sec. 6 'Inspection'; limits from gap_acceptance (lead round-3 addition D)"
+   },
+   {
+    "name": "cure",
+    "value": "2-C: 1-2 h in the jig (1-2 jigs for 100); 1-C: 24 h (about 5 jigs)",
+    "source": "concept sec. 6 step 5"
+   },
+   {
+    "name": "qty_ovens",
+    "value": 100,
+    "unit": "pcs",
+    "source": "lead brief (first batch)"
+   },
+   {
+    "name": "glass_samples",
+    "value": [
+     5,
+     5
+    ],
+    "unit": "pcs",
+    "source": "judgement: first samples for approval; printed ink coupons per ink lot (R2 RFQ asks 5 samples)"
+   },
+   {
+    "name": "j1_stop_tol",
+    "value": 0.1,
+    "unit": "mm",
+    "source": "judgement: J1 glass stops only place the glass inside the XY range"
+   },
+   {
+    "name": "j2_pin_detail",
+    "value": [
+     0.1,
+     0.5,
+     8.0,
+     10.0
+    ],
+    "unit": "mm (pin proud tol, pin chamfer x 45 deg, stop-hole depth, stop-pin length)",
+    "source": "judgement"
+   },
+   {
+    "name": "print_rim_max",
+    "value": 0.5,
+    "unit": "mm",
+    "source": "round-1 finding M2 / lead round-2 correction 5: ink cannot lie on the 0.3-0.5 x 45 deg face-2 arris; allowed unprinted rim = arris max, measured from the outline"
+   },
+   {
+    "name": "frame_lip_outline_tol",
+    "value": 0.1,
+    "unit": "mm",
+    "source": "PROPOSAL (GF-D50): +-0.1 on the lip inner (recess) and lip outer outline sizes, +-0.1 on their corner radii; the design document names only TG5, which is too loose for the 0.4 gaps (g1 / g2 budget +-0.09 / +-0.12 RSS per side, concept 5.2)"
+   },
+   {
+    "name": "frame_lip_width_tol",
+    "value": 0.05,
+    "unit": "mm",
+    "source": "PROPOSAL (GF-D50): lip width 1.0 nominal +-0.05 (no tolerance in any source)"
+   },
+   {
+    "name": "frame_slot_tol",
+    "value": [
+     0.1,
+     0.0,
+     0.1
+    ],
+    "unit": "mm (width +, width -, length +-)",
+    "source": "PROPOSAL (GF-D50): slot 5.4 +0.1/0 x 7.0 +-0.1 (a dia 4.8 rivet must pass and still be located; position +-0.1 is in the master)"
+   },
+   {
+    "name": "frame_cb_tol",
+    "value": [
+     0.2,
+     0.0,
+     0.2,
+     0.0
+    ],
+    "unit": "mm (size +, size -, floor depth +, floor depth -)",
+    "source": "PROPOSAL (GF-D50): counterbore size +0.2/0 and floor depth +0.2/0 - the weld-stud flange (dia 5.3-5.7 x 0.7-1.4, + paint) must never touch"
+   },
+   {
+    "name": "frame_tube_top_tol",
+    "value": 0.1,
+    "unit": "mm",
+    "source": "PROPOSAL (GF-D50): tube tops (washer / rivet seats) +-0.1 to datum A"
+   },
+   {
+    "name": "frame_core_r_in_tol",
+    "value": [
+     0.0,
+     0.1
+    ],
+    "unit": "mm (+, -)",
+    "source": "PROPOSAL (GF-D50): coring groove inner radius r_in +0/-0.1 - a larger r_in shrinks the dia-12.4 washer seat inside the groove (master washer_nut note: 80.7 mm2 centred, 65.9 at the slot end; cad_rules: the M5 rivet washer does not bridge the groove)"
+   },
+   {
+    "name": "frame_boss_tol",
+    "value": [
+     0.1,
+     0.1
+    ],
+    "unit": "mm (coplanarity, Z to datum A)",
+    "source": "PROPOSAL (GF-D50): PCB boss tops H1-H9 coplanar 0.1 and +-0.1 to datum A (v2 has no stated tolerance; v2 general TG5)"
+   },
+   {
+    "name": "frame_lip_texture",
+    "value": "lip top and lip outer face: plain mould finish, black (material colour, no paint); texture VDI 3400 Ref 24 as a priced option (owner decision D9)",
+    "source": "concept sec. 4.6; design document sec. 2 / D9"
+   }
+  ]
+ },
+ "python": "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\c8708701-d586-4d89-8e7b-a64a4af1e14d\\scratchpad\\cqenv\\Scripts\\python.exe",
+ "runtime_s": 70.2,
+ "summary": {
+  "dxf_all_ok": true,
+  "geometry_all_ok": true,
+  "mirroring_ok": true,
+  "frame_step": {
+   "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+   "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+   "mtime": "2026-11-15T17:29:54",
+   "bbox": [
+    -7.89,
+    215.59,
+    -175.0,
+    10.83,
+    -14.42,
+    4.05
+   ],
+   "volume_mm3": 82187.7,
+   "faces": 922
+  },
+  "frame_counterbore": {
+   "params": {
+    "cb_w": 7.4,
+    "cb_l": 9.0
+   },
+   "measured_on_step": {
+    "F1": {
+     "w": 7.4,
+     "l": 9.0
+    },
+    "F5": {
+     "w": 7.4,
+     "l": 9.0
+    }
+   }
+  },
+  "frame_step_vs_master_all_ok": true,
+  "layout_issues_total": 0,
+  "stud_envelope_drawn": {
+   "flange_envelope_dia": 5.8,
+   "flange_envelope_height": 1.4,
+   "axis_to_cut_out_tol": 0.3,
+   "template_means": 0.2,
+   "perpendicularity_deg_P": 1.0,
+   "read_from": "params fasteners.hardware[stud].note + drawing_tolerances.sheet.stud_position_tol"
+  },
+  "pdf_pages": {
+   "GF_Appearance.pdf": 1,
+   "GF_BondingAids.pdf": 1,
+   "GF_Frame_Inspection.pdf": 2,
+   "GF_Glass.pdf": 1,
+   "GF_Glass_Print_1to1.pdf": 1,
+   "GF_Jig_J1.pdf": 1,
+   "GF_Jig_J2.pdf": 1,
+   "GF_Sheet_R4.pdf": 1,
+   "GF_Sheet_S4.pdf": 1,
+   "GF_Sheet_S8.pdf": 1
+  },
+  "visual_review": "every PNG (and crops of it) looked at by the drafter after the last change; PNGs are rendered from the same matplotlib figure as the PDF (Agg vs PDF backend, no PDF rasteriser in the venv); DXFs additionally rendered by ezdxf into previews/"
+ },
+ "files": [
+  {
+   "file": "GF_Sheet_S4.dxf",
+   "what": "oven front sheet cut-out, variant S4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 64738,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S4",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@STUD_MARKS": 4,
+     "LINE@STUD_MARKS": 8,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 12,
+     "TEXT@TEXT": 10
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "stud_marks": {
+     "n": 4,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "tape_strips": {
+     "n": 4,
+     "match_master_lengths": true,
+     "ok": true
+    },
+    "ok": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_S4.pdf",
+   "what": "oven front sheet cut-out, variant S4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 83073,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S4",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 83073,
+    "fonts_embedded_truetype": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_S4.png",
+   "what": "oven front sheet cut-out, variant S4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 857707,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S4",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_S8.dxf",
+   "what": "oven front sheet cut-out, variant S8 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 58131,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8 ~ /DIN 988 ([\\d.]+) x ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.hardware.spacer_S8 ~ /\\(bore ([\\d.]+):/",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S8",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.foam_gasket_S8",
+    "tape_and_gasket.foam_gasket_S8.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@STUD_MARKS": 8,
+     "CIRCLE@TAPE_REF": 4,
+     "LINE@STUD_MARKS": 16,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 8,
+     "TEXT@TEXT": 14
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "stud_marks": {
+     "n": 8,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "ok": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F5",
+     "u": "0.0",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F6",
+     "u": "-101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F7",
+     "u": "0.0",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F8",
+     "u": "101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_S8.pdf",
+   "what": "oven front sheet cut-out, variant S8 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 83334,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8 ~ /DIN 988 ([\\d.]+) x ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.hardware.spacer_S8 ~ /\\(bore ([\\d.]+):/",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S8",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.foam_gasket_S8",
+    "tape_and_gasket.foam_gasket_S8.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 83334,
+    "fonts_embedded_truetype": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F5",
+     "u": "0.0",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F6",
+     "u": "-101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F7",
+     "u": "0.0",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F8",
+     "u": "101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_S8.png",
+   "what": "oven front sheet cut-out, variant S8 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 901570,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.stud_position_tol",
+    "drawing_tolerances.sheet.stud_position_tol ~ /with \\+-([\\d.]+) accuracy is the recommended means/",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8 ~ /DIN 988 ([\\d.]+) x ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.hardware.spacer_S8 ~ /\\(bore ([\\d.]+):/",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud ~ /must lie within dia ([\\d.]+) x ([\\d.]+) high/",
+    "fasteners.hardware.stud ~ /stud axis must be within \\+-([\\d.]+) of its nominal position relative to the cut-out/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.S8",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.foam_gasket_S8",
+    "tape_and_gasket.foam_gasket_S8.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol",
+    "stud_perpendicularity_deg"
+   ],
+   "layout_issues": [],
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F5",
+     "u": "0.0",
+     "v": "82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F6",
+     "u": "-101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F7",
+     "u": "0.0",
+     "v": "-82.915",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    },
+    {
+     "ID": "F8",
+     "u": "101.74",
+     "v": "0.0",
+     "feature": "weld stud M4 x 16, axis ±0.3",
+     "face": "BACK",
+     "to cut edge": "9.20"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_R4.dxf",
+   "what": "oven front sheet cut-out, variant R4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 63287,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.hardware.rivet",
+    "fasteners.hardware.rivet ~ /dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "fasteners.hardware.rivet ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "fasteners.hardware.rivet ~ /modelled head height ([\\d.]+) with an R([\\d.]+) edge/",
+    "fasteners.hardware.rivet ~ /sheet hole dia ([\\d.]+)/",
+    "fasteners.hardware.rivet.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.R4",
+    "sheet_variants.R4.note ~ /dia-[\\d.]+ head edge ([\\d.]+) from the cut-out corner arc/",
+    "sheet_variants.R4.note ~ /pad face under the head ([\\d.]+) mm2/",
+    "sheet_variants.R4.value ~ /GESIPA ([\\d.]+)-([\\d.]+)/",
+    "sheet_variants.R4.value ~ /\\(dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "sheet_variants.R4.value ~ /dia ([\\d.]+) \\+([\\d.]+)/0 \\(dia/",
+    "sheet_variants.R4.value ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "sheet_variants.R4.value ~ /heads ~([\\d.]+)-([\\d.]+) proud/",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@HOLES": 4,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 12,
+     "TEXT@TEXT": 10
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "holes": {
+     "n": 4,
+     "dia": 5.2,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "tape_strips": {
+     "n": 4,
+     "match_master_lengths": true,
+     "ok": true
+    },
+    "ok": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_R4.pdf",
+   "what": "oven front sheet cut-out, variant R4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 87113,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.hardware.rivet",
+    "fasteners.hardware.rivet ~ /dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "fasteners.hardware.rivet ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "fasteners.hardware.rivet ~ /modelled head height ([\\d.]+) with an R([\\d.]+) edge/",
+    "fasteners.hardware.rivet ~ /sheet hole dia ([\\d.]+)/",
+    "fasteners.hardware.rivet.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.R4",
+    "sheet_variants.R4.note ~ /dia-[\\d.]+ head edge ([\\d.]+) from the cut-out corner arc/",
+    "sheet_variants.R4.note ~ /pad face under the head ([\\d.]+) mm2/",
+    "sheet_variants.R4.value ~ /GESIPA ([\\d.]+)-([\\d.]+)/",
+    "sheet_variants.R4.value ~ /\\(dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "sheet_variants.R4.value ~ /dia ([\\d.]+) \\+([\\d.]+)/0 \\(dia/",
+    "sheet_variants.R4.value ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "sheet_variants.R4.value ~ /heads ~([\\d.]+)-([\\d.]+) proud/",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 87113,
+    "fonts_embedded_truetype": true
+   },
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Sheet_R4.png",
+   "what": "oven front sheet cut-out, variant R4 (DXF 1:1 front view + A3 drawing)",
+   "generated_by": "make_sheet.py",
+   "bytes": 803320,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.sheet.cut_out_corner_R",
+    "drawing_tolerances.sheet.cut_out_corner_R.note ~ +a/-b",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "drawing_tolerances.sheet.flatness_round_window",
+    "drawing_tolerances.sheet.thickness_tol",
+    "drawing_tolerances.sheet.thickness_tol ~ /\\(([\\d.]+) restricted\\)/",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.hardware.rivet",
+    "fasteners.hardware.rivet ~ /dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "fasteners.hardware.rivet ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "fasteners.hardware.rivet ~ /modelled head height ([\\d.]+) with an R([\\d.]+) edge/",
+    "fasteners.hardware.rivet ~ /sheet hole dia ([\\d.]+)/",
+    "fasteners.hardware.rivet.value",
+    "fasteners.hardware.stud",
+    "fasteners.hardware.stud ~ /M(\\d+) x (\\d+)/",
+    "fasteners.hardware.stud.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "sheet_variants.R4",
+    "sheet_variants.R4.note ~ /dia-[\\d.]+ head edge ([\\d.]+) from the cut-out corner arc/",
+    "sheet_variants.R4.note ~ /pad face under the head ([\\d.]+) mm2/",
+    "sheet_variants.R4.value ~ /GESIPA ([\\d.]+)-([\\d.]+)/",
+    "sheet_variants.R4.value ~ /\\(dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "sheet_variants.R4.value ~ /dia ([\\d.]+) \\+([\\d.]+)/0 \\(dia/",
+    "sheet_variants.R4.value ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "sheet_variants.R4.value ~ /heads ~([\\d.]+)-([\\d.]+) proud/",
+    "sheet_variants.common.cut_out",
+    "sheet_variants.common.cut_out ~ /deburr R([\\d.]+)-([\\d.]+)/",
+    "status",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "section_u",
+    "sheet_general_tol"
+   ],
+   "layout_issues": [],
+   "hole_table": [
+    {
+     "ID": "F1",
+     "u": "101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F2",
+     "u": "-101.74",
+     "v": "82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F3",
+     "u": "-101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    },
+    {
+     "ID": "F4",
+     "u": "101.74",
+     "v": "-82.915",
+     "feature": "hole dia 5.2 +0.1/0",
+     "face": "through",
+     "to cut edge": "16.14"
+    }
+   ]
+  },
+  {
+   "file": "GF_Glass.dxf",
+   "what": "cover glass: DXF (front view) + A3 drawing",
+   "generated_by": "make_glass.py",
+   "bytes": 50224,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "change_log.plan_rectangles.glass.R",
+    "drawing_tolerances.glass.corner_R",
+    "drawing_tolerances.glass.corner_R.note ~ +a/-b",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.glass.edge.value",
+    "drawing_tolerances.glass.flatness",
+    "drawing_tolerances.glass.flatness ~ /<= ([\\d.]+) over the pane/",
+    "drawing_tolerances.glass.flatness ~ /over the (\\d+) x (\\d+) bond zone/",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.print.window_position",
+    "drawing_tolerances.print.window_position ~ /print-to-edge \\+-([\\d.]+)/",
+    "drawing_tolerances.print.window_position.value",
+    "drawing_tolerances.print.window_size_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.glass_t.types",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_h ~ />= ([\\d.]+) from the window/",
+    "logo_zone.logo_h ~ /strokes >= ([\\d.]+)/",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.ink",
+    "print.ink ~ /(\\d+) -> about (\\d+) MPa/",
+    "print.ink.value",
+    "print.print_layers",
+    "print.print_layers ~ /(\\d+)-(\\d+) um/",
+    "print.print_layers ~ /setback ([\\d.]+)-([\\d.]+)/",
+    "print.print_layers.value",
+    "revision",
+    "status"
+   ],
+   "choices_used": [
+    "display_px",
+    "enamel_strength",
+    "glass_cosmetic",
+    "glass_samples",
+    "glass_sampling",
+    "glass_standards",
+    "ink_black",
+    "ink_tests",
+    "print_rim_max",
+    "qty_glass",
+    "qty_ovens"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "HATCH@PRINT_BLACK": 1,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@BEAD_ZONE_REF": 2,
+     "LWPOLYLINE@LOGO_ZONE": 1,
+     "LWPOLYLINE@OUTLINE": 1,
+     "LWPOLYLINE@PRINT_BLACK": 2,
+     "LWPOLYLINE@WINDOW": 1,
+     "TEXT@TEXT": 6
+    },
+    "required_layers_present": true,
+    "outline": {
+     "area": 26068.7369,
+     "area_expected": 26068.7369,
+     "area_ok": true,
+     "bbox": [
+      -90.74,
+      90.74,
+      -71.915,
+      71.915
+     ],
+     "bbox_expected": [
+      -90.74,
+      90.74,
+      -71.915,
+      71.915
+     ],
+     "arcs": [
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "window": {
+     "area": 13094.699,
+     "area_expected": 13094.699,
+     "area_ok": true,
+     "bbox": [
+      -76.74,
+      76.74,
+      -27.405,
+      57.915
+     ],
+     "bbox_expected": [
+      -76.74,
+      76.74,
+      -27.405,
+      57.915
+     ],
+     "arcs": [
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "print_black_outer": {
+     "area": 26004.7793,
+     "area_expected": 26004.7793,
+     "area_ok": true,
+     "bbox": [
+      -90.64,
+      90.64,
+      -71.815,
+      71.815
+     ],
+     "bbox_expected": [
+      -90.64,
+      90.64,
+      -71.815,
+      71.815
+     ],
+     "arcs": [
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "print_black_inner_is_window": true,
+    "print_black_hatch": true,
+    "logo_zone": true,
+    "bead_zone": true,
+    "ok": true
+   }
+  },
+  {
+   "file": "GF_Glass.pdf",
+   "what": "cover glass: DXF (front view) + A3 drawing",
+   "generated_by": "make_glass.py",
+   "bytes": 79557,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "change_log.plan_rectangles.glass.R",
+    "drawing_tolerances.glass.corner_R",
+    "drawing_tolerances.glass.corner_R.note ~ +a/-b",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.glass.edge.value",
+    "drawing_tolerances.glass.flatness",
+    "drawing_tolerances.glass.flatness ~ /<= ([\\d.]+) over the pane/",
+    "drawing_tolerances.glass.flatness ~ /over the (\\d+) x (\\d+) bond zone/",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.print.window_position",
+    "drawing_tolerances.print.window_position ~ /print-to-edge \\+-([\\d.]+)/",
+    "drawing_tolerances.print.window_position.value",
+    "drawing_tolerances.print.window_size_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.glass_t.types",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_h ~ />= ([\\d.]+) from the window/",
+    "logo_zone.logo_h ~ /strokes >= ([\\d.]+)/",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.ink",
+    "print.ink ~ /(\\d+) -> about (\\d+) MPa/",
+    "print.ink.value",
+    "print.print_layers",
+    "print.print_layers ~ /(\\d+)-(\\d+) um/",
+    "print.print_layers ~ /setback ([\\d.]+)-([\\d.]+)/",
+    "print.print_layers.value",
+    "revision",
+    "status"
+   ],
+   "choices_used": [
+    "display_px",
+    "enamel_strength",
+    "glass_cosmetic",
+    "glass_samples",
+    "glass_sampling",
+    "glass_standards",
+    "ink_black",
+    "ink_tests",
+    "print_rim_max",
+    "qty_glass",
+    "qty_ovens"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 79557,
+    "fonts_embedded_truetype": true
+   }
+  },
+  {
+   "file": "GF_Glass.png",
+   "what": "cover glass: DXF (front view) + A3 drawing",
+   "generated_by": "make_glass.py",
+   "bytes": 935138,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "change_log.plan_rectangles.glass.R",
+    "drawing_tolerances.glass.corner_R",
+    "drawing_tolerances.glass.corner_R.note ~ +a/-b",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.glass.edge.value",
+    "drawing_tolerances.glass.flatness",
+    "drawing_tolerances.glass.flatness ~ /<= ([\\d.]+) over the pane/",
+    "drawing_tolerances.glass.flatness ~ /over the (\\d+) x (\\d+) bond zone/",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.print.window_position",
+    "drawing_tolerances.print.window_position ~ /print-to-edge \\+-([\\d.]+)/",
+    "drawing_tolerances.print.window_position.value",
+    "drawing_tolerances.print.window_size_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.glass_t.types",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_h ~ />= ([\\d.]+) from the window/",
+    "logo_zone.logo_h ~ /strokes >= ([\\d.]+)/",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.ink",
+    "print.ink ~ /(\\d+) -> about (\\d+) MPa/",
+    "print.ink.value",
+    "print.print_layers",
+    "print.print_layers ~ /(\\d+)-(\\d+) um/",
+    "print.print_layers ~ /setback ([\\d.]+)-([\\d.]+)/",
+    "print.print_layers.value",
+    "revision",
+    "status"
+   ],
+   "choices_used": [
+    "display_px",
+    "enamel_strength",
+    "glass_cosmetic",
+    "glass_samples",
+    "glass_sampling",
+    "glass_standards",
+    "ink_black",
+    "ink_tests",
+    "print_rim_max",
+    "qty_glass",
+    "qty_ovens"
+   ],
+   "layout_issues": []
+  },
+  {
+   "file": "GF_Glass_Print_1to1.pdf",
+   "what": "print artwork 1:1 vector PDF, seen from the printed face (mirrored)",
+   "generated_by": "make_glass.py",
+   "bytes": 30752,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "change_log.plan_rectangles.glass.R",
+    "drawing_tolerances.glass.corner_R",
+    "drawing_tolerances.glass.corner_R.note ~ +a/-b",
+    "drawing_tolerances.glass.edge",
+    "drawing_tolerances.glass.edge ~ /arris ([\\d.]+)-([\\d.]+)/",
+    "drawing_tolerances.glass.edge.value",
+    "drawing_tolerances.glass.flatness",
+    "drawing_tolerances.glass.flatness ~ /<= ([\\d.]+) over the pane/",
+    "drawing_tolerances.glass.flatness ~ /over the (\\d+) x (\\d+) bond zone/",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.print.window_position",
+    "drawing_tolerances.print.window_position ~ /print-to-edge \\+-([\\d.]+)/",
+    "drawing_tolerances.print.window_position.value",
+    "drawing_tolerances.print.window_size_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.glass_t.types",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_h ~ />= ([\\d.]+) from the window/",
+    "logo_zone.logo_h ~ /strokes >= ([\\d.]+)/",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.ink",
+    "print.ink ~ /(\\d+) -> about (\\d+) MPa/",
+    "print.ink.value",
+    "print.print_layers",
+    "print.print_layers ~ /(\\d+)-(\\d+) um/",
+    "print.print_layers ~ /setback ([\\d.]+)-([\\d.]+)/",
+    "print.print_layers.value",
+    "revision",
+    "status"
+   ],
+   "choices_used": [
+    "display_px",
+    "enamel_strength",
+    "glass_cosmetic",
+    "glass_samples",
+    "glass_sampling",
+    "glass_standards",
+    "ink_black",
+    "ink_tests",
+    "print_rim_max",
+    "qty_glass",
+    "qty_ovens"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     297.0,
+     210.0
+    ],
+    "bytes": 30752,
+    "fonts_embedded_truetype": true
+   },
+   "artwork": {
+    "page_mm": [
+     297.0,
+     210.0
+    ],
+    "glass_centre_on_page": [
+     148.5,
+     109.0
+    ],
+    "mirrored": true
+   }
+  },
+  {
+   "file": "GF_BondingAids.dxf",
+   "what": "bonding and assembly aids (frame front plan 1:1)",
+   "generated_by": "make_bonding.py",
+   "bytes": 73945,
+   "params_used": [
+    "bead.adhesive",
+    "bead.bond_line_range_wc",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_d.note",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_bond",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.sheet_mounting_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "pips.pip_clearance_wc",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.formex",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.pocket ~ /0\\.10 larger per side at the land.*minimum bead-to-pocket is ([\\d.]+) \\(abs left; right ([\\d.]+), top ([\\d.]+); the bottom ([\\d.]+) is to the tail-pocket bottom face, which is defined at the land/",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "tape_and_gasket.corner_seal",
+    "tape_and_gasket.corner_seal.value",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "bead_dispense_triangle",
+    "cure",
+    "flush_check",
+    "frame_lip_outline_tol",
+    "gap_acceptance",
+    "j2_checks",
+    "j2_shim",
+    "mount_procedure",
+    "shim_rule"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@PIPS": 8,
+     "LINE@SLOT_AXES": 8,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@BEAD": 2,
+     "LWPOLYLINE@BEAD_CL": 1,
+     "LWPOLYLINE@COUNTERBORES": 8,
+     "LWPOLYLINE@DABS": 8,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@FORMEX_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LAND": 4,
+     "LWPOLYLINE@SLOTS": 8,
+     "LWPOLYLINE@TAPE": 4,
+     "TEXT@TEXT": 21
+    },
+    "required_layers_present": true,
+    "pips": true,
+    "slots": true,
+    "slot_shape": true,
+    "bead_band": true,
+    "ok": true
+   },
+   "bead_path_mm": 621.67,
+   "bead_volume_ml": 2.487
+  },
+  {
+   "file": "GF_BondingAids.pdf",
+   "what": "bonding and assembly aids (frame front plan 1:1)",
+   "generated_by": "make_bonding.py",
+   "bytes": 86669,
+   "params_used": [
+    "bead.adhesive",
+    "bead.bond_line_range_wc",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_d.note",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_bond",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.sheet_mounting_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "pips.pip_clearance_wc",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.formex",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.pocket ~ /0\\.10 larger per side at the land.*minimum bead-to-pocket is ([\\d.]+) \\(abs left; right ([\\d.]+), top ([\\d.]+); the bottom ([\\d.]+) is to the tail-pocket bottom face, which is defined at the land/",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "tape_and_gasket.corner_seal",
+    "tape_and_gasket.corner_seal.value",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "bead_dispense_triangle",
+    "cure",
+    "flush_check",
+    "frame_lip_outline_tol",
+    "gap_acceptance",
+    "j2_checks",
+    "j2_shim",
+    "mount_procedure",
+    "shim_rule"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 86669,
+    "fonts_embedded_truetype": true
+   },
+   "bead_path_mm": 621.67,
+   "bead_volume_ml": 2.487
+  },
+  {
+   "file": "GF_BondingAids.png",
+   "what": "bonding and assembly aids (frame front plan 1:1)",
+   "generated_by": "make_bonding.py",
+   "bytes": 769140,
+   "params_used": [
+    "bead.adhesive",
+    "bead.bond_line_range_wc",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "drawing_tolerances.glass.outline_tol",
+    "drawing_tolerances.glass.outline_tol ~ /\\+-([\\d.]+) is the accepted fallback/",
+    "drawing_tolerances.sheet.cut_out_tol",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_d.note",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_bond",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.hardware.spacer_S8",
+    "fasteners.hardware.spacer_S8.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.sheet_mounting_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "pips.pip_clearance_wc",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.formex",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.pocket ~ /0\\.10 larger per side at the land.*minimum bead-to-pocket is ([\\d.]+) \\(abs left; right ([\\d.]+), top ([\\d.]+); the bottom ([\\d.]+) is to the tail-pocket bottom face, which is defined at the land/",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision",
+    "tape_and_gasket.corner_seal",
+    "tape_and_gasket.corner_seal.value",
+    "tape_and_gasket.tape",
+    "tape_and_gasket.tape.value"
+   ],
+   "choices_used": [
+    "bead_dispense_triangle",
+    "cure",
+    "flush_check",
+    "frame_lip_outline_tol",
+    "gap_acceptance",
+    "j2_checks",
+    "j2_shim",
+    "mount_procedure",
+    "shim_rule"
+   ],
+   "layout_issues": [],
+   "bead_path_mm": 621.67,
+   "bead_volume_ml": 2.487
+  },
+  {
+   "file": "GF_Jig_J2.dxf",
+   "what": "jig J2 flush plate",
+   "generated_by": "make_jigs.py",
+   "bytes": 49908,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "j2_flatness",
+    "j2_groove",
+    "j2_pin_d",
+    "j2_pin_detail",
+    "j2_pin_press",
+    "j2_pin_proud",
+    "j2_plate",
+    "j2_plate_material",
+    "j2_pos_tol",
+    "j2_ra",
+    "j2_shim",
+    "j2_stop_d",
+    "j2_stop_proud",
+    "j2_stop_u",
+    "j2_weight",
+    "shim_rule"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@PIN_HOLES": 4,
+     "CIRCLE@STOP_HOLES": 3,
+     "LWPOLYLINE@FLAT_ZONE": 1,
+     "LWPOLYLINE@GROOVE_OPT": 2,
+     "LWPOLYLINE@PLATE": 1,
+     "LWPOLYLINE@REF": 3,
+     "TEXT@TEXT": 8
+    },
+    "required_layers_present": true,
+    "pins_mirrored_at_F1_F4": true,
+    "ok": true
+   }
+  },
+  {
+   "file": "GF_Jig_J2.pdf",
+   "what": "jig J2 flush plate",
+   "generated_by": "make_jigs.py",
+   "bytes": 67006,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "j2_flatness",
+    "j2_groove",
+    "j2_pin_d",
+    "j2_pin_detail",
+    "j2_pin_press",
+    "j2_pin_proud",
+    "j2_plate",
+    "j2_plate_material",
+    "j2_pos_tol",
+    "j2_ra",
+    "j2_shim",
+    "j2_stop_d",
+    "j2_stop_proud",
+    "j2_stop_u",
+    "j2_weight",
+    "shim_rule"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 67006,
+    "fonts_embedded_truetype": true
+   }
+  },
+  {
+   "file": "GF_Jig_J2.png",
+   "what": "jig J2 flush plate",
+   "generated_by": "make_jigs.py",
+   "bytes": 632521,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_CTP_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_STEPWALL_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "jig_and_mounting_shims.J2_glass_centring_shims",
+    "jig_and_mounting_shims.shim_rule",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "j2_flatness",
+    "j2_groove",
+    "j2_pin_d",
+    "j2_pin_detail",
+    "j2_pin_press",
+    "j2_pin_proud",
+    "j2_plate",
+    "j2_plate_material",
+    "j2_pos_tol",
+    "j2_ra",
+    "j2_shim",
+    "j2_stop_d",
+    "j2_stop_proud",
+    "j2_stop_u",
+    "j2_weight",
+    "shim_rule"
+   ],
+   "layout_issues": []
+  },
+  {
+   "file": "GF_Jig_J1.dxf",
+   "what": "jig J1 optical-bonding alignment fixture",
+   "generated_by": "make_jigs.py",
+   "bytes": 50708,
+   "params_used": [
+    "carried_over_from_v2.panel_t",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.print_inset",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.alignment",
+    "print.alignment.value",
+    "revision"
+   ],
+   "choices_used": [
+    "display_px",
+    "j1_base",
+    "j1_carrier_margin",
+    "j1_groove_inset",
+    "j1_guide",
+    "j1_micrometer",
+    "j1_nest_clr",
+    "j1_opening_margin",
+    "j1_parallel",
+    "j1_stop_tol",
+    "j1_top",
+    "j1_travel",
+    "j2_pos_tol",
+    "j2_stop_d",
+    "j2_stop_u"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@GUIDES": 4,
+     "CIRCLE@TOP_STOPS": 3,
+     "LWPOLYLINE@BASE": 1,
+     "LWPOLYLINE@CARRIER": 3,
+     "LWPOLYLINE@REF": 4,
+     "LWPOLYLINE@TOP_GROOVE": 1,
+     "LWPOLYLINE@TOP_PLATE": 2,
+     "TEXT@TEXT": 6
+    },
+    "required_layers_present": true,
+    "ok": true
+   }
+  },
+  {
+   "file": "GF_Jig_J1.pdf",
+   "what": "jig J1 optical-bonding alignment fixture",
+   "generated_by": "make_jigs.py",
+   "bytes": 74146,
+   "params_used": [
+    "carried_over_from_v2.panel_t",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.print_inset",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.alignment",
+    "print.alignment.value",
+    "revision"
+   ],
+   "choices_used": [
+    "display_px",
+    "j1_base",
+    "j1_carrier_margin",
+    "j1_groove_inset",
+    "j1_guide",
+    "j1_micrometer",
+    "j1_nest_clr",
+    "j1_opening_margin",
+    "j1_parallel",
+    "j1_stop_tol",
+    "j1_top",
+    "j1_travel",
+    "j2_pos_tol",
+    "j2_stop_d",
+    "j2_stop_u"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 74146,
+    "fonts_embedded_truetype": true
+   }
+  },
+  {
+   "file": "GF_Jig_J1.png",
+   "what": "jig J1 optical-bonding alignment fixture",
+   "generated_by": "make_jigs.py",
+   "bytes": 583811,
+   "params_used": [
+    "carried_over_from_v2.panel_t",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.print_inset",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_opt",
+    "driving_parameters.t_opt.note",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.alignment",
+    "print.alignment.value",
+    "revision"
+   ],
+   "choices_used": [
+    "display_px",
+    "j1_base",
+    "j1_carrier_margin",
+    "j1_groove_inset",
+    "j1_guide",
+    "j1_micrometer",
+    "j1_nest_clr",
+    "j1_opening_margin",
+    "j1_parallel",
+    "j1_stop_tol",
+    "j1_top",
+    "j1_travel",
+    "j2_pos_tol",
+    "j2_stop_d",
+    "j2_stop_u"
+   ],
+   "layout_issues": []
+  },
+  {
+   "file": "GF_Appearance.png",
+   "what": "appearance sheet (colour, to scale)",
+   "generated_by": "make_appearance.py",
+   "bytes": 3078459,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.print_inset",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.hardware.rivet",
+    "fasteners.hardware.rivet ~ /dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "fasteners.hardware.rivet ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "fasteners.hardware.rivet ~ /modelled head height ([\\d.]+) with an R([\\d.]+) edge/",
+    "fasteners.hardware.rivet.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "gaps.g1_lip_sheet",
+    "gaps.g2_glass_lip",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.alignment",
+    "revision",
+    "sheet_variants.R4.note ~ /dia-[\\d.]+ head edge ([\\d.]+) from the cut-out corner arc/",
+    "sheet_variants.R4.value ~ /heads ~([\\d.]+)-([\\d.]+) proud/"
+   ],
+   "choices_used": [
+    "display_px"
+   ],
+   "layout_issues": []
+  },
+  {
+   "file": "GF_Appearance.pdf",
+   "what": "appearance sheet (colour, to scale)",
+   "generated_by": "make_appearance.py",
+   "bytes": 2360419,
+   "params_used": [
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "checks",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.lip_w",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.print_inset",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.t_sheet",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.hardware.rivet",
+    "fasteners.hardware.rivet ~ /dia ([\\d.]+) LARGE-FLANGE blind rivet/",
+    "fasteners.hardware.rivet ~ /head dia ([\\d.]+) 'K\\d+'/",
+    "fasteners.hardware.rivet ~ /modelled head height ([\\d.]+) with an R([\\d.]+) edge/",
+    "fasteners.hardware.rivet.value",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "gaps.g1_lip_sheet",
+    "gaps.g2_glass_lip",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "print.alignment",
+    "revision",
+    "sheet_variants.R4.note ~ /dia-[\\d.]+ head edge ([\\d.]+) from the cut-out corner arc/",
+    "sheet_variants.R4.value ~ /heads ~([\\d.]+)-([\\d.]+) proud/"
+   ],
+   "choices_used": [
+    "display_px"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 2360419,
+    "fonts_embedded_truetype": true
+   }
+  },
+  {
+   "file": "GF_Frame_Inspection.dxf",
+   "what": "frame inspection drawing GF-D50 (2 pages) for the mould RFQ",
+   "generated_by": "make_frame.py",
+   "bytes": 1434330,
+   "params_used": [
+    "cad_rules",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.draft_loc",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LANDPLATE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_PCB",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "drawing_tolerances.frame.general",
+    "drawing_tolerances.frame.land_Z_to_lip_top",
+    "drawing_tolerances.frame.lip_above_seat_ring",
+    "drawing_tolerances.frame.parting_plane_flatness_unclamped",
+    "drawing_tolerances.frame.seat_ring_and_pads_coplanar",
+    "drawing_tolerances.frame.slot_position",
+    "drawing_tolerances.frame.vent_witness_lip_top",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.flange_t",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.lip_w_root_as_designed",
+    "driving_parameters.lip_w_top_as_designed",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_l ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.counterbore.cb_w ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "material.UL_card",
+    "material.UL_card ~ /at <= ([\\d.]+) mm/",
+    "material.frame_material",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "frame_boss_tol",
+    "frame_cb_tol",
+    "frame_core_r_in_tol",
+    "frame_lip_outline_tol",
+    "frame_lip_texture",
+    "frame_lip_width_tol",
+    "frame_slot_tol",
+    "frame_tube_top_tol"
+   ],
+   "layout_issues": [],
+   "checks": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 2279,
+    "counts": {
+     "LWPOLYLINE@BACK_VIEW": 1856,
+     "LWPOLYLINE@CTF_OUTLINES": 21,
+     "LWPOLYLINE@FRONT_VIEW": 423,
+     "LWPOLYLINE@SECTIONS": 15,
+     "TEXT@TEXT": 7
+    },
+    "required_layers_present": true,
+    "D50 sections closed": true,
+    "ctf_lip_outlines": true,
+    "ok": true
+   },
+   "step": {
+    "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+    "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+    "mtime": "2026-11-15T17:29:54",
+    "bbox": [
+     -7.89,
+     215.59,
+     -175.0,
+     10.83,
+     -14.42,
+     4.05
+    ],
+    "volume_mm3": 82187.7,
+    "faces": 922
+   },
+   "counterbore_params": {
+    "cb_w": 7.4,
+    "cb_l": 9.0
+   },
+   "counterbore_measured_on_step": {
+    "F1": {
+     "w": 7.4,
+     "l": 9.0
+    },
+    "F5": {
+     "w": 7.4,
+     "l": 9.0
+    }
+   },
+   "step_vs_master": [
+    {
+     "what": "E-E lip top Z (= Z_GLASS_FRONT, flush plane)",
+     "measured": -14.42,
+     "expected": -14.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E seat ring Z (datum A = Z_SHEET_BACK)",
+     "measured": -13.42,
+     "expected": -13.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange front Z",
+     "measured": -12.42,
+     "expected": -12.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange back Z",
+     "measured": -9.92,
+     "expected": -9.92,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E land Z (recess floor)",
+     "measured": -10.42,
+     "expected": -10.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E lip inner face at mid-height (s, 1 deg)",
+     "measured": 0.3913,
+     "expected": 0.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip outer face at mid-height (s, 1 deg)",
+     "measured": 1.3913,
+     "expected": 1.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip width at mid-height",
+     "measured": 1.0,
+     "expected": 1.0,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore width at the seat plane A (+0.02)",
+     "measured": 7.3993,
+     "expected": 7.3993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore length at the seat plane A (+0.02)",
+     "measured": 8.9992,
+     "expected": 8.9993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore floor 1.6 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3564,
+     "expected": 7.3564,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4114,
+     "expected": 5.4113,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 slot length 0.3 in front of the flange back",
+     "measured": 7.0383,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore width at the flange front (no pad) (+0.02)",
+     "measured": 7.3644,
+     "expected": 7.3644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore length at the flange front (no pad) (+0.02)",
+     "measured": 8.9642,
+     "expected": 8.9644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore floor 2.0 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3424,
+     "expected": 7.3424,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4183,
+     "expected": 5.4183,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 slot length 0.3 in front of the flange back",
+     "measured": 7.0384,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 19.1188,
+     "expected": 19.1188,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x1 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 185.8212,
+     "expected": 185.8212,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket y0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 18.0988,
+     "expected": 18.0988,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x0 at the land (GF-1.1)",
+     "measured": 38.8997,
+     "expected": 38.9,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x1 at the land (GF-1.1)",
+     "measured": 167.7003,
+     "expected": 167.7,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket bottom y1 at the land",
+     "measured": 147.7003,
+     "expected": 147.7,
+     "tol": 0.03,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "file": "GF_Frame_Inspection.pdf",
+   "what": "frame inspection drawing GF-D50 (2 pages) for the mould RFQ",
+   "generated_by": "make_frame.py",
+   "bytes": 242387,
+   "params_used": [
+    "cad_rules",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.draft_loc",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LANDPLATE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_PCB",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "drawing_tolerances.frame.general",
+    "drawing_tolerances.frame.land_Z_to_lip_top",
+    "drawing_tolerances.frame.lip_above_seat_ring",
+    "drawing_tolerances.frame.parting_plane_flatness_unclamped",
+    "drawing_tolerances.frame.seat_ring_and_pads_coplanar",
+    "drawing_tolerances.frame.slot_position",
+    "drawing_tolerances.frame.vent_witness_lip_top",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.flange_t",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.lip_w_root_as_designed",
+    "driving_parameters.lip_w_top_as_designed",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_l ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.counterbore.cb_w ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "material.UL_card",
+    "material.UL_card ~ /at <= ([\\d.]+) mm/",
+    "material.frame_material",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "frame_boss_tol",
+    "frame_cb_tol",
+    "frame_core_r_in_tol",
+    "frame_lip_outline_tol",
+    "frame_lip_texture",
+    "frame_lip_width_tol",
+    "frame_slot_tol",
+    "frame_tube_top_tol"
+   ],
+   "layout_issues": [],
+   "pdf": {
+    "pages": 2,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 242387,
+    "fonts_embedded_truetype": true
+   },
+   "step": {
+    "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+    "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+    "mtime": "2026-11-15T17:29:54",
+    "bbox": [
+     -7.89,
+     215.59,
+     -175.0,
+     10.83,
+     -14.42,
+     4.05
+    ],
+    "volume_mm3": 82187.7,
+    "faces": 922
+   },
+   "counterbore_params": {
+    "cb_w": 7.4,
+    "cb_l": 9.0
+   },
+   "counterbore_measured_on_step": {
+    "F1": {
+     "w": 7.4,
+     "l": 9.0
+    },
+    "F5": {
+     "w": 7.4,
+     "l": 9.0
+    }
+   },
+   "step_vs_master": [
+    {
+     "what": "E-E lip top Z (= Z_GLASS_FRONT, flush plane)",
+     "measured": -14.42,
+     "expected": -14.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E seat ring Z (datum A = Z_SHEET_BACK)",
+     "measured": -13.42,
+     "expected": -13.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange front Z",
+     "measured": -12.42,
+     "expected": -12.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange back Z",
+     "measured": -9.92,
+     "expected": -9.92,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E land Z (recess floor)",
+     "measured": -10.42,
+     "expected": -10.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E lip inner face at mid-height (s, 1 deg)",
+     "measured": 0.3913,
+     "expected": 0.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip outer face at mid-height (s, 1 deg)",
+     "measured": 1.3913,
+     "expected": 1.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip width at mid-height",
+     "measured": 1.0,
+     "expected": 1.0,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore width at the seat plane A (+0.02)",
+     "measured": 7.3993,
+     "expected": 7.3993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore length at the seat plane A (+0.02)",
+     "measured": 8.9992,
+     "expected": 8.9993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore floor 1.6 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3564,
+     "expected": 7.3564,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4114,
+     "expected": 5.4113,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 slot length 0.3 in front of the flange back",
+     "measured": 7.0383,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore width at the flange front (no pad) (+0.02)",
+     "measured": 7.3644,
+     "expected": 7.3644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore length at the flange front (no pad) (+0.02)",
+     "measured": 8.9642,
+     "expected": 8.9644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore floor 2.0 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3424,
+     "expected": 7.3424,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4183,
+     "expected": 5.4183,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 slot length 0.3 in front of the flange back",
+     "measured": 7.0384,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 19.1188,
+     "expected": 19.1188,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x1 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 185.8212,
+     "expected": 185.8212,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket y0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 18.0988,
+     "expected": 18.0988,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x0 at the land (GF-1.1)",
+     "measured": 38.8997,
+     "expected": 38.9,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x1 at the land (GF-1.1)",
+     "measured": 167.7003,
+     "expected": 167.7,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket bottom y1 at the land",
+     "measured": 147.7003,
+     "expected": 147.7,
+     "tol": 0.03,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "file": "GF_Frame_Inspection_p1.png",
+   "what": "frame inspection drawing GF-D50 (2 pages) for the mould RFQ",
+   "generated_by": "make_frame.py",
+   "bytes": 528576,
+   "params_used": [
+    "cad_rules",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.draft_loc",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LANDPLATE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_PCB",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "drawing_tolerances.frame.general",
+    "drawing_tolerances.frame.land_Z_to_lip_top",
+    "drawing_tolerances.frame.lip_above_seat_ring",
+    "drawing_tolerances.frame.parting_plane_flatness_unclamped",
+    "drawing_tolerances.frame.seat_ring_and_pads_coplanar",
+    "drawing_tolerances.frame.slot_position",
+    "drawing_tolerances.frame.vent_witness_lip_top",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.flange_t",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.lip_w_root_as_designed",
+    "driving_parameters.lip_w_top_as_designed",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_l ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.counterbore.cb_w ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "material.UL_card",
+    "material.UL_card ~ /at <= ([\\d.]+) mm/",
+    "material.frame_material",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "frame_boss_tol",
+    "frame_cb_tol",
+    "frame_core_r_in_tol",
+    "frame_lip_outline_tol",
+    "frame_lip_texture",
+    "frame_lip_width_tol",
+    "frame_slot_tol",
+    "frame_tube_top_tol"
+   ],
+   "layout_issues": [],
+   "step": {
+    "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+    "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+    "mtime": "2026-11-15T17:29:54",
+    "bbox": [
+     -7.89,
+     215.59,
+     -175.0,
+     10.83,
+     -14.42,
+     4.05
+    ],
+    "volume_mm3": 82187.7,
+    "faces": 922
+   },
+   "counterbore_params": {
+    "cb_w": 7.4,
+    "cb_l": 9.0
+   },
+   "counterbore_measured_on_step": {
+    "F1": {
+     "w": 7.4,
+     "l": 9.0
+    },
+    "F5": {
+     "w": 7.4,
+     "l": 9.0
+    }
+   },
+   "step_vs_master": [
+    {
+     "what": "E-E lip top Z (= Z_GLASS_FRONT, flush plane)",
+     "measured": -14.42,
+     "expected": -14.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E seat ring Z (datum A = Z_SHEET_BACK)",
+     "measured": -13.42,
+     "expected": -13.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange front Z",
+     "measured": -12.42,
+     "expected": -12.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange back Z",
+     "measured": -9.92,
+     "expected": -9.92,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E land Z (recess floor)",
+     "measured": -10.42,
+     "expected": -10.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E lip inner face at mid-height (s, 1 deg)",
+     "measured": 0.3913,
+     "expected": 0.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip outer face at mid-height (s, 1 deg)",
+     "measured": 1.3913,
+     "expected": 1.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip width at mid-height",
+     "measured": 1.0,
+     "expected": 1.0,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore width at the seat plane A (+0.02)",
+     "measured": 7.3993,
+     "expected": 7.3993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore length at the seat plane A (+0.02)",
+     "measured": 8.9992,
+     "expected": 8.9993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore floor 1.6 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3564,
+     "expected": 7.3564,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4114,
+     "expected": 5.4113,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 slot length 0.3 in front of the flange back",
+     "measured": 7.0383,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore width at the flange front (no pad) (+0.02)",
+     "measured": 7.3644,
+     "expected": 7.3644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore length at the flange front (no pad) (+0.02)",
+     "measured": 8.9642,
+     "expected": 8.9644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore floor 2.0 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3424,
+     "expected": 7.3424,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4183,
+     "expected": 5.4183,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 slot length 0.3 in front of the flange back",
+     "measured": 7.0384,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 19.1188,
+     "expected": 19.1188,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x1 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 185.8212,
+     "expected": 185.8212,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket y0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 18.0988,
+     "expected": 18.0988,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x0 at the land (GF-1.1)",
+     "measured": 38.8997,
+     "expected": 38.9,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x1 at the land (GF-1.1)",
+     "measured": 167.7003,
+     "expected": 167.7,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket bottom y1 at the land",
+     "measured": 147.7003,
+     "expected": 147.7,
+     "tol": 0.03,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "file": "GF_Frame_Inspection_p2.png",
+   "what": "frame inspection drawing GF-D50 (2 pages) for the mould RFQ",
+   "generated_by": "make_frame.py",
+   "bytes": 722162,
+   "params_used": [
+    "cad_rules",
+    "carried_over_from_v2.draft",
+    "carried_over_from_v2.draft_loc",
+    "carried_over_from_v2.panel_x0",
+    "carried_over_from_v2.panel_x1",
+    "carried_over_from_v2.panel_y0",
+    "carried_over_from_v2.panel_y1",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_FLANGE_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_GLASS_FRONT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LAND",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_LANDPLATE_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_PCB",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SEAT",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_SHEET_BACK",
+    "derived_levels.evaluated_by_glass_t.3.0.Z_TUBE_TOP",
+    "drawing_tolerances.frame.general",
+    "drawing_tolerances.frame.land_Z_to_lip_top",
+    "drawing_tolerances.frame.lip_above_seat_ring",
+    "drawing_tolerances.frame.parting_plane_flatness_unclamped",
+    "drawing_tolerances.frame.seat_ring_and_pads_coplanar",
+    "drawing_tolerances.frame.slot_position",
+    "drawing_tolerances.frame.vent_witness_lip_top",
+    "driving_parameters.bead_edge",
+    "driving_parameters.bead_pocket_min",
+    "driving_parameters.bead_w",
+    "driving_parameters.fast_off",
+    "driving_parameters.flange_t",
+    "driving_parameters.g1",
+    "driving_parameters.g2",
+    "driving_parameters.glass_t",
+    "driving_parameters.lip_w",
+    "driving_parameters.lip_w_root_as_designed",
+    "driving_parameters.lip_w_top_as_designed",
+    "driving_parameters.pad_d",
+    "driving_parameters.pip_d",
+    "driving_parameters.pip_h",
+    "driving_parameters.pip_h.note",
+    "driving_parameters.seat_ring_w",
+    "driving_parameters.slot_l",
+    "driving_parameters.slot_w",
+    "driving_parameters.tape_margin",
+    "driving_parameters.tape_w",
+    "fasteners.counterbore.cb_draft",
+    "fasteners.counterbore.cb_floor_F1-F4",
+    "fasteners.counterbore.cb_floor_F5-F8",
+    "fasteners.counterbore.cb_l",
+    "fasteners.counterbore.cb_l ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.counterbore.cb_r",
+    "fasteners.counterbore.cb_w",
+    "fasteners.counterbore.cb_w ~ /opens at the flange front \\(([\\d.]+) deeper\\), where it measures ([\\d.]+) x ([\\d.]+)/",
+    "fasteners.positions.F1",
+    "fasteners.positions.F2",
+    "fasteners.positions.F3",
+    "fasteners.positions.F4",
+    "fasteners.positions.F5",
+    "fasteners.positions.F6",
+    "fasteners.positions.F7",
+    "fasteners.positions.F8",
+    "fasteners.tube_coring.core_depth",
+    "fasteners.tube_coring.core_draft",
+    "fasteners.tube_coring.core_floor_r",
+    "fasteners.tube_coring.core_r_in",
+    "fasteners.tube_coring.core_r_out",
+    "logo_zone.logo_centre",
+    "logo_zone.logo_h",
+    "logo_zone.logo_w",
+    "material.UL_card",
+    "material.UL_card ~ /at <= ([\\d.]+) mm/",
+    "material.frame_material",
+    "pips.pip1",
+    "pips.pip2",
+    "pips.pip3",
+    "pips.pip4",
+    "pips.pip5",
+    "pips.pip6",
+    "pips.pip7",
+    "pips.pip8",
+    "plan_points.glass_centre",
+    "plan_rectangles.AA",
+    "plan_rectangles.VA_CTP",
+    "plan_rectangles.cut",
+    "plan_rectangles.fastener_line",
+    "plan_rectangles.flange",
+    "plan_rectangles.glass",
+    "plan_rectangles.lip_in",
+    "plan_rectangles.lip_out",
+    "plan_rectangles.pocket",
+    "plan_rectangles.print_window",
+    "plan_rectangles.seat_ring_out",
+    "plan_rectangles.tail_pocket",
+    "plan_rectangles.tape_in",
+    "plan_rectangles.tape_out",
+    "revision"
+   ],
+   "choices_used": [
+    "frame_boss_tol",
+    "frame_cb_tol",
+    "frame_core_r_in_tol",
+    "frame_lip_outline_tol",
+    "frame_lip_texture",
+    "frame_lip_width_tol",
+    "frame_slot_tol",
+    "frame_tube_top_tol"
+   ],
+   "layout_issues": [],
+   "step": {
+    "path": "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\Mechanical\\Rev3.0_GlassFront\\Rev3.0_GlassFront_Frame.step",
+    "sha256": "47742d2f5ad0235d054db8bac3d47d225917e2fd98089d9f431bb632ac726e82",
+    "mtime": "2026-11-15T17:29:54",
+    "bbox": [
+     -7.89,
+     215.59,
+     -175.0,
+     10.83,
+     -14.42,
+     4.05
+    ],
+    "volume_mm3": 82187.7,
+    "faces": 922
+   },
+   "counterbore_params": {
+    "cb_w": 7.4,
+    "cb_l": 9.0
+   },
+   "counterbore_measured_on_step": {
+    "F1": {
+     "w": 7.4,
+     "l": 9.0
+    },
+    "F5": {
+     "w": 7.4,
+     "l": 9.0
+    }
+   },
+   "step_vs_master": [
+    {
+     "what": "E-E lip top Z (= Z_GLASS_FRONT, flush plane)",
+     "measured": -14.42,
+     "expected": -14.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E seat ring Z (datum A = Z_SHEET_BACK)",
+     "measured": -13.42,
+     "expected": -13.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange front Z",
+     "measured": -12.42,
+     "expected": -12.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E flange back Z",
+     "measured": -9.92,
+     "expected": -9.92,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E land Z (recess floor)",
+     "measured": -10.42,
+     "expected": -10.42,
+     "tol": 0.005,
+     "ok": true
+    },
+    {
+     "what": "E-E lip inner face at mid-height (s, 1 deg)",
+     "measured": 0.3913,
+     "expected": 0.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip outer face at mid-height (s, 1 deg)",
+     "measured": 1.3913,
+     "expected": 1.3913,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "E-E lip width at mid-height",
+     "measured": 1.0,
+     "expected": 1.0,
+     "tol": 0.01,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore width at the seat plane A (+0.02)",
+     "measured": 7.3993,
+     "expected": 7.3993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore length at the seat plane A (+0.02)",
+     "measured": 8.9992,
+     "expected": 8.9993,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 counterbore floor 1.6 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3564,
+     "expected": 7.3564,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4114,
+     "expected": 5.4113,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 slot length 0.3 in front of the flange back",
+     "measured": 7.0383,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F1 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore width at the flange front (no pad) (+0.02)",
+     "measured": 7.3644,
+     "expected": 7.3644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore length at the flange front (no pad) (+0.02)",
+     "measured": 8.9642,
+     "expected": 8.9644,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 counterbore floor 2.0 above A: still counterbore 0.35 above the floor (width)",
+     "measured": 7.3424,
+     "expected": 7.3424,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 ... and slot 0.05 behind the floor (width)",
+     "measured": 5.4183,
+     "expected": 5.4183,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 slot width 0.3 in front of the flange back (0.5 deg draft)",
+     "measured": 5.4384,
+     "expected": 5.4384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 slot length 0.3 in front of the flange back",
+     "measured": 7.0384,
+     "expected": 7.0384,
+     "tol": 0.02,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove inner radius 0.2 below the tube top",
+     "measured": 6.2035,
+     "expected": 6.2035,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "F5 coring groove outer radius 0.2 below the tube top",
+     "measured": 7.4965,
+     "expected": 7.4965,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 19.1188,
+     "expected": 19.1188,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket x1 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 185.8212,
+     "expected": 185.8212,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "clearance pocket y0 at the land (defined at Z_SEAT, 1 deg)",
+     "measured": 18.0988,
+     "expected": 18.0988,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x0 at the land (GF-1.1)",
+     "measured": 38.8997,
+     "expected": 38.9,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket x1 at the land (GF-1.1)",
+     "measured": 167.7003,
+     "expected": 167.7,
+     "tol": 0.03,
+     "ok": true
+    },
+    {
+     "what": "tail pocket bottom y1 at the land",
+     "measured": 147.7003,
+     "expected": 147.7,
+     "tol": 0.03,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "file": "previews/GF_BondingAids_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 79712
+  },
+  {
+   "file": "previews/GF_Frame_Inspection_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 163240
+  },
+  {
+   "file": "previews/GF_Glass_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 66423
+  },
+  {
+   "file": "previews/GF_Jig_J1_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 41498
+  },
+  {
+   "file": "previews/GF_Jig_J2_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 41205
+  },
+  {
+   "file": "previews/GF_Sheet_R4_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 73495
+  },
+  {
+   "file": "previews/GF_Sheet_S4_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 75801
+  },
+  {
+   "file": "previews/GF_Sheet_S8_dxf.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 82374
+  },
+  {
+   "file": "previews/GF_Glass_Print_1to1_preview.png",
+   "what": "preview for checking only",
+   "generated_by": "make_all.py (ezdxf drawing add-on) / make_glass.py",
+   "bytes": 67023
+  }
+ ],
+ "self_checks": {
+  "dxf": {
+   "GF_BondingAids.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@PIPS": 8,
+     "LINE@SLOT_AXES": 8,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@BEAD": 2,
+     "LWPOLYLINE@BEAD_CL": 1,
+     "LWPOLYLINE@COUNTERBORES": 8,
+     "LWPOLYLINE@DABS": 8,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@FORMEX_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LAND": 4,
+     "LWPOLYLINE@SLOTS": 8,
+     "LWPOLYLINE@TAPE": 4,
+     "TEXT@TEXT": 21
+    },
+    "required_layers_present": true,
+    "pips": true,
+    "slots": true,
+    "slot_shape": true,
+    "bead_band": true,
+    "ok": true
+   },
+   "GF_Frame_Inspection.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 2279,
+    "counts": {
+     "LWPOLYLINE@BACK_VIEW": 1856,
+     "LWPOLYLINE@CTF_OUTLINES": 21,
+     "LWPOLYLINE@FRONT_VIEW": 423,
+     "LWPOLYLINE@SECTIONS": 15,
+     "TEXT@TEXT": 7
+    },
+    "required_layers_present": true,
+    "D50 sections closed": true,
+    "ctf_lip_outlines": true,
+    "ok": true
+   },
+   "GF_Glass.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "HATCH@PRINT_BLACK": 1,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@BEAD_ZONE_REF": 2,
+     "LWPOLYLINE@LOGO_ZONE": 1,
+     "LWPOLYLINE@OUTLINE": 1,
+     "LWPOLYLINE@PRINT_BLACK": 2,
+     "LWPOLYLINE@WINDOW": 1,
+     "TEXT@TEXT": 6
+    },
+    "required_layers_present": true,
+    "outline": {
+     "area": 26068.7369,
+     "area_expected": 26068.7369,
+     "area_ok": true,
+     "bbox": [
+      -90.74,
+      90.74,
+      -71.915,
+      71.915
+     ],
+     "bbox_expected": [
+      -90.74,
+      90.74,
+      -71.915,
+      71.915
+     ],
+     "arcs": [
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ],
+      [
+       90.0,
+       6.25
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "window": {
+     "area": 13094.699,
+     "area_expected": 13094.699,
+     "area_ok": true,
+     "bbox": [
+      -76.74,
+      76.74,
+      -27.405,
+      57.915
+     ],
+     "bbox_expected": [
+      -76.74,
+      76.74,
+      -27.405,
+      57.915
+     ],
+     "arcs": [
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ],
+      [
+       90.0,
+       0.5
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "print_black_outer": {
+     "area": 26004.7793,
+     "area_expected": 26004.7793,
+     "area_ok": true,
+     "bbox": [
+      -90.64,
+      90.64,
+      -71.815,
+      71.815
+     ],
+     "bbox_expected": [
+      -90.64,
+      90.64,
+      -71.815,
+      71.815
+     ],
+     "arcs": [
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ],
+      [
+       90.0,
+       6.15
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "print_black_inner_is_window": true,
+    "print_black_hatch": true,
+    "logo_zone": true,
+    "bead_zone": true,
+    "ok": true
+   },
+   "GF_Jig_J1.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@GUIDES": 4,
+     "CIRCLE@TOP_STOPS": 3,
+     "LWPOLYLINE@BASE": 1,
+     "LWPOLYLINE@CARRIER": 3,
+     "LWPOLYLINE@REF": 4,
+     "LWPOLYLINE@TOP_GROOVE": 1,
+     "LWPOLYLINE@TOP_PLATE": 2,
+     "TEXT@TEXT": 6
+    },
+    "required_layers_present": true,
+    "ok": true
+   },
+   "GF_Jig_J2.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@PIN_HOLES": 4,
+     "CIRCLE@STOP_HOLES": 3,
+     "LWPOLYLINE@FLAT_ZONE": 1,
+     "LWPOLYLINE@GROOVE_OPT": 2,
+     "LWPOLYLINE@PLATE": 1,
+     "LWPOLYLINE@REF": 3,
+     "TEXT@TEXT": 8
+    },
+    "required_layers_present": true,
+    "pins_mirrored_at_F1_F4": true,
+    "ok": true
+   },
+   "GF_Sheet_R4.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@HOLES": 4,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 12,
+     "TEXT@TEXT": 10
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "holes": {
+     "n": 4,
+     "dia": 5.2,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "tape_strips": {
+     "n": 4,
+     "match_master_lengths": true,
+     "ok": true
+    },
+    "ok": true
+   },
+   "GF_Sheet_S4.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@STUD_MARKS": 4,
+     "LINE@STUD_MARKS": 8,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 12,
+     "TEXT@TEXT": 10
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "stud_marks": {
+     "n": 4,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "tape_strips": {
+     "n": 4,
+     "match_master_lengths": true,
+     "ok": true
+    },
+    "ok": true
+   },
+   "GF_Sheet_S8.dxf": {
+    "units_mm": true,
+    "entities_on_layer_0": 0,
+    "open_polylines": [],
+    "open_projection_edges (not contours, allowed)": 0,
+    "counts": {
+     "CIRCLE@FLANGE_REF": 4,
+     "CIRCLE@STUD_MARKS": 8,
+     "CIRCLE@TAPE_REF": 4,
+     "LINE@STUD_MARKS": 16,
+     "LINE@TEXT": 3,
+     "LWPOLYLINE@CUTOUT": 1,
+     "LWPOLYLINE@FLANGE_REF": 1,
+     "LWPOLYLINE@GLASS_REF": 2,
+     "LWPOLYLINE@LIP_REF": 3,
+     "LWPOLYLINE@TAPE_REF": 8,
+     "TEXT@TEXT": 14
+    },
+    "required_layers_present": true,
+    "cutout": {
+     "area": 27237.413,
+     "area_expected": 27237.413,
+     "area_ok": true,
+     "bbox": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "bbox_expected": [
+      -92.54,
+      92.54,
+      -73.715,
+      73.715
+     ],
+     "arcs": [
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ],
+      [
+       90.0,
+       7.55
+      ]
+     ],
+     "arcs_ok": true,
+     "bbox_ok": true,
+     "ok": true
+    },
+    "cutout_single_closed": true,
+    "stud_marks": {
+     "n": 8,
+     "positions_ok": true,
+     "ok": true
+    },
+    "glass_ref": true,
+    "window_ref": true,
+    "lip_refs": true,
+    "flange_ref": true,
+    "ok": true
+   }
+  },
+  "dxf_all_ok": true,
+  "geometry": {
+   "gaps_all_round": {
+    "rows": [
+     {
+      "pair": "glass -> lip inner face (g2)",
+      "stated_sides": 0.4,
+      "min": 0.4,
+      "max_at_corners": 0.50355,
+      "master_corner_note": "~0.50",
+      "ok": true
+     },
+     {
+      "pair": "lip inner -> lip outer (lip_w)",
+      "stated_sides": 1.0,
+      "min": 1.0,
+      "max_at_corners": 1.0,
+      "ok": true
+     },
+     {
+      "pair": "lip outer -> cut-out (g1)",
+      "stated_sides": 0.4,
+      "min": 0.4,
+      "max_at_corners": 0.50355,
+      "master_corner_note": "~0.50",
+      "ok": true
+     },
+     {
+      "pair": "lip outer -> seat ring outer (seat_ring_w)",
+      "stated_sides": 1.5,
+      "min": 1.5,
+      "max_at_corners": 1.5,
+      "ok": true
+     },
+     {
+      "pair": "glass -> bead outer edge (bead_edge, inward)",
+      "stated_sides": 0.9,
+      "min": 0.9,
+      "max_at_corners": 0.9,
+      "ok": true
+     },
+     {
+      "pair": "bead outer -> bead inner (bead_w, inward)",
+      "stated_sides": 4.0,
+      "min": 4.0,
+      "max_at_corners": 4.0,
+      "ok": true
+     }
+    ],
+    "ok": true,
+    "note": "GF-1.1: sides = stated gap, corners about 0.50 (glass R6.25 and cut-out R7.55 are no longer concentric with the lip R6.4 / R7.4)"
+   },
+   "master_self_consistency": {
+    "strip_lengths": {
+     "computed": {
+      "top_bottom": 183.48,
+      "sides": 145.83
+     },
+     "master": {
+      "top_bottom": 183.48,
+      "sides": 145.83
+     },
+     "ok": true
+    },
+    "lands": {
+     "rows": {
+      "front-view right (abs left)": {
+       "land": 6.11,
+       "master": 6.11,
+       "bead_to_pocket": 1.21,
+       "master_b2p": 1.21,
+       ">= bead_pocket_min": true,
+       "ok": true
+      },
+      "front-view left (abs right)": {
+       "land": 8.87,
+       "master": 8.87,
+       "bead_to_pocket": 3.97,
+       "master_b2p": 3.97,
+       ">= bead_pocket_min": true,
+       "ok": true
+      },
+      "top": {
+       "land": 8.03,
+       "master": 8.03,
+       "bead_to_pocket": 3.13,
+       "master_b2p": 3.13,
+       ">= bead_pocket_min": true,
+       "ok": true
+      },
+      "bottom (over the tail-pocket beam)": {
+       "land": 6.3,
+       "master": 6.3,
+       "bead_to_pocket": 1.4,
+       "master_b2p": 1.4,
+       ">= bead_pocket_min": true,
+       "ok": true
+      }
+     },
+     "ok": true
+    },
+    "fasteners_uv_and_cut_distance": {
+     "rows": {
+      "F1": {
+       "u": 101.74,
+       "v": 82.915,
+       "d_cut_edge": 16.1381,
+       "master_d_cut": 16.1381,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F2": {
+       "u": -101.74,
+       "v": 82.915,
+       "d_cut_edge": 16.1381,
+       "master_d_cut": 16.1381,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F3": {
+       "u": -101.74,
+       "v": -82.915,
+       "d_cut_edge": 16.1381,
+       "master_d_cut": 16.1381,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F4": {
+       "u": 101.74,
+       "v": -82.915,
+       "d_cut_edge": 16.1381,
+       "master_d_cut": 16.1381,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F5": {
+       "u": -0.0,
+       "v": 82.915,
+       "d_cut_edge": 9.2,
+       "master_d_cut": 9.2,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F6": {
+       "u": -101.74,
+       "v": 0.0,
+       "d_cut_edge": 9.2,
+       "master_d_cut": 9.2,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F7": {
+       "u": -0.0,
+       "v": -82.915,
+       "d_cut_edge": 9.2,
+       "master_d_cut": 9.2,
+       "master_d_cut_stale": false,
+       "ok": true
+      },
+      "F8": {
+       "u": 101.74,
+       "v": 0.0,
+       "d_cut_edge": 9.2,
+       "master_d_cut": 9.2,
+       "master_d_cut_stale": false,
+       "ok": true
+      }
+     },
+     "ok": true
+    },
+    "pips_on_bead_centre_line": {
+     "rows": {
+      "pip1": {
+       "u": 45.37,
+       "v": 69.015,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip2": {
+       "u": 45.37,
+       "v": -69.015,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip3": {
+       "u": -45.37,
+       "v": 69.015,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip4": {
+       "u": -45.37,
+       "v": -69.015,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip5": {
+       "u": 87.84,
+       "v": 35.9575,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip6": {
+       "u": -87.84,
+       "v": 35.9575,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip7": {
+       "u": 87.84,
+       "v": -35.9575,
+       "dist_to_bead_centre_line": -0.0
+      },
+      "pip8": {
+       "u": -87.84,
+       "v": -35.9575,
+       "dist_to_bead_centre_line": -0.0
+      }
+     },
+     "ok": true
+    },
+    "window_centre": {
+     "from_rect": [
+      -0.0,
+      15.255
+     ],
+     "master_point_uv": [
+      -0.0,
+      15.254999999999995
+     ],
+     "ok": true
+    },
+    "borders": {
+     "computed": {
+      "top": 14.0,
+      "left": 14.0,
+      "right": 14.0,
+      "bottom (chin)": 44.51
+     },
+     "master": {
+      "t/l/r": 14.0,
+      "chin": 44.51
+     },
+     "ok": true
+    },
+    "window_vs_AA": {
+     "inset_each_side": [
+      0.3,
+      0.3,
+      0.3,
+      0.3
+     ],
+     "print_inset": 0.3,
+     "ok": true
+    }
+   },
+   "holes_vs_cutout": {
+    "rule": "centre >= 8.0 from the cut-out (concept 11.4); R4 rivets >= max(8, 2d = 9.6)",
+    "rows": [
+     {
+      "F": "F1",
+      "centre_to_cut_edge": 16.138,
+      "required": 9.6,
+      "R4_hole_ligament": 13.538,
+      "ok": true
+     },
+     {
+      "F": "F2",
+      "centre_to_cut_edge": 16.138,
+      "required": 9.6,
+      "R4_hole_ligament": 13.538,
+      "ok": true
+     },
+     {
+      "F": "F3",
+      "centre_to_cut_edge": 16.138,
+      "required": 9.6,
+      "R4_hole_ligament": 13.538,
+      "ok": true
+     },
+     {
+      "F": "F4",
+      "centre_to_cut_edge": 16.138,
+      "required": 9.6,
+      "R4_hole_ligament": 13.538,
+      "ok": true
+     },
+     {
+      "F": "F5",
+      "centre_to_cut_edge": 9.2,
+      "required": 8.0,
+      "R4_hole_ligament": null,
+      "ok": true
+     },
+     {
+      "F": "F6",
+      "centre_to_cut_edge": 9.2,
+      "required": 8.0,
+      "R4_hole_ligament": null,
+      "ok": true
+     },
+     {
+      "F": "F7",
+      "centre_to_cut_edge": 9.2,
+      "required": 8.0,
+      "R4_hole_ligament": null,
+      "ok": true
+     },
+     {
+      "F": "F8",
+      "centre_to_cut_edge": 9.2,
+      "required": 8.0,
+      "R4_hole_ligament": null,
+      "ok": true
+     }
+    ],
+    "ok": true
+   },
+   "rivet_head_vs_cutout": {
+    "head_d": 14.0,
+    "edge_to_cut_calc": 9.1381,
+    "master": 9.14,
+    "ok": true
+   },
+   "window_inside_glass": {
+    "min_border": 14.0,
+    "ok": true
+   },
+   "logo_zone": {
+    "gap_to_window": 12.255,
+    "gap_to_bead_inner_edge": 7.355,
+    "required_gap_to_window": 1.0,
+    "ok": true
+   },
+   "front_view_transform": {
+    "text": "u = -(x - 103.85), v = 82.085 - y",
+    "glass_centre": [
+     103.85,
+     82.085
+    ],
+    "consistent": true
+   }
+  },
+  "mirroring": {
+   "rows": {
+    "GF_Sheet_S4.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "orientation_F_reads_correctly": true,
+     "window_centre_v": 15.255,
+     "ok": true
+    },
+    "GF_Sheet_S8.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "orientation_F_reads_correctly": true,
+     "window_centre_v": 15.255,
+     "ok": true
+    },
+    "GF_Sheet_R4.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "orientation_F_reads_correctly": true,
+     "window_centre_v": 15.255,
+     "ok": true
+    },
+    "GF_Glass.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "orientation_F_reads_correctly": true,
+     "window_centre_v": 15.255,
+     "ok": true
+    },
+    "GF_BondingAids.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "orientation_F_reads_correctly": true,
+     "window_centre_v": 15.255,
+     "ok": true
+    },
+    "GF_Jig_J1.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "ok": true
+    },
+    "GF_Frame_Inspection.dxf": {
+     "refs": {
+      "MIRROR-REF abs x 13.11 (KiCad left glass edge) = front-view RIGHT": [
+       90.74,
+       0.0
+      ],
+      "MIRROR-REF abs y 154.00 (chin edge) = front-view BOTTOM": [
+       -0.0,
+       -71.915
+      ]
+     },
+     "abs_left_at_front_right": true,
+     "chin_at_front_bottom": true,
+     "same_as_transform": true,
+     "ok": true
+    },
+    "GF_BondingAids.dxf land asymmetry": {
+     "texts": [
+      [
+       "LAND 6.11 (abs left)",
+       85.13,
+       0.0
+      ],
+      [
+       "LAND 8.87 (abs right)",
+       -90.24,
+       0.0
+      ]
+     ],
+     "narrow_land_abs_left_at_u>0": true
+    },
+    "GF_Jig_J2.dxf (plate view, intentionally mirrored)": {
+     "F1_front_u": 101.74,
+     "F1_plate_x": [
+      -101.74,
+      101.74
+     ],
+     "mirrored": true
+    },
+    "artwork GF_Glass_Print_1to1.pdf": {
+     "by_construction": "x_page = page_centre - u (seen from face 2); the orientation F is drawn through the same transform and appears mirrored at the top-right (checked in the preview PNG)"
+    }
+   },
+   "ok": true
+  },
+  "pdf": {
+   "GF_Appearance.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 2360419,
+    "fonts_embedded_truetype": true
+   },
+   "GF_BondingAids.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 86669,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Frame_Inspection.pdf": {
+    "pages": 2,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 242387,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Glass.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 79557,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Glass_Print_1to1.pdf": {
+    "pages": 1,
+    "page_mm": [
+     297.0,
+     210.0
+    ],
+    "bytes": 30752,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Jig_J1.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 74146,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Jig_J2.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 67006,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Sheet_R4.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 87113,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Sheet_S4.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 83073,
+    "fonts_embedded_truetype": true
+   },
+   "GF_Sheet_S8.pdf": {
+    "pages": 1,
+    "page_mm": [
+     420.0,
+     297.0
+    ],
+    "bytes": 83334,
+    "fonts_embedded_truetype": true
+   }
+  },
+  "master_findings": [
+   {
+    "id": "M1",
+    "status": "resolved in GF-1.1",
+    "topic": "R4 hole diameter",
+    "detail": "sheet_variants.R4 now: '4 holes at F1-F4: dia 5.2 +0.1/0 (dia 4.8 LARGE-FLANGE blind rivet, DIN 7337 large-flange type, head dia 14 'K14', tri-fold / bulb'"
+   },
+   {
+    "id": "M2",
+    "status": "open in the master; handled by a drawing note (GF-D10 / GF-D11)",
+    "topic": "print setback vs arris",
+    "detail": "setback 0-0.2 vs a 0.3-0.5 face-2 arris: the drawings allow an unprinted rim up to 0.5 at the arris and ask the supplier to confirm print-to-edge capability."
+   },
+   {
+    "id": "M3",
+    "status": "resolved in GF-1.1",
+    "topic": "S8 gasket / shim",
+    "detail": "gasket 'closed-cell soft foam, 1.5 -> 1.0 at <= 10 kPa (12 mm) or 5 mm wide at <= 20 kPa, eight pieces between the eight spacers'; shim 'DIN 988 7 x 13 x 1.0 shim'"
+   },
+   {
+    "id": "M4",
+    "status": "resolved in GF-1.1",
+    "topic": "ink / enamel strength",
+    "detail": "print.ink: '2K organic (epoxy/PU) screen ink preferred over fired ceramic enamel (enamel lowers glass strength 120 -> about 75 MPa); must pass cross-cut GT0-1 and the silicone / LOCA adhesion coupons'"
+   },
+   {
+    "id": "M5",
+    "status": "open (supplier question)",
+    "topic": "3.0 mm thermal tempering",
+    "detail": "3.0 type still 'thermally tempered (CS if the supplier cannot temper < 3.2)'."
+   },
+   {
+    "id": "M6",
+    "status": "resolved in GF-1.1 round 3",
+    "topic": "Formex outline",
+    "detail": "plan_rectangles.formex (carried over from v2): panel - 0.5 per side, R1.0, z [-5.0, -4.6]; v2 v1_params SHEET_INSET 0.5 / SHEET_R 1.0 -> same. GF-D20 reads the master."
+   },
+   {
+    "id": "M7",
+    "status": "resolved in GF-1.1",
+    "topic": "bead area",
+    "detail": "master bead_area 2486.7 mm2 vs centre-line x width 2486.7 mm2 (glass-relative bead band)."
+   },
+   {
+    "id": "N1",
+    "status": "resolved in GF-1.1 round 3",
+    "topic": "corner-radius tolerances",
+    "detail": "glass R6.25 +0.2/-0 (GF-D10), cut-out R7.55 +0/-0.2 (GF-D01..03), both one-sided, read from the master."
+   },
+   {
+    "id": "N2",
+    "status": "resolved in GF-1.1 round 3",
+    "topic": "fastener distance to the cut-out",
+    "detail": "d_cut_out_edge 16.1381 (master) vs 16.1381 (drawn)."
+   },
+   {
+    "id": "N3",
+    "status": "resolved (design document)",
+    "topic": "counterbore size",
+    "detail": "params / STEP 7.4 x 9.0; design document mentions '7.4 × 9.0': True, '6.6 × 8.2': False."
+   },
+   {
+    "id": "N4",
+    "status": "resolved in GF-1.1 round 3",
+    "topic": "clearance pocket reference level",
+    "detail": "plan_rectangles.pocket note: defined at Z_SEAT, 0.10 larger per side at the land; GF-D20 footnote and GF-D50 CTF 12 follow it (GF-D20 asserts the four at-land values)."
+   },
+   {
+    "id": "N5",
+    "status": "resolved in GF-1.1 round 3",
+    "topic": "lip venting vs exclusion zone",
+    "detail": "drawing_tolerances.frame.vent_witness_lip_top 0.02 + cad_rules entry; GF-D50 note 8 cites them (no longer [P])."
+   },
+   {
+    "id": "R3-1",
+    "status": "resolved in GF-1.1 round 4",
+    "topic": "weld-stud envelope",
+    "detail": "stud note (lead decision C5): flange within dia 5.8 x 1.4 high, axis +-0.3 to the cut-out; GF-D01 / GF-D02 draw this. spacer_S8 now quotes the dia-5.8 envelope."
+   },
+   {
+    "id": "R3-2",
+    "status": "resolved in GF-1.1 round 4",
+    "topic": "stud position wording",
+    "detail": "stud_position_tol 0.3 ('+- stud axis relative to its nominal position on the cut-out: the REQUIREMENT (the counterbore clearances were checked for it); a weld template that locates on the cut-out with +-0.2 accuracy is the recommended means, not the requirement'); S4 value '4 x M4 x 16 CD weld studs at F1-F4 (stud axis +-0.3 to the cut-out; weld template +-0.2 recommended), VHB strips; no holes'. GF-D01 / GF-D02 state the requirement once and the template as the recommended means."
+   },
+   {
+    "id": "R3-3",
+    "status": "resolved in GF-1.1 round 4",
+    "topic": "glass outline",
+    "detail": "outline_tol 0.1 ('+- REQUESTED from the supplier (precision CNC; R2); +-0.2 is the accepted fallback. The graded J2 centring shims (jig_and_mounting_shims) cover the fallback; a single 0.30 J2 shim only enters at about +-0.1'); GF-D10 requests it and names the fallback."
+   },
+   {
+    "id": "R4-1",
+    "status": "drawing adds the lead's second clause",
+    "topic": "shim rule",
+    "detail": "master shim_rule 'use the thickest size that enters on all four sides'; the drawings add 'the same size on all four sides' (lead round-3 addition A wording)."
+   },
+   {
+    "id": "R4-2",
+    "status": "applied (GF-D50 note 2)",
+    "topic": "UL card thickness",
+    "detail": "material.UL_card: 'the UL yellow card must list V-0 and the glow-wire ratings (GWFI / GWIT) at <= 1.0 mm, not only at 1.5 mm'."
+   },
+   {
+    "id": "R3-4",
+    "status": "lead values used; design document differs",
+    "topic": "gap acceptance",
+    "detail": "drawn: g2 sides [0.2, 0.6], g1 sides [0.3, 0.55], corners 'not smaller than the adjacent sides, at most 0.80' at 20 C. Design document sec. 9 inspection table: g2 0.30-0.50 with a +-0.1 glass (0.20-0.60 at +-0.2; opposite sides within 0.10), g1 0.25-0.55, corners 0.30-0.80."
+   },
+   {
+    "id": "R3-5",
+    "status": "note only",
+    "topic": "washer bearing / coring groove",
+    "detail": "washer_nut note: 'bearing on the tube top (DIN 9021 M4): 80.7 mm2 centred, 76.8 at 0.6 off-centre along the slot, 75.5 at 0.7 across, 65.9 at the slot end (500 N -> 6.2 / 7.6 MPa); off-centre the washer overhangs the coring groove (r 6.2-7.5) on one side - 80 mm2 holds only near the centre'. No drawing says the M5 rivet washer bridges the groove; the [P] r_in +0/-0.1 on GF-D50 keeps the dia-12.4 washer seat."
+   }
+  ],
+  "geometry_all_ok": true
+ },
+ "brand_logo_folder": [
+  {
+   "file": "_ _ AnnealRefined.png",
+   "bytes": 78528,
+   "kind": "raster PNG 3300x660 RGBA"
+  },
+  {
+   "file": "_ _ Refined _ inverse.html",
+   "bytes": 876069,
+   "kind": "HTML design export: 1 <svg> element(s), live text in fonts JetBrains Mono, Space Grotesk (not outlined)"
+  },
+  {
+   "file": "_ _ Refined _ inverse.png",
+   "bytes": 59514,
+   "kind": "raster PNG 1560x780 RGBA"
+  },
+  {
+   "file": "bg_removed_BLACK.png",
+   "bytes": 106399,
+   "kind": "raster PNG 1833x641 RGBA"
+  },
+  {
+   "file": "bg_removed_WHITE.png",
+   "bytes": 157819,
+   "kind": "raster PNG 1893x607 RGBA"
+  },
+  {
+   "file": "primary.html",
+   "bytes": 874484,
+   "kind": "HTML design export: 1 <svg> element(s), live text in fonts JetBrains Mono, Space Grotesk (not outlined)"
+  }
+ ]
+}
