@@ -1,0 +1,468 @@
+﻿{
+"stackups": {
+"v2_formex_0.40": {
+"nom": 4.97,
+"wc": [
+4.64,
+5.55
+],
+"rss": [
+4.809,
+5.131
+],
+"wc_tol": 0.33,
+"rss_tol": 0.161,
+"note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+},
+"v2_GK-10_0.25": {
+"nom": 4.82,
+"wc": [
+4.49,
+5.4
+],
+"rss": [
+4.659,
+4.981
+],
+"wc_tol": 0.33,
+"rss_tol": 0.161,
+"note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+},
+"v2_GK-17_0.43": {
+"nom": 5.0,
+"wc": [
+4.67,
+5.58
+],
+"rss": [
+4.839,
+5.161
+],
+"wc_tol": 0.33,
+"rss_tol": 0.161,
+"note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+},
+"GF-2.1": {
+"nom": 5.77,
+"wc": [
+4.7,
+6.84
+],
+"rss": [
+5.357,
+6.183
+],
+"wc_tol": 1.07,
+"rss_tol": 0.413,
+"check_vs_doc": "GlassFront s7.2 panel back -5.80, floats -5.08 .. -6.52 (gap to the Formex 0.08-1.52); this stack is measured from the boss tops and adds board bow, panel flatness and the solder joint"
+}
+},
+"finger": {
+"v2_formex_0.40": {
+"h_nom": 4.97,
+"h_wc": [
+4.64,
+5.55
+],
+"h_rss": [
+4.809,
+5.131
+],
+"deflection_nom": 2.53,
+"deflection_wc": [
+1.75,
+3.06
+],
+"compression_pct_wc_max": 39.7,
+"F_nom": 3.442,
+"F_min_wc": 1.364,
+"F_max_wc": 6.811,
+"F_rss": [
+3.232,
+3.651
+],
+"sigma_nom": 987,
+"sigma_max_wc_tmax": 1433,
+"sigma_wc_tnom": 1189
+},
+"v2_GK-10_0.25": {
+"h_nom": 4.82,
+"h_wc": [
+4.49,
+5.4
+],
+"h_rss": [
+4.659,
+4.981
+],
+"deflection_nom": 2.68,
+"deflection_wc": [
+1.9,
+3.21
+],
+"compression_pct_wc_max": 41.7,
+"F_nom": 3.637,
+"F_min_wc": 1.475,
+"F_max_wc": 7.134,
+"F_rss": [
+3.428,
+3.847
+],
+"sigma_nom": 1044,
+"sigma_max_wc_tmax": 1502,
+"sigma_wc_tnom": 1246
+},
+"v2_GK-17_0.43": {
+"h_nom": 5.0,
+"h_wc": [
+4.67,
+5.58
+],
+"h_rss": [
+4.839,
+5.161
+],
+"deflection_nom": 2.5,
+"deflection_wc": [
+1.72,
+3.03
+],
+"compression_pct_wc_max": 39.4,
+"F_nom": 3.403,
+"F_min_wc": 1.341,
+"F_max_wc": 6.746,
+"F_rss": [
+3.193,
+3.612
+],
+"sigma_nom": 976,
+"sigma_max_wc_tmax": 1419,
+"sigma_wc_tnom": 1178
+},
+"GF-2.1": {
+"h_nom": 5.77,
+"h_wc": [
+4.7,
+6.84
+],
+"h_rss": [
+5.357,
+6.183
+],
+"deflection_nom": 1.73,
+"deflection_wc": [
+0.46,
+3.0
+],
+"compression_pct_wc_max": 39.0,
+"F_nom": 2.395,
+"F_min_wc": 0.374,
+"F_max_wc": 6.682,
+"F_rss": [
+1.845,
+2.937
+],
+"sigma_nom": 681,
+"sigma_max_wc_tmax": 1405,
+"sigma_wc_tnom": 1166
+}
+},
+"env": {
+"x_free_side": -3.149,
+"x_bend_side": 3.542,
+"half_w": 2.5,
+"note": "model centre line + t/2, nominal drawing dimensions, union over the working range"
+}
+}
+{
+"openings": {
+"v2": [
+[
+"BP1",
+[
+10.14,
+8.4
+],
+3.3,
+1.2
+],
+[
+"BP6",
+[
+10.14,
+8.4
+],
+13.15,
+11.05
+],
+[
+"BP8",
+[
+10.14,
+8.4
+],
+3.65,
+1.55
+],
+[
+"BP10",
+[
+10.14,
+8.4
+],
+2.3,
+0.2
+],
+[
+"BP11",
+[
+10.14,
+8.4
+],
+2.3,
+0.2
+],
+[
+"BP13",
+[
+10.14,
+8.4
+],
+5.8,
+3.7
+],
+[
+"BP15",
+[
+10.14,
+8.4
+],
+2.3,
+0.2
+],
+[
+"BP16",
+[
+10.14,
+8.4
+],
+2.3,
+0.2
+]
+],
+"GF": [
+[
+"BP1",
+[
+9.64,
+7.9
+],
+3.55,
+1.45
+],
+[
+"BP6",
+[
+9.64,
+7.9
+],
+13.4,
+11.3
+],
+[
+"BP8",
+[
+9.64,
+7.9
+],
+3.9,
+1.8
+],
+[
+"BP10",
+[
+9.64,
+7.9
+],
+2.55,
+0.45
+],
+[
+"BP11",
+[
+9.64,
+7.9
+],
+2.55,
+0.45
+],
+[
+"BP13",
+[
+9.64,
+7.9
+],
+6.05,
+3.95
+],
+[
+"BP15",
+[
+9.64,
+7.9
+],
+2.55,
+0.45
+],
+[
+"BP16",
+[
+9.64,
+7.9
+],
+2.55,
+0.45
+]
+]
+},
+"webs": {
+"v2": [
+3.36,
+"BP15",
+"BP16"
+],
+"GF": [
+3.86,
+"BP15",
+"BP16"
+]
+}
+}
+v2 BP1 10.46 9.88 9.74 C40.2 NEUT (prot 1.865)
+v2 BP6 20.18 19.39 19.58 HS1.2 unconnected-(HS1-Pad2) (prot 2.865)
+v2 BP8 35.53 34.01 34.42 U1.1 /ZCD_L (prot 1.665)
+v2 BP10 50.91 49.26 49.77 U1.1 /ZCD_L (prot 1.665)
+v2 BP11 40.97 39.92 40.37 U1.1 /ZCD_L (prot 1.665)
+v2 BP13 38.75 37.43 37.87 U5.6 Net-(R3-Pad1) (prot 1.665)
+v2 BP15 61.23 59.87 60.52 RV1.1 LINE_FILT (prot 2.5)
+v2 BP16 64.69 63.23 63.89 RV1.2 NEUT (prot 2.5)
+GF BP1 10.46 10.16 10.04 C40.2 NEUT (prot 1.865)
+GF BP6 20.18 19.73 19.83 HS1.2 unconnected-(HS1-Pad2) (prot 2.865)
+GF BP8 35.53 34.39 34.76 U1.1 /ZCD_L (prot 1.665)
+GF BP10 50.91 49.63 50.12 U1.1 /ZCD_L (prot 1.665)
+GF BP11 40.97 40.19 40.62 U1.1 /ZCD_L (prot 1.665)
+GF BP13 38.75 37.76 38.17 U5.6 Net-(R3-Pad1) (prot 1.665)
+GF BP15 61.23 60.17 60.81 RV1.1 LINE_FILT (prot 2.5)
+GF BP16 64.69 63.55 64.19 RV1.2 NEUT (prot 2.5)
+{
+"forces": {
+"v2_minimum_6": {
+"n": 6,
+"total_nom": 20.65,
+"total_min": 8.18,
+"total_max": 40.87
+},
+"v2_recommended_8": {
+"n": 8,
+"total_nom": 27.54,
+"total_min": 10.91,
+"total_max": 54.49
+},
+"GF_minimum_6": {
+"n": 6,
+"total_nom": 14.37,
+"total_min": 2.24,
+"total_max": 40.09
+},
+"GF_recommended_8": {
+"n": 8,
+"total_nom": 19.16,
+"total_min": 2.99,
+"total_max": 53.46
+}
+},
+"gf": {
+"panel_weight_N": 1.96,
+"loca_pressure_kPa_nom": 1.162,
+"loca_pressure_kPa_max": 3.242,
+"loca_dead_kPa_doc": 0.12,
+"loca_direction": "compression (fingers push the panel onto the glass); the document states only the dead load 0.12 kPa",
+"bead_tension_kPa_nom": 7.97,
+"bead_tension_kPa_max": 22.25,
+"bead_dead_kPa_doc": 1.54,
+"bead_sustained_allow_kPa_ext": 14.0,
+"bead_ratio_to_allow_max": 1.59,
+"glass_dish_mm_max": 0.1326,
+"lipline_mm_max": 0.0428
+},
+"v2": {
+"gasket_force_nom_N": 165.0,
+"gasket_force_max_N": 591.0,
+"finger_total_max_N": 54.49,
+"ratio_nom": 0.33,
+"gasket_secant_N_per_mm": 550.0,
+"extra_gasket_squeeze_mm": 0.099,
+"before_mounting": "nothing holds the panel against the fingers once the subassembly leaves the fixture (Frame_Design s7: \"held only by the PCB/sheet stack\")"
+},
+"pcb": {
+"plate_D_Nmm": 6984.0,
+"alpha": 0.0159,
+"defl_one_finger_at_board_centre_nom_mm": 0.0812,
+"note": "upper bound: plate simply supported on its edges only, load at the centre; the chosen pads lie 7-18 mm from supported edges, so the real deflection is smaller; it reduces compression (safe side for stress, unsafe for the minimum force)",
+"total_on_9_screws_nom_N": 29.1,
+"total_on_9_screws_wc_N": 57.07,
+"per_screw_wc_N": 6.34,
+"vs_preload_pct_wc": 1.84
+},
+"L": {
+"path_length_mm": 19.12,
+"L_upper_unfolded_nH": 9.82,
+"L_lower_straight_post_nH": {
+"5.0": 1.4,
+"5.8": 1.76
+},
+"note": "true value lies between: the two inclined legs carry opposite horizontal currents (partial cancellation); contact spot adds < 0.5 nH (assumed)",
+"budget_nH": 15.0,
+"dB_cost_upper_vs_2nH": -3.75
+},
+"verdict": {
+"v2_formex_0.40": {
+"sigma_nom": 987,
+"sigma_rss_low": 1048,
+"sigma_wc_low_tall_spring": 1189,
+"ratio_nom": 1.02,
+"ratio_rss": 1.09,
+"ratio_wc": 1.23
+},
+"v2_GK-10_0.25": {
+"sigma_nom": 1044,
+"sigma_rss_low": 1106,
+"sigma_wc_low_tall_spring": 1246,
+"ratio_nom": 1.08,
+"ratio_rss": 1.15,
+"ratio_wc": 1.29
+},
+"v2_GK-17_0.43": {
+"sigma_nom": 976,
+"sigma_rss_low": 1037,
+"sigma_wc_low_tall_spring": 1178,
+"ratio_nom": 1.01,
+"ratio_rss": 1.07,
+"ratio_wc": 1.22
+},
+"GF-2.1": {
+"sigma_nom": 681,
+"sigma_rss_low": 839,
+"sigma_wc_low_tall_spring": 1166,
+"ratio_nom": 0.71,
+"ratio_rss": 0.87,
+"ratio_wc": 1.21
+}
+},
+"elastic_limit": {
+"h_at_yield_nominal_strip": 5.0,
+"h_at_80pct_yield": 5.5,
+"note": "nominal strip 0.127, nominal free height; the tall spring (+0.2) reaches the same stress 0.2 mm higher"
+}
+}
+{"BP1": [9.84, 14.1, "C40.2 NEUT", -1], "BP2": [9.5, 3.1, "C1.2 NEUT", -1], "BP3": [10.26, -6.8, "C1.2 NEUT", -1], "BP4": [13.18, 10.7, "RV1.1 LINE_FILT", -1], "BP5": [12.6, 19.7, "RV1.1 LINE_FILT", 1], "BP6": [19.7, 120.7, "U1.1 /ZCD_L", 1], "BP7": [30.28, 130.2, "U1.1 /ZCD_L", 1], "BP8": [34.77, 130.2, "U1.1 /ZCD_L", 1], "BP9": [41.71, 130.26, "U1.1 /ZCD_L", 1], "BP10": [50.1, 131.07, "U1.1 /ZCD_L", 1], "BP11": [40.32, 92.44, "U1.3 unconnected-(U1-NC-Pad3)", 1], "BP12": [32.32, 83.0, "U5.5 unconnected-(U5-NC-Pad5)", 1], "BP13": [38.0, 67.21, "U5.6 Net-(R3-Pad1)", -1], "BP14": [50.99, 36.53, "HS1.1 unconnected-(HS1-Pad1)", -1], "BP15": [60.5, 15.67, "RV1.1 LINE_FILT", -1], "BP16": [63.93, 15.1, "RV1.2 NEUT", -1], "BP17": [22.78, -4.3, "RV1.2 NEUT", -1], "BP18": [21.51, 111.7, "U1.1 /ZCD_L", 1]}

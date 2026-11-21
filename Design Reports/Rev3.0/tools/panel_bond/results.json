@@ -1,0 +1,2104 @@
+{
+ "inputs": {
+  "v2_shelf_front_Z": {
+   "value": 4.6,
+   "source": "Rev3.0_Frame_Design.md s1 Z table; Frame_v2_params standoff/sheet_t"
+  },
+  "v2_formex_t_modelled": {
+   "value": 0.4,
+   "source": "Frame_v2_params sheet_t; Frame_Design s2"
+  },
+  "formex_GK10_t": {
+   "value": 0.25,
+   "source": "Frame_Design s8 q2 (GK-10 is 0.25)"
+  },
+  "formex_GK17_t": {
+   "value": 0.43,
+   "source": "Frame_Design s8 q2 (GK-17 is 0.43)"
+  },
+  "formex_t_tol": {
+   "value": 0.03,
+   "source": "assumed (sheet thickness tolerance; no source)"
+  },
+  "shelf_Z_tol": {
+   "value": 0.1,
+   "source": "assumed = GF-D50 boss-top tolerance +-0.1 [P]; v2 doc gives only ISO 20457 TG5"
+  },
+  "v2_gasket_gap_wc": {
+   "value": 0.25,
+   "source": "derived from Frame_Design s6: gasket 1.0 at 30 % = 0.30 compression; WC of LCM 0.3 + CTP 0.1 + seat 0.1 + sheet 0.05 = 0.55 -> up to 0.25 mm gap"
+  },
+  "v2_gasket_force_nom_N": {
+   "value": 165.0,
+   "source": "Frame_Design s5.4 (0.07 MPa at 30 %)"
+  },
+  "v2_gasket_force_max_N": {
+   "value": 591.0,
+   "source": "Frame_Design s5.4"
+  },
+  "v2_gasket_comp_nom_mm": {
+   "value": 0.3,
+   "source": "Frame_Design s1.1 (30 % of 1.0)"
+  },
+  "gf_boss_to_datumA": {
+   "value": 13.42,
+   "source": "GlassFront_Design s7.2 / GF-D50 (boss tops 13.42 behind A)"
+  },
+  "gf_lip_height": {
+   "value": 1.0,
+   "source": "GlassFront_Design s7.2 / s8.1 (lip 1.00 +-0.03)"
+  },
+  "gf_glass_t": {
+   "value": 3.0,
+   "source": "GlassFront params glass_t (default 3.0 +-0.2)"
+  },
+  "gf_loca_t": {
+   "value": 0.3,
+   "source": "GlassFront params t_opt (0.30 +-0.03)"
+  },
+  "panel_t": {
+   "value": 5.32,
+   "source": "GlassFront params panel_t; Frame_Design s2 (LCM 3.34 +-0.3 + CTP 1.98)"
+  },
+  "gf_panel_back_Z_nom": {
+   "value": 5.8,
+   "source": "GlassFront_Design s7.2 (panel back -5.80, floats -5.08 .. -6.52)"
+  },
+  "gf_backstop_gap_wc": {
+   "value": [
+    0.08,
+    1.52
+   ],
+   "source": "GlassFront params checks.backstop_gap_wc (3.0 glass)"
+  },
+  "tol_boss": {
+   "value": 0.1,
+   "source": "GF-D50 boss tops +-0.1 [P] (GlassFront_Design s8.1)"
+  },
+  "tol_lip": {
+   "value": 0.03,
+   "source": "GlassFront_Design s8.1 lip 1.00 +-0.03"
+  },
+  "tol_flush_wc": {
+   "value": 0.11,
+   "source": "GlassFront_Design s7.5 glass front vs lip top WC"
+  },
+  "tol_flush_rss": {
+   "value": 0.06,
+   "source": "GlassFront_Design s7.5 RSS"
+  },
+  "tol_glass": {
+   "value": 0.2,
+   "source": "GlassFront_Design s8.2 (3.0 +-0.2)"
+  },
+  "tol_loca": {
+   "value": 0.03,
+   "source": "GlassFront_Design s8.3 (0.30 +-0.03)"
+  },
+  "tol_lcm": {
+   "value": 0.3,
+   "source": "SAT070 datasheet p.16 side view 3.34 +-0.3"
+  },
+  "tol_ctp": {
+   "value": 0.1,
+   "source": "Frame_Design s6 tolerance notes (CTP stack +-0.1)"
+  },
+  "tol_panel_flat": {
+   "value": 0.05,
+   "source": "assumed (panel back flatness at a finger; datasheet silent)"
+  },
+  "tol_pcb_bow": {
+   "value": 0.1,
+   "source": "assumed (local bow of the screwed 1.6 mm board at a pad)"
+  },
+  "solder_offset": {
+   "value": 0.03,
+   "source": "assumed: hand-solder joint 0.05 under the base minus 0.02 mask recess of the bare pad"
+  },
+  "tol_solder": {
+   "value": 0.05,
+   "source": "assumed"
+  },
+  "finger_free_h": {
+   "value": 7.5,
+   "source": "Laird LT17BH0731 drawing rev A: 7.5 +-0.2 (detail A; rev A \"new height 7.5\")"
+  },
+  "finger_free_h_tol": {
+   "value": 0.2,
+   "source": "Laird drawing note G / detail A"
+  },
+  "finger_nom_comp_h": {
+   "value": 6.25,
+   "source": "Laird drawing: \"contact spring in built-in nom. compression\" 6.25"
+  },
+  "finger_base": {
+   "value": [
+    5.0,
+    5.0
+   ],
+   "source": "Laird drawing 5 +-0.2 x 5 +-0.2"
+  },
+  "finger_len": {
+   "value": 6.0,
+   "source": "Laird drawing 6 +-0.45"
+  },
+  "finger_len_tol": {
+   "value": 0.45,
+   "source": "Laird drawing"
+  },
+  "finger_w_tol": {
+   "value": 0.2,
+   "source": "Laird drawing"
+  },
+  "finger_pad_rec": {
+   "value": [
+    5.25,
+    5.25
+   ],
+   "source": "Laird drawing: recommended layout pad (5.25) x (5.25)"
+  },
+  "finger_clear_zone": {
+   "value": [
+    6.6,
+    6.5
+   ],
+   "source": "Laird drawing: clearance zone min (6.6) x (6.5)"
+  },
+  "finger_t": {
+   "value": 0.127,
+   "source": "Laird drawing title block 0.127 +-0.02"
+  },
+  "finger_mass_g": {
+   "value": 0.0856,
+   "source": "Laird drawing"
+  },
+  "finger_plating": {
+   "value": "Au 0.0254 um (1 u\") over Ni 0.508-1.016 um, selective one side (contact + solder surfaces)",
+   "source": "Laird drawing notes I"
+  },
+  "finger_material": {
+   "value": "BeCu C17200 1/2H, heat treated HV 343 min",
+   "source": "Laird drawing notes F, H"
+  },
+  "pad_bare": {
+   "value": [
+    6.0,
+    5.0
+   ],
+   "source": "spec 12.12.3 bare ENIG 6.0 x 5.0"
+  },
+  "pad_cu": {
+   "value": [
+    8.0,
+    7.0
+   ],
+   "source": "spec 12.12.3 copper 8.0 x 7.0"
+  },
+  "tol_pcb_frame": {
+   "value": 0.3,
+   "source": "Frame_Design s1.2: PCB located by 9 PT screws in the 3.2 ear holes (+-0.3)"
+  },
+  "tol_sheet_v2": {
+   "value": 0.75,
+   "source": "Frame_Design s1.1: sheet located by the pocket walls, 0.75 per side"
+  },
+  "tol_sheet_gf": {
+   "value": 0.5,
+   "source": "assumed: GF sheet PSA-bonded with a placing template (GlassFront_Design s8.8 is silent; the pocket alone allows +-1.3)"
+  },
+  "tol_place_refined": {
+   "value": 0.15,
+   "source": "proposed mask-defined 5.25 opening vs 5.0 base: +-0.125"
+  },
+  "tol_place_current": {
+   "value": 0.5,
+   "source": "current 6.0 bare length vs 5.0 base"
+  },
+  "gap_free": {
+   "value": 0.3,
+   "source": "assumed running clearance finger-to-sheet edge"
+  },
+  "opening_R": {
+   "value": 1.0,
+   "source": "proposal"
+  },
+  "formex_sheet_abs": {
+   "value": [
+    20.52,
+    184.42,
+    19.5,
+    118.5
+   ],
+   "source": "GlassFront params plan_rectangles.formex; Frame_Design s1.1 (163.90 x 99.00)"
+  },
+  "shelf_window_local": {
+   "value": [
+    2.62,
+    162.32,
+    1.6,
+    96.4
+   ],
+   "source": "spec 12.12.3"
+  },
+  "panel_label_local": {
+   "value": [
+    6.6,
+    21.8,
+    23.7,
+    74.3
+   ],
+   "source": "SAT070 datasheet p.16 back view, barcode label box (undimensioned, scaled from the vector drawing; +-3 assumed)"
+  },
+  "label_tol": {
+   "value": 3.0,
+   "source": "assumed"
+  },
+  "protrusion": {
+   "value": {
+    "PS1": 3.265,
+    "HS1": 2.865,
+    "Q1": 2.5,
+    "L40": 1.865,
+    "L1": 1.865,
+    "F1": 1.865,
+    "F3": 1.865,
+    "C40": 1.865,
+    "U1": 1.665,
+    "U5": 1.665
+   },
+   "source": "Frame_Design s6 lead tips to the Formex at Z -4.6"
+  },
+  "protrusion_default": {
+   "value": 2.5,
+   "source": "assumed for parts not in the frame table (K1 RZ03, D6, RV3 are new since; C1, C4, J3, J4, R1-R7, RV1): 2.5 mm max (Q1 trim rule)"
+  },
+  "barrier": {
+   "value": 6.4,
+   "source": "spec 12.1-12.2: reinforced, 6.4 mm clearance and creepage"
+  },
+  "panel_mass_g": {
+   "value": 200.0,
+   "source": "Frame_Design s2 weights (panel 200 g)"
+  },
+  "loca_area_mm2": {
+   "value": 16490.0,
+   "source": "GlassFront_Design s7.7"
+  },
+  "bead_area_mm2": {
+   "value": 2402.6,
+   "source": "GlassFront_Design s7.7"
+  },
+  "bead_dead_kPa": {
+   "value": 1.54,
+   "source": "GlassFront_Design s7.7"
+  },
+  "bead_250N_MPa": {
+   "value": 0.104,
+   "source": "GlassFront_Design s7.7 (250 N push or pull)"
+  },
+  "silicone_sustained_allow_MPa": {
+   "value": 0.014,
+   "source": "external reference, not in the project documents: ETAG 002 / EAD 090062 structural-silicone design stress for permanent load (0.014 MPa)"
+  },
+  "push_50N_centre_mm": {
+   "value": 0.124,
+   "source": "GlassFront_Design s7.8 (3.0 glass, 50 N window centre)"
+  },
+  "push_50N_lipline_mm": {
+   "value": 0.04,
+   "source": "GlassFront_Design s7.8"
+  },
+  "pcb_screw_preload_N": {
+   "value": [
+    345.0,
+    690.0
+   ],
+   "source": "Frame_Design s5.2"
+  },
+  "pcb_E_MPa": {
+   "value": 20000.0,
+   "source": "Frame_Design s5.4 (FR4 E ~ 20 GPa)"
+  },
+  "pcb_t": {
+   "value": 1.6,
+   "source": "spec 12.1"
+  },
+  "L_budget_nH": {
+   "value": 15.0,
+   "source": "brief; sim/emc_tests_earthed/C_rf/results.json contact_inductance \"E_i19 +ferrite\" 14.6 nH for 6 dB"
+  },
+  "dB_per_nH": {
+   "value": -0.48,
+   "source": "sim/emc_tests_earthed/C_rf/results.json contact_inductance \"E_i19 +ferrite\""
+  },
+  "esd_total_A": {
+   "value": 4.0,
+   "source": "brief (8 kV discharge, about 4 A in total through the bond)"
+  }
+ },
+ "candidates": [
+  {
+   "mpn": "LT17BH0731",
+   "maker": "Laird (Laird Signal)",
+   "type": "SMD contact finger, BeCu zig-zag",
+   "stock": 602220,
+   "usd_1": 0.17,
+   "usd_700": 0.11338,
+   "heights": "free 7.5 +-0.2; built-in nominal compression 6.25; working range NOT stated",
+   "ds": "Laird drawing rev A (Datasheets/)",
+   "verdict": "CHOSEN - the only stocked SMD finger tall enough; force, range, current, temperature not stated (model + bench test)"
+  },
+  {
+   "mpn": "3SST-NN55NN-NNNNG",
+   "maker": "AMTEK",
+   "type": "EMI spring with stopper, TiCu 0.12",
+   "stock": 0,
+   "lead": "10-11 weeks",
+   "heights": "working 3.60-5.20; 3 A; -20..+85 C",
+   "ds": "AMTEK GW271-AB331",
+   "verdict": "would suit frame v2; NOT stocked"
+  },
+  {
+   "mpn": "3SS8-NN67NN-NNQ1G",
+   "maker": "AMTEK",
+   "type": "EMI spring, TiCu 0.15",
+   "stock": 0,
+   "lead": "10-11 weeks",
+   "heights": "working 5.0-6.2; 3 A; -20..+85 C",
+   "ds": "AMTEK GW271-AB336",
+   "verdict": "would suit GF-2.1 (RSS range); NOT stocked"
+  },
+  {
+   "mpn": "3SQQ-NN51NN-K1Q1G",
+   "maker": "AMTEK",
+   "type": "EMI spring, PhBz 0.15",
+   "stock": 0,
+   "lead": "10-11 weeks",
+   "heights": "application 3.65-4.3",
+   "ds": "AMTEK GW271-BN264",
+   "verdict": "too low; not stocked"
+  },
+  {
+   "mpn": "331061603010",
+   "maker": "Wurth (WE-SECF)",
+   "type": "SMT EMI contact finger, CuBe Au",
+   "stock": 0,
+   "lead": "4-5 weeks",
+   "heights": "10.0 free; working 8.3-9.7; -40..+100 C",
+   "ds": "Wurth 331061603010 rev 002.002",
+   "verdict": "too tall; not stocked"
+  },
+  {
+   "mpn": "1437259-6",
+   "maker": "TE",
+   "type": "C-clip",
+   "stock": 0,
+   "heights": "4.0 free; working 2.6-3.5",
+   "ds": "TE 1437259-6",
+   "verdict": "too low; not stocked"
+  },
+  {
+   "mpn": "1447009-8",
+   "maker": "TE",
+   "type": "C-clip",
+   "stock": 0,
+   "heights": "3.5 free",
+   "ds": "Ozdisan card",
+   "verdict": "too low; not stocked"
+  },
+  {
+   "mpn": "1871059-1",
+   "maker": "TE",
+   "type": "RFI shield finger",
+   "stock": 0,
+   "heights": "unknown (Ozdisan links a wrong datasheet)",
+   "ds": "-",
+   "verdict": "not stocked"
+  },
+  {
+   "mpn": "S7121-42R",
+   "maker": "Harwin",
+   "type": "SMT spring contact",
+   "stock": 0,
+   "heights": "1.7",
+   "ds": "Ozdisan card",
+   "verdict": "too low; not stocked"
+  },
+  {
+   "mpn": "303A-753018-000",
+   "maker": "ATTEND",
+   "type": "SMT pogo pin (other concept)",
+   "stock": 1135,
+   "usd_1": 0.79,
+   "heights": "7.5 free, working 6.8, min 6.2; 0.85 N; 2 A; -40..+85 C",
+   "ds": "ATTEND 303A-753018-000_B_1",
+   "verdict": "not a spring finger; 6.2 min misses frame v2 and the GF low end; 85 C rating = ambient, no margin"
+  },
+  {
+   "mpn": "303A-441615-000",
+   "maker": "ATTEND",
+   "type": "R/A SMT pogo pin",
+   "stock": 3103,
+   "usd_1": 0.95,
+   "heights": "acts parallel to the board (body 1.5 high)",
+   "ds": "ATTEND 303A-441615-000_B_1",
+   "verdict": "wrong direction"
+  },
+  {
+   "mpn": "303A-C4418-000",
+   "maker": "ATTEND",
+   "type": "SMT machine pin, rigid",
+   "stock": 1849,
+   "heights": "4.4 rigid",
+   "ds": "ATTEND",
+   "verdict": "no spring"
+  },
+  {
+   "mpn": "L-KLS5-1100-G-R",
+   "maker": "KLS",
+   "type": "coin-cell side contact SMT, SS 0.15",
+   "stock": 1806,
+   "heights": "2.5, side acting",
+   "ds": "KLS drawing",
+   "verdict": "too low, side acting"
+  },
+  {
+   "mpn": "FLAT SPRING CLIP",
+   "maker": "OEM",
+   "type": "leaf clip 23.5 x 3.4, not SMD",
+   "stock": 1098,
+   "heights": "23.5",
+   "ds": "image only",
+   "verdict": "not SMD, unspecified"
+  }
+ ],
+ "elastic_verdict": {
+  "v2_formex_0.40": {
+   "sigma_nom": 987,
+   "sigma_rss_low": 1048,
+   "sigma_wc_low_tall_spring": 1189,
+   "ratio_nom": 1.02,
+   "ratio_rss": 1.09,
+   "ratio_wc": 1.23
+  },
+  "v2_GK-10_0.25": {
+   "sigma_nom": 1044,
+   "sigma_rss_low": 1106,
+   "sigma_wc_low_tall_spring": 1246,
+   "ratio_nom": 1.08,
+   "ratio_rss": 1.15,
+   "ratio_wc": 1.29
+  },
+  "v2_GK-17_0.43": {
+   "sigma_nom": 976,
+   "sigma_rss_low": 1037,
+   "sigma_wc_low_tall_spring": 1178,
+   "ratio_nom": 1.01,
+   "ratio_rss": 1.07,
+   "ratio_wc": 1.22
+  },
+  "GF-2.1": {
+   "sigma_nom": 681,
+   "sigma_rss_low": 839,
+   "sigma_wc_low_tall_spring": 1166,
+   "ratio_nom": 0.71,
+   "ratio_rss": 0.87,
+   "ratio_wc": 1.21
+  }
+ },
+ "elastic_limit": {
+  "h_at_yield_nominal_strip": 5.0,
+  "h_at_80pct_yield": 5.5,
+  "note": "nominal strip 0.127, nominal free height; the tall spring (+0.2) reaches the same stress 0.2 mm higher"
+ },
+ "stackups": {
+  "v2_formex_0.40": {
+   "nom": 4.97,
+   "wc": [
+    4.64,
+    5.55
+   ],
+   "rss": [
+    4.809,
+    5.131
+   ],
+   "wc_tol": 0.33,
+   "rss_tol": 0.161,
+   "note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+  },
+  "v2_GK-10_0.25": {
+   "nom": 4.82,
+   "wc": [
+    4.49,
+    5.4
+   ],
+   "rss": [
+    4.659,
+    4.981
+   ],
+   "wc_tol": 0.33,
+   "rss_tol": 0.161,
+   "note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+  },
+  "v2_GK-17_0.43": {
+   "nom": 5.0,
+   "wc": [
+    4.67,
+    5.58
+   ],
+   "rss": [
+    4.839,
+    5.161
+   ],
+   "wc_tol": 0.33,
+   "rss_tol": 0.161,
+   "note": "upper WC includes the panel floating forward by the gasket gap (0.25)"
+  },
+  "GF-2.1": {
+   "nom": 5.77,
+   "wc": [
+    4.7,
+    6.84
+   ],
+   "rss": [
+    5.357,
+    6.183
+   ],
+   "wc_tol": 1.07,
+   "rss_tol": 0.413,
+   "check_vs_doc": "GlassFront s7.2 panel back -5.80, floats -5.08 .. -6.52 (gap to the Formex 0.08-1.52); this stack is measured from the boss tops and adds board bow, panel flatness and the solder joint"
+  }
+ },
+ "finger": {
+  "model_summary": {
+   "t_nom_0.127": {
+    "bottoming_h": null,
+    "yield_h": 5.0,
+    "F_at": {
+     "7.3": 0.293,
+     "6.82": 0.975,
+     "6.52": 1.389,
+     "6.25": 1.755,
+     "5.8": 2.356,
+     "5.4": 2.881,
+     "5.08": 3.299,
+     "5.0": 3.403,
+     "4.85": 3.598,
+     "4.6": 3.923,
+     "4.4": 4.184
+    },
+    "sigma_at": {
+     "7.3": 81.0,
+     "6.82": 272.0,
+     "6.52": 390.0,
+     "6.25": 495.0,
+     "5.8": 669.0,
+     "5.4": 823.0,
+     "5.08": 945.0,
+     "5.0": 976.0,
+     "4.85": 1033.0,
+     "4.6": 1128.0,
+     "4.4": 1204.0
+    },
+    "x_extent": {
+     "7.5": [
+      -0.302,
+      5.996
+     ],
+     "6.82": [
+      -0.413,
+      6.013
+     ],
+     "6.25": [
+      -0.488,
+      6.027
+     ],
+     "5.8": [
+      -0.538,
+      6.035
+     ],
+     "5.0": [
+      -0.609,
+      6.042
+     ],
+     "4.6": [
+      -0.637,
+      6.038
+     ]
+    }
+   },
+   "t_min_0.107": {
+    "bottoming_h": null,
+    "yield_h": 4.4,
+    "F_at": {
+     "7.3": 0.164,
+     "6.82": 0.548,
+     "6.52": 0.781,
+     "6.25": 0.988,
+     "5.8": 1.326,
+     "5.4": 1.623,
+     "5.08": 1.858,
+     "5.0": 1.917,
+     "4.85": 2.027,
+     "4.6": 2.21,
+     "4.4": 2.357
+    },
+    "sigma_at": {
+     "7.3": 65.0,
+     "6.82": 220.0,
+     "6.52": 315.0,
+     "6.25": 401.0,
+     "5.8": 542.0,
+     "5.4": 666.0,
+     "5.08": 765.0,
+     "5.0": 790.0,
+     "4.85": 836.0,
+     "4.6": 914.0,
+     "4.4": 976.0
+    },
+    "x_extent": {
+     "7.5": [
+      -0.455,
+      5.977
+     ],
+     "6.82": [
+      -0.563,
+      5.994
+     ],
+     "6.25": [
+      -0.636,
+      6.01
+     ],
+     "5.8": [
+      -0.685,
+      6.02
+     ],
+     "5.0": [
+      -0.755,
+      6.026
+     ],
+     "4.6": [
+      -0.782,
+      6.022
+     ]
+    }
+   },
+   "t_max_0.147": {
+    "bottoming_h": null,
+    "yield_h": 5.45,
+    "F_at": {
+     "7.3": 0.483,
+     "6.82": 1.609,
+     "6.52": 2.292,
+     "6.25": 2.896,
+     "5.8": 3.885,
+     "5.4": 4.751,
+     "5.08": 5.439,
+     "5.0": 5.61,
+     "4.85": 5.931,
+     "4.6": 6.467,
+     "4.4": 6.897
+    },
+    "sigma_at": {
+     "7.3": 97.0,
+     "6.82": 328.0,
+     "6.52": 470.0,
+     "6.25": 597.0,
+     "5.8": 806.0,
+     "5.4": 992.0,
+     "5.08": 1139.0,
+     "5.0": 1176.0,
+     "4.85": 1245.0,
+     "4.6": 1359.0,
+     "4.4": 1451.0
+    },
+    "x_extent": {
+     "7.5": [
+      -0.149,
+      6.016
+     ],
+     "6.82": [
+      -0.263,
+      6.031
+     ],
+     "6.25": [
+      -0.34,
+      6.044
+     ],
+     "5.8": [
+      -0.391,
+      6.051
+     ],
+     "5.0": [
+      -0.464,
+      6.057
+     ],
+     "4.6": [
+      -0.492,
+      6.053
+     ]
+    }
+   }
+  },
+  "per_design": {
+   "v2_formex_0.40": {
+    "h_nom": 4.97,
+    "h_wc": [
+     4.64,
+     5.55
+    ],
+    "h_rss": [
+     4.809,
+     5.131
+    ],
+    "deflection_nom": 2.53,
+    "deflection_wc": [
+     1.75,
+     3.06
+    ],
+    "compression_pct_wc_max": 39.7,
+    "F_nom": 3.442,
+    "F_min_wc": 1.364,
+    "F_max_wc": 6.811,
+    "F_rss": [
+     3.232,
+     3.651
+    ],
+    "sigma_nom": 987,
+    "sigma_max_wc_tmax": 1433,
+    "sigma_wc_tnom": 1189
+   },
+   "v2_GK-10_0.25": {
+    "h_nom": 4.82,
+    "h_wc": [
+     4.49,
+     5.4
+    ],
+    "h_rss": [
+     4.659,
+     4.981
+    ],
+    "deflection_nom": 2.68,
+    "deflection_wc": [
+     1.9,
+     3.21
+    ],
+    "compression_pct_wc_max": 41.7,
+    "F_nom": 3.637,
+    "F_min_wc": 1.475,
+    "F_max_wc": 7.134,
+    "F_rss": [
+     3.428,
+     3.847
+    ],
+    "sigma_nom": 1044,
+    "sigma_max_wc_tmax": 1502,
+    "sigma_wc_tnom": 1246
+   },
+   "v2_GK-17_0.43": {
+    "h_nom": 5.0,
+    "h_wc": [
+     4.67,
+     5.58
+    ],
+    "h_rss": [
+     4.839,
+     5.161
+    ],
+    "deflection_nom": 2.5,
+    "deflection_wc": [
+     1.72,
+     3.03
+    ],
+    "compression_pct_wc_max": 39.4,
+    "F_nom": 3.403,
+    "F_min_wc": 1.341,
+    "F_max_wc": 6.746,
+    "F_rss": [
+     3.193,
+     3.612
+    ],
+    "sigma_nom": 976,
+    "sigma_max_wc_tmax": 1419,
+    "sigma_wc_tnom": 1178
+   },
+   "GF-2.1": {
+    "h_nom": 5.77,
+    "h_wc": [
+     4.7,
+     6.84
+    ],
+    "h_rss": [
+     5.357,
+     6.183
+    ],
+    "deflection_nom": 1.73,
+    "deflection_wc": [
+     0.46,
+     3.0
+    ],
+    "compression_pct_wc_max": 39.0,
+    "F_nom": 2.395,
+    "F_min_wc": 0.374,
+    "F_max_wc": 6.682,
+    "F_rss": [
+     1.845,
+     2.937
+    ],
+    "sigma_nom": 681,
+    "sigma_max_wc_tmax": 1405,
+    "sigma_wc_tnom": 1166
+   }
+  },
+  "yield_assumed_MPa": 965.0
+ },
+ "finger_plan_envelope": {
+  "x_free_side": -3.149,
+  "x_bend_side": 3.542,
+  "half_w": 2.5,
+  "note": "model centre line + t/2, nominal drawing dimensions, union over the working range"
+ },
+ "pads": {
+  "BP1": {
+   "x": 18.5,
+   "y": 7.0,
+   "mains_copper_mm": 9.84,
+   "label_gap_mm": 14.1,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "C40.2 NEUT",
+   "to_board_bottom_edge": 89.4
+  },
+  "BP2": {
+   "x": 18.5,
+   "y": 18.0,
+   "mains_copper_mm": 9.5,
+   "label_gap_mm": 3.1,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "C1.2 NEUT",
+   "to_board_bottom_edge": 78.4
+  },
+  "BP3": {
+   "x": 18.5,
+   "y": 29.0,
+   "mains_copper_mm": 10.26,
+   "label_gap_mm": -6.8,
+   "label_conflict": true,
+   "bend_dir": -1,
+   "nearest_mains": "C1.2 NEUT",
+   "to_board_bottom_edge": 67.4
+  },
+  "BP4": {
+   "x": 36.0,
+   "y": 45.0,
+   "mains_copper_mm": 13.18,
+   "label_gap_mm": 10.7,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "RV1.1 LINE_FILT",
+   "to_board_bottom_edge": 51.4
+  },
+  "BP5": {
+   "x": 45.0,
+   "y": 45.0,
+   "mains_copper_mm": 12.6,
+   "label_gap_mm": 19.7,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "RV1.1 LINE_FILT",
+   "to_board_bottom_edge": 51.4
+  },
+  "BP6": {
+   "x": 146.0,
+   "y": 48.0,
+   "mains_copper_mm": 19.7,
+   "label_gap_mm": 120.7,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 48.4
+  },
+  "BP7": {
+   "x": 155.5,
+   "y": 59.0,
+   "mains_copper_mm": 30.28,
+   "label_gap_mm": 130.2,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 37.4
+  },
+  "BP8": {
+   "x": 155.5,
+   "y": 70.0,
+   "mains_copper_mm": 34.77,
+   "label_gap_mm": 130.2,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 26.4
+  },
+  "BP9": {
+   "x": 155.5,
+   "y": 81.0,
+   "mains_copper_mm": 41.71,
+   "label_gap_mm": 130.26,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 15.4
+  },
+  "BP10": {
+   "x": 155.5,
+   "y": 92.0,
+   "mains_copper_mm": 50.1,
+   "label_gap_mm": 131.07,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 4.4
+  },
+  "BP11": {
+   "x": 116.5,
+   "y": 92.0,
+   "mains_copper_mm": 40.32,
+   "label_gap_mm": 92.44,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.3 unconnected-(U1-NC-Pad3)",
+   "to_board_bottom_edge": 4.4
+  },
+  "BP12": {
+   "x": 108.0,
+   "y": 84.0,
+   "mains_copper_mm": 32.32,
+   "label_gap_mm": 83.0,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U5.5 unconnected-(U5-NC-Pad5)",
+   "to_board_bottom_edge": 12.4
+  },
+  "BP13": {
+   "x": 91.5,
+   "y": 88.5,
+   "mains_copper_mm": 38.0,
+   "label_gap_mm": 67.21,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "U5.6 Net-(R3-Pad1)",
+   "to_board_bottom_edge": 7.9
+  },
+  "BP14": {
+   "x": 59.0,
+   "y": 91.0,
+   "mains_copper_mm": 50.99,
+   "label_gap_mm": 36.53,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "HS1.1 unconnected-(HS1-Pad1)",
+   "to_board_bottom_edge": 5.4
+  },
+  "BP15": {
+   "x": 29.5,
+   "y": 92.0,
+   "mains_copper_mm": 60.5,
+   "label_gap_mm": 15.67,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "RV1.1 LINE_FILT",
+   "to_board_bottom_edge": 4.4
+  },
+  "BP16": {
+   "x": 16.0,
+   "y": 92.0,
+   "mains_copper_mm": 63.93,
+   "label_gap_mm": 15.1,
+   "label_conflict": false,
+   "bend_dir": -1,
+   "nearest_mains": "RV1.2 NEUT",
+   "to_board_bottom_edge": 4.4
+  },
+  "BP17": {
+   "x": 21.0,
+   "y": 50.0,
+   "mains_copper_mm": 22.78,
+   "label_gap_mm": -4.3,
+   "label_conflict": true,
+   "bend_dir": -1,
+   "nearest_mains": "RV1.2 NEUT",
+   "to_board_bottom_edge": 46.4
+  },
+  "BP18": {
+   "x": 137.0,
+   "y": 70.0,
+   "mains_copper_mm": 21.51,
+   "label_gap_mm": 111.7,
+   "label_conflict": false,
+   "bend_dir": 1,
+   "nearest_mains": "U1.1 /ZCD_L",
+   "to_board_bottom_edge": 26.4
+  }
+ },
+ "contact_sets": {
+  "minimum_6": [
+   "BP1",
+   "BP6",
+   "BP10",
+   "BP11",
+   "BP13",
+   "BP15"
+  ],
+  "recommended_8": [
+   "BP1",
+   "BP6",
+   "BP8",
+   "BP10",
+   "BP11",
+   "BP13",
+   "BP15",
+   "BP16"
+  ]
+ },
+ "unused_pads": {
+  "BP2": "top-left column already has BP1; 9.5 mm to mains copper (lowest of all); 3.2 mm from the label box (inside its +-3 assumed scatter)",
+  "BP3": "on the panel barcode label (datasheet p.16 back view)",
+  "BP4": "interior, 13.2 mm to mains; openings of BP4/BP5 (9 mm pitch) would merge",
+  "BP5": "as BP4",
+  "BP7": "right edge covered by BP6 and BP8; spare",
+  "BP9": "right edge covered by BP8 and BP10; spare",
+  "BP12": "interior next to BP11/BP13; spare for J10 if a third FPC-end contact is wanted",
+  "BP14": "bottom edge already covered by BP13 and BP15 (29.5 mm and 32.5 mm away); spare",
+  "BP17": "on the panel barcode label (datasheet p.16 back view)",
+  "BP18": "interior, 15.5 mm to mains; spare"
+ },
+ "openings": {
+  "v2": {
+   "added_per_side_x": 1.725,
+   "added_per_side_y": 1.7,
+   "rows": [
+    {
+     "ref": "BP1",
+     "finger_env": [
+      14.958,
+      21.649,
+      4.5,
+      9.5
+     ],
+     "opening_local": [
+      13.23,
+      23.37,
+      2.8,
+      11.2
+     ],
+     "opening_abs": [
+      33.23,
+      43.37,
+      22.8,
+      31.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      38.3,
+      27.0
+     ],
+     "web_to_sheet_edge": 3.3,
+     "inside_shelf_window": true,
+     "window_margin": 1.2
+    },
+    {
+     "ref": "BP6",
+     "finger_env": [
+      142.851,
+      149.542,
+      45.5,
+      50.5
+     ],
+     "opening_local": [
+      141.13,
+      151.27,
+      43.8,
+      52.2
+     ],
+     "opening_abs": [
+      161.13,
+      171.27,
+      63.8,
+      72.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      166.2,
+      68.0
+     ],
+     "web_to_sheet_edge": 13.15,
+     "inside_shelf_window": true,
+     "window_margin": 11.05
+    },
+    {
+     "ref": "BP8",
+     "finger_env": [
+      152.351,
+      159.042,
+      67.5,
+      72.5
+     ],
+     "opening_local": [
+      150.63,
+      160.77,
+      65.8,
+      74.2
+     ],
+     "opening_abs": [
+      170.63,
+      180.77,
+      85.8,
+      94.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      175.7,
+      90.0
+     ],
+     "web_to_sheet_edge": 3.65,
+     "inside_shelf_window": true,
+     "window_margin": 1.55
+    },
+    {
+     "ref": "BP10",
+     "finger_env": [
+      152.351,
+      159.042,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      150.63,
+      160.77,
+      87.8,
+      96.2
+     ],
+     "opening_abs": [
+      170.63,
+      180.77,
+      107.8,
+      116.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      175.7,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.3,
+     "inside_shelf_window": true,
+     "window_margin": 0.2
+    },
+    {
+     "ref": "BP11",
+     "finger_env": [
+      113.351,
+      120.042,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      111.63,
+      121.77,
+      87.8,
+      96.2
+     ],
+     "opening_abs": [
+      131.63,
+      141.77,
+      107.8,
+      116.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      136.7,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.3,
+     "inside_shelf_window": true,
+     "window_margin": 0.2
+    },
+    {
+     "ref": "BP13",
+     "finger_env": [
+      87.958,
+      94.649,
+      86.0,
+      91.0
+     ],
+     "opening_local": [
+      86.23,
+      96.37,
+      84.3,
+      92.7
+     ],
+     "opening_abs": [
+      106.23,
+      116.37,
+      104.3,
+      112.7
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      111.3,
+      108.5
+     ],
+     "web_to_sheet_edge": 5.8,
+     "inside_shelf_window": true,
+     "window_margin": 3.7
+    },
+    {
+     "ref": "BP15",
+     "finger_env": [
+      25.958,
+      32.649,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      24.23,
+      34.37,
+      87.8,
+      96.2
+     ],
+     "opening_abs": [
+      44.23,
+      54.37,
+      107.8,
+      116.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      49.3,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.3,
+     "inside_shelf_window": true,
+     "window_margin": 0.2
+    },
+    {
+     "ref": "BP16",
+     "finger_env": [
+      12.458,
+      19.149,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      10.73,
+      20.87,
+      87.8,
+      96.2
+     ],
+     "opening_abs": [
+      30.73,
+      40.87,
+      107.8,
+      116.2
+     ],
+     "size": [
+      10.14,
+      8.4
+     ],
+     "centre_abs": [
+      35.8,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.3,
+     "inside_shelf_window": true,
+     "window_margin": 0.2
+    }
+   ],
+   "min_web_between": [
+    3.36,
+    "BP15",
+    "BP16"
+   ],
+   "webs_below_10": [
+    [
+     3.36,
+     "BP15",
+     "BP16"
+    ]
+   ]
+  },
+  "GF": {
+   "added_per_side_x": 1.475,
+   "added_per_side_y": 1.45,
+   "rows": [
+    {
+     "ref": "BP1",
+     "finger_env": [
+      14.958,
+      21.649,
+      4.5,
+      9.5
+     ],
+     "opening_local": [
+      13.48,
+      23.12,
+      3.05,
+      10.95
+     ],
+     "opening_abs": [
+      33.48,
+      43.12,
+      23.05,
+      30.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      38.3,
+      27.0
+     ],
+     "web_to_sheet_edge": 3.55,
+     "inside_shelf_window": true,
+     "window_margin": 1.45
+    },
+    {
+     "ref": "BP6",
+     "finger_env": [
+      142.851,
+      149.542,
+      45.5,
+      50.5
+     ],
+     "opening_local": [
+      141.38,
+      151.02,
+      44.05,
+      51.95
+     ],
+     "opening_abs": [
+      161.38,
+      171.02,
+      64.05,
+      71.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      166.2,
+      68.0
+     ],
+     "web_to_sheet_edge": 13.4,
+     "inside_shelf_window": true,
+     "window_margin": 11.3
+    },
+    {
+     "ref": "BP8",
+     "finger_env": [
+      152.351,
+      159.042,
+      67.5,
+      72.5
+     ],
+     "opening_local": [
+      150.88,
+      160.52,
+      66.05,
+      73.95
+     ],
+     "opening_abs": [
+      170.88,
+      180.52,
+      86.05,
+      93.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      175.7,
+      90.0
+     ],
+     "web_to_sheet_edge": 3.9,
+     "inside_shelf_window": true,
+     "window_margin": 1.8
+    },
+    {
+     "ref": "BP10",
+     "finger_env": [
+      152.351,
+      159.042,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      150.88,
+      160.52,
+      88.05,
+      95.95
+     ],
+     "opening_abs": [
+      170.88,
+      180.52,
+      108.05,
+      115.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      175.7,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.55,
+     "inside_shelf_window": true,
+     "window_margin": 0.45
+    },
+    {
+     "ref": "BP11",
+     "finger_env": [
+      113.351,
+      120.042,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      111.88,
+      121.52,
+      88.05,
+      95.95
+     ],
+     "opening_abs": [
+      131.88,
+      141.52,
+      108.05,
+      115.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      136.7,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.55,
+     "inside_shelf_window": true,
+     "window_margin": 0.45
+    },
+    {
+     "ref": "BP13",
+     "finger_env": [
+      87.958,
+      94.649,
+      86.0,
+      91.0
+     ],
+     "opening_local": [
+      86.48,
+      96.12,
+      84.55,
+      92.45
+     ],
+     "opening_abs": [
+      106.48,
+      116.12,
+      104.55,
+      112.45
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      111.3,
+      108.5
+     ],
+     "web_to_sheet_edge": 6.05,
+     "inside_shelf_window": true,
+     "window_margin": 3.95
+    },
+    {
+     "ref": "BP15",
+     "finger_env": [
+      25.958,
+      32.649,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      24.48,
+      34.12,
+      88.05,
+      95.95
+     ],
+     "opening_abs": [
+      44.48,
+      54.12,
+      108.05,
+      115.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      49.3,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.55,
+     "inside_shelf_window": true,
+     "window_margin": 0.45
+    },
+    {
+     "ref": "BP16",
+     "finger_env": [
+      12.458,
+      19.149,
+      89.5,
+      94.5
+     ],
+     "opening_local": [
+      10.98,
+      20.62,
+      88.05,
+      95.95
+     ],
+     "opening_abs": [
+      30.98,
+      40.62,
+      108.05,
+      115.95
+     ],
+     "size": [
+      9.64,
+      7.9
+     ],
+     "centre_abs": [
+      35.8,
+      112.0
+     ],
+     "web_to_sheet_edge": 2.55,
+     "inside_shelf_window": true,
+     "window_margin": 0.45
+    }
+   ],
+   "min_web_between": [
+    3.86,
+    "BP15",
+    "BP16"
+   ],
+   "webs_below_10": [
+    [
+     3.86,
+     "BP15",
+     "BP16"
+    ]
+   ]
+  }
+ },
+ "insulation": {
+  "v2": [
+   {
+    "ref": "BP1",
+    "clear_finger": {
+     "mm": 10.46,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 4.06,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 9.88,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 3.48,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 9.74,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 3.34,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP6",
+    "clear_finger": {
+     "mm": 20.18,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 13.78,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 19.39,
+     "item": "HS1.2 unconnected-(HS1-Pad2) (prot 2.865)",
+     "margin": 12.99,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 19.58,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 13.18,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP8",
+    "clear_finger": {
+     "mm": 35.53,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 29.13,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 34.01,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 27.61,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 34.42,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 28.02,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP10",
+    "clear_finger": {
+     "mm": 50.91,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 44.51,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 49.26,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 42.86,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 49.77,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 43.37,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP11",
+    "clear_finger": {
+     "mm": 40.97,
+     "item": "U1.2 /ZCD_N (prot 1.665)",
+     "margin": 34.57,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 39.92,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 33.52,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 40.37,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 33.97,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP13",
+    "clear_finger": {
+     "mm": 38.75,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 32.35,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 37.43,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 31.03,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 37.87,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 31.47,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP15",
+    "clear_finger": {
+     "mm": 61.23,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 54.83,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 59.87,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 53.47,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 60.52,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 54.12,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP16",
+    "clear_finger": {
+     "mm": 64.69,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 58.29,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 63.23,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 56.83,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 63.89,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 57.49,
+     "ok": true
+    }
+   }
+  ],
+  "GF": [
+   {
+    "ref": "BP1",
+    "clear_finger": {
+     "mm": 10.46,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 4.06,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 10.16,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 3.76,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 10.04,
+     "item": "C40.2 NEUT (prot 1.865)",
+     "margin": 3.64,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP6",
+    "clear_finger": {
+     "mm": 20.18,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 13.78,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 19.73,
+     "item": "HS1.2 unconnected-(HS1-Pad2) (prot 2.865)",
+     "margin": 13.33,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 19.83,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 13.43,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP8",
+    "clear_finger": {
+     "mm": 35.53,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 29.13,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 34.39,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 27.99,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 34.76,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 28.36,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP10",
+    "clear_finger": {
+     "mm": 50.91,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 44.51,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 49.63,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 43.23,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 50.12,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 43.72,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP11",
+    "clear_finger": {
+     "mm": 40.97,
+     "item": "U1.2 /ZCD_N (prot 1.665)",
+     "margin": 34.57,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 40.19,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 33.79,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 40.62,
+     "item": "U1.1 /ZCD_L (prot 1.665)",
+     "margin": 34.22,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP13",
+    "clear_finger": {
+     "mm": 38.75,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 32.35,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 37.76,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 31.36,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 38.17,
+     "item": "U5.6 Net-(R3-Pad1) (prot 1.665)",
+     "margin": 31.77,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP15",
+    "clear_finger": {
+     "mm": 61.23,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 54.83,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 60.17,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 53.77,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 60.81,
+     "item": "RV1.1 LINE_FILT (prot 2.5)",
+     "margin": 54.41,
+     "ok": true
+    }
+   },
+   {
+    "ref": "BP16",
+    "clear_finger": {
+     "mm": 64.69,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 58.29,
+     "ok": true
+    },
+    "clear_panel": {
+     "mm": 63.55,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 57.15,
+     "ok": true
+    },
+    "creep_formex": {
+     "mm": 64.19,
+     "item": "RV1.2 NEUT (prot 2.5)",
+     "margin": 57.79,
+     "ok": true
+    }
+   }
+  ]
+ },
+ "insulation_all_pads_info": {
+  "BP1": {
+   "min_plan_pin_to_opening": 9.14
+  },
+  "BP2": {
+   "min_plan_pin_to_opening": 8.98
+  },
+  "BP3": {
+   "min_plan_pin_to_opening": 9.57
+  },
+  "BP4": {
+   "min_plan_pin_to_opening": 12.8
+  },
+  "BP5": {
+   "min_plan_pin_to_opening": 12.5
+  },
+  "BP6": {
+   "min_plan_pin_to_opening": 18.98
+  },
+  "BP7": {
+   "min_plan_pin_to_opening": 29.42
+  },
+  "BP8": {
+   "min_plan_pin_to_opening": 33.87
+  },
+  "BP9": {
+   "min_plan_pin_to_opening": 40.85
+  },
+  "BP10": {
+   "min_plan_pin_to_opening": 49.32
+  },
+  "BP11": {
+   "min_plan_pin_to_opening": 40.12
+  },
+  "BP12": {
+   "min_plan_pin_to_opening": 32.12
+  },
+  "BP13": {
+   "min_plan_pin_to_opening": 37.54
+  },
+  "BP14": {
+   "min_plan_pin_to_opening": 50.65
+  },
+  "BP15": {
+   "min_plan_pin_to_opening": 60.22
+  },
+  "BP16": {
+   "min_plan_pin_to_opening": 63.55
+  },
+  "BP17": {
+   "min_plan_pin_to_opening": 22.19
+  },
+  "BP18": {
+   "min_plan_pin_to_opening": 20.79
+  }
+ },
+ "forces": {
+  "v2_minimum_6": {
+   "n": 6,
+   "total_nom": 20.65,
+   "total_min": 8.18,
+   "total_max": 40.87
+  },
+  "v2_recommended_8": {
+   "n": 8,
+   "total_nom": 27.54,
+   "total_min": 10.91,
+   "total_max": 54.49
+  },
+  "GF_minimum_6": {
+   "n": 6,
+   "total_nom": 14.37,
+   "total_min": 2.24,
+   "total_max": 40.09
+  },
+  "GF_recommended_8": {
+   "n": 8,
+   "total_nom": 19.16,
+   "total_min": 2.99,
+   "total_max": 53.46
+  }
+ },
+ "gf_checks": {
+  "panel_weight_N": 1.96,
+  "loca_pressure_kPa_nom": 1.162,
+  "loca_pressure_kPa_max": 3.242,
+  "loca_dead_kPa_doc": 0.12,
+  "loca_direction": "compression (fingers push the panel onto the glass); the document states only the dead load 0.12 kPa",
+  "bead_tension_kPa_nom": 7.97,
+  "bead_tension_kPa_max": 22.25,
+  "bead_dead_kPa_doc": 1.54,
+  "bead_sustained_allow_kPa_ext": 14.0,
+  "bead_ratio_to_allow_max": 1.59,
+  "glass_dish_mm_max": 0.1326,
+  "lipline_mm_max": 0.0428
+ },
+ "v2_checks": {
+  "gasket_force_nom_N": 165.0,
+  "gasket_force_max_N": 591.0,
+  "finger_total_max_N": 54.49,
+  "ratio_nom": 0.33,
+  "gasket_secant_N_per_mm": 550.0,
+  "extra_gasket_squeeze_mm": 0.099,
+  "before_mounting": "nothing holds the panel against the fingers once the subassembly leaves the fixture (Frame_Design s7: \"held only by the PCB/sheet stack\")"
+ },
+ "pcb": {
+  "plate_D_Nmm": 6984.0,
+  "alpha": 0.0159,
+  "defl_one_finger_at_board_centre_nom_mm": 0.0812,
+  "note": "upper bound: plate simply supported on its edges only, load at the centre; the chosen pads lie 7-18 mm from supported edges, so the real deflection is smaller; it reduces compression (safe side for stress, unsafe for the minimum force)",
+  "total_on_9_screws_nom_N": 29.1,
+  "total_on_9_screws_wc_N": 57.07,
+  "per_screw_wc_N": 6.34,
+  "vs_preload_pct_wc": 1.84
+ },
+ "inductance": {
+  "path_length_mm": 19.12,
+  "L_upper_unfolded_nH": 9.82,
+  "L_lower_straight_post_nH": {
+   "5.0": 1.4,
+   "5.8": 1.76
+  },
+  "note": "true value lies between: the two inclined legs carry opposite horizontal currents (partial cancellation); contact spot adds < 0.5 nH (assumed)",
+  "budget_nH": 15.0,
+  "dB_cost_upper_vs_2nH": -3.75
+ },
+ "esd": {
+  "total_A": 4.0,
+  "per_finger_worst_A": 4.0,
+  "strip_section_mm2": 0.635,
+  "current_density_A_mm2_worst": 6.3,
+  "note": "ns pulse, I2t ~ 1e-7 A2s: negligible heating; the drawing states no current rating"
+ },
+ "mains_conductors_considered": {
+  "pins": 59,
+  "bcu_tracks": 128
+ }
+}
