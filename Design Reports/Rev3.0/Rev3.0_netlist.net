@@ -1,30 +1,30 @@
 (export
 	(version "E")
 	(design
-		(source "C:\\Users\\lenovo\\Documents\\Projects\\3D Printer Filament Dryer\\KiCad\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
-		(date "2026-11-12T16:40:17")
+		(source "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\953b9f31-5e7b-46a1-b4f4-a743202145e7\\scratchpad\\agentHW\\rv3\\proj\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
+		(date "2026-11-21T19:12:29")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "3D Printer Filament Dryer & Print Annealer")
+				(title "3D Printer Filament Dryer & Print Annealer - Main")
 				(company "READARK")
 				(rev "3.0")
-				(date "2026-11-09")
+				(date "2026-11-21")
 				(source "3dFilamentDryer.kicad_sch")
 				(comment
 					(number "1")
-					(value "M. Ömer Karaoğlu")
+					(value "Mains input, zero-cross detector, heater triac stage, fan relay, ESP32 MCU")
 				)
 				(comment
 					(number "2")
-					(value "")
+					(value "Sub-sheets: input filter, power (buck/LDO), display (SSD1963/TFT), thermocouple")
 				)
 				(comment
 					(number "3")
-					(value "")
+					(value "M. Ömer Karaoğlu")
 				)
 				(comment
 					(number "4")
@@ -57,22 +57,22 @@
 			(name "/Display/")
 			(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
 			(title_block
-				(title "Rev3.0 Display: SSD1963 controller, 7\" RGB TFT, backlight, GT911 touch")
+				(title "3D Printer Filament Dryer & Print Annealer - Display")
 				(company "READARK")
 				(rev "3.0")
-				(date "2026-11-09")
+				(date "2026-11-21")
 				(source "Rev3_Display.kicad_sch")
 				(comment
 					(number "1")
-					(value "M. Ömer Karaoğlu")
+					(value "SSD1963 U10 with 8080 bus from the ESP32, RN series arrays to the 40-pin TFT J10")
 				)
 				(comment
 					(number "2")
-					(value "")
+					(value "Backlight boost U11 MIC2288, touch J11 (GT911), panel supply and EMC parts")
 				)
 				(comment
 					(number "3")
-					(value "")
+					(value "M. Ömer Karaoğlu")
 				)
 				(comment
 					(number "4")
@@ -105,22 +105,22 @@
 			(name "/Thermocouple front end (K-type, ADS1115)/")
 			(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000002/")
 			(title_block
-				(title "Rev3.0 Thermocouple front end (K-type, ADS1115)")
+				(title "3D Printer Filament Dryer & Print Annealer - Thermocouple")
 				(company "READARK")
 				(rev "3.0")
-				(date "2026-11-09")
+				(date "2026-11-13")
 				(source "Rev3_Thermocouple.kicad_sch")
 				(comment
 					(number "1")
-					(value "M. Ömer Karaoğlu")
+					(value "K-type thermocouple J20 -> TVS, bias, RC filter -> ADS1115 U20 (I2C 0x48)")
 				)
 				(comment
 					(number "2")
-					(value "")
+					(value "Cold-junction NTC TH220 ratiometric on AIN2/AIN3; probe TC1 is BOM-only")
 				)
 				(comment
 					(number "3")
-					(value "")
+					(value "M. Ömer Karaoğlu")
 				)
 				(comment
 					(number "4")
@@ -153,22 +153,22 @@
 			(name "/Power/")
 			(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000003/")
 			(title_block
-				(title "Rev3.0 Power: 5V->3V3 buck, 3V3->1V2 LDO")
+				(title "3D Printer Filament Dryer & Print Annealer - Power")
 				(company "READARK")
 				(rev "3.0")
-				(date "2026-11-09")
+				(date "2026-11-13")
 				(source "Rev3_Power.kicad_sch")
 				(comment
 					(number "1")
-					(value "M. Ömer Karaoğlu")
+					(value "5 V -> 3.3 V buck U30 TPS562201, 3.3 V -> 1.2 V LDO U31 LD1117S12")
 				)
 				(comment
 					(number "2")
-					(value "")
+					(value "5 V from PS1 HLK-10M05 on the root sheet; power budget under the groups")
 				)
 				(comment
 					(number "3")
-					(value "")
+					(value "M. Ömer Karaoğlu")
 				)
 				(comment
 					(number "4")
@@ -201,22 +201,22 @@
 			(name "/Mains input EMC filter/")
 			(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000004/")
 			(title_block
-				(title "Rev3.0 Mains input EMC filter")
+				(title "3D Printer Filament Dryer & Print Annealer - Input filter")
 				(company "READARK")
 				(rev "3.0")
-				(date "2026-11-09")
+				(date "2026-11-13")
 				(source "Rev3_InputFilter.kicad_sch")
 				(comment
 					(number "1")
-					(value "M. Ömer Karaoğlu")
+					(value "Mains LC filter: L40 100 uH 5 A + C40 1 uF X2 after the main fuse F3")
 				)
 				(comment
 					(number "2")
-					(value "")
+					(value "LINE_FUSED in from F3; LINE_FILT out to Q1, K1 and F1 on the root sheet")
 				)
 				(comment
 					(number "3")
-					(value "")
+					(value "M. Ömer Karaoğlu")
 				)
 				(comment
 					(number "4")
@@ -254,6 +254,10 @@
 			(description "CAP.POL.100nF 275VAC 15MM 20% X2")
 			(fields
 				(field
+					(name "MPN") "C42P2104M6SC361")
+				(field
+					(name "Manufacturer") "FARATRONIC")
+				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L18.0mm_W5.0mm_P15.00mm_FKS3_FKP3")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2104m6sc361-488131")
@@ -264,6 +268,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C42P2104M6SC361")
+			)
+			(property
+				(name "Manufacturer")
+				(value "FARATRONIC")
 			)
 			(property
 				(name "Sheetname")
@@ -304,13 +316,17 @@
 			(ref "C2")
 			(value "220uF 16V")
 			(footprint "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm")
-			(datasheet "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pklh-016v221me110-t2-5-349652")
+			(datasheet "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875")
 			(description "CAP.EL.220uF 16V 6.3x11 2.5MM 105C L.ESR 2000H TB")
 			(fields
 				(field
+					(name "MPN") "PKRJ-016V221ME070-T2.5")
+				(field
+					(name "Manufacturer") "Koshin")
+				(field
 					(name "Footprint") "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pklh-016v221me110-t2-5-349652")
+					(name "Datasheet") "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875")
 				(field
 					(name "Description") "CAP.EL.220uF 16V 6.3x11 2.5MM 105C L.ESR 2000H TB")
 			)
@@ -318,6 +334,14 @@
 				(lib "Device")
 				(part "C_US")
 				(description "capacitor, US symbol")
+			)
+			(property
+				(name "MPN")
+				(value "PKRJ-016V221ME070-T2.5")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Koshin")
 			)
 			(property
 				(name "Sheetname")
@@ -362,6 +386,10 @@
 			(description "CAP.POL.10nF 305VAC 10MM 10% X2 TB FARATRONIC")
 			(fields
 				(field
+					(name "MPN") "C42Q2103K40A405")
+				(field
+					(name "Manufacturer") "FARATRONIC")
+				(field
 					(name "Footprint") "Capacitor_THT:C_Rect_L13.0mm_W4.0mm_P10.00mm_FKS3_FKP3_MKS4")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42q2103k40a405-350791")
@@ -372,6 +400,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C42Q2103K40A405")
+			)
+			(property
+				(name "Manufacturer")
+				(value "FARATRONIC")
 			)
 			(property
 				(name "Sheetname")
@@ -410,22 +446,34 @@
 		)
 		(comp
 			(ref "C5")
-			(value "100n")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
-			(description "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -464,22 +512,34 @@
 		)
 		(comp
 			(ref "C6")
-			(value "100n")
+			(value "1uF 6.3V X5R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
-			(description "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943")
+			(description "MLCC (1005) 0402 1 uF 6.3 V X5R 10% (ESP32 EN RC: 10k + 1 uF per Espressif)")
 			(fields
+				(field
+					(name "MPN") "CL05A105KQ5NNNC")
+				(field
+					(name "Manufacturer") "SAMSUNG")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943")
 				(field
-					(name "Description") "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+					(name "Description") "MLCC (1005) 0402 1 uF 6.3 V X5R 10% (ESP32 EN RC: 10k + 1 uF per Espressif)")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05A105KQ5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "SAMSUNG")
 			)
 			(property
 				(name "Sheetname")
@@ -524,6 +584,10 @@
 			(description "MLCC (1608) 0603 10uF 10VDC ±10% X5R")
 			(fields
 				(field
+					(name "MPN") "CL10A106KP8NNNC")
+				(field
+					(name "Manufacturer") "SAMSUNG")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10a106kp8nnnc-350863")
@@ -534,6 +598,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL10A106KP8NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "SAMSUNG")
 			)
 			(property
 				(name "Sheetname")
@@ -572,22 +644,34 @@
 		)
 		(comp
 			(ref "C8")
-			(value "100n")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
-			(description "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/viking-mcf02ktb250104-1067390")
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "MLCC (1005) 0402 100nF 25VDC ±10% X7R")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -625,22 +709,92 @@
 			)
 		)
 		(comp
+			(ref "C9")
+			(value "1nF 50V C0G")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
+			(description "MLCC 0402 1 nF 50 V C0G: ZCD node (U6 input) to GND, keeps the 1 kV EFT burst off U6 (EMC fix 2026-11-21)")
+			(fields
+				(field
+					(name "MPN") "CL05C102JB5NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
+				(field
+					(name "Description") "MLCC 0402 1 nF 50 V C0G: ZCD node (U6 input) to GND, keeps the 1 kV EFT burst off U6 (EMC fix 2026-11-21)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05C102JB5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
+			)
+			(property
+				(name "Sheetname")
+				(value "")
+			)
+			(property
+				(name "Sheetfile")
+				(value "3dFilamentDryer.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "709b311b-746f-5389-a177-29c14ee49e61")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "D5")
-			(value "MMSD4148T1G")
+			(value "1N4148W")
 			(footprint "Diode_SMD:D_SOD-123")
-			(datasheet "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/ons-mmsd4148t1g-464290")
-			(description "100V 200mA Switching Diode, SOD-123")
+			(datasheet "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142")
+			(description "Switching diode 100 V 150 mA SOD-123 (1N4148W), relay coil flyback")
 			(fields
 				(field
 					(name "Sim.Device") "D")
 				(field
 					(name "Sim.Pins") "1=K 2=A")
 				(field
+					(name "MPN") "1N4148W_R1_00301")
+				(field
+					(name "Manufacturer") "Panjit")
+				(field
 					(name "Footprint") "Diode_SMD:D_SOD-123")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-amacli-diyotlar-389/ons-mmsd4148t1g-464290")
+					(name "Datasheet") "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142")
 				(field
-					(name "Description") "100V 200mA Switching Diode, SOD-123")
+					(name "Description") "Switching diode 100 V 150 mA SOD-123 (1N4148W), relay coil flyback")
 			)
 			(libsource
 				(lib "Diode")
@@ -654,6 +808,14 @@
 			(property
 				(name "Sim.Pins")
 				(value "1=K 2=A")
+			)
+			(property
+				(name "MPN")
+				(value "1N4148W_R1_00301")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Panjit")
 			)
 			(property
 				(name "Sheetname")
@@ -691,16 +853,86 @@
 			)
 		)
 		(comp
+			(ref "D6")
+			(value "1.5KE440CA")
+			(footprint "Diode_THT:D_DO-201AD_P15.24mm_Horizontal")
+			(datasheet "https://www.ozdisan.com/p/tvs-diyotlar-386/thinking-1-5ke440ca-tks-639232")
+			(description "Bidirectional TVS 1500 W (10/1000 us), VRWM 376 V, VBR 418-462 V, VC 602 V @ 2.5 A, DO-201AD (Thinking 1.5KE440CA-TKS): triac A2-A1 clamp in the 1 kV surge, replaces the RV2 MOV (EMC fix 2026-11-21)")
+			(fields
+				(field
+					(name "MPN") "1.5KE440CA-TKS")
+				(field
+					(name "Manufacturer") "THINKING")
+				(field
+					(name "Footprint") "Diode_THT:D_DO-201AD_P15.24mm_Horizontal")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/tvs-diyotlar-386/thinking-1-5ke440ca-tks-639232")
+				(field
+					(name "Description") "Bidirectional TVS 1500 W (10/1000 us), VRWM 376 V, VBR 418-462 V, VC 602 V @ 2.5 A, DO-201AD (Thinking 1.5KE440CA-TKS): triac A2-A1 clamp in the 1 kV surge, replaces the RV2 MOV (EMC fix 2026-11-21)")
+			)
+			(libsource
+				(lib "Device")
+				(part "D_TVS")
+				(description "Bidirectional transient-voltage-suppression diode")
+			)
+			(property
+				(name "MPN")
+				(value "1.5KE440CA-TKS")
+			)
+			(property
+				(name "Manufacturer")
+				(value "THINKING")
+			)
+			(property
+				(name "Sheetname")
+				(value "")
+			)
+			(property
+				(name "Sheetfile")
+				(value "3dFilamentDryer.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode TVS thyrector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d195f316-6c7d-56e0-83f5-8b3949d7c520")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "F1")
 			(value "250VAC 1A Slow Blow")
 			(footprint "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal")
-			(datasheet "https://www.ozdisan.com/p/sigortalar-849/reomax-tbc1100a-448236")
+			(datasheet "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613")
 			(description "FUSE GLASS 5x20 1A 250V TIME LAG")
 			(fields
 				(field
+					(name "MPN") "STC1A250V")
+				(field
+					(name "Manufacturer") "Reomax")
+				(field
 					(name "Footprint") "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/sigortalar-849/reomax-tbc1100a-448236")
+					(name "Datasheet") "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613")
 				(field
 					(name "Description") "FUSE GLASS 5x20 1A 250V TIME LAG")
 			)
@@ -708,6 +940,14 @@
 				(lib "Device")
 				(part "Fuse")
 				(description "Fuse")
+			)
+			(property
+				(name "MPN")
+				(value "STC1A250V")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Reomax")
 			)
 			(property
 				(name "Sheetname")
@@ -752,6 +992,10 @@
 			(description "FUSE GLASS 5x20 8A 250V NORMAL")
 			(fields
 				(field
+					(name "MPN") "5GT8A")
+				(field
+					(name "Manufacturer") "Reomax")
+				(field
 					(name "Footprint") "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/sigortalar-849/reomax-5gt8a-445944")
@@ -762,6 +1006,14 @@
 				(lib "Device")
 				(part "Fuse")
 				(description "Fuse")
+			)
+			(property
+				(name "MPN")
+				(value "5GT8A")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Reomax")
 			)
 			(property
 				(name "Sheetname")
@@ -868,13 +1120,17 @@
 			(ref "J2")
 			(value "FTDI")
 			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")
+			(datasheet "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407")
 			(description "Generic connector, single row, 01x06, script generated")
 			(fields
 				(field
+					(name "MPN") "DS1021-1X6SF11-B")
+				(field
+					(name "Manufacturer") "Connfly")
+				(field
 					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407")
 				(field
 					(name "Description") "Generic connector, single row, 01x06, script generated")
 			)
@@ -882,6 +1138,14 @@
 				(lib "Connector")
 				(part "Conn_01x06_Pin")
 				(description "Generic connector, single row, 01x06, script generated")
+			)
+			(property
+				(name "MPN")
+				(value "DS1021-1X6SF11-B")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Connfly")
 			)
 			(property
 				(name "Sheetname")
@@ -1040,22 +1304,46 @@
 		)
 		(comp
 			(ref "K1")
-			(value "SRD-05VDC-SL-C")
-			(footprint "Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C")
-			(datasheet "https://www.ozdisan.com/p/genel-tip-roleler-403/songle-srd-05vdc-sl-c-441159")
-			(description "RELAY POWER 10A 5VDC PCB TYPE 5PIN SONGLE")
+			(value "RZ03-1A4-D005")
+			(footprint "Relay_THT:Relay_SPST_Schrack-RT1-16A-FormA_RM5mm")
+			(datasheet "https://www.ozdisan.com/p/genel-tip-roleler-403/te-connectivity-rz03-1a4-d005-1211236")
+			(description "Power relay 1 form A 16 A 250 VAC, AgNi 90/10, 5 VDC coil 60 ohm 420 mW, 5000 Vrms and >= 10/10 mm coil-contact (reinforced), RTII flux proof, -40..85 C (TE Schrack RZ03-1A4-D005, 1-1415899-3); second source Hongfa HF115FD/005-1H3A(335), same footprint")
 			(fields
 				(field
-					(name "Footprint") "Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C")
+					(name "MPN") "RZ03-1A4-D005")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/genel-tip-roleler-403/songle-srd-05vdc-sl-c-441159")
+					(name "Manufacturer") "TE Connectivity")
 				(field
-					(name "Description") "RELAY POWER 10A 5VDC PCB TYPE 5PIN SONGLE")
+					(name "MPN2") "HF115FD/005-1H3A(335)")
+				(field
+					(name "Manufacturer2") "Hongfa")
+				(field
+					(name "Footprint") "Relay_THT:Relay_SPST_Schrack-RT1-16A-FormA_RM5mm")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/genel-tip-roleler-403/te-connectivity-rz03-1a4-d005-1211236")
+				(field
+					(name "Description") "Power relay 1 form A 16 A 250 VAC, AgNi 90/10, 5 VDC coil 60 ohm 420 mW, 5000 Vrms and >= 10/10 mm coil-contact (reinforced), RTII flux proof, -40..85 C (TE Schrack RZ03-1A4-D005, 1-1415899-3); second source Hongfa HF115FD/005-1H3A(335), same footprint")
 			)
 			(libsource
-				(lib "Relay")
-				(part "SANYOU_SRD_Form_C")
-				(description "Sanyo SRD relay, Single Pole Miniature Power Relay,")
+				(lib "Rev3")
+				(part "Relay_SPST-NO_11-14")
+				(description "Relay SPST-NO, EN 50005 terminal numbers: coil A1 / A2, common 11, NO 14 (TE Schrack RZ / RT1 form A, Hongfa HF115FD ...-1H)")
+			)
+			(property
+				(name "MPN")
+				(value "RZ03-1A4-D005")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TE Connectivity")
+			)
+			(property
+				(name "MPN2")
+				(value "HF115FD/005-1H3A(335)")
+			)
+			(property
+				(name "Manufacturer2")
+				(value "Hongfa")
 			)
 			(property
 				(name "Sheetname")
@@ -1067,11 +1355,11 @@
 			)
 			(property
 				(name "ki_keywords")
-				(value "Single Pole Relay SPDT")
+				(value "1P1T 1-Form-A single pole throw NO")
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "Relay*SPDT*SANYOU*SRD*Series*Form*C*")
+				(value "Relay?SPST*")
 			)
 			(sheetpath
 				(names "/")
@@ -1083,19 +1371,16 @@
 					(name "A")
 					(pins
 						(pin
-							(num "5")
+							(num "A1")
 						)
 						(pin
-							(num "2")
+							(num "A2")
 						)
 						(pin
-							(num "4")
+							(num "11")
 						)
 						(pin
-							(num "1")
-						)
-						(pin
-							(num "3")
+							(num "14")
 						)
 					)
 				)
@@ -1109,6 +1394,10 @@
 			(description "CHOKE COMMON MODE 10mH/1kHz")
 			(fields
 				(field
+					(name "MPN") "LFU09V-103")
+				(field
+					(name "Manufacturer") "CORE MASTER")
+				(field
 					(name "Footprint") "Rev3:LFU09V-103")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799")
@@ -1119,6 +1408,14 @@
 				(lib "CommonModeChoke_ CoreMaster_LFU09V-103")
 				(part "LFU09V-103")
 				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "LFU09V-103")
+			)
+			(property
+				(name "Manufacturer")
+				(value "CORE MASTER")
 			)
 			(property
 				(name "Sheetname")
@@ -1171,7 +1468,7 @@
 				(field
 					(name "MPN") "HLK-10M05")
 				(field
-					(name "Manufacturer") "Hi-Link")
+					(name "Manufacturer") "HI-LINK")
 				(field
 					(name "Footprint") "Converter_ACDC:Converter_ACDC_Hi-Link_HLK-10Mxx")
 				(field
@@ -1190,7 +1487,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Hi-Link")
+				(value "HI-LINK")
 			)
 			(property
 				(name "Sheetname")
@@ -1243,6 +1540,10 @@
 				(field
 					(name "Heatsink Needed") "HS1 Fischer SK 409 63,5 STC (5.6 K/W)")
 				(field
+					(name "MPN") "BTA24-800CWRG")
+				(field
+					(name "Manufacturer") "STM")
+				(field
 					(name "Footprint") "Package_TO_SOT_THT:TO-220-3_Vertical")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751")
@@ -1257,6 +1558,14 @@
 			(property
 				(name "Heatsink Needed")
 				(value "HS1 Fischer SK 409 63,5 STC (5.6 K/W)")
+			)
+			(property
+				(name "MPN")
+				(value "BTA24-800CWRG")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STM")
 			)
 			(property
 				(name "Sheetname")
@@ -1298,21 +1607,25 @@
 		)
 		(comp
 			(ref "Q2")
-			(value "S8050-J3Y")
+			(value "MMBT4401")
 			(footprint "Package_TO_SOT_SMD:SOT-23-3")
-			(datasheet "https://www.ozdisan.com/p/discrete-transistorler-442/mdd-s8050-j3y-1200098")
-			(description "TRANSISTOR DIS.500mA 25V NPN SOT23 GEN. SMT")
+			(datasheet "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020")
+			(description "NPN 40 V 600 mA SOT-23 (MMBT4401), auto-boot transistor")
 			(fields
 				(field
 					(name "Sim.Device") "NPN")
 				(field
 					(name "Sim.Pins") "1=B 2=E 3=C")
 				(field
+					(name "MPN") "MMBT4401-TP")
+				(field
+					(name "Manufacturer") "MCC")
+				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-3")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/discrete-transistorler-442/mdd-s8050-j3y-1200098")
+					(name "Datasheet") "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020")
 				(field
-					(name "Description") "TRANSISTOR DIS.500mA 25V NPN SOT23 GEN. SMT")
+					(name "Description") "NPN 40 V 600 mA SOT-23 (MMBT4401), auto-boot transistor")
 			)
 			(libsource
 				(lib "Transistor_BJT")
@@ -1326,6 +1639,14 @@
 			(property
 				(name "Sim.Pins")
 				(value "1=B 2=E 3=C")
+			)
+			(property
+				(name "MPN")
+				(value "MMBT4401-TP")
+			)
+			(property
+				(name "Manufacturer")
+				(value "MCC")
 			)
 			(property
 				(name "Sheetname")
@@ -1367,21 +1688,25 @@
 		)
 		(comp
 			(ref "Q3")
-			(value "S8050-J3Y")
+			(value "MMBT4401")
 			(footprint "Package_TO_SOT_SMD:SOT-23-3")
-			(datasheet "https://www.ozdisan.com/p/discrete-transistorler-442/mdd-s8050-j3y-1200098")
-			(description "TRANSISTOR DIS.500mA 25V NPN SOT23 GEN. SMT")
+			(datasheet "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020")
+			(description "NPN 40 V 600 mA SOT-23 (MMBT4401), auto-boot transistor")
 			(fields
 				(field
 					(name "Sim.Device") "NPN")
 				(field
 					(name "Sim.Pins") "1=B 2=E 3=C")
 				(field
+					(name "MPN") "MMBT4401-TP")
+				(field
+					(name "Manufacturer") "MCC")
+				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-3")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/discrete-transistorler-442/mdd-s8050-j3y-1200098")
+					(name "Datasheet") "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020")
 				(field
-					(name "Description") "TRANSISTOR DIS.500mA 25V NPN SOT23 GEN. SMT")
+					(name "Description") "NPN 40 V 600 mA SOT-23 (MMBT4401), auto-boot transistor")
 			)
 			(libsource
 				(lib "Transistor_BJT")
@@ -1395,6 +1720,14 @@
 			(property
 				(name "Sim.Pins")
 				(value "1=B 2=E 3=C")
+			)
+			(property
+				(name "MPN")
+				(value "MMBT4401-TP")
+			)
+			(property
+				(name "Manufacturer")
+				(value "MCC")
 			)
 			(property
 				(name "Sheetname")
@@ -1446,6 +1779,10 @@
 				(field
 					(name "Sim.Pins") "1=B 2=E 3=C")
 				(field
+					(name "MPN") "BC817-25-HT")
+				(field
+					(name "Manufacturer") "HOTTECH")
+				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/discrete-transistorler-442/hottech-bc817-25-ht-448900")
@@ -1464,6 +1801,14 @@
 			(property
 				(name "Sim.Pins")
 				(value "1=B 2=E 3=C")
+			)
+			(property
+				(name "MPN")
+				(value "BC817-25-HT")
+			)
+			(property
+				(name "Manufacturer")
+				(value "HOTTECH")
 			)
 			(property
 				(name "Sheetname")
@@ -1561,6 +1906,10 @@
 			(description "RES.M.FILM 1/2W 360 Ohms ±1% Automotive(AEC-Q200)")
 			(fields
 				(field
+					(name "MPN") "MFR-50FTF52-360R")
+				(field
+					(name "Manufacturer") "YAGEO")
+				(field
 					(name "Footprint") "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549")
@@ -1571,6 +1920,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "MFR-50FTF52-360R")
+			)
+			(property
+				(name "Manufacturer")
+				(value "YAGEO")
 			)
 			(property
 				(name "Sheetname")
@@ -1615,6 +1972,10 @@
 			(description "RES.M.FILM 1/2W 360 Ohms ±1% Automotive(AEC-Q200)")
 			(fields
 				(field
+					(name "MPN") "MFR-50FTF52-360R")
+				(field
+					(name "Manufacturer") "YAGEO")
+				(field
 					(name "Footprint") "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549")
@@ -1625,6 +1986,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "MFR-50FTF52-360R")
+			)
+			(property
+				(name "Manufacturer")
+				(value "YAGEO")
 			)
 			(property
 				(name "Sheetname")
@@ -1663,22 +2032,34 @@
 		)
 		(comp
 			(ref "R4")
-			(value "200")
-			(footprint "Resistor_SMD:R_0402_1005Metric")
-			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0201tce-471150")
-			(description "RES.(1005) 0402 200 Ohms 5% 1/16W 100PPM")
+			(value "120")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209")
+			(description "RES.(1608) 0603 120 Ohms 5% 1/10W-S 100PPM (U5 LED; 49 mW max with TRIG held on, 0402 -> 0603 2026-11-21)")
 			(fields
 				(field
-					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+					(name "MPN") "0603SAJ0121T5E")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0201tce-471150")
+					(name "Manufacturer") "ROYALOHM")
 				(field
-					(name "Description") "RES.(1005) 0402 200 Ohms 5% 1/16W 100PPM")
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209")
+				(field
+					(name "Description") "RES.(1608) 0603 120 Ohms 5% 1/10W-S 100PPM (U5 LED; 49 mW max with TRIG held on, 0402 -> 0603 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0603SAJ0121T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1723,6 +2104,10 @@
 			(description "RES.C.FILM 2W-S 47 Ohms 5% WIREWOUND THT")
 			(fields
 				(field
+					(name "MPN") "KNP02SJ0470A10")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-knp02sj0470a10-690542")
@@ -1733,6 +2118,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "KNP02SJ0470A10")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1777,6 +2170,10 @@
 			(description "RES.C.FILM 1W-S 33K Ohms 5% THT")
 			(fields
 				(field
+					(name "MPN") "CFR01SJ0333A10")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
@@ -1787,6 +2184,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CFR01SJ0333A10")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1831,6 +2236,10 @@
 			(description "RES.C.FILM 1W-S 33K Ohms 5% THT")
 			(fields
 				(field
+					(name "MPN") "CFR01SJ0333A10")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800")
@@ -1841,6 +2250,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CFR01SJ0333A10")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1885,6 +2302,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -1895,6 +2316,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1939,6 +2368,10 @@
 			(description "RES.(1608) 0603 180 Ohms 5% 1/10W-S 100PPM")
 			(fields
 				(field
+					(name "MPN") "0603SAJ0181T5E")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227")
@@ -1949,6 +2382,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0603SAJ0181T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -1993,6 +2434,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2003,6 +2448,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2047,6 +2500,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2057,6 +2514,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2101,6 +2566,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2111,6 +2580,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2155,6 +2632,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2165,6 +2646,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2209,6 +2698,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2219,6 +2712,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2263,6 +2764,10 @@
 			(description "RES.(1005) 0402 10K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331")
@@ -2273,6 +2778,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2317,6 +2830,10 @@
 			(description "RES.(1005) 0402 1K Ohms 5% 1/16W 100PPM")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0102TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0102tce-431887")
@@ -2327,6 +2844,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0102TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -2367,7 +2892,7 @@
 			(ref "RV1")
 			(value "TVR14431KSU15Y")
 			(footprint "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm")
-			(datasheet "https://www.ozdisan.com/c?search=TVR14431KSU15Y")
+			(datasheet "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701")
 			(description "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)")
 			(fields
 				(field
@@ -2381,9 +2906,13 @@
 				(field
 					(name "Sim.Library") "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
 				(field
+					(name "MPN") "TVR14431KSU15Y")
+				(field
+					(name "Manufacturer") "Thinking")
+				(field
 					(name "Footprint") "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=TVR14431KSU15Y")
+					(name "Datasheet") "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701")
 				(field
 					(name "Description") "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)")
 			)
@@ -2411,6 +2940,14 @@
 			(property
 				(name "Sim.Library")
 				(value "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
+			)
+			(property
+				(name "MPN")
+				(value "TVR14431KSU15Y")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Thinking")
 			)
 			(property
 				(name "Sheetname")
@@ -2448,11 +2985,11 @@
 			)
 		)
 		(comp
-			(ref "RV2")
-			(value "10561K")
-			(footprint "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm")
-			(datasheet "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305")
-			(description "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT")
+			(ref "RV3")
+			(value "TVR10471KSY")
+			(footprint "Varistor:RV_Disc_D12mm_W5.8mm_P7.5mm")
+			(datasheet "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10471ksy-351283")
+			(description "VARISTOR DISC 10MM 470V 2.5KA 300VAC 385VDC THT (Thinking TVR10471KSY: V1mA 470 V +-10 %, Vc 775 V @ 25 A, 2500 A 8/20 us, 70 J 10/1000 us, -40..85 C, UL 1449/1414, VDE, CQC): across the fan-relay K1 contact (LINE_FUSED - fan), keeps the open contact below its 1000 Vrms rating in the surge tests (EMC fix 2026-11-21)")
 			(fields
 				(field
 					(name "Sim.Name") "kicad_builtin_varistor")
@@ -2465,11 +3002,15 @@
 				(field
 					(name "Sim.Library") "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
 				(field
-					(name "Footprint") "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm")
+					(name "MPN") "TVR10471KSY")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305")
+					(name "Manufacturer") "Thinking")
 				(field
-					(name "Description") "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT")
+					(name "Footprint") "Varistor:RV_Disc_D12mm_W5.8mm_P7.5mm")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10471ksy-351283")
+				(field
+					(name "Description") "VARISTOR DISC 10MM 470V 2.5KA 300VAC 385VDC THT (Thinking TVR10471KSY: V1mA 470 V +-10 %, Vc 775 V @ 25 A, 2500 A 8/20 us, 70 J 10/1000 us, -40..85 C, UL 1449/1414, VDE, CQC): across the fan-relay K1 contact (LINE_FUSED - fan), keeps the open contact below its 1000 Vrms rating in the surge tests (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -2497,6 +3038,14 @@
 				(value "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
 			)
 			(property
+				(name "MPN")
+				(value "TVR10471KSY")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Thinking")
+			)
+			(property
 				(name "Sheetname")
 				(value "")
 			)
@@ -2516,7 +3065,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e41ae6c3-07d7-40d9-8722-8b4d2cf91614")
+			(tstamps "5ecdc0bd-9482-52ad-8823-86e4438ea9d2")
 			(units
 				(unit
 					(name "A")
@@ -2535,7 +3084,7 @@
 			(ref "U1")
 			(value "H11AA1")
 			(footprint "Package_DIP:DIP-6_W7.62mm")
-			(datasheet "https://www.ozdisan.com/ps/transistor-ve-fotovoltaik-cikisli-optokuplorler-189?f=&s=H11AA1")
+			(datasheet "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378")
 			(description "IC-H11AA1 AC-input optocoupler (two inverse-parallel LEDs on pins 1/2), NPN output, 5300 V, DIP-6: zero-cross detector, replaces the 4N28 + D1-D4 bridge (layout pass 4, Isocom H11AA1X, Ozdisan 1,573 pcs)")
 			(fields
 				(field
@@ -2545,7 +3094,7 @@
 				(field
 					(name "Footprint") "Package_DIP:DIP-6_W7.62mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/ps/transistor-ve-fotovoltaik-cikisli-optokuplorler-189?f=&s=H11AA1")
+					(name "Datasheet") "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378")
 				(field
 					(name "Description") "IC-H11AA1 AC-input optocoupler (two inverse-parallel LEDs on pins 1/2), NPN output, 5300 V, DIP-6: zero-cross detector, replaces the 4N28 + D1-D4 bridge (layout pass 4, Isocom H11AA1X, Ozdisan 1,573 pcs)")
 			)
@@ -2613,15 +3162,17 @@
 			(ref "U3")
 			(value "ESP32-WROOM-32E-N16")
 			(footprint "RF_Module:ESP32-WROOM-32E")
-			(datasheet "https://www.ozdisan.com/c?search=ESP32-WROOM-32E-N16")
+			(datasheet "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893")
 			(description "RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, onboard antenna, SMD")
 			(fields
 				(field
 					(name "MPN") "ESP32-WROOM-32E-N16")
 				(field
+					(name "Manufacturer") "ESPRESSIF SYSTEMS")
+				(field
 					(name "Footprint") "RF_Module:ESP32-WROOM-32E")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=ESP32-WROOM-32E-N16")
+					(name "Datasheet") "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893")
 				(field
 					(name "Description") "RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, onboard antenna, SMD")
 			)
@@ -2633,6 +3184,10 @@
 			(property
 				(name "MPN")
 				(value "ESP32-WROOM-32E-N16")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ESPRESSIF SYSTEMS")
 			)
 			(property
 				(name "Sheetname")
@@ -2782,22 +3337,34 @@
 		)
 		(comp
 			(ref "U5")
-			(value "MOC3053M")
+			(value "MOC3083")
 			(footprint "Package_DIP:DIP-6_W7.62mm")
-			(datasheet "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/liteon-moc3053m-1562875")
-			(description "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6")
+			(datasheet "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3083x-636495")
+			(description "Zero-cross opto-triac 800 V, IFT 5 mA max, VINH 20 V max, 5000 Vrms, UL + VDE (Isocom MOC3083X, DE93284), DIP-6; replaces the 600 V MOC3052 (1 kV surge: 620-635 V across Q1/U5 with D6)")
 			(fields
+				(field
+					(name "MPN") "MOC3083X")
+				(field
+					(name "Manufacturer") "Isocom")
 				(field
 					(name "Footprint") "Package_DIP:DIP-6_W7.62mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/liteon-moc3053m-1562875")
+					(name "Datasheet") "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3083x-636495")
 				(field
-					(name "Description") "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6")
+					(name "Description") "Zero-cross opto-triac 800 V, IFT 5 mA max, VINH 20 V max, 5000 Vrms, UL + VDE (Isocom MOC3083X, DE93284), DIP-6; replaces the 600 V MOC3052 (1 kV surge: 620-635 V across Q1/U5 with D6)")
 			)
 			(libsource
 				(lib "Relay_SolidState")
-				(part "MOC3052M")
-				(description "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6")
+				(part "MOC3083M")
+				(description "Zero Cross Opto-Triac, Vdrm 800V, Ift 5mA, DIP6")
+			)
+			(property
+				(name "MPN")
+				(value "MOC3083X")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Isocom")
 			)
 			(property
 				(name "Sheetname")
@@ -2809,7 +3376,7 @@
 			)
 			(property
 				(name "ki_keywords")
-				(value "Opto-Triac Opto Triac Random Phase")
+				(value "Opto-Triac Opto Triac Zero Cross")
 			)
 			(property
 				(name "ki_fp_filters")
@@ -2848,22 +3415,34 @@
 		)
 		(comp
 			(ref "U6")
-			(value "SN74LVC1G14DBVR")
+			(value "SN74AHC1G14DBVR")
 			(footprint "Package_TO_SOT_SMD:SOT-23-5")
 			(datasheet "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783")
-			(description "Single Schmitt NOT Gate, Low-Voltage CMOS, SOT-23")
+			(description "Single Schmitt-trigger inverter, 74AHC, 2-5.5 V, SOT-23-5 (TI SN74AHC1G14DBVR; symbol 74xGxx:SN74LVC1G14DBV, same pin-out)")
 			(fields
+				(field
+					(name "MPN") "SN74AHC1G14DBVR")
+				(field
+					(name "Manufacturer") "TEXAS")
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
 				(field
 					(name "Datasheet") "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783")
 				(field
-					(name "Description") "Single Schmitt NOT Gate, Low-Voltage CMOS, SOT-23")
+					(name "Description") "Single Schmitt-trigger inverter, 74AHC, 2-5.5 V, SOT-23-5 (TI SN74AHC1G14DBVR; symbol 74xGxx:SN74LVC1G14DBV, same pin-out)")
 			)
 			(libsource
 				(lib "74xGxx")
 				(part "SN74LVC1G14DBV")
 				(description "Single Schmitt NOT Gate, Low-Voltage CMOS, SOT-23")
+			)
+			(property
+				(name "MPN")
+				(value "SN74AHC1G14DBVR")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TEXAS")
 			)
 			(property
 				(name "Sheetname")
@@ -2987,13 +3566,17 @@
 			(ref "C110")
 			(value "27pF C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "GRM1555C1H270JA01D")
+				(field
+					(name "Manufacturer") "Murata")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3001,6 +3584,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "GRM1555C1H270JA01D")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Murata")
 			)
 			(property
 				(name "Sheetname")
@@ -3041,13 +3632,17 @@
 			(ref "C111")
 			(value "27pF C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "GRM1555C1H270JA01D")
+				(field
+					(name "Manufacturer") "Murata")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3055,6 +3650,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "GRM1555C1H270JA01D")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Murata")
 			)
 			(property
 				(name "Sheetname")
@@ -3093,22 +3696,34 @@
 		)
 		(comp
 			(ref "C112")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3147,22 +3762,34 @@
 		)
 		(comp
 			(ref "C113")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3201,22 +3828,34 @@
 		)
 		(comp
 			(ref "C114")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3255,22 +3894,34 @@
 		)
 		(comp
 			(ref "C115")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3309,15 +3960,19 @@
 		)
 		(comp
 			(ref "C116")
-			(value "10uF 6.3V X5R")
+			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3325,6 +3980,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -3363,22 +4026,34 @@
 		)
 		(comp
 			(ref "C117")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3417,22 +4092,34 @@
 		)
 		(comp
 			(ref "C118")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3471,22 +4158,34 @@
 		)
 		(comp
 			(ref "C119")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3525,15 +4224,19 @@
 		)
 		(comp
 			(ref "C120")
-			(value "1uF 6.3V X7R")
+			(value "1uF 16V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "C1608X7R1C105K080AC")
+				(field
+					(name "Manufacturer") "TDK")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3541,6 +4244,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C1608X7R1C105K080AC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TDK")
 			)
 			(property
 				(name "Sheetname")
@@ -3579,15 +4290,19 @@
 		)
 		(comp
 			(ref "C121")
-			(value "1uF 6.3V X7R")
+			(value "1uF 16V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "C1608X7R1C105K080AC")
+				(field
+					(name "Manufacturer") "TDK")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3595,6 +4310,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C1608X7R1C105K080AC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TDK")
 			)
 			(property
 				(name "Sheetname")
@@ -3633,15 +4356,19 @@
 		)
 		(comp
 			(ref "C122")
-			(value "10uF 6.3V X5R")
+			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3649,6 +4376,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -3687,22 +4422,34 @@
 		)
 		(comp
 			(ref "C123")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3743,13 +4490,17 @@
 			(ref "C124")
 			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3757,6 +4508,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -3795,22 +4554,34 @@
 		)
 		(comp
 			(ref "C125")
-			(value "4.7uF 25V X7R")
+			(value "4.7uF 50V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305")
+			(description "MLCC 0805 4.7 uF 50 V X5R")
 			(fields
+				(field
+					(name "MPN") "CL21A475KBQNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0805 4.7 uF 50 V X5R")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A475KBQNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -3849,22 +4620,34 @@
 		)
 		(comp
 			(ref "C126")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -3905,13 +4688,17 @@
 			(ref "C127")
 			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -3919,6 +4706,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -3957,22 +4752,34 @@
 		)
 		(comp
 			(ref "C128")
-			(value "47uF 10V")
+			(value "47uF 16V")
 			(footprint "Capacitor_SMD:CP_Elec_5x5.4")
-			(description "Pi-filter damper 47 uF electrolytic/tantalum (Koshin or similar), in series with R132 0.5R")
+			(datasheet "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511")
+			(description "Pi-filter damper 47 uF 16 V aluminium electrolytic SMD 5x5.8 (Panasonic FK), in series with R132 0.5R")
 			(fields
+				(field
+					(name "MPN") "EEEFK1C470UR")
+				(field
+					(name "Manufacturer") "Panasonic")
 				(field
 					(name "Footprint") "Capacitor_SMD:CP_Elec_5x5.4")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511")
 				(field
-					(name "Description") "Pi-filter damper 47 uF electrolytic/tantalum (Koshin or similar), in series with R132 0.5R")
+					(name "Description") "Pi-filter damper 47 uF 16 V aluminium electrolytic SMD 5x5.8 (Panasonic FK), in series with R132 0.5R")
 			)
 			(libsource
 				(lib "Device")
 				(part "C_Polarized")
 				(description "Polarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "EEEFK1C470UR")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Panasonic")
 			)
 			(property
 				(name "Sheetname")
@@ -4011,22 +4818,34 @@
 		)
 		(comp
 			(ref "C129")
-			(value "100nF 25V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "100 nF across the backlight pair at J10: RF return for the FPC (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "100 nF across the backlight pair at J10: RF return for the FPC (EMC pass 4)")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -4067,13 +4886,17 @@
 			(ref "C130")
 			(value "1nF 50V C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 			(description "1 nF RF return at J10 pin 2 (EMC pass 4)")
 			(fields
 				(field
+					(name "MPN") "CL05C102JB5NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 				(field
 					(name "Description") "1 nF RF return at J10 pin 2 (EMC pass 4)")
 			)
@@ -4081,6 +4904,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05C102JB5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -4121,13 +4952,17 @@
 			(ref "C131")
 			(value "1nF 50V C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 			(description "1 nF RF return at J10 pin 1 (EMC pass 4)")
 			(fields
 				(field
+					(name "MPN") "CL05C102JB5NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 				(field
 					(name "Description") "1 nF RF return at J10 pin 1 (EMC pass 4)")
 			)
@@ -4135,6 +4970,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05C102JB5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -4175,13 +5018,17 @@
 			(ref "C132")
 			(value "1nF 50V C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 			(description "1 nF RF return at J10 pin 4 next to C123 (EMC pass 4)")
 			(fields
 				(field
+					(name "MPN") "CL05C102JB5NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 				(field
 					(name "Description") "1 nF RF return at J10 pin 4 next to C123 (EMC pass 4)")
 			)
@@ -4189,6 +5036,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05C102JB5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -4229,13 +5084,17 @@
 			(ref "C133")
 			(value "1nF 50V C0G")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 			(description "1 nF RF return at J11 pin 1 (EMC pass 4)")
 			(fields
 				(field
+					(name "MPN") "CL05C102JB5NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291")
 				(field
 					(name "Description") "1 nF RF return at J11 pin 1 (EMC pass 4)")
 			)
@@ -4243,6 +5102,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL05C102JB5NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -4280,20 +5147,152 @@
 			)
 		)
 		(comp
+			(ref "C134")
+			(value "100nF 50V X7R")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%: +5V-GND at the J10 via field (EMC fix 2026-11-21)")
+			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+				(field
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%: +5V-GND at the J10 via field (EMC fix 2026-11-21)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "8a39ea38-de60-5bcf-bd97-711d3c109091")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C135")
+			(value "100nF 50V X7R")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%: +5V-GND at the J10 via field (EMC fix 2026-11-21)")
+			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+				(field
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%: +5V-GND at the J10 via field (EMC fix 2026-11-21)")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
+			)
+			(property
+				(name "Sheetname")
+				(value "Display")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Display.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/Display/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000001/")
+			)
+			(tstamps "39849b06-e7d4-535a-b250-4d3d0e988a0a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "D111")
 			(value "SS14")
 			(footprint "Diode_SMD:D_SMA")
-			(datasheet "https://www.ozdisan.com/c?search=SS14")
+			(datasheet "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239")
 			(description "Schottky rectifier 1 A 40 V SMA")
 			(fields
 				(field
-					(name "MPN") "SS14")
+					(name "MPN") "SS14-SMA-N-JQ")
 				(field
-					(name "Manufacturer") "ON Semiconductor / Panjit")
+					(name "Manufacturer") "Jiaqi")
 				(field
 					(name "Footprint") "Diode_SMD:D_SMA")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=SS14")
+					(name "Datasheet") "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239")
 				(field
 					(name "Description") "Schottky rectifier 1 A 40 V SMA")
 			)
@@ -4304,11 +5303,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "SS14")
+				(value "SS14-SMA-N-JQ")
 			)
 			(property
 				(name "Manufacturer")
-				(value "ON Semiconductor / Panjit")
+				(value "Jiaqi")
 			)
 			(property
 				(name "Sheetname")
@@ -4355,7 +5354,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -4374,7 +5373,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -4421,7 +5420,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -4440,7 +5439,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -4479,22 +5478,34 @@
 		)
 		(comp
 			(ref "D114")
-			(value "15V 500mW")
+			(value "MMSZ15V 500mW")
 			(footprint "Diode_SMD:D_SOD-123")
-			(description "Zener 15 V 500 mW SOD-123 (open-LED clamp), e.g. MMSZ5245B / BZT52C15")
+			(datasheet "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503")
+			(description "Zener 15 V 500 mW SOD-123 (MMSZ15V), open-LED clamp")
 			(fields
+				(field
+					(name "MPN") "MMSZ15V-HT")
+				(field
+					(name "Manufacturer") "Hottech")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-123")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503")
 				(field
-					(name "Description") "Zener 15 V 500 mW SOD-123 (open-LED clamp), e.g. MMSZ5245B / BZT52C15")
+					(name "Description") "Zener 15 V 500 mW SOD-123 (MMSZ15V), open-LED clamp")
 			)
 			(libsource
 				(lib "Device")
 				(part "D_Zener")
 				(description "Zener diode")
+			)
+			(property
+				(name "MPN")
+				(value "MMSZ15V-HT")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Hottech")
 			)
 			(property
 				(name "Sheetname")
@@ -4541,7 +5552,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -4560,7 +5571,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -4607,7 +5618,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -4626,7 +5637,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -4667,19 +5678,19 @@
 			(ref "J10")
 			(value "TFT_SAT070AT40D21_FPC40")
 			(footprint "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide")
-			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
+			(datasheet "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712")
 			(description "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC. Connector on the TOP side (pass 4): Connfly DS1020-09-40VBT1B UPPER contact, tail folded once around the PCB bottom edge; footprint pads numbered in panel order (mirrored)")
 			(fields
 				(field
 					(name "MPN") "DS1020-09-40VBT1B")
 				(field
-					(name "Manufacturer") "Connfly")
+					(name "Manufacturer") "CONNFLY")
 				(field
 					(name "Panel") "SAT70AT40D21-33KN-CTP-V1")
 				(field
 					(name "Footprint") "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
+					(name "Datasheet") "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712")
 				(field
 					(name "Description") "SATOZ SAT070AT40D21 7\" 800x480 TFT, 24-bit RGB, 40-pin 0.5 mm FPC. Connector on the TOP side (pass 4): Connfly DS1020-09-40VBT1B UPPER contact, tail folded once around the PCB bottom edge; footprint pads numbered in panel order (mirrored)")
 			)
@@ -4694,7 +5705,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Connfly")
+				(value "CONNFLY")
 			)
 			(property
 				(name "Panel")
@@ -4849,17 +5860,17 @@
 			(ref "J11")
 			(value "CTP_GT911_FPC6")
 			(footprint "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide")
-			(datasheet "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
+			(datasheet "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840")
 			(description "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC. Connector on the TOP side (pass 4): KLS L-KLS1-242D-1.2-06-T-U-R UPPER contact, H 1.2 mm; footprint pads numbered in panel order (mirrored)")
 			(fields
 				(field
 					(name "MPN") "L-KLS1-242D-1.2-06-T-U-R")
 				(field
-					(name "Manufacturer") "KLS Electronic")
+					(name "Manufacturer") "KLS ELECTRONIC")
 				(field
 					(name "Footprint") "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995")
+					(name "Datasheet") "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840")
 				(field
 					(name "Description") "Fannal FN070A133 capacitive touch panel (GT911, I2C 0x5D/0x14), 6-pin 0.5 mm FPC. Connector on the TOP side (pass 4): KLS L-KLS1-242D-1.2-06-T-U-R UPPER contact, H 1.2 mm; footprint pads numbered in panel order (mirrored)")
 			)
@@ -4874,7 +5885,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "KLS Electronic")
+				(value "KLS ELECTRONIC")
 			)
 			(property
 				(name "Sheetname")
@@ -4923,17 +5934,17 @@
 			(ref "L11")
 			(value "10uH 1A")
 			(footprint "Rev3:L_Viking_PCD0403")
-			(datasheet "https://www.ozdisan.com/c?search=PCD0403MT100")
+			(datasheet "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950")
 			(description "Power inductor 10 uH 1.04 A 182 mOhm 4.5x4x3.2 mm (footprint placeholder: verify against PCD0403 drawing)")
 			(fields
 				(field
 					(name "MPN") "PCD0403MT100")
 				(field
-					(name "Manufacturer") "Viking")
+					(name "Manufacturer") "VIKING")
 				(field
 					(name "Footprint") "Rev3:L_Viking_PCD0403")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=PCD0403MT100")
+					(name "Datasheet") "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950")
 				(field
 					(name "Description") "Power inductor 10 uH 1.04 A 182 mOhm 4.5x4x3.2 mm (footprint placeholder: verify against PCD0403 drawing)")
 			)
@@ -4948,7 +5959,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Viking")
+				(value "VIKING")
 			)
 			(property
 				(name "Sheetname")
@@ -4987,22 +5998,34 @@
 		)
 		(comp
 			(ref "L12")
-			(value "2.2uH 1A")
+			(value "10uH 1A")
 			(footprint "Rev3:L_Viking_PCD0403")
-			(description "Pi-filter inductor 2.2 uH >=1 A SMD 4x4 mm (e.g. Viking PCD0403 / Core Master FPI0403S series, pick in-stock value at Ozdisan)")
+			(datasheet "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950")
+			(description "Pi-filter inductor 10 uH 1 A 4x4 mm, Viking PCD0403MT100 (same part as L11)")
 			(fields
+				(field
+					(name "MPN") "PCD0403MT100")
+				(field
+					(name "Manufacturer") "VIKING")
 				(field
 					(name "Footprint") "Rev3:L_Viking_PCD0403")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950")
 				(field
-					(name "Description") "Pi-filter inductor 2.2 uH >=1 A SMD 4x4 mm (e.g. Viking PCD0403 / Core Master FPI0403S series, pick in-stock value at Ozdisan)")
+					(name "Description") "Pi-filter inductor 10 uH 1 A 4x4 mm, Viking PCD0403MT100 (same part as L11)")
 			)
 			(libsource
 				(lib "Device")
 				(part "L")
 				(description "Inductor")
+			)
+			(property
+				(name "MPN")
+				(value "PCD0403MT100")
+			)
+			(property
+				(name "Manufacturer")
+				(value "VIKING")
 			)
 			(property
 				(name "Sheetname")
@@ -5043,13 +6066,17 @@
 			(ref "R110")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5057,6 +6084,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5097,13 +6132,17 @@
 			(ref "R111")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5111,6 +6150,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5151,13 +6198,17 @@
 			(ref "R112")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5165,6 +6216,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5205,13 +6264,17 @@
 			(ref "R113")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5219,6 +6282,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5259,13 +6330,17 @@
 			(ref "R114")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5273,6 +6348,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5313,13 +6396,17 @@
 			(ref "R115")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5327,6 +6414,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5367,13 +6462,17 @@
 			(ref "R116")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5381,6 +6480,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5421,13 +6528,17 @@
 			(ref "R117")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5435,6 +6546,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5475,13 +6594,17 @@
 			(ref "R118")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5489,6 +6612,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5529,13 +6660,17 @@
 			(ref "R119")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5543,6 +6678,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5583,13 +6726,17 @@
 			(ref "R120")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5597,6 +6744,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5637,13 +6792,17 @@
 			(ref "R121")
 			(value "33R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "RC0402JR-0733RL")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5651,6 +6810,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "RC0402JR-0733RL")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -5689,22 +6856,34 @@
 		)
 		(comp
 			(ref "R122")
-			(value "18R 0.125W")
+			(value "18R 0.1%")
 			(footprint "Resistor_SMD:R_0805_2012Metric")
-			(description "Resistor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649")
+			(description "RES 0805 18 Ohm 0.1% thin film (LED current sense)")
 			(fields
+				(field
+					(name "MPN") "TC0525B180JT5F")
+				(field
+					(name "Manufacturer") "Royalohm")
 				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649")
 				(field
-					(name "Description") "Resistor")
+					(name "Description") "RES 0805 18 Ohm 0.1% thin film (LED current sense)")
 			)
 			(libsource
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0525B180JT5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -5743,22 +6922,34 @@
 		)
 		(comp
 			(ref "R123")
-			(value "18R 0.125W")
+			(value "18R 0.1%")
 			(footprint "Resistor_SMD:R_0805_2012Metric")
-			(description "Resistor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649")
+			(description "RES 0805 18 Ohm 0.1% thin film (LED current sense)")
 			(fields
+				(field
+					(name "MPN") "TC0525B180JT5F")
+				(field
+					(name "Manufacturer") "Royalohm")
 				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649")
 				(field
-					(name "Description") "Resistor")
+					(name "Description") "RES 0805 18 Ohm 0.1% thin film (LED current sense)")
 			)
 			(libsource
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0525B180JT5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -5802,6 +6993,10 @@
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -5813,6 +7008,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -5853,13 +7056,17 @@
 			(ref "R125")
 			(value "0R")
 			(footprint "Resistor_SMD:R_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0805WAJ0000T5E")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5867,6 +7074,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0805WAJ0000T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -5907,13 +7122,17 @@
 			(ref "R126")
 			(value "0R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "CQ02WGJ0000TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5921,6 +7140,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CQ02WGJ0000TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -5961,13 +7188,17 @@
 			(ref "R127")
 			(value "100k")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "CQ02WGF1003TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -5975,6 +7206,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CQ02WGF1003TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -6015,13 +7254,17 @@
 			(ref "R128")
 			(value "0R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "CQ02WGJ0000TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -6029,6 +7272,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CQ02WGJ0000TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -6069,13 +7320,17 @@
 			(ref "R129")
 			(value "0R")
 			(footprint "Resistor_SMD:R_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0805WAJ0000T5E")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -6083,6 +7338,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0805WAJ0000T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -6123,13 +7386,17 @@
 			(ref "R130")
 			(value "2.2k")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "AC0402JR-072K2L")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -6137,6 +7404,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "AC0402JR-072K2L")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -6177,13 +7452,17 @@
 			(ref "R131")
 			(value "2.2k")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "AC0402JR-072K2L")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -6191,6 +7470,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "AC0402JR-072K2L")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -6229,22 +7516,34 @@
 		)
 		(comp
 			(ref "R132")
-			(value "0.5R 0.25W")
+			(value "0.5R 0.5W 1%")
 			(footprint "Resistor_SMD:R_1206_3216Metric")
-			(description "Resistor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953")
+			(description "RES 1206 0.5 Ohm 1% 0.5 W (pi-filter damper)")
 			(fields
+				(field
+					(name "MPN") "HP06W2F500LT5E")
+				(field
+					(name "Manufacturer") "Royalohm")
 				(field
 					(name "Footprint") "Resistor_SMD:R_1206_3216Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953")
 				(field
-					(name "Description") "Resistor")
+					(name "Description") "RES 1206 0.5 Ohm 1% 0.5 W (pi-filter damper)")
 			)
 			(libsource
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "HP06W2F500LT5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -6283,21 +7582,21 @@
 		)
 		(comp
 			(ref "RN1")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6306,11 +7605,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6367,21 +7666,21 @@
 		)
 		(comp
 			(ref "RN2")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6390,11 +7689,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6451,21 +7750,21 @@
 		)
 		(comp
 			(ref "RN3")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6474,11 +7773,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6535,21 +7834,21 @@
 		)
 		(comp
 			(ref "RN4")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6558,11 +7857,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6619,21 +7918,21 @@
 		)
 		(comp
 			(ref "RN5")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6642,11 +7941,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6703,21 +8002,21 @@
 		)
 		(comp
 			(ref "RN6")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6726,11 +8025,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6787,21 +8086,21 @@
 		)
 		(comp
 			(ref "RN7")
-			(value "33R x4")
+			(value "100R x4")
 			(footprint "Resistor_SMD:R_Array_Convex_4x0402")
-			(datasheet "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
-			(description "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+			(datasheet "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
+			(description "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			(fields
 				(field
-					(name "MPN") "4D02WGJ0330TCE")
+					(name "MPN") "4D02WGJ0101TCE")
 				(field
-					(name "Manufacturer") "Royalohm")
+					(name "Manufacturer") "ROYALOHM")
 				(field
 					(name "Footprint") "Resistor_SMD:R_Array_Convex_4x0402")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=4D02WGJ0330TCE")
+					(name "Datasheet") "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030")
 				(field
-					(name "Description") "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)")
+					(name "Description") "Resistor array 4 x 100 Ohm 5 % 1/16 W, 0402x4 convex (Royalohm 4D02WGJ0101TCE); 33 R -> 100 R (EMC fix 2026-11-21)")
 			)
 			(libsource
 				(lib "Device")
@@ -6810,11 +8109,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "4D02WGJ0330TCE")
+				(value "4D02WGJ0101TCE")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Royalohm")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -6879,7 +8178,7 @@
 				(field
 					(name "MPN") "SSD1963QL9")
 				(field
-					(name "Manufacturer") "Solomon Systech")
+					(name "Manufacturer") "SOLOMON")
 				(field
 					(name "Footprint") "Package_QFP:LQFP-128_14x14mm_P0.4mm")
 				(field
@@ -6898,7 +8197,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Solomon Systech")
+				(value "SOLOMON")
 			)
 			(property
 				(name "Sheetname")
@@ -7319,7 +8618,7 @@
 				(field
 					(name "MPN") "MIC2288YD5-TR")
 				(field
-					(name "Manufacturer") "Microchip")
+					(name "Manufacturer") "MICREL-MICROCHIP")
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:TSOT-23-5")
 				(field
@@ -7338,7 +8637,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Microchip")
+				(value "MICREL-MICROCHIP")
 			)
 			(property
 				(name "Sheetname")
@@ -7384,7 +8683,7 @@
 			(ref "Y10")
 			(value "10MHz")
 			(footprint "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm")
-			(datasheet "https://www.ozdisan.com/c?search=CX3225GB10000P0HPQCC")
+			(datasheet "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628")
 			(description "Crystal 10 MHz 18 pF 3225 4-pad, +/-20 ppm")
 			(fields
 				(field
@@ -7394,7 +8693,7 @@
 				(field
 					(name "Footprint") "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=CX3225GB10000P0HPQCC")
+					(name "Datasheet") "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628")
 				(field
 					(name "Description") "Crystal 10 MHz 18 pF 3225 4-pad, +/-20 ppm")
 			)
@@ -7456,13 +8755,17 @@
 			(ref "C220")
 			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CC0603KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -7470,6 +8773,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0603KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -7508,22 +8819,34 @@
 		)
 		(comp
 			(ref "C221")
-			(value "10nF 50V C0G 1%")
+			(value "10nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649")
+			(description "MLCC 0603 10 nF 50 V X7R 10% (common-mode filter cap)")
 			(fields
+				(field
+					(name "MPN") "CL10B103KB8NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0603 10 nF 50 V X7R 10% (common-mode filter cap)")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL10B103KB8NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -7562,22 +8885,34 @@
 		)
 		(comp
 			(ref "C222")
-			(value "10nF 50V C0G 1%")
+			(value "10nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649")
+			(description "MLCC 0603 10 nF 50 V X7R 10% (common-mode filter cap)")
 			(fields
+				(field
+					(name "MPN") "CL10B103KB8NNNC")
+				(field
+					(name "Manufacturer") "Samsung")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0603 10 nF 50 V X7R 10% (common-mode filter cap)")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL10B103KB8NNNC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -7616,22 +8951,34 @@
 		)
 		(comp
 			(ref "C223")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -7672,13 +9019,17 @@
 			(ref "C224")
 			(value "1uF 16V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "C1608X7R1C105K080AC")
+				(field
+					(name "Manufacturer") "TDK")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -7686,6 +9037,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C1608X7R1C105K080AC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TDK")
 			)
 			(property
 				(name "Sheetname")
@@ -7724,22 +9083,34 @@
 		)
 		(comp
 			(ref "C225")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -7778,22 +9149,34 @@
 		)
 		(comp
 			(ref "C226")
-			(value "100nF 16V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -7840,7 +9223,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -7859,7 +9242,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -7906,7 +9289,7 @@
 				(field
 					(name "MPN") "PESD5V0S1BA,115")
 				(field
-					(name "Manufacturer") "Nexperia")
+					(name "Manufacturer") "NEXPERIA")
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -7925,7 +9308,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Nexperia")
+				(value "NEXPERIA")
 			)
 			(property
 				(name "Sheetname")
@@ -7966,7 +9349,7 @@
 			(ref "J20")
 			(value "K-type TC")
 			(footprint "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P")
-			(datasheet "https://www.ozdisan.com/c?search=DG127H-5.08-02P-14-00AH")
+			(datasheet "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380")
 			(description "PCB screw terminal block 2-pin 5.08 mm, 12 A 300 V, 26-14 AWG")
 			(fields
 				(field
@@ -7976,7 +9359,7 @@
 				(field
 					(name "Footprint") "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=DG127H-5.08-02P-14-00AH")
+					(name "Datasheet") "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380")
 				(field
 					(name "Description") "PCB screw terminal block 2-pin 5.08 mm, 12 A 300 V, 26-14 AWG")
 			)
@@ -8032,13 +9415,17 @@
 			(ref "R220")
 			(value "1k 0.1%")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "TC0325B1001T5F")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8046,6 +9433,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0325B1001T5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8086,13 +9481,17 @@
 			(ref "R221")
 			(value "1k 0.1%")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "TC0325B1001T5F")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8100,6 +9499,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0325B1001T5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8140,13 +9547,17 @@
 			(ref "R222")
 			(value "10M")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0603SAJ0106T5E")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8154,6 +9565,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0603SAJ0106T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8194,13 +9613,17 @@
 			(ref "R223")
 			(value "10M")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0603SAJ0106T5E")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8208,6 +9631,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0603SAJ0106T5E")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8251,6 +9682,10 @@
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0402WGJ0103TCE")
+				(field
+					(name "Manufacturer") "ROYALOHM")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -8262,6 +9697,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGJ0103TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "ROYALOHM")
 			)
 			(property
 				(name "Sheetname")
@@ -8302,13 +9745,17 @@
 			(ref "R225")
 			(value "10k 0.1%")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "TC0325B1002T5F")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8316,6 +9763,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0325B1002T5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8356,13 +9811,17 @@
 			(ref "R226")
 			(value "10k 0.1%")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "TC0325B1002T5F")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8370,6 +9829,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0325B1002T5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8410,13 +9877,17 @@
 			(ref "R227")
 			(value "10k 0.1%")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "TC0325B1002T5F")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -8424,6 +9895,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "TC0325B1002T5F")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -8464,19 +9943,19 @@
 			(ref "TH220")
 			(value "10k NTC B3380")
 			(footprint "Resistor_SMD:R_0603_1608Metric")
-			(datasheet "https://www.ozdisan.com/c?search=NCP18XH103F03RB")
-			(description "NTC thermistor 10k 1% B25/50=3380K 0603 - cold junction sensor, place touching J20")
+			(datasheet "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282")
+			(description "NTC thermistor 10k 1% B25/50=3380K 0603 (Thinking TSM1B103F3381RZ) - cold junction sensor, place touching J20")
 			(fields
 				(field
-					(name "MPN") "NCP18XH103F03RB")
+					(name "MPN") "TSM1B103F3381RZ")
 				(field
-					(name "Manufacturer") "Murata")
+					(name "Manufacturer") "Thinking")
 				(field
 					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=NCP18XH103F03RB")
+					(name "Datasheet") "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282")
 				(field
-					(name "Description") "NTC thermistor 10k 1% B25/50=3380K 0603 - cold junction sensor, place touching J20")
+					(name "Description") "NTC thermistor 10k 1% B25/50=3380K 0603 (Thinking TSM1B103F3381RZ) - cold junction sensor, place touching J20")
 			)
 			(libsource
 				(lib "Device")
@@ -8485,11 +9964,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "NCP18XH103F03RB")
+				(value "TSM1B103F3381RZ")
 			)
 			(property
 				(name "Manufacturer")
-				(value "Murata")
+				(value "Thinking")
 			)
 			(property
 				(name "Sheetname")
@@ -8536,7 +10015,7 @@
 				(field
 					(name "MPN") "ADS1115IDGSR")
 				(field
-					(name "Manufacturer") "Texas Instruments")
+					(name "Manufacturer") "TEXAS")
 				(field
 					(name "Footprint") "Package_SO:TSSOP-10_3x3mm_P0.5mm")
 				(field
@@ -8555,7 +10034,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Texas Instruments")
+				(value "TEXAS")
 			)
 			(property
 				(name "Sheetname")
@@ -8620,13 +10099,17 @@
 			(ref "C330")
 			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -8634,6 +10117,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -8674,13 +10165,17 @@
 			(ref "C331")
 			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -8688,6 +10183,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -8726,22 +10229,34 @@
 		)
 		(comp
 			(ref "C332")
-			(value "100nF 25V X7R")
+			(value "100nF 50V X7R")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
+			(description "MLCC 0402 100 nF 50 V X7R 10%")
 			(fields
+				(field
+					(name "MPN") "CC0402KRX7R9BB104")
+				(field
+					(name "Manufacturer") "Yageo")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0402 100 nF 50 V X7R 10%")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Yageo")
 			)
 			(property
 				(name "Sheetname")
@@ -8780,22 +10295,34 @@
 		)
 		(comp
 			(ref "C333")
-			(value "22uF 10V X5R")
+			(value "22uF 16V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002")
+			(description "MLCC 0805 22 uF 16 V X5R")
 			(fields
+				(field
+					(name "MPN") "CL21A226KOQNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0805 22 uF 16 V X5R")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A226KOQNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -8834,22 +10361,34 @@
 		)
 		(comp
 			(ref "C334")
-			(value "22uF 10V X5R")
+			(value "22uF 16V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
-			(description "Unpolarized capacitor")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002")
+			(description "MLCC 0805 22 uF 16 V X5R")
 			(fields
+				(field
+					(name "MPN") "CL21A226KOQNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002")
 				(field
-					(name "Description") "Unpolarized capacitor")
+					(name "Description") "MLCC 0805 22 uF 16 V X5R")
 			)
 			(libsource
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A226KOQNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -8890,13 +10429,17 @@
 			(ref "C335")
 			(value "1uF 16V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "C1608X7R1C105K080AC")
+				(field
+					(name "Manufacturer") "TDK")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -8904,6 +10447,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C1608X7R1C105K080AC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TDK")
 			)
 			(property
 				(name "Sheetname")
@@ -8942,15 +10493,19 @@
 		)
 		(comp
 			(ref "C336")
-			(value "10uF 6.3V X5R")
+			(value "10uF 10V X5R")
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "CL21A106KPFNNNE")
+				(field
+					(name "Manufacturer") "Samsung")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -8958,6 +10513,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "CL21A106KPFNNNE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Samsung")
 			)
 			(property
 				(name "Sheetname")
@@ -8996,15 +10559,19 @@
 		)
 		(comp
 			(ref "C337")
-			(value "1uF 6.3V X7R")
+			(value "1uF 16V X7R")
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 			(description "Unpolarized capacitor")
 			(fields
 				(field
+					(name "MPN") "C1608X7R1C105K080AC")
+				(field
+					(name "Manufacturer") "TDK")
+				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193")
 				(field
 					(name "Description") "Unpolarized capacitor")
 			)
@@ -9012,6 +10579,14 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "MPN")
+				(value "C1608X7R1C105K080AC")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TDK")
 			)
 			(property
 				(name "Sheetname")
@@ -9052,17 +10627,17 @@
 			(ref "L30")
 			(value "4.7uH 4A")
 			(footprint "Rev3:L_CoreMaster_SRI0605B")
-			(datasheet "https://www.ozdisan.com/c?search=SRI0605B-4R7M")
+			(datasheet "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415")
 			(description "Shielded power inductor 4.7 uH 4 A 70 mOhm 6.6x6.2x5 mm (footprint placeholder: verify against SRI0605B drawing)")
 			(fields
 				(field
 					(name "MPN") "SRI0605B-4R7M")
 				(field
-					(name "Manufacturer") "Core Master")
+					(name "Manufacturer") "CORE MASTER")
 				(field
 					(name "Footprint") "Rev3:L_CoreMaster_SRI0605B")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=SRI0605B-4R7M")
+					(name "Datasheet") "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415")
 				(field
 					(name "Description") "Shielded power inductor 4.7 uH 4 A 70 mOhm 6.6x6.2x5 mm (footprint placeholder: verify against SRI0605B drawing)")
 			)
@@ -9077,7 +10652,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Core Master")
+				(value "CORE MASTER")
 			)
 			(property
 				(name "Sheetname")
@@ -9118,13 +10693,17 @@
 			(ref "R330")
 			(value "33.2k 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "0402WGF3322TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -9132,6 +10711,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "0402WGF3322TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -9172,13 +10759,17 @@
 			(ref "R331")
 			(value "10k 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(datasheet "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902")
 			(description "Resistor")
 			(fields
 				(field
+					(name "MPN") "CQ02WGF1002TCE")
+				(field
+					(name "Manufacturer") "Royalohm")
+				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902")
 				(field
 					(name "Description") "Resistor")
 			)
@@ -9186,6 +10777,14 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
+			)
+			(property
+				(name "MPN")
+				(value "CQ02WGF1002TCE")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Royalohm")
 			)
 			(property
 				(name "Sheetname")
@@ -9226,17 +10825,17 @@
 			(ref "U30")
 			(value "TPS562201DDCR")
 			(footprint "Package_TO_SOT_SMD:TSOT-23-6")
-			(datasheet "https://www.ozdisan.com/c?search=TPS562201DDCR")
+			(datasheet "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034")
 			(description "4.5-17 V input, 2 A synchronous step-down converter, 580 kHz, TSOT23-6, -40..+125 C")
 			(fields
 				(field
 					(name "MPN") "TPS562201DDCR")
 				(field
-					(name "Manufacturer") "Texas Instruments")
+					(name "Manufacturer") "TEXAS")
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:TSOT-23-6")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=TPS562201DDCR")
+					(name "Datasheet") "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034")
 				(field
 					(name "Description") "4.5-17 V input, 2 A synchronous step-down converter, 580 kHz, TSOT23-6, -40..+125 C")
 			)
@@ -9251,7 +10850,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Texas Instruments")
+				(value "TEXAS")
 			)
 			(property
 				(name "Sheetname")
@@ -9304,17 +10903,17 @@
 			(ref "U31")
 			(value "LD1117S12CTR")
 			(footprint "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
-			(datasheet "https://www.ozdisan.com/c?search=LD1117S12CTR")
+			(datasheet "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395")
 			(description "1.2 V 800 mA LDO, SOT-223, -40..+125 C, SSD1963 core supply")
 			(fields
 				(field
 					(name "MPN") "LD1117S12CTR")
 				(field
-					(name "Manufacturer") "STMicroelectronics")
+					(name "Manufacturer") "STM")
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
 				(field
-					(name "Datasheet") "https://www.ozdisan.com/c?search=LD1117S12CTR")
+					(name "Datasheet") "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395")
 				(field
 					(name "Description") "1.2 V 800 mA LDO, SOT-223, -40..+125 C, SSD1963 core supply")
 			)
@@ -9329,7 +10928,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "STMicroelectronics")
+				(value "STM")
 			)
 			(property
 				(name "Sheetname")
@@ -9379,7 +10978,7 @@
 				(field
 					(name "MPN") "C42P2105KBSC400")
 				(field
-					(name "Manufacturer") "Faratronic")
+					(name "Manufacturer") "FARATRONIC")
 				(field
 					(name "Footprint") "Rev3:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2")
 				(field
@@ -9398,7 +10997,7 @@
 			)
 			(property
 				(name "Manufacturer")
-				(value "Faratronic")
+				(value "FARATRONIC")
 			)
 			(property
 				(name "Sheetname")
@@ -9713,11 +11312,12 @@
 			)
 			(fields
 				(field
-					(name "Reference") "J2")
+					(name "Reference") "J")
 				(field
-					(name "Value") "FTDI")
+					(name "Value") "Conn_01x06_Pin")
 				(field
-					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")
+					(name "Footprint")
+				)
 				(field
 					(name "Datasheet")
 				)
@@ -10813,58 +12413,10 @@
 			)
 		)
 		(libpart
-			(lib "Relay")
-			(part "SANYOU_SRD_Form_C")
-			(description "Sanyo SRD relay, Single Pole Miniature Power Relay,")
-			(docs "http://www.sanyourelay.ca/public/products/pdf/SRD.pdf")
-			(footprints
-				(fp "Relay*SPDT*SANYOU*SRD*Series*Form*C*")
-			)
-			(fields
-				(field
-					(name "Reference") "K")
-				(field
-					(name "Value") "SANYOU_SRD_Form_C")
-				(field
-					(name "Footprint") "Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C")
-				(field
-					(name "Datasheet") "http://www.sanyourelay.ca/public/products/pdf/SRD.pdf")
-				(field
-					(name "Description") "Sanyo SRD relay, Single Pole Miniature Power Relay,")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "")
-					(type "passive")
-				)
-				(pin
-					(num "3")
-					(name "")
-					(type "passive")
-				)
-				(pin
-					(num "4")
-					(name "")
-					(type "passive")
-				)
-				(pin
-					(num "5")
-					(name "")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
 			(lib "Relay_SolidState")
-			(part "MOC3052M")
-			(description "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6")
-			(docs "https://www.onsemi.com/pub/Collateral/MOC3052M-D.PDF")
+			(part "MOC3083M")
+			(description "Zero Cross Opto-Triac, Vdrm 800V, Ift 5mA, DIP6")
+			(docs "https://www.onsemi.com/pub/Collateral/MOC3083M-D.PDF")
 			(footprints
 				(fp "DIP*W7.62mm*")
 				(fp "SMDIP*W9.53mm*")
@@ -10874,14 +12426,14 @@
 				(field
 					(name "Reference") "U")
 				(field
-					(name "Value") "MOC3052M")
+					(name "Value") "MOC3083M")
 				(field
 					(name "Footprint")
 				)
 				(field
-					(name "Datasheet") "https://www.onsemi.com/pub/Collateral/MOC3052M-D.PDF")
+					(name "Datasheet") "https://www.onsemi.com/pub/Collateral/MOC3083M-D.PDF")
 				(field
-					(name "Description") "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6")
+					(name "Description") "Zero Cross Opto-Triac, Vdrm 800V, Ift 5mA, DIP6")
 			)
 			(pins
 				(pin
@@ -10914,6 +12466,25 @@
 					(name "")
 					(type "passive")
 				)
+			)
+		)
+		(libpart
+			(lib "Rev3")
+			(part "BOM_Item")
+			(description "Part in the BOM but not on the board (probe, cable, accessory); no pins")
+			(fields
+				(field
+					(name "Reference") "MP")
+				(field
+					(name "Value") "BOM_Item")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Part in the BOM but not on the board (probe, cable, accessory); no pins")
 			)
 		)
 		(libpart
@@ -11016,6 +12587,49 @@
 					(num "5")
 					(name "VIN")
 					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "Rev3")
+			(part "Relay_SPST-NO_11-14")
+			(description "Relay SPST-NO, EN 50005 terminal numbers: coil A1 / A2, common 11, NO 14 (TE Schrack RZ / RT1 form A, Hongfa HF115FD ...-1H)")
+			(footprints
+				(fp "Relay?SPST*")
+			)
+			(fields
+				(field
+					(name "Reference") "K")
+				(field
+					(name "Value") "Relay_SPST-NO_11-14")
+				(field
+					(name "Footprint") "Relay_THT:Relay_SPST_Schrack-RT1-16A-FormA_RM5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Relay SPST-NO, EN 50005 terminal numbers: coil A1 / A2, common 11, NO 14 (TE Schrack RZ / RT1 form A, Hongfa HF115FD ...-1H)")
+			)
+			(pins
+				(pin
+					(num "11")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "14")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "A1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "A2")
+					(name "")
+					(type "passive")
 				)
 			)
 		)
@@ -12117,10 +13731,6 @@
 			(uri "${KICAD10_SYMBOL_DIR}/Regulator_Switching.kicad_sym")
 		)
 		(library
-			(logical "Relay")
-			(uri "${KICAD10_SYMBOL_DIR}/Relay.kicad_sym")
-		)
-		(library
 			(logical "Relay_SolidState")
 			(uri "${KICAD10_SYMBOL_DIR}/Relay_SolidState.kicad_sym")
 		)
@@ -12591,6 +14201,16 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C134")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C135")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
 				(ref "C2")
 				(pin "1")
 				(pintype "passive")
@@ -12613,7 +14233,7 @@
 			)
 			(node
 				(ref "K1")
-				(pin "2")
+				(pin "A2")
 				(pintype "passive")
 			)
 			(node
@@ -12643,6 +14263,28 @@
 		)
 		(net
 			(code "4")
+			(name "/DTR")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "3")
+				(pinfunction "Pin_3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "Q2")
+				(pin "2")
+				(pinfunction "E_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R14")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
 			(name "/Display/B0")
 			(class "Default")
 			(node
@@ -12659,7 +14301,7 @@
 			)
 		)
 		(net
-			(code "5")
+			(code "6")
 			(name "/Display/B0_T")
 			(class "Default")
 			(node
@@ -12676,7 +14318,7 @@
 			)
 		)
 		(net
-			(code "6")
+			(code "7")
 			(name "/Display/B1")
 			(class "Default")
 			(node
@@ -12693,7 +14335,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "8")
 			(name "/Display/B1_T")
 			(class "Default")
 			(node
@@ -12710,7 +14352,7 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "9")
 			(name "/Display/B2")
 			(class "Default")
 			(node
@@ -12727,7 +14369,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "10")
 			(name "/Display/B2_T")
 			(class "Default")
 			(node
@@ -12744,7 +14386,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "11")
 			(name "/Display/B3")
 			(class "Default")
 			(node
@@ -12761,7 +14403,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "12")
 			(name "/Display/B3_T")
 			(class "Default")
 			(node
@@ -12778,7 +14420,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "13")
 			(name "/Display/B4")
 			(class "Default")
 			(node
@@ -12795,7 +14437,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "14")
 			(name "/Display/B4_T")
 			(class "Default")
 			(node
@@ -12812,7 +14454,7 @@
 			)
 		)
 		(net
-			(code "14")
+			(code "15")
 			(name "/Display/B5")
 			(class "Default")
 			(node
@@ -12829,7 +14471,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "16")
 			(name "/Display/B5_T")
 			(class "Default")
 			(node
@@ -12846,7 +14488,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "17")
 			(name "/Display/B6")
 			(class "Default")
 			(node
@@ -12863,7 +14505,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "18")
 			(name "/Display/B6_T")
 			(class "Default")
 			(node
@@ -12880,7 +14522,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "19")
 			(name "/Display/B7")
 			(class "Default")
 			(node
@@ -12897,7 +14539,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "20")
 			(name "/Display/B7_T")
 			(class "Default")
 			(node
@@ -12914,7 +14556,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "21")
 			(name "/Display/BL_DAMP")
 			(class "Default")
 			(node
@@ -12929,7 +14571,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "22")
 			(name "/Display/BL_EN")
 			(class "Default")
 			(node
@@ -12950,7 +14592,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "23")
 			(name "/Display/BL_FB")
 			(class "Default")
 			(node
@@ -12966,7 +14608,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "24")
 			(name "/Display/BL_PWM")
 			(class "Default")
 			(node
@@ -12982,7 +14624,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "25")
 			(name "/Display/BL_SW")
 			(class "Default")
 			(node
@@ -13005,7 +14647,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "26")
 			(name "/Display/BL_VIN")
 			(class "Default")
 			(node
@@ -13038,7 +14680,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "27")
 			(name "/Display/DE")
 			(class "Default")
 			(node
@@ -13055,7 +14697,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "28")
 			(name "/Display/DE_T")
 			(class "Default")
 			(node
@@ -13072,7 +14714,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "29")
 			(name "/Display/G0")
 			(class "Default")
 			(node
@@ -13089,7 +14731,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "30")
 			(name "/Display/G0_T")
 			(class "Default")
 			(node
@@ -13106,7 +14748,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "31")
 			(name "/Display/G1")
 			(class "Default")
 			(node
@@ -13123,7 +14765,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "32")
 			(name "/Display/G1_T")
 			(class "Default")
 			(node
@@ -13140,7 +14782,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "33")
 			(name "/Display/G2")
 			(class "Default")
 			(node
@@ -13157,7 +14799,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "34")
 			(name "/Display/G2_T")
 			(class "Default")
 			(node
@@ -13174,7 +14816,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "35")
 			(name "/Display/G3")
 			(class "Default")
 			(node
@@ -13191,7 +14833,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "36")
 			(name "/Display/G3_T")
 			(class "Default")
 			(node
@@ -13208,7 +14850,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "37")
 			(name "/Display/G4")
 			(class "Default")
 			(node
@@ -13225,7 +14867,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "38")
 			(name "/Display/G4_T")
 			(class "Default")
 			(node
@@ -13242,7 +14884,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "39")
 			(name "/Display/G5")
 			(class "Default")
 			(node
@@ -13259,7 +14901,7 @@
 			)
 		)
 		(net
-			(code "39")
+			(code "40")
 			(name "/Display/G5_T")
 			(class "Default")
 			(node
@@ -13276,7 +14918,7 @@
 			)
 		)
 		(net
-			(code "40")
+			(code "41")
 			(name "/Display/G6")
 			(class "Default")
 			(node
@@ -13293,7 +14935,7 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "42")
 			(name "/Display/G6_T")
 			(class "Default")
 			(node
@@ -13310,7 +14952,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "43")
 			(name "/Display/G7")
 			(class "Default")
 			(node
@@ -13327,7 +14969,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "44")
 			(name "/Display/G7_T")
 			(class "Default")
 			(node
@@ -13344,7 +14986,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "45")
 			(name "/Display/HSYNC")
 			(class "Default")
 			(node
@@ -13361,7 +15003,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "46")
 			(name "/Display/HSYNC_T")
 			(class "Default")
 			(node
@@ -13378,7 +15020,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "47")
 			(name "/Display/PCLK")
 			(class "Default")
 			(node
@@ -13395,7 +15037,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "48")
 			(name "/Display/PCLK_T")
 			(class "Default")
 			(node
@@ -13412,7 +15054,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "49")
 			(name "/Display/R0")
 			(class "Default")
 			(node
@@ -13429,7 +15071,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "50")
 			(name "/Display/R0_T")
 			(class "Default")
 			(node
@@ -13446,7 +15088,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "51")
 			(name "/Display/R1")
 			(class "Default")
 			(node
@@ -13463,7 +15105,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "52")
 			(name "/Display/R1_T")
 			(class "Default")
 			(node
@@ -13480,7 +15122,7 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "53")
 			(name "/Display/R2")
 			(class "Default")
 			(node
@@ -13497,7 +15139,7 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "54")
 			(name "/Display/R2_T")
 			(class "Default")
 			(node
@@ -13514,7 +15156,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "55")
 			(name "/Display/R3")
 			(class "Default")
 			(node
@@ -13531,7 +15173,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "56")
 			(name "/Display/R3_T")
 			(class "Default")
 			(node
@@ -13548,7 +15190,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "57")
 			(name "/Display/R4")
 			(class "Default")
 			(node
@@ -13565,7 +15207,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "58")
 			(name "/Display/R4_T")
 			(class "Default")
 			(node
@@ -13582,7 +15224,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "59")
 			(name "/Display/R5")
 			(class "Default")
 			(node
@@ -13599,7 +15241,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "60")
 			(name "/Display/R5_T")
 			(class "Default")
 			(node
@@ -13616,7 +15258,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "61")
 			(name "/Display/R6")
 			(class "Default")
 			(node
@@ -13633,7 +15275,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "62")
 			(name "/Display/R6_T")
 			(class "Default")
 			(node
@@ -13650,7 +15292,7 @@
 			)
 		)
 		(net
-			(code "62")
+			(code "63")
 			(name "/Display/R7")
 			(class "Default")
 			(node
@@ -13667,7 +15309,7 @@
 			)
 		)
 		(net
-			(code "63")
+			(code "64")
 			(name "/Display/R7_T")
 			(class "Default")
 			(node
@@ -13684,7 +15326,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "65")
 			(name "/Display/SSD_CS")
 			(class "Default")
 			(node
@@ -13700,7 +15342,7 @@
 			)
 		)
 		(net
-			(code "65")
+			(code "66")
 			(name "/Display/SSD_D0")
 			(class "Default")
 			(node
@@ -13716,7 +15358,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "67")
 			(name "/Display/SSD_D1")
 			(class "Default")
 			(node
@@ -13732,7 +15374,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "68")
 			(name "/Display/SSD_D2")
 			(class "Default")
 			(node
@@ -13748,7 +15390,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "69")
 			(name "/Display/SSD_D3")
 			(class "Default")
 			(node
@@ -13764,7 +15406,7 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "70")
 			(name "/Display/SSD_D4")
 			(class "Default")
 			(node
@@ -13780,7 +15422,7 @@
 			)
 		)
 		(net
-			(code "70")
+			(code "71")
 			(name "/Display/SSD_D5")
 			(class "Default")
 			(node
@@ -13796,7 +15438,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "72")
 			(name "/Display/SSD_D6")
 			(class "Default")
 			(node
@@ -13812,7 +15454,7 @@
 			)
 		)
 		(net
-			(code "72")
+			(code "73")
 			(name "/Display/SSD_D7")
 			(class "Default")
 			(node
@@ -13828,7 +15470,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "74")
 			(name "/Display/SSD_DC")
 			(class "Default")
 			(node
@@ -13844,7 +15486,7 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "75")
 			(name "/Display/SSD_RD")
 			(class "Default")
 			(node
@@ -13860,7 +15502,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "76")
 			(name "/Display/SSD_RST")
 			(class "Default")
 			(node
@@ -13876,7 +15518,7 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "77")
 			(name "/Display/SSD_WR")
 			(class "Default")
 			(node
@@ -13892,7 +15534,7 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "78")
 			(name "/Display/TFT_VDD")
 			(class "Default")
 			(node
@@ -13923,7 +15565,7 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "79")
 			(name "/Display/TP_VDD")
 			(class "Default")
 			(node
@@ -13949,7 +15591,7 @@
 			)
 		)
 		(net
-			(code "79")
+			(code "80")
 			(name "/Display/VLED_N")
 			(class "Default")
 			(node
@@ -13985,7 +15627,7 @@
 			)
 		)
 		(net
-			(code "80")
+			(code "81")
 			(name "/Display/VLED_P")
 			(class "Default")
 			(node
@@ -14023,7 +15665,7 @@
 			)
 		)
 		(net
-			(code "81")
+			(code "82")
 			(name "/Display/VSYNC")
 			(class "Default")
 			(node
@@ -14040,7 +15682,7 @@
 			)
 		)
 		(net
-			(code "82")
+			(code "83")
 			(name "/Display/VSYNC_T")
 			(class "Default")
 			(node
@@ -14057,7 +15699,7 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "84")
 			(name "/Display/XTAL_IN")
 			(class "Default")
 			(node
@@ -14079,7 +15721,7 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "85")
 			(name "/Display/XTAL_OUT")
 			(class "Default")
 			(node
@@ -14101,7 +15743,34 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "86")
+			(name "/EN")
+			(class "Default")
+			(node
+				(ref "C6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "Q3")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R11")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "EN_3")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "87")
 			(name "/FAN")
 			(class "Default")
 			(node
@@ -14117,7 +15786,29 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "88")
+			(name "/IO0")
+			(class "Default")
+			(node
+				(ref "Q2")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R12")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "25")
+				(pinfunction "IO0_25")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "89")
 			(name "/Power/BUCK_BST")
 			(class "Default")
 			(node
@@ -14133,7 +15824,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "90")
 			(name "/Power/BUCK_FB")
 			(class "Default")
 			(node
@@ -14154,7 +15845,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "91")
 			(name "/Power/BUCK_SW")
 			(class "Default")
 			(node
@@ -14176,7 +15867,78 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "92")
+			(name "/Q1_A1")
+			(class "MainsHeater")
+			(node
+				(ref "C4")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D6")
+				(pin "2")
+				(pinfunction "A2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "Q1")
+				(pin "1")
+				(pinfunction "A1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R2")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "93")
+			(name "/RTS")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "Q3")
+				(pin "2")
+				(pinfunction "E_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R13")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "94")
+			(name "/RXD0")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "4")
+				(pinfunction "Pin_4_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "34")
+				(pinfunction "RXD0/IO3_34")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "95")
 			(name "/TRIG")
 			(class "Default")
 			(node
@@ -14192,7 +15954,24 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "96")
+			(name "/TXD0")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "5")
+				(pinfunction "Pin_5_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "35")
+				(pinfunction "TXD0/IO1_35")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "97")
 			(name "/Thermocouple front end (K-type, ADS1115)/NTC_MID")
 			(class "Default")
 			(node
@@ -14218,7 +15997,7 @@
 			)
 		)
 		(net
-			(code "91")
+			(code "98")
 			(name "/Thermocouple front end (K-type, ADS1115)/TCF_N")
 			(class "Default")
 			(node
@@ -14244,7 +16023,7 @@
 			)
 		)
 		(net
-			(code "92")
+			(code "99")
 			(name "/Thermocouple front end (K-type, ADS1115)/TCF_P")
 			(class "Default")
 			(node
@@ -14270,7 +16049,7 @@
 			)
 		)
 		(net
-			(code "93")
+			(code "100")
 			(name "/Thermocouple front end (K-type, ADS1115)/TC_N")
 			(class "Default")
 			(node
@@ -14297,7 +16076,7 @@
 			)
 		)
 		(net
-			(code "94")
+			(code "101")
 			(name "/Thermocouple front end (K-type, ADS1115)/TC_P")
 			(class "Default")
 			(node
@@ -14324,7 +16103,7 @@
 			)
 		)
 		(net
-			(code "95")
+			(code "102")
 			(name "/Thermocouple front end (K-type, ADS1115)/VREF_HALF")
 			(class "Default")
 			(node
@@ -14350,7 +16129,7 @@
 			)
 		)
 		(net
-			(code "96")
+			(code "103")
 			(name "/ZCD")
 			(class "Default")
 			(node
@@ -14371,7 +16150,7 @@
 			)
 		)
 		(net
-			(code "97")
+			(code "104")
 			(name "/ZCD_L")
 			(class "Mains")
 			(node
@@ -14386,7 +16165,7 @@
 			)
 		)
 		(net
-			(code "98")
+			(code "105")
 			(name "/ZCD_N")
 			(class "Mains")
 			(node
@@ -14401,7 +16180,32 @@
 			)
 		)
 		(net
-			(code "99")
+			(code "106")
+			(name "/ZCD_RAW")
+			(class "Default")
+			(node
+				(ref "C9")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R8")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "2")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "107")
 			(name "ADC_RDY")
 			(class "Default")
 			(node
@@ -14423,7 +16227,7 @@
 			)
 		)
 		(net
-			(code "100")
+			(code "108")
 			(name "GND")
 			(class "Default")
 			(node
@@ -14542,6 +16346,16 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C134")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C135")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C2")
 				(pin "2")
 				(pintype "passive")
@@ -14629,6 +16443,11 @@
 			(node
 				(ref "C8")
 				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C9")
+				(pin "2")
 				(pintype "passive")
 			)
 			(node
@@ -14988,7 +16807,7 @@
 			)
 		)
 		(net
-			(code "101")
+			(code "109")
 			(name "I2C_SCL")
 			(class "Default")
 			(node
@@ -15022,7 +16841,7 @@
 			)
 		)
 		(net
-			(code "102")
+			(code "110")
 			(name "I2C_SDA")
 			(class "Default")
 			(node
@@ -15056,7 +16875,7 @@
 			)
 		)
 		(net
-			(code "103")
+			(code "111")
 			(name "LCD_CS")
 			(class "Bus")
 			(node
@@ -15072,7 +16891,7 @@
 			)
 		)
 		(net
-			(code "104")
+			(code "112")
 			(name "LCD_D0")
 			(class "Bus")
 			(node
@@ -15088,7 +16907,7 @@
 			)
 		)
 		(net
-			(code "105")
+			(code "113")
 			(name "LCD_D1")
 			(class "Bus")
 			(node
@@ -15104,7 +16923,7 @@
 			)
 		)
 		(net
-			(code "106")
+			(code "114")
 			(name "LCD_D2")
 			(class "Bus")
 			(node
@@ -15120,7 +16939,7 @@
 			)
 		)
 		(net
-			(code "107")
+			(code "115")
 			(name "LCD_D3")
 			(class "Bus")
 			(node
@@ -15136,7 +16955,7 @@
 			)
 		)
 		(net
-			(code "108")
+			(code "116")
 			(name "LCD_D4")
 			(class "Bus")
 			(node
@@ -15152,7 +16971,7 @@
 			)
 		)
 		(net
-			(code "109")
+			(code "117")
 			(name "LCD_D5")
 			(class "Bus")
 			(node
@@ -15168,7 +16987,7 @@
 			)
 		)
 		(net
-			(code "110")
+			(code "118")
 			(name "LCD_D6")
 			(class "Bus")
 			(node
@@ -15184,7 +17003,7 @@
 			)
 		)
 		(net
-			(code "111")
+			(code "119")
 			(name "LCD_D7")
 			(class "Bus")
 			(node
@@ -15200,7 +17019,7 @@
 			)
 		)
 		(net
-			(code "112")
+			(code "120")
 			(name "LCD_DC")
 			(class "Bus")
 			(node
@@ -15216,7 +17035,7 @@
 			)
 		)
 		(net
-			(code "113")
+			(code "121")
 			(name "LCD_RST")
 			(class "Bus")
 			(node
@@ -15244,7 +17063,7 @@
 			)
 		)
 		(net
-			(code "114")
+			(code "122")
 			(name "LCD_WR")
 			(class "Bus")
 			(node
@@ -15260,7 +17079,7 @@
 			)
 		)
 		(net
-			(code "115")
+			(code "123")
 			(name "LINE")
 			(class "MainsHeater")
 			(node
@@ -15281,7 +17100,7 @@
 			)
 		)
 		(net
-			(code "116")
+			(code "124")
 			(name "LINE_FILT")
 			(class "MainsHeater")
 			(node
@@ -15295,12 +17114,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "F1")
+				(ref "D6")
 				(pin "1")
+				(pinfunction "A1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "K1")
+				(ref "F1")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -15331,14 +17151,9 @@
 				(pin "1")
 				(pintype "passive")
 			)
-			(node
-				(ref "RV2")
-				(pin "1")
-				(pintype "passive")
-			)
 		)
 		(net
-			(code "117")
+			(code "125")
 			(name "LINE_FUSED")
 			(class "MainsHeater")
 			(node
@@ -15347,14 +17162,24 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "K1")
+				(pin "11")
+				(pintype "passive")
+			)
+			(node
 				(ref "L40")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
+			(node
+				(ref "RV3")
+				(pin "1")
+				(pintype "passive")
+			)
 		)
 		(net
-			(code "118")
+			(code "126")
 			(name "NEUT")
 			(class "Mains")
 			(node
@@ -15401,7 +17226,7 @@
 			)
 		)
 		(net
-			(code "119")
+			(code "127")
 			(name "Net-(C4-Pad1)")
 			(class "Mains")
 			(node
@@ -15416,7 +17241,7 @@
 			)
 		)
 		(net
-			(code "120")
+			(code "128")
 			(name "Net-(D5-A)")
 			(class "Default")
 			(node
@@ -15427,7 +17252,7 @@
 			)
 			(node
 				(ref "K1")
-				(pin "5")
+				(pin "A1")
 				(pintype "passive")
 			)
 			(node
@@ -15438,85 +17263,7 @@
 			)
 		)
 		(net
-			(code "121")
-			(name "Net-(J2-Pin_2)")
-			(class "Default")
-			(node
-				(ref "J2")
-				(pin "2")
-				(pinfunction "Pin_2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "Q3")
-				(pin "2")
-				(pinfunction "E_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R13")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "122")
-			(name "Net-(J2-Pin_3)")
-			(class "Default")
-			(node
-				(ref "J2")
-				(pin "3")
-				(pinfunction "Pin_3_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "Q2")
-				(pin "2")
-				(pinfunction "E_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R14")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "123")
-			(name "Net-(J2-Pin_4)")
-			(class "Default")
-			(node
-				(ref "J2")
-				(pin "4")
-				(pinfunction "Pin_4_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "34")
-				(pinfunction "RXD0/IO3_34")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "124")
-			(name "Net-(J2-Pin_5)")
-			(class "Default")
-			(node
-				(ref "J2")
-				(pin "5")
-				(pinfunction "Pin_5_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "35")
-				(pinfunction "TXD0/IO1_35")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "125")
+			(code "129")
 			(name "Net-(J4-Pin_1)")
 			(class "Mains")
 			(node
@@ -15527,12 +17274,17 @@
 			)
 			(node
 				(ref "K1")
-				(pin "3")
+				(pin "14")
+				(pintype "passive")
+			)
+			(node
+				(ref "RV3")
+				(pin "2")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "126")
+			(code "130")
 			(name "Net-(PS1-AC{slash}L)")
 			(class "Default")
 			(node
@@ -15553,7 +17305,7 @@
 			)
 		)
 		(net
-			(code "127")
+			(code "131")
 			(name "Net-(PS1-AC{slash}N)")
 			(class "Default")
 			(node
@@ -15574,38 +17326,7 @@
 			)
 		)
 		(net
-			(code "128")
-			(name "Net-(Q1-A1)")
-			(class "MainsHeater")
-			(node
-				(ref "C4")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "Q1")
-				(pin "1")
-				(pinfunction "A1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R1")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R2")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "RV2")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "129")
+			(code "132")
 			(name "Net-(Q1-G)")
 			(class "Mains")
 			(node
@@ -15626,7 +17347,7 @@
 			)
 		)
 		(net
-			(code "130")
+			(code "133")
 			(name "Net-(Q2-B)")
 			(class "Default")
 			(node
@@ -15642,29 +17363,7 @@
 			)
 		)
 		(net
-			(code "131")
-			(name "Net-(Q2-C)")
-			(class "Default")
-			(node
-				(ref "Q2")
-				(pin "3")
-				(pinfunction "C_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R12")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "25")
-				(pinfunction "IO0_25")
-				(pintype "bidirectional")
-			)
-		)
-		(net
-			(code "132")
+			(code "134")
 			(name "Net-(Q3-B)")
 			(class "Default")
 			(node
@@ -15680,34 +17379,7 @@
 			)
 		)
 		(net
-			(code "133")
-			(name "Net-(Q3-C)")
-			(class "Default")
-			(node
-				(ref "C6")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "Q3")
-				(pin "3")
-				(pinfunction "C_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R11")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "3")
-				(pinfunction "EN_3")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "134")
+			(code "135")
 			(name "Net-(Q4-B)")
 			(class "Default")
 			(node
@@ -15728,7 +17400,7 @@
 			)
 		)
 		(net
-			(code "135")
+			(code "136")
 			(name "Net-(R3-Pad1)")
 			(class "Mains")
 			(node
@@ -15743,7 +17415,7 @@
 			)
 		)
 		(net
-			(code "136")
+			(code "137")
 			(name "Net-(R4-Pad2)")
 			(class "Default")
 			(node
@@ -15755,26 +17427,6 @@
 				(ref "U5")
 				(pin "1")
 				(pintype "passive")
-			)
-		)
-		(net
-			(code "137")
-			(name "Net-(R8-Pad2)")
-			(class "Default")
-			(node
-				(ref "R8")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "5")
-				(pintype "passive")
-			)
-			(node
-				(ref "U6")
-				(pin "2")
-				(pintype "input")
 			)
 		)
 		(net
@@ -15918,16 +17570,6 @@
 		)
 		(net
 			(code "149")
-			(name "unconnected-(K1-Pad4)")
-			(class "Mains")
-			(node
-				(ref "K1")
-				(pin "4")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "150")
 			(name "unconnected-(U1-NC-Pad3)")
 			(class "Mains")
 			(node
@@ -15938,7 +17580,7 @@
 			)
 		)
 		(net
-			(code "151")
+			(code "150")
 			(name "unconnected-(U1-Pad6)")
 			(class "Default")
 			(node
@@ -15948,7 +17590,7 @@
 			)
 		)
 		(net
-			(code "152")
+			(code "151")
 			(name "unconnected-(U3-IO2-Pad24)")
 			(class "Default")
 			(node
@@ -15959,7 +17601,7 @@
 			)
 		)
 		(net
-			(code "153")
+			(code "152")
 			(name "unconnected-(U3-IO12-Pad14)")
 			(class "Default")
 			(node
@@ -15970,7 +17612,7 @@
 			)
 		)
 		(net
-			(code "154")
+			(code "153")
 			(name "unconnected-(U3-NC-Pad32)")
 			(class "Default")
 			(node
@@ -15981,7 +17623,7 @@
 			)
 		)
 		(net
-			(code "155")
+			(code "154")
 			(name "unconnected-(U3-SCK{slash}CLK-Pad20)")
 			(class "Default")
 			(node
@@ -15992,7 +17634,7 @@
 			)
 		)
 		(net
-			(code "156")
+			(code "155")
 			(name "unconnected-(U3-SCS{slash}CMD-Pad19)")
 			(class "Default")
 			(node
@@ -16003,7 +17645,7 @@
 			)
 		)
 		(net
-			(code "157")
+			(code "156")
 			(name "unconnected-(U3-SDI{slash}SD1-Pad22)")
 			(class "Default")
 			(node
@@ -16014,7 +17656,7 @@
 			)
 		)
 		(net
-			(code "158")
+			(code "157")
 			(name "unconnected-(U3-SDO{slash}SD0-Pad21)")
 			(class "Default")
 			(node
@@ -16025,7 +17667,7 @@
 			)
 		)
 		(net
-			(code "159")
+			(code "158")
 			(name "unconnected-(U3-SENSOR_VN-Pad5)")
 			(class "Default")
 			(node
@@ -16036,7 +17678,7 @@
 			)
 		)
 		(net
-			(code "160")
+			(code "159")
 			(name "unconnected-(U3-SENSOR_VP-Pad4)")
 			(class "Default")
 			(node
@@ -16047,7 +17689,7 @@
 			)
 		)
 		(net
-			(code "161")
+			(code "160")
 			(name "unconnected-(U3-SHD{slash}SD2-Pad17)")
 			(class "Default")
 			(node
@@ -16058,7 +17700,7 @@
 			)
 		)
 		(net
-			(code "162")
+			(code "161")
 			(name "unconnected-(U3-SWP{slash}SD3-Pad18)")
 			(class "Default")
 			(node
@@ -16069,7 +17711,7 @@
 			)
 		)
 		(net
-			(code "163")
+			(code "162")
 			(name "unconnected-(U5-NC-Pad3)")
 			(class "Default")
 			(node
@@ -16080,7 +17722,7 @@
 			)
 		)
 		(net
-			(code "164")
+			(code "163")
 			(name "unconnected-(U5-NC-Pad5)")
 			(class "Mains")
 			(node
@@ -16091,7 +17733,7 @@
 			)
 		)
 		(net
-			(code "165")
+			(code "164")
 			(name "unconnected-(U6-NC-Pad1)")
 			(class "Default")
 			(node
@@ -16102,7 +17744,7 @@
 			)
 		)
 		(net
-			(code "166")
+			(code "165")
 			(name "unconnected-(U10-D8-Pad113)")
 			(class "Default")
 			(node
@@ -16113,7 +17755,7 @@
 			)
 		)
 		(net
-			(code "167")
+			(code "166")
 			(name "unconnected-(U10-D9-Pad112)")
 			(class "Default")
 			(node
@@ -16124,7 +17766,7 @@
 			)
 		)
 		(net
-			(code "168")
+			(code "167")
 			(name "unconnected-(U10-D10-Pad111)")
 			(class "Default")
 			(node
@@ -16135,7 +17777,7 @@
 			)
 		)
 		(net
-			(code "169")
+			(code "168")
 			(name "unconnected-(U10-D11-Pad107)")
 			(class "Default")
 			(node
@@ -16146,7 +17788,7 @@
 			)
 		)
 		(net
-			(code "170")
+			(code "169")
 			(name "unconnected-(U10-D12-Pad106)")
 			(class "Default")
 			(node
@@ -16157,7 +17799,7 @@
 			)
 		)
 		(net
-			(code "171")
+			(code "170")
 			(name "unconnected-(U10-D13-Pad105)")
 			(class "Default")
 			(node
@@ -16168,7 +17810,7 @@
 			)
 		)
 		(net
-			(code "172")
+			(code "171")
 			(name "unconnected-(U10-D14-Pad104)")
 			(class "Default")
 			(node
@@ -16179,7 +17821,7 @@
 			)
 		)
 		(net
-			(code "173")
+			(code "172")
 			(name "unconnected-(U10-D15-Pad103)")
 			(class "Default")
 			(node
@@ -16190,7 +17832,7 @@
 			)
 		)
 		(net
-			(code "174")
+			(code "173")
 			(name "unconnected-(U10-D16-Pad99)")
 			(class "Default")
 			(node
@@ -16201,7 +17843,7 @@
 			)
 		)
 		(net
-			(code "175")
+			(code "174")
 			(name "unconnected-(U10-D17-Pad98)")
 			(class "Default")
 			(node
@@ -16212,7 +17854,7 @@
 			)
 		)
 		(net
-			(code "176")
+			(code "175")
 			(name "unconnected-(U10-D18-Pad88)")
 			(class "Default")
 			(node
@@ -16223,7 +17865,7 @@
 			)
 		)
 		(net
-			(code "177")
+			(code "176")
 			(name "unconnected-(U10-D19-Pad87)")
 			(class "Default")
 			(node
@@ -16234,7 +17876,7 @@
 			)
 		)
 		(net
-			(code "178")
+			(code "177")
 			(name "unconnected-(U10-D20-Pad92)")
 			(class "Default")
 			(node
@@ -16245,7 +17887,7 @@
 			)
 		)
 		(net
-			(code "179")
+			(code "178")
 			(name "unconnected-(U10-D21-Pad91)")
 			(class "Default")
 			(node
@@ -16256,7 +17898,7 @@
 			)
 		)
 		(net
-			(code "180")
+			(code "179")
 			(name "unconnected-(U10-D22-Pad90)")
 			(class "Default")
 			(node
@@ -16267,7 +17909,7 @@
 			)
 		)
 		(net
-			(code "181")
+			(code "180")
 			(name "unconnected-(U10-D23-Pad89)")
 			(class "Default")
 			(node
@@ -16278,7 +17920,7 @@
 			)
 		)
 		(net
-			(code "182")
+			(code "181")
 			(name "unconnected-(U10-GAMAS0-Pad52)")
 			(class "Default")
 			(node
@@ -16289,7 +17931,7 @@
 			)
 		)
 		(net
-			(code "183")
+			(code "182")
 			(name "unconnected-(U10-GAMAS1-Pad53)")
 			(class "Default")
 			(node
@@ -16300,7 +17942,7 @@
 			)
 		)
 		(net
-			(code "184")
+			(code "183")
 			(name "unconnected-(U10-GPIO0-Pad36)")
 			(class "Default")
 			(node
@@ -16311,7 +17953,7 @@
 			)
 		)
 		(net
-			(code "185")
+			(code "184")
 			(name "unconnected-(U10-GPIO1-Pad37)")
 			(class "Default")
 			(node
@@ -16322,7 +17964,7 @@
 			)
 		)
 		(net
-			(code "186")
+			(code "185")
 			(name "unconnected-(U10-GPIO2-Pad38)")
 			(class "Default")
 			(node
@@ -16333,7 +17975,7 @@
 			)
 		)
 		(net
-			(code "187")
+			(code "186")
 			(name "unconnected-(U10-GPIO3-Pad39)")
 			(class "Default")
 			(node
@@ -16344,7 +17986,7 @@
 			)
 		)
 		(net
-			(code "188")
+			(code "187")
 			(name "unconnected-(U10-TE-Pad50)")
 			(class "Default")
 			(node

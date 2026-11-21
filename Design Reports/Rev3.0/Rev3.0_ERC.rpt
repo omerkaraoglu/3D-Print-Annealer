@@ -1,29 +1,20 @@
-ERC report (2026-11-10T11:00:19, Encoding UTF8)
+ERC report (2026-11-21T19:12:34, Encoding UTF8)
 Report includes: Errors, Warnings, Exclusions
 
 ***** Sheet /
-[footprint_link_issues]: Footprint 'LFU09V-103' not found in library 'Inductor_THT'
-    ; warning
-    @(99.06 mm, 35.56 mm): Symbol L1 [LFU09V-103]
 [lib_symbol_issues]: The current configuration does not include the symbol library 'CommonModeChoke_ CoreMaster_LFU09V-103'
     ; warning
-    @(99.06 mm, 35.56 mm): Symbol L1 [LFU09V-103]
-[lib_symbol_mismatch]: Symbol 'Conn_01x06_Pin' doesn't match copy in library 'Connector'
-    ; warning
-    @(199.39 mm, 170.18 mm): Symbol J2 [Conn_01x06_Pin]
+    @(254.00 mm, 78.74 mm): Symbol L1 [LFU09V-103]
 
 ***** Sheet /Display/
-[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
-    ; error
-    @(290.83 mm, 212.09 mm): Symbol U11 Pin 5 [VIN, Power input, Line]
 
 ***** Sheet /Thermocouple front end (K-type, ADS1115)/
 
 ***** Sheet /Power/
 
-***** Sheet /Mains input EMC filter (PSU branch)/
+***** Sheet /Mains input EMC filter/
 
- ** ERC messages: 4  Errors 1  Warnings 3
+ ** ERC messages: 1  Errors 0  Warnings 1
 
  ** Ignored checks:
     - Global label only appears once in the schematic

@@ -22,6 +22,8 @@ ALIAS = {
     "C5,C8": "100nF_0402", "C112-C115,C117-C119,C123,C126,C223,C225,C226": "100nF_0402", "C129,C332": "100nF_0402",
     "C116,C122,C336": "10uF_0805", "C124,C127,C330,C331": "10uF_0805",
     "C120,C121,C337": "1uF_0603", "C224,C335": "1uF_0603",
+    # EMC-fix round 2026-11-21
+    "C134,C135": "100nF_0402", "C9": "C130-C133", "RV1,RV3": "RV1",
 }
 # lines that are not purchased parts (external wiring / simulation symbol / the heater itself)
 SKIP = {"V1": "simulation source, not a part", "R1": "the 1 kW heater element (customer-side)",

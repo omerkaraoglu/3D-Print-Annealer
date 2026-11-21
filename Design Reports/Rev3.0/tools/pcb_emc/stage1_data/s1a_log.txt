@@ -1,0 +1,179 @@
+RV2 LINE_FILT stub removed
+Q1-A1 trunk merged (108.0, 25.5)-(108.0, 3.5)
+RV2 removed
+R4 -> R_0603_1608Metric at (101.335, 57.5) 0 deg
+C5 moved to (123.617, 58.9) 0 deg: pads [('1', [123.137, 58.9]), ('2', [124.097, 58.9])]
+C9 added: Capacitor_SMD:C_0402_1005Metric at (118.96, 61.975) rot 270
+C134 added: Capacitor_SMD:C_0402_1005Metric at (118.2, 73.1) rot 0
+C135 added: Capacitor_SMD:C_0402_1005Metric at (120.9, 75.4) rot 0
+D6 added: Diode_THT:D_DO-201AD_P15.24mm_Horizontal at (190.0, 20.0) rot 0
+RV3 added: Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm at (190.0, 40.0) rot 0
+net Net-(J2-Pin_2) -> /RTS (26 tracks/vias/zones)
+net Net-(J2-Pin_3) -> /DTR (24 tracks/vias/zones)
+net Net-(J2-Pin_4) -> /RXD0 (10 tracks/vias/zones)
+net Net-(J2-Pin_5) -> /TXD0 (10 tracks/vias/zones)
+net Net-(Q1-A1) -> /Q1_A1 (11 tracks/vias/zones)
+net Net-(Q2-C) -> /IO0 (24 tracks/vias/zones)
+net Net-(Q3-C) -> /EN (17 tracks/vias/zones)
+net Net-(R8-Pad2) -> /ZCD_RAW (8 tracks/vias/zones)
+pad C9.1 -> /ZCD_RAW
+pad C9.2 -> GND
+pad C134.1 -> +5V
+pad C134.2 -> GND
+pad C135.1 -> +5V
+pad C135.2 -> GND
+pad D6.1 -> LINE_FILT
+pad D6.2 -> /Q1_A1
+pad RV3.1 -> LINE_FUSED
+pad RV3.2 -> NEUT
+fields D5: Value,Datasheet,Description,Sim.Device,Sim.Pins,MPN,Manufacturer
+fields R9: Datasheet,Description,MPN,Manufacturer
+fields R117: Datasheet,Description,MPN,Manufacturer
+fields C124: Datasheet,Description,MPN,Manufacturer
+fields C125: Value,Datasheet,Description,MPN,Manufacturer
+fields R12: Datasheet,Description,MPN,Manufacturer
+fields L40: Datasheet,Description,MPN,Manufacturer
+fields C131: Datasheet,Description,MPN,Manufacturer
+fields C118: Value,Datasheet,Description,MPN,Manufacturer
+fields R112: Datasheet,Description,MPN,Manufacturer
+fields R119: Datasheet,Description,MPN,Manufacturer
+fields R115: Datasheet,Description,MPN,Manufacturer
+fields J2: Datasheet,Description,MPN,Manufacturer
+fields C113: Value,Datasheet,Description,MPN,Manufacturer
+fields C333: Value,Datasheet,Description,MPN,Manufacturer
+fields C126: Value,Datasheet,Description,MPN,Manufacturer
+fields D112: Datasheet,Description,MPN,Manufacturer
+fields C111: Datasheet,Description,MPN,Manufacturer
+fields L30: Datasheet,Description,MPN,Manufacturer
+fields R14: Datasheet,Description,MPN,Manufacturer
+fields R16: Datasheet,Description,MPN,Manufacturer
+fields U11: Datasheet,Description,MPN,Manufacturer
+fields R118: Datasheet,Description,MPN,Manufacturer
+fields K1: Value,Datasheet,Description,MPN,Manufacturer
+fields C120: Value,Datasheet,Description,MPN,Manufacturer
+fields HS1: Datasheet,Description,MPN,Manufacturer
+fields C224: Datasheet,Description,MPN,Manufacturer
+fields RN5: Value,Datasheet,Description,MPN,Manufacturer
+fields R125: Datasheet,Description,MPN,Manufacturer
+fields C226: Value,Datasheet,Description,MPN,Manufacturer
+fields R123: Value,Datasheet,Description,MPN,Manufacturer
+fields R1: Description,attr BOM
+fields R10: Datasheet,Description,MPN,Manufacturer
+fields R225: Datasheet,Description,MPN,Manufacturer
+fields C335: Datasheet,Description,MPN,Manufacturer
+fields J4: Description,attr BOM
+fields U5: Value,Datasheet,Description,MPN,Manufacturer
+fields C117: Value,Datasheet,Description,MPN,Manufacturer
+fields D221: Datasheet,Description,MPN,Manufacturer
+fields R223: Datasheet,Description,MPN,Manufacturer
+fields RN7: Value,Datasheet,Description,MPN,Manufacturer
+fields R126: Datasheet,Description,MPN,Manufacturer
+fields C4: Datasheet,Description,MPN,Manufacturer
+fields RN4: Value,Datasheet,Description,MPN,Manufacturer
+fields D114: Value,Datasheet,Description,MPN,Manufacturer
+fields R3: Datasheet,Description,MPN,Manufacturer
+fields R222: Datasheet,Description,MPN,Manufacturer
+fields R11: Datasheet,Description,MPN,Manufacturer
+fields U3: Datasheet,Description,MPN,Manufacturer
+fields U6: Value,Datasheet,Description,MPN,Manufacturer
+fields C133: Datasheet,Description,MPN,Manufacturer
+fields C337: Value,Datasheet,Description,MPN,Manufacturer
+fields RV1: Datasheet,Description,Sim.Name,Sim.Device,Sim.Pins,Sim.Params,Sim.Library,MPN,Manufacturer
+fields C8: Value,Datasheet,Description,MPN,Manufacturer
+fields C128: Value,Datasheet,Description,MPN,Manufacturer
+fields J3: Description,attr BOM
+fields U10: Datasheet,Description,MPN,Manufacturer
+fields U20: Datasheet,Description,MPN,Manufacturer
+fields R5: Datasheet,Description,MPN,Manufacturer
+fields C221: Value,Datasheet,Description,MPN,Manufacturer
+fields R116: Datasheet,Description,MPN,Manufacturer
+fields R110: Datasheet,Description,MPN,Manufacturer
+fields C116: Value,Datasheet,Description,MPN,Manufacturer
+fields C121: Value,Datasheet,Description,MPN,Manufacturer
+fields C2: Datasheet,Description,MPN,Manufacturer
+fields R111: Datasheet,Description,MPN,Manufacturer
+fields C222: Value,Datasheet,Description,MPN,Manufacturer
+fields C129: Value,Datasheet,Description,MPN,Manufacturer
+fields L1: MPN,Manufacturer
+fields R221: Datasheet,Description,MPN,Manufacturer
+fields R226: Datasheet,Description,MPN,Manufacturer
+fields Y10: Datasheet,Description,MPN,Manufacturer
+fields R2: Datasheet,Description,MPN,Manufacturer
+fields C119: Value,Datasheet,Description,MPN,Manufacturer
+fields R331: Datasheet,Description,MPN,Manufacturer
+fields R15: Datasheet,Description,MPN,Manufacturer
+fields C331: Datasheet,Description,MPN,Manufacturer
+fields C127: Datasheet,Description,MPN,Manufacturer
+fields RN1: Value,Datasheet,Description,MPN,Manufacturer
+fields J11: Datasheet,Description,MPN,Manufacturer
+fields C5: Value,Datasheet,Description,MPN,Manufacturer
+fields C112: Value,Datasheet,Description,MPN,Manufacturer
+fields R128: Datasheet,Description,MPN,Manufacturer
+fields C115: Value,Datasheet,Description,MPN,Manufacturer
+fields D113: Datasheet,Description,MPN,Manufacturer
+fields Q3: Value,Datasheet,Description,Sim.Device,Sim.Pins,MPN,Manufacturer
+fields C220: Datasheet,Description,MPN,Manufacturer
+fields C330: Datasheet,Description,MPN,Manufacturer
+fields F3: Datasheet,Description,MPN,Manufacturer
+fields R127: Datasheet,Description,MPN,Manufacturer
+fields Q4: Datasheet,Description,Sim.Device,Sim.Pins,MPN,Manufacturer
+fields C6: Value,Datasheet,Description,MPN,Manufacturer
+fields J20: Datasheet,Description,MPN,Manufacturer
+fields R224: Description,MPN,Manufacturer
+fields D115: Datasheet,Description,MPN,Manufacturer
+fields R227: Datasheet,Description,MPN,Manufacturer
+fields C114: Value,Datasheet,Description,MPN,Manufacturer
+fields L12: Value,Datasheet,Description,MPN,Manufacturer
+fields C223: Value,Datasheet,Description,MPN,Manufacturer
+fields U1: Datasheet,Description,MPN,Manufacturer
+fields R129: Datasheet,Description,MPN,Manufacturer
+fields U31: Datasheet,Description,MPN,Manufacturer
+fields C40: Datasheet,Description,MPN,Manufacturer
+fields RN2: Value,Datasheet,Description,MPN,Manufacturer
+fields C332: Value,Datasheet,Description,MPN,Manufacturer
+fields C334: Value,Datasheet,Description,MPN,Manufacturer
+fields L11: Datasheet,Description,MPN,Manufacturer
+fields J10: Datasheet,Description,MPN,Manufacturer,Panel
+fields C130: Datasheet,Description,MPN,Manufacturer
+fields C123: Value,Datasheet,Description,MPN,Manufacturer
+fields RN6: Value,Datasheet,Description,MPN,Manufacturer
+fields R113: Datasheet,Description,MPN,Manufacturer
+fields Q1: Datasheet,Description,Heatsink Needed,MPN,Manufacturer
+fields R220: Datasheet,Description,MPN,Manufacturer
+fields C225: Value,Datasheet,Description,MPN,Manufacturer
+fields R130: Datasheet,Description,MPN,Manufacturer
+fields D111: Datasheet,Description,MPN,Manufacturer
+fields R13: Datasheet,Description,MPN,Manufacturer
+fields R122: Value,Datasheet,Description,MPN,Manufacturer
+fields R330: Datasheet,Description,MPN,Manufacturer
+fields PS1: Datasheet,Description,MPN,Manufacturer
+fields R132: Value,Datasheet,Description,MPN,Manufacturer
+fields C1: Datasheet,Description,MPN,Manufacturer
+fields R4: Value,Datasheet,Description,MPN,Manufacturer
+fields TH220: Datasheet,Description,MPN,Manufacturer
+fields R120: Datasheet,Description,MPN,Manufacturer
+fields C7: Datasheet,Description,MPN,Manufacturer
+fields R7: Datasheet,Description,MPN,Manufacturer
+fields R6: Datasheet,Description,MPN,Manufacturer
+fields C122: Value,Datasheet,Description,MPN,Manufacturer
+fields C132: Datasheet,Description,MPN,Manufacturer
+fields C110: Datasheet,Description,MPN,Manufacturer
+fields R121: Datasheet,Description,MPN,Manufacturer
+fields D116: Datasheet,Description,MPN,Manufacturer
+fields R114: Datasheet,Description,MPN,Manufacturer
+fields F1: Datasheet,Description,MPN,Manufacturer
+fields R8: Datasheet,Description,MPN,Manufacturer
+fields C336: Value,Datasheet,Description,MPN,Manufacturer
+fields D220: Datasheet,Description,MPN,Manufacturer
+fields Q2: Value,Datasheet,Description,Sim.Device,Sim.Pins,MPN,Manufacturer
+fields U30: Datasheet,Description,MPN,Manufacturer
+fields RN3: Value,Datasheet,Description,MPN,Manufacturer
+fields R124: Description,MPN,Manufacturer
+fields R131: Datasheet,Description,MPN,Manufacturer
+fields C9: Value,Datasheet,Description,MPN,Manufacturer
+fields C134: Value,Datasheet,Description,MPN,Manufacturer
+fields C135: Value,Datasheet,Description,MPN,Manufacturer
+fields D6: Value,Datasheet,Description,MPN,Manufacturer
+fields RV3: Value,Datasheet,Description,Sim.Name,Sim.Device,Sim.Pins,Sim.Params,Sim.Library,MPN,Manufacturer
+deleted 5 items by uuid (5 requested)
+footprints with field changes: 149

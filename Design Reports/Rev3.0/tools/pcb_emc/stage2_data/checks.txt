@@ -1,0 +1,16 @@
+{'end': 743, 'corner on pad (allowed)': 61, 'smooth': 1146, 'junction>=3': 21, 'corner on via (allowed)': 11, 'T-junction (track end on body, allowed)': 1}
+REMAINING CORNERS between two track items: 0
+via pairs with In1 web < 0.25 mm: 3 ; merged groups: 3 ; vias involved: 6
+   2 vias  x 12.43..13.07  y 38.64..39.30  nets ['GND', 'RXD0']
+   2 vias  x 60.67..61.50  y 79.50..80.06  nets ['+3V3', 'GND']
+   2 vias  x 29.12..30.01  y 58.00..58.46  nets ['GND', 'Net-(Q4-B)']
+schematic pins 591, board pads 609 | missing on board 2 [('V1', '1'), ('V1', '2')] | board pads with a net but no pin 18 [('BP1', '1'), ('BP10', '1'), ('BP11', '1'), ('BP12', '1'), ('BP13', '1'), ('BP14', '1'), ('BP15', '1'), ('BP16', '1'), ('BP17', '1'), ('BP18', '1')] | net differences 0 []
+unconnected (pcbnew connectivity): 4
+== mains pads vs LV polygon (6.4 creepage proxy; U1/U5 straddle by design)
+== mains pads vs SELV tracks of other regions (6.4)
+== edge 1.0 mm (mains + HS1 pads)
+   EDGE RV3.1 -26.89
+   EDGE RV3.2 -34.39
+   EDGE D6.1 -27.60
+   EDGE D6.2 -42.83
+SUMMARY: 4 issue(s)

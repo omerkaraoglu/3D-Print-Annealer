@@ -182,11 +182,11 @@
   },
   {
    "ref": "D5",
-   "val": "MMSD4148T1G",
+   "val": "1N4148W",
    "fp": "D_SOD-123",
-   "mpn": "",
-   "mfr": "",
-   "desc": "100V 200mA Switching Diode, SOD-123",
+   "mpn": "1N4148W_R1_00301",
+   "mfr": "Panjit",
+   "desc": "Switching diode 100 V 150 mA SOD-123 (1N4148W), relay coil flyback",
    "qty": 1
   },
   {
@@ -299,11 +299,11 @@
   },
   {
    "ref": "K1",
-   "val": "SRD-05VDC-SL-C",
-   "fp": "Relay_SPDT_SANYOU_SRD_Series_Form_C",
-   "mpn": "",
-   "mfr": "",
-   "desc": "RELAY POWER 10A 5VDC PCB TYPE 5PIN SONGLE",
+   "val": "RZ03-1A4-D005",
+   "fp": "Relay_SPST_Schrack-RT1-16A-FormA_RM5mm",
+   "mpn": "RZ03-1A4-D005",
+   "mfr": "TE Connectivity",
+   "desc": "Power relay 1 form A 16 A 250 VAC AgNi, 5 VDC 60 ohm 420 mW coil, 5 kV / 10 mm reinforced coil-contact",
    "qty": 1
   },
   {
@@ -408,10 +408,10 @@
   {
    "ref": "R4",
    "val": "120",
-   "fp": "R_0402_1005Metric",
-   "mpn": "",
-   "mfr": "",
-   "desc": "RES.(1005) 0402 120 Ohms 5% 1/16W 100PPM",
+   "fp": "R_0603_1608Metric",
+   "mpn": "0603SAJ0121T5E",
+   "mfr": "ROYALOHM",
+   "desc": "RES.(1608) 0603 120 Ohms 5% 1/10W-S 100PPM",
    "qty": 1
   },
   {
@@ -569,11 +569,11 @@
   },
   {
    "ref": "RN1-RN7",
-   "val": "33R x4",
+   "val": "100R x4",
    "fp": "R_Array_Convex_4x0402",
-   "mpn": "4D02WGJ0330TCE",
+   "mpn": "4D02WGJ0101TCE",
    "mfr": "Royalohm",
-   "desc": "Resistor array 4 x 33 Ohm 5 % 1/16 W, 0402x4 convex (1206 size, 0.8 mm pitch): series termination of the RGB/sync lines at the SSD1963, grouped in SSD1963 pin order (EMC pass 4)",
+   "desc": "RES.NET.ARRAY (4D02) 0402x4 100 Ohms 5% 1/16W",
    "qty": 7
   },
   {
@@ -583,15 +583,6 @@
    "mpn": "",
    "mfr": "",
    "desc": "VARISTOR DISC 14MM 430V 4.5KA 275VAC 350VDC THT (pass 4: 275 V ac class so the 1 kV L-N surge clamps below the BTA24's 800 V; was 10561K)",
-   "qty": 1
-  },
-  {
-   "ref": "RV2",
-   "val": "10561K",
-   "fp": "RV_Disc_D12mm_W3.9mm_P7.5mm",
-   "mpn": "",
-   "mfr": "",
-   "desc": "VARISTOR DISC 10MM 560V 2.5KA 350VAC 450VDC THT",
    "qty": 1
   },
   {
@@ -623,18 +614,18 @@
   },
   {
    "ref": "U5",
-   "val": "MOC3053M",
+   "val": "MOC3083",
    "fp": "DIP-6_W7.62mm",
-   "mpn": "",
-   "mfr": "",
-   "desc": "Random Phase Opto-Triac, Vdrm 600V, Ift 10mA, DIP6",
+   "mpn": "MOC3083X",
+   "mfr": "ISOCOM",
+   "desc": "IC-3083 OPTOISO 5300V TRIAC OUTPUT DIP6 (zero-cross, 800 V, VDE)",
    "qty": 1
   },
   {
    "ref": "U6",
-   "val": "SN74LVC1G14DBVR",
+   "val": "SN74AHC1G14DBVR",
    "fp": "SOT-23-5",
-   "mpn": "",
+   "mpn": "SN74AHC1G14DBVR",
    "mfr": "",
    "desc": "Single Schmitt NOT Gate, Low-Voltage CMOS, SOT-23",
    "qty": 1
@@ -700,6 +691,42 @@
    "mpn": "CX3225GB10000P0HPQCC",
    "mfr": "Kyocera AVX",
    "desc": "Crystal 10 MHz 18 pF 3225 4-pad, +/-20 ppm",
+   "qty": 1
+  },
+  {
+   "ref": "D6",
+   "val": "1.5KE440CA",
+   "fp": "D_DO-201AD_P15.24mm_Horizontal",
+   "mpn": "1.5KE440CA-TKS",
+   "mfr": "THINKING",
+   "desc": "DIODE TVS 1.5kW 376V DO201 (DO27) Bi-Direction THT",
+   "qty": 1
+  },
+  {
+   "ref": "C9",
+   "val": "1nF 50V C0G",
+   "fp": "C_0402_1005Metric",
+   "mpn": "CL05C102JB5NNNC",
+   "mfr": "Samsung",
+   "desc": "MLCC 0402 1 nF 50 V C0G (ZCD node EFT filter)",
+   "qty": 1
+  },
+  {
+   "ref": "C134,C135",
+   "val": "100nF 50V X7R",
+   "fp": "C_0402_1005Metric",
+   "mpn": "CC0402KRX7R9BB104",
+   "mfr": "Yageo",
+   "desc": "MLCC 0402 100 nF 50 V X7R (+5V-GND at the J10 via field)",
+   "qty": 2
+  },
+  {
+   "ref": "RV3",
+   "val": "TVR10471KSY",
+   "fp": "RV_Disc_D12mm_W5.8mm_P7.5mm",
+   "mpn": "TVR10471KSY",
+   "mfr": "Thinking",
+   "desc": "VARISTOR DISC 10MM 470V 2.5KA 300VAC 385VDC THT: across the fan-relay K1 contact (LINE_FUSED - fan)",
    "qty": 1
   }
  ],
@@ -883,7 +910,7 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142",
-   "note": "1N4148W instead of MMSD4148 (out of stock)"
+   "note": "1N4148W (Panjit), SOD-123; the symbol is Diode:MMSD4148 (same SOD-123 pinout), value 1N4148W"
   },
   "F1": {
    "code": "STC1A250V",
@@ -946,34 +973,30 @@
    "note": "5x20 8 A fast glass"
   },
   "K1": {
-   "code": "HJR-3FF-S-Z-4/05VDC",
-   "mfr": "Tianbo",
-   "stock": 2638,
+   "code": "RZ03-1A4-D005",
+   "mfr": "TE CONNECTIVITY",
+   "stock": 110352,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.3944
+     1.00916
     ],
     [
-     25,
-     0.3672
+     10,
+     0.93441
     ],
     [
-     50,
-     0.34
+     20,
+     0.85966
     ],
     [
      100,
-     0.3128
-    ],
-    [
-     500,
-     0.30029
+     0.82527
     ]
    ],
-   "url": "https://www.ozdisan.com/p/genel-tip-roleler-403/tianbo-hjr-3ff-s-z-4-05vdc-415763",
-   "note": "SRD-05VDC-SL-C not stocked; HJR-3FF has the same footprint and pinout, 7 A SPDT (heater draws 4.3 A)"
+   "url": "https://www.ozdisan.com/p/genel-tip-roleler-403/te-connectivity-rz03-1a4-d005-1211236",
+   "note": "replaces HJR-3FF-S-Z-4/05VDC (SRD type, 1500 VAC coil-contact) - owner decision 2026-11-21: reinforced 5 kV / 10 mm; MPQ 20. Second source on the same footprint: Hongfa HF115FD/005-1H3A(335), stock 93,169, 0.84704 USD at 50+ (https://www.ozdisan.com/p/genel-tip-roleler-403/hongfa-hf115fd-005-1h3a335-979825)"
   },
   "L40": {
    "code": "RC1415U-101K",
@@ -1162,34 +1185,38 @@
    ]
   },
   "R4": {
-   "code": "0402WGJ0121TCE",
+   "code": "0603SAJ0121T5E",
    "mfr": "ROYALOHM",
-   "stock": 10000,
+   "stock": 72660,
    "moq": 200,
    "tiers": [
     [
      200,
-     0.0005
+     0.0009
     ],
     [
      500,
-     0.00047
+     0.00084
     ],
     [
      1000,
-     0.00044
+     0.00078
     ],
     [
      2000,
-     0.00041
+     0.00072
     ],
     [
      5000,
-     0.00038
+     0.00066
+    ],
+    [
+     25000,
+     0.00064
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369",
-   "note": "R4 200 R -> 120 R: R4 is the MOC3052 LED resistor (TRIG -> U5 pin 1); IFT 10 mA, (3.3 - 1.5 - 0.1) / 120 = 14 mA worst case, 18 mA / 39 mW best case (0402 1/16 W)"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209",
+   "note": "R4 0402 -> 0603 1/10 W (2026-11-21): TRIG held on during a burst runs it continuously, up to 49 mW at 85 C"
   },
   "R5": {
    "code": "KNP02SJ0470A10",
@@ -1300,55 +1327,31 @@
     ]
    ]
   },
-  "RV2": {
-   "code": "TVR10561KFARY",
-   "mfr": "THINKING",
-   "stock": 994,
-   "moq": 1,
-   "tiers": [
-    [
-     1,
-     0.08841
-    ],
-    [
-     100,
-     0.08271
-    ],
-    [
-     250,
-     0.077
-    ],
-    [
-     500,
-     0.0713
-    ]
-   ]
-  },
   "U5": {
-   "code": "MOC3052X",
+   "code": "MOC3083X",
    "mfr": "Isocom",
-   "stock": 2014,
+   "stock": 930,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.43784
+     0.57845
     ],
     [
      30,
-     0.40541
+     0.5356
     ],
     [
      65,
-     0.37298
+     0.49275
     ],
     [
      325,
-     0.35806
+     0.47304
     ]
    ],
-   "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3052x-637272",
-   "note": "MOC3053M not stocked; MOC3052 is the 10 mA-IFT sibling (600 V, random phase): change the LED resistor R4 200 R to 120 R (R9 is the ZCD series resistor and stays 180 R); alternative Liteon MOC3023-LIT (5 mA IFT, 400 V, 71k stock, 0.139 USD)"
+   "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3083x-636495",
+   "note": "MOC3052X -> MOC3083X (owner decision 2026-11-21): 800 V zero-cross; no 800 V random-phase driver stocked. X = VDE-approved version (Isocom DE93284 p.7)"
   },
   "U6": {
    "code": "SN74AHC1G14DBVR",
@@ -1358,17 +1361,31 @@
    "tiers": [
     [
      1,
-     0.05059
+     0.093
     ],
     [
      100,
-     0.04733
+     0.087
     ],
     [
      500,
-     0.04406
+     0.081
+    ],
+    [
+     1000,
+     0.075
+    ],
+    [
+     3000,
+     0.069
+    ],
+    [
+     15000,
+     0.06624
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783",
+   "note": "value field aligned to the purchased AHC part (was SN74LVC1G14DBVR on the symbol, 2026-11-21)"
   },
   "U10": {
    "code": "SSD1963QL9",
@@ -1576,9 +1593,9 @@
    "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415"
   },
   "RN1-RN7": {
-   "code": "4D02WGJ0330TCE",
+   "code": "4D02WGJ0101TCE",
    "mfr": "ROYALOHM",
-   "stock": 186664,
+   "stock": 10227,
    "moq": 20,
    "tiers": [
     [
@@ -1596,9 +1613,26 @@
     [
      1000,
      0.00456
+    ],
+    [
+     2000,
+     0.00425
+    ],
+    [
+     5000,
+     0.00393
+    ],
+    [
+     10000,
+     0.00362
+    ],
+    [
+     50000,
+     0.00347
     ]
    ],
-   "url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0330tce-467028"
+   "url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030",
+   "note": "33 R -> 100 R (EMC fix 2026-11-21): 150 R 0402x4 (4D02WGJ0151TCE) not stocked; 100 R is the nearest stocked value in the same 0402x4 footprint"
   },
   "TH220": {
    "code": "TSM1B103F3381RZ",
@@ -1763,7 +1797,7 @@
   "RV1": {
    "code": "TVR14431KSU15Y",
    "mfr": "Thinking",
-   "stock": 15292,
+   "stock": 14877,
    "moq": 1,
    "tiers": [
     [
@@ -1781,6 +1815,14 @@
     [
      1000,
      0.09361
+    ],
+    [
+     3000,
+     0.08612
+    ],
+    [
+     15000,
+     0.08268
     ]
    ],
    "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701"
@@ -1847,6 +1889,14 @@
     [
      5000,
      0.01658
+    ],
+    [
+     10000,
+     0.01525
+    ],
+    [
+     50000,
+     0.01464
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
@@ -1983,7 +2033,7 @@
   "C130-C133": {
    "code": "CL05C102JB5NNNC",
    "mfr": "Samsung",
-   "stock": 2331,
+   "stock": 2181,
    "moq": 10,
    "tiers": [
     [
@@ -2005,6 +2055,18 @@
     [
      2000,
      0.01218
+    ],
+    [
+     5000,
+     0.01128
+    ],
+    [
+     10000,
+     0.01038
+    ],
+    [
+     50000,
+     0.00996
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291"
@@ -2648,6 +2710,70 @@
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
    "note": "C6 100 nF -> 1 uF: ESP32 EN RC per Espressif (10k + 1 uF), decided 2026-11-13"
+  },
+  "D6": {
+   "code": "1.5KE440CA-TKS",
+   "mfr": "THINKING",
+   "stock": 1083,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     0.37076
+    ],
+    [
+     100,
+     0.34684
+    ],
+    [
+     250,
+     0.32292
+    ],
+    [
+     500,
+     0.299
+    ],
+    [
+     1200,
+     0.27508
+    ],
+    [
+     6000,
+     0.26408
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/tvs-diyotlar-386/thinking-1-5ke440ca-tks-639232",
+   "note": "replaces RV2 (TVR10561K MOV) across the triac: 1 kV surge clamp 620 V (EMC fix 2026-11-21)"
+  },
+  "RV3": {
+   "code": "TVR10471KSY",
+   "mfr": "Thinking",
+   "stock": 81163,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     0.0825
+    ],
+    [
+     50,
+     0.07681
+    ],
+    [
+     100,
+     0.07112
+    ],
+    [
+     200,
+     0.06543
+    ],
+    [
+     1000,
+     0.06281
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10471ksy-351283",
+   "note": "RV3 moved across the K1 contact, 300 V ac class (16 % margin to 253 V ac); MPQ 200. No thermally protected varistor stocked at Özdisan (Littelfuse TMOV14/20 all 0)"
   }
  }
 }

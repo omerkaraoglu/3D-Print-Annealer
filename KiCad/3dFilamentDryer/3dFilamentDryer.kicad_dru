@@ -4,10 +4,10 @@
 # and 4.0 mm clearance through air (requirement 3.0 mm for 2.5 kV transient, reinforced).
 (rule "mains_to_selv_clearance"
    (constraint clearance (min 4.0mm))
-   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !((A.NetName == 'LINE' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'LINE_FUSED' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE_FUSED' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'unconnected-(K1-Pad4)' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'unconnected-(K1-Pad4)' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')))"))
+   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater')))"))
 (rule "mains_to_selv_creepage"
    (constraint creepage (min 6.4mm))
-   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !((A.NetName == 'LINE' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'LINE_FUSED' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'LINE_FUSED' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)')) || (A.NetName == 'unconnected-(K1-Pad4)' && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.NetName == 'unconnected-(K1-Pad4)' && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)'))) && !(A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)' || B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)')"))
+   (condition "(((A.NetClass == 'Mains' || A.NetClass == 'MainsHeater') && (B.NetClass != 'Mains' && B.NetClass != 'MainsHeater')) || ((B.NetClass == 'Mains' || B.NetClass == 'MainsHeater') && (A.NetClass != 'Mains' && A.NetClass != 'MainsHeater'))) && !(A.NetName == 'unconnected-(HS1-Pad1)' || A.NetName == 'unconnected-(HS1-Pad2)' || B.NetName == 'unconnected-(HS1-Pad1)' || B.NetName == 'unconnected-(HS1-Pad2)')"))
 (rule "mains_to_edge"
    (constraint edge_clearance (min 1.0mm))
    (condition "A.NetClass == 'Mains' || A.NetClass == 'MainsHeater'"))
@@ -30,35 +30,28 @@
 (rule "zcd_dc_pair"
    (constraint clearance (min 0.5mm))
    (condition "(A.NetName == '/ZCD_L' && B.NetName == '/ZCD_N') || (B.NetName == '/ZCD_L' && A.NetName == '/ZCD_N')"))
-# component-inherent pin spacing (TO-220, DIP-6, relay, wire pads): pad to pad inside one footprint
+# component-inherent pin spacing (TO-220, DIP-6, wire pads): pad to pad inside one footprint
 (rule "same_footprint_pads"
    (constraint clearance (min 0.4mm))
-   (condition "(A.memberOfFootprint('Q1') && B.memberOfFootprint('Q1')) || (A.memberOfFootprint('U1') && B.memberOfFootprint('U1')) || (A.memberOfFootprint('U5') && B.memberOfFootprint('U5')) || (A.memberOfFootprint('K1') && B.memberOfFootprint('K1'))"))
+   (condition "(A.memberOfFootprint('Q1') && B.memberOfFootprint('Q1')) || (A.memberOfFootprint('U1') && B.memberOfFootprint('U1')) || (A.memberOfFootprint('U5') && B.memberOfFootprint('U5'))"))
 (rule "same_footprint_pads_creepage"
    (constraint creepage (min 0.4mm))
-   (condition "(A.memberOfFootprint('U1') && B.memberOfFootprint('U1')) || (A.memberOfFootprint('U5') && B.memberOfFootprint('U5')) || (A.memberOfFootprint('K1') && B.memberOfFootprint('K1'))"))
+   (condition "(A.memberOfFootprint('U1') && B.memberOfFootprint('U1')) || (A.memberOfFootprint('U5') && B.memberOfFootprint('U5'))"))
 # triac pins at 2.54 mm pitch: the triac's own three nets next to its own pads
 (rule "triac_pins"
    (constraint clearance (min 0.4mm))
-   (condition "(A.memberOfFootprint('Q1') && (B.NetName == 'Net-(Q1-A1)' || B.NetName == 'Net-(Q1-A2)' || B.NetName == 'Net-(Q1-G)')) || (B.memberOfFootprint('Q1') && (A.NetName == 'Net-(Q1-A1)' || A.NetName == 'Net-(Q1-A2)' || A.NetName == 'Net-(Q1-G)'))"))
-# fan-out areas next to the TO-220 triac, the relay and the optocouplers: component-inherent pin pitch
+   (condition "(A.memberOfFootprint('Q1') && (B.NetName == '/Q1_A1' || B.NetName == 'Net-(Q1-A2)' || B.NetName == 'Net-(Q1-G)')) || (B.memberOfFootprint('Q1') && (A.NetName == '/Q1_A1' || A.NetName == 'Net-(Q1-A2)' || A.NetName == 'Net-(Q1-G)'))"))
+# fan-out areas next to the TO-220 triac and the optocouplers: component-inherent pin pitch
 (rule "fanout_areas"
    (constraint clearance (min 0.5mm))
-   (condition "A.Type != 'Zone' && B.Type != 'Zone' && ((A.insideArea('q1_fanout') && B.insideArea('q1_fanout')) || (A.insideArea('k1_pins') && B.insideArea('k1_pins')) || (A.insideArea('u1_pins') && B.insideArea('u1_pins')) || (A.insideArea('u5_pins') && B.insideArea('u5_pins')))"))
+   (condition "A.Type != 'Zone' && B.Type != 'Zone' && ((A.insideArea('q1_fanout') && B.insideArea('q1_fanout')) || (A.insideArea('u1_pins') && B.insideArea('u1_pins')) || (A.insideArea('u5_pins') && B.insideArea('u5_pins')))"))
 (rule "fanout_areas_creepage"
    (constraint creepage (min 0.5mm))
-   (condition "(A.insideArea('k1_pins') && B.insideArea('k1_pins')) || (A.insideArea('u1_pins') && B.insideArea('u1_pins')) || (A.insideArea('u5_pins') && B.insideArea('u5_pins'))"))
-# relay SRD-05VDC: coil pins are 6.3 mm from the COM contact by construction (relay carries the reinforced insulation)
-(rule "relay_coil_clearance"
-   (constraint clearance (min 0.8mm))
-   (condition "(A.memberOfFootprint('K1') && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.memberOfFootprint('K1') && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)'))"))
-(rule "relay_coil_creepage"
-   (constraint creepage (min 0.8mm))
-   (condition "(A.memberOfFootprint('K1') && (B.NetName == '+5V' || B.NetName == 'Net-(D5-A)')) || (B.memberOfFootprint('K1') && (A.NetName == '+5V' || A.NetName == 'Net-(D5-A)'))"))
+   (condition "(A.insideArea('u1_pins') && B.insideArea('u1_pins')) || (A.insideArea('u5_pins') && B.insideArea('u5_pins'))"))
 # optocoupler LED-side / output-side pins: pads of U1 and U5 against their own nets (slots under the packages give the creepage)
 (rule "opto_pins"
    (constraint clearance (min 0.4mm))
-   (condition "(A.memberOfFootprint('U5') && (B.NetName == '/TRIG' || B.NetName == 'Net-(R4-Pad2)' || B.NetName == 'GND' || B.NetName == 'Net-(Q1-G)' || B.NetName == 'Net-(R3-Pad1)')) || (B.memberOfFootprint('U5') && (A.NetName == '/TRIG' || A.NetName == 'Net-(R4-Pad2)' || A.NetName == 'GND' || A.NetName == 'Net-(Q1-G)' || A.NetName == 'Net-(R3-Pad1)')) || (A.memberOfFootprint('U1') && (B.NetName == 'Net-(R8-Pad2)' || B.NetName == 'GND' || B.NetName == 'Net-(D1-A)' || B.NetName == 'Net-(D2-K)')) || (B.memberOfFootprint('U1') && (A.NetName == 'Net-(R8-Pad2)' || A.NetName == 'GND' || A.NetName == 'Net-(D1-A)' || A.NetName == 'Net-(D2-K)'))"))
+   (condition "(A.memberOfFootprint('U5') && (B.NetName == '/TRIG' || B.NetName == 'Net-(R4-Pad2)' || B.NetName == 'GND' || B.NetName == 'Net-(Q1-G)' || B.NetName == 'Net-(R3-Pad1)')) || (B.memberOfFootprint('U5') && (A.NetName == '/TRIG' || A.NetName == 'Net-(R4-Pad2)' || A.NetName == 'GND' || A.NetName == 'Net-(Q1-G)' || A.NetName == 'Net-(R3-Pad1)')) || (A.memberOfFootprint('U1') && (B.NetName == '/ZCD_RAW' || B.NetName == 'GND' || B.NetName == 'Net-(D1-A)' || B.NetName == 'Net-(D2-K)')) || (B.memberOfFootprint('U1') && (A.NetName == '/ZCD_RAW' || A.NetName == 'GND' || A.NetName == 'Net-(D1-A)' || A.NetName == 'Net-(D2-K)'))"))
 # fine pitch escapes: SSD1963 (0.4 mm) and ADS1115 (0.5 mm) pads
 (rule "fine_pitch_escape"
    (constraint clearance (min 0.13mm))
