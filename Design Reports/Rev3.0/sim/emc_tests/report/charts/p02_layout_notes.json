@@ -1,0 +1,7 @@
+[
+ "1  RGB B2/B3/PCLK/HSYNC/VSYNC/DE: 2 vias each (x); their B.Cu parts use the In2 +5V island as reference, nearest +5V capacitor 27-47 mm away",
+ "2  In2 +5V island (dashed);  3  J10 via field: 253 ohm quarter-wave resonance at 498.5 MHz (PCLK h15 = 499.5 MHz)",
+ "4  largest In1 copper-to-GND-via distance 8.4 mm (\u03bb/20 at 1 GHz in FR4 = 7.15 mm); median via spacing 3.0 mm",
+ "5  In1 keep-outs under L30 and L11 (50 and 32 mm2), BUCK_SW and BL_SW run over them;  6  hot loops: buck output 11.1 mm2, boost 1.5 mm2, crystal 7.9 mm2",
+ "7  U6 (ZCD Schmitt trigger) has no local decoupling capacitor (nearest 55.7 mm).  Not on the map: 8080 D5-D7 run 9-18 mm within 1 mm of the In1 edge."
+]

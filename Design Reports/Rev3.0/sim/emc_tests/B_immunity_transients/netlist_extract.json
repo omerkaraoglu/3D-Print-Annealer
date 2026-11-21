@@ -1,0 +1,1109 @@
+{
+ "source_netlist": "C:\\Users\\lenovo\\AppData\\Local\\Temp\\agentB_kicad_5yfo7p7u\\current.net",
+ "n_components": 146,
+ "n_nets": 188,
+ "parts": {
+  "C1": {
+   "value": "100n 275VAC X2",
+   "footprint": "Capacitor_THT:C_Rect_L18.0mm_W5.0mm_P15.00mm_FKS3_FKP3",
+   "MPN": "C42P2104M6SC361",
+   "pins": [
+    "1 -> LINE_FILT",
+    "2 -> NEUT"
+   ]
+  },
+  "C126": {
+   "value": "100nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CC0402KRX7R9BB104",
+   "pins": [
+    "1 -> /Display/TP_VDD",
+    "2 -> GND"
+   ]
+  },
+  "C130": {
+   "value": "1nF 50V C0G",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CL05C102JB5NNNC",
+   "pins": [
+    "1 -> /Display/VLED_P",
+    "2 -> GND"
+   ]
+  },
+  "C131": {
+   "value": "1nF 50V C0G",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CL05C102JB5NNNC",
+   "pins": [
+    "1 -> /Display/VLED_N",
+    "2 -> GND"
+   ]
+  },
+  "C132": {
+   "value": "1nF 50V C0G",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CL05C102JB5NNNC",
+   "pins": [
+    "1 -> /Display/TFT_VDD",
+    "2 -> GND"
+   ]
+  },
+  "C133": {
+   "value": "1nF 50V C0G",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CL05C102JB5NNNC",
+   "pins": [
+    "1 -> /Display/TP_VDD",
+    "2 -> GND"
+   ]
+  },
+  "C2": {
+   "value": "220uF 16V",
+   "footprint": "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm",
+   "MPN": "PKRJ-016V221ME070-T2.5",
+   "pins": [
+    "1 -> +5V",
+    "2 -> GND"
+   ]
+  },
+  "C220": {
+   "value": "100nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "MPN": "CC0603KRX7R9BB104",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TCF_P",
+    "2 -> /Thermocouple front end (K-type, ADS1115)/TCF_N"
+   ]
+  },
+  "C221": {
+   "value": "10nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "MPN": "CL10B103KB8NNNC",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TCF_P",
+    "2 -> GND"
+   ]
+  },
+  "C222": {
+   "value": "10nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "MPN": "CL10B103KB8NNNC",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TCF_N",
+    "2 -> GND"
+   ]
+  },
+  "C223": {
+   "value": "100nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CC0402KRX7R9BB104",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> GND"
+   ]
+  },
+  "C224": {
+   "value": "1uF 16V X7R",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "MPN": "C1608X7R1C105K080AC",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> GND"
+   ]
+  },
+  "C4": {
+   "value": "10n 305VAC X2",
+   "footprint": "Capacitor_THT:C_Rect_L13.0mm_W4.0mm_P10.00mm_FKS3_FKP3_MKS4",
+   "MPN": "C42Q2103K40A405",
+   "pins": [
+    "1 -> Net-(C4-Pad1)",
+    "2 -> Net-(Q1-A1)"
+   ]
+  },
+  "C40": {
+   "value": "1uF 275VAC X2",
+   "footprint": "Rev3:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2",
+   "MPN": "C42P2105KBSC400",
+   "pins": [
+    "1 -> LINE_FILT",
+    "2 -> NEUT"
+   ]
+  },
+  "C5": {
+   "value": "100nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CC0402KRX7R9BB104",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> GND"
+   ]
+  },
+  "C6": {
+   "value": "1uF 6.3V X5R",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CL05A105KQ5NNNC",
+   "pins": [
+    "1 -> GND",
+    "2 -> /EN"
+   ]
+  },
+  "C7": {
+   "value": "10uF",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "MPN": "CL10A106KP8NNNC",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> GND"
+   ]
+  },
+  "C8": {
+   "value": "100nF 50V X7R",
+   "footprint": "Capacitor_SMD:C_0402_1005Metric",
+   "MPN": "CC0402KRX7R9BB104",
+   "pins": [
+    "1 -> GND",
+    "2 -> +3V3"
+   ]
+  },
+  "D112": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> I2C_SDA"
+   ]
+  },
+  "D113": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> I2C_SCL"
+   ]
+  },
+  "D114": {
+   "value": "MMSZ15V 500mW",
+   "footprint": "Diode_SMD:D_SOD-123",
+   "MPN": "MMSZ15V-HT",
+   "pins": [
+    "1(K_1) -> /Display/VLED_P",
+    "2(A_2) -> GND"
+   ]
+  },
+  "D115": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> TP_INT"
+   ]
+  },
+  "D116": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> LCD_RST"
+   ]
+  },
+  "D220": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> /Thermocouple front end (K-type, ADS1115)/TC_P"
+   ]
+  },
+  "D221": {
+   "value": "PESD5V0S1BA",
+   "footprint": "Diode_SMD:D_SOD-323",
+   "MPN": "PESD5V0S1BA,115",
+   "pins": [
+    "1(A1_1) -> GND",
+    "2(A2_2) -> /Thermocouple front end (K-type, ADS1115)/TC_N"
+   ]
+  },
+  "D5": {
+   "value": "1N4148W",
+   "footprint": "Diode_SMD:D_SOD-123",
+   "MPN": "1N4148W_R1_00301",
+   "pins": [
+    "1(K_1) -> +5V",
+    "2(A_2) -> Net-(D5-A)"
+   ]
+  },
+  "F1": {
+   "value": "250VAC 1A Slow Blow",
+   "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal",
+   "MPN": "STC1A250V",
+   "pins": [
+    "1 -> LINE_FILT",
+    "2 -> PSU_L"
+   ]
+  },
+  "F3": {
+   "value": "250VAC 8A Normal",
+   "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_445-030_Inline_P20.50x5.20mm_D1.30mm_Horizontal",
+   "MPN": "5GT8A",
+   "pins": [
+    "1 -> LINE_FUSED",
+    "2 -> LINE"
+   ]
+  },
+  "HS1": {
+   "value": "SK 409 63,5 STC",
+   "footprint": "Rev3:Heatsink_Fischer_SK409_63.5_STC",
+   "MPN": "SK 409 63,5 STC TO 220",
+   "pins": [
+    "1 -> unconnected-(HS1-Pad1)",
+    "2 -> unconnected-(HS1-Pad2)"
+   ]
+  },
+  "J10": {
+   "value": "TFT_SAT070AT40D21_FPC40",
+   "footprint": "Rev3:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide",
+   "MPN": "DS1020-09-40VBT1B",
+   "pins": [
+    "1(VLED-_1) -> /Display/VLED_N",
+    "10(R5_10) -> /Display/R5",
+    "11(R6_11) -> /Display/R6",
+    "12(R7_12) -> /Display/R7",
+    "13(G0_13) -> /Display/G0",
+    "14(G1_14) -> /Display/G1",
+    "15(G2_15) -> /Display/G2",
+    "16(G3_16) -> /Display/G3",
+    "17(G4_17) -> /Display/G4",
+    "18(G5_18) -> /Display/G5",
+    "19(G6_19) -> /Display/G6",
+    "2(VLED+_2) -> /Display/VLED_P",
+    "20(G7_20) -> /Display/G7",
+    "21(B0_21) -> /Display/B0",
+    "22(B1_22) -> /Display/B1",
+    "23(B2_23) -> /Display/B2",
+    "24(B3_24) -> /Display/B3",
+    "25(B4_25) -> /Display/B4",
+    "26(B5_26) -> /Display/B5",
+    "27(B6_27) -> /Display/B6",
+    "28(B7_28) -> /Display/B7",
+    "29(GND_29) -> GND",
+    "3(GND_3) -> GND",
+    "30(PCLK_30) -> /Display/PCLK",
+    "31(NC_31) -> unconnected-(J10-NC-Pad31)",
+    "32(HSYNC_32) -> /Display/HSYNC",
+    "33(VSYNC_33) -> /Display/VSYNC",
+    "34(DE_34) -> /Display/DE",
+    "35(NC_35) -> unconnected-(J10-NC-Pad35)",
+    "36(GND_36) -> GND",
+    "37(XR_37) -> unconnected-(J10-XR-Pad37)",
+    "38(YD_38) -> unconnected-(J10-YD-Pad38)",
+    "39(XL_39) -> unconnected-(J10-XL-Pad39)",
+    "4(VDD_4) -> /Display/TFT_VDD",
+    "40(YU_40) -> unconnected-(J10-YU-Pad40)",
+    "5(R0_5) -> /Display/R0",
+    "6(R1_6) -> /Display/R1",
+    "7(R2_7) -> /Display/R2",
+    "8(R3_8) -> /Display/R3",
+    "9(R4_9) -> /Display/R4"
+   ]
+  },
+  "J11": {
+   "value": "CTP_GT911_FPC6",
+   "footprint": "Rev3:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide",
+   "MPN": "L-KLS1-242D-1.2-06-T-U-R",
+   "pins": [
+    "1(VDD_1) -> /Display/TP_VDD",
+    "2(GND_2) -> GND",
+    "3(INT_3) -> TP_INT",
+    "4(SDA_4) -> I2C_SDA",
+    "5(SCL_5) -> I2C_SCL",
+    "6(RST_6) -> LCD_RST"
+   ]
+  },
+  "J2": {
+   "value": "FTDI",
+   "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+   "MPN": "DS1021-1X6SF11-B",
+   "pins": [
+    "1(Pin_1_1) -> GND",
+    "2(Pin_2_2) -> /RTS",
+    "3(Pin_3_3) -> /DTR",
+    "4(Pin_4_4) -> /RXD0",
+    "5(Pin_5_5) -> /TXD0",
+    "6(Pin_6_6) -> +3V3"
+   ]
+  },
+  "J20": {
+   "value": "K-type TC",
+   "footprint": "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P",
+   "MPN": "DG127H-5.08-02P-14-00AH",
+   "pins": [
+    "1(Pin_1_1) -> /Thermocouple front end (K-type, ADS1115)/TC_P",
+    "2(Pin_2_2) -> /Thermocouple front end (K-type, ADS1115)/TC_N"
+   ]
+  },
+  "J3": {
+   "value": "Mains",
+   "footprint": "Connector_Wire:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm",
+   "MPN": "",
+   "pins": [
+    "1(Pin_1_1) -> LINE",
+    "2(Pin_2_2) -> NEUT"
+   ]
+  },
+  "J4": {
+   "value": "Fan",
+   "footprint": "Connector_Wire:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm",
+   "MPN": "",
+   "pins": [
+    "1(Pin_1_1) -> Net-(J4-Pin_1)",
+    "2(Pin_2_2) -> NEUT"
+   ]
+  },
+  "K1": {
+   "value": "HJR-3FF-S-Z-4/05VDC",
+   "footprint": "Relay_THT:Relay_SPDT_SANYOU_SRD_Series_Form_C",
+   "MPN": "HJR-3FF-S-Z-4/05VDC",
+   "pins": [
+    "1 -> LINE_FUSED",
+    "2 -> +5V",
+    "3 -> Net-(J4-Pin_1)",
+    "4 -> unconnected-(K1-Pad4)",
+    "5 -> Net-(D5-A)"
+   ]
+  },
+  "L1": {
+   "value": "LFU09V-103",
+   "footprint": "Rev3:LFU09V-103",
+   "MPN": "LFU09V-103",
+   "pins": [
+    "1 -> NEUT",
+    "2 -> Net-(PS1-AC{slash}N)",
+    "3 -> Net-(PS1-AC{slash}L)",
+    "4 -> PSU_L"
+   ]
+  },
+  "L40": {
+   "value": "100uH 5A",
+   "footprint": "Rev3:L_Radial_CoreMaster_RC1415U",
+   "MPN": "RC1415U-101K",
+   "pins": [
+    "1(1_1) -> LINE_FILT",
+    "2(2_2) -> LINE_FUSED"
+   ]
+  },
+  "PS1": {
+   "value": "HLK-10M05",
+   "footprint": "Converter_ACDC:Converter_ACDC_Hi-Link_HLK-10Mxx",
+   "MPN": "HLK-10M05",
+   "pins": [
+    "1(AC/L_1) -> Net-(PS1-AC{slash}L)",
+    "2(AC/N_2) -> Net-(PS1-AC{slash}N)",
+    "3(-Vout_3) -> GND",
+    "4(+Vout_4) -> +5V"
+   ]
+  },
+  "Q1": {
+   "value": "BTA24-800CWRG",
+   "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
+   "MPN": "BTA24-800CWRG",
+   "pins": [
+    "1(A1_1) -> Net-(Q1-A1)",
+    "2(A2_2) -> LINE_FILT",
+    "3(G_3) -> Net-(Q1-G)"
+   ]
+  },
+  "Q2": {
+   "value": "MMBT4401",
+   "footprint": "Package_TO_SOT_SMD:SOT-23-3",
+   "MPN": "MMBT4401-TP",
+   "pins": [
+    "1(B_1) -> Net-(Q2-B)",
+    "2(E_2) -> /DTR",
+    "3(C_3) -> /IO0"
+   ]
+  },
+  "Q3": {
+   "value": "MMBT4401",
+   "footprint": "Package_TO_SOT_SMD:SOT-23-3",
+   "MPN": "MMBT4401-TP",
+   "pins": [
+    "1(B_1) -> Net-(Q3-B)",
+    "2(E_2) -> /RTS",
+    "3(C_3) -> /EN"
+   ]
+  },
+  "Q4": {
+   "value": "BC817-25-HT",
+   "footprint": "Package_TO_SOT_SMD:SOT-23",
+   "MPN": "BC817-25-HT",
+   "pins": [
+    "1(B_1) -> Net-(Q4-B)",
+    "2(E_2) -> GND",
+    "3(C_3) -> Net-(D5-A)"
+   ]
+  },
+  "R1": {
+   "value": "Heater 1kW",
+   "footprint": "Connector_Wire:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm",
+   "MPN": "",
+   "pins": [
+    "1 -> Net-(Q1-A1)",
+    "2 -> NEUT"
+   ]
+  },
+  "R10": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> /ZCD",
+    "2 -> GND"
+   ]
+  },
+  "R11": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> /EN"
+   ]
+  },
+  "R12": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> /IO0"
+   ]
+  },
+  "R125": {
+   "value": "0R",
+   "footprint": "Resistor_SMD:R_0805_2012Metric",
+   "MPN": "0805WAJ0000T5E",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> /Display/TFT_VDD"
+   ]
+  },
+  "R126": {
+   "value": "0R",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "CQ02WGJ0000TCE",
+   "pins": [
+    "1 -> /Display/BL_FB",
+    "2 -> /Display/VLED_N"
+   ]
+  },
+  "R127": {
+   "value": "100k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "CQ02WGF1003TCE",
+   "pins": [
+    "1 -> /Display/BL_EN",
+    "2 -> GND"
+   ]
+  },
+  "R128": {
+   "value": "0R",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "CQ02WGJ0000TCE",
+   "pins": [
+    "1 -> /Display/BL_PWM",
+    "2 -> /Display/BL_EN"
+   ]
+  },
+  "R129": {
+   "value": "0R",
+   "footprint": "Resistor_SMD:R_0805_2012Metric",
+   "MPN": "0805WAJ0000T5E",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> /Display/TP_VDD"
+   ]
+  },
+  "R13": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> Net-(Q2-B)",
+    "2 -> /RTS"
+   ]
+  },
+  "R130": {
+   "value": "2.2k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "AC0402JR-072K2L",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> I2C_SDA"
+   ]
+  },
+  "R131": {
+   "value": "2.2k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "AC0402JR-072K2L",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> I2C_SCL"
+   ]
+  },
+  "R14": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> Net-(Q3-B)",
+    "2 -> /DTR"
+   ]
+  },
+  "R15": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> Net-(Q4-B)",
+    "2 -> GND"
+   ]
+  },
+  "R16": {
+   "value": "1k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0102TCE",
+   "pins": [
+    "1 -> Net-(Q4-B)",
+    "2 -> /FAN"
+   ]
+  },
+  "R2": {
+   "value": "360 1/2W 350V",
+   "footprint": "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal",
+   "MPN": "MFR-50FTF52-360R",
+   "pins": [
+    "1 -> Net-(Q1-A1)",
+    "2 -> Net-(Q1-G)"
+   ]
+  },
+  "R220": {
+   "value": "1k 0.1%",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "MPN": "TC0325B1001T5F",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TCF_P",
+    "2 -> /Thermocouple front end (K-type, ADS1115)/TC_P"
+   ]
+  },
+  "R221": {
+   "value": "1k 0.1%",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "MPN": "TC0325B1001T5F",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TCF_N",
+    "2 -> /Thermocouple front end (K-type, ADS1115)/TC_N"
+   ]
+  },
+  "R222": {
+   "value": "10M",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "MPN": "0603SAJ0106T5E",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> /Thermocouple front end (K-type, ADS1115)/TC_P"
+   ]
+  },
+  "R223": {
+   "value": "10M",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "MPN": "0603SAJ0106T5E",
+   "pins": [
+    "1 -> /Thermocouple front end (K-type, ADS1115)/TC_N",
+    "2 -> GND"
+   ]
+  },
+  "R224": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> ADC_RDY"
+   ]
+  },
+  "R3": {
+   "value": "360 1/2W 350V",
+   "footprint": "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal",
+   "MPN": "MFR-50FTF52-360R",
+   "pins": [
+    "1 -> Net-(R3-Pad1)",
+    "2 -> LINE_FILT"
+   ]
+  },
+  "R4": {
+   "value": "120",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0121TCE",
+   "pins": [
+    "1 -> /TRIG",
+    "2 -> Net-(R4-Pad2)"
+   ]
+  },
+  "R5": {
+   "value": "47 2W 500V",
+   "footprint": "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal",
+   "MPN": "KNP02SJ0470A10",
+   "pins": [
+    "1 -> Net-(C4-Pad1)",
+    "2 -> LINE_FILT"
+   ]
+  },
+  "R6": {
+   "value": "33k 1W 500V",
+   "footprint": "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical",
+   "MPN": "CFR01SJ0333A10",
+   "pins": [
+    "1 -> Net-(PS1-AC{slash}L)",
+    "2 -> /ZCD_L"
+   ]
+  },
+  "R7": {
+   "value": "33k 1W 500V",
+   "footprint": "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical",
+   "MPN": "CFR01SJ0333A10",
+   "pins": [
+    "1 -> Net-(PS1-AC{slash}N)",
+    "2 -> /ZCD_N"
+   ]
+  },
+  "R8": {
+   "value": "10k",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "MPN": "0402WGJ0103TCE",
+   "pins": [
+    "1 -> +3V3",
+    "2 -> Net-(R8-Pad2)"
+   ]
+  },
+  "R9": {
+   "value": "180 1/10W",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "MPN": "0603SAJ0181T5E",
+   "pins": [
+    "1 -> Net-(R9-Pad1)",
+    "2 -> /ZCD"
+   ]
+  },
+  "RV1": {
+   "value": "TVR14431KSU15Y",
+   "footprint": "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm",
+   "MPN": "TVR14431KSU15Y",
+   "pins": [
+    "1 -> LINE_FILT",
+    "2 -> NEUT"
+   ]
+  },
+  "RV2": {
+   "value": "10561K",
+   "footprint": "Varistor:RV_Disc_D12mm_W3.9mm_P7.5mm",
+   "MPN": "TVR10561KFARY",
+   "pins": [
+    "1 -> LINE_FILT",
+    "2 -> Net-(Q1-A1)"
+   ]
+  },
+  "U1": {
+   "value": "H11AA1",
+   "footprint": "Package_DIP:DIP-6_W7.62mm",
+   "MPN": "H11AA1X",
+   "pins": [
+    "1 -> /ZCD_L",
+    "2 -> /ZCD_N",
+    "3(NC_3) -> unconnected-(U1-NC-Pad3)",
+    "4 -> GND",
+    "5 -> Net-(R8-Pad2)",
+    "6 -> unconnected-(U1-Pad6)"
+   ]
+  },
+  "U20": {
+   "value": "ADS1115IDGSR",
+   "footprint": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+   "MPN": "ADS1115IDGSR",
+   "pins": [
+    "1(ADDR_1) -> GND",
+    "10(SCL_10) -> I2C_SCL",
+    "2(ALERT/RDY_2) -> ADC_RDY",
+    "3(GND_3) -> GND",
+    "4(AIN0_4) -> /Thermocouple front end (K-type, ADS1115)/TCF_P",
+    "5(AIN1_5) -> /Thermocouple front end (K-type, ADS1115)/TCF_N",
+    "6(AIN2_6) -> /Thermocouple front end (K-type, ADS1115)/NTC_MID",
+    "7(AIN3_7) -> /Thermocouple front end (K-type, ADS1115)/VREF_HALF",
+    "8(VDD_8) -> +3V3",
+    "9(SDA_9) -> I2C_SDA"
+   ]
+  },
+  "U3": {
+   "value": "ESP32-WROOM-32E-N16",
+   "footprint": "RF_Module:ESP32-WROOM-32E",
+   "MPN": "ESP32-WROOM-32E-N16",
+   "pins": [
+    "1(GND_1) -> GND",
+    "10(IO25_10) -> LCD_D4",
+    "11(IO26_11) -> LCD_D3",
+    "12(IO27_12) -> LCD_D2",
+    "13(IO14_13) -> LCD_D1",
+    "14(IO12_14) -> unconnected-(U3-IO12-Pad14)",
+    "15(GND_15) -> GND",
+    "16(IO13_16) -> /FAN",
+    "17(SHD/SD2_17) -> unconnected-(U3-SHD{slash}SD2-Pad17)",
+    "18(SWP/SD3_18) -> unconnected-(U3-SWP{slash}SD3-Pad18)",
+    "19(SCS/CMD_19) -> unconnected-(U3-SCS{slash}CMD-Pad19)",
+    "2(VDD_2) -> +3V3",
+    "20(SCK/CLK_20) -> unconnected-(U3-SCK{slash}CLK-Pad20)",
+    "21(SDO/SD0_21) -> unconnected-(U3-SDO{slash}SD0-Pad21)",
+    "22(SDI/SD1_22) -> unconnected-(U3-SDI{slash}SD1-Pad22)",
+    "23(IO15_23) -> I2C_SCL",
+    "24(IO2_24) -> unconnected-(U3-IO2-Pad24)",
+    "25(IO0_25) -> /IO0",
+    "26(IO4_26) -> I2C_SDA",
+    "27(IO16_27) -> LCD_D0",
+    "28(IO17_28) -> LCD_RST",
+    "29(IO5_29) -> LCD_CS",
+    "3(EN_3) -> /EN",
+    "30(IO18_30) -> LCD_DC",
+    "31(IO19_31) -> LCD_WR",
+    "32(NC_32) -> unconnected-(U3-NC-Pad32)",
+    "33(IO21_33) -> LCD_D5",
+    "34(RXD0/IO3_34) -> /RXD0",
+    "35(TXD0/IO1_35) -> /TXD0",
+    "36(IO22_36) -> LCD_D6",
+    "37(IO23_37) -> LCD_D7",
+    "38(GND_38) -> GND",
+    "39(GND_39) -> GND",
+    "4(SENSOR_VP_4) -> unconnected-(U3-SENSOR_VP-Pad4)",
+    "5(SENSOR_VN_5) -> unconnected-(U3-SENSOR_VN-Pad5)",
+    "6(IO34_6) -> /ZCD",
+    "7(IO35_7) -> ADC_RDY",
+    "8(IO32_8) -> TP_INT",
+    "9(IO33_9) -> /TRIG"
+   ]
+  },
+  "U30": {
+   "value": "TPS562201DDCR",
+   "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+   "MPN": "TPS562201DDCR",
+   "pins": [
+    "1(GND_1) -> GND",
+    "2(SW_2) -> /Power/BUCK_SW",
+    "3(VIN_3) -> +5V",
+    "4(VFB_4) -> /Power/BUCK_FB",
+    "5(EN_5) -> +5V",
+    "6(VBST_6) -> /Power/BUCK_BST"
+   ]
+  },
+  "U5": {
+   "value": "MOC3052M",
+   "footprint": "Package_DIP:DIP-6_W7.62mm",
+   "MPN": "MOC3052X",
+   "pins": [
+    "1 -> Net-(R4-Pad2)",
+    "2 -> GND",
+    "3(NC_3) -> unconnected-(U5-NC-Pad3)",
+    "4 -> Net-(Q1-G)",
+    "5(NC_5) -> unconnected-(U5-NC-Pad5)",
+    "6 -> Net-(R3-Pad1)"
+   ]
+  },
+  "U6": {
+   "value": "SN74LVC1G14DBVR",
+   "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+   "MPN": "SN74AHC1G14DBVR",
+   "pins": [
+    "1(NC_1) -> unconnected-(U6-NC-Pad1)",
+    "2 -> Net-(R8-Pad2)",
+    "3(GND_3) -> GND",
+    "4 -> Net-(R9-Pad1)",
+    "5(VCC_5) -> +3V3"
+   ]
+  },
+  "V1": {
+   "value": "VSIN",
+   "footprint": "",
+   "MPN": "",
+   "pins": [
+    "1 -> LINE",
+    "2 -> NEUT"
+   ]
+  }
+ },
+ "nets_of_interest": {
+  "/Display/BL_EN": [
+   "R127.1",
+   "R128.2",
+   "U11.4(EN_4)"
+  ],
+  "/Display/R5": [
+   "J10.10(R5_10)",
+   "RN2.5(R4.2_5)"
+  ],
+  "/Display/R5_T": [
+   "RN2.4(R4.1_4)",
+   "U10.76(LDATA5_76)"
+  ],
+  "/Display/TP_VDD": [
+   "C126.1",
+   "C133.1",
+   "J11.1(VDD_1)",
+   "R129.2"
+  ],
+  "/EN": [
+   "C6.2",
+   "Q3.3(C_3)",
+   "R11.2",
+   "U3.3(EN_3)"
+  ],
+  "/FAN": [
+   "R16.2",
+   "U3.16(IO13_16)"
+  ],
+  "/IO0": [
+   "Q2.3(C_3)",
+   "R12.2",
+   "U3.25(IO0_25)"
+  ],
+  "/TRIG": [
+   "R4.1",
+   "U3.9(IO33_9)"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/NTC_MID": [
+   "C225.1",
+   "R225.1",
+   "TH220.2",
+   "U20.6(AIN2_6)"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/TCF_N": [
+   "C220.2",
+   "C222.1",
+   "R221.1",
+   "U20.5(AIN1_5)"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/TCF_P": [
+   "C220.1",
+   "C221.1",
+   "R220.1",
+   "U20.4(AIN0_4)"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/TC_N": [
+   "D221.2(A2_2)",
+   "J20.2(Pin_2_2)",
+   "R221.2",
+   "R223.1"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/TC_P": [
+   "D220.2(A2_2)",
+   "J20.1(Pin_1_1)",
+   "R220.2",
+   "R222.2"
+  ],
+  "/Thermocouple front end (K-type, ADS1115)/VREF_HALF": [
+   "C226.1",
+   "R226.2",
+   "R227.1",
+   "U20.7(AIN3_7)"
+  ],
+  "/ZCD": [
+   "R10.1",
+   "R9.2",
+   "U3.6(IO34_6)"
+  ],
+  "/ZCD_L": [
+   "R6.2",
+   "U1.1"
+  ],
+  "/ZCD_N": [
+   "R7.2",
+   "U1.2"
+  ],
+  "I2C_SCL": [
+   "D113.2(A2_2)",
+   "J11.5(SCL_5)",
+   "R131.2",
+   "U20.10(SCL_10)",
+   "U3.23(IO15_23)"
+  ],
+  "I2C_SDA": [
+   "D112.2(A2_2)",
+   "J11.4(SDA_4)",
+   "R130.2",
+   "U20.9(SDA_9)",
+   "U3.26(IO4_26)"
+  ],
+  "LCD_RST": [
+   "D116.2(A2_2)",
+   "J11.6(RST_6)",
+   "R111.1",
+   "U3.28(IO17_28)"
+  ],
+  "LINE": [
+   "F3.2",
+   "J3.1(Pin_1_1)",
+   "V1.1"
+  ],
+  "LINE_FILT": [
+   "C1.1",
+   "C40.1",
+   "F1.1",
+   "L40.1(1_1)",
+   "Q1.2(A2_2)",
+   "R3.2",
+   "R5.2",
+   "RV1.1",
+   "RV2.1"
+  ],
+  "LINE_FUSED": [
+   "F3.1",
+   "K1.1",
+   "L40.2(2_2)"
+  ],
+  "NEUT": [
+   "C1.2",
+   "C40.2",
+   "J3.2(Pin_2_2)",
+   "J4.2(Pin_2_2)",
+   "L1.1",
+   "R1.2",
+   "RV1.2",
+   "V1.2"
+  ],
+  "Net-(C4-Pad1)": [
+   "C4.1",
+   "R5.1"
+  ],
+  "Net-(PS1-AC{slash}L)": [
+   "L1.3",
+   "PS1.1(AC/L_1)",
+   "R6.1"
+  ],
+  "Net-(PS1-AC{slash}N)": [
+   "L1.2",
+   "PS1.2(AC/N_2)",
+   "R7.1"
+  ],
+  "Net-(Q1-A1)": [
+   "C4.2",
+   "Q1.1(A1_1)",
+   "R1.1",
+   "R2.1",
+   "RV2.2"
+  ],
+  "Net-(Q1-G)": [
+   "Q1.3(G_3)",
+   "R2.2",
+   "U5.4"
+  ],
+  "PSU_L": [
+   "F1.2",
+   "L1.4"
+  ],
+  "TP_INT": [
+   "D115.2(A2_2)",
+   "J11.3(INT_3)",
+   "U3.8(IO32_8)"
+  ],
+  "unconnected-(K1-Pad4)": [
+   "K1.4"
+  ],
+  "unconnected-(U1-NC-Pad3)": [
+   "U1.3(NC_3)"
+  ],
+  "unconnected-(U1-Pad6)": [
+   "U1.6"
+  ],
+  "unconnected-(U3-SENSOR_VN-Pad5)": [
+   "U3.5(SENSOR_VN_5)"
+  ],
+  "unconnected-(U3-SENSOR_VP-Pad4)": [
+   "U3.4(SENSOR_VP_4)"
+  ],
+  "unconnected-(U5-NC-Pad3)": [
+   "U5.3(NC_3)"
+  ],
+  "unconnected-(U5-NC-Pad5)": [
+   "U5.5(NC_5)"
+  ],
+  "unconnected-(U10-D8-Pad113)": [
+   "U10.113(D8_113)"
+  ],
+  "unconnected-(U10-D9-Pad112)": [
+   "U10.112(D9_112)"
+  ],
+  "unconnected-(U10-D10-Pad111)": [
+   "U10.111(D10_111)"
+  ],
+  "unconnected-(U10-D11-Pad107)": [
+   "U10.107(D11_107)"
+  ],
+  "unconnected-(U10-D12-Pad106)": [
+   "U10.106(D12_106)"
+  ],
+  "unconnected-(U10-D13-Pad105)": [
+   "U10.105(D13_105)"
+  ],
+  "unconnected-(U10-D14-Pad104)": [
+   "U10.104(D14_104)"
+  ],
+  "unconnected-(U10-D15-Pad103)": [
+   "U10.103(D15_103)"
+  ],
+  "unconnected-(U10-D16-Pad99)": [
+   "U10.99(D16_99)"
+  ],
+  "unconnected-(U10-D17-Pad98)": [
+   "U10.98(D17_98)"
+  ],
+  "unconnected-(U10-D18-Pad88)": [
+   "U10.88(D18_88)"
+  ],
+  "unconnected-(U10-D19-Pad87)": [
+   "U10.87(D19_87)"
+  ],
+  "unconnected-(U10-D20-Pad92)": [
+   "U10.92(D20_92)"
+  ],
+  "unconnected-(U10-D21-Pad91)": [
+   "U10.91(D21_91)"
+  ],
+  "unconnected-(U10-D22-Pad90)": [
+   "U10.90(D22_90)"
+  ],
+  "unconnected-(U10-D23-Pad89)": [
+   "U10.89(D23_89)"
+  ],
+  "unconnected-(U10-GAMAS0-Pad52)": [
+   "U10.52(GAMAS0_52)"
+  ],
+  "unconnected-(U10-GAMAS1-Pad53)": [
+   "U10.53(GAMAS1_53)"
+  ],
+  "unconnected-(U10-GPIO0-Pad36)": [
+   "U10.36(GPIO0_36)"
+  ],
+  "unconnected-(U10-GPIO1-Pad37)": [
+   "U10.37(GPIO1_37)"
+  ],
+  "unconnected-(U10-GPIO2-Pad38)": [
+   "U10.38(GPIO2_38)"
+  ],
+  "unconnected-(U10-GPIO3-Pad39)": [
+   "U10.39(GPIO3_39)"
+  ],
+  "unconnected-(U10-TE-Pad50)": [
+   "U10.50(TE_50)"
+  ]
+ }
+}

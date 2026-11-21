@@ -1,0 +1,179 @@
+{
+ "tran_runtime_s": 256.9,
+ "n_timepoints": 8306405,
+ "turn_on_times_s": [
+  0.00019584447621195393,
+  0.010195844476211954,
+  0.020195844476211953,
+  0.03019584447621195,
+  0.04019584447621195
+ ],
+ "window_wrap_jump_L_mV": -0.087,
+ "window_wrap_jump_N_mV": -0.086,
+ "rows": [
+  {
+   "line": "L",
+   "f_MHz": 0.15,
+   "QP_tran": 54.91,
+   "QP_LTI": 54.32,
+   "AV_tran": 22.32,
+   "AV_LTI": 21.81
+  },
+  {
+   "line": "L",
+   "f_MHz": 0.2,
+   "QP_tran": 48.08,
+   "QP_LTI": 47.5,
+   "AV_tran": 15.41,
+   "AV_LTI": 14.97
+  },
+  {
+   "line": "L",
+   "f_MHz": 0.3,
+   "QP_tran": 34.86,
+   "QP_LTI": 34.29,
+   "AV_tran": 2.09,
+   "AV_LTI": 1.74
+  },
+  {
+   "line": "L",
+   "f_MHz": 0.5,
+   "QP_tran": 25.45,
+   "QP_LTI": 24.89,
+   "AV_tran": -7.38,
+   "AV_LTI": -7.65
+  },
+  {
+   "line": "L",
+   "f_MHz": 0.7,
+   "QP_tran": 26.2,
+   "QP_LTI": 25.67,
+   "AV_tran": -6.7,
+   "AV_LTI": -6.93
+  },
+  {
+   "line": "L",
+   "f_MHz": 1.0,
+   "QP_tran": 21.04,
+   "QP_LTI": 20.57,
+   "AV_tran": -11.9,
+   "AV_LTI": -12.14
+  },
+  {
+   "line": "L",
+   "f_MHz": 1.4,
+   "QP_tran": 12.86,
+   "QP_LTI": 12.47,
+   "AV_tran": -20.16,
+   "AV_LTI": -20.47
+  },
+  {
+   "line": "L",
+   "f_MHz": 2.0,
+   "QP_tran": 14.42,
+   "QP_LTI": 14.07,
+   "AV_tran": -18.74,
+   "AV_LTI": -19.49
+  },
+  {
+   "line": "L",
+   "f_MHz": 3.0,
+   "QP_tran": 8.43,
+   "QP_LTI": -1.09,
+   "AV_tran": -22.74,
+   "AV_LTI": -34.5
+  },
+  {
+   "line": "L",
+   "f_MHz": 5.0,
+   "QP_tran": 0.59,
+   "QP_LTI": -0.55,
+   "AV_tran": -28.95,
+   "AV_LTI": -34.02
+  },
+  {
+   "line": "N",
+   "f_MHz": 0.15,
+   "QP_tran": 55.43,
+   "QP_LTI": 54.85,
+   "AV_tran": 22.84,
+   "AV_LTI": 22.33
+  },
+  {
+   "line": "N",
+   "f_MHz": 0.2,
+   "QP_tran": 49.55,
+   "QP_LTI": 48.97,
+   "AV_tran": 16.88,
+   "AV_LTI": 16.44
+  },
+  {
+   "line": "N",
+   "f_MHz": 0.3,
+   "QP_tran": 42.97,
+   "QP_LTI": 42.39,
+   "AV_tran": 10.17,
+   "AV_LTI": 9.84
+  },
+  {
+   "line": "N",
+   "f_MHz": 0.5,
+   "QP_tran": 42.55,
+   "QP_LTI": 41.99,
+   "AV_tran": 9.68,
+   "AV_LTI": 9.45
+  },
+  {
+   "line": "N",
+   "f_MHz": 0.7,
+   "QP_tran": 42.73,
+   "QP_LTI": 42.19,
+   "AV_tran": 9.8,
+   "AV_LTI": 9.6
+  },
+  {
+   "line": "N",
+   "f_MHz": 1.0,
+   "QP_tran": 41.92,
+   "QP_LTI": 41.44,
+   "AV_tran": 8.95,
+   "AV_LTI": 8.73
+  },
+  {
+   "line": "N",
+   "f_MHz": 1.4,
+   "QP_tran": 39.7,
+   "QP_LTI": 39.3,
+   "AV_tran": 6.62,
+   "AV_LTI": 6.37
+  },
+  {
+   "line": "N",
+   "f_MHz": 2.0,
+   "QP_tran": 34.23,
+   "QP_LTI": 33.88,
+   "AV_tran": 1.03,
+   "AV_LTI": 0.33
+  },
+  {
+   "line": "N",
+   "f_MHz": 3.0,
+   "QP_tran": 21.7,
+   "QP_LTI": 12.19,
+   "AV_tran": -9.5,
+   "AV_LTI": -21.22
+  },
+  {
+   "line": "N",
+   "f_MHz": 5.0,
+   "QP_tran": 8.25,
+   "QP_LTI": 7.11,
+   "AV_tran": -21.32,
+   "AV_LTI": -26.35
+  }
+ ],
+ "QP_tran_minus_LTI_dB": {
+  "max": 9.52,
+  "min": 0.35
+ }
+}
