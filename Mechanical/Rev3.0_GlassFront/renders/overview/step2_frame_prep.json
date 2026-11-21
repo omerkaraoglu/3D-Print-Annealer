@@ -1,0 +1,21 @@
+{
+ "name": "step2_frame_prep",
+ "view": "iso_front",
+ "size": [
+  1500,
+  1050
+ ],
+ "keys": {
+  "frame": [
+   37,
+   17,
+   17
+  ],
+  "formex": [
+   74,
+   108,
+   174
+  ]
+ },
+ "anchors": {}
+}

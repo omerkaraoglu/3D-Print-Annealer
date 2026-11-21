@@ -1,0 +1,16 @@
+{
+ "name": "part_pcb",
+ "view": "iso_back_r",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "pcb": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

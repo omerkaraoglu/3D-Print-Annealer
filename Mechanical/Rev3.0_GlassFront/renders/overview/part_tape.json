@@ -1,0 +1,16 @@
+{
+ "name": "part_tape",
+ "view": "iso_front",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "tape": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

@@ -1,0 +1,16 @@
+{
+ "name": "tool_gauge",
+ "view": "gauge",
+ "size": [
+  1500,
+  900
+ ],
+ "keys": {
+  "gauge": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

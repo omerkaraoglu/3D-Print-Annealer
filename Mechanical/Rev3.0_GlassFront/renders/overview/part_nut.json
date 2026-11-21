@@ -1,0 +1,16 @@
+{
+ "name": "part_nut",
+ "view": "stud",
+ "size": [
+  1100,
+  1100
+ ],
+ "keys": {
+  "nut": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

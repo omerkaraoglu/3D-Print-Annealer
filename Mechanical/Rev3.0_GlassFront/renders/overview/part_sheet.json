@@ -1,0 +1,21 @@
+{
+ "name": "part_sheet",
+ "view": "iso_back",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "sheet": [
+   37,
+   17,
+   17
+  ],
+  "stud": [
+   74,
+   108,
+   174
+  ]
+ },
+ "anchors": {}
+}

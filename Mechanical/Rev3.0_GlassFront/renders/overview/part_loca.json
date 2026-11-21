@@ -1,0 +1,16 @@
+{
+ "name": "part_loca",
+ "view": "iso_front",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "loca": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

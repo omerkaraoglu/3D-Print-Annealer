@@ -1,0 +1,1387 @@
+{
+ "checked": "2026-11-17T16:05:53",
+ "method": "one GET per distinct URL, generic browser User-Agent, no cookies, >= 1.2 s apart, 25 s timeout; 403/429 = blocked (bot wall, not a dead link); 404/410 or a product link that redirects off the product page = dead; 'mpn_on_page' = the bought part number appears in the page's <title> or <h1> (Özdisan answers 200 with an empty page for unknown product ids, so status 200 alone proves nothing); 200 without the part number = suspect",
+ "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+ "distinct_urls": 72,
+ "tally": {
+  "ok": 71,
+  "blocked": 1
+ },
+ "urls": [
+  {
+   "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-5gt8a-445944",
+   "refs": [
+    "F3"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sigortalar-849/reomax-5gt8a-445944",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "5GT8A REOMAX | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941",
+   "refs": [
+    "L40"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "RC1415U-101K CORE MASTER | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2105kbsc400-466649",
+   "refs": [
+    "C40"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2105kbsc400-466649",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "C42P2105KBSC400 FARATRONIC | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2104m6sc361-488131",
+   "refs": [
+    "C1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2104m6sc361-488131",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "C42P2104M6SC361 FARATRONIC | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701",
+   "refs": [
+    "RV1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TVR14431KSU15Y THINKING | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613",
+   "refs": [
+    "F1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "STC1A250V REOMAX | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799",
+   "refs": [
+    "L1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "LFU09V-103 CORE MASTER | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ac-dc-donusturuculer-606/hi-link-hlk-10m05-702430",
+   "refs": [
+    "PS1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ac-dc-donusturuculer-606/hi-link-hlk-10m05-702430",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "HLK-10M05 HI-LINK | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875",
+   "refs": [
+    "C2"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "PKRJ-016V221ME070-T2.5 KOSHIN | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034",
+   "refs": [
+    "U30"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TPS562201DDCR TEXAS | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415",
+   "refs": [
+    "L30"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "SRI0605B-4R7M CORE MASTER | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384",
+   "refs": [
+    "C124, C127, C330, C331",
+    "C116, C122, C336"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL21A106KPFNNNE SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002",
+   "refs": [
+    "C333, C334"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL21A226KOQNNNE SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353",
+   "refs": [
+    "R330"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0402WGF3322TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902",
+   "refs": [
+    "R331"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CQ02WGF1002TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395",
+   "refs": [
+    "U31"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "LD1117S12CTR STM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751",
+   "refs": [
+    "Q1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "BTA24-800CWRG STM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3052x-637272",
+   "refs": [
+    "U5"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3052x-637272",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "MOC3052X ISOCOM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369",
+   "refs": [
+    "R4"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0402WGJ0121TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549",
+   "refs": [
+    "R2, R3"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "MFR-50FTF52-360R YAGEO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42q2103k40a405-350791",
+   "refs": [
+    "C4"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42q2103k40a405-350791",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "C42Q2103K40A405 FARATRONIC | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-knp02sj0470a10-690542",
+   "refs": [
+    "R5"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-knp02sj0470a10-690542",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "KNP02SJ0470A10 ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305",
+   "refs": [
+    "RV2"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TVR10561KFARY THINKING | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378",
+   "refs": [
+    "U1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "H11AA1X ISOCOM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800",
+   "refs": [
+    "R6, R7"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CFR01SJ0333A10 ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783",
+   "refs": [
+    "U6"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "SN74AHC1G14DBVR TEXAS | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227",
+   "refs": [
+    "R9"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0603SAJ0181T5E ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/genel-tip-roleler-403/tianbo-hjr-3ff-s-z-4-05vdc-415763",
+   "refs": [
+    "K1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/genel-tip-roleler-403/tianbo-hjr-3ff-s-z-4-05vdc-415763",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "HJR-3FF-S-Z-4/05VDC TIANBO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/discrete-transistorler-442/hottech-bc817-25-ht-448900",
+   "refs": [
+    "Q4"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/discrete-transistorler-442/hottech-bc817-25-ht-448900",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "BC817-25-HT HOTTECH | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142",
+   "refs": [
+    "D5"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "1N4148W_R1_00301 PANJIT | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0102tce-431887",
+   "refs": [
+    "R16"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0102tce-431887",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0402WGJ0102TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893",
+   "refs": [
+    "U3"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "ESP32-WROOM-32E-N16 ESPRESSIF SYSTEMS | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
+   "refs": [
+    "C5, C8",
+    "C112-C115, C117-C119, C123, C126, C223, C225, C226",
+    "C129, C332"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CC0402KRX7R9BB104 YAGEO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
+   "refs": [
+    "C6"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL05A105KQ5NNNC SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10a106kp8nnnc-350863",
+   "refs": [
+    "C7"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10a106kp8nnnc-350863",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL10A106KP8NNNC SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407",
+   "refs": [
+    "J2"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "DS1021-1X6SF11-B CONNFLY | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020",
+   "refs": [
+    "Q2, Q3"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "MMBT4401-TP M.C.C. | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331",
+   "refs": [
+    "R8, R10-R15, R124, R224"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0402WGJ0103TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156",
+   "refs": [
+    "R130, R131"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "AC0402JR-072K2L YAGEO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/arayuz-kontrolor-entegreleri-227/solomon-ssd1963ql9-353972",
+   "refs": [
+    "U10"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/arayuz-kontrolor-entegreleri-227/solomon-ssd1963ql9-353972",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "SSD1963QL9 SOLOMON | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628",
+   "refs": [
+    "Y10"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CX3225GB10000P0HPQCC KYOCERA AVX | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946",
+   "refs": [
+    "C110, C111"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "GRM1555C1H270JA01D MURATA | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557",
+   "refs": [
+    "R110-R121"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "RC0402JR-0733RL YAGEO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0330tce-467028",
+   "refs": [
+    "RN1-RN7"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0330tce-467028",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "4D02WGJ0330TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193",
+   "refs": [
+    "C120, C121, C337",
+    "C224, C335"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "C1608X7R1C105K080AC TDK | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712",
+   "refs": [
+    "J10"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "DS1020-09-40VBT1B CONNFLY | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840",
+   "refs": [
+    "J11"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "L-KLS1-242D-1.2-06-T-U-R KLS ELECTRONIC | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/micrel-microchip-mic2288yd5-tr-613161",
+   "refs": [
+    "U11"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/micrel-microchip-mic2288yd5-tr-613161",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "MIC2288YD5-TR MICREL-MICROCHIP | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "refs": [
+    "L11",
+    "L12"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "PCD0403MT100 VIKING | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239",
+   "refs": [
+    "D111"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "SS14-SMA-N-JQ JIAQI | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305",
+   "refs": [
+    "C125"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL21A475KBQNNNE SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503",
+   "refs": [
+    "D114"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "MMSZ15V-HT HOTTECH | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649",
+   "refs": [
+    "R122, R123"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TC0525B180JT5F ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856",
+   "refs": [
+    "R126, R128"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CQ02WGJ0000TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906",
+   "refs": [
+    "R127"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CQ02WGF1003TCE ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953",
+   "refs": [
+    "R132"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "HP06W2F500LT5E ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511",
+   "refs": [
+    "C128"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "EEEFK1C470UR PANASONIC(EUROPE) | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291",
+   "refs": [
+    "C130-C133"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL05C102JB5NNNC SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715",
+   "refs": [
+    "R125, R129"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0805WAJ0000T5E ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/c?search=PESD5V0S1BA",
+   "refs": [
+    "D112, D113, D115, D116, D220, D221"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/tvs-diyotlar-386/nexperia-pesd5v0s1ba-115-488980",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "PESD5V0S1BA,115 NEXPERIA | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/analogtan-dijitale-donusturucu-entegreler-adc-225/texas-ads1115idgsr-616336",
+   "refs": [
+    "U20"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/analogtan-dijitale-donusturucu-entegreler-adc-225/texas-ads1115idgsr-616336",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "ADS1115IDGSR TEXAS | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380",
+   "refs": [
+    "J20"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "DG127H-5.08-02P-14-00AH DEGSON | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282",
+   "refs": [
+    "TH220"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TSM1B103F3381RZ THINKING | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043",
+   "refs": [
+    "R220, R221"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TC0325B1001T5F ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015",
+   "refs": [
+    "C220"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CC0603KRX7R9BB104 YAGEO | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649",
+   "refs": [
+    "C221, C222"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "CL10B103KB8NNNC SAMSUNG | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167",
+   "refs": [
+    "R222, R223"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "0603SAJ0106T5E ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390",
+   "refs": [
+    "R225-R227"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "TC0325B1002T5F ROYALOHM | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
+   "refs": [
+    "HS1"
+   ],
+   "http_status": 403,
+   "final_url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
+   "result": "blocked",
+   "mpn_on_page": null,
+   "page_title": null,
+   "detail": "HTTP 403 Forbidden"
+  },
+  {
+   "url": "https://www.ozdisan.com/p/sigorta-yuvalari-847/reomax-r3-5a-575555",
+   "refs": [
+    "F1/F3 clips"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/sigorta-yuvalari-847/reomax-r3-5a-575555",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "R3-5A REOMAX | Özdisan",
+   "detail": ""
+  },
+  {
+   "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
+   "refs": [
+    "TC1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "WRNT-02 K-tip 0-600C M6 Termokupl - 1 Metre Sıcaklık, Nem Sensörleri Motorobit - Motorobit.com",
+   "detail": ""
+  },
+  {
+   "url": "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995",
+   "refs": [
+    "DS1"
+   ],
+   "http_status": 200,
+   "final_url": "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995",
+   "result": "ok",
+   "mpn_on_page": true,
+   "page_title": "SAT70AT40D21-33KN-CTP-V1 SATOZ | Özdisan",
+   "detail": ""
+  }
+ ],
+ "lines": [
+  {
+   "refs": "F3",
+   "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-5gt8a-445944",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "L40",
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C40",
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2105kbsc400-466649",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C1",
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2104m6sc361-488131",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "RV1",
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "F1",
+   "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "L1",
+   "url": "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "PS1",
+   "url": "https://www.ozdisan.com/p/ac-dc-donusturuculer-606/hi-link-hlk-10m05-702430",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C2",
+   "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U30",
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "L30",
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C124, C127, C330, C331",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C333, C334",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R330",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R331",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U31",
+   "url": "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "Q1",
+   "url": "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U5",
+   "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3052x-637272",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R4",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0121tce-449369",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R2, R3",
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C4",
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42q2103k40a405-350791",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R5",
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-knp02sj0470a10-690542",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "RV2",
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10561kfary-501305",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U1",
+   "url": "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R6, R7",
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U6",
+   "url": "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R9",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "K1",
+   "url": "https://www.ozdisan.com/p/genel-tip-roleler-403/tianbo-hjr-3ff-s-z-4-05vdc-415763",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "Q4",
+   "url": "https://www.ozdisan.com/p/discrete-transistorler-442/hottech-bc817-25-ht-448900",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "D5",
+   "url": "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R16",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0102tce-431887",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U3",
+   "url": "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C5, C8",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C6",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C7",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10a106kp8nnnc-350863",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "J2",
+   "url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "Q2, Q3",
+   "url": "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R8, R10-R15, R124, R224",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R130, R131",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U10",
+   "url": "https://www.ozdisan.com/p/arayuz-kontrolor-entegreleri-227/solomon-ssd1963ql9-353972",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "Y10",
+   "url": "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C110, C111",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R110-R121",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "RN1-RN7",
+   "url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0330tce-467028",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C112-C115, C117-C119, C123, C126, C223, C225, C226",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C116, C122, C336",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C120, C121, C337",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "J10",
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "J11",
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U11",
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/micrel-microchip-mic2288yd5-tr-613161",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "L11",
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "D111",
+   "url": "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C125",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "D114",
+   "url": "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R122, R123",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R126, R128",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R127",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "L12",
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R132",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C128",
+   "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C129, C332",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C130-C133",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R125, R129",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "D112, D113, D115, D116, D220, D221",
+   "url": "https://www.ozdisan.com/c?search=PESD5V0S1BA",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "U20",
+   "url": "https://www.ozdisan.com/p/analogtan-dijitale-donusturucu-entegreler-adc-225/texas-ads1115idgsr-616336",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "J20",
+   "url": "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "TH220",
+   "url": "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R220, R221",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C220",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C221, C222",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R222, R223",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R225-R227",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "C224, C335",
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "HS1",
+   "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
+   "http_status": 403,
+   "result": "blocked"
+  },
+  {
+   "refs": "F1/F3 clips",
+   "url": "https://www.ozdisan.com/p/sigorta-yuvalari-847/reomax-r3-5a-575555",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "TC1",
+   "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "R1",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "J3",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "J4",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "V1",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "DS1",
+   "url": "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995",
+   "http_status": 200,
+   "result": "ok"
+  },
+  {
+   "refs": "PCB",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "Assembly",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  },
+  {
+   "refs": "Glass front",
+   "url": null,
+   "http_status": null,
+   "result": "no link"
+  }
+ ]
+}

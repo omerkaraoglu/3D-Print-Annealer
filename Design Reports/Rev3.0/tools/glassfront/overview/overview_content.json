@@ -1,0 +1,2332 @@
+{
+ "about": "Text and doc-sourced values of the GF-2.1 overview PDF. Every entry that prints a number cites where it comes from: 'src' = section of Design Reports/Rev3.0/Rev3.0_GlassFront_Design.md (e.g. '§11.4'), 'master' = Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json, 'elec' = electronics_bom.json, 'GF-Dxx' = the drawing sheet. Placeholders {m.name} are filled from the master by make_overview.py (ov_values.master_values). Nothing here is typed into the layout code.",
+ "meta": {
+  "title": "Rev3.0 Oven Controller — Glass Front",
+  "subtitle": "Visual overview: what it is, what every piece is, how we make it",
+  "revision": "GF-2.1",
+  "date": "2026-11-17",
+  "one_line": {
+   "t": "A flush, printed, strengthened glass front for the oven's 7-inch touch screen: glass, plastic lip and steel lie in one plane, with the same {m.border} mm black border on all four sides.",
+   "src": "§0.1"
+  },
+  "cover_note": {
+   "t": "Design of record GF-2.1. Independently re-checked: 120 pass / 0 fail / 54 info. Still gated by a fold test on one real panel before anything is ordered. All costs in this document are desk estimates; no supplier has been asked.",
+   "src": "§0.1, §10.1, §11"
+  },
+  "footer": "GF-2.1 · 2026-11-17 · page {n}/{N}",
+  "readers": {
+   "t": "For the owner and the business partner. Pictures first; numbers are taken from the master parameter file and the design document.",
+   "src": "-"
+  }
+ },
+ "what": {
+  "title": "What it is",
+  "front_caption": {
+   "t": "Front view to scale, as the customer sees it (S4: no fastener visible). Notice the equal {m.border} mm border all round and the window centred in the glass.",
+   "src": "§0.2"
+  },
+  "place_caption": {
+   "t": "Where it sits: the frame is mounted from behind the oven's steel front. The dashed outline is the {m.flange_w} × {m.flange_h} mm frame flange hidden behind the sheet; its exact position on the oven front is not fixed in the documents yet.",
+   "src": "§0.1, §5 risk 13"
+  },
+  "lines": {
+   "t": "Steel | 0.4 dark line | 1.0 matte black lip | 0.4 black-on-black line | glossy black glass",
+   "src": "§0.2"
+  },
+  "facts": [
+   {
+    "big": "{m.border} mm",
+    "small": "black border, the same on all four sides (owner's decision D3)",
+    "src": "§0.1, §4"
+   },
+   {
+    "big": "{m.cut_w} × {m.cut_h}",
+    "small": "mm visible module = laser cut-out in the steel sheet",
+    "src": "§0.2"
+   },
+   {
+    "big": "±0.11 mm",
+    "small": "glass, lip and steel in one plane (statistical; ±0.25 worst case)",
+    "src": "§0.2"
+   },
+   {
+    "big": "{m.glass_t} mm",
+    "small": "strengthened cover glass, printed black inside (thickness still decision D2)",
+    "src": "§1, §4"
+   },
+   {
+    "big": "4 hidden studs",
+    "small": "plus 4 tape strips hold it (S4); nothing visible from the front",
+    "src": "§0.1"
+   },
+   {
+    "big": "≈ 3,850 TRY",
+    "small": "all-in per oven over the first 100, likely (desk estimate, no quote)",
+    "src": "§0.3"
+   }
+  ],
+  "why_title": "Why it is built this way",
+  "why": [
+   {
+    "h": "Flush glass",
+    "t": "The glass sits in the cut-out, not on top of it: no bezel stands proud of the steel.",
+    "src": "§1.1"
+   },
+   {
+    "h": "Mounted from behind",
+    "t": "Its 1.0 mm lip fills the sheet thickness; the sheet edge rests on the frame, so lip and steel are flush.",
+    "src": "§0.1, §1.1"
+   },
+   {
+    "h": "No press tool",
+    "t": "The sheet is only laser cut and stud-welded; one aluminium mould makes the frame.",
+    "src": "§0.1, §1"
+   },
+   {
+    "h": "Bonded in-house",
+    "t": "Two bench jigs: J1 bonds the screen to the glass, J2 bonds the glass to the frame flush.",
+    "src": "§0.1"
+   }
+  ],
+  "variants_caption": {
+   "t": "The two fixing variants on the front (GF-D40, UI indicative): S4 shows nothing; R4 shows four black Ø14 rivet heads, 1.5–2.0 mm proud.",
+   "src": "§2.3, GF-D40"
+  },
+  "corner_caption": {
+   "t": "Corner at 3.5 : 1 (GF-D40): the two thin lines are all that separates steel, lip and glass.",
+   "src": "GF-D40"
+  }
+ },
+ "together": {
+  "title": "How it goes together",
+  "explode_caption": {
+   "t": "Exploded view from the front, rendered from the assembly CAD (S4 variant). Numbers match the parts list. Tape and bead are shown yellow and red for visibility; both are black in reality.",
+   "src": "-"
+  },
+  "order_note": {
+   "t": "Front (customer side) on the left, controller board at the back on the right.",
+   "src": "-"
+  },
+  "not_shown": {
+   "t": "Not in the picture: 13 PCB screws, 14–15 the R4 rivet parts (alternative), 16 primers and cleaning.",
+   "src": "structure: BOM item numbers"
+  }
+ },
+ "edge": {
+  "title": "The edge in cross-section",
+  "caption": {
+   "t": "Cut through the left side edge at the glass centre line, from the assembly CAD. Notice the flush plane: glass front, plastic lip and steel front lie in one line at the bottom.",
+   "src": "§7.2"
+  },
+  "zoom_caption": {
+   "t": "Zoom on the visible joint (designed gaps at 20 °C).",
+   "src": "§2.1"
+  },
+  "corner_caption": {
+   "t": "Corner fastener F1: washer and nyloc nut clamp the frame tube onto the stud welded to the sheet back (drawn as modelled, a plain rod; the real weld flange sits in the counterbore).",
+   "src": "§8.7"
+  },
+  "callouts": {
+   "glass_flush": {
+    "t": "flush plane: glass front = lip top = steel front",
+    "src": "§7.2"
+   },
+   "g1": {
+    "t": "g1 {m.g1}",
+    "src": "master"
+   },
+   "lip": {
+    "t": "lip {m.lip_w}",
+    "src": "master"
+   },
+   "g2": {
+    "t": "g2 {m.g2}",
+    "src": "master"
+   },
+   "sheet_t": {
+    "t": "sheet {m.t_sheet} (= lip height)",
+    "src": "master"
+   }
+  },
+  "labels": {
+   "sheet": "oven steel sheet",
+   "tape": "VHB tape on the frame flange",
+   "frame": "moulded frame (lip, seat ring, flange)",
+   "glass": "cover glass",
+   "print": "black print (inside face)",
+   "loca": "optical bond (LOCA)",
+   "bead": "bead adhesive on the land",
+   "panel": "display + touch panel",
+   "formex": "Formex insulator",
+   "pcb": "controller PCB",
+   "stud": "weld stud M4 (S4)",
+   "washer": "washer M4",
+   "nut": "nyloc nut M4",
+   "tail": "folded flat cable (tail)",
+   "weld_base": "weld base (illustration, not in the CAD)"
+  },
+  "weld_base": {
+   "d": "5.8",
+   "h": "1.4",
+   "src": "§8.7",
+   "note": "drawn as the envelope the stud must stay inside after welding: flange incl. weld collar and flash within Ø5.8 × 1.4 (design doc §8.7)"
+  }
+ },
+ "bottom": {
+  "title": "The bottom edge: folded cables, slot and bridge",
+  "section_caption": {
+   "t": "Cut through the bottom edge at the touch cable (abs x 60), from the assembly CAD. Notice that the cable folds back inside the frame, behind the black print: from the front the bottom looks like the other three edges.",
+   "src": "§2.2.2"
+  },
+  "back_caption": {
+   "t": "From behind (Fusion render, PCB fitted): both cables folded over the bridge nose into their own compartments, left and right of the divider rib.",
+   "src": "§2.2.2"
+  },
+  "nose_caption": {
+   "t": "Close-up of the divider rib and the R1.5 bridge nose (Fusion render).",
+   "src": "§2.2.2"
+  },
+  "budget_title": "Why the border is {m.border} mm: the bottom budget",
+  "budget": [
+   {
+    "w": "9.51",
+    "t": "panel's own edge",
+    "src": "§2.2.1"
+   },
+   {
+    "w": "3.06",
+    "t": "room to fold the cables (3.23 modelled)",
+    "src": "§2.2.1"
+   },
+   {
+    "w": "6.20",
+    "t": "flat land for the bead (6.26 modelled)",
+    "src": "§2.2.1"
+   },
+   {
+    "w": "18.77",
+    "t": "needed → 19.00 modelled",
+    "src": "§2.2.1"
+   }
+  ],
+  "labels": {
+   "glass": "cover glass, printed",
+   "panel": "display + touch panel",
+   "tail": "touch cable (tail), folded back",
+   "slot": "bend gap {m.g_bend}",
+   "nose": "nose R1.5",
+   "bridge": "bridge",
+   "bead": "bead on {m.land_bottom} land",
+   "tape": "VHB tape",
+   "sheet": "oven sheet",
+   "wall": "frame bottom wall",
+   "pocket": "tail pocket (open to the back)",
+   "pcb": "controller PCB",
+   "conn": "connector J11",
+   "formex": "Formex"
+  },
+  "back_labels": {
+   "ctp": "touch cable (CTP)",
+   "tft": "display cable (TFT)",
+   "rib": "divider rib",
+   "pcb": "PCB",
+   "wall": "frame bottom wall"
+  },
+  "nose_labels": {
+   "rib": "divider rib",
+   "nose": "bridge nose R1.5",
+   "tail": "folded cable"
+  },
+  "margin_note": {
+   "t": "Margins are met but thin: the touch cable clears the nose by 0.459 mm against 0.45 at the full worst case.",
+   "src": "§2.2.6"
+  }
+ },
+ "bom_page": {
+  "title": "Mechanical parts list — the product",
+  "title2": "Mechanical parts list — the product (continued)",
+  "intro": {
+   "t": "One card per physical piece in one oven. Images are rendered from the assembly CAD unless marked otherwise. Costs are desk estimates (§11.4), no supplier quoted.",
+   "src": "§11.4"
+  },
+  "field_labels": [
+   "Qty / oven",
+   "Material, spec",
+   "Key size",
+   "Make or buy",
+   "Who makes it",
+   "Process",
+   "Drawing / file",
+   "Cost (estimate)"
+  ]
+ },
+ "bom": [
+  {
+   "no": 1,
+   "key": "sheet",
+   "name": "Oven front sheet with window cut-out",
+   "purpose": {
+    "t": "The oven's steel front; a laser-cut opening takes the glass flush.",
+    "src": "§8.6"
+   },
+   "qty": {
+    "t": "1 (existing sheet, modified)",
+    "src": "CAD: one body in the assembly"
+   },
+   "material": {
+    "t": "steel 1.0 mm (±0.05); finish open (D5)",
+    "src": "§8.6, §4"
+   },
+   "size": {
+    "t": "cut-out {m.cut_w} × {m.cut_h}, R{m.R_cut}",
+    "src": "master"
+   },
+   "make": {
+    "t": "Buy",
+    "src": "-"
+   },
+   "who": {
+    "t": "sheet-metal shop (Çorlu / Kapaklı area)",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "laser cut, edge R0.2–0.5, studs, coat",
+    "src": "§8.6"
+   },
+   "file": {
+    "t": "GF-D01 (S4) / GF-D03 (R4) + DXF",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "3 / 7 / 15 k TRY per 100 ovens",
+    "src": "§11.4"
+   },
+   "image": "part_sheet",
+   "image_kind": "render",
+   "image_note": {
+    "t": "back side, studs welded on",
+    "src": "-"
+   }
+  },
+  {
+   "no": 2,
+   "key": "stud",
+   "name": "Hidden weld stud M4 × 16 (S4)",
+   "purpose": {
+    "t": "Welded to the sheet back; holds one frame corner, invisible from the front.",
+    "src": "§2.3"
+   },
+   "qty": {
+    "t": "4",
+    "src": "§8.7"
+   },
+   "material": {
+    "t": "ISO 13918 PT CD stud, Cu-plated steel",
+    "src": "§8.7"
+   },
+   "size": {
+    "t": "M4 × 16; welded flange within Ø5.8 × 1.4",
+    "src": "§8.7"
+   },
+   "make": {
+    "t": "Buy; welded at the sheet shop",
+    "src": "§8.6"
+   },
+   "who": {
+    "t": "fastener distributor (İstanbul)",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "CD-welded before coating, threads masked",
+    "src": "§8.6"
+   },
+   "file": {
+    "t": "GF-D01; RFQ text §12.4",
+    "src": "§13, §12.4"
+   },
+   "cost": {
+    "t": "6 / 9 / 14 TRY per corner set",
+    "src": "§11.4"
+   },
+   "image": "part_stud",
+   "image_kind": "render",
+   "image_note": {
+    "t": "simplified: a plain rod",
+    "src": "-"
+   },
+   "name_src": "§8.7"
+  },
+  {
+   "no": 3,
+   "key": "tape",
+   "name": "VHB foam tape strips",
+   "purpose": {
+    "t": "Stick the frame flange to the sheet back, seal, and carry finger pushes.",
+    "src": "§8.5, §1"
+   },
+   "qty": {
+    "t": "4 strips + 8 corner dabs",
+    "src": "CAD: 4 strip bodies; §8.5, §3"
+   },
+   "material": {
+    "t": "3M VHB 5952 class, black, 1.1 mm; Primer 94",
+    "src": "§8.5"
+   },
+   "size": {
+    "t": "{m.tape_w} mm wide; {m.strip_tb} / {m.strip_s} long",
+    "src": "master"
+   },
+   "make": {
+    "t": "Buy (die-cut ring optional)",
+    "src": "§8.5"
+   },
+   "who": {
+    "t": "tape distributor / die-cutter",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "laid by hand on the flange, liner on",
+    "src": "§9.1, §9.5"
+   },
+   "file": {
+    "t": "GF-D20 placement plan 1:1",
+    "src": "§8.9"
+   },
+   "cost": {
+    "t": "in 'adhesives': 8.6 / 37.8 / 65.8 k TRY",
+    "src": "§11.4"
+   },
+   "image": "part_tape",
+   "image_kind": "render",
+   "image_note": {
+    "t": "shown yellow; real tape black",
+    "src": "-"
+   }
+  },
+  {
+   "no": 4,
+   "key": "glass",
+   "name": "Cover glass, printed black border",
+   "purpose": {
+    "t": "The flush, touchable front; the print hides everything but the picture.",
+    "src": "§1"
+   },
+   "qty": {
+    "t": "1 (order 110 per 100 ovens)",
+    "src": "CAD: one body in the assembly; §8.2"
+   },
+   "material": {
+    "t": "strengthened glass, {m.glass_t} mm (D2 open)",
+    "src": "§8.2, §4"
+   },
+   "size": {
+    "t": "{m.glass_w} × {m.glass_h}, R{m.R_glass}; window {m.win_w} × {m.win_h}",
+    "src": "master"
+   },
+   "make": {
+    "t": "Buy",
+    "src": "-"
+   },
+   "who": {
+    "t": "glass processor (Kocaeli / Çerkezköy)",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "CNC-ground ±0.1, strengthened, printed",
+    "src": "§8.2"
+   },
+   "file": {
+    "t": "GF-D10, GF-D11; RFQ text §12.1",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "300 / 600 / 1,200 TRY per piece",
+    "src": "§11.4"
+   },
+   "image": "part_glass",
+   "image_kind": "render",
+   "image_note": {
+    "t": "seen from the front",
+    "src": "-"
+   }
+  },
+  {
+   "no": 5,
+   "key": "loca",
+   "name": "Optical bond (liquid clear adhesive, LOCA)",
+   "purpose": {
+    "t": "Glues the touch panel to the glass with no air gap, for touch and picture.",
+    "src": "§8.3"
+   },
+   "qty": {
+    "t": "≈ 5.2 mL dispensed",
+    "src": "§8.3"
+   },
+   "material": {
+    "t": "silicone LOCA (UV + moisture, or 2K)",
+    "src": "§8.3"
+   },
+   "size": {
+    "t": "0.30 ±0.03 mm thick, panel size",
+    "src": "§8.3"
+   },
+   "make": {
+    "t": "Buy; bond in-house in J1",
+    "src": "§8.3"
+   },
+   "who": {
+    "t": "adhesive distributor (grade to check)",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "dispense, align in J1, UV tack, cure",
+    "src": "§9.2"
+   },
+   "file": {
+    "t": "GF-D31 (jig J1)",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "in 'adhesives' (see 3)",
+    "src": "§11.4"
+   },
+   "image": "part_loca",
+   "image_kind": "render",
+   "image_note": {
+    "t": "the cured layer, panel size",
+    "src": "-"
+   }
+  },
+  {
+   "no": 6,
+   "key": "panel",
+   "name": "7-inch display + touch panel",
+   "purpose": {
+    "t": "Shows the picture and senses touch; two flat cables fold back to the PCB.",
+    "src": "§2.2"
+   },
+   "qty": {
+    "t": "1",
+    "src": "CAD: one body in the assembly"
+   },
+   "material": {
+    "t": "SATOZ 7\" TFT + Fannal touch, GT911",
+    "src": "§0.1, §0.6"
+   },
+   "size": {
+    "t": "active area 154.08 × 85.92",
+    "src": "§0.6"
+   },
+   "make": {
+    "t": "Buy (imported)",
+    "src": "§1"
+   },
+   "who": {
+    "t": "SATOZ (China) via Özdisan",
+    "src": "§1, §11.1"
+   },
+   "process": {
+    "t": "bought complete; cables folded in J2",
+    "src": "§9.3"
+   },
+   "file": {
+    "t": "electronics table, line DS1",
+    "src": "elec"
+   },
+   "cost": {
+    "t": "see DS1 in the electronics table",
+    "src": "§11.4"
+   },
+   "image": "part_panel",
+   "image_kind": "render",
+   "image_note": {
+    "t": "cables shown folded",
+    "src": "-"
+   },
+   "name_src": "§0.1"
+  },
+  {
+   "no": 7,
+   "key": "bead",
+   "name": "Bead adhesive (glass to frame)",
+   "purpose": {
+    "t": "Elastic seal that holds the glass; the only thing that stops it moving forward.",
+    "src": "§1, §5"
+   },
+   "qty": {
+    "t": "≈ 2.40 mL + 8 corner dabs",
+    "src": "§8.4, §8.5"
+   },
+   "material": {
+    "t": "black silicone, class 50 (D8 open)",
+    "src": "§8.4, §4"
+   },
+   "size": {
+    "t": "{m.bead_w} wide × {m.t_bond} thick, all round",
+    "src": "master"
+   },
+   "make": {
+    "t": "Buy; applied in-house",
+    "src": "§8.4"
+   },
+   "who": {
+    "t": "adhesive retail / distributors",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "primer, nozzle bead, cured in J2",
+    "src": "§9.3"
+   },
+   "file": {
+    "t": "GF-D20 (bonding aids)",
+    "src": "§8.4"
+   },
+   "cost": {
+    "t": "in 'adhesives' (see 3)",
+    "src": "§11.4"
+   },
+   "image": "part_bead",
+   "image_kind": "render",
+   "image_note": {
+    "t": "shown red; real bead black",
+    "src": "-"
+   }
+  },
+  {
+   "no": 8,
+   "key": "formex",
+   "name": "Formex insulating sheet",
+   "purpose": {
+    "t": "Electrical insulation between the panel's metal back and the mains PCB.",
+    "src": "§8.8"
+   },
+   "qty": {
+    "t": "1",
+    "src": "CAD: one body in the assembly"
+   },
+   "material": {
+    "t": "FR PP sheet 0.4 mm (grade open, D15)",
+    "src": "§8.8, §4"
+   },
+   "size": {
+    "t": "{m.formex_w} × {m.formex_h} (panel − 0.5 per side)",
+    "src": "§8.8, master"
+   },
+   "make": {
+    "t": "Buy, die-cut",
+    "src": "§11.1"
+   },
+   "who": {
+    "t": "no Turkish converter verified yet",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "stuck onto the frame shelf",
+    "src": "§8.8"
+   },
+   "file": {
+    "t": "GF-D20 (outline)",
+    "src": "§8.9"
+   },
+   "cost": {
+    "t": "not priced in the documents",
+    "src": "§11.4"
+   },
+   "image": "part_formex",
+   "image_kind": "render",
+   "image_note": {
+    "t": "0.4 mm sheet",
+    "src": "§8.8"
+   }
+  },
+  {
+   "no": 9,
+   "key": "frame",
+   "name": "Moulded carrier frame",
+   "purpose": {
+    "t": "Holds glass and panel, fills the sheet opening with its lip, carries the PCB.",
+    "src": "§0.6, §8.1"
+   },
+   "qty": {
+    "t": "1 (110 parts per 100 ovens)",
+    "src": "CAD: one body in the assembly; §11.3"
+   },
+   "material": {
+    "t": "PA6-GF30, halogen-free FR, V-0, black",
+    "src": "§8.1"
+   },
+   "size": {
+    "t": "{m.flange_w} × {m.flange_h} × {m.frame_depth}; {m.frame_mass} g",
+    "src": "master"
+   },
+   "make": {
+    "t": "Buy, moulded to our STEP",
+    "src": "§8.1"
+   },
+   "who": {
+    "t": "toolmaker + moulder: none named yet",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "injection moulding, aluminium mould",
+    "src": "§8.1, §4"
+   },
+   "file": {
+    "t": "Frame STEP, GF-D50; RFQ text §12.3",
+    "src": "§8.1"
+   },
+   "cost": {
+    "t": "mould 100 / 175 / 300 k; part 60 / 120 / 250 TRY",
+    "src": "§11.4"
+   },
+   "image": "part_frame_both",
+   "image_kind": "render",
+   "image_note": {
+    "t": "front and back",
+    "src": "-"
+   }
+  },
+  {
+   "no": 10,
+   "key": "washer",
+   "name": "Washer M4 (S4)",
+   "purpose": {
+    "t": "Spreads the nut's clamp on the frame's plastic tube.",
+    "src": "§8.7"
+   },
+   "qty": {
+    "t": "4",
+    "src": "§8.7"
+   },
+   "material": {
+    "t": "DIN 9021 M4, A2 stainless",
+    "src": "§8.7"
+   },
+   "size": {
+    "t": "Ø12 × 1.0",
+    "src": "§8.7"
+   },
+   "make": {
+    "t": "Buy (stock part)",
+    "src": "§11.2"
+   },
+   "who": {
+    "t": "fastener distributor",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "fitted over the stud when mounting",
+    "src": "§9.5"
+   },
+   "file": {
+    "t": "§8.7; RFQ text §12.4",
+    "src": "§12.4"
+   },
+   "cost": {
+    "t": "in stud + washer + nut (see 2)",
+    "src": "§11.4"
+   },
+   "image": "part_washer",
+   "image_kind": "render",
+   "image_note": {
+    "t": "",
+    "src": "-"
+   }
+  },
+  {
+   "no": 11,
+   "key": "nut",
+   "name": "Nyloc nut M4 (S4)",
+   "purpose": {
+    "t": "Locks each frame corner onto its stud; self-locking.",
+    "src": "§8.7"
+   },
+   "qty": {
+    "t": "4",
+    "src": "§8.7"
+   },
+   "material": {
+    "t": "ISO 10511 M4 nyloc, A2",
+    "src": "§8.7"
+   },
+   "size": {
+    "t": "M4, tightened to 0.6 Nm",
+    "src": "§8.7"
+   },
+   "make": {
+    "t": "Buy (stock part)",
+    "src": "§11.2"
+   },
+   "who": {
+    "t": "fastener distributor",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "tightened crosswise when mounting",
+    "src": "§9.5"
+   },
+   "file": {
+    "t": "§8.7; RFQ text §12.4",
+    "src": "§12.4"
+   },
+   "cost": {
+    "t": "in stud + washer + nut (see 2)",
+    "src": "§11.4"
+   },
+   "image": "part_nut",
+   "image_kind": "render",
+   "image_note": {
+    "t": "nylon ring not modelled",
+    "src": "-"
+   }
+  },
+  {
+   "no": 12,
+   "key": "pcb",
+   "name": "Controller PCB, assembled",
+   "purpose": {
+    "t": "The oven's electronics; sits on 9 bosses at the back of the frame.",
+    "src": "§9.4"
+   },
+   "qty": {
+    "t": "1",
+    "src": "CAD: one body in the assembly"
+   },
+   "material": {
+    "t": "Rev3.0 controller board",
+    "src": "elec"
+   },
+   "size": {
+    "t": "4 layers, 183.6 × 118.6 incl. ears",
+    "src": "elec"
+   },
+   "make": {
+    "t": "Buy (fabrication + assembly)",
+    "src": "elec"
+   },
+   "who": {
+    "t": "PCB + assembly house: not chosen",
+    "src": "elec"
+   },
+   "process": {
+    "t": "on 9 bosses; Q1 leads trimmed ≤ 2.5",
+    "src": "§9.4"
+   },
+   "file": {
+    "t": "KiCad project; electronics table",
+    "src": "-"
+   },
+   "cost": {
+    "t": "parts 32.09 USD; PCB + assembly open",
+    "src": "elec"
+   },
+   "image": "part_pcb",
+   "image_kind": "render",
+   "image_note": {
+    "t": "component side (faces the back)",
+    "src": "-"
+   }
+  },
+  {
+   "no": 13,
+   "key": "screws",
+   "name": "PCB screws ST2.9",
+   "purpose": {
+    "t": "Fix the PCB to the frame's bosses.",
+    "src": "§9.4"
+   },
+   "qty": {
+    "t": "9",
+    "src": "§9.4"
+   },
+   "material": {
+    "t": "self-tapping ST2.9",
+    "src": "§9.4"
+   },
+   "size": {
+    "t": "ST2.9, 0.3–0.4 Nm",
+    "src": "§9.4"
+   },
+   "make": {
+    "t": "Buy (stock part)",
+    "src": "-"
+   },
+   "who": {
+    "t": "fastener distributor",
+    "src": "-"
+   },
+   "process": {
+    "t": "screwed in by hand",
+    "src": "§9.4"
+   },
+   "file": {
+    "t": "§9.4 (as frame v2 §7)",
+    "src": "§9.4"
+   },
+   "cost": {
+    "t": "not priced in the documents",
+    "src": "-"
+   },
+   "image": "ill_screw",
+   "image_kind": "illustration",
+   "image_note": {
+    "t": "not modelled in the CAD",
+    "src": "-"
+   },
+   "name_src": "§9.4"
+  },
+  {
+   "no": 14,
+   "key": "rivet",
+   "name": "Large-flange blind rivet (R4 only)",
+   "purpose": {
+    "t": "Alternative to the studs: visible black heads on the front.",
+    "src": "§2.3"
+   },
+   "qty": {
+    "t": "4 (only if R4 is chosen)",
+    "src": "§8.7"
+   },
+   "material": {
+    "t": "Ø4.8 DIN 7337 large flange, Al/Al",
+    "src": "§8.7"
+   },
+   "size": {
+    "t": "head Ø14 'K14', grip 8.2; hole Ø5.2",
+    "src": "§8.7, §8.6"
+   },
+   "make": {
+    "t": "Buy",
+    "src": "-"
+   },
+   "who": {
+    "t": "rivet supplier (İzmir / İstanbul)",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "set from the front, hand riveter",
+    "src": "§2.3, §11.4"
+   },
+   "file": {
+    "t": "GF-D03 (sheet R4)",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "not priced ('a few thousand TRY')",
+    "src": "§11.4"
+   },
+   "image": "ill_rivet",
+   "image_kind": "illustration",
+   "image_note": {
+    "t": "hidden in the CAD export",
+    "src": "-"
+   }
+  },
+  {
+   "no": 15,
+   "key": "washer5",
+   "name": "Backing washer M5 (R4 only)",
+   "purpose": {
+    "t": "The rivet's blind side forms on it, not on the plastic.",
+    "src": "§2.3, §8.7"
+   },
+   "qty": {
+    "t": "4 (only if R4 is chosen)",
+    "src": "§8.7"
+   },
+   "material": {
+    "t": "DIN 9021 M5, steel",
+    "src": "§8.7"
+   },
+   "size": {
+    "t": "Ø15 × 1.2",
+    "src": "§8.7"
+   },
+   "make": {
+    "t": "Buy (stock part)",
+    "src": "§11.2"
+   },
+   "who": {
+    "t": "fastener distributor",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "on the tube top before riveting",
+    "src": "§2.3"
+   },
+   "file": {
+    "t": "GF-D03; §8.7",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "in the R4 rivet estimate (see 14)",
+    "src": "§11.4"
+   },
+   "image": "ill_washer5",
+   "image_kind": "illustration",
+   "image_note": {
+    "t": "hidden in the CAD export",
+    "src": "-"
+   }
+  },
+  {
+   "no": 16,
+   "key": "consumables",
+   "name": "Primers and cleaning",
+   "purpose": {
+    "t": "Make the bead and the tape stick reliably; keep the bond faces clean.",
+    "src": "§8.4, §8.5, §9.2"
+   },
+   "qty": {
+    "t": "per batch",
+    "src": "-"
+   },
+   "material": {
+    "t": "primer, Primer 94, IPA, Kapton tabs",
+    "src": "§8.4, §8.5, §9.2"
+   },
+   "size": {
+    "t": "—",
+    "src": "-"
+   },
+   "make": {
+    "t": "Buy",
+    "src": "-"
+   },
+   "who": {
+    "t": "adhesive / tape distributors",
+    "src": "§11.1"
+   },
+   "process": {
+    "t": "wiped or brushed on before bonding",
+    "src": "§9.3, §9.5"
+   },
+   "file": {
+    "t": "GF-D20 notes",
+    "src": "§8.9"
+   },
+   "cost": {
+    "t": "in the adhesives line (see 3)",
+    "src": "§11.4"
+   },
+   "image": "ill_consumables",
+   "image_kind": "illustration",
+   "image_note": {
+    "t": "",
+    "src": "-"
+   }
+  }
+ ],
+ "tools_page": {
+  "title": "Tools we need to make it",
+  "intro": {
+   "t": "Made once, used for every unit. Images are drawing excerpts, simple renders built from the drawing values, or an illustration where nothing is drawn yet.",
+   "src": "-"
+  }
+ },
+ "tools": [
+  {
+   "no": "T1",
+   "name": "Jig J1 — optical-bonding fixture",
+   "purpose": {
+    "t": "Lowers the glass onto the panel at a 0.30 mm gap and aligns the print window to the lit pixels.",
+    "src": "§8.9, §9.2"
+   },
+   "spec": {
+    "t": "XY-θ panel carrier on micrometers, vacuum top plate on height stops; 2 USB microscopes, UV LED, HEPA hood",
+    "src": "§8.9, §9.2, §11.4"
+   },
+   "qty": {
+    "t": "1",
+    "src": "structure: count of the tool described in §8.9"
+   },
+   "who": {
+    "t": "local machinist (drawing GF-D31)",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "all jigs + equipment 15 / 40 / 90 k TRY",
+    "src": "§11.4"
+   },
+   "image": "crop_j1",
+   "image_kind": "drawing excerpt GF-D31",
+   "image_kind_src": "§13"
+  },
+  {
+   "no": "T2",
+   "name": "Jig J2 — flush plate",
+   "purpose": {
+    "t": "Glass front and frame lip lie on one flat plate while the bead cures, so they come out flush.",
+    "src": "§0.1, §8.9"
+   },
+   "spec": {
+    "t": "aluminium plate 290 × 250 × 20, flat 0.02; 4 pins, 3 stops; PTFE shims; 5 kg weight",
+    "src": "§8.9"
+   },
+   "qty": {
+    "t": "1–2 with 2-C bead; ≈ 5–6 with 1-C",
+    "src": "§9.1"
+   },
+   "who": {
+    "t": "local machinist (drawing GF-D30 sheet 1)",
+    "src": "§13"
+   },
+   "cost": {
+    "t": "in the jigs line (see T1)",
+    "src": "§11.4"
+   },
+   "image": "tool_j2",
+   "image_kind": "illustration (render from GF-D30 values)",
+   "image_kind_src": "§13"
+  },
+  {
+   "no": "T3",
+   "name": "J2 tail-handling kit",
+   "purpose": {
+    "t": "Holds both cables upright on a guide card so they pass the slot without touching the fresh bead.",
+    "src": "§9.3"
+   },
+   "spec": {
+    "t": "post Ø12 with swing arm and PTFE-faced clip; PET guide cards 0.25 mm; Kapton tabs 6 mm",
+    "src": "§8.9"
+   },
+   "qty": {
+    "t": "1 set per J2",
+    "src": "structure: count of the tool described in §8.9"
+   },
+   "who": {
+    "t": "local machinist; first proposal, untried",
+    "src": "§8.9"
+   },
+   "cost": {
+    "t": "with the fold gauge: 1 / 2.5 / 5 k TRY",
+    "src": "§11.4"
+   },
+   "image": "crop_j2tail",
+   "image_kind": "drawing excerpt GF-D30 sheet 2",
+   "image_kind_src": "§13"
+  },
+  {
+   "no": "T4",
+   "name": "Tail fold gauge + 0.80 feeler",
+   "purpose": {
+    "t": "Copies the bend slot and nose: the fold test on a real panel, and the fold former in J2.",
+    "src": "§8.9, §2.2.5"
+   },
+   "spec": {
+    "t": "POM-C 152.8 × 18; slot {m.g_bend} +0.02/0; nose R1.5 ±0.05; feeler {m.feeler}",
+    "src": "§8.9"
+   },
+   "qty": {
+    "t": "1",
+    "src": "structure: count of the tool described in §8.9"
+   },
+   "who": {
+    "t": "local machinist (GF-D21); a GF-2.0 gauge is not valid",
+    "src": "§2.2.5"
+   },
+   "cost": {
+    "t": "in the T3 line",
+    "src": "§11.4"
+   },
+   "image": "tool_gauge",
+   "image_kind": "illustration (render from GF-D21 values)",
+   "name_src": "§8.9",
+   "image_kind_src": "§13"
+  },
+  {
+   "no": "T5",
+   "name": "Bonding aids + mounting shims",
+   "purpose": {
+    "t": "A 1:1 plan for dispensing the bead and placing the tape; shims to centre the module in the cut-out.",
+    "src": "§8.9, §9.5"
+   },
+   "spec": {
+    "t": "GF-D20 printed 1:1; PTFE shims 0.20 / 0.25 / 0.30, 8 of each",
+    "src": "§8.9, §9.5"
+   },
+   "qty": {
+    "t": "1 set",
+    "src": "structure: count of the tool described in §8.9"
+   },
+   "who": {
+    "t": "printed in-house; shims bought or cut",
+    "src": "-"
+   },
+   "cost": {
+    "t": "not priced separately",
+    "src": "-"
+   },
+   "image": "crop_bonding",
+   "image_kind": "drawing excerpt GF-D20",
+   "image_kind_src": "§13"
+  },
+  {
+   "no": "T6",
+   "name": "Pressure frame + dial-gauge bridge",
+   "purpose": {
+    "t": "Presses the tape band when mounting; checks flushness at 12 points round the cut-out.",
+    "src": "§8.9, §9.7"
+   },
+   "spec": {
+    "t": "≈ 0.8–1 kN on the tape band, kept ≥ 20 min; dial gauge on a bridge",
+    "src": "§8.9, §9.5"
+   },
+   "qty": {
+    "t": "1",
+    "src": "structure: count of the tool described in §8.9"
+   },
+   "who": {
+    "t": "not drawn yet",
+    "src": "§8.9"
+   },
+   "cost": {
+    "t": "pressure frame in the jigs line (see T1)",
+    "src": "§11.4"
+   },
+   "image": "ill_press",
+   "image_kind": "illustration",
+   "image_kind_src": "-"
+  }
+ ],
+ "summary_page": {
+  "title": "The whole mechanical parts list at a glance",
+  "cols": [
+   "#",
+   "Part",
+   "Qty / oven",
+   "Make or buy",
+   "Source (type)",
+   "Cost estimate (low / likely / high)"
+  ],
+  "note": {
+   "t": "Costs from §11.4 (TRY at 50.34 TRY/USD), desk estimates, ±50 % or worse; no supplier quoted. In-house labour (≈ 1 h per unit) is not included.",
+   "src": "§11.4, §11.5"
+  },
+  "rows": [
+   {
+    "no": "1",
+    "src_type": "sheet-metal shop",
+    "cost": {
+     "t": "3 / 7 / 15 k per 100 ovens",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "2",
+    "src_type": "fastener distributor",
+    "cost": {
+     "t": "with 10, 11: 2.4 / 3.6 / 5.6 k per 100 ovens",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "3",
+    "src_type": "tape distributor",
+    "cost": {
+     "t": "with 5, 7, 16: 8.6 / 37.8 / 65.8 k per 110 sets",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "4",
+    "src_type": "glass processor",
+    "cost": {
+     "t": "33 / 66 / 132 k for 110 + 5 / 12 / 25 k set-up",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "5",
+    "src_type": "adhesive distributor",
+    "cost": {
+     "t": "in line 3",
+     "src": "-"
+    }
+   },
+   {
+    "no": "6",
+    "src_type": "SATOZ via Özdisan",
+    "cost": {
+     "t": "electronics table (DS1)",
+     "src": "-"
+    }
+   },
+   {
+    "no": "7",
+    "src_type": "adhesive retail / distributor",
+    "cost": {
+     "t": "in line 3",
+     "src": "-"
+    }
+   },
+   {
+    "no": "8",
+    "src_type": "converter (not found yet)",
+    "cost": {
+     "t": "not priced",
+     "src": "-"
+    }
+   },
+   {
+    "no": "9",
+    "src_type": "toolmaker + moulder",
+    "cost": {
+     "t": "mould 100 / 175 / 300 k; parts 11.6 / 26.2 / 52.5 k",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "10",
+    "src_type": "fastener distributor",
+    "cost": {
+     "t": "in line 2",
+     "src": "-"
+    }
+   },
+   {
+    "no": "11",
+    "src_type": "fastener distributor",
+    "cost": {
+     "t": "in line 2",
+     "src": "-"
+    }
+   },
+   {
+    "no": "12",
+    "src_type": "PCB + assembly house (open)",
+    "cost": {
+     "t": "parts 32.09 USD / board; PCB + assembly not quoted",
+     "src": "elec"
+    }
+   },
+   {
+    "no": "13",
+    "src_type": "fastener distributor",
+    "cost": {
+     "t": "not priced",
+     "src": "-"
+    }
+   },
+   {
+    "no": "14",
+    "src_type": "rivet supplier",
+    "cost": {
+     "t": "R4 only; not priced",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "15",
+    "src_type": "fastener distributor",
+    "cost": {
+     "t": "R4 only; not priced",
+     "src": "§11.4"
+    }
+   },
+   {
+    "no": "16",
+    "src_type": "adhesive / tape distributors",
+    "cost": {
+     "t": "in line 3",
+     "src": "-"
+    }
+   },
+   {
+    "no": "T1–T6",
+    "src_type": "local machinist / in-house",
+    "cost": {
+     "t": "jigs + equipment 15 / 40 / 90 k; gauge + tail kit 1 / 2.5 / 5 k",
+     "src": "§11.4"
+    }
+   }
+  ],
+  "qty_col": {
+   "1": "1",
+   "2": "4",
+   "3": "4 strips",
+   "4": "1",
+   "5": "≈ 5.2 mL",
+   "6": "1",
+   "7": "≈ 2.40 mL",
+   "8": "1",
+   "9": "1",
+   "10": "4",
+   "11": "4",
+   "12": "1",
+   "13": "9",
+   "14": "4 (R4)",
+   "15": "4 (R4)",
+   "16": "per batch",
+   "T1–T6": "1 set"
+  },
+  "make_col": {
+   "1": "buy",
+   "2": "buy",
+   "3": "buy",
+   "4": "buy",
+   "5": "buy + bond in-house",
+   "6": "buy",
+   "7": "buy + apply in-house",
+   "8": "buy",
+   "9": "buy (our mould)",
+   "10": "buy",
+   "11": "buy",
+   "12": "buy",
+   "13": "buy",
+   "14": "buy",
+   "15": "buy",
+   "16": "buy",
+   "T1–T6": "make / have made"
+  },
+  "names": {
+   "T1–T6": "Jigs, gauge, aids, pressure frame"
+  },
+  "qty_src": {
+   "T1–T6": "structure: count of the tools described in §8.9"
+  }
+ },
+ "suppliers_page": {
+  "title": "Who makes what",
+  "intro": {
+   "t": "Outside suppliers deliver parts; we bond and assemble at our bench. Candidates are from desk research: no supplier has been contacted and no MOQ is known.",
+   "src": "§11, §11.1"
+  },
+  "suppliers": [
+   {
+    "name": "Glass processor",
+    "what": "printed, strengthened cover glass (item 4)",
+    "where": "candidates in Kocaeli and Çerkezköy",
+    "lead": {
+     "t": "samples 3–5 wk; series 2–4 wk after approval",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Toolmaker + moulder",
+    "what": "aluminium mould, moulded frames (item 9)",
+    "where": "none named yet; ask in Çerkezköy / Çorlu OSB",
+    "lead": {
+     "t": "mould to first shots 4–6 wk (+1 for T2)",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Resin distributor",
+    "what": "halogen-free PA6-GF30 FR, one 25 kg bag",
+    "where": "İstanbul (grade to confirm)",
+    "lead": {
+     "t": "1–4 wk, check stock",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "3D-print bureau",
+    "what": "printed fit samples (not FR), for the fit and J2 trial only",
+    "where": "İstanbul",
+    "lead": {
+     "t": "0.5–1 wk",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Sheet-metal shop",
+    "what": "laser cut-out, CD studs, powder coat (items 1, 2)",
+    "where": "candidates in Çorlu / Kapaklı / Esenyurt",
+    "lead": {
+     "t": "1–2 wk",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Fastener suppliers",
+    "what": "studs, washers, nuts, rivets (items 2, 10, 11, 14, 15)",
+    "where": "İstanbul / İzmir",
+    "lead": {
+     "t": "days (stock)",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Tape, adhesive, LOCA",
+    "what": "VHB, bead silicone, primers, LOCA (items 3, 5, 7, 16)",
+    "where": "distributors, retail",
+    "lead": {
+     "t": "days (stock)",
+     "src": "§11.2"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "Display panel",
+    "what": "display + touch panel (item 6)",
+    "where": "SATOZ (China) via Özdisan",
+    "lead": {
+     "t": "lead time not stated; stock 61 on 2026-11-09, below 100",
+     "src": "elec"
+    },
+    "src": "§11.1"
+   },
+   {
+    "name": "PCB + assembly",
+    "what": "assembled controller board (item 12)",
+    "where": "not chosen; no quote in the files",
+    "lead": {
+     "t": "not stated",
+     "src": "elec"
+    },
+    "src": "elec"
+   },
+   {
+    "name": "Local machinist",
+    "what": "jigs J1, J2, tail kit, fold gauge (T1–T4)",
+    "where": "local",
+    "lead": {
+     "t": "fold gauge + fold test ≈ 0.5 wk; jigs not stated",
+     "src": "§11.2"
+    },
+    "src": "§13"
+   }
+  ],
+  "bench_title": "Our bench (in-house)",
+  "bench": [
+   {
+    "t": "1 Optical bond in J1",
+    "src": "§9.1"
+   },
+   {
+    "t": "2 Frame preparation",
+    "src": "§9.1"
+   },
+   {
+    "t": "3 Bead, tails, flush bond in J2",
+    "src": "§9.1"
+   },
+   {
+    "t": "4 Fold tails, tape strips",
+    "src": "§9.1"
+   },
+   {
+    "t": "5 PCB, function and touch test",
+    "src": "§9.1"
+   },
+   {
+    "t": "6 Mount into the oven sheet",
+    "src": "§9.1"
+   },
+   {
+    "t": "7 Inspection",
+    "src": "§9.1"
+   }
+  ],
+  "bench_note": {
+   "t": "About 1 h of hands-on work per unit (estimate); keep silicone dispensing apart from optical bonding.",
+   "src": "§9.1"
+  },
+  "out_title": "Finished oven front",
+  "critical": {
+   "t": "Critical path ≈ 7–8 weeks from the design freeze (mould + first shots ≈ 6–7, glass samples in parallel).",
+   "src": "§11.2"
+  }
+ },
+ "process_page": {
+  "title": "How we make it, step by step",
+  "title2": "How we make it, step by step (continued)",
+  "intro": {
+   "t": "Stations of §9.1. Times are hands-on minutes per unit (estimates in the design document, marked [A]); waiting times are cure times.",
+   "src": "§9.1"
+  },
+  "labels": {
+   "time": "Time",
+   "wait": "Then wait",
+   "tools": "Tools",
+   "risk": "Must not go wrong"
+  }
+ },
+ "process": [
+  {
+   "no": "0",
+   "title": "Incoming inspection",
+   "image": "crop_glass_in",
+   "image_kind": "drawing excerpt GF-D10",
+   "what": {
+    "t": "Every glass: outline gauge and R6.25 corner template. First frames: CMM. Sheet: cut-out and coated thickness.",
+    "src": "§9.7"
+   },
+   "time": {
+    "t": "not stated",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "—",
+    "src": "-"
+   },
+   "tools": {
+    "t": "go/no-go gauge, corner template, light box, micrometer",
+    "src": "§9.7"
+   },
+   "risk": {
+    "t": "A glass outside ±0.1 (±0.2 if quoted) or a corner outside R6.25 closes the corner gap.",
+    "src": "§9.7, §8.2"
+   }
+  },
+  {
+   "no": "1",
+   "title": "Optical bond in J1",
+   "image": "step1_bond",
+   "image_kind": "render",
+   "what": {
+    "t": "Dispense ≈ 5.2 mL LOCA, lower the glass onto the stops, align the window 1–3 px inside the lit border, UV tack.",
+    "src": "§9.2"
+   },
+   "time": {
+    "t": "≈ 20 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "full cure 72 h (moisture) or 1–4 h at ≤ 60 °C (2K)",
+    "src": "§9.1"
+   },
+   "tools": {
+    "t": "J1, UV LED, 2 USB microscopes, HEPA hood",
+    "src": "§8.9, §9.2"
+   },
+   "risk": {
+    "t": "Dust or bubbles in the window, or a window edge not 1–3 px inside the lit pixels on all four sides.",
+    "src": "§9.2, §9.7"
+   }
+  },
+  {
+   "no": "2",
+   "title": "Frame preparation",
+   "image": "step2_frame_prep",
+   "image_kind": "render",
+   "what": {
+    "t": "Stick the Formex onto the frame shelf; prime the land and the tape band.",
+    "src": "§9.1"
+   },
+   "time": {
+    "t": "≈ 5 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "primer flash-off per data sheet",
+    "src": "§9.1"
+   },
+   "tools": {
+    "t": "primer, lint-free wipes",
+    "src": "§9.1"
+   },
+   "risk": {
+    "t": "Silicone residue near the optical-bond station: it kills ink and LOCA adhesion.",
+    "src": "§9.1"
+   }
+  },
+  {
+   "no": "3",
+   "title": "Bead, cables, flush bond in J2",
+   "image": "step3_j2",
+   "image_kind": "render",
+   "what": {
+    "t": "Glass + panel face down on J2; fold the cables up, thread them through the slot; lower the frame onto the plate.",
+    "src": "§9.3"
+   },
+   "time": {
+    "t": "≈ 20 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "2-C: 1–2 h in the jig; 1-C: 24 h",
+    "src": "§9.1"
+   },
+   "tools": {
+    "t": "J2, fold gauge, tail-holder kit, 5 kg ring weight",
+    "src": "§9.1, §8.9"
+   },
+   "risk": {
+    "t": "A cable or the card touching the fresh bead: lift the frame, clean, start again. Tail handling is not tried yet.",
+    "src": "§9.3"
+   }
+  },
+  {
+   "no": "4",
+   "title": "Fold cables over the nose, tape",
+   "image": "step4_tape",
+   "image_kind": "render",
+   "what": {
+    "t": "After the cure, fold each cable over the R1.5 nose into its compartment; lay the four tape strips, liner on.",
+    "src": "§9.3"
+   },
+   "time": {
+    "t": "≈ 5 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "—",
+    "src": "-"
+   },
+   "tools": {
+    "t": "GF-D20 plan, Primer 94",
+    "src": "§9.1, §9.3"
+   },
+   "risk": {
+    "t": "A cable bent tighter than the nose, creased, or in the wrong compartment.",
+    "src": "§9.7"
+   }
+  },
+  {
+   "no": "5",
+   "title": "PCB and function test",
+   "image": "step5_pcb",
+   "image_kind": "render",
+   "what": {
+    "t": "PCB on the 9 bosses, cables into J10 / J11, latches closed; display and touch test.",
+    "src": "§9.4"
+   },
+   "time": {
+    "t": "≈ 10 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "—",
+    "src": "-"
+   },
+   "tools": {
+    "t": "screwdriver 0.3–0.4 Nm, test firmware",
+    "src": "§9.4"
+   },
+   "risk": {
+    "t": "Q1 leads not trimmed to ≤ 2.5 mm reach through the Formex into the panel.",
+    "src": "§9.4"
+   }
+  },
+  {
+   "no": "6",
+   "title": "Mount into the oven sheet",
+   "image": "step6_mount",
+   "image_kind": "render",
+   "what": {
+    "t": "Lower the module into the sheet from behind, centre it with 8 shims, press, then fit the nuts crosswise at 0.6 Nm.",
+    "src": "§9.5"
+   },
+   "time": {
+    "t": "≈ 10 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "pressure frame ≥ 20 min; tape 90 % at 24 h",
+    "src": "§9.1"
+   },
+   "tools": {
+    "t": "pressure frame, PTFE shims, torque driver",
+    "src": "§9.5"
+   },
+   "risk": {
+    "t": "Taking the pressure frame off early: the tape springs back and the steel stands proud.",
+    "src": "§9.5, §7.5"
+   }
+  },
+  {
+   "no": "7",
+   "title": "Inspection",
+   "image": "crop_corner",
+   "image_kind": "drawing excerpt GF-D40",
+   "what": {
+    "t": "Dial gauge at 12 points round the cut-out; gaps by feeler on every side and corner; flushness again after 24 h.",
+    "src": "§9.7"
+   },
+   "time": {
+    "t": "≈ 10 min",
+    "src": "§9.1"
+   },
+   "wait": {
+    "t": "recheck after 24 h",
+    "src": "§9.1"
+   },
+   "tools": {
+    "t": "dial-gauge bridge, feeler gauges",
+    "src": "§9.7"
+   },
+   "risk": {
+    "t": "Accept only: flush within ±0.15; g1 sides 0.30–0.55; g2 sides 0.20–0.60; corners at most 0.80.",
+    "src": "§9.7"
+   }
+  }
+ ],
+ "plan_page": {
+  "title": "From order to first units, and what it costs",
+  "gantt_title": "Timeline in weeks (lead times from the design document)",
+  "gantt_note": {
+   "t": "Bars show the stated range (dark = shortest, light = longest); dashed boxes have no duration in the documents. The freeze is drawn after the gate tests that have a stated duration; the coupon's time is not stated.",
+   "src": "§11.2"
+  },
+  "freeze_label": {
+   "t": "design freeze: border, glass_t, t_sheet, t_bond",
+   "src": "§11.2"
+  },
+  "first_units": {
+   "t": "all parts ≈ 7–8 wk after the freeze (critical path); then the pilot run",
+   "src": "§11.2"
+  },
+  "tasks": [
+   {
+    "lane": "gate",
+    "t": "Touch bench test",
+    "start": "0",
+    "min": "0.1",
+    "max": "0.1",
+    "src": "§11.2"
+   },
+   {
+    "lane": "gate",
+    "t": "Fold gauge + fold test",
+    "start": "0",
+    "min": "0.5",
+    "max": "0.5",
+    "src": "§11.2"
+   },
+   {
+    "lane": "gate",
+    "t": "Printed fit samples + J2 trial",
+    "start": "0",
+    "min": "0.5",
+    "max": "1",
+    "src": "§11.2"
+   },
+   {
+    "lane": "gate",
+    "t": "Painted sheet coupon",
+    "start": "0",
+    "min": null,
+    "max": null,
+    "src": "§11.2"
+   },
+   {
+    "lane": "gate",
+    "t": "Glass RFQ → samples",
+    "start": "0.5",
+    "min": "3",
+    "max": "5",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Aluminium mould → first shots T1 (+1 wk T2)",
+    "start": "freeze",
+    "min": "4",
+    "max": "6",
+    "extra": "1",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Halogen-free FR resin, one bag",
+    "start": "freeze",
+    "min": "1",
+    "max": "4",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Sheet: cut-out, studs, powder coat",
+    "start": "freeze",
+    "min": "1",
+    "max": "2",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Glass series after sample approval",
+    "start": "glass_samples",
+    "min": "2",
+    "max": "4",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Studs, rivets, tape, adhesives, LOCA",
+    "start": "freeze",
+    "min": "0.3",
+    "max": "0.3",
+    "label": "days (stock)",
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Make jig J2 (after the trial)",
+    "start": "freeze",
+    "min": null,
+    "max": null,
+    "src": "§11.2"
+   },
+   {
+    "lane": "after",
+    "t": "Pilot run, 5–10 units",
+    "start": "T1",
+    "min": null,
+    "max": null,
+    "src": "§5"
+   }
+  ],
+  "cost_title": {
+   "t": "Cost for 100 ovens (k TRY, low / likely / high)",
+   "src": "§11.4"
+  },
+  "cost_note": {
+   "t": "Desk estimates, no supplier quoted; read as ±50 % or worse. TRY at 50.34 TRY/USD. Not included: in-house labour (≈ 1 h per unit), the panel and the PCB.",
+   "src": "§11.4, §11.5"
+  },
+  "cost_rows": [
+   {
+    "t": "Frame mould, aluminium",
+    "low": "100,000",
+    "likely": "175,000",
+    "high": "300,000",
+    "kind": "one-off",
+    "src": "§11.4"
+   },
+   {
+    "t": "Glass, 110 pcs",
+    "low": "33,000",
+    "likely": "66,000",
+    "high": "132,000",
+    "kind": "recurring",
+    "src": "§11.4"
+   },
+   {
+    "t": "Jigs and equipment",
+    "low": "15,000",
+    "likely": "40,000",
+    "high": "90,000",
+    "kind": "one-off",
+    "src": "§11.4"
+   },
+   {
+    "t": "Adhesives, 110 sets",
+    "low": "8,600",
+    "likely": "37,800",
+    "high": "65,800",
+    "kind": "recurring",
+    "src": "§11.4"
+   },
+   {
+    "t": "Frame parts + resin + T1",
+    "low": "11,600",
+    "likely": "26,200",
+    "high": "52,500",
+    "kind": "recurring",
+    "src": "§11.4"
+   },
+   {
+    "t": "Prototypes and tests",
+    "low": "5,000",
+    "likely": "15,000",
+    "high": "30,000",
+    "kind": "one-off",
+    "src": "§11.4"
+   },
+   {
+    "t": "Print screens, CNC program",
+    "low": "5,000",
+    "likely": "12,000",
+    "high": "25,000",
+    "kind": "one-off",
+    "src": "§11.4"
+   },
+   {
+    "t": "Sheet-metal extra",
+    "low": "3,000",
+    "likely": "7,000",
+    "high": "15,000",
+    "kind": "recurring",
+    "src": "§11.4"
+   },
+   {
+    "t": "Fasteners S4",
+    "low": "2,400",
+    "likely": "3,600",
+    "high": "5,600",
+    "kind": "recurring",
+    "src": "§11.4"
+   },
+   {
+    "t": "Fold gauge + J2 tail kit",
+    "low": "1,000",
+    "likely": "2,500",
+    "high": "5,000",
+    "kind": "one-off",
+    "src": "§11.4"
+   }
+  ],
+  "cost_total": {
+   "low": "184,600",
+   "likely": "385,100",
+   "high": "720,900",
+   "src": "§11.4"
+  },
+  "cost_tiles": [
+   {
+    "big": "385 k TRY",
+    "small": "likely total for 100 ovens ($7.6 k); range 185 k – 721 k",
+    "src": "§0.3"
+   },
+   {
+    "big": "246 k TRY",
+    "small": "of it one-off: mould, set-up, jigs, gauge, tests (likely)",
+    "src": "§0.3"
+   },
+   {
+    "big": "1,390 TRY",
+    "small": "recurring per oven, likely ($28); range 580 – 2,680",
+    "src": "§0.3"
+   }
+  ]
+ },
+ "gates_page": {
+  "title": "Before we order anything",
+  "gates_title": "Gates — in this order",
+  "gates": [
+   {
+    "t": "Touch through the glass",
+    "d": {
+     "t": "Half a day on the bench: 2, 3 and 4 mm glass on the running panel with oil, then retune the touch controller. The design stands or falls on this.",
+     "src": "§0.5"
+    },
+    "decides": {
+     "t": "glass thickness (D2)",
+     "src": "§4"
+    }
+   },
+   {
+    "t": "Fold test on one real panel (GF-D21)",
+    "d": {
+     "t": "Fold both cables over a gauge with a {m.g_bend} mm slot; a {m.feeler} mm feeler must pass outside each cable. Pass keeps the {m.border} border; a fail reopens it (19.5, or ≈ 21 for a double-layer cable).",
+     "src": "§2.2.5"
+    },
+    "decides": {
+     "t": "border, glass outline, cut-out, mould",
+     "src": "§2.2.5"
+    }
+   },
+   {
+    "t": "Painted sheet coupon",
+    "d": {
+     "t": "A painted coupon with the real cut-out: measure the coated thickness and set the lip height to it before the mould is cut.",
+     "src": "§0.5, §7.6"
+    },
+    "decides": {
+     "t": "t_sheet (D5)",
+     "src": "§4"
+    }
+   },
+   {
+    "t": "Glass and ink samples",
+    "d": {
+     "t": "Adhesion and ageing coupons, and the 0.5 J impact test on bonded samples.",
+     "src": "§0.5, §5"
+    },
+    "decides": {
+     "t": "ink (D7), bead (D8), strength",
+     "src": "§4"
+    }
+   }
+  ],
+  "mould_title": "Cut into the mould — freeze before the tool",
+  "mould": [
+   {
+    "t": "Glass thickness",
+    "v": "{m.glass_t} mm now",
+    "src": "master"
+   },
+   {
+    "t": "Coated sheet thickness = lip height",
+    "v": "{m.t_sheet} mm now",
+    "src": "master"
+   },
+   {
+    "t": "Bead thickness",
+    "v": "{m.t_bond} mm now",
+    "src": "master"
+   },
+   {
+    "t": "Border",
+    "v": "{m.border} mm, decided (D3)",
+    "src": "master"
+   }
+  ],
+  "dec_title": "Decisions (D3 decided, the rest open)",
+  "decisions": [
+   {
+    "id": "D1",
+    "t": "Which front",
+    "rec": "GF-2.1 if the touch and fold tests pass",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D2",
+    "t": "Glass thickness and type",
+    "rec": "from the bench test; not 3.2",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D3",
+    "t": "Border",
+    "rec": "19.0 mm",
+    "open": false,
+    "src": "§4"
+   },
+   {
+    "id": "D4",
+    "t": "S4 hidden studs or R4 rivets",
+    "rec": "S4",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D5",
+    "t": "Sheet finish and coated thickness",
+    "rec": "measure on samples",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D6",
+    "t": "Sheet thickness tolerance",
+    "rec": "±0.05",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D7",
+    "t": "Ink",
+    "rec": "2K organic",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D8",
+    "t": "Bead adhesive / thickness",
+    "rec": "class 50, 1.0 mm",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D9",
+    "t": "Moulded or printed first batch",
+    "rec": "aluminium mould",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D10",
+    "t": "Optical bonding route",
+    "rec": "in-house (J1)",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D11",
+    "t": "Lip look",
+    "rec": "keep the lip",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D12",
+    "t": "Logo artwork",
+    "rec": "release artwork",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D13",
+    "t": "Corner gaps at the bounds",
+    "rec": "accept",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D14",
+    "t": "Service concept",
+    "rec": "bonded unit as spare",
+    "open": true,
+    "src": "§4"
+   },
+   {
+    "id": "D15",
+    "t": "Formex grade",
+    "rec": "as frame v2",
+    "open": true,
+    "src": "§4"
+   }
+  ],
+  "verified": {
+   "t": "Independent CAD check of GF-2.1: 120 pass / 0 fail / 54 info.",
+   "src": "§10.1"
+  },
+  "unverified_title": "Not yet verified by anyone",
+  "unverified": [
+   {
+    "t": "Mould filling and warp of the bridge and the bend-slot shut-off (needs a simulation before steel).",
+    "src": "§10.3"
+   },
+   {
+    "t": "The real cables: straight length, thickness, layers, permission to fold (fold test settles it).",
+    "src": "§10.3"
+   },
+   {
+    "t": "Cable handling in J2: a first proposal, never tried.",
+    "src": "§10.3, §9.3"
+   },
+   {
+    "t": "Push and impact: beam-grid estimates, not a finite-element analysis.",
+    "src": "§10.3"
+   }
+  ],
+  "margins": {
+   "t": "Two thin margins: touch cable to bridge nose 0.459 vs 0.45 at full worst case; bead to land-break edge 1.06 vs 1.0.",
+   "src": "§2.2.6"
+  }
+ },
+ "elec_page": {
+  "title": "Electronics parts list (controller PCB)",
+  "title2": "Electronics parts list (continued)",
+  "chart_title": "Component cost per board by function (USD)",
+  "cols": [
+   "Ref",
+   "Qty",
+   "Part",
+   "What it does",
+   "Part number",
+   "Maker",
+   "Supplier",
+   "USD each",
+   "Status"
+  ],
+  "status_help": {
+   "t": "OK = in stock; SHORT = stock below 100 boards; SUBSTITUTE = bought part differs from the schematic value; NOT SOURCED = either nothing to buy (a pad or a symbol, not a real part) or no quote yet.",
+   "src": "elec"
+  },
+  "extra_title": "Not in the component total"
+ },
+ "files_page": {
+  "title": "Where the files are, and the words we use",
+  "files": [
+   {
+    "t": "Design document (the full story, RFQ texts in §12)",
+    "p": "Design Reports/Rev3.0/Rev3.0_GlassFront_Design.md"
+   },
+   {
+    "t": "Master numbers (single source of truth)",
+    "p": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_params.json"
+   },
+   {
+    "t": "CAD: assembly, frame, glass (STEP); Fusion file",
+    "p": "Mechanical/Rev3.0_GlassFront/*.step, Rev3.0_GlassFront.f3d"
+   },
+   {
+    "t": "Drawings GF-D01 … GF-D50 (PDF, DXF, PNG)",
+    "p": "Mechanical/Rev3.0_GlassFront/drawings/"
+   },
+   {
+    "t": "Renders (Fusion, verification, this overview)",
+    "p": "Mechanical/Rev3.0_GlassFront/renders/ (overview/ for this PDF)"
+   },
+   {
+    "t": "Electronics BOM sources",
+    "p": "Design Reports/Rev3.0/Rev3.0_BOM_Ozdisan_100pcs.csv, Rev3.0_BOM.csv"
+   },
+   {
+    "t": "This overview: builder, content, audit",
+    "p": "Design Reports/Rev3.0/tools/glassfront/overview/"
+   }
+  ],
+  "rfq": {
+   "t": "Ready-to-send Turkish RFQ texts: glass §12.1, oven sheet §12.2, mould and moulding §12.3, weld studs §12.4.",
+   "src": "§12"
+  },
+  "glossary_title": "Ten words in plain language",
+  "glossary": [
+   {
+    "w": "Frame",
+    "d": "the moulded plastic carrier behind the glass",
+    "src": "§0.6"
+   },
+   {
+    "w": "Lip",
+    "d": "the thin plastic rim that rises through the sheet opening between glass edge and steel",
+    "src": "§0.6"
+   },
+   {
+    "w": "Bead",
+    "d": "the elastic adhesive ring between glass and frame",
+    "src": "§0.6"
+   },
+   {
+    "w": "Tails",
+    "d": "the panel's two flat cables: display (TFT) and touch (CTP)",
+    "src": "§0.6"
+   },
+   {
+    "w": "Bend gap",
+    "d": "the slot in the frame in which the cables are folded back",
+    "src": "§0.6"
+   },
+   {
+    "w": "Bridge / nose",
+    "d": "the frame's bottom side over the cables; its rounded edge the cables fold over",
+    "src": "§0.6"
+   },
+   {
+    "w": "Fold test",
+    "d": "the gate test: fold a real panel's cables over a gauge that copies the slot",
+    "src": "§0.6"
+   },
+   {
+    "w": "S4 / R4",
+    "d": "4 hidden welded studs + tape, or 4 visible rivets + tape",
+    "src": "§0.6"
+   },
+   {
+    "w": "LOCA / VHB",
+    "d": "liquid optically clear adhesive / 3M very-high-bond foam tape",
+    "src": "§0.6"
+   },
+   {
+    "w": "J1 / J2",
+    "d": "the two bench jigs: optical bonding, and flush bonding of glass to frame",
+    "src": "§0.6"
+   }
+  ]
+ },
+ "variant_panel": {
+  "title": "S4 or R4 — what changes (decision D4, open; S4 recommended)",
+  "src": "§2.3, §4, §8.6",
+  "rows": [
+   {
+    "t": "S4: 4 studs welded to the back of the sheet before coating; washers and nyloc nuts (items 2, 10, 11). Nothing shows on the front.",
+    "src": "§2.3, §8.6"
+   },
+   {
+    "t": "R4: 4 holes Ø5.2 in the sheet after coating; large-flange rivets set from the front (items 14, 15). Black Ø14 heads stand 1.5–2.0 mm proud.",
+    "src": "§2.3, §8.6"
+   },
+   {
+    "t": "Both: the same frame, glass, tape strips and cut-out; only the sheet drawing differs (GF-D01 or GF-D03).",
+    "src": "§8.6, §4"
+   }
+  ],
+  "img_caption": {
+   "t": "R4 corner as modelled (Fusion render): the black rivet head next to the glass corner.",
+   "src": "§2.3"
+  }
+ }
+}

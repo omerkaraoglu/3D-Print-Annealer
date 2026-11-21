@@ -1,0 +1,1898 @@
+{
+"step": "Mechanical/Rev3.0_GlassFront/Rev3.0_GlassFront_Assembly.step",
+"solid_instances": 313,
+"by_item": {
+"frame": 1,
+"glass": 2,
+"loca": 1,
+"formex": 1,
+"bead": 1,
+"tape": 4,
+"sheet": 1,
+"pcb": 283,
+"panel": 7,
+"stud": 4,
+"washer": 4,
+"nut": 4
+},
+"bodies": [
+{
+"path": "Rev3.0 GlassFront/Frame GF:1",
+"name": "Frame GF",
+"item": "frame",
+"sub": "frame"
+},
+{
+"path": "Rev3.0 GlassFront/Glass:1",
+"name": "Glass",
+"item": "glass",
+"sub": "glass"
+},
+{
+"path": "Rev3.0 GlassFront/Glass:1",
+"name": "Glass",
+"item": "glass",
+"sub": "print"
+},
+{
+"path": "Rev3.0 GlassFront/Optical bond:1",
+"name": "Optical bond",
+"item": "loca",
+"sub": "loca"
+},
+{
+"path": "Rev3.0 GlassFront/Formex sheet:1",
+"name": "Formex sheet",
+"item": "formex",
+"sub": "formex"
+},
+{
+"path": "Rev3.0 GlassFront/Bead:1",
+"name": "Bead",
+"item": "bead",
+"sub": "bead"
+},
+{
+"path": "Rev3.0 GlassFront/VHB tape strips:1",
+"name": "VHB tape strips",
+"item": "tape",
+"sub": "tape"
+},
+{
+"path": "Rev3.0 GlassFront/VHB tape strips:1",
+"name": "VHB tape strips",
+"item": "tape",
+"sub": "tape"
+},
+{
+"path": "Rev3.0 GlassFront/VHB tape strips:1",
+"name": "VHB tape strips",
+"item": "tape",
+"sub": "tape"
+},
+{
+"path": "Rev3.0 GlassFront/VHB tape strips:1",
+"name": "VHB tape strips",
+"item": "tape",
+"sub": "tape"
+},
+{
+"path": "Rev3.0 GlassFront/Oven sheet:1",
+"name": "Oven sheet",
+"item": "sheet",
+"sub": "sheet"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-123:1",
+"name": "D_SOD-123",
+"item": "pcb",
+"sub": "component:D_SOD-123:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:1",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:1",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:1",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Radial_CoreMaster_RC1415U:1/flange_bottom_0 (1):1",
+"name": "flange_bottom_0 (1)",
+"item": "pcb",
+"sub": "component:L_Radial_CoreMaster_RC1415U:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Radial_CoreMaster_RC1415U:1/flange_top_1:1",
+"name": "flange_top_1",
+"item": "pcb",
+"sub": "component:L_Radial_CoreMaster_RC1415U:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Radial_CoreMaster_RC1415U:1/winding_2:1",
+"name": "winding_2",
+"item": "pcb",
+"sub": "component:L_Radial_CoreMaster_RC1415U:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Radial_CoreMaster_RC1415U:1/pin_1_3:1",
+"name": "pin_1_3",
+"item": "pcb",
+"sub": "component:L_Radial_CoreMaster_RC1415U:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Radial_CoreMaster_RC1415U:1/pin_2_4:1",
+"name": "pin_2_4",
+"item": "pcb",
+"sub": "component:L_Radial_CoreMaster_RC1415U:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:1",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/PinHeader_1x06_P2.54mm_Vertical:1",
+"name": "PinHeader_1x06_P2.54mm_Vertical",
+"item": "pcb",
+"sub": "component:PinHeader_1x06_P2.54mm_Vertical:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:1",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/ferrite_0:1",
+"name": "ferrite_0",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/winding_top_1:1",
+"name": "winding_top_1",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/pin_1_2:1",
+"name": "pin_1_2",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/tab1_3:1",
+"name": "tab1_3",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/foot1_4:1",
+"name": "foot1_4",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/pin_2_5:1",
+"name": "pin_2_5",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/tab2_6:1",
+"name": "tab2_6",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_CoreMaster_SRI0605B:1/foot2_7:1",
+"name": "foot2_7",
+"item": "pcb",
+"sub": "component:L_CoreMaster_SRI0605B:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TSOT-23-5:1",
+"name": "TSOT-23-5",
+"item": "pcb",
+"sub": "component:TSOT-23-5:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Relay_SPDT_SANYOU_SRD_Series_Form_C:1",
+"name": "Relay_SPDT_SANYOU_SRD_Series_Form_C",
+"item": "pcb",
+"sub": "component:Relay_SPDT_SANYOU_SRD_Series_Form_C:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:1",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Heatsink_Fischer_SK409_63.5_STC:1/profile_0:1",
+"name": "profile_0",
+"item": "pcb",
+"sub": "component:Heatsink_Fischer_SK409_63.5_STC:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Heatsink_Fischer_SK409_63.5_STC:1/pin_1_1:1",
+"name": "pin_1_1",
+"item": "pcb",
+"sub": "component:Heatsink_Fischer_SK409_63.5_STC:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Heatsink_Fischer_SK409_63.5_STC:1/pin_2_2:1",
+"name": "pin_2_2",
+"item": "pcb",
+"sub": "component:Heatsink_Fischer_SK409_63.5_STC:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:1",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0805_2012Metric:1",
+"name": "R_0805_2012Metric",
+"item": "pcb",
+"sub": "component:R_0805_2012Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1/pin_1_0:1",
+"name": "pin_1_0",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1/insulation_1:1",
+"name": "insulation_1",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1/pin_2_2 (1):1",
+"name": "pin_2_2 (1)",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1/insulation_3:1",
+"name": "insulation_3",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1/pin_1_0 (1):1",
+"name": "pin_1_0 (1)",
+"item": "pcb",
+"sub": "component:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1/insulation_1 (1):1",
+"name": "insulation_1 (1)",
+"item": "pcb",
+"sub": "component:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1/pin_2_2 (2):1",
+"name": "pin_2_2 (2)",
+"item": "pcb",
+"sub": "component:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1/insulation_3 (1):1",
+"name": "insulation_3 (1)",
+"item": "pcb",
+"sub": "component:SolderWire-0.75sqmm_1x02_P7mm_D1.25mm_OD3.5mm_stub:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/DIP-6_W7.62mm:1",
+"name": "DIP-6_W7.62mm",
+"item": "pcb",
+"sub": "component:DIP-6_W7.62mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Rect_L13.0mm_W4.0mm_P10.00mm_FKS3_FKP3_MKS4:1",
+"name": "C_Rect_L13.0mm_W4.0mm_P10.00mm_FKS3_FKP3_MKS4",
+"item": "pcb",
+"sub": "component:C_Rect_L13.0mm_W4.0mm_P10.00mm_FKS3_FKP3_MKS4:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal:1",
+"name": "R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal",
+"item": "pcb",
+"sub": "component:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/ESP32-WROOM-32E:1",
+"name": "ESP32-WROOM-32E",
+"item": "pcb",
+"sub": "component:ESP32-WROOM-32E:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SOT-23-5:1",
+"name": "SOT-23-5",
+"item": "pcb",
+"sub": "component:SOT-23-5:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/RV_Disc_D15.5mm_W5mm_P7.5mm:1",
+"name": "RV_Disc_D15.5mm_W5mm_P7.5mm",
+"item": "pcb",
+"sub": "component:RV_Disc_D15.5mm_W5mm_P7.5mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/CP_Elec_5x5.4:1",
+"name": "CP_Elec_5x5.4",
+"item": "pcb",
+"sub": "component:CP_Elec_5x5.4:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LQFP-128_14x14mm_P0.4mm:1",
+"name": "LQFP-128_14x14mm_P0.4mm",
+"item": "pcb",
+"sub": "component:LQFP-128_14x14mm_P0.4mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TSSOP-10_3x3mm_P0.5mm:1",
+"name": "TSSOP-10_3x3mm_P0.5mm",
+"item": "pcb",
+"sub": "component:TSSOP-10_3x3mm_P0.5mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal:1",
+"name": "R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal",
+"item": "pcb",
+"sub": "component:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Radial_D6.3mm_H11.0mm_P2.50mm:1",
+"name": "C_Radial_D6.3mm_H11.0mm_P2.50mm",
+"item": "pcb",
+"sub": "component:C_Radial_D6.3mm_H11.0mm_P2.50mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/base_0:1",
+"name": "base_0",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/coil_1:1",
+"name": "coil_1",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/leg_2:1",
+"name": "leg_2",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/coil_3:1",
+"name": "coil_3",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/leg_4:1",
+"name": "leg_4",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/core_top_5:1",
+"name": "core_top_5",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/pin_1_6:1",
+"name": "pin_1_6",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/pin_2_7:1",
+"name": "pin_2_7",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/pin_3_8:1",
+"name": "pin_3_8",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/LFU09V-103:1/pin_4_9:1",
+"name": "pin_4_9",
+"item": "pcb",
+"sub": "component:LFU09V-103:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Crystal_SMD_3225-4Pin_3.2x2.5mm:1",
+"name": "Crystal_SMD_3225-4Pin_3.2x2.5mm",
+"item": "pcb",
+"sub": "component:Crystal_SMD_3225-4Pin_3.2x2.5mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/housing_0:1",
+"name": "housing_0",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/actuator_1:1",
+"name": "actuator_1",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_1_2 (1):1",
+"name": "pin_1_2 (1)",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_2_3:1",
+"name": "pin_2_3",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_3_4:1",
+"name": "pin_3_4",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_4_5:1",
+"name": "pin_4_5",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_5_6:1",
+"name": "pin_5_6",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_6_7:1",
+"name": "pin_6_7",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_MP_8:1",
+"name": "pin_MP_8",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/nail_side_9:1",
+"name": "nail_side_9",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/pin_MP_10:1",
+"name": "pin_MP_10",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1/nail_side_11:1",
+"name": "nail_side_11",
+"item": "pcb",
+"sub": "component:KLS_L-KLS1-242D-1.2-06-T-U-R_1x06_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SOT-23-3:1",
+"name": "SOT-23-3",
+"item": "pcb",
+"sub": "component:SOT-23-3:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_base_0:1",
+"name": "clip_base_0",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_arm_1:1",
+"name": "clip_arm_1",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_foot_2:1",
+"name": "clip_foot_2",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_arm_3:1",
+"name": "clip_arm_3",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_foot_4:1",
+"name": "clip_foot_4",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/pin_1_5:1",
+"name": "pin_1_5",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/pin_1_6 (1):1",
+"name": "pin_1_6 (1)",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_base_7:1",
+"name": "clip_base_7",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_arm_8:1",
+"name": "clip_arm_8",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_foot_9:1",
+"name": "clip_foot_9",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_arm_10:1",
+"name": "clip_arm_10",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/clip_foot_11:1",
+"name": "clip_foot_11",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/pin_2_12:1",
+"name": "pin_2_12",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/pin_2_13:1",
+"name": "pin_2_13",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/cap1_14:1",
+"name": "cap1_14",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/cap2_15:1",
+"name": "cap2_15",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/glass_16:1",
+"name": "glass_16",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1/element_17:1",
+"name": "element_17",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/RV_Disc_D12mm_W3.9mm_P7.5mm:1",
+"name": "RV_Disc_D12mm_W3.9mm_P7.5mm",
+"item": "pcb",
+"sub": "component:RV_Disc_D12mm_W3.9mm_P7.5mm:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SOT-23:1",
+"name": "SOT-23",
+"item": "pcb",
+"sub": "component:SOT-23:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/housing_0 (1):1",
+"name": "housing_0 (1)",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/screw_1:1",
+"name": "screw_1",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/cage_2:1",
+"name": "cage_2",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/pin_1_3 (1):1",
+"name": "pin_1_3 (1)",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/screw_4:1",
+"name": "screw_4",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/cage_5:1",
+"name": "cage_5",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TerminalBlock_DEGSON_DG127H-5.08-02P:1/pin_2_6:1",
+"name": "pin_2_6",
+"item": "pcb",
+"sub": "component:TerminalBlock_DEGSON_DG127H-5.08-02P:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:1/flange_bottom_0:1",
+"name": "flange_bottom_0",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:1/flange_top_1 (1):1",
+"name": "flange_top_1 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:1/winding_2 (1):1",
+"name": "winding_2 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:1/pin_1_3 (2):1",
+"name": "pin_1_3 (2)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:1/pin_2_4 (1):1",
+"name": "pin_2_4 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SOT-223:1",
+"name": "SOT-223",
+"item": "pcb",
+"sub": "component:SOT-223:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1/box_0:1",
+"name": "box_0",
+"item": "pcb",
+"sub": "component:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1/pin_1_1 (1):1",
+"name": "pin_1_1 (1)",
+"item": "pcb",
+"sub": "component:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1/pin_2_2 (3):1",
+"name": "pin_2_2 (3)",
+"item": "pcb",
+"sub": "component:C_Rect_L32.0mm_W9.0mm_P27.50mm_X2_Faratronic_C42:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/housing_0 (2):1",
+"name": "housing_0 (2)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/actuator_1 (1):1",
+"name": "actuator_1 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_1_2 (2):1",
+"name": "pin_1_2 (2)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_2_3 (1):1",
+"name": "pin_2_3 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_3_4 (1):1",
+"name": "pin_3_4 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_4_5 (1):1",
+"name": "pin_4_5 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_5_6 (1):1",
+"name": "pin_5_6 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_6_7 (1):1",
+"name": "pin_6_7 (1)",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_7_8:1",
+"name": "pin_7_8",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_8_9:1",
+"name": "pin_8_9",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_9_10:1",
+"name": "pin_9_10",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_10_11:1",
+"name": "pin_10_11",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_11_12:1",
+"name": "pin_11_12",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_12_13:1",
+"name": "pin_12_13",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_13_14:1",
+"name": "pin_13_14",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_14_15:1",
+"name": "pin_14_15",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_15_16:1",
+"name": "pin_15_16",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_16_17:1",
+"name": "pin_16_17",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_17_18:1",
+"name": "pin_17_18",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_18_19:1",
+"name": "pin_18_19",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_19_20:1",
+"name": "pin_19_20",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_20_21:1",
+"name": "pin_20_21",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_21_22:1",
+"name": "pin_21_22",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_22_23:1",
+"name": "pin_22_23",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_23_24:1",
+"name": "pin_23_24",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_24_25:1",
+"name": "pin_24_25",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_25_26:1",
+"name": "pin_25_26",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_26_27:1",
+"name": "pin_26_27",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_27_28:1",
+"name": "pin_27_28",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_28_29:1",
+"name": "pin_28_29",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_29_30:1",
+"name": "pin_29_30",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_30_31:1",
+"name": "pin_30_31",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_31_32:1",
+"name": "pin_31_32",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_32_33:1",
+"name": "pin_32_33",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_33_34:1",
+"name": "pin_33_34",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_34_35:1",
+"name": "pin_34_35",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_35_36:1",
+"name": "pin_35_36",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_36_37:1",
+"name": "pin_36_37",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_37_38:1",
+"name": "pin_37_38",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_38_39:1",
+"name": "pin_38_39",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_39_40:1",
+"name": "pin_39_40",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_40_41:1",
+"name": "pin_40_41",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_MP_42:1",
+"name": "pin_MP_42",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/nail_side_43:1",
+"name": "nail_side_43",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/pin_MP_44:1",
+"name": "pin_MP_44",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1/nail_side_45:1",
+"name": "nail_side_45",
+"item": "pcb",
+"sub": "component:Connfly_DS1020-09-40VBT1B_1x40_P0.5mm_Horizontal_TopSide:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TO-220-3_Vertical:1",
+"name": "TO-220-3_Vertical",
+"item": "pcb",
+"sub": "component:TO-220-3_Vertical:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SMA:1",
+"name": "D_SMA",
+"item": "pcb",
+"sub": "component:D_SMA:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Converter_ACDC_Hi-Link_HLK-10Mxx:1",
+"name": "Converter_ACDC_Hi-Link_HLK-10Mxx",
+"item": "pcb",
+"sub": "component:Converter_ACDC_Hi-Link_HLK-10Mxx:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_1206_3216Metric:1",
+"name": "R_1206_3216Metric",
+"item": "pcb",
+"sub": "component:R_1206_3216Metric:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_Rect_L18.0mm_W5.0mm_P15.00mm_FKS3_FKP3:1",
+"name": "C_Rect_L18.0mm_W5.0mm_P15.00mm_FKS3_FKP3",
+"item": "pcb",
+"sub": "component:C_Rect_L18.0mm_W5.0mm_P15.00mm_FKS3_FKP3:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical:1",
+"name": "R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical",
+"item": "pcb",
+"sub": "component:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TSOT-23-6:1",
+"name": "TSOT-23-6",
+"item": "pcb",
+"sub": "component:TSOT-23-6:1"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TFT7_SAT070AT40D21:1/lcm_0:1",
+"name": "lcm_0",
+"item": "panel",
+"sub": "lcm"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TFT7_SAT070AT40D21:1/pu_tape_1:1",
+"name": "pu_tape_1",
+"item": "panel",
+"sub": "pu"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TFT7_SAT070AT40D21:1/sensor_2:1",
+"name": "sensor_2",
+"item": "panel",
+"sub": "sensor"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TFT7_SAT070AT40D21:1/cover_print_3:1",
+"name": "cover_print_3",
+"item": "panel",
+"sub": "cover"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/TFT7_SAT070AT40D21:1/cover_va_4:1",
+"name": "cover_va_4",
+"item": "panel",
+"sub": "cover"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/3dFilamentDryer_PCB:1",
+"name": "3dFilamentDryer_PCB",
+"item": "pcb",
+"sub": "board"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:2",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:2",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:2",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:3",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:4",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:5",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:3",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:3",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:4",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:5",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:6",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:7",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:8",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:8"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:2",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:6",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0805_2012Metric:2",
+"name": "R_0805_2012Metric",
+"item": "pcb",
+"sub": "component:R_0805_2012Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:9",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:9"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:2",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:3",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:7",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:2",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:3",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:2",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:10",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:10"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:3",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-123:2",
+"name": "D_SOD-123",
+"item": "pcb",
+"sub": "component:D_SOD-123:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:4",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:11",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:11"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:8",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:8"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:4",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:9",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:9"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2/pin_1_0:1",
+"name": "pin_1_0",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2/insulation_1:1",
+"name": "insulation_1",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2/pin_2_2 (1):1",
+"name": "pin_2_2 (1)",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2/insulation_3:1",
+"name": "insulation_3",
+"item": "pcb",
+"sub": "component:SolderWire-1.5sqmm_1x02_P7.8mm_D1.7mm_OD3.9mm_stub:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:5",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:12",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:12"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:13",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:13"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:4",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:6",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:14",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:14"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:7",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:10",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:10"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:5",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:6",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal:2",
+"name": "R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal",
+"item": "pcb",
+"sub": "component:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:11",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:11"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:15",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:15"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:16",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:16"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:5",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:6",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:4",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:12",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:12"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:13",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:13"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:17",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:17"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:14",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:14"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:3",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:8",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:8"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:7",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:18",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:18"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:15",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:15"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:19",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:19"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:4",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:7",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:16",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:16"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:17",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:17"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/DIP-6_W7.62mm:2",
+"name": "DIP-6_W7.62mm",
+"item": "pcb",
+"sub": "component:DIP-6_W7.62mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0805_2012Metric:3",
+"name": "R_0805_2012Metric",
+"item": "pcb",
+"sub": "component:R_0805_2012Metric:3"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:5",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:18",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:18"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:8",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:8"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:2/flange_bottom_0:1",
+"name": "flange_bottom_0",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:2/flange_top_1 (1):1",
+"name": "flange_top_1 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:2/winding_2 (1):1",
+"name": "winding_2 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:2/pin_1_3 (2):1",
+"name": "pin_1_3 (2)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/L_Viking_PCD0403:2/pin_2_4 (1):1",
+"name": "pin_2_4 (1)",
+"item": "pcb",
+"sub": "component:L_Viking_PCD0403:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:19",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:19"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:20",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:20"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:6",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:20",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:20"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:8",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:8"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:21",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:21"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:21",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:21"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:22",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:22"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0805_2012Metric:4",
+"name": "R_0805_2012Metric",
+"item": "pcb",
+"sub": "component:R_0805_2012Metric:4"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:23",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:23"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:24",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:24"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0603_1608Metric:9",
+"name": "R_0603_1608Metric",
+"item": "pcb",
+"sub": "component:R_0603_1608Metric:9"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:25",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:25"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0603_1608Metric:9",
+"name": "C_0603_1608Metric",
+"item": "pcb",
+"sub": "component:C_0603_1608Metric:9"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical:2",
+"name": "R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical",
+"item": "pcb",
+"sub": "component:R_Axial_DIN0414_L11.9mm_D4.5mm_P5.08mm_Vertical:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:9",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:9"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:22",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:22"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0402_1005Metric:23",
+"name": "C_0402_1005Metric",
+"item": "pcb",
+"sub": "component:C_0402_1005Metric:23"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:26",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:26"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:5",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:5"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:27",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:27"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_base_0:1",
+"name": "clip_base_0",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_arm_1:1",
+"name": "clip_arm_1",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_foot_2:1",
+"name": "clip_foot_2",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_arm_3:1",
+"name": "clip_arm_3",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_foot_4:1",
+"name": "clip_foot_4",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/pin_1_5:1",
+"name": "pin_1_5",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/pin_1_6 (1):1",
+"name": "pin_1_6 (1)",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_base_7:1",
+"name": "clip_base_7",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_arm_8:1",
+"name": "clip_arm_8",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_foot_9:1",
+"name": "clip_foot_9",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_arm_10:1",
+"name": "clip_arm_10",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/clip_foot_11:1",
+"name": "clip_foot_11",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/pin_2_12:1",
+"name": "pin_2_12",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/pin_2_13:1",
+"name": "pin_2_13",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/cap1_14:1",
+"name": "cap1_14",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/cap2_15:1",
+"name": "cap2_15",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/glass_16:1",
+"name": "glass_16",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2/element_17:1",
+"name": "element_17",
+"item": "pcb",
+"sub": "component:Fuse_Reomax_R3-5A_Clips_5x20mm_P20.50x5.20mm:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:28",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:28"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/C_0805_2012Metric:10",
+"name": "C_0805_2012Metric",
+"item": "pcb",
+"sub": "component:C_0805_2012Metric:10"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/D_SOD-323:6",
+"name": "D_SOD-323",
+"item": "pcb",
+"sub": "component:D_SOD-323:6"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/SOT-23-3:2",
+"name": "SOT-23-3",
+"item": "pcb",
+"sub": "component:SOT-23-3:2"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_Array_Convex_4x0402:7",
+"name": "R_Array_Convex_4x0402",
+"item": "pcb",
+"sub": "component:R_Array_Convex_4x0402:7"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:29",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:29"
+},
+{
+"path": "Rev3.0 GlassFront/Rev3.0 PCB full (KiCad STEP):1/board_full 1:1/R_0402_1005Metric:30",
+"name": "R_0402_1005Metric",
+"item": "pcb",
+"sub": "component:R_0402_1005Metric:30"
+},
+{
+"path": "Rev3.0 GlassFront/Weld studs S4 F1-F4:1",
+"name": "Weld studs S4 F1-F4",
+"item": "stud",
+"sub": "stud"
+},
+{
+"path": "Rev3.0 GlassFront/Weld studs S4 F1-F4:1",
+"name": "Weld studs S4 F1-F4",
+"item": "stud",
+"sub": "stud"
+},
+{
+"path": "Rev3.0 GlassFront/Weld studs S4 F1-F4:1",
+"name": "Weld studs S4 F1-F4",
+"item": "stud",
+"sub": "stud"
+},
+{
+"path": "Rev3.0 GlassFront/Weld studs S4 F1-F4:1",
+"name": "Weld studs S4 F1-F4",
+"item": "stud",
+"sub": "stud"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "washer",
+"sub": "washer"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "washer",
+"sub": "washer"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "washer",
+"sub": "washer"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "washer",
+"sub": "washer"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "nut",
+"sub": "nut"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "nut",
+"sub": "nut"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "nut",
+"sub": "nut"
+},
+{
+"path": "Rev3.0 GlassFront/Washers + nyloc nuts S4 F1-F4:1",
+"name": "Washers + nyloc nuts S4 F1-F4",
+"item": "nut",
+"sub": "nut"
+},
+{
+"path": "Rev3.0 GlassFront/Tails GF-2.0 (bent-back route):1",
+"name": "Tails GF-2.0 (bent-back route)",
+"item": "panel",
+"sub": "tail"
+},
+{
+"path": "Rev3.0 GlassFront/Tails GF-2.0 (bent-back route):1",
+"name": "Tails GF-2.0 (bent-back route)",
+"item": "panel",
+"sub": "tail"
+}
+]
+}

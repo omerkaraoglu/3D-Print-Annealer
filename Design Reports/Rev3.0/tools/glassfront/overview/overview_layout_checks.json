@@ -1,0 +1,122 @@
+[
+ {
+  "balloon": 1,
+  "key": "sheet",
+  "end_px": [
+   170,
+   626
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 2,
+  "key": "stud",
+  "end_px": [
+   301,
+   1170
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 3,
+  "key": "tape",
+  "end_px": [
+   507,
+   713
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 4,
+  "key": "glass",
+  "end_px": [
+   798,
+   460
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 5,
+  "key": "loca",
+  "end_px": [
+   1019,
+   524
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 6,
+  "key": "panel",
+  "end_px": [
+   1196,
+   562
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 7,
+  "key": "bead",
+  "end_px": [
+   1471,
+   368
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 8,
+  "key": "formex",
+  "end_px": [
+   1601,
+   562
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 9,
+  "key": "frame",
+  "end_px": [
+   2008,
+   282
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 10,
+  "key": "washer",
+  "end_px": [
+   2019,
+   81
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 11,
+  "key": "nut",
+  "end_px": [
+   2170,
+   46
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ },
+ {
+  "balloon": 12,
+  "key": "pcb",
+  "end_px": [
+   2566,
+   370
+  ],
+  "on_own_part": true,
+  "inset_px": 8
+ }
+]

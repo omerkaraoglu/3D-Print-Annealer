@@ -1,0 +1,16 @@
+{
+ "name": "part_formex",
+ "view": "iso_front",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "formex": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

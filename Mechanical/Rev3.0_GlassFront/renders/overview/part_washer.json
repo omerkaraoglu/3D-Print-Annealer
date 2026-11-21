@@ -1,0 +1,16 @@
+{
+ "name": "part_washer",
+ "view": "stud",
+ "size": [
+  1100,
+  1100
+ ],
+ "keys": {
+  "washer": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}

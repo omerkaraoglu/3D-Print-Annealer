@@ -1,0 +1,16 @@
+{
+ "name": "part_panel",
+ "view": "iso_front_low",
+ "size": [
+  1500,
+  1100
+ ],
+ "keys": {
+  "panel": [
+   37,
+   17,
+   17
+  ]
+ },
+ "anchors": {}
+}
