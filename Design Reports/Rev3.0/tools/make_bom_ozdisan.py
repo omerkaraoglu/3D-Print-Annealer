@@ -36,7 +36,7 @@ EXTRA = [
     {"ref": "DS1 (panel)", "val": "7 inch 800x480 RGB TFT + capacitive touch", "fp": "plugs into J10 (TFT) and J11 (touch)", "qty": 1, "key": "DS1"},
     {"ref": "FB-FPC (on the TFT tail)", "val": "flat-cable ferrite core, 2 in series ≈ 142 Ω at 100 MHz", "fp": "both slid over the 40-way TFT tail before it is plugged into J10", "qty": 2, "key": "FPCFER"},
     {"ref": "Q1 clip", "val": "TO-220 retaining spring for SK 409", "fp": "clips Q1 onto HS1", "qty": 1, "key": "HSCLIP"},
-    {"ref": "Q1 thermal compound", "val": "silicone thermal compound, 100 g jar per 100 boards", "fp": "between Q1 and HS1", "qty": 0.01, "key": "HSCOMP"},
+    {"ref": "Q1 thermal compound", "val": "silicone thermal compound, 100 g jar (one per batch)", "fp": "between Q1 and HS1", "qty": 0.01, "key": "HSCOMP"},
     # ground-to-earth bond J5 (spec 12.12.8)
     {"ref": "J5 screw", "val": "M3 × 8 hex-socket cap screw", "fp": "from the PCB back through J5", "qty": 1, "key": "PESCREW"},
     {"ref": "J5 ring lug", "val": "insulated ring terminal, M3 / M3.5, 0.5–1.5 mm²", "fp": "on the J5 pad, PCB front, tongue at 150°", "qty": 1, "key": "PELUG3"},
@@ -91,6 +91,7 @@ for key, qb in qty_per_key.items():
 
 tot_line = tot_purchase = 0.0
 seen = set()
+sup_by_ref = {}
 for key, it in groups:
     d = ozd.get(key, {})
     qb = it["qty"]
@@ -106,6 +107,7 @@ for key, it in groups:
         avail = "OK" if (stock or 0) >= q else ("SHORT: stock %d < %d" % (stock or 0, q))
         if d.get("stock") == 0 or stock is None: avail = "NOT STOCKED"
         if d.get("local"): avail = "local purchase"
+        if d.get("avail_text"): avail = d["avail_text"]
     else:
         q = p = line = purchase = None; avail = d.get("note", "NOT FOUND") if d else "NOT FOUND"
     rows.append({
@@ -118,6 +120,7 @@ for key, it in groups:
         "Availability": avail, "Note": d.get("note", "") if key not in seen else "(same part as above)",
         "Lead time (weeks)": d.get("lead") or "", "URL": d.get("url", ""),
     })
+    sup_by_ref[it["ref"]] = d.get("supplier", "")
     seen.add(key)
 
 csv_path = os.path.join(OUT_DIR, "Rev3.0_BOM_Ozdisan_%dpcs.csv" % N)
@@ -135,7 +138,7 @@ read_date = src.get("read_date", "2026-11-12")
 rate = src.get("try_per_usd", 50.3)
 for r in rows:
     r["Part (link)"] = "[%s](%s)" % (r["Part number"], r["URL"]) if r["URL"] else r["Part number"]
-    r["Supplier"] = ("Özdisan" if "ozdisan" in r["URL"] else "DigiKey" if "digikey" in r["URL"]
+    r["Supplier"] = sup_by_ref.get(r["Ref"]) or ("Özdisan" if "ozdisan" in r["URL"] else "DigiKey" if "digikey" in r["URL"]
                      else "Motorobit" if "motorobit" in r["URL"] else "Local" if r["Availability"] == "local purchase" else "")
 no_link = [r["Ref"] for r in rows if not r["URL"]]
 non_ozd = [r for r in rows if r["Part number"] and "ozdisan" not in r["URL"]]
@@ -145,7 +148,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "",
       "Generated %s by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on %s (USD prices as shown by Özdisan, **excluding KDV / VAT**; TRY/USD on the site that day ≈ %.1f). "
       "Every link was opened on that date and its page title matched the part number. "
-      "The heatsink, its retaining clip and the FPC ferrite (DigiKey), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
+      "The FPC ferrite (DigiKey, ordered through ekomponent), the heatsink and its retaining clip (Demsay, prices estimated), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
       "(Özdisan's order multiple equals its MOQ on every line); the unit price is that quantity's tier." % (datetime.date.today().isoformat(), read_date, rate, N),
       "",
       "Lines without a link: %s." % (", ".join(no_link) if no_link else "none"),
@@ -159,7 +162,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "| | USD / board |", "|---|---|",
       "| Components at the %d-board price breaks (qty × tier price) | **%.2f** |" % (N, tot_line),
       "| Same, including MOQ rounding (what you actually pay ÷ %d) | **%.2f** |" % (N, tot_purchase),
-      "| of which not from Özdisan (HS1 heatsink, its clip and the FPC ferrite from DigiKey, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
+      "| of which not from Özdisan (FPC ferrite from DigiKey, HS1 heatsink and its clip from Demsay, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
       "| of which the display panel | %.2f |" % sum(float(r["Line / board USD"]) for r in rows if r["Ref"].startswith("DS1")),
       "",
       "## Lines that need attention",
@@ -193,3 +196,54 @@ open(md_path, "w", encoding="utf-8").write("\n".join(md))
 print("lines", len(rows), "line/board %.3f purchase/board %.3f" % (tot_line, tot_purchase))
 print("written", os.path.abspath(csv_path), os.path.abspath(md_path))
 for r in short: print("ATTN", r["Ref"], r["Availability"])
+
+# ---- per-supplier order lists: one line per purchased part, quantities for N boards ----
+# Özdisan's cart (ozdisan.com/sepet) takes a .csv/.xls upload and a paste list "quantity'manufacturer code" per line;
+# DigiKey's list upload takes quantity, part number and customer reference.
+parts = {}
+for key, it in groups:
+    d = ozd.get(key, {})
+    if key not in order:
+        continue
+    ident = (d.get("url"), d.get("code"))   # one supplier page can stand for several parts (Demsay)
+    p = parts.setdefault(ident, {"d": d, "refs": [], "keys": set(), "qty": 0, "price": order[key][1]})
+    p["refs"].append(it["ref"])
+    if key not in p["keys"]:
+        p["keys"].add(key)
+        p["qty"] += order[key][0]
+
+def order_rows(match):
+    out = []
+    for p in parts.values():
+        d = p["d"]
+        if match not in (d.get("url") or ""):
+            continue
+        stock = d.get("stock")
+        remark = "" if stock is None or stock >= p["qty"] else "SHORT: only %d in stock on %s" % (stock, read_date)
+        out.append({"Quantity": p["qty"], "Manufacturer part number": d.get("code", ""), "DigiKey part number": d.get("dk_pn", ""),
+                    "Manufacturer": d.get("mfr", ""), "Customer reference": "; ".join(p["refs"]),
+                    "Stock on %s" % read_date: stock if stock is not None else "", "Remark": remark,
+                    "Unit price USD (ex-VAT)": "%.5f" % p["price"], "Line total USD (ex-VAT)": "%.2f" % (p["qty"] * p["price"]),
+                    "URL": d.get("url", "")})
+    return out
+
+def write_order(name, rws, cols):
+    path = os.path.join(OUT_DIR, name)
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore"); w.writeheader(); w.writerows(rws)
+    return path
+
+COMMON = ["Manufacturer", "Customer reference", "Stock on %s" % read_date, "Remark", "Unit price USD (ex-VAT)",
+          "Line total USD (ex-VAT)", "URL"]
+oz_rows = order_rows("ozdisan")
+dk_rows = order_rows("digikey")
+dm_rows = order_rows("demsay")
+oz_path = write_order("Rev3.0_Order_Ozdisan_%dpcs.csv" % N, oz_rows, ["Quantity", "Manufacturer part number"] + COMMON)
+dk_path = write_order("Rev3.0_Order_DigiKey_%dpcs.csv" % N, dk_rows,
+                      ["Quantity", "DigiKey part number", "Manufacturer part number"] + COMMON)
+bulk_path = os.path.join(OUT_DIR, "Rev3.0_Order_Ozdisan_%dpcs_paste.txt" % N)
+open(bulk_path, "w", encoding="utf-8", newline="\n").write("\n".join("%d'%s" % (r["Quantity"], r["Manufacturer part number"]) for r in oz_rows) + "\n")
+dm_path = write_order("Rev3.0_Order_Demsay_%dpcs.csv" % N, dm_rows, ["Quantity", "Manufacturer part number"] + COMMON)
+for label, rws, path in (("Özdisan", oz_rows, oz_path), ("DigiKey", dk_rows, dk_path), ("Demsay", dm_rows, dm_path)):
+    print("order list", label, len(rws), "lines, total %.2f USD ex-VAT ->" % sum(float(r["Line total USD (ex-VAT)"]) for r in rws), os.path.abspath(path))
+print("paste list", os.path.abspath(bulk_path))

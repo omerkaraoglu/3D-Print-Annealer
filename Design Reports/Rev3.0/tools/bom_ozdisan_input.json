@@ -1119,7 +1119,7 @@
    "url": "https://www.ozdisan.com/p/ac-dc-donusturuculer-606/hi-link-hlk-10m05-702430",
    "lead": "7-8",
    "upcoming": 0,
-   "note": "Ozdisan stock fell to 26 (333 on 2026-11-12), no incoming stock listed, lead time 7-8 weeks: order 26 now and back-order 74, or take the balance from LCSC (C403745, 4,433 pcs, 3.27 USD at 1 pc, https://www.lcsc.com/product-detail/C403745.html)"
+   "note": "Ozdisan stock fell to 26 (333 on 2026-11-12), no incoming stock listed, lead time 7-8 weeks; fallback for a larger batch: LCSC (C403745, 4,433 pcs, 3.27 USD at 1 pc, https://www.lcsc.com/product-detail/C403745.html)"
   },
   "Q1": {
    "code": "BTA24-800CWRG",
@@ -3155,16 +3155,20 @@
   "HS1": {
    "code": "SK 409 63,5 STC TO 220",
    "mfr": "Fischer Elektronik",
-   "stock": 995,
-   "moq": 5,
+   "stock": null,
+   "moq": 1,
    "tiers": [
     [
-     5,
+     1,
      2.6
     ]
    ],
-   "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
-   "note": "NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural, 995 in stock, minimum 5, DigiKey Marketplace item (ships from the supplier, separate shipping); checked 2026-11-23. Clip-mounted version: Q1 is held by the Fischer retaining spring THF 409 TO 220 (own BOM line), with thermal compound"
+   "url": "https://www.demsay.com/distributor/fischer-elektronik",
+   "note": "bought from Demsay (demsay.com, Fischer Elektronik distributor), owner decision 2026-11-23; the link is Demsay's Fischer page, not a product page, and Demsay's price, stock and minimum were not looked up (owner's instruction). The price shown is the DigiKey price of 2026-11-23 (5496-SK40963,5STCTO220-ND, 2.60 USD), used as an estimate. 5.6 K/W natural convection; clip-mounted version: Q1 is held by the Fischer retaining spring THF 409 TO 220 (own BOM line), with thermal compound",
+   "supplier": "Demsay",
+   "lead": null,
+   "upcoming": 0,
+   "avail_text": "Demsay: price and stock not checked"
   },
   "TCPROBE": {
    "code": "WRNT-02",
@@ -3178,7 +3182,7 @@
     ]
    ],
    "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
-   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 147.29 TL + KDV = 2.91 USD at 50.57 TL/USD (2026-11-23); web stock shows '10+', ask Motorobit for 100 pcs; Motorobit SKU SNS.SCK.01.000085"
+   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 147.29 TL + KDV = 2.91 USD at 50.57 TL/USD (2026-11-23); web stock shows '10+', ask Motorobit for a larger batch; Motorobit SKU SNS.SCK.01.000085"
   },
   "C6": {
    "code": "CL05A105KQ5NNNC",
@@ -3350,7 +3354,7 @@
    "url": "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995",
    "lead": null,
    "upcoming": 0,
-   "note": "7 inch 800x480 24-bit RGB panel with GT911 capacitive touch, box of 60; Ozdisan has 61 for the 100 needed, no incoming stock and no lead time shown: order 60 now and ask Ozdisan for a date on the other 40"
+   "note": "7 inch 800x480 24-bit RGB panel with GT911 capacitive touch, box of 60; Ozdisan has 61 in stock, no incoming stock and no lead time shown"
   },
   "FPCFER": {
    "code": "2643178551",
@@ -3394,23 +3398,26 @@
    "url": "https://www.digikey.com/en/products/detail/fair-rite-products-corp/2643178551/8594019",
    "lead": null,
    "upcoming": 0,
-   "note": "NOT at Ozdisan; DigiKey 1934-1266-ND, one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked"
+   "note": "NOT at Ozdisan; DigiKey 1934-1266-ND, one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked. The owner orders DigiKey parts through ekomponent; this is the only DigiKey line (owner decision 2026-11-23)",
+   "dk_pn": "1934-1266-ND"
   },
   "HSCLIP": {
    "code": "THF 409 TO 220",
    "mfr": "Fischer Elektronik",
-   "stock": 29800,
-   "moq": 100,
+   "stock": null,
+   "moq": 1,
    "tiers": [
     [
-     100,
+     1,
      0.14
     ]
    ],
-   "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/THF-409-TO-220/25835046",
+   "url": "https://www.demsay.com/distributor/fischer-elektronik",
    "lead": null,
    "upcoming": 0,
-   "note": "NOT at Ozdisan (its clips are for Kunze profiles only); DigiKey 5496-THF409TO220-ND, Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220; minimum 100, DigiKey Marketplace item (ships from the supplier, like the heatsink). Owner decision 2026-11-23: clip on the current heatsink, no screw"
+   "note": "bought from Demsay together with the heatsink (owner decision 2026-11-23); Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220. Demsay's price, stock and minimum were not looked up; the price shown is the DigiKey price of 2026-11-23 (5496-THF409TO220-ND, 0.14 USD, minimum 100 there), used as an estimate",
+   "supplier": "Demsay",
+   "avail_text": "Demsay: price and stock not checked"
   },
   "HSCOMP": {
    "code": "AL-701 WHITE 100 GR",
@@ -3430,7 +3437,7 @@
    "url": "https://www.ozdisan.com/p/sogutucu-aksesuarlari-463/alpa-al-701-white-100-gr-1580017",
    "lead": "3-4",
    "upcoming": 0,
-   "note": "white silicone thermal compound, 100 g jar, between Q1 and HS1 (owner decision 2026-11-23, instead of a pad: Q1's tab is insulated). One jar is counted for 100 boards, about 1 g per board available; the Ozdisan page gives no thermal conductivity"
+   "note": "white silicone thermal compound, 100 g jar, between Q1 and HS1 (owner decision 2026-11-23, instead of a pad: Q1's tab is insulated). One jar is counted per batch (enough for 100 boards and more); the Ozdisan page gives no thermal conductivity"
   },
   "PESCREW": {
    "code": "İMBUS CİVATA 3X8 SİYAH",
@@ -3610,7 +3617,7 @@
    "url": "https://www.ozdisan.com/p/yuvarlak-tip-konnektorler-344/kls-electronic-l-kls8-01103-rvs1-25-4-531596",
    "lead": "5-6",
    "upcoming": 0,
-   "note": "red insulated ring terminal for 0.5-1.5 mm2, ring 6.6 mm wide, 20.1 mm long, hole 4.3 mm (M4), on chassis stud FH9; 125 in stock for the 100 needed. How it is held on FH9 (second M4 nut or under the existing nut) is still open and no M4 nut is listed"
+   "note": "red insulated ring terminal for 0.5-1.5 mm2, ring 6.6 mm wide, 20.1 mm long, hole 4.3 mm (M4), on chassis stud FH9; 125 in stock. How it is held on FH9 (second M4 nut or under the existing nut) is still open and no M4 nut is listed"
   },
   "PELEAD": {
    "code": "H05V-K 1 mm² green/yellow (NYAF)",
@@ -3627,7 +3634,7 @@
    "local": true,
    "lead": null,
    "upcoming": 0,
-   "note": "bought from a local electrical supplier (owner decision 2026-11-23), no link; flexible single-core PVC lead, 1 mm2, green/yellow, fits the red 0.5-1.5 mm2 ring terminals. About 60 mm per board, 6 m for 100 boards. Price is an estimate: about 10 TL per metre seen on a price-comparison site, not verified. A linked alternative is Alpha Wire 3055 GY005 at DigiKey (18 AWG, 30.5 m spool, 123.75 USD)"
+   "note": "bought from a local electrical supplier (owner decision 2026-11-23), no link; flexible single-core PVC lead, 1 mm2, green/yellow, fits the red 0.5-1.5 mm2 ring terminals. About 60 mm per board; the order quantity is in whole metres. Price is an estimate: about 10 TL per metre seen on a price-comparison site, not verified. A linked alternative is Alpha Wire 3055 GY005 at DigiKey (18 AWG, 30.5 m spool, 123.75 USD)"
   },
   "PCBSCREW": {
    "code": "ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2",

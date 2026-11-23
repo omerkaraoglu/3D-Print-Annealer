@@ -28,7 +28,7 @@ All new main components were checked on ozdisan.com for stock and operating temp
 | J10 | DS1020-09-40VBT1A (Connfly, 40p 0.5 mm, lower contact — confirmed from the panel drawing, §12.3) | panel FPC connector | 31,182 | ₺20 | -40..+105 |
 | J11 | DS1020-09-06VBT1A (Connfly, 6p 0.5 mm, lower contact — confirmed from the CTP drawing) | touch FPC connector | 1,918 | ₺11 | -40..+105 |
 | Q1 | BTA24-800CWRG (ST, insulated TO-220AB, 25 A / 800 V, IGT 35 mA, Rth(j-c) 1.7 K/W) | heater triac (1 kW = 4.35 A RMS) | 5,449 | ₺58 | -40..+125 |
-| HS1 | SK 409 63,5 STC (Fischer Elektronik, 45 × 12.7 × 63.5 mm, 5.6 K/W, solder pins) — **DigiKey** 5496-SK40963,5STCTO220-ND (995 pcs, $2.60, min. 5), not stocked by Özdisan | triac heatsink | 995 (DigiKey) | $2.6 | — |
+| HS1 | SK 409 63,5 STC (Fischer Elektronik, 45 × 12.7 × 63.5 mm, 5.6 K/W, solder pins) — bought from **Demsay** (Fischer distributor; owner's decision 2026-11-23), together with its retaining clip THF 409 TO 220; DigiKey 5496-SK40963,5STCTO220-ND ($2.60, min. 5) is the price reference; not stocked by Özdisan | triac heatsink | 995 (DigiKey) | $2.6 | — |
 | U20 | ADS1115IDGSR (TI) | 16-bit ΔΣ ADC, PGA, I2C | 3,843 | ₺178 / $3.5 | -40..+125 |
 | J20 | DG127H-5.08-02P-14-00AH (DEGSON) | thermocouple screw terminal | 44,980 | ₺7.8 | — |
 | TH220 | NCP18XH103F03RB (Murata 10k 1% 0603) | cold-junction NTC | 2,240 | ₺0.4 | -40..+125 |
