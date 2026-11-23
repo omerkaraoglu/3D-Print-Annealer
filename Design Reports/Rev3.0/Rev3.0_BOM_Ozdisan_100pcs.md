@@ -1,23 +1,23 @@
 # Rev3.0 BOM — Özdisan availability and 100-board unit cost
 
-Generated 2026-11-23 by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on 2026-11-23 (USD prices as shown by Özdisan, **excluding KDV / VAT**; TRY/USD on the site that day ≈ 50.6). Every link was opened on that date and its page title matched the part number. The heatsink, its retaining clip and the FPC ferrite (DigiKey) and the thermocouple probe (Motorobit) are the only non-Özdisan lines; the display panel is included. Order quantity = max(100 × qty, MOQ) rounded up to the MOQ multiple (Özdisan's order multiple equals its MOQ on every line); the unit price is that quantity's tier.
+Generated 2026-11-23 by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on 2026-11-23 (USD prices as shown by Özdisan, **excluding KDV / VAT**; TRY/USD on the site that day ≈ 50.6). Every link was opened on that date and its page title matched the part number. The heatsink, its retaining clip and the FPC ferrite (DigiKey), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(100 × qty, MOQ) rounded up to the MOQ multiple (Özdisan's order multiple equals its MOQ on every line); the unit price is that quantity's tier.
 
-Lines without a link: none.
+Lines without a link: J5 earth lead, H1-H9 screws.
 
 ## Not covered by this list
 
 - bare PCB, assembly and the carrier frame / Formex sheet
 - the off-PCB heater-lead inductor of spec §12.12 (≈ 200 µH, 4.35 A rms, chassis-mounted)
-- the hardware of the ground-to-earth bond J5 (spec §12.12.8): M3 × 8 pan-head screw (ISO 7045, head Ø ≤ 5.6), M3 washer, locking element and nut, insulated M3 ring lug, about 50 mm of green/yellow lead and an M4 ring lug for chassis stud FH9
+- the M4 nut and lock washer that may be needed to hold the earth lead's ring lug on chassis stud FH9 (how the lug is held there is still open, spec §12.12.8)
 - fuses beyond one set per board (no spares counted), mains / fan / heater wiring and the fan
 
 ## Totals
 
 | | USD / board |
 |---|---|
-| Components at the 100-board price breaks (qty × tier price) | **72.89** |
-| Same, including MOQ rounding (what you actually pay ÷ 100) | **72.89** |
-| of which not from Özdisan (HS1 heatsink, its clip and the FPC ferrite from DigiKey, thermocouple probe from Motorobit) | 7.17 |
+| Components at the 100-board price breaks (qty × tier price) | **73.32** |
+| Same, including MOQ rounding (what you actually pay ÷ 100) | **73.32** |
+| of which not from Özdisan (HS1 heatsink, its clip and the FPC ferrite from DigiKey, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | 7.45 |
 | of which the display panel | 33.81 |
 
 ## Lines that need attention
@@ -67,6 +67,14 @@ Lines without a link: none.
 | FB-FPC (on the TFT tail) | flat-cable ferrite core, 2 in series ≈ 142 Ω at 100 MHz | 2643178551 | NOT at Ozdisan; DigiKey 1934-1266-ND, one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked |
 | Q1 clip | TO-220 retaining spring for SK 409 | THF 409 TO 220 | NOT at Ozdisan (its clips are for Kunze profiles only); DigiKey 5496-THF409TO220-ND, Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220; minimum 100, DigiKey Marketplace item (ships from the supplier, like the heatsink). Owner decision 2026-11-23: clip on the current heatsink, no screw |
 | Q1 thermal compound | silicone thermal compound, 100 g jar per 100 boards | AL-701 WHITE 100 GR | white silicone thermal compound, 100 g jar, between Q1 and HS1 (owner decision 2026-11-23, instead of a pad: Q1's tab is insulated). One jar is counted for 100 boards, about 1 g per board available; the Ozdisan page gives no thermal conductivity |
+| J5 screw | M3 × 8 hex-socket cap screw | İMBUS CİVATA 3X8 SİYAH | M3 x 8 hex-socket cap screw, black, inserted from the PCB back through J5. Chosen for its head diameter (DIN 912: 5.5 mm, inside the 5.6 mm bare seat; the Ozdisan pan-head screws are DIN 7985 with a head up to 6.0 mm). Its head is 3.0 mm high instead of the 2.4 mm in the first requirement: about 1.6 mm to the Formex sheet and 2.0 mm to the panel back. Head dimensions are the standard's, not stated on the Ozdisan page |
+| J5 ring lug | insulated ring terminal, M3 / M3.5, 0.5–1.5 mm² | L-KLS8-01103-RVS1.25-3.5 | red insulated ring terminal for 0.5-1.5 mm2, ring 5.7 mm wide, 17.8 mm long, hole 3.7 mm (M3.5), used on the M3 screw of J5 with the tongue at 150 degrees. The exact M3 size L-KLS8-01103-RV1.25-3 (hole 3.2 mm) is out of stock (1,000 incoming, 5-6 weeks): https://www.ozdisan.com/p/yuvarlak-tip-konnektorler-344/kls-electronic-l-kls8-01103-rv1-25-3-531584 |
+| J5 flat washer | M3 flat washer 0.5 mm | MFWZ 003 | M3 flat washer, 0.53 mm, zinc-plated steel, on top of the ring lug |
+| J5 spring washer | M3 spring washer | YAYLI RONDELA M3 INOX | M3 spring washer, stainless, 3.0 / 5.2 mm; the locking element under the nut |
+| J5 nut | M3 hex nut | SOMUN M3 | M3 hex nut on the front, on top of the washers |
+| J5 earth lead | 1 mm² green/yellow lead, 0.06 m per board (price per metre) | H05V-K 1 mm² green/yellow (NYAF) | bought from a local electrical supplier (owner decision 2026-11-23), no link; flexible single-core PVC lead, 1 mm2, green/yellow, fits the red 0.5-1.5 mm2 ring terminals. About 60 mm per board, 6 m for 100 boards. Price is an estimate: about 10 TL per metre seen on a price-comparison site, not verified. A linked alternative is Alpha Wire 3055 GY005 at DigiKey (18 AWG, 30.5 m spool, 123.75 USD) |
+| FH9 ring lug | insulated ring terminal, M4, 0.5–1.5 mm² | L-KLS8-01103-RVS1.25-4 | red insulated ring terminal for 0.5-1.5 mm2, ring 6.6 mm wide, 20.1 mm long, hole 4.3 mm (M4), on chassis stud FH9; 125 in stock for the 100 needed. How it is held on FH9 (second M4 nut or under the existing nut) is still open and no M4 nut is listed |
+| H1-H9 screws | ST2.9 × 9.5 pan-head self-tapping screw, A2 | ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2 | pan-head self-tapping screw, cross recess, stainless A2, into the nine frame bosses under H1-H9 (blind 2.4 mm pilots, 0.3-0.4 Nm), as specified for frame v2 and the glass front (spec 12.11). Not at Ozdisan (its tapping screws are 2.2 x 6.5, PT 3 x 14 and 2.9 x 40 only) and no DigiKey part found (DigiKey's site showed a bot check), so it is a local purchase with no link. Price is an estimate from a 100-piece pack price seen online, not verified. The exact article exists at Wurth as ISO 7049-C A2 2.9 x 9.5: https://eshop.wuerth.de/Pan-head-tapping-screws-with-recessed-head-ISO-7049-A2-70-stainless-steel-plain-SCR-PANHD-ISO7049-C-A2-20H-H1-29X95/505122995.sku/en/US/EUR (page not opened by me; trade customers only) |
 
 ## Not purchased
 
@@ -167,3 +175,11 @@ Lines without a link: none.
 | FB-FPC (on the TFT tail) | 2 | flat-cable ferrite core, 2 in series ≈ 142 Ω at 100 MHz | [2643178551](https://www.digikey.com/en/products/detail/fair-rite-products-corp/2643178551/8594019) | Fair-Rite | DigiKey | 3044 | 1 | 200 | 0.75990 | 1.5198 | OK |
 | Q1 clip | 1 | TO-220 retaining spring for SK 409 | [THF 409 TO 220](https://www.digikey.com/en/products/detail/fischer-elektronik/THF-409-TO-220/25835046) | Fischer Elektronik | DigiKey | 29800 | 100 | 100 | 0.14000 | 0.1400 | OK |
 | Q1 thermal compound | 0.01 | silicone thermal compound, 100 g jar per 100 boards | [AL-701 WHITE 100 GR](https://www.ozdisan.com/p/sogutucu-aksesuarlari-463/alpa-al-701-white-100-gr-1580017) | ALPA | Özdisan | 77 | 1 | 1 | 3.80512 | 0.0381 | OK |
+| J5 screw | 1 | M3 × 8 hex-socket cap screw | [İMBUS CİVATA 3X8 SİYAH](https://www.ozdisan.com/p/civatalar-793/ler-cvata-mbus-cvata-3x8-syah-370549) | İLERİ CİVATA | Özdisan | 800 | 5 | 100 | 0.06287 | 0.0629 | OK |
+| J5 ring lug | 1 | insulated ring terminal, M3 / M3.5, 0.5–1.5 mm² | [L-KLS8-01103-RVS1.25-3.5](https://www.ozdisan.com/p/yuvarlak-tip-konnektorler-344/kls-electronic-l-kls8-01103-rvs1-25-3-5-531595) | KLS ELECTRONIC | Özdisan | 547 | 5 | 100 | 0.03335 | 0.0333 | OK |
+| J5 flat washer | 1 | M3 flat washer 0.5 mm | [MFWZ 003](https://www.ozdisan.com/p/somunlar-ve-rondelalar-794/akin-cvata-mfwz-003-1590223) | AKIN CİVATA | Özdisan | 1195 | 1 | 100 | 0.00664 | 0.0066 | OK |
+| J5 spring washer | 1 | M3 spring washer | [YAYLI RONDELA M3 INOX](https://www.ozdisan.com/p/somunlar-ve-rondelalar-794/ler-cvata-yayli-rondela-m3-inox-358162) | İLERİ CİVATA | Özdisan | 4980 | 10 | 100 | 0.01101 | 0.0110 | OK |
+| J5 nut | 1 | M3 hex nut | [SOMUN M3](https://www.ozdisan.com/p/somunlar-ve-rondelalar-794/oem-somun-m3-343878) | OEM | Özdisan | 966 | 1 | 100 | 0.00873 | 0.0087 | OK |
+| J5 earth lead | 0.06 | 1 mm² green/yellow lead, 0.06 m per board (price per metre) | H05V-K 1 mm² green/yellow (NYAF) | any (e.g. Prysmian, Öznur) | Local |  | 1 | 6 | 0.20000 | 0.0120 | local purchase |
+| FH9 ring lug | 1 | insulated ring terminal, M4, 0.5–1.5 mm² | [L-KLS8-01103-RVS1.25-4](https://www.ozdisan.com/p/yuvarlak-tip-konnektorler-344/kls-electronic-l-kls8-01103-rvs1-25-4-531596) | KLS ELECTRONIC | Özdisan | 125 | 5 | 100 | 0.02438 | 0.0244 | OK |
+| H1-H9 screws | 9 | ST2.9 × 9.5 pan-head self-tapping screw, A2 | ISO 7049-C / DIN 7981 ST2.9 × 9.5 A2 | any (e.g. Würth) | Local |  | 1 | 900 | 0.03000 | 0.2700 | local purchase |

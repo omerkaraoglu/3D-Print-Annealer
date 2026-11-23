@@ -37,13 +37,23 @@ EXTRA = [
     {"ref": "FB-FPC (on the TFT tail)", "val": "flat-cable ferrite core, 2 in series ≈ 142 Ω at 100 MHz", "fp": "both slid over the 40-way TFT tail before it is plugged into J10", "qty": 2, "key": "FPCFER"},
     {"ref": "Q1 clip", "val": "TO-220 retaining spring for SK 409", "fp": "clips Q1 onto HS1", "qty": 1, "key": "HSCLIP"},
     {"ref": "Q1 thermal compound", "val": "silicone thermal compound, 100 g jar per 100 boards", "fp": "between Q1 and HS1", "qty": 0.01, "key": "HSCOMP"},
+    # ground-to-earth bond J5 (spec 12.12.8)
+    {"ref": "J5 screw", "val": "M3 × 8 hex-socket cap screw", "fp": "from the PCB back through J5", "qty": 1, "key": "PESCREW"},
+    {"ref": "J5 ring lug", "val": "insulated ring terminal, M3 / M3.5, 0.5–1.5 mm²", "fp": "on the J5 pad, PCB front, tongue at 150°", "qty": 1, "key": "PELUG3"},
+    {"ref": "J5 flat washer", "val": "M3 flat washer 0.5 mm", "fp": "on the J5 ring lug", "qty": 1, "key": "PEFLW"},
+    {"ref": "J5 spring washer", "val": "M3 spring washer", "fp": "under the J5 nut", "qty": 1, "key": "PESPRW"},
+    {"ref": "J5 nut", "val": "M3 hex nut", "fp": "on the J5 screw, PCB front", "qty": 1, "key": "PENUT"},
+    {"ref": "J5 earth lead", "val": "1 mm² green/yellow lead, 0.06 m per board (price per metre)", "fp": "J5 to chassis stud FH9", "qty": 0.06, "key": "PELEAD"},
+    {"ref": "FH9 ring lug", "val": "insulated ring terminal, M4, 0.5–1.5 mm²", "fp": "earth lead on chassis stud FH9", "qty": 1, "key": "PELUG4"},
+    # PCB to plastic frame (spec 12.11)
+    {"ref": "H1-H9 screws", "val": "ST2.9 × 9.5 pan-head self-tapping screw, A2", "fp": "PCB to the nine frame bosses", "qty": 9, "key": "PCBSCREW"},
 ]
 # needed to build a unit but not priced or linked here
 NOT_COVERED = [
     "bare PCB, assembly and the carrier frame / Formex sheet",
     "the off-PCB heater-lead inductor of spec §12.12 (≈ 200 µH, 4.35 A rms, chassis-mounted)",
-    "the hardware of the ground-to-earth bond J5 (spec §12.12.8): M3 × 8 pan-head screw (ISO 7045, head Ø ≤ 5.6), M3 washer, "
-    "locking element and nut, insulated M3 ring lug, about 50 mm of green/yellow lead and an M4 ring lug for chassis stud FH9",
+    "the M4 nut and lock washer that may be needed to hold the earth lead's ring lug on chassis stud FH9 (how the lug is held "
+    "there is still open, spec §12.12.8)",
     "fuses beyond one set per board (no spares counted), mains / fan / heater wiring and the fan",
 ]
 
@@ -95,6 +105,7 @@ for key, it in groups:
         tot_line += line; tot_purchase += purchase
         avail = "OK" if (stock or 0) >= q else ("SHORT: stock %d < %d" % (stock or 0, q))
         if d.get("stock") == 0 or stock is None: avail = "NOT STOCKED"
+        if d.get("local"): avail = "local purchase"
     else:
         q = p = line = purchase = None; avail = d.get("note", "NOT FOUND") if d else "NOT FOUND"
     rows.append({
@@ -125,7 +136,7 @@ rate = src.get("try_per_usd", 50.3)
 for r in rows:
     r["Part (link)"] = "[%s](%s)" % (r["Part number"], r["URL"]) if r["URL"] else r["Part number"]
     r["Supplier"] = ("Özdisan" if "ozdisan" in r["URL"] else "DigiKey" if "digikey" in r["URL"]
-                     else "Motorobit" if "motorobit" in r["URL"] else "")
+                     else "Motorobit" if "motorobit" in r["URL"] else "Local" if r["Availability"] == "local purchase" else "")
 no_link = [r["Ref"] for r in rows if not r["URL"]]
 non_ozd = [r for r in rows if r["Part number"] and "ozdisan" not in r["URL"]]
 short = [r for r in rows if r["Availability"].startswith("SHORT") or r["Availability"] in ("NOT STOCKED", "NOT FOUND")]
@@ -134,7 +145,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "",
       "Generated %s by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on %s (USD prices as shown by Özdisan, **excluding KDV / VAT**; TRY/USD on the site that day ≈ %.1f). "
       "Every link was opened on that date and its page title matched the part number. "
-      "The heatsink, its retaining clip and the FPC ferrite (DigiKey) and the thermocouple probe (Motorobit) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
+      "The heatsink, its retaining clip and the FPC ferrite (DigiKey), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
       "(Özdisan's order multiple equals its MOQ on every line); the unit price is that quantity's tier." % (datetime.date.today().isoformat(), read_date, rate, N),
       "",
       "Lines without a link: %s." % (", ".join(no_link) if no_link else "none"),
@@ -148,7 +159,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "| | USD / board |", "|---|---|",
       "| Components at the %d-board price breaks (qty × tier price) | **%.2f** |" % (N, tot_line),
       "| Same, including MOQ rounding (what you actually pay ÷ %d) | **%.2f** |" % (N, tot_purchase),
-      "| of which not from Özdisan (HS1 heatsink, its clip and the FPC ferrite from DigiKey, thermocouple probe from Motorobit) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
+      "| of which not from Özdisan (HS1 heatsink, its clip and the FPC ferrite from DigiKey, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
       "| of which the display panel | %.2f |" % sum(float(r["Line / board USD"]) for r in rows if r["Ref"].startswith("DS1")),
       "",
       "## Lines that need attention",
