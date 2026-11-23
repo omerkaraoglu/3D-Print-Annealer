@@ -1,0 +1,45 @@
+Stage 5 (2026-11-23) ground-to-earth bond J5 - checks on copies of the project folder (kicad-cli 10.0.1)
+
+BEFORE (PCB md5 13b8076a398cf9dfbeb1fb2e9297ea4f, Rev3_Thermocouple.kicad_sch bedbcc6f3bf59b5036895b805f1c8d5c)
+  drc_par.py as saved    : errors 0 warnings 0 unconnected 0 parity 13 (net_conflict 12, missing_footprint 1 = V1)
+  drc_par.py --refill    : errors 0 warnings 0 unconnected 0 parity 13 (same items)
+  sch erc --severity-all : 1 message, 0 errors, 1 warning (lib_symbol_issues, L1 library nickname)
+  conn_sch.py            : schematic pins 590, board pads 608, net differences 0, unconnected 0
+  corner_check.py        : remaining corners 0      in1_web_check.py: 3 pre-existing via pairs
+  text collisions (sch_emc/checks.py collide): 0 strict / 0 near-miss on all five sheets
+
+AFTER (real saved files copied out; PCB md5 78f924e21f41d1203157aaf5a322628b, Rev3_Thermocouple.kicad_sch 54a26e804db5dd6bdcfb4a9a7031ada3)
+  drc_par.py as saved    : errors 0 warnings 0 unconnected 0 parity 13 (identical item list to BEFORE)
+  drc_par.py --refill    : errors 0 warnings 0 unconnected 0 parity 13 (identical item list to BEFORE)
+  sch erc --severity-all : 1 message, 0 errors, 1 warning (unchanged)
+  netlist diff           : only GND gains (J5, 1); 152 components (was 151), 187 nets (unchanged)
+  conn_sch.py            : schematic pins 591, board pads 609, net differences 0, unconnected 0
+  corner_check.py        : remaining corners 0      in1_web_check.py: the same 3 pre-existing via pairs
+  text collisions        : 0 strict / 0 near-miss on all five sheets
+  Rev3.0_BOM.csv / Rev3.0_CPL.csv: byte-identical to before (J5 is excluded from BOM and position file)
+  rib search (first version, back mask opening 7.1): stage5_ribsearch.py -> 0 positions in local x 0-20, y 84-98 keep
+  a 7.1 mm bare back area 1.0 mm from the frame ribs (1329 without that rule, the reservation among them)
+
+REFINEMENT (coordinator review, same day): back solder-mask opening reduced to dia 5.8 (B.Mask circle in the footprint,
+pad on F.Mask only; copper 7.0 on all layers and the front opening 7.1 unchanged). Stage rebuilt from the 13b8076a board.
+  PCB md5 f602c296af1abe943ca01baddbfec0d1, footprint md5 d081d30f0083045e8d336c39736d18bf, schematic unchanged
+  bare back area (equivalent dia 5.794 of the 5 um polygon) to rib 9 1.01 mm, rib 21 1.54 mm (frame doc: >= 1.0)
+  screw head dk 5.7 + 0.2 mm radial hole play to rib 9 0.86 mm, rib 21 1.40 mm (centred: 1.06 / 1.60)
+  drc_par.py as saved / --refill: errors 0 warnings 0 unconnected 0 parity 13 (identical list); ERC 1 warning (same)
+  library comparison: the project sets lib_footprint_mismatch / lib_footprint_issues to "ignore", so kicad-cli DRC does
+  not run it (negative test with a modified library copy: still 0); checked instead with pcbnew
+  FOOTPRINT.FootprintNeedsUpdate(): board J5 vs new library False; vs modified library True; vs the first version True
+  board diff against the first version: only the J5 footprint (description, pad layers, B.Mask circle, UUIDs) plus
+  sub-micron vertex differences in 92 teardrop fill outlines (zone-fill run to run); no outline, track, via or other
+  footprint changed. Rev3.0_CPL.csv regenerated: byte-identical. Netlist, PDF, ERC, BOM: schematic unchanged, not re-exported.
+
+FINAL (coordinator, same day): back mask opening dia 5.6 (0.01 mm margin at rib 9 was not enough); screw = ISO 7045 M3
+pan head dk <= 5.6. Stage rebuilt from the 13b8076a board.
+  PCB md5 4bc77e6a2a4f801f22de27bd7fd16ce1, footprint md5 fd1be45a9f678d2aad33d2e194b9a56b, schematic unchanged (54a26e80)
+  measured opening: equivalent dia 5.594 (5 um polygon of the 5.6 circle)
+  bare back area to rib 9 1.11 mm, rib 21 1.64 mm nominal; with +-0.05 mm mask registration >= 1.06 / 1.59
+  head dk 5.6 + 0.2 mm radial play: rib 9 0.91 mm, rib 21 1.45 mm, shelf window edge 0.90 mm (centred 1.11 / 1.65)
+  drc_par.py as saved / --refill: errors 0 warnings 0 unconnected 0 parity 13 (identical list); ERC 1 warning (same)
+  FootprintNeedsUpdate: board J5 vs new library False, vs the 5.8 version True
+  board diff against the 5.8 version: only the J5 footprint (description, B.Mask circle r 2.9 -> 2.8, B.Fab head circle
+  r 2.85 -> 2.8); every other item identical apart from teardrop fill vertices (refill run to run). CPL byte-identical.

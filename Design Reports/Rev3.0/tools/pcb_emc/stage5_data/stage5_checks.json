@@ -1,0 +1,291 @@
+{
+ "zone_connection": {
+  "F.Cu": {
+   "gnd_ring_r3p6_covered": 1.0,
+   "gnd_fill_over_pad": 1.0,
+   "other_net_fill_from_centre": 8.772,
+   "other_net_fill_gap_to_pad": 5.272
+  },
+  "In1.Cu": {
+   "gnd_ring_r3p6_covered": 1.0,
+   "gnd_fill_over_pad": 1.0,
+   "other_net_fill_from_centre": null,
+   "other_net_fill_gap_to_pad": null
+  },
+  "B.Cu": {
+   "gnd_ring_r3p6_covered": 1.0,
+   "gnd_fill_over_pad": 1.0,
+   "other_net_fill_from_centre": 17.734,
+   "other_net_fill_gap_to_pad": 14.234
+  },
+  "In2.Cu": {
+   "gnd_ring_r3p6_covered": 0.0,
+   "gnd_fill_over_pad": 0.0,
+   "other_net_fill_from_centre": 3.75,
+   "other_net_fill_gap_to_pad": 0.25
+  }
+ },
+ "mains_copper": [
+  68.535,
+  "F.Cu pad RV1.2 NEUT"
+ ],
+ "other_net_copper_any_layer": [
+  0.25,
+  "In2.Cu zone  +3V3"
+ ],
+ "other_net_copper_per_layer": {
+  "F.Cu": [
+   2.637,
+   "F.Cu pad J20.2 /Thermocouple front end (K-type, ADS1115)/TC_N"
+  ],
+  "In1.Cu": [
+   2.637,
+   "In1.Cu pad J20.2 /Thermocouple front end (K-type, ADS1115)/TC_N"
+  ],
+  "In2.Cu": [
+   0.25,
+   "In2.Cu zone  +3V3"
+  ],
+  "B.Cu": [
+   2.637,
+   "B.Cu pad J20.2 /Thermocouple front end (K-type, ADS1115)/TC_N"
+  ]
+ },
+ "J20_pads": [
+  2.637,
+  "F.Cu pad J20.2 /Thermocouple front end (K-type, ADS1115)/TC_N"
+ ],
+ "BP16_copper": [
+  1.5,
+  "B.Cu pad BP16.1 GND"
+ ],
+ "BP16_bare_area_to_J5_pad": 2.5,
+ "nearest_holes_edge_to_edge": [
+  [
+   2.929,
+   "via GND"
+  ],
+  [
+   3.136,
+   "via GND"
+  ],
+  [
+   3.644,
+   "via GND"
+  ]
+ ],
+ "board_edge_to_pad": 3.356,
+ "courtyard_gap_F.CrtYd": [
+  [
+   0.389,
+   "J20"
+  ],
+  [
+   2.344,
+   "D221"
+  ],
+  [
+   4.255,
+   "H7"
+  ],
+  [
+   4.864,
+   "H8"
+  ]
+ ],
+ "courtyard_gap_B.CrtYd": [
+  [
+   1.01,
+   "BP16"
+  ],
+  [
+   14.51,
+   "BP15"
+  ],
+  [
+   36.219,
+   "BP17"
+  ],
+  [
+   44.01,
+   "BP14"
+  ]
+ ],
+ "silk": {
+  "designator J5": {
+   "bbox": [
+    5.411,
+    96.503,
+    6.94,
+    97.653
+   ],
+   "mask": [
+    0.457,
+    "J5.1"
+   ],
+   "via_hole": [
+    0.338,
+    "via GND"
+   ],
+   "other_silk": [
+    8.713,
+    "J20 PCB_SHAPE"
+   ],
+   "edge": 1.468
+  },
+  "earth mark": {
+   "bbox": [
+    11.226,
+    92.526,
+    13.374,
+    94.375
+   ],
+   "mask": [
+    0.772,
+    "J5.1"
+   ],
+   "via_hole": [
+    0.408,
+    "via GND"
+   ],
+   "other_silk": [
+    4.616,
+    "D221 PCB_SHAPE"
+   ],
+   "edge": 5.273
+  },
+  "designator_to_earth_mark": 5.276,
+  "ownership": {
+   "d_own": 0.01,
+   "d_oth": [
+    3.422,
+    "H7"
+   ],
+   "ok": true
+  },
+  "earth_mark_to_pad_mask": 0.769,
+  "earth_mark_to_other_courtyard": [
+   4.5,
+   "R223"
+  ]
+ },
+ "frame": {
+  "J5 bare back area (B.Mask opening within the copper): equivalent dia": 5.594,
+  "B copper dia 7.0 (masked rim 5.6-7.0)": [
+   [
+    0.409,
+    "rib 9"
+   ],
+   [
+    0.944,
+    "rib 21"
+   ]
+  ],
+  "B bare area (mask opening)": [
+   [
+    1.11,
+    "rib 9"
+   ],
+   [
+    1.644,
+    "rib 21"
+   ]
+  ],
+  "screw head dk 5.6 centred": [
+   [
+    1.112,
+    "rib 9"
+   ],
+   [
+    1.646,
+    "rib 21"
+   ]
+  ],
+  "screw head dk 5.6 + 0.2 radial hole play": [
+   [
+    0.912,
+    "rib 9"
+   ],
+   [
+    1.446,
+    "rib 21"
+   ]
+  ],
+  "shelf window edge (local x 2.62 / y 96.4) to B copper": 0.4,
+  "shelf window edge to screw head dk 5.6 + play": 0.9,
+  "H8 boss dia 8.0 (-4.8, 89.0) to B copper": 4.808,
+  "H7 boss dia 8.0 (10.0, 103.8) to B copper": 4.195,
+  "Z levels": {
+   "PCB_back": 0.0,
+   "shelf_back": -2.1,
+   "Formex_back": -4.6,
+   "panel_back_v2": -5.0,
+   "panel_back_GF21_nominal": -5.8,
+   "panel_back_GF21_min": -5.08
+  },
+  "screw head height 2.4 -> gap to Formex / panel back (v2)": [
+   2.2,
+   2.6
+  ],
+  "FH9 (local)": [
+   -10.23,
+   78.5
+  ],
+  "J5 centre to FH9 centre": 22.2
+ },
+ "lug": {
+  "ring 6.4 / barrel 4.5 / 15 mm": {
+   "J20_courtyard": 1.19,
+   "H8_head_dia6": 3.68,
+   "H8_washer_keepout": 1.98,
+   "bare_metal_to_other_net_bare_copper": [
+    2.89,
+    "J20.2"
+   ],
+   "mains_copper": [
+    68.838,
+    "F.Cu pad RV1.2 NEUT"
+   ]
+  },
+  "ring 6.4 / barrel 5.2 / 17 mm": {
+   "J20_courtyard": 1.19,
+   "H8_head_dia6": 3.33,
+   "H8_washer_keepout": 1.63,
+   "bare_metal_to_other_net_bare_copper": [
+    2.89,
+    "J20.2"
+   ],
+   "mains_copper": [
+    68.838,
+    "F.Cu pad RV1.2 NEUT"
+   ]
+  },
+  "tongue direction deg (KiCad, y down)": 150,
+  "board edge crossed at (local), distance from J5 centre": [
+   [
+    0.09,
+    96.49
+   ],
+   7.98
+  ]
+ },
+ "j5": {
+  "pos": [
+   7.0,
+   92.5
+  ],
+  "layer": "F.Cu",
+  "net": "GND",
+  "zone_connect": 2,
+  "size": 7.0,
+  "drill": 3.2,
+  "mask_exp_F": 0.05,
+  "ref_pos": [
+   6.19876,
+   97.12277
+  ],
+  "attrs": 13,
+  "fpid": "Rev3:EarthBond_M3_Pad7.0mm_Drill3.2mm",
+  "value": "PE bond"
+ }
+}

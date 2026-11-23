@@ -8,6 +8,7 @@ Lines without a link: none.
 
 - bare PCB, assembly and the carrier frame / Formex sheet
 - the off-PCB heater-lead inductor of spec §12.12 (≈ 200 µH, 4.35 A rms, chassis-mounted)
+- the hardware of the ground-to-earth bond J5 (spec §12.12.8): M3 × 8 pan-head screw (ISO 7045, head Ø ≤ 5.6), M3 washer, locking element and nut, insulated M3 ring lug, about 50 mm of green/yellow lead and an M4 ring lug for chassis stud FH9
 - fuses beyond one set per board (no spares counted), mains / fan / heater wiring and the fan
 
 ## Totals

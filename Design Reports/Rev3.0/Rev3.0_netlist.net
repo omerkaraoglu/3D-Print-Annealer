@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\953b9f31-5e7b-46a1-b4f4-a743202145e7\\scratchpad\\agentHW\\rv3\\proj\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
-		(date "2026-11-21T19:12:29")
+		(source "C:\\Users\\lenovo\\AppData\\Local\\Temp\\claude\\dad0af2289ad5142\\698234c7-76ce-4572-b257-6b4914f85184\\scratchpad\\s5\\final\\KiCad\\3dFilamentDryer\\3dFilamentDryer.kicad_sch")
+		(date "2026-11-23T10:58:01")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
@@ -9346,6 +9346,63 @@
 			)
 		)
 		(comp
+			(ref "J5")
+			(value "PE bond")
+			(footprint "Rev3:EarthBond_M3_Pad7.0mm_Drill3.2mm")
+			(description "Single-point bond of the low-voltage ground (GND) to the earthed oven chassis (PE): 7.0 mm plated pad for an M3 screw, ring-lug lead to the chassis stud FH9 (board copper, not a purchased part)")
+			(fields
+				(field
+					(name "Footprint") "Rev3:EarthBond_M3_Pad7.0mm_Drill3.2mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Single-point bond of the low-voltage ground (GND) to the earthed oven chassis (PE): 7.0 mm plated pad for an M3 screw, ring-lug lead to the chassis stud FH9 (board copper, not a purchased part)")
+			)
+			(libsource
+				(lib "Connector")
+				(part "Conn_01x01_Pin")
+				(description "Generic connector, single row, 01x01, script generated")
+			)
+			(property
+				(name "Sheetname")
+				(value "Thermocouple front end (K-type, ADS1115)")
+			)
+			(property
+				(name "Sheetfile")
+				(value "Rev3_Thermocouple.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "exclude_from_pos_files")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/Thermocouple front end (K-type, ADS1115)/")
+				(tstamps "/3a0f6c2e-0001-4c3e-9b1e-000000000002/")
+			)
+			(tstamps "df4b7c86-619b-5aff-8940-2c7706ff29c4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "J20")
 			(value "K-type TC")
 			(footprint "Rev3:TerminalBlock_DEGSON_DG127H-5.08-02P")
@@ -11265,6 +11322,35 @@
 				(pin
 					(num "4")
 					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Connector")
+			(part "Conn_01x01_Pin")
+			(description "Generic connector, single row, 01x01, script generated")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "Conn_01x01_Pin")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x01, script generated")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Pin_1")
 					(type "passive")
 				)
 			)
@@ -16518,6 +16604,12 @@
 			)
 			(node
 				(ref "J2")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J5")
 				(pin "1")
 				(pinfunction "Pin_1_1")
 				(pintype "passive")
