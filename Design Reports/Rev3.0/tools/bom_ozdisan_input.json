@@ -3156,19 +3156,19 @@
    "code": "SK 409 63,5 STC TO 220",
    "mfr": "Fischer Elektronik",
    "stock": null,
-   "moq": 1,
+   "moq": 5,
    "tiers": [
     [
-     1,
-     2.6
+     5,
+     5.9732
     ]
    ],
    "url": "https://www.demsay.com/distributor/fischer-elektronik",
-   "note": "bought from Demsay (demsay.com, Fischer Elektronik distributor), owner decision 2026-11-23; the link is Demsay's Fischer page, not a product page, and Demsay's price, stock and minimum were not looked up (owner's instruction). The price shown is the DigiKey price of 2026-11-23 (5496-SK40963,5STCTO220-ND, 2.60 USD), used as an estimate. 5.6 K/W natural convection; clip-mounted version: Q1 is held by the Fischer retaining spring THF 409 TO 220 (own BOM line), with thermal compound",
+   "note": "bought from Demsay (demsay.com, Fischer Elektronik distributor), owner decision 2026-11-23; the link is Demsay's Fischer page, not a product page. Demsay quote received 2026-11-23: 5.9732 USD each, minimum 5 (3 were asked, the quote is for 5), 3-4 weeks. Only this 5-piece price is known; it is used unchanged for every quantity as a pessimistic figure (no volume discount assumed; DigiKey's 1-piece price on 2026-11-23 was 2.60 USD, 5496-SK40963,5STCTO220-ND). 5.6 K/W natural convection; clip-mounted version: Q1 is held by the Fischer retaining spring THF 409 TO 220 (own BOM line), with thermal compound",
    "supplier": "Demsay",
-   "lead": null,
+   "lead": "3-4",
    "upcoming": 0,
-   "avail_text": "Demsay: price and stock not checked"
+   "avail_text": "Demsay quote: MOQ 5, 3-4 weeks"
   },
   "TCPROBE": {
    "code": "WRNT-02",
@@ -3359,65 +3359,66 @@
   "FPCFER": {
    "code": "2643178551",
    "mfr": "Fair-Rite",
-   "stock": 3044,
+   "stock": 3040,
    "moq": 1,
    "tiers": [
     [
      1,
-     1.64
+     2.05
     ],
     [
      10,
-     1.138
+     1.44
     ],
     [
      25,
-     0.976
+     1.23
     ],
     [
      50,
-     0.8638
+     1.09
     ],
     [
      100,
-     0.7599
+     0.96
     ],
     [
      250,
-     0.63376
+     0.8
     ],
     [
      500,
-     0.54592
+     0.7
     ],
     [
      1512,
-     0.51808
+     0.66
     ]
    ],
-   "url": "https://www.digikey.com/en/products/detail/fair-rite-products-corp/2643178551/8594019",
-   "lead": null,
+   "url": "https://www.e-komponent.com/solid-free-hanging-ferrite-core-82ohm-100mhz-id-0846-w-x-0063-h-2149mm-x-160mm-od-1043-w-x-0260-h-2649mm-x-660mm-length-0472-1199mm",
+   "lead": "1.5-2",
    "upcoming": 0,
-   "note": "NOT at Ozdisan; DigiKey 1934-1266-ND, one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked. The owner orders DigiKey parts through ekomponent; this is the only DigiKey line (owner decision 2026-11-23)",
-   "dk_pn": "1934-1266-ND"
+   "note": "NOT at Ozdisan; ordered from e-komponent (DigiKey's partner in Turkey, DigiKey part 1934-1266-ND, stock abroad, 7-10 working days). Prices are e-komponent's Turkey prices read 2026-11-23, in USD excluding KDV but including customs duty and overseas shipping (58.38 TL with KDV at 100 pcs); one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked. The owner orders DigiKey parts through ekomponent; this is the only DigiKey line (owner decision 2026-11-23)",
+   "dk_pn": "1934-1266-ND",
+   "supplier": "e-komponent (DigiKey)"
   },
   "HSCLIP": {
    "code": "THF 409 TO 220",
    "mfr": "Fischer Elektronik",
    "stock": null,
-   "moq": 1,
+   "moq": 100,
    "tiers": [
     [
-     1,
-     0.14
+     100,
+     0.3014
     ]
    ],
    "url": "https://www.demsay.com/distributor/fischer-elektronik",
-   "lead": null,
+   "lead": "3-4",
    "upcoming": 0,
-   "note": "bought from Demsay together with the heatsink (owner decision 2026-11-23); Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220. Demsay's price, stock and minimum were not looked up; the price shown is the DigiKey price of 2026-11-23 (5496-THF409TO220-ND, 0.14 USD, minimum 100 there), used as an estimate",
+   "note": "bought from Demsay together with the heatsink (owner decision 2026-11-23); Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220. Demsay quote received 2026-11-23: 0.3014 USD each, minimum 100 (6 were asked, the quote is for 100), 3-4 weeks",
    "supplier": "Demsay",
-   "avail_text": "Demsay: price and stock not checked"
+   "avail_text": "Demsay quote: MOQ 100, 3-4 weeks"
   },
   "HSCOMP": {
    "code": "AL-701 WHITE 100 GR",

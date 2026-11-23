@@ -49,8 +49,10 @@ EXTRA = [
     {"ref": "H1-H9 screws", "val": "ST2.9 × 9.5 pan-head self-tapping screw, A2", "fp": "PCB to the nine frame bosses", "qty": 9, "key": "PCBSCREW"},
 ]
 # needed to build a unit but not priced or linked here
+# bare-PCB unit price per build size, USD (owner's quote 2026-11-23); other build sizes are not priced
+PCB_QUOTE = {100: 4.91}
 NOT_COVERED = [
-    "bare PCB, assembly and the carrier frame / Formex sheet",
+    ("assembly and the carrier frame / Formex sheet" if N in PCB_QUOTE else "bare PCB, assembly and the carrier frame / Formex sheet"),
     "the off-PCB heater-lead inductor of spec §12.12 (≈ 200 µH, 4.35 A rms, chassis-mounted)",
     "the M4 nut and lock washer that may be needed to hold the earth lead's ring lug on chassis stud FH9 (how the lug is held "
     "there is still open, spec §12.12.8)",
@@ -148,7 +150,7 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "",
       "Generated %s by `tools/make_bom_ozdisan.py` from the Özdisan product pages read on %s (USD prices as shown by Özdisan, **excluding KDV / VAT**; TRY/USD on the site that day ≈ %.1f). "
       "Every link was opened on that date and its page title matched the part number. "
-      "The FPC ferrite (DigiKey, ordered through ekomponent), the heatsink and its retaining clip (Demsay, prices estimated), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
+      "The FPC ferrite (DigiKey part, ordered through e-komponent at its Turkey prices), the heatsink and its retaining clip (Demsay quote of 2026-11-23; the heatsink's 5-piece price is used for every quantity), the thermocouple probe (Motorobit) and the earth lead and PCB screws (bought locally, estimated prices) are the only non-Özdisan lines; the display panel is included. Order quantity = max(%d × qty, MOQ) rounded up to the MOQ multiple "
       "(Özdisan's order multiple equals its MOQ on every line); the unit price is that quantity's tier." % (datetime.date.today().isoformat(), read_date, rate, N),
       "",
       "Lines without a link: %s." % (", ".join(no_link) if no_link else "none"),
@@ -162,8 +164,12 @@ md = ["# Rev3.0 BOM — Özdisan availability and %d-board unit cost" % N,
       "| | USD / board |", "|---|---|",
       "| Components at the %d-board price breaks (qty × tier price) | **%.2f** |" % (N, tot_line),
       "| Same, including MOQ rounding (what you actually pay ÷ %d) | **%.2f** |" % (N, tot_purchase),
-      "| of which not from Özdisan (FPC ferrite from DigiKey, HS1 heatsink and its clip from Demsay, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
+      "| of which not from Özdisan (FPC ferrite from e-komponent, HS1 heatsink and its clip from Demsay, thermocouple probe from Motorobit, earth lead and PCB screws bought locally) | %.2f |" % sum(float(r["Line / board USD"]) for r in non_ozd),
       "| of which the display panel | %.2f |" % sum(float(r["Line / board USD"]) for r in rows if r["Ref"].startswith("DS1")),
+      ] + ([
+      "| Bare PCB (owner's quote of 2026-11-23 for %d pieces) | %.2f |" % (N, PCB_QUOTE[N]),
+      "| **Electronics per unit: components including MOQ rounding + bare PCB** | **%.2f** |" % (tot_purchase + PCB_QUOTE[N]),
+      ] if N in PCB_QUOTE else []) + [
       "",
       "## Lines that need attention",
       "",
@@ -236,7 +242,7 @@ def write_order(name, rws, cols):
 COMMON = ["Manufacturer", "Customer reference", "Stock on %s" % read_date, "Remark", "Unit price USD (ex-VAT)",
           "Line total USD (ex-VAT)", "URL"]
 oz_rows = order_rows("ozdisan")
-dk_rows = order_rows("digikey")
+dk_rows = order_rows("e-komponent")   # DigiKey parts, ordered through e-komponent
 dm_rows = order_rows("demsay")
 oz_path = write_order("Rev3.0_Order_Ozdisan_%dpcs.csv" % N, oz_rows, ["Quantity", "Manufacturer part number"] + COMMON)
 dk_path = write_order("Rev3.0_Order_DigiKey_%dpcs.csv" % N, dk_rows,
