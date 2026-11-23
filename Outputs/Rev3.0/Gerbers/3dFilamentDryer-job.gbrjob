@@ -1,0 +1,171 @@
+{
+  "Header": {
+    "GenerationSoftware": {
+      "Vendor": "KiCad",
+      "Application": "Pcbnew",
+      "Version": "10.0.1"
+    },
+    "CreationDate": "2026-11-23T11:50:52+03:00"
+  },
+  "GeneralSpecs": {
+    "ProjectId": {
+      "Name": "3dFilamentDryer",
+      "GUID": "33644669-6c61-46d6-956e-744472796572",
+      "Revision": "3.0"
+    },
+    "Size": {
+      "X": 183.7,
+      "Y": 118.7
+    },
+    "LayerNumber": 4,
+    "BoardThickness": 1.6,
+    "Finish": "ENIG"
+  },
+  "DesignRules": [
+    {
+      "Layers": "Outer",
+      "PadToPad": 0.13,
+      "PadToTrack": 0.13,
+      "TrackToTrack": 0.15,
+      "MinLineWidth": 0.2,
+      "TrackToRegion": 0.15,
+      "RegionToRegion": 0.15
+    },
+    {
+      "Layers": "Inner",
+      "PadToPad": 0.13,
+      "PadToTrack": 0.13,
+      "TrackToTrack": 0.15,
+      "TrackToRegion": 0.25,
+      "RegionToRegion": 0.25
+    }
+  ],
+  "FilesAttributes": [
+    {
+      "Path": "3dFilamentDryer-F_Cu.gtl",
+      "FileFunction": "Copper,L1,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-GND.g1",
+      "FileFunction": "Copper,L2,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-PWR.g2",
+      "FileFunction": "Copper,L3,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-B_Cu.gbl",
+      "FileFunction": "Copper,L4,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-F_Paste.gtp",
+      "FileFunction": "SolderPaste,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-B_Paste.gbp",
+      "FileFunction": "SolderPaste,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-F_Silkscreen.gto",
+      "FileFunction": "Legend,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-B_Silkscreen.gbo",
+      "FileFunction": "Legend,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "3dFilamentDryer-F_Mask.gts",
+      "FileFunction": "SolderMask,Top",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "3dFilamentDryer-B_Mask.gbs",
+      "FileFunction": "SolderMask,Bot",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "3dFilamentDryer-Edge_Cuts.gm1",
+      "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    }
+  ],
+  "MaterialStackup": [
+    {
+      "Type": "Legend",
+      "Name": "Top Silk Screen"
+    },
+    {
+      "Type": "SolderPaste",
+      "Name": "Top Solder Paste"
+    },
+    {
+      "Type": "SolderMask",
+      "Color": "Green",
+      "Thickness": 0.01,
+      "Name": "Top Solder Mask"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "F.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.2,
+      "Material": "FR4",
+      "Name": "F.Cu/GND",
+      "Notes": "Type: dielectric layer 1 (from F.Cu to GND)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "GND"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 1.0,
+      "Material": "FR4",
+      "Name": "GND/PWR",
+      "Notes": "Type: dielectric layer 2 (from GND to PWR)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "PWR"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.2,
+      "Material": "FR4",
+      "Name": "PWR/B.Cu",
+      "Notes": "Type: dielectric layer 3 (from PWR to B.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "B.Cu"
+    },
+    {
+      "Type": "SolderMask",
+      "Color": "Green",
+      "Thickness": 0.01,
+      "Name": "Bottom Solder Mask"
+    },
+    {
+      "Type": "SolderPaste",
+      "Name": "Bottom Solder Paste"
+    },
+    {
+      "Type": "Legend",
+      "Name": "Bottom Silk Screen"
+    }
+  ]
+}
