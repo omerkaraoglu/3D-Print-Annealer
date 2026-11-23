@@ -734,7 +734,7 @@
   "C1": {
    "code": "C42P2104M6SC361",
    "mfr": "FARATRONIC",
-   "stock": 31530,
+   "stock": 21368,
    "moq": 2,
    "tiers": [
     [
@@ -757,12 +757,15 @@
      2500,
      0.04151
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2104m6sc361-488131",
+   "lead": null,
+   "upcoming": 50000
   },
   "C2": {
    "code": "PKRJ-016V221ME070-T2.5",
    "mfr": "Koshin",
-   "stock": 17966,
+   "stock": 15946,
    "moq": 5,
    "tiers": [
     [
@@ -784,15 +787,21 @@
     [
      2000,
      0.02208
+    ],
+    [
+     10000,
+     0.0212
     ]
    ],
    "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/koshin-pkrj-016v221me070-t2-5-354875",
-   "note": "220 uF 16 V 6.3x7 2.5 mm 105 C (fits the 6.3x11 footprint)"
+   "note": "220 uF 16 V 6.3x7 2.5 mm 105 C (fits the 6.3x11 footprint)",
+   "lead": "5-6",
+   "upcoming": 40000
   },
   "C4": {
    "code": "C42Q2103K40A405",
    "mfr": "FARATRONIC",
-   "stock": 9691,
+   "stock": 9651,
    "moq": 2,
    "tiers": [
     [
@@ -810,34 +819,20 @@
     [
      650,
      0.05152
-    ]
-   ]
-  },
-  "C5,C6,C8": {
-   "code": "MCF02KTB250104",
-   "mfr": "VIKING",
-   "stock": 0,
-   "moq": 100,
-   "tiers": [
-    [
-     100,
-     0.00191
     ],
     [
-     500,
-     0.00179
-    ],
-    [
-     1000,
-     0.00168
+     3250,
+     0.04946
     ]
    ],
-   "note": "out of stock"
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42q2103k40a405-350791",
+   "lead": null,
+   "upcoming": 8000
   },
   "C7": {
    "code": "CL10A106KP8NNNC",
    "mfr": "SAMSUNG",
-   "stock": 1489217,
+   "stock": 1265387,
    "moq": 2,
    "tiers": [
     [
@@ -855,13 +850,28 @@
     [
      1000,
      0.04823
+    ],
+    [
+     2000,
+     0.04466
+    ],
+    [
+     4000,
+     0.04108
+    ],
+    [
+     20000,
+     0.03944
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10a106kp8nnnc-350863",
+   "lead": "24-25",
+   "upcoming": 1188000
   },
   "C40": {
    "code": "C42P2105KBSC400",
    "mfr": "FARATRONIC",
-   "stock": 56806,
+   "stock": 56805,
    "moq": 1,
    "tiers": [
     [
@@ -879,13 +889,24 @@
     [
      500,
      0.192
+    ],
+    [
+     1250,
+     0.17664
+    ],
+    [
+     6250,
+     0.16957
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/film-kapasitorler-179/faratronic-c42p2105kbsc400-466649",
+   "lead": null,
+   "upcoming": 0
   },
   "D5": {
    "code": "1N4148W_R1_00301",
    "mfr": "Panjit",
-   "stock": 230280,
+   "stock": 230130,
    "moq": 5,
    "tiers": [
     [
@@ -907,15 +928,21 @@
     [
      3000,
      0.01603
+    ],
+    [
+     15000,
+     0.01539
     ]
    ],
    "url": "https://www.ozdisan.com/p/dogrultucu-diyotlar-389/panjit-1n4148w-r1-00301-1579142",
-   "note": "1N4148W (Panjit), SOD-123; the symbol is Diode:MMSD4148 (same SOD-123 pinout), value 1N4148W"
+   "note": "1N4148W (Panjit), SOD-123; the symbol is Diode:MMSD4148 (same SOD-123 pinout), value 1N4148W",
+   "lead": "20-21",
+   "upcoming": 360000
   },
   "F1": {
    "code": "STC1A250V",
    "mfr": "Reomax",
-   "stock": 3979,
+   "stock": 3953,
    "moq": 1,
    "tiers": [
     [
@@ -940,12 +967,14 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-stc1a250v-475613",
-   "note": "5x20 1 A time-lag glass (TBC1100A out of stock)"
+   "note": "5x20 1 A time-lag glass (TBC1100A out of stock)",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "F3": {
    "code": "5GT8A",
    "mfr": "Reomax",
-   "stock": 12985,
+   "stock": 12835,
    "moq": 5,
    "tiers": [
     [
@@ -970,7 +999,9 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/sigortalar-849/reomax-5gt8a-445944",
-   "note": "5x20 8 A fast glass"
+   "note": "5x20 8 A fast glass",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "K1": {
    "code": "RZ03-1A4-D005",
@@ -996,12 +1027,14 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/genel-tip-roleler-403/te-connectivity-rz03-1a4-d005-1211236",
-   "note": "replaces HJR-3FF-S-Z-4/05VDC (SRD type, 1500 VAC coil-contact) - owner decision 2026-11-21: reinforced 5 kV / 10 mm; MPQ 20. Second source on the same footprint: Hongfa HF115FD/005-1H3A(335), stock 93,169, 0.84704 USD at 50+ (https://www.ozdisan.com/p/genel-tip-roleler-403/hongfa-hf115fd-005-1h3a335-979825)"
+   "note": "replaces HJR-3FF-S-Z-4/05VDC (SRD type, 1500 VAC coil-contact) - owner decision 2026-11-21: reinforced 5 kV / 10 mm; MPQ 20. Second source on the same footprint: Hongfa HF115FD/005-1H3A(335), stock 93,169, 0.84704 USD at 50+ (https://www.ozdisan.com/p/genel-tip-roleler-403/hongfa-hf115fd-005-1h3a335-979825)",
+   "lead": null,
+   "upcoming": 0
   },
   "L40": {
    "code": "RC1415U-101K",
    "mfr": "CORE MASTER",
-   "stock": 613,
+   "stock": 594,
    "moq": 1,
    "tiers": [
     [
@@ -1024,7 +1057,10 @@
      500,
      0.65943
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-rc1415u-101k-500941",
+   "lead": "7-8",
+   "upcoming": 2000
   },
   "L1": {
    "code": "LFU09V-103",
@@ -1052,12 +1088,15 @@
      840,
      0.34071
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/ortak-mod-bobinler-470/core-master-lfu09v-103-526799",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "PS1": {
    "code": "HLK-10M05",
    "mfr": "HI-LINK",
-   "stock": 333,
+   "stock": 26,
    "moq": 1,
    "tiers": [
     [
@@ -1076,35 +1115,46 @@
      350,
      3.74797
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/ac-dc-donusturuculer-606/hi-link-hlk-10m05-702430",
+   "lead": "7-8",
+   "upcoming": 0,
+   "note": "Ozdisan stock fell to 26 (333 on 2026-11-12), no incoming stock listed, lead time 7-8 weeks: order 26 now and back-order 74, or take the balance from LCSC (C403745, 4,433 pcs, 3.27 USD at 1 pc, https://www.lcsc.com/product-detail/C403745.html)"
   },
   "Q1": {
    "code": "BTA24-800CWRG",
    "mfr": "STM",
-   "stock": 5449,
+   "stock": 5086,
    "moq": 1,
    "tiers": [
     [
      1,
-     1.38202
+     1.36041
     ],
     [
      100,
-     1.29286
+     1.27265
     ],
     [
      250,
-     1.2037
+     1.18488
     ],
     [
      500,
-     1.11453
+     1.09711
     ],
     [
      1000,
-     1.02537
+     1.00934
+    ],
+    [
+     5000,
+     0.96897
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/discrete-triyaklar-420/stm-bta24-800cwrg-360751",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "Q2,Q3": {
    "code": "MMBT4401-TP",
@@ -1114,32 +1164,38 @@
    "tiers": [
     [
      20,
-     0.00909
+     0.01228
     ],
     [
      100,
-     0.0085
+     0.01149
     ],
     [
      500,
-     0.00791
+     0.01069
     ],
     [
      1000,
-     0.00733
+     0.0099
     ],
     [
      3000,
-     0.00674
+     0.00911
+    ],
+    [
+     15000,
+     0.00875
     ]
    ],
    "url": "https://www.ozdisan.com/p/discrete-transistorler-442/m-c-c-mmbt4401-tp-1211020",
-   "note": "S8050 not stocked; MMBT4401 600 mA 40 V NPN SOT-23, same pinout"
+   "note": "S8050 not stocked; MMBT4401 600 mA 40 V NPN SOT-23, same pinout",
+   "lead": null,
+   "upcoming": 0
   },
   "Q4": {
    "code": "BC817-25-HT",
    "mfr": "HOTTECH",
-   "stock": 18050,
+   "stock": 17760,
    "moq": 10,
    "tiers": [
     [
@@ -1157,8 +1213,19 @@
     [
      1000,
      0.01116
+    ],
+    [
+     3000,
+     0.01026
+    ],
+    [
+     15000,
+     0.00985
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/discrete-transistorler-442/hottech-bc817-25-ht-448900",
+   "lead": "3-4",
+   "upcoming": 45000
   },
   "R2,R3": {
    "code": "MFR-50FTF52-360R",
@@ -1181,8 +1248,19 @@
     [
      500,
      0.02208
+    ],
+    [
+     1000,
+     0.02031
+    ],
+    [
+     5000,
+     0.0195
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/yageo-mfr-50ftf52-360r-923549",
+   "lead": "13-14",
+   "upcoming": 0
   },
   "R4": {
    "code": "0603SAJ0121T5E",
@@ -1216,7 +1294,9 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0121t5e-341209",
-   "note": "R4 0402 -> 0603 1/10 W (2026-11-21): TRIG held on during a burst runs it continuously, up to 49 mW at 85 C"
+   "note": "R4 0402 -> 0603 1/10 W (2026-11-21): TRIG held on during a burst runs it continuously, up to 49 mW at 85 C",
+   "lead": "22-23",
+   "upcoming": 0
   },
   "R5": {
    "code": "KNP02SJ0470A10",
@@ -1239,8 +1319,19 @@
     [
      500,
      0.0225
+    ],
+    [
+     1000,
+     0.0207
+    ],
+    [
+     5000,
+     0.01987
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-knp02sj0470a10-690542",
+   "lead": null,
+   "upcoming": 0
   },
   "R6,R7": {
    "code": "CFR01SJ0333A10",
@@ -1263,13 +1354,24 @@
     [
      500,
      0.022
+    ],
+    [
+     1000,
+     0.02024
+    ],
+    [
+     5000,
+     0.01943
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/tht-dip-direncler-193/royalohm-cfr01sj0333a10-444800",
+   "lead": null,
+   "upcoming": 0
   },
   "R8,R10-R15,R124,R224": {
    "code": "0402WGJ0103TCE",
    "mfr": "ROYALOHM",
-   "stock": 189000,
+   "stock": 146800,
    "moq": 200,
    "tiers": [
     [
@@ -1283,13 +1385,32 @@
     [
      1000,
      0.00044
+    ],
+    [
+     2000,
+     0.00041
+    ],
+    [
+     5000,
+     0.00038
+    ],
+    [
+     10000,
+     0.00035
+    ],
+    [
+     50000,
+     0.00034
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0103tce-362331",
+   "lead": "22-23",
+   "upcoming": 850000
   },
   "R9": {
    "code": "0603SAJ0181T5E",
    "mfr": "ROYALOHM",
-   "stock": 219230,
+   "stock": 217830,
    "moq": 200,
    "tiers": [
     [
@@ -1303,14 +1424,28 @@
     [
      1000,
      0.00078
+    ],
+    [
+     2000,
+     0.00072
+    ],
+    [
+     5000,
+     0.00066
+    ],
+    [
+     25000,
+     0.00064
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0181t5e-336227",
+   "lead": null,
+   "upcoming": 0
   },
   "R16": {
    "code": "0402WGJ0102TCE",
    "mfr": "ROYALOHM",
-   "stock": 299000,
+   "stock": 298200,
    "moq": 200,
    "tiers": [
     [
@@ -1324,8 +1459,27 @@
     [
      1000,
      0.00044
+    ],
+    [
+     2000,
+     0.00041
+    ],
+    [
+     5000,
+     0.00038
+    ],
+    [
+     10000,
+     0.00035
+    ],
+    [
+     50000,
+     0.00034
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgj0102tce-431887",
+   "lead": "22-23",
+   "upcoming": 0
   },
   "U5": {
    "code": "MOC3083X",
@@ -1351,7 +1505,9 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/triyak-scr-cikisli-optokuplorler-190/isocom-moc3083x-636495",
-   "note": "MOC3052X -> MOC3083X (owner decision 2026-11-21): 800 V zero-cross; no 800 V random-phase driver stocked. X = VDE-approved version (Isocom DE93284 p.7)"
+   "note": "MOC3052X -> MOC3083X (owner decision 2026-11-21): 800 V zero-cross; no 800 V random-phase driver stocked. X = VDE-approved version (Isocom DE93284 p.7)",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "U6": {
    "code": "SN74AHC1G14DBVR",
@@ -1385,12 +1541,14 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/logic-kapi-ve-cevirici-entegreleri-248/texas-sn74ahc1g14dbvr-616783",
-   "note": "value field aligned to the purchased AHC part (was SN74LVC1G14DBVR on the symbol, 2026-11-21)"
+   "note": "value field aligned to the purchased AHC part (was SN74LVC1G14DBVR on the symbol, 2026-11-21)",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "U10": {
    "code": "SSD1963QL9",
    "mfr": "SOLOMON",
-   "stock": 279,
+   "stock": 278,
    "moq": 1,
    "tiers": [
     [
@@ -1409,7 +1567,10 @@
      450,
      5.15
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/arayuz-kontrolor-entegreleri-227/solomon-ssd1963ql9-353972",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "U11": {
    "code": "MIC2288YD5-TR",
@@ -1419,42 +1580,72 @@
    "tiers": [
     [
      1,
-     0.67902
+     0.9176
     ],
     [
      100,
-     0.63522
+     0.8584
     ],
     [
      500,
-     0.59141
+     0.7992
+    ],
+    [
+     1000,
+     0.74
+    ],
+    [
+     3000,
+     0.6808
+    ],
+    [
+     15000,
+     0.65357
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/micrel-microchip-mic2288yd5-tr-613161",
+   "lead": null,
+   "upcoming": 0
   },
   "U20": {
    "code": "ADS1115IDGSR",
    "mfr": "TEXAS",
-   "stock": 3828,
+   "stock": 3806,
    "moq": 1,
    "tiers": [
     [
      1,
-     3.5465
+     6.5193
     ],
     [
      100,
-     3.31769
+     6.0987
     ],
     [
      500,
-     3.08889
+     5.6781
+    ],
+    [
+     1000,
+     5.2575
+    ],
+    [
+     2500,
+     4.8369
+    ],
+    [
+     12500,
+     4.64342
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/analogtan-dijitale-donusturucu-entegreler-adc-225/texas-ads1115idgsr-616336",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "D112,D113,D115,D116,D220,D221": {
    "code": "PESD5V0S1BA,115",
    "mfr": "NEXPERIA",
-   "stock": 10971,
+   "stock": 10966,
    "moq": 1,
    "tiers": [
     [
@@ -1472,13 +1663,24 @@
     [
      1000,
      0.10764
+    ],
+    [
+     3000,
+     0.09903
+    ],
+    [
+     15000,
+     0.09507
     ]
-   ]
+   ],
+   "url": "https://www.ozdisan.com/p/tvs-diyotlar-386/nexperia-pesd5v0s1ba-115-488980",
+   "lead": "4-5",
+   "upcoming": 0
   },
   "J10": {
    "code": "DS1020-09-40VBT1B",
    "mfr": "CONNFLY",
-   "stock": 233,
+   "stock": 161,
    "moq": 1,
    "tiers": [
     [
@@ -1498,7 +1700,9 @@
      0.36656
     ]
    ],
-   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712"
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/connfly-ds1020-09-40vbt1b-358712",
+   "lead": "5-6",
+   "upcoming": 5000
   },
   "J11": {
    "code": "L-KLS1-242D-1.2-06-T-U-R",
@@ -1521,14 +1725,24 @@
     [
      1000,
      0.16629
+    ],
+    [
+     2000,
+     0.15299
+    ],
+    [
+     10000,
+     0.14687
     ]
    ],
-   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840"
+   "url": "https://www.ozdisan.com/p/ffc-ve-fpc-konnektorler-716/kls-electronic-l-kls1-242d-1-2-06-t-u-r-787840",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "J20": {
    "code": "DG127H-5.08-02P-14-00AH",
    "mfr": "DEGSON",
-   "stock": 44783,
+   "stock": 43697,
    "moq": 1,
    "tiers": [
     [
@@ -1540,12 +1754,14 @@
      0.15014
     ]
    ],
-   "url": "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380"
+   "url": "https://www.ozdisan.com/p/pcb-klemensler-410/degson-dg127h-5-08-02p-14-00ah-1585380",
+   "lead": "11-12",
+   "upcoming": 0
   },
   "L11": {
    "code": "PCD0403MT100",
    "mfr": "VIKING",
-   "stock": 8969,
+   "stock": 8939,
    "moq": 1,
    "tiers": [
     [
@@ -1563,14 +1779,24 @@
     [
      1000,
      0.09557
+    ],
+    [
+     1500,
+     0.08792
+    ],
+    [
+     7500,
+     0.08441
     ]
    ],
-   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950"
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
+   "lead": "16-17",
+   "upcoming": 0
   },
   "L30": {
    "code": "SRI0605B-4R7M",
    "mfr": "CORE MASTER",
-   "stock": 1961,
+   "stock": 1949,
    "moq": 1,
    "tiers": [
     [
@@ -1588,9 +1814,19 @@
     [
      500,
      0.27999
+    ],
+    [
+     1000,
+     0.25759
+    ],
+    [
+     5000,
+     0.24729
     ]
    ],
-   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415"
+   "url": "https://www.ozdisan.com/p/sabit-induktorler-468/core-master-sri0605b-4r7m-587415",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "RN1-RN7": {
    "code": "4D02WGJ0101TCE",
@@ -1632,12 +1868,14 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/ag-ve-sira-direncler-196/royalohm-4d02wgj0101tce-467030",
-   "note": "33 R -> 100 R (EMC fix 2026-11-21): 150 R 0402x4 (4D02WGJ0151TCE) not stocked; 100 R is the nearest stocked value in the same 0402x4 footprint"
+   "note": "33 R -> 100 R (EMC fix 2026-11-21): 150 R 0402x4 (4D02WGJ0151TCE) not stocked; 100 R is the nearest stocked value in the same 0402x4 footprint",
+   "lead": null,
+   "upcoming": 0
   },
   "TH220": {
    "code": "TSM1B103F3381RZ",
    "mfr": "Thinking",
-   "stock": 7301,
+   "stock": 6906,
    "moq": 5,
    "tiers": [
     [
@@ -1659,15 +1897,25 @@
     [
      2000,
      0.06992
+    ],
+    [
+     4000,
+     0.06433
+    ],
+    [
+     20000,
+     0.06175
     ]
    ],
    "url": "https://www.ozdisan.com/p/ntc-termistorler-852/thinking-tsm1b103f3381rz-509282",
-   "note": "NCP18XH103F03RB not stocked; Thinking 10k 1 % B3380 0603"
+   "note": "NCP18XH103F03RB not stocked; Thinking 10k 1 % B3380 0603",
+   "lead": "9-10",
+   "upcoming": 0
   },
   "U3": {
    "code": "ESP32-WROOM-32E-N16",
    "mfr": "ESPRESSIF SYSTEMS",
-   "stock": 1173,
+   "stock": 914,
    "moq": 1,
    "tiers": [
     [
@@ -1685,39 +1933,55 @@
     [
      650,
      4.048
+    ],
+    [
+     3250,
+     3.88608
     ]
    ],
-   "url": "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893"
+   "url": "https://www.ozdisan.com/p/wifi-modulleri-652/espressif-systems-esp32-wroom-32e-n16-690893",
+   "lead": null,
+   "upcoming": 0
   },
   "U30": {
    "code": "TPS562201DDCR",
    "mfr": "TEXAS",
-   "stock": 2323,
+   "stock": 2319,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.2226
+     0.4092
     ],
     [
      100,
-     0.20824
+     0.3828
     ],
     [
      500,
-     0.19388
+     0.3564
     ],
     [
      1000,
-     0.17952
+     0.33
+    ],
+    [
+     3000,
+     0.3036
+    ],
+    [
+     15000,
+     0.29146
     ]
    ],
-   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034"
+   "url": "https://www.ozdisan.com/p/dc-dc-voltaj-regulatorleri-275/texas-tps562201ddcr-708034",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "D111": {
    "code": "SS14-SMA-N-JQ",
    "mfr": "Jiaqi",
-   "stock": 70013,
+   "stock": 69278,
    "moq": 5,
    "tiers": [
     [
@@ -1739,10 +2003,20 @@
     [
      2000,
      0.02102
+    ],
+    [
+     5000,
+     0.01933
+    ],
+    [
+     25000,
+     0.01856
     ]
    ],
    "url": "https://www.ozdisan.com/p/schottky-diyotlar-385/jiaqi-ss14-sma-n-jq-533239",
-   "note": "SS14 alternative (ON/Panjit not stocked)"
+   "note": "SS14 alternative (ON/Panjit not stocked)",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "U31": {
    "code": "LD1117S12CTR",
@@ -1752,22 +2026,32 @@
    "tiers": [
     [
      1,
-     0.12162
+     0.14965
     ],
     [
      100,
-     0.11377
+     0.13999
     ],
     [
      500,
-     0.10593
+     0.13034
     ],
     [
      1000,
-     0.09808
+     0.12068
+    ],
+    [
+     2500,
+     0.11103
+    ],
+    [
+     12500,
+     0.10659
     ]
    ],
-   "url": "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395"
+   "url": "https://www.ozdisan.com/p/lineer-voltaj-regulatorleri-279/stm-ld1117s12ctr-427395",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "Y10": {
    "code": "CX3225GB10000P0HPQCC",
@@ -1790,9 +2074,19 @@
     [
      1000,
      0.24
+    ],
+    [
+     3000,
+     0.2208
+    ],
+    [
+     15000,
+     0.21197
     ]
    ],
-   "url": "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628"
+   "url": "https://www.ozdisan.com/p/kristaller-508/kyocera-avx-cx3225gb10000p0hpqcc-728628",
+   "lead": "9-10",
+   "upcoming": 0
   },
   "RV1": {
    "code": "TVR14431KSU15Y",
@@ -1825,40 +2119,52 @@
      0.08268
     ]
    ],
-   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701"
+   "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr14431ksu15y-603701",
+   "lead": "9-10",
+   "upcoming": 0
   },
   "C110,C111": {
    "code": "GRM1555C1H270JA01D",
    "mfr": "Murata",
-   "stock": 50830,
+   "stock": 50730,
    "moq": 20,
    "tiers": [
     [
      20,
-     0.00492
+     0.00484
     ],
     [
      100,
-     0.00464
+     0.00457
     ],
     [
      500,
-     0.00436
+     0.00429
     ],
     [
      1000,
-     0.00408
+     0.00401
     ],
     [
      2000,
-     0.00379
+     0.00374
     ],
     [
      5000,
-     0.00351
+     0.00346
+    ],
+    [
+     10000,
+     0.00318
+    ],
+    [
+     50000,
+     0.00305
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/murata-grm1555c1h270ja01d-810946",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "100nF_0402": {
    "code": "CC0402KRX7R9BB104",
@@ -1900,80 +2206,90 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0402krx7r9bb104-609906",
-   "note": "one 50 V X7R part for every 100 nF 0402 position (C5,C6,C8, C112-C115,C117-C119,C123,C126,C223,C225,C226, C129,C332)"
+   "note": "one 50 V X7R part for every 100 nF 0402 position (C5,C6,C8, C112-C115,C117-C119,C123,C126,C223,C225,C226, C129,C332)",
+   "lead": "13-14",
+   "upcoming": 39915500
   },
   "10uF_0805": {
    "code": "CL21A106KPFNNNE",
    "mfr": "Samsung",
-   "stock": 352710,
+   "stock": 351570,
    "moq": 5,
    "tiers": [
     [
      5,
-     0.02179
+     0.0247
     ],
     [
      100,
-     0.02039
+     0.02311
     ],
     [
      500,
-     0.01898
+     0.02152
     ],
     [
      1000,
-     0.01758
+     0.01992
     ],
     [
      2000,
-     0.01617
+     0.01833
     ],
     [
      10000,
-     0.01552
+     0.0176
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a106kpfnnne-336384",
-   "note": "10 V X5R used for both the 6.3 V (C116,C122,C336) and 10 V (C124,C127,C330,C331) positions"
+   "note": "10 V X5R used for both the 6.3 V (C116,C122,C336) and 10 V (C124,C127,C330,C331) positions",
+   "lead": "40-41",
+   "upcoming": 1004000
   },
   "1uF_0603": {
    "code": "C1608X7R1C105K080AC",
    "mfr": "TDK",
-   "stock": 4130,
+   "stock": 4120,
    "moq": 5,
    "tiers": [
     [
      5,
-     0.04722
+     0.04649
     ],
     [
      100,
-     0.04436
+     0.04367
     ],
     [
      500,
-     0.0415
+     0.04085
     ],
     [
      1000,
-     0.03864
+     0.03803
     ],
     [
      2000,
-     0.03578
+     0.03522
     ],
     [
      4000,
-     0.03291
+     0.0324
+    ],
+    [
+     20000,
+     0.0311
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/tdk-c1608x7r1c105k080ac-600193",
-   "note": "16 V X7R for C120,C121,C337 (6.3 V) and C224,C335 (16 V)"
+   "note": "16 V X7R for C120,C121,C337 (6.3 V) and C224,C335 (16 V)",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "C125": {
    "code": "CL21A475KBQNNNE",
    "mfr": "Samsung",
-   "stock": 62505,
+   "stock": 41993,
    "moq": 1,
    "tiers": [
     [
@@ -1995,40 +2311,52 @@
     [
      2000,
      0.07951
+    ],
+    [
+     10000,
+     0.07633
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a475kbqnnne-360305",
-   "note": "4.7 uF 50 V X5R instead of 25 V X7R (no 25 V X7R 0805 in stock; the 50 V rating gives better DC bias)"
+   "note": "4.7 uF 50 V X5R instead of 25 V X7R (no 25 V X7R 0805 in stock; the 50 V rating gives better DC bias)",
+   "lead": "24-25",
+   "upcoming": 0
   },
   "C128": {
    "code": "EEEFK1C470UR",
    "mfr": "Panasonic",
-   "stock": 316,
+   "stock": 315,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.19791
+     0.19481
     ],
     [
      100,
-     0.18514
+     0.18224
     ],
     [
      250,
-     0.17237
+     0.16967
     ],
     [
      500,
-     0.1596
+     0.15711
     ],
     [
      1000,
-     0.14683
+     0.14454
+    ],
+    [
+     5000,
+     0.13876
     ]
    ],
    "url": "https://www.ozdisan.com/p/aluminyum-kapasitorler-180/panasoniceurope-eeefk1c470ur-1102511",
-   "note": "47 uF 16 V 5x5.8 SMD (fits CP_Elec_5x5.4); stock 316"
+   "note": "47 uF 16 V 5x5.8 SMD (fits CP_Elec_5x5.4)",
+   "lead": "23-24",
+   "upcoming": 0
   },
   "C130-C133": {
    "code": "CL05C102JB5NNNC",
@@ -2069,12 +2397,14 @@
      0.00996
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05c102jb5nnnc-519291",
+   "lead": "24-25",
+   "upcoming": 0
   },
   "C220": {
    "code": "CC0603KRX7R9BB104",
    "mfr": "Yageo",
-   "stock": 2443557,
+   "stock": 1801416,
    "moq": 10,
    "tiers": [
     [
@@ -2096,14 +2426,24 @@
     [
      2000,
      0.01393
+    ],
+    [
+     4000,
+     0.01282
+    ],
+    [
+     20000,
+     0.0123
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/yageo-cc0603krx7r9bb104-476015",
+   "lead": "13-14",
+   "upcoming": 0
   },
   "C221,C222": {
    "code": "CL10B103KB8NNNC",
    "mfr": "Samsung",
-   "stock": 9799961,
+   "stock": 9376446,
    "moq": 20,
    "tiers": [
     [
@@ -2125,15 +2465,25 @@
     [
      2000,
      0.00572
+    ],
+    [
+     4000,
+     0.00526
+    ],
+    [
+     20000,
+     0.00505
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl10b103kb8nnnc-9649",
-   "note": "X7R 10 % instead of C0G 1 % (no 10 nF C0G 0603 in stock); thermocouple input filter, DC measurement, acceptable"
+   "note": "X7R 10 % instead of C0G 1 % (no 10 nF C0G 0603 in stock); thermocouple input filter, DC measurement, acceptable",
+   "lead": "24-25",
+   "upcoming": 1552000
   },
   "C333,C334": {
    "code": "CL21A226KOQNNNE",
    "mfr": "Samsung",
-   "stock": 1537,
+   "stock": 814,
    "moq": 1,
    "tiers": [
     [
@@ -2155,15 +2505,21 @@
     [
      2000,
      0.14894
+    ],
+    [
+     10000,
+     0.14298
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl21a226koqnnne-399002",
-   "note": "22 uF 16 V X5R (10 V X5R not in stock)"
+   "note": "22 uF 16 V X5R (10 V X5R not in stock)",
+   "lead": "24-25",
+   "upcoming": 40000
   },
   "D114": {
    "code": "MMSZ15V-HT",
    "mfr": "Hottech",
-   "stock": 44065,
+   "stock": 44030,
    "moq": 5,
    "tiers": [
     [
@@ -2185,14 +2541,20 @@
     [
      3000,
      0.01486
+    ],
+    [
+     15000,
+     0.01426
     ]
    ],
-   "url": "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503"
+   "url": "https://www.ozdisan.com/p/zener-diyotlar-390/hottech-mmsz15v-ht-465503",
+   "lead": "3-4",
+   "upcoming": 0
   },
   "FCLIP": {
    "code": "R3-5A",
    "mfr": "Reomax",
-   "stock": 41572,
+   "stock": 39652,
    "moq": 2,
    "tiers": [
     [
@@ -2214,15 +2576,21 @@
     [
      2000,
      0.01802
+    ],
+    [
+     10000,
+     0.0173
     ]
    ],
    "url": "https://www.ozdisan.com/p/sigorta-yuvalari-847/reomax-r3-5a-575555",
-   "note": "5x20 PCB fuse clip, 4 per board (not in the schematic; clip pin diameter vs the 1.3 mm footprint holes to be confirmed)"
+   "note": "5x20 PCB fuse clip, 4 per board (not in the schematic; clip pin diameter vs the 1.3 mm footprint holes to be confirmed)",
+   "lead": "7-8",
+   "upcoming": 0
   },
   "J2": {
    "code": "DS1021-1X6SF11-B",
    "mfr": "Connfly",
-   "stock": 12474,
+   "stock": 12224,
    "moq": 2,
    "tiers": [
     [
@@ -2246,12 +2614,14 @@
      0.01943
     ]
    ],
-   "url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407"
+   "url": "https://www.ozdisan.com/p/pin-headerlar-293/connfly-ds1021-1x6sf11-b-423407",
+   "lead": "5-6",
+   "upcoming": 0
   },
   "L12": {
    "code": "PCD0403MT100",
    "mfr": "VIKING",
-   "stock": 8969,
+   "stock": 8939,
    "moq": 1,
    "tiers": [
     [
@@ -2269,15 +2639,25 @@
     [
      1000,
      0.09557
+    ],
+    [
+     1500,
+     0.08792
+    ],
+    [
+     7500,
+     0.08441
     ]
    ],
    "url": "https://www.ozdisan.com/p/sabit-induktorler-468/viking-pcd0403mt100-1061950",
-   "note": "2.2 uH PCD0403 not stocked; L12 changed to 10 uH PCD0403MT100 (same part as L11, same footprint): pi-filter corner 34 kHz -> 16 kHz, DCR 182 mOhm at ~0.3 A = 55 mV, Isat 1.04 A OK"
+   "note": "2.2 uH PCD0403 not stocked; L12 changed to 10 uH PCD0403MT100 (same part as L11, same footprint): pi-filter corner 34 kHz -> 16 kHz, DCR 182 mOhm at ~0.3 A = 55 mV, Isat 1.04 A OK",
+   "lead": "16-17",
+   "upcoming": 0
   },
   "R110-R121": {
    "code": "RC0402JR-0733RL",
    "mfr": "Yageo",
-   "stock": 58600,
+   "stock": 58300,
    "moq": 100,
    "tiers": [
     [
@@ -2299,14 +2679,24 @@
     [
      5000,
      0.00125
+    ],
+    [
+     10000,
+     0.00115
+    ],
+    [
+     50000,
+     0.00111
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rc0402jr-0733rl-832557",
+   "lead": "13-14",
+   "upcoming": 0
   },
   "R122,R123": {
    "code": "TC0525B180JT5F",
    "mfr": "Royalohm",
-   "stock": 13395,
+   "stock": 8395,
    "moq": 5,
    "tiers": [
     [
@@ -2328,15 +2718,25 @@
     [
      2000,
      0.027
+    ],
+    [
+     5000,
+     0.02484
+    ],
+    [
+     25000,
+     0.02385
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0525b180jt5f-442649",
-   "note": "the only 18 R 0805 in stock is the 0.1 % thin-film part"
+   "note": "the only 18 R 0805 in stock is the 0.1 % thin-film part",
+   "lead": null,
+   "upcoming": 0
   },
   "R125,R129": {
    "code": "0805WAJ0000T5E",
    "mfr": "Royalohm",
-   "stock": 54900,
+   "stock": 14300,
    "moq": 100,
    "tiers": [
     [
@@ -2358,14 +2758,20 @@
     [
      5000,
      0.00113
+    ],
+    [
+     25000,
+     0.00109
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0805waj0000t5e-337715",
+   "lead": "22-23",
+   "upcoming": 0
   },
   "R126,R128": {
    "code": "CQ02WGJ0000TCE",
    "mfr": "Royalohm",
-   "stock": 135304,
+   "stock": 31704,
    "moq": 200,
    "tiers": [
     [
@@ -2387,14 +2793,24 @@
     [
      5000,
      0.00057
+    ],
+    [
+     10000,
+     0.00053
+    ],
+    [
+     50000,
+     0.00051
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgj0000tce-587856",
+   "lead": null,
+   "upcoming": 0
   },
   "R127": {
    "code": "CQ02WGF1003TCE",
    "mfr": "Royalohm",
-   "stock": 152340,
+   "stock": 41120,
    "moq": 200,
    "tiers": [
     [
@@ -2416,9 +2832,19 @@
     [
      5000,
      0.00068
+    ],
+    [
+     10000,
+     0.00063
+    ],
+    [
+     50000,
+     0.0006
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1003tce-587906",
+   "lead": null,
+   "upcoming": 0
   },
   "R130,R131": {
    "code": "AC0402JR-072K2L",
@@ -2445,14 +2871,28 @@
     [
      2000,
      0.00177
+    ],
+    [
+     5000,
+     0.00164
+    ],
+    [
+     10000,
+     0.00151
+    ],
+    [
+     50000,
+     0.00145
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-ac0402jr-072k2l-650156",
+   "lead": "13-14",
+   "upcoming": 0
   },
   "R132": {
    "code": "HP06W2F500LT5E",
    "mfr": "Royalohm",
-   "stock": 7660,
+   "stock": 7610,
    "moq": 2,
    "tiers": [
     [
@@ -2474,15 +2914,25 @@
     [
      2000,
      0.041
+    ],
+    [
+     5000,
+     0.03772
+    ],
+    [
+     25000,
+     0.03621
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-hp06w2f500lt5e-602953",
-   "note": "0.5 R 1 % 0.5 W 1206 (HP series); Uniohm RR1206J050KT5E 5 % 0.25 W is the cheaper alternative (0.046 USD)"
+   "note": "0.5 R 1 % 0.5 W 1206 (HP series); Uniohm RR1206J050KT5E 5 % 0.25 W is the cheaper alternative (0.046 USD)",
+   "lead": null,
+   "upcoming": 0
   },
   "R220,R221": {
    "code": "TC0325B1001T5F",
    "mfr": "Royalohm",
-   "stock": 25373,
+   "stock": 25023,
    "moq": 5,
    "tiers": [
     [
@@ -2504,14 +2954,24 @@
     [
      2000,
      0.0224
+    ],
+    [
+     5000,
+     0.02061
+    ],
+    [
+     25000,
+     0.01978
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1001t5f-700043",
+   "lead": null,
+   "upcoming": 0
   },
   "R222,R223": {
    "code": "0603SAJ0106T5E",
    "mfr": "Royalohm",
-   "stock": 115000,
+   "stock": 114300,
    "moq": 200,
    "tiers": [
     [
@@ -2533,14 +2993,20 @@
     [
      5000,
      0.00066
+    ],
+    [
+     25000,
+     0.00064
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0603saj0106t5e-343167",
+   "lead": "22-23",
+   "upcoming": 0
   },
   "R225-R227": {
    "code": "TC0325B1002T5F",
    "mfr": "Royalohm",
-   "stock": 71416,
+   "stock": 71251,
    "moq": 5,
    "tiers": [
     [
@@ -2562,14 +3028,24 @@
     [
      2000,
      0.0224
+    ],
+    [
+     5000,
+     0.02061
+    ],
+    [
+     25000,
+     0.01978
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-tc0325b1002t5f-600390",
+   "lead": null,
+   "upcoming": 0
   },
   "R330": {
    "code": "0402WGF3322TCE",
    "mfr": "Royalohm",
-   "stock": 32048,
+   "stock": 12048,
    "moq": 200,
    "tiers": [
     [
@@ -2591,63 +3067,90 @@
     [
      5000,
      0.00045
+    ],
+    [
+     10000,
+     0.00041
+    ],
+    [
+     50000,
+     0.00039
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-0402wgf3322tce-506353",
+   "lead": null,
+   "upcoming": 0
   },
   "R331": {
-   "code": "CQ02WGF1002TCE",
-   "mfr": "Royalohm",
-   "stock": 1185,
-   "moq": 200,
+   "code": "RT0402BRD0710KL",
+   "mfr": "YAGEO",
+   "stock": 500000,
+   "moq": 5,
    "tiers": [
     [
-     200,
-     0.0009
+     5,
+     0.05219
+    ],
+    [
+     100,
+     0.04921
     ],
     [
      500,
-     0.00084
+     0.04623
     ],
     [
      1000,
-     0.00079
+     0.04324
     ],
     [
      2000,
-     0.00073
+     0.04026
     ],
     [
      5000,
-     0.00068
+     0.03728
+    ],
+    [
+     10000,
+     0.0343
+    ],
+    [
+     50000,
+     0.03293
     ]
    ],
-   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/royalohm-cq02wgf1002tce-587902"
+   "url": "https://www.ozdisan.com/p/smt-smd-ve-cip-direncler-194/yageo-rt0402brd0710kl-1048858",
+   "lead": "13-14",
+   "upcoming": 0,
+   "note": "10 k 0.1 % 25 ppm thin film instead of 1 % thick film: on 2026-11-23 every 10 k 1 % 0402 at Ozdisan is at zero stock (CQ02WGF1002TCE, 0402WGF1002TCE, RC0402FR-0710KL, AC0402FR-0710KL, RC1005F103CS, RK73H1ETTP1002F); same footprint, tighter tolerance, +0.05 USD per board"
   },
   "U1": {
    "code": "H11AA1X",
    "mfr": "Isocom",
-   "stock": 1573,
+   "stock": 1568,
    "moq": 1,
    "tiers": [
     [
      1,
-     0.37301
+     0.4549
     ],
     [
      30,
-     0.34538
+     0.4212
     ],
     [
      65,
-     0.31775
+     0.3875
     ],
     [
      325,
-     0.30504
+     0.372
     ]
    ],
-   "url": "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378"
+   "url": "https://www.ozdisan.com/p/transistor-ve-fotovoltaik-cikisli-optokuplorler-189/isocom-h11aa1x-636378",
+   "lead": "7-8",
+   "upcoming": 2080
   },
   "HS1": {
    "code": "SK 409 63,5 STC TO 220",
@@ -2661,7 +3164,7 @@
     ]
    ],
    "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/SK-409-63-5-STC-TO-220/25833367",
-   "note": "NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural"
+   "note": "NOT at Ozdisan (largest TO-220 heatsink there is 35 mm); DigiKey 5496-SK40963,5STCTO220-ND, 5.6 K/W natural, 995 in stock, minimum 5, DigiKey Marketplace item (ships from the supplier, separate shipping); checked 2026-11-23. Clip-mounted version: Q1 is held by the Fischer retaining spring THF 409 TO 220 (own BOM line), with thermal compound"
   },
   "TCPROBE": {
    "code": "WRNT-02",
@@ -2671,16 +3174,16 @@
    "tiers": [
     [
      1,
-     2.9
+     2.91
     ]
    ],
    "url": "https://www.motorobit.com/wrnt-02-k-tip-0-600c-m6-termokupl-1-metre",
-   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 145.86 TL + KDV = 2.90 USD at 50.3 TL/USD (2026-11-12); web stock shows '10+', ask Motorobit for 100 pcs; Motorobit SKU SNS.SCK.01.000085"
+   "note": "K-type, M6 ring-terminal tip, 1 m fibreglass/SS-braid lead, 0-600 C, bare ends; 147.29 TL + KDV = 2.91 USD at 50.57 TL/USD (2026-11-23); web stock shows '10+', ask Motorobit for 100 pcs; Motorobit SKU SNS.SCK.01.000085"
   },
   "C6": {
    "code": "CL05A105KQ5NNNC",
    "mfr": "SAMSUNG",
-   "stock": 1813001,
+   "stock": 1801951,
    "moq": 25,
    "tiers": [
     [
@@ -2706,10 +3209,20 @@
     [
      5000,
      0.00356
+    ],
+    [
+     10000,
+     0.00327
+    ],
+    [
+     50000,
+     0.00314
     ]
    ],
    "url": "https://www.ozdisan.com/p/smt-smd-ve-mlcc-kapasitorler-184/samsung-cl05a105kq5nnnc-418943",
-   "note": "C6 100 nF -> 1 uF: ESP32 EN RC per Espressif (10k + 1 uF), decided 2026-11-13"
+   "note": "C6 100 nF -> 1 uF: ESP32 EN RC per Espressif (10k + 1 uF), decided 2026-11-13",
+   "lead": "40-41",
+   "upcoming": 322000
   },
   "D6": {
    "code": "1.5KE440CA-TKS",
@@ -2743,7 +3256,9 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/tvs-diyotlar-386/thinking-1-5ke440ca-tks-639232",
-   "note": "replaces RV2 (TVR10561K MOV) across the triac: 1 kV surge clamp 620 V (EMC fix 2026-11-21)"
+   "note": "replaces RV2 (TVR10561K MOV) across the triac: 1 kV surge clamp 620 V (EMC fix 2026-11-21)",
+   "lead": null,
+   "upcoming": 0
   },
   "RV3": {
    "code": "TVR10471KSY",
@@ -2773,7 +3288,151 @@
     ]
    ],
    "url": "https://www.ozdisan.com/p/varistorler-863/thinking-tvr10471ksy-351283",
-   "note": "RV3 moved across the K1 contact, 300 V ac class (16 % margin to 253 V ac); MPQ 200. No thermally protected varistor stocked at Özdisan (Littelfuse TMOV14/20 all 0)"
+   "note": "RV3 moved across the K1 contact, 300 V ac class (16 % margin to 253 V ac); MPQ 200. No thermally protected varistor stocked at Özdisan (Littelfuse TMOV14/20 all 0)",
+   "lead": "9-10",
+   "upcoming": 0
+  },
+  "SPRINGF": {
+   "code": "LT17BH0731",
+   "mfr": "LAIRD SIGNAL",
+   "stock": 602220,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     0.14296
+    ],
+    [
+     100,
+     0.1331
+    ],
+    [
+     250,
+     0.12324
+    ],
+    [
+     700,
+     0.11338
+    ],
+    [
+     3500,
+     0.10885
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/rf-aksesuarlari-657/laird-signal-lt17bh0731-708029",
+   "lead": null,
+   "upcoming": 0,
+   "note": "SMD contact finger, 7.5 mm free height, hand-soldered last on the back landing pads; 8 per board = recommended contact set BP1, 6, 8, 10, 11, 13, 15, 16 (minimum set is 6: without BP8, BP16); reel of 700; the bench test of this finger is still open, so the quantity is provisional"
+  },
+  "DS1": {
+   "code": "SAT70AT40D21-33KN-CTP-V1",
+   "mfr": "SATOZ",
+   "stock": 61,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     39.69
+    ],
+    [
+     30,
+     36.75
+    ],
+    [
+     60,
+     33.81
+    ],
+    [
+     300,
+     32.4576
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/tft-paneller-381/satoz-sat70at40d21-33kn-ctp-v1-621995",
+   "lead": null,
+   "upcoming": 0,
+   "note": "7 inch 800x480 24-bit RGB panel with GT911 capacitive touch, box of 60; Ozdisan has 61 for the 100 needed, no incoming stock and no lead time shown: order 60 now and ask Ozdisan for a date on the other 40"
+  },
+  "FPCFER": {
+   "code": "2643178551",
+   "mfr": "Fair-Rite",
+   "stock": 3044,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     1.64
+    ],
+    [
+     10,
+     1.138
+    ],
+    [
+     25,
+     0.976
+    ],
+    [
+     50,
+     0.8638
+    ],
+    [
+     100,
+     0.7599
+    ],
+    [
+     250,
+     0.63376
+    ],
+    [
+     500,
+     0.54592
+    ],
+    [
+     1512,
+     0.51808
+    ]
+   ],
+   "url": "https://www.digikey.com/en/products/detail/fair-rite-products-corp/2643178551/8594019",
+   "lead": null,
+   "upcoming": 0,
+   "note": "NOT at Ozdisan; DigiKey 1934-1266-ND, one-piece flat-cable core, material 43, two in series on the TFT tail (owner decision 2026-11-23: the single large core 2643166551, 45 x 12.5 x 29 mm and 71 g, is too bulky and heavy). Each 26.5 x 6.6 x 12 mm, 8.2 g, opening 21.1 x 1.35 mm for the 20.5 mm tail (0.3 mm spare per side), typical 71 / 119 ohm at 100 / 250 MHz (Fair-Rite datasheet), so about 142 / 238 ohm for the pair against the 150 ohm from 100 MHz assumed in the simulations. Fit in the tail pocket of frame v2 and of the glass front is NOT checked"
+  },
+  "HSCLIP": {
+   "code": "THF 409 TO 220",
+   "mfr": "Fischer Elektronik",
+   "stock": 29800,
+   "moq": 100,
+   "tiers": [
+    [
+     100,
+     0.14
+    ]
+   ],
+   "url": "https://www.digikey.com/en/products/detail/fischer-elektronik/THF-409-TO-220/25835046",
+   "lead": null,
+   "upcoming": 0,
+   "note": "NOT at Ozdisan (its clips are for Kunze profiles only); DigiKey 5496-THF409TO220-ND, Fischer's retaining spring for the SK 409 / SK 459 profiles, TO-220; minimum 100, DigiKey Marketplace item (ships from the supplier, like the heatsink). Owner decision 2026-11-23: clip on the current heatsink, no screw"
+  },
+  "HSCOMP": {
+   "code": "AL-701 WHITE 100 GR",
+   "mfr": "ALPA",
+   "stock": 77,
+   "moq": 1,
+   "tiers": [
+    [
+     1,
+     3.80512
+    ],
+    [
+     5,
+     3.65292
+    ]
+   ],
+   "url": "https://www.ozdisan.com/p/sogutucu-aksesuarlari-463/alpa-al-701-white-100-gr-1580017",
+   "lead": "3-4",
+   "upcoming": 0,
+   "note": "white silicone thermal compound, 100 g jar, between Q1 and HS1 (owner decision 2026-11-23, instead of a pad: Q1's tab is insulated). One jar is counted for 100 boards, about 1 g per board available; the Ozdisan page gives no thermal conductivity"
   }
- }
+ },
+ "read_date": "2026-11-23",
+ "try_per_usd": 50.57
 }
